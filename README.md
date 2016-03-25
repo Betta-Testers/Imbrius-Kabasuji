@@ -2,7 +2,7 @@
 Software engineering game about Hexominoes
 
 ## Group Resources
-#### Any useful tips+tricks can be shared here guys :) So share anything you learn and feel would be useful for someone else!
+ <b>Any useful tips+tricks can be shared here guys :) So share anything you learn and feel would be useful for someone else!</b>
 
 ### GitHub Related
 * <b>How do I use Markdown in this thing?!</b>
