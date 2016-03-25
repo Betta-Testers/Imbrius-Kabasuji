@@ -14,6 +14,6 @@ Software engineering game about Hexominoes
    * Here's a [tutorial](https://try.github.io/levels/1/challenges/1) on the command line version of git.
    * Here's a [GUI](https://desktop.github.com/) front end for git, reducing the need for the commandline. Dead simple to follow.
 
-### WindowBuilder Realted
+### WindowBuilder Related
 * <b>I opened Eclipse and it's not showing the WindowBuilder Designer!</b>
    * Right-click the source file and hit: Open with -> WindowBuilder Editor
