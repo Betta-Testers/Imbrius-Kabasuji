@@ -152,18 +152,15 @@ public class BuilderWindow extends JFrame {
 		btnRotateRight.setEnabled(false);
 		btnRotateRight.setToolTipText("Rotate selected piece right");
 		
-		JButton btnFlipX = new JButton("");
-		btnFlipX.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateRight.png")));
+		JButton btnFlipX = new JButton("X");
 		btnFlipX.setEnabled(false);
 		btnFlipX.setToolTipText("Flips piece over X Axis");
 		
-		JButton btnFlipY = new JButton("");
-		btnFlipY.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateRight.png")));
+		JButton btnFlipY = new JButton("Y");
 		btnFlipY.setEnabled(false);
 		btnFlipY.setToolTipText("Flips piece over Y Axis");
 		
-		JButton btnResetOrientation = new JButton("");
-		btnResetOrientation.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateRight.png")));
+		JButton btnResetOrientation = new JButton("Reset");
 		btnResetOrientation.setEnabled(false);
 		btnResetOrientation.setToolTipText("Resets Orientation of Selected Piece");
 		
@@ -173,7 +170,7 @@ public class BuilderWindow extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(lblTileCount)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblTuleCountVar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+					.addComponent(lblTuleCountVar, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
 					.addGap(319))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -243,9 +240,9 @@ public class BuilderWindow extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblLevelProperties)
 								.addComponent(btnRotateLeft)
-								.addComponent(btnFlipX)
-								.addComponent(btnResetOrientation)
-								.addComponent(btnFlipY)
+								.addComponent(btnFlipX, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnResetOrientation, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnFlipY, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnRotateRight))
 							.addGap(8)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -298,32 +295,22 @@ public class BuilderWindow extends JFrame {
 					.addGap(308))
 		);
 		
+// ==================== THE BULLPEN ==================== //
 		JPanel panelScrollContainer = new JPanel();
 		panelScrollContainer.setBackground(Color.WHITE);
 		scrollpaneBullpen.setViewportView(panelScrollContainer);
 		
 		JPanel panelHex1 = new JPanel();
-		GroupLayout gl_panelScrollContainer = new GroupLayout(panelScrollContainer);
-		gl_panelScrollContainer.setHorizontalGroup(
-			gl_panelScrollContainer.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelScrollContainer.createSequentialGroup()
-					.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(304, Short.MAX_VALUE))
-		);
-		gl_panelScrollContainer.setVerticalGroup(
-			gl_panelScrollContainer.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelScrollContainer.createSequentialGroup()
-					.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, 62, Short.MAX_VALUE)
-					.addContainerGap())
-		);
+		JPanel panelHex2 = new JPanel();
+		JPanel panelHex3 = new JPanel();
 		
 		JSpinner spinHex1 = new JSpinner();
-		
-		JButton btnHex1 = new JButton(new ImageIcon(((new ImageIcon(
-				BuilderWindow.class.getResource("/Hexominoes_Images/1.png")).getImage()
-	            .getScaledInstance(30, 30,
-	                    java.awt.Image.SCALE_SMOOTH)))));
-		//btnHex1.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/1.png")));
+		JSpinner spinHex2 = new JSpinner();
+		JSpinner spinHex3 = new JSpinner();
+
+// ==================== HEXOMINOE BUTTON SETTINGS ==================== //
+		JButton btnHex1 = new JButton(""); //FIX FOR 6 SQUARE TALL HEXOMINOES
+		btnHex1.setIcon(new ImageIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/1.png")).getImage().getScaledInstance(30, 30,java.awt.Image.SCALE_SMOOTH)));
 		GroupLayout gl_panelHex1 = new GroupLayout(panelHex1);
 		gl_panelHex1.setHorizontalGroup(
 			gl_panelHex1.createParallelGroup(Alignment.LEADING)
@@ -342,6 +329,67 @@ public class BuilderWindow extends JFrame {
 					.addComponent(spinHex1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		panelHex1.setLayout(gl_panelHex1);
+		JButton btnHex2 = new JButton("");
+		btnHex2.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/2.png")));
+		GroupLayout gl_panelHex2 = new GroupLayout(panelHex2);
+		gl_panelHex2.setHorizontalGroup(
+			gl_panelHex2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelHex2.createSequentialGroup()
+					.addGap(0)
+					.addGroup(gl_panelHex2.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(spinHex2)
+						.addComponent(btnHex2, GroupLayout.PREFERRED_SIZE, 35, Short.MAX_VALUE)))
+		);
+		gl_panelHex2.setVerticalGroup(
+			gl_panelHex2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panelHex2.createSequentialGroup()
+					.addComponent(btnHex2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+					.addComponent(spinHex2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		panelHex2.setLayout(gl_panelHex2);
+		
+		JButton btnHex3 = new JButton("");
+		btnHex3.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/3.png")));
+		GroupLayout gl_panelHex3 = new GroupLayout(panelHex3);
+		gl_panelHex3.setHorizontalGroup(
+			gl_panelHex3.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 35, Short.MAX_VALUE)
+				.addGroup(gl_panelHex3.createSequentialGroup()
+					.addGap(0)
+					.addGroup(gl_panelHex3.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(spinHex3)
+						.addComponent(btnHex3, GroupLayout.PREFERRED_SIZE, 35, Short.MAX_VALUE)))
+		);
+		gl_panelHex3.setVerticalGroup(
+			gl_panelHex3.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panelHex3.createSequentialGroup()
+					.addComponent(btnHex3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+					.addComponent(spinHex3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		panelHex3.setLayout(gl_panelHex3);
+		
+		
+// ==================== SCROLL CONTAINER SETTINGS ==================== //
+		GroupLayout gl_panelScrollContainer = new GroupLayout(panelScrollContainer);
+		gl_panelScrollContainer.setHorizontalGroup(
+			gl_panelScrollContainer.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelScrollContainer.createSequentialGroup()
+					.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panelHex2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panelHex3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(237, Short.MAX_VALUE))
+		);
+		gl_panelScrollContainer.setVerticalGroup(
+			gl_panelScrollContainer.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panelScrollContainer.createSequentialGroup()
+					.addGroup(gl_panelScrollContainer.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, 62, Short.MAX_VALUE)
+						.addComponent(panelHex2, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelHex3, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
 		panelScrollContainer.setLayout(gl_panelScrollContainer);
 		contentPane.setLayout(gl_contentPane);
 	}
