@@ -17,3 +17,7 @@ Software engineering game about Hexominoes
 ### WindowBuilder Related
 * <b>I opened Eclipse and it's not showing the WindowBuilder Designer!</b>
    * Right-click the source file and hit: Open with -> WindowBuilder Editor
+* <b>Why isn't my Hexominoe appearing?!</b>
+   * Make sure you have put it in the SRC folder (LIKE IT BEST BE THERE)
+   * It should be a .png
+   * The file should be 35x35, with the Hexominoe in the middle

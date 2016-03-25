@@ -21,6 +21,7 @@ import java.awt.Font;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.ImageIcon;
 
 public class BuilderWindow extends JFrame {
 
@@ -137,12 +138,12 @@ public class BuilderWindow extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(lblTileCount)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblTuleCountVar, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+					.addComponent(lblTuleCountVar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
 					.addGap(319))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addContainerGap()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -164,16 +165,15 @@ public class BuilderWindow extends JFrame {
 										.addGroup(gl_contentPane.createSequentialGroup()
 											.addComponent(lblColor, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
-									.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE))
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+											.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))))
+								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(1)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 											.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 											.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
-										.addComponent(btnValidateSave, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)))
+										.addComponent(btnValidateSave, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))))
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(panelBoard, GroupLayout.PREFERRED_SIZE, 342, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -184,7 +184,7 @@ public class BuilderWindow extends JFrame {
 								.addComponent(spinTime)
 								.addComponent(spinMoves, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(scrollpaneBullpen, GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+							.addComponent(scrollpaneBullpen, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblLevelProperties)
 							.addGap(134)
@@ -199,28 +199,29 @@ public class BuilderWindow extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 							.addComponent(lblLevelProperties)
 							.addGap(8)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblTileCount)
-								.addComponent(lblTuleCountVar)))
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnResetLevel)
-							.addComponent(btnRedo)
-							.addComponent(btnUndo)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(lblTuleCountVar))
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblSetMoves)
 								.addComponent(spinMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblSetTime)
-								.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(scrollpaneBullpen, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(31))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnResetLevel)
+								.addComponent(btnRedo)
+								.addComponent(btnUndo))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(scrollpaneBullpen, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(panelBoard, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -247,8 +248,84 @@ public class BuilderWindow extends JFrame {
 							.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnValidateSave, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-					.addGap(173))
+					.addGap(7))
 		);
+		
+		JPanel panelScrollContainer = new JPanel();
+		panelScrollContainer.setBackground(Color.WHITE);
+		scrollpaneBullpen.setViewportView(panelScrollContainer);
+		
+		JPanel panelHex1 = new JPanel();
+		
+		JPanel panel = new JPanel();
+		
+		JSpinner spinner_1 = new JSpinner();
+		
+		JButton button = new JButton("<Image>");
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(29)
+					.addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(31, Short.MAX_VALUE))
+				.addComponent(button, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(button, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(7))
+		);
+		panel.setLayout(gl_panel);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/1.bmp")));
+		GroupLayout gl_panelScrollContainer = new GroupLayout(panelScrollContainer);
+		gl_panelScrollContainer.setHorizontalGroup(
+			gl_panelScrollContainer.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelScrollContainer.createSequentialGroup()
+					.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(1)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(74, Short.MAX_VALUE))
+		);
+		gl_panelScrollContainer.setVerticalGroup(
+			gl_panelScrollContainer.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panelScrollContainer.createSequentialGroup()
+					.addGroup(gl_panelScrollContainer.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+						.addComponent(panelHex1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 62, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 62, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		
+		JSpinner spinHex1 = new JSpinner();
+		
+		JButton btnHex1 = new JButton("<Image>");
+		GroupLayout gl_panelHex1 = new GroupLayout(panelHex1);
+		gl_panelHex1.setHorizontalGroup(
+			gl_panelHex1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelHex1.createSequentialGroup()
+					.addGap(29)
+					.addComponent(spinHex1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(31, Short.MAX_VALUE))
+				.addComponent(btnHex1, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+		);
+		gl_panelHex1.setVerticalGroup(
+			gl_panelHex1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelHex1.createSequentialGroup()
+					.addComponent(btnHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(spinHex1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(7))
+		);
+		panelHex1.setLayout(gl_panelHex1);
+		panelScrollContainer.setLayout(gl_panelScrollContainer);
 		contentPane.setLayout(gl_contentPane);
 	}
 }
