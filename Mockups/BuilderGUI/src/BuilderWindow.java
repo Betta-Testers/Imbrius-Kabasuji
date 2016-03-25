@@ -90,16 +90,19 @@ public class BuilderWindow extends JFrame {
 		spinTime.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		
 		JButton btnResetLevel = new JButton("Reset Level");
+		btnResetLevel.setToolTipText("Clear level and start over");
 		
 		JButton btnRedo = new JButton("");
-		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/com/sun/javafx/scene/web/skin/Redo_16x16_JFX.png")));
+		btnRedo.setToolTipText("Redo");
+		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/Redo.png")));
 		
 		JButton btnUndo = new JButton("");
+		btnUndo.setToolTipText("Undo");
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
+		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/Undo.png")));
 		
 		JScrollPane scrollpaneBullpen = new JScrollPane();
 		scrollpaneBullpen.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -139,7 +142,31 @@ public class BuilderWindow extends JFrame {
 		JButton btnConvertHint = new JButton("Convert to Hint");
 		btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
 		
-		JButton btnRotateLeft = new JButton("Rotate Left");
+		JButton btnRotateLeft = new JButton("");
+		btnRotateLeft.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateLeft.png")));
+		btnRotateLeft.setEnabled(false);
+		btnRotateLeft.setToolTipText("Rotate selected piece left");
+		
+		JButton btnRotateRight = new JButton("");
+		btnRotateRight.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateRight.png")));
+		btnRotateRight.setEnabled(false);
+		btnRotateRight.setToolTipText("Rotate selected piece right");
+		
+		JButton btnFlipX = new JButton("");
+		btnFlipX.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateRight.png")));
+		btnFlipX.setEnabled(false);
+		btnFlipX.setToolTipText("Flips piece over X Axis");
+		
+		JButton btnFlipY = new JButton("");
+		btnFlipY.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateRight.png")));
+		btnFlipY.setEnabled(false);
+		btnFlipY.setToolTipText("Flips piece over Y Axis");
+		
+		JButton btnResetOrientation = new JButton("");
+		btnResetOrientation.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateRight.png")));
+		btnResetOrientation.setEnabled(false);
+		btnResetOrientation.setToolTipText("Resets Orientation of Selected Piece");
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -152,8 +179,12 @@ public class BuilderWindow extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblLevelProperties)
-							.addGap(18)
-							.addComponent(btnRotateLeft))
+							.addGap(80)
+							.addComponent(btnRotateLeft, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnFlipX, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnResetOrientation, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnFlipY, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnRotateRight, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
@@ -211,7 +242,11 @@ public class BuilderWindow extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblLevelProperties)
-								.addComponent(btnRotateLeft))
+								.addComponent(btnRotateLeft)
+								.addComponent(btnFlipX)
+								.addComponent(btnResetOrientation)
+								.addComponent(btnFlipY)
+								.addComponent(btnRotateRight))
 							.addGap(8)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblTileCount)
