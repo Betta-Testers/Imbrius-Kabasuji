@@ -20,4 +20,5 @@ Software engineering game about Hexominoes
 * <b>Why isn't my Hexominoe appearing?!</b>
    * Make sure you have put it in the SRC folder (LIKE IT BEST BE THERE)
    * It should be a .png
-   * The file should be 35x35, with the Hexominoe in the middle
+   * The file should be 35x35, with the Hexominoe centered
+   * Scale the image to be 30x30, leaving a small border around it on the button
