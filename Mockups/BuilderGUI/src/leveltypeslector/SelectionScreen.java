@@ -15,6 +15,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JSplitPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -25,6 +26,9 @@ import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.GridLayout;
+import javax.swing.JToggleButton;
+import javax.swing.ImageIcon;
 
 public class SelectionScreen {
 
@@ -79,24 +83,6 @@ public class SelectionScreen {
 		levelSelectorAndCreator.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		levelViewerAndSelector.setRightComponent(levelSelectorAndCreator);
 		
-		JTabbedPane levelTypes = new JTabbedPane(JTabbedPane.BOTTOM);
-		levelSelectorAndCreator.setLeftComponent(levelTypes);
-		
-		JTextArea txtrPuzzle = new JTextArea();
-		txtrPuzzle.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
-		txtrPuzzle.setText("Stuff describing Release level");
-		levelTypes.addTab("Puzzle", null, txtrPuzzle, null);
-		
-		JTextArea txtrLightning = new JTextArea();
-		txtrLightning.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
-		txtrLightning.setText("Stuff describing lightning level");
-		levelTypes.addTab("Lightning", null, txtrLightning, null);
-		
-		JTextArea txtrRelease = new JTextArea();
-		txtrRelease.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
-		txtrRelease.setText("Stuff describing release level");
-		levelTypes.addTab("Release", null, txtrRelease, null);
-		
 		JPanel createBtnPanel = new JPanel();
 		levelSelectorAndCreator.setRightComponent(createBtnPanel);
 				
@@ -128,6 +114,35 @@ public class SelectionScreen {
 					.addGap(10))
 		);
 		createBtnPanel.setLayout(gl_createBtnPanel);
+		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setResizeWeight(0.75);
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		levelSelectorAndCreator.setLeftComponent(splitPane);
+		
+		JTextArea txtrTextAboutLevel = new JTextArea();
+		txtrTextAboutLevel.setText("Text about level");
+		splitPane.setRightComponent(txtrTextAboutLevel);
+		
+		JPanel levelTypesPanel = new JPanel();
+		splitPane.setLeftComponent(levelTypesPanel);
+		levelTypesPanel.setLayout(new GridLayout(1, 3, 5, 5));
+		
+		ButtonGroup levelTypeGroup = new ButtonGroup();
+		
+		JToggleButton tglbtnPuzzle = new JToggleButton("");
+		tglbtnPuzzle.setSelected(true);
+		tglbtnPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/Puzzle.png")));
+		levelTypesPanel.add(tglbtnPuzzle);
+		levelTypeGroup.add(tglbtnPuzzle);
+		JToggleButton tglbtnLightning = new JToggleButton("");
+		tglbtnLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/Lightning.png")));
+		levelTypesPanel.add(tglbtnLightning);
+		levelTypeGroup.add(tglbtnLightning);
+		JToggleButton tglbtnRelease = new JToggleButton("");
+		tglbtnRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/Release.png")));
+		levelTypesPanel.add(tglbtnRelease);
+		levelTypeGroup.add(tglbtnRelease);
 		
 		JScrollPane levelViewer = new JScrollPane();
 		levelViewer.setEnabled(false);
