@@ -3,40 +3,21 @@ package typeselectionscreen;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
-import java.awt.BorderLayout;
 import javax.swing.JTextArea;
-import java.awt.Font;
-import javax.swing.JToggleButton;
-import javax.swing.JRadioButton;
-import javax.swing.Box;
-import javax.swing.ButtonGroup;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import java.awt.GridLayout;
 import javax.swing.JLabel;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.BoxLayout;
 import javax.swing.JSplitPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.ScrollPaneConstants;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
