@@ -36,10 +36,15 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SelectionScreen {
 
 	private JFrame frame;
+	Dimension tabSize = new Dimension(180, 25);
+	Dimension levelPreviewSize = new Dimension(96, 72);
 
 	/**
 	 * Launch the application.
@@ -74,136 +79,96 @@ public class SelectionScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
 		
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		frame.getContentPane().add(splitPane);
+		JSplitPane levelViewerAndSelector = new JSplitPane();
+		levelViewerAndSelector.setEnabled(false);
+		levelViewerAndSelector.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		frame.getContentPane().add(levelViewerAndSelector);
 		
-		JSplitPane splitPane_1 = new JSplitPane();
-		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		splitPane.setRightComponent(splitPane_1);
+		JSplitPane levelSelectorAndCreator = new JSplitPane();
+		levelSelectorAndCreator.setResizeWeight(1.0);
+		levelSelectorAndCreator.setEnabled(false);
+		levelSelectorAndCreator.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		levelViewerAndSelector.setRightComponent(levelSelectorAndCreator);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		splitPane_1.setLeftComponent(tabbedPane);
+		JTabbedPane levelTypes = new JTabbedPane(JTabbedPane.BOTTOM);
+		levelSelectorAndCreator.setLeftComponent(levelTypes);
 		
-		JTextArea txtrRelease = new JTextArea();
-		txtrRelease.setText("Stuff describing Release level");
-		tabbedPane.addTab("Release", null, txtrRelease, null);
+		JTextArea txtrPuzzle = new JTextArea();
+		txtrPuzzle.setText("Stuff describing Release level");
+		levelTypes.addTab("Puzzle", null, txtrPuzzle, null);
 		
 		JTextArea txtrLightning = new JTextArea();
 		txtrLightning.setText("Stuff describing lightning level");
-		tabbedPane.addTab("Lightning", null, txtrLightning, null);
+		levelTypes.addTab("Lightning", null, txtrLightning, null);
 		
 		JTextArea txtrRelease = new JTextArea();
 		txtrRelease.setText("Stuff describing release level");
-		tabbedPane.addTab("Release level", null, txtrRelease, null);
+		levelTypes.addTab("Release", null, txtrRelease, null);
 		
+		JPanel createBtnPanel = new JPanel();
+		levelSelectorAndCreator.setRightComponent(createBtnPanel);
+				
 		JButton btnCreateLevel = new JButton("Create Level");
-		btnCreateLevel.setMaximumSize(new Dimension(120, 48));
-		btnCreateLevel.setMinimumSize(new Dimension(120, 48));
-		btnCreateLevel.setPreferredSize(new Dimension(120, 48));
-		splitPane_1.setRightComponent(btnCreateLevel);
+		btnCreateLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		splitPane.setLeftComponent(scrollPane);
+		levelSelectorAndCreator.setDividerLocation(1.0);
 		
-		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(720, 48));
-		panel.setMaximumSize(new Dimension(720, 48));
-		panel.setMinimumSize(new Dimension(720, 48));
-		scrollPane.setViewportView(panel);
+		GroupLayout gl_createBtnPanel = new GroupLayout(createBtnPanel);
+		gl_createBtnPanel.setAutoCreateGaps(true);
+		gl_createBtnPanel.setAutoCreateContainerGaps(true);
+		gl_createBtnPanel.setHorizontalGroup(
+			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
+				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
+					.addGap(256)
+					.addComponent(btnCreateLevel)
+					.addContainerGap(255, Short.MAX_VALUE))
+		);
+		gl_createBtnPanel.setVerticalGroup(
+			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
+				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
+					.addContainerGap(195, Short.MAX_VALUE)
+					.addComponent(btnCreateLevel)
+					.addGap(10))
+		);
+		createBtnPanel.setLayout(gl_createBtnPanel);
 		
-		JLabel lblPuzzle = new JLabel("Puzzle 1");
-		lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuzzle.setPreferredSize(new Dimension(48, 48));
-		lblPuzzle.setMaximumSize(new Dimension(48, 48));
-		lblPuzzle.setMinimumSize(new Dimension(48, 48));
-		JLabel lblPuzzle2 = new JLabel("Puzzle 2");
-		lblPuzzle2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuzzle2.setPreferredSize(new Dimension(48, 48));
-		lblPuzzle2.setMaximumSize(new Dimension(48, 48));
-		lblPuzzle2.setMinimumSize(new Dimension(48, 48));
-		JLabel lblPuzzle3 = new JLabel("Puzzle 3");
-		lblPuzzle3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuzzle3.setPreferredSize(new Dimension(48, 48));
-		lblPuzzle3.setMaximumSize(new Dimension(48, 48));
-		lblPuzzle3.setMinimumSize(new Dimension(48, 48));
-		JLabel lblPuzzle4 = new JLabel("Puzzle 4");
-		lblPuzzle4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuzzle4.setPreferredSize(new Dimension(48, 48));
-		lblPuzzle4.setMaximumSize(new Dimension(48, 48));
-		lblPuzzle4.setMinimumSize(new Dimension(48, 48));
-		JLabel lblPuzzle5 = new JLabel("Puzzle 5");
-		lblPuzzle5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuzzle5.setPreferredSize(new Dimension(48, 48));
-		lblPuzzle5.setMaximumSize(new Dimension(48, 48));
-		lblPuzzle5.setMinimumSize(new Dimension(48, 48));
-		JLabel lblLightning = new JLabel("Lightning 1");
-		lblLightning.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLightning.setPreferredSize(new Dimension(48, 48));
-		lblLightning.setMaximumSize(new Dimension(48, 48));
-		lblLightning.setMinimumSize(new Dimension(48, 48));
-		JLabel lblLightning2 = new JLabel("Lightning 2");
-		lblLightning2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLightning2.setPreferredSize(new Dimension(48, 48));
-		lblLightning2.setMaximumSize(new Dimension(48, 48));
-		lblLightning2.setMinimumSize(new Dimension(48, 48));
-		JLabel lblLightning3 = new JLabel("Lightning 3");
-		lblLightning3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLightning3.setPreferredSize(new Dimension(48, 48));
-		lblLightning3.setMaximumSize(new Dimension(48, 48));
-		lblLightning3.setMinimumSize(new Dimension(48, 48));
-		JLabel lblLightning4 = new JLabel("Lightning 4");
-		lblLightning4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLightning4.setPreferredSize(new Dimension(48, 48));
-		lblLightning4.setMaximumSize(new Dimension(48, 48));
-		lblLightning4.setMinimumSize(new Dimension(48, 48));
-		JLabel lblLightning5 = new JLabel("Lightning 5");
-		lblLightning5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLightning5.setPreferredSize(new Dimension(48, 48));
-		lblLightning5.setMaximumSize(new Dimension(48, 48));
-		lblLightning5.setMinimumSize(new Dimension(48, 48));
-		JLabel lblRelease = new JLabel("Release 1");
-		lblRelease.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRelease.setPreferredSize(new Dimension(48, 48));
-		lblRelease.setMaximumSize(new Dimension(48, 48));
-		lblRelease.setMinimumSize(new Dimension(48, 48));
-		JLabel lblRelease2 = new JLabel("Release 2");
-		lblRelease2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRelease2.setPreferredSize(new Dimension(48, 48));
-		lblRelease2.setMaximumSize(new Dimension(48, 48));
-		lblRelease2.setMinimumSize(new Dimension(48, 48));
-		JLabel lblRelease3 = new JLabel("Release 3");
-		lblRelease3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRelease3.setPreferredSize(new Dimension(48, 48));
-		lblRelease3.setMaximumSize(new Dimension(48, 48));
-		lblRelease3.setMinimumSize(new Dimension(48, 48));
-		JLabel lblRelease4 = new JLabel("Release 4");
-		lblRelease4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRelease4.setPreferredSize(new Dimension(48, 48));
-		lblRelease4.setMaximumSize(new Dimension(48, 48));
-		lblRelease4.setMinimumSize(new Dimension(48, 48));
-		JLabel lblRelease5 = new JLabel("Release 5");
-		lblRelease5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRelease5.setPreferredSize(new Dimension(48, 48));
-		lblRelease5.setMaximumSize(new Dimension(48, 48));
-		lblRelease5.setMinimumSize(new Dimension(48, 48));
-		panel.add(lblPuzzle);
-		panel.add(lblPuzzle2);
-		panel.add(lblPuzzle3);
-		panel.add(lblPuzzle4);
-		panel.add(lblPuzzle5);
-		panel.add(lblLightning);
-		panel.add(lblLightning2);
-		panel.add(lblLightning3);
-		panel.add(lblLightning4);
-		panel.add(lblLightning5);
-		panel.add(lblRelease);
-		panel.add(lblRelease2);
-		panel.add(lblRelease3);
-		panel.add(lblRelease4);
-		panel.add(lblRelease5);
+		JScrollPane levelViewer = new JScrollPane();
+		levelViewer.setEnabled(false);
+		levelViewer.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		levelViewerAndSelector.setLeftComponent(levelViewer);
+		
+		JPanel levelsList = new JPanel();
+		levelViewer.setViewportView(levelsList);
+		
+		for (int i=1; i<=5; i++){
+			JLabel lblPuzzle = new JLabel("Puzzle "+i);
+			lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
+			lblPuzzle.setPreferredSize(levelPreviewSize);
+			lblPuzzle.setMaximumSize(levelPreviewSize);
+			lblPuzzle.setMinimumSize(levelPreviewSize);
+			levelsList.add(lblPuzzle);
+		}
+		
+		for (int i=1; i<=5; i++){
+			JLabel lblLightning = new JLabel("Lightning "+i);
+			lblLightning.setHorizontalAlignment(SwingConstants.CENTER);
+			lblLightning.setPreferredSize(levelPreviewSize);
+			lblLightning.setMaximumSize(levelPreviewSize);
+			lblLightning.setMinimumSize(levelPreviewSize);
+			levelsList.add(lblLightning);
+		}
+		
+		for (int i=1; i<=5; i++){
+			JLabel lblRelease = new JLabel("Release "+i);
+			lblRelease.setHorizontalAlignment(SwingConstants.CENTER);
+			lblRelease.setPreferredSize(levelPreviewSize);
+			lblRelease.setMaximumSize(levelPreviewSize);
+			lblRelease.setMinimumSize(levelPreviewSize);
+			levelsList.add(lblRelease);
+		}
 		
 	}
 }
