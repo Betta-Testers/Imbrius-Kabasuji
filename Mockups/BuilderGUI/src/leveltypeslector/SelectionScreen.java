@@ -29,8 +29,7 @@ import java.awt.Font;
 public class SelectionScreen {
 
 	private JFrame frame;
-	Dimension tabSize = new Dimension(180, 25);
-	Dimension levelPreviewSize = new Dimension(96, 72);
+	
 
 	/**
 	 * Launch the application.
@@ -60,6 +59,9 @@ public class SelectionScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		Dimension levelPreviewSize = new Dimension(96, 72);
+		
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 640, 640);
