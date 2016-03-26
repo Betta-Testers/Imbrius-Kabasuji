@@ -33,27 +33,13 @@ public class BuilderWindow extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				
 				try {
-					 // sure look and feel
-					 UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-					 
-					 // not-so-sure look and feel
-					 System.setProperty("os.name", "Windows");
-					 System.setProperty("os.version", "5.1");
-					 UIManager.setLookAndFeel(
-					   "com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-					 } 
-					catch (Exception ex) {
-					 ex.printStackTrace();
-					}
-//				try {
-//					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//					BuilderWindow frame = new BuilderWindow();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					BuilderWindow frame = new BuilderWindow();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
