@@ -116,11 +116,12 @@ public class SelectionScreen {
 		createBtnPanel.setLayout(gl_createBtnPanel);
 		
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setResizeWeight(0.75);
+		splitPane.setResizeWeight(0.65);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		levelSelectorAndCreator.setLeftComponent(splitPane);
 		
 		final JTextArea txtrTextAboutLevel = new JTextArea();
+		txtrTextAboutLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 		txtrTextAboutLevel.setText("Puzzle");
 		splitPane.setRightComponent(txtrTextAboutLevel);
 		
