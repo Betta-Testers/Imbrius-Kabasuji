@@ -120,8 +120,8 @@ public class SelectionScreen {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		levelSelectorAndCreator.setLeftComponent(splitPane);
 		
-		JTextArea txtrTextAboutLevel = new JTextArea();
-		txtrTextAboutLevel.setText("Text about level");
+		final JTextArea txtrTextAboutLevel = new JTextArea();
+		txtrTextAboutLevel.setText("Puzzle");
 		splitPane.setRightComponent(txtrTextAboutLevel);
 		
 		JPanel levelTypesPanel = new JPanel();
@@ -135,14 +135,40 @@ public class SelectionScreen {
 		tglbtnPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/Puzzle.png")));
 		levelTypesPanel.add(tglbtnPuzzle);
 		levelTypeGroup.add(tglbtnPuzzle);
+		tglbtnPuzzle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JToggleButton tBtn = (JToggleButton)arg0.getSource();
+	            if (tBtn.isSelected()) {
+	            	txtrTextAboutLevel.setText("Puzzle");
+	            }
+			}
+		});
+		
 		JToggleButton tglbtnLightning = new JToggleButton("");
 		tglbtnLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/Lightning.png")));
 		levelTypesPanel.add(tglbtnLightning);
 		levelTypeGroup.add(tglbtnLightning);
+		tglbtnLightning.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JToggleButton tBtn = (JToggleButton)arg0.getSource();
+	            if (tBtn.isSelected()) {
+	            	txtrTextAboutLevel.setText("Lightning");
+	            }
+			}
+		});
+		
 		JToggleButton tglbtnRelease = new JToggleButton("");
 		tglbtnRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/Release.png")));
 		levelTypesPanel.add(tglbtnRelease);
 		levelTypeGroup.add(tglbtnRelease);
+		tglbtnRelease.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JToggleButton tBtn = (JToggleButton)arg0.getSource();
+	            if (tBtn.isSelected()) {
+	            	txtrTextAboutLevel.setText("Release");
+	            }
+			}
+		});
 		
 		JScrollPane levelViewer = new JScrollPane();
 		levelViewer.setEnabled(false);
