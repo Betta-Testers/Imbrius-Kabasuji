@@ -329,6 +329,8 @@ public class BuilderWindow extends JFrame {
 					.addComponent(spinHex1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		panelHex1.setLayout(gl_panelHex1);
+		
+		
 		JButton btnHex2 = new JButton("");
 		btnHex2.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/2.png")));
 		GroupLayout gl_panelHex2 = new GroupLayout(panelHex2);
@@ -348,6 +350,7 @@ public class BuilderWindow extends JFrame {
 					.addComponent(spinHex2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		panelHex2.setLayout(gl_panelHex2);
+		
 		
 		JButton btnHex3 = new JButton("");
 		btnHex3.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/3.png")));
