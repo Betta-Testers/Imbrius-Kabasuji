@@ -1,4 +1,4 @@
-package typeselectionscreen;
+package leveltypeslector;
 
 import java.awt.EventQueue;
 
