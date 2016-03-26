@@ -1,10 +1,14 @@
 package leveltypeslector;
 
 import java.awt.EventQueue;
+import java.awt.Window;
 
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
+import levelbuilder.BuilderWindow;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -20,6 +24,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class SelectionScreen {
 
@@ -34,6 +39,7 @@ public class SelectionScreen {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					SelectionScreen window = new SelectionScreen();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -75,14 +81,17 @@ public class SelectionScreen {
 		levelSelectorAndCreator.setLeftComponent(levelTypes);
 		
 		JTextArea txtrPuzzle = new JTextArea();
+		txtrPuzzle.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		txtrPuzzle.setText("Stuff describing Release level");
 		levelTypes.addTab("Puzzle", null, txtrPuzzle, null);
 		
 		JTextArea txtrLightning = new JTextArea();
+		txtrLightning.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		txtrLightning.setText("Stuff describing lightning level");
 		levelTypes.addTab("Lightning", null, txtrLightning, null);
 		
 		JTextArea txtrRelease = new JTextArea();
+		txtrRelease.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		txtrRelease.setText("Stuff describing release level");
 		levelTypes.addTab("Release", null, txtrRelease, null);
 		
@@ -90,8 +99,10 @@ public class SelectionScreen {
 		levelSelectorAndCreator.setRightComponent(createBtnPanel);
 				
 		JButton btnCreateLevel = new JButton("Create Level");
+		btnCreateLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 		btnCreateLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+			
 			}
 		});
 		
