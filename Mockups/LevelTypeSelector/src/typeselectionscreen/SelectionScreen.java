@@ -110,7 +110,7 @@ public class SelectionScreen {
 		gl_createBtnPanel.setVerticalGroup(
 			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
 				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
-					.addContainerGap(195, Short.MAX_VALUE)
+					.addGap(10)
 					.addComponent(btnCreateLevel)
 					.addGap(10))
 		);
