@@ -1176,8 +1176,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(panelHex33, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelHex34, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelHex35, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(237, Short.MAX_VALUE))
-				);
+				));
 		gl_panelScrollContainer.setVerticalGroup(
 				gl_panelScrollContainer.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panelScrollContainer.createSequentialGroup()
@@ -1216,11 +1215,8 @@ public class BuilderWindow extends JFrame {
 								.addComponent(panelHex32, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
 								.addComponent(panelHex33, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
 								.addComponent(panelHex34, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex35, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								)
-								
-						.addContainerGap())
-				);
+								.addComponent(panelHex35, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
+				));
 		panelScrollContainer.setLayout(gl_panelScrollContainer);
 		contentPane.setLayout(gl_contentPane);
 	}
