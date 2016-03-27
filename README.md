@@ -22,6 +22,7 @@ Software engineering game about Hexominoes
    * It should be a .png
    * The file should be 35x35, with the Hexominoe centered
    * Scale the image to be 30x30, leaving a small border around it on the button
+<<<<<<< HEAD
 
 
 ## A Few Todos
@@ -29,3 +30,5 @@ Software engineering game about Hexominoes
   * [ ] Change "Make Hint" button into a toggle JButton, to toggle piece placement into hint placement
   * [ ] Remove rotate buttons for Bullpen and replace with JLabels for Keyboard control.
   * [ ] Increase window size to 640x640
+=======
+>>>>>>> master
