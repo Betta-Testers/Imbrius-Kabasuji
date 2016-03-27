@@ -1,4 +1,4 @@
-package leveltypeslector;
+package builderMockups;
 
 import java.awt.EventQueue;
 import java.awt.Window;
@@ -7,9 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-
-import levelbuilder.BuilderWindow;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -29,6 +26,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JToggleButton;
 import javax.swing.ImageIcon;
+import javax.swing.Icon;
 
 public class SelectionScreen {
 
@@ -181,7 +179,10 @@ public class SelectionScreen {
 		
 		for (int i=1; i<=5; i++){
 			JLabel lblPuzzle = new JLabel("Puzzle "+i);
+			lblPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/PuzzleSm.png")));
 			lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
+			lblPuzzle.setHorizontalTextPosition(SwingConstants.CENTER);
+			lblPuzzle.setVerticalTextPosition(SwingConstants.BOTTOM);
 			lblPuzzle.setPreferredSize(levelPreviewSize);
 			lblPuzzle.setMaximumSize(levelPreviewSize);
 			lblPuzzle.setMinimumSize(levelPreviewSize);
@@ -190,7 +191,10 @@ public class SelectionScreen {
 		
 		for (int i=1; i<=5; i++){
 			JLabel lblLightning = new JLabel("Lightning "+i);
+			lblLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/LightningSm.png")));
 			lblLightning.setHorizontalAlignment(SwingConstants.CENTER);
+			lblLightning.setHorizontalTextPosition(SwingConstants.CENTER);
+			lblLightning.setVerticalTextPosition(SwingConstants.BOTTOM);
 			lblLightning.setPreferredSize(levelPreviewSize);
 			lblLightning.setMaximumSize(levelPreviewSize);
 			lblLightning.setMinimumSize(levelPreviewSize);
@@ -199,7 +203,10 @@ public class SelectionScreen {
 		
 		for (int i=1; i<=5; i++){
 			JLabel lblRelease = new JLabel("Release "+i);
+			lblRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/ReleaseSm.png")));
 			lblRelease.setHorizontalAlignment(SwingConstants.CENTER);
+			lblRelease.setHorizontalTextPosition(SwingConstants.CENTER);
+			lblRelease.setVerticalTextPosition(SwingConstants.BOTTOM);
 			lblRelease.setPreferredSize(levelPreviewSize);
 			lblRelease.setMaximumSize(levelPreviewSize);
 			lblRelease.setMinimumSize(levelPreviewSize);

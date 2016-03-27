@@ -1,4 +1,4 @@
-package levelbuilder;
+package builderMockups;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
