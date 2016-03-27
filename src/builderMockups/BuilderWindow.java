@@ -1,4 +1,4 @@
-package levelbuilder;
+package builderMockups;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -96,7 +96,7 @@ public class BuilderWindow extends JFrame {
 
 		JButton btnRedo = new JButton("");
 		btnRedo.setToolTipText("Redo");
-		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/Redo.png")));
+		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Redo.png")));
 
 		JButton btnUndo = new JButton("");
 		btnUndo.setToolTipText("Undo");
@@ -104,7 +104,7 @@ public class BuilderWindow extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/Undo.png")));
+		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Undo.png")));
 
 		JScrollPane scrollpaneBullpen = new JScrollPane();
 		scrollpaneBullpen.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -145,12 +145,12 @@ public class BuilderWindow extends JFrame {
 		btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
 
 		JButton btnRotateLeft = new JButton("");
-		btnRotateLeft.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateLeft.png")));
+		btnRotateLeft.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/RotateLeft.png")));
 		btnRotateLeft.setEnabled(false);
 		btnRotateLeft.setToolTipText("Rotate selected piece left");
 
 		JButton btnRotateRight = new JButton("");
-		btnRotateRight.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Icons/RotateRight.png")));
+		btnRotateRight.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/RotateRight.png")));
 		btnRotateRight.setEnabled(false);
 		btnRotateRight.setToolTipText("Rotate selected piece right");
 
@@ -411,42 +411,42 @@ public class BuilderWindow extends JFrame {
 		JButton btnHex35 = new JButton("");
 
 
-		btnHex1.setIcon(new ImageIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/1.png"))
+		btnHex1.setIcon(new ImageIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/1.png"))
 				.getImage().getScaledInstance(30, 30,java.awt.Image.SCALE_SMOOTH)));
-		btnHex2.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/2.png")));
-		btnHex3.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/3.png")));
-		btnHex4.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/4.png")));
-		btnHex5.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/5.png")));
-		btnHex6.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/6.png")));
-		btnHex7.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/7.png")));
-		btnHex8.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/8.png")));
-		btnHex9.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/9.png")));
-		btnHex10.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/10.png")));
-		btnHex11.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/11.png")));
-		btnHex12.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/12.png")));
-		btnHex13.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/13.png")));
-		btnHex14.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/14.png")));
-		btnHex15.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/15.png")));
-		btnHex16.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/16.png")));
-		btnHex17.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/17.png")));
-		btnHex18.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/18.png")));
-		btnHex19.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/19.png")));
-		btnHex20.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/20.png")));
-		btnHex21.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/21.png")));
-		btnHex22.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/22.png")));
-		btnHex23.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/23.png")));
-		btnHex24.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/24.png")));
-		btnHex25.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/25.png")));
-		btnHex26.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/26.png")));
-		btnHex27.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/27.png")));
-		btnHex28.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/28.png")));
-		btnHex29.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/29.png")));
-		btnHex30.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/30.png")));
-		btnHex31.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/31.png")));
-		btnHex32.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/32.png")));
-		btnHex33.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/33.png")));
-		btnHex34.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/34.png")));
-		btnHex35.setIcon(new ImageIcon(BuilderWindow.class.getResource("/Hexominoes_Images/35.png")));
+		btnHex2.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/2.png")));
+		btnHex3.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/3.png")));
+		btnHex4.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/4.png")));
+		btnHex5.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/5.png")));
+		btnHex6.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/6.png")));
+		btnHex7.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/7.png")));
+		btnHex8.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/8.png")));
+		btnHex9.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/9.png")));
+		btnHex10.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/10.png")));
+		btnHex11.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/11.png")));
+		btnHex12.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/12.png")));
+		btnHex13.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/13.png")));
+		btnHex14.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/14.png")));
+		btnHex15.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/15.png")));
+		btnHex16.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/16.png")));
+		btnHex17.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/17.png")));
+		btnHex18.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/18.png")));
+		btnHex19.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/19.png")));
+		btnHex20.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/20.png")));
+		btnHex21.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/21.png")));
+		btnHex22.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/22.png")));
+		btnHex23.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/23.png")));
+		btnHex24.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/24.png")));
+		btnHex25.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/25.png")));
+		btnHex26.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/26.png")));
+		btnHex27.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/27.png")));
+		btnHex28.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/28.png")));
+		btnHex29.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/29.png")));
+		btnHex30.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/30.png")));
+		btnHex31.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/31.png")));
+		btnHex32.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/32.png")));
+		btnHex33.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/33.png")));
+		btnHex34.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/34.png")));
+		btnHex35.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/35.png")));
 
 		GroupLayout gl_panelHex1 = new GroupLayout(panelHex1);
 		GroupLayout gl_panelHex2 = new GroupLayout(panelHex2);

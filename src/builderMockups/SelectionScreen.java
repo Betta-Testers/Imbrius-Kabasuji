@@ -1,4 +1,4 @@
-package leveltypeslector;
+package builderMockups;
 
 import java.awt.EventQueue;
 import java.awt.Window;
@@ -7,11 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-
-import levelbuilder.BuilderWindow;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
+import builderMockups.BuilderWindow;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
