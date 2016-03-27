@@ -28,3 +28,4 @@ Software engineering game about Hexominoes
 * <b>Builder GUI</b>
   * [ ] Change "Make Hint" button into a toggle JButton, to toggle piece placement into hint placement
   * [ ] Remove rotate buttons for Bullpen and replace with JLabels for Keyboard control.
+  * [ ] Increase window size to 640x640
