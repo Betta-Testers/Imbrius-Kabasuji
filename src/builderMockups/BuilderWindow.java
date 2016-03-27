@@ -26,6 +26,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.JToggleButton;
 
 public class BuilderWindow extends JFrame {
 
@@ -143,7 +144,11 @@ public class BuilderWindow extends JFrame {
 		JButton btnValidateSave = new JButton("Validate & Save");
 		btnValidateSave.setToolTipText("Check if level is valid and save if so");
 
-		JButton btnConvertHint = new JButton("Convert to Hint");
+		JToggleButton btnConvertHint = new JToggleButton("Convert to Hint");
+		btnConvertHint.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
 		
 		JLabel lblControls = new JLabel("Controls:");
@@ -218,7 +223,7 @@ public class BuilderWindow extends JFrame {
 										.addComponent(lblSetTime))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(spinTime)
 										.addComponent(spinMoves, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)))
 								.addComponent(btnResetLevel))
 							.addPreferredGap(ComponentPlacement.UNRELATED, 12, Short.MAX_VALUE)
