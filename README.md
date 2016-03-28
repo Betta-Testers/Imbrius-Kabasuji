@@ -30,3 +30,4 @@ Software engineering game about Hexominoes
   * [x] Remove rotate buttons for Bullpen and replace with JLabels for Keyboard control.
   * [ ] Increase window size
   * [ ] Prevent window resizing
+  * [ ] Breakdown mega class into subclasses based on functionalities (Bullpen, Board, TileCreation, Property Grouping, Button Grouping)
