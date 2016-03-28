@@ -126,7 +126,7 @@ public class SelectionScreen {
 		JToggleButton tglbtnPuzzle = new JToggleButton("");
 		tglbtnPuzzle.setBackground(Color.WHITE);
 		tglbtnPuzzle.setSelected(true);
-		tglbtnPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/resources/icons/Puzzle.png")));
+		tglbtnPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/Puzzle.png")));
 		levelTypeGroup.add(tglbtnPuzzle);
 		tglbtnPuzzle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -139,7 +139,7 @@ public class SelectionScreen {
 		
 		JToggleButton tglbtnLightning = new JToggleButton("");
 		tglbtnLightning.setBackground(Color.WHITE);
-		tglbtnLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/resources/icons/Lightning.png")));
+		tglbtnLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/Lightning.png")));
 		levelTypeGroup.add(tglbtnLightning);
 		tglbtnLightning.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -152,7 +152,7 @@ public class SelectionScreen {
 		
 		JToggleButton tglbtnRelease = new JToggleButton("");
 		tglbtnRelease.setBackground(Color.WHITE);
-		tglbtnRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/resources/icons/Release.png")));
+		tglbtnRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/Release.png")));
 		levelTypeGroup.add(tglbtnRelease);
 		tglbtnRelease.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -203,7 +203,7 @@ public class SelectionScreen {
 		
 		for (int i=1; i<=5; i++){
 			JLabel lblPuzzle = new JLabel("Puzzle "+i);
-			lblPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/resources/icons/PuzzleSm.png")));
+			lblPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/PuzzleSm.png")));
 			lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
 			lblPuzzle.setHorizontalTextPosition(SwingConstants.CENTER);
 			lblPuzzle.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -216,7 +216,7 @@ public class SelectionScreen {
 		
 		for (int i=1; i<=5; i++){
 			JLabel lblLightning = new JLabel("Lightning "+i);
-			lblLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/resources/icons/LightningSm.png")));
+			lblLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/LightningSm.png")));
 			lblLightning.setHorizontalAlignment(SwingConstants.CENTER);
 			lblLightning.setHorizontalTextPosition(SwingConstants.CENTER);
 			lblLightning.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -229,7 +229,7 @@ public class SelectionScreen {
 		
 		for (int i=1; i<=5; i++){
 			JLabel lblRelease = new JLabel("Release "+i);
-			lblRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/resources/icons/ReleaseSm.png")));
+			lblRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/ReleaseSm.png")));
 			lblRelease.setHorizontalAlignment(SwingConstants.CENTER);
 			lblRelease.setHorizontalTextPosition(SwingConstants.CENTER);
 			lblRelease.setVerticalTextPosition(SwingConstants.BOTTOM);
