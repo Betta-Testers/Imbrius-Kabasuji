@@ -11,6 +11,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JSplitPane;
@@ -27,6 +28,7 @@ import java.awt.GridLayout;
 import javax.swing.JToggleButton;
 import javax.swing.ImageIcon;
 import javax.swing.Icon;
+import java.awt.Color;
 
 public class SelectionScreen {
 
@@ -62,7 +64,7 @@ public class SelectionScreen {
 	 */
 	private void initialize() {
 		
-		Dimension levelPreviewSize = new Dimension(96, 72);
+		Dimension levelPreviewSize = new Dimension(96, 96);
 		
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -114,7 +116,7 @@ public class SelectionScreen {
 		createBtnPanel.setLayout(gl_createBtnPanel);
 		
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setResizeWeight(0.65);
+		splitPane.setResizeWeight(0.5);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		levelSelectorAndCreator.setLeftComponent(splitPane);
 		
@@ -123,16 +125,12 @@ public class SelectionScreen {
 		txtrTextAboutLevel.setText("Puzzle");
 		splitPane.setRightComponent(txtrTextAboutLevel);
 		
-		JPanel levelTypesPanel = new JPanel();
-		splitPane.setLeftComponent(levelTypesPanel);
-		levelTypesPanel.setLayout(new GridLayout(1, 3, 5, 5));
-		
-		ButtonGroup levelTypeGroup = new ButtonGroup();
+ButtonGroup levelTypeGroup = new ButtonGroup();
 		
 		JToggleButton tglbtnPuzzle = new JToggleButton("");
+		tglbtnPuzzle.setBackground(Color.WHITE);
 		tglbtnPuzzle.setSelected(true);
 		tglbtnPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/Puzzle.png")));
-		levelTypesPanel.add(tglbtnPuzzle);
 		levelTypeGroup.add(tglbtnPuzzle);
 		tglbtnPuzzle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -144,8 +142,8 @@ public class SelectionScreen {
 		});
 		
 		JToggleButton tglbtnLightning = new JToggleButton("");
+		tglbtnLightning.setBackground(Color.WHITE);
 		tglbtnLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/Lightning.png")));
-		levelTypesPanel.add(tglbtnLightning);
 		levelTypeGroup.add(tglbtnLightning);
 		tglbtnLightning.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -157,8 +155,8 @@ public class SelectionScreen {
 		});
 		
 		JToggleButton tglbtnRelease = new JToggleButton("");
+		tglbtnRelease.setBackground(Color.WHITE);
 		tglbtnRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/Icons/Release.png")));
-		levelTypesPanel.add(tglbtnRelease);
 		levelTypeGroup.add(tglbtnRelease);
 		tglbtnRelease.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -168,6 +166,36 @@ public class SelectionScreen {
 	            }
 			}
 		});
+		
+		JPanel levelTypesPanel = new JPanel();
+		splitPane.setLeftComponent(levelTypesPanel);
+		GroupLayout gl_levelTypesPanel = new GroupLayout(levelTypesPanel);
+		gl_levelTypesPanel.setAutoCreateGaps(true);
+		gl_levelTypesPanel.setAutoCreateContainerGaps(true);
+		gl_levelTypesPanel.setHorizontalGroup(
+			gl_levelTypesPanel.createParallelGroup(Alignment.CENTER)
+				.addGroup(Alignment.CENTER, gl_levelTypesPanel.createSequentialGroup()
+					.addContainerGap(20, Short.MAX_VALUE)
+					.addComponent(tglbtnPuzzle)
+					.addContainerGap(20, Short.MAX_VALUE)
+					.addComponent(tglbtnLightning)
+					.addContainerGap(20, Short.MAX_VALUE)
+					.addComponent(tglbtnRelease)
+					.addContainerGap(20, Short.MAX_VALUE))
+		);
+		gl_levelTypesPanel.setVerticalGroup(
+			gl_levelTypesPanel.createParallelGroup(Alignment.CENTER)
+				.addGroup(Alignment.CENTER, gl_levelTypesPanel.createSequentialGroup()
+						.addContainerGap(5, Short.MAX_VALUE)
+						.addGroup(gl_levelTypesPanel.createParallelGroup()
+							.addComponent(tglbtnPuzzle)
+							.addComponent(tglbtnLightning)
+							.addComponent(tglbtnRelease))
+						.addContainerGap(5, Short.MAX_VALUE))
+		);
+		levelTypesPanel.setLayout(gl_levelTypesPanel);
+		
+		
 		
 		JScrollPane levelViewer = new JScrollPane();
 		levelViewer.setEnabled(false);
@@ -186,6 +214,7 @@ public class SelectionScreen {
 			lblPuzzle.setPreferredSize(levelPreviewSize);
 			lblPuzzle.setMaximumSize(levelPreviewSize);
 			lblPuzzle.setMinimumSize(levelPreviewSize);
+			lblPuzzle.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			levelsList.add(lblPuzzle);
 		}
 		
@@ -198,6 +227,7 @@ public class SelectionScreen {
 			lblLightning.setPreferredSize(levelPreviewSize);
 			lblLightning.setMaximumSize(levelPreviewSize);
 			lblLightning.setMinimumSize(levelPreviewSize);
+			lblLightning.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			levelsList.add(lblLightning);
 		}
 		
@@ -210,6 +240,7 @@ public class SelectionScreen {
 			lblRelease.setPreferredSize(levelPreviewSize);
 			lblRelease.setMaximumSize(levelPreviewSize);
 			lblRelease.setMinimumSize(levelPreviewSize);
+			lblRelease.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			levelsList.add(lblRelease);
 		}
 		
