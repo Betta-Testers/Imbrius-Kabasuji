@@ -31,3 +31,12 @@ Software engineering game about Hexominoes
    * It should be a .png
    * The file should be 35x35, with the Hexominoe centered
    * Scale the image to be 30x30, leaving a small border around it on the button
+
+
+## A Few Todos
+* <b>Builder GUI</b>
+  * [x] Change "Make Hint" button into a toggle JButton, to toggle piece placement into hint placement
+  * [x] Remove rotate buttons for Bullpen and replace with JLabels for Keyboard control.
+  * [ ] Increase window size
+  * [ ] Prevent window resizing
+  * [ ] Breakdown mega class into subclasses based on functionalities (Bullpen, Board, TileCreation, Property Grouping, Button Grouping)
