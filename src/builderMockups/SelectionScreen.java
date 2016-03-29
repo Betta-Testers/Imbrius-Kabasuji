@@ -130,6 +130,7 @@ public class SelectionScreen {
 		levelTypeGroup.add(tglbtnPuzzle);
 		tglbtnPuzzle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//#TODO: move this to controller
 				JToggleButton tBtn = (JToggleButton)arg0.getSource();
 	            if (tBtn.isSelected()) {
 	            	txtrTextAboutLevel.setText("Puzzle");
@@ -142,6 +143,7 @@ public class SelectionScreen {
 		tglbtnLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/Lightning.png")));
 		levelTypeGroup.add(tglbtnLightning);
 		tglbtnLightning.addActionListener(new ActionListener() {
+			//#TODO: move this to controller
 			public void actionPerformed(ActionEvent arg0) {
 				JToggleButton tBtn = (JToggleButton)arg0.getSource();
 	            if (tBtn.isSelected()) {
@@ -156,6 +158,7 @@ public class SelectionScreen {
 		levelTypeGroup.add(tglbtnRelease);
 		tglbtnRelease.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//#TODO: move this to controller
 				JToggleButton tBtn = (JToggleButton)arg0.getSource();
 	            if (tBtn.isSelected()) {
 	            	txtrTextAboutLevel.setText("Release");
