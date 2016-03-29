@@ -19,7 +19,6 @@ import javax.swing.SpinnerListModel;
 import java.awt.Font;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 import java.awt.Component;
@@ -56,20 +55,85 @@ public class BuilderWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		JPanel panelContentArea = new JPanel();
+		JPanel panelPlayingArea = new JPanel();
 		JPanel panelButtonGroup = new JPanel();
 		JPanel panelTileCreation = new JPanel();
 		JPanel panelLevelProperties = new JPanel();
 		JScrollPane bullPen = new BullPen();
 		
-		panelContentArea.setBackground(Color.WHITE);
+		panelPlayingArea.setBackground(Color.WHITE);
+		
+		// ==================== LEVEL PROPERTIES ==================== //
+		JLabel lblLevelProperties = new JLabel("Level Properties");
+		JLabel lblTileCount = new JLabel("Tile Count:");
+		JLabel lblTileCountVar = new JLabel("0");
+		JLabel lblSetMoves = new JLabel("Set Moves:");
+		JLabel lblSetTime = new JLabel("Set Time:");
+		JSpinner spinMoves = new JSpinner();
+		JSpinner spinTime = new JSpinner();
+		
+		lblLevelProperties.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblTileCount.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSetMoves.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSetTime.setHorizontalAlignment(SwingConstants.RIGHT);
+		spinMoves.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinTime.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		
+		// ==================== TILE CREATION ==================== //
+		JLabel lblNewLabel = new JLabel("Tile Creation");
+		JButton btn1 = new JButton("1");
+		JButton btn2 = new JButton("2");
+		JButton btn3 = new JButton("3");
+		JButton btn4 = new JButton("4");
+		JButton btn5 = new JButton("5");
+		JButton btn6 = new JButton("6");
+		JLabel lblColor = new JLabel("Color:");
+		JSpinner spinner = new JSpinner();
+		
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btn1.setForeground(Color.BLACK);
+		btn1.setBackground(Color.BLUE);
+		btn2.setForeground(Color.BLACK);
+		btn2.setBackground(Color.BLUE);
+		btn3.setForeground(Color.BLACK);
+		btn3.setBackground(Color.BLUE);
+		btn4.setForeground(Color.BLACK);
+		btn4.setBackground(Color.BLUE);
+		btn5.setForeground(Color.BLACK);
+		btn5.setBackground(Color.BLUE);
+		btn6.setForeground(Color.BLACK);
+		btn6.setBackground(Color.BLUE);
+		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
 
-		// ==================== LAYOUT SETTINGS ==================== //
+		// ==================== BUTTON PALETTE ==================== // 
+		JButton btnUndo = new JButton("");
+		JButton btnRedo = new JButton("");
+		JButton btnRemovePieces = new JButton("Remove Pieces");
+		JToggleButton btnConvertHint = new JToggleButton("Convert to Hint");
+		JButton btnSave = new JButton("Save");
+		btnRemovePieces.setToolTipText("Remove all pieces on the board");
+
+		btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
+		btnSave.setToolTipText("Save Level");
+		btnUndo.setToolTipText("Undo");
+		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Undo.png")));
+		btnRedo.setToolTipText("Redo");
+		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Redo.png")));
+		
+		// ==================== Playing Area ==================== // 
+		JPanel panelBoard = new JPanel();
+		panelBoard.setBackground(Color.WHITE);
+
+		JPanel panelPieceViewer = new JPanel();
+		panelPieceViewer.setBackground(Color.CYAN);
+		
+		
+		// ==================== LAYOUT SETTINGS - Overall ==================== //
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panelPlayingArea, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(panelTileCreation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -89,29 +153,11 @@ public class BuilderWindow extends JFrame {
 							.addComponent(panelTileCreation, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panelPlayingArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 
-		JLabel lblLevelProperties = new JLabel("Level Properties");
-		lblLevelProperties.setFont(new Font("Tahoma", Font.BOLD, 13));
-
-		JLabel lblTileCount = new JLabel("Tile Count:");
-		lblTileCount.setHorizontalAlignment(SwingConstants.RIGHT);
-
-		JLabel lblTuleCountVar = new JLabel("5");
-
-		JLabel lblSetMoves = new JLabel("Set Moves:");
-		lblSetMoves.setHorizontalAlignment(SwingConstants.RIGHT);
-
-		JLabel lblSetTime = new JLabel("Set Time:");
-		lblSetTime.setHorizontalAlignment(SwingConstants.RIGHT);
-
-		JSpinner spinMoves = new JSpinner();
-		spinMoves.setModel(new SpinnerNumberModel(1, 1, 100, 1));
-
-		JSpinner spinTime = new JSpinner();
-		spinTime.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		// ==================== LAYOUT SETTINGS - Level Properties ==================== //
 		GroupLayout gl_panelLevelProperties = new GroupLayout(panelLevelProperties);
 		gl_panelLevelProperties.setHorizontalGroup(
 				gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
@@ -121,7 +167,7 @@ public class BuilderWindow extends JFrame {
 										.addGroup(Alignment.TRAILING, gl_panelLevelProperties.createSequentialGroup()
 												.addComponent(lblTileCount, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 												.addGap(4)
-												.addComponent(lblTuleCountVar, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+												.addComponent(lblTileCountVar, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 										.addGroup(gl_panelLevelProperties.createSequentialGroup()
 												.addComponent(lblLevelProperties)))
 								.addGroup(Alignment.TRAILING, gl_panelLevelProperties.createSequentialGroup()
@@ -139,7 +185,7 @@ public class BuilderWindow extends JFrame {
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblTileCount)
-								.addComponent(lblTuleCountVar))
+								.addComponent(lblTileCountVar))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblSetMoves)
@@ -151,38 +197,7 @@ public class BuilderWindow extends JFrame {
 				);
 		panelLevelProperties.setLayout(gl_panelLevelProperties);
 
-		JLabel lblNewLabel = new JLabel("Tile Creation");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-
-		JButton btn1 = new JButton("1");
-		btn1.setForeground(Color.BLACK);
-		btn1.setBackground(Color.BLUE);
-
-
-		JButton btn2 = new JButton("2");
-		btn2.setForeground(Color.BLACK);
-		btn2.setBackground(Color.BLUE);
-
-		JButton btn3 = new JButton("3");
-		btn3.setForeground(Color.BLACK);
-		btn3.setBackground(Color.BLUE);
-
-		JButton btn4 = new JButton("4");
-		btn4.setForeground(Color.BLACK);
-		btn4.setBackground(Color.BLUE);
-
-		JButton btn5 = new JButton("5");
-		btn5.setForeground(Color.BLACK);
-		btn5.setBackground(Color.BLUE);
-
-		JButton btn6 = new JButton("6");
-		btn6.setForeground(Color.BLACK);
-		btn6.setBackground(Color.BLUE);
-
-		JLabel lblColor = new JLabel("Color:");
-
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
+		// ==================== LAYOUT SETTINGS - Tile Creation ==================== //
 		GroupLayout gl_panelTileCreation = new GroupLayout(panelTileCreation);
 		gl_panelTileCreation.setHorizontalGroup(
 				gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
@@ -241,25 +256,7 @@ public class BuilderWindow extends JFrame {
 				);
 		panelTileCreation.setLayout(gl_panelTileCreation);
 
-		JButton btnRemovePieces = new JButton("Remove Pieces");
-
-		btnRemovePieces.setToolTipText("Remove all pieces on the board");
-
-		JToggleButton btnConvertHint = new JToggleButton("Convert to Hint");
-
-		btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
-
-		JButton btnSave = new JButton("Save");
-		btnSave.setToolTipText("Save Level");
-
-		JButton btnUndo = new JButton("");
-		btnUndo.setToolTipText("Undo");
-
-		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Undo.png")));
-
-		JButton btnRedo = new JButton("");
-		btnRedo.setToolTipText("Redo");
-		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Redo.png")));
+		// ==================== LAYOUT SETTINGS - Button Palette ==================== // 
 		GroupLayout gl_panelButtonGroup = new GroupLayout(panelButtonGroup);
 		gl_panelButtonGroup.setHorizontalGroup(
 			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
@@ -284,27 +281,23 @@ public class BuilderWindow extends JFrame {
 		gl_panelButtonGroup.linkSize(SwingConstants.VERTICAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
 		gl_panelButtonGroup.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
 		panelButtonGroup.setLayout(gl_panelButtonGroup);
-
-		JPanel panelBoard = new JPanel();
-		panelBoard.setBackground(Color.WHITE);
-
-		JPanel panelPieceViewer = new JPanel();
-		panelPieceViewer.setBackground(Color.CYAN);
-		GroupLayout gl_panelContentArea = new GroupLayout(panelContentArea);
-		gl_panelContentArea.setHorizontalGroup(
-				gl_panelContentArea.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelContentArea.createSequentialGroup()
-						.addGroup(gl_panelContentArea.createParallelGroup(Alignment.LEADING, false)
+		
+		// ==================== LAYOUT SETTINGS - PlayingArea ==================== //
+		GroupLayout gl_panelPlayingArea = new GroupLayout(panelPlayingArea);
+		gl_panelPlayingArea.setHorizontalGroup(
+				gl_panelPlayingArea.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelPlayingArea.createSequentialGroup()
+						.addGroup(gl_panelPlayingArea.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(panelPieceViewer, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
 								.addComponent(panelBoard, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)))
 				);
-		gl_panelContentArea.setVerticalGroup(
-				gl_panelContentArea.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelContentArea.createSequentialGroup()
+		gl_panelPlayingArea.setVerticalGroup(
+				gl_panelPlayingArea.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelPlayingArea.createSequentialGroup()
 						.addComponent(panelPieceViewer, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelBoard, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
 				);
-		panelContentArea.setLayout(gl_panelContentArea);
+		panelPlayingArea.setLayout(gl_panelPlayingArea);
 		contentPane.setLayout(gl_contentPane);
 	}
 }
