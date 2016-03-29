@@ -51,7 +51,7 @@ public class BuilderWindow extends JFrame {
 	public BuilderWindow() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1812, 725);
+		setBounds(100, 100, 759, 725);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -775,8 +775,8 @@ public class BuilderWindow extends JFrame {
 							.addComponent(panelTileCreation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(scrollpaneBullpen, GroupLayout.PREFERRED_SIZE, 1240, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(scrollpaneBullpen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
@@ -784,14 +784,14 @@ public class BuilderWindow extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(panelLevelProperties, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelTileCreation, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
-							.addGap(75)
-							.addComponent(scrollpaneBullpen, GroupLayout.PREFERRED_SIZE, 279, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, 688, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panelLevelProperties, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelTileCreation, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
+					.addGap(75)
+					.addComponent(scrollpaneBullpen, GroupLayout.PREFERRED_SIZE, 279, GroupLayout.PREFERRED_SIZE)
+					.addGap(130))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 
@@ -994,26 +994,24 @@ public class BuilderWindow extends JFrame {
 		gl_panelButtonGroup.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
 		panelButtonGroup.setLayout(gl_panelButtonGroup);
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
+		JPanel panelBoard = new JPanel();
+		panelBoard.setBackground(Color.WHITE);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.CYAN);
+		JPanel panelPieceViewer = new JPanel();
+		panelPieceViewer.setBackground(Color.CYAN);
 		GroupLayout gl_panelContentArea = new GroupLayout(panelContentArea);
 		gl_panelContentArea.setHorizontalGroup(
 				gl_panelContentArea.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelContentArea.createSequentialGroup()
 						.addGroup(gl_panelContentArea.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-								.addComponent(panel, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE))
-						.addGap(0))
+								.addComponent(panelPieceViewer, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+								.addComponent(panelBoard, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)))
 				);
 		gl_panelContentArea.setVerticalGroup(
 				gl_panelContentArea.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelContentArea.createSequentialGroup()
-						.addGap(82)
-						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panelPieceViewer, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelBoard, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
 				);
 		panelContentArea.setLayout(gl_panelContentArea);
 		contentPane.setLayout(gl_contentPane);
