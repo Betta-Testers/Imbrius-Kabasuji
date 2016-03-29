@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout.Group;
+import javax.swing.GroupLayout.ParallelGroup;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -74,211 +77,8 @@ public class BuilderWindow extends JFrame {
 		panelScrollContainer.setBackground(Color.WHITE);
 		scrollpaneBullpen.setViewportView(panelScrollContainer);
 
-		JPanel panelHex1 = new JPanel();
-		JPanel panelHex2 = new JPanel();
-		JPanel panelHex3 = new JPanel();
-		JPanel panelHex4 = new JPanel();
-		JPanel panelHex5 = new JPanel();
-		JPanel panelHex6 = new JPanel();
-		JPanel panelHex7 = new JPanel();
-		JPanel panelHex8 = new JPanel();
-		JPanel panelHex9 = new JPanel();
-		JPanel panelHex10 = new JPanel();
-		JPanel panelHex11 = new JPanel();
-		JPanel panelHex12 = new JPanel();
-		JPanel panelHex13 = new JPanel();
-		JPanel panelHex14 = new JPanel();
-		JPanel panelHex15 = new JPanel();
-		JPanel panelHex16 = new JPanel();
-		JPanel panelHex17 = new JPanel();
-		JPanel panelHex18 = new JPanel();
-		JPanel panelHex19 = new JPanel();
-		JPanel panelHex20 = new JPanel();
-		JPanel panelHex21 = new JPanel();
-		JPanel panelHex22 = new JPanel();
-		JPanel panelHex23 = new JPanel();
-		JPanel panelHex24 = new JPanel();
-		JPanel panelHex25 = new JPanel();
-		JPanel panelHex26 = new JPanel();
-		JPanel panelHex27 = new JPanel();
-		JPanel panelHex28 = new JPanel();
-		JPanel panelHex29 = new JPanel();
-		JPanel panelHex30 = new JPanel();
-		JPanel panelHex31 = new JPanel();
-		JPanel panelHex32 = new JPanel();
-		JPanel panelHex33 = new JPanel();
-		JPanel panelHex34 = new JPanel();
-		JPanel panelHex35 = new JPanel();
-
-		JSpinner spinHex1 = new JSpinner();
-		JSpinner spinHex2 = new JSpinner();
-		JSpinner spinHex3 = new JSpinner();
-		JSpinner spinHex4 = new JSpinner();
-		JSpinner spinHex5 = new JSpinner();
-		JSpinner spinHex6 = new JSpinner();
-		JSpinner spinHex7 = new JSpinner();
-		JSpinner spinHex8 = new JSpinner();
-		JSpinner spinHex9 = new JSpinner();
-		JSpinner spinHex10 = new JSpinner();
-		JSpinner spinHex11 = new JSpinner();
-		JSpinner spinHex12 = new JSpinner();
-		JSpinner spinHex13 = new JSpinner();
-		JSpinner spinHex14 = new JSpinner();
-		JSpinner spinHex15 = new JSpinner();
-		JSpinner spinHex16 = new JSpinner();
-		JSpinner spinHex17 = new JSpinner();
-		JSpinner spinHex18 = new JSpinner();
-		JSpinner spinHex19 = new JSpinner();
-		JSpinner spinHex20 = new JSpinner();
-		JSpinner spinHex21 = new JSpinner();
-		JSpinner spinHex22= new JSpinner();
-		JSpinner spinHex23 = new JSpinner();
-		JSpinner spinHex24 = new JSpinner();
-		JSpinner spinHex25 = new JSpinner();
-		JSpinner spinHex26 = new JSpinner();
-		JSpinner spinHex27 = new JSpinner();
-		JSpinner spinHex28 = new JSpinner();
-		JSpinner spinHex29 = new JSpinner();
-		JSpinner spinHex30 = new JSpinner();
-		JSpinner spinHex31 = new JSpinner();
-		JSpinner spinHex32 = new JSpinner();
-		JSpinner spinHex33 = new JSpinner();
-		JSpinner spinHex34 = new JSpinner();
-		JSpinner spinHex35 = new JSpinner();
-
-		JButton btnHex1 = new JButton(""); 
-		JButton btnHex2 = new JButton("");
-		JButton btnHex3 = new JButton("");
-		JButton btnHex4 = new JButton(""); 
-		JButton btnHex5 = new JButton("");
-		JButton btnHex6 = new JButton("");
-		JButton btnHex7 = new JButton(""); 
-		JButton btnHex8 = new JButton("");
-		JButton btnHex9 = new JButton("");
-		JButton btnHex10 = new JButton(""); 
-		JButton btnHex11 = new JButton("");
-		JButton btnHex12 = new JButton("");
-		JButton btnHex13 = new JButton(""); 
-		JButton btnHex14 = new JButton("");
-		JButton btnHex15 = new JButton("");
-		JButton btnHex16 = new JButton(""); 
-		JButton btnHex17 = new JButton("");
-		JButton btnHex18 = new JButton("");
-		JButton btnHex19 = new JButton(""); 
-		JButton btnHex20 = new JButton("");
-		JButton btnHex21 = new JButton("");
-		JButton btnHex22 = new JButton(""); 
-		JButton btnHex23 = new JButton("");
-		JButton btnHex24 = new JButton("");
-		JButton btnHex25 = new JButton("");
-		JButton btnHex26 = new JButton(""); 
-		JButton btnHex27 = new JButton("");
-		JButton btnHex28 = new JButton("");
-		JButton btnHex29 = new JButton("");
-		JButton btnHex30 = new JButton(""); 
-		JButton btnHex31 = new JButton("");
-		JButton btnHex32 = new JButton("");
-		JButton btnHex33 = new JButton(""); 
-		JButton btnHex34 = new JButton("");
-		JButton btnHex35 = new JButton("");
-
-
-		btnHex1.setIcon(new ImageIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/1.png"))
-				.getImage().getScaledInstance(30, 30,java.awt.Image.SCALE_SMOOTH)));
-		btnHex2.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/2.png")));
-		btnHex3.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/3.png")));
-		btnHex4.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/4.png")));
-		btnHex5.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/5.png")));
-		btnHex6.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/6.png")));
-		btnHex7.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/7.png")));
-		btnHex8.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/8.png")));
-		btnHex9.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/9.png")));
-		btnHex10.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/10.png")));
-		btnHex11.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/11.png")));
-		btnHex12.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/12.png")));
-		btnHex13.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/13.png")));
-		btnHex14.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/14.png")));
-		btnHex15.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/15.png")));
-		btnHex16.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/16.png")));
-		btnHex17.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/17.png")));
-		btnHex18.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/18.png")));
-		btnHex19.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/19.png")));
-		btnHex20.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/20.png")));
-		btnHex21.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/21.png")));
-		btnHex22.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/22.png")));
-		btnHex23.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/23.png")));
-		btnHex24.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/24.png")));
-		btnHex25.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/25.png")));
-		btnHex26.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/26.png")));
-		btnHex27.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/27.png")));
-		btnHex28.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/28.png")));
-		btnHex29.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/29.png")));
-		btnHex30.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/30.png")));
-		btnHex31.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/31.png")));
-		btnHex32.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/32.png")));
-		btnHex33.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/33.png")));
-		btnHex34.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/34.png")));
-		btnHex35.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/35.png")));
-
-		GroupLayout gl_panelHex1 = new GroupLayout(panelHex1);
-		GroupLayout gl_panelHex2 = new GroupLayout(panelHex2);
-		GroupLayout gl_panelHex3 = new GroupLayout(panelHex3);
-		GroupLayout gl_panelHex4 = new GroupLayout(panelHex4);
-		GroupLayout gl_panelHex5 = new GroupLayout(panelHex5);
-		GroupLayout gl_panelHex6 = new GroupLayout(panelHex6);
-		GroupLayout gl_panelHex7 = new GroupLayout(panelHex7);
-		GroupLayout gl_panelHex8 = new GroupLayout(panelHex8);
-		GroupLayout gl_panelHex9 = new GroupLayout(panelHex9);
-		GroupLayout gl_panelHex10 = new GroupLayout(panelHex10);
-		GroupLayout gl_panelHex11 = new GroupLayout(panelHex11);
-		GroupLayout gl_panelHex12 = new GroupLayout(panelHex12);
-		GroupLayout gl_panelHex13 = new GroupLayout(panelHex13);
-		GroupLayout gl_panelHex14 = new GroupLayout(panelHex14);
-		GroupLayout gl_panelHex15 = new GroupLayout(panelHex15);
-		GroupLayout gl_panelHex16 = new GroupLayout(panelHex16);
-		GroupLayout gl_panelHex17 = new GroupLayout(panelHex17);
-		GroupLayout gl_panelHex18 = new GroupLayout(panelHex18);
-		GroupLayout gl_panelHex19 = new GroupLayout(panelHex19);
-		GroupLayout gl_panelHex20 = new GroupLayout(panelHex20);
-		GroupLayout gl_panelHex21 = new GroupLayout(panelHex21);
-		GroupLayout gl_panelHex22 = new GroupLayout(panelHex22);
-		GroupLayout gl_panelHex23 = new GroupLayout(panelHex23);
-		GroupLayout gl_panelHex24 = new GroupLayout(panelHex24);
-		GroupLayout gl_panelHex25 = new GroupLayout(panelHex25);
-		GroupLayout gl_panelHex26 = new GroupLayout(panelHex26);
-		GroupLayout gl_panelHex27 = new GroupLayout(panelHex27);
-		GroupLayout gl_panelHex28 = new GroupLayout(panelHex28);
-		GroupLayout gl_panelHex29 = new GroupLayout(panelHex29);
-		GroupLayout gl_panelHex30 = new GroupLayout(panelHex30);
-		GroupLayout gl_panelHex31 = new GroupLayout(panelHex31);
-		GroupLayout gl_panelHex32 = new GroupLayout(panelHex32);
-		GroupLayout gl_panelHex33 = new GroupLayout(panelHex33);
-		GroupLayout gl_panelHex34 = new GroupLayout(panelHex34);
-		GroupLayout gl_panelHex35 = new GroupLayout(panelHex35);
-
-
-		// ==================== Bullpen - Layout Settings ==================== //
-
-		gl_panelHex1.setHorizontalGroup(
-				gl_panelHex1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex1.createSequentialGroup()
-						.addGap(0)
-						.addGroup(gl_panelHex1.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(spinHex1, Alignment.LEADING)
-								.addComponent(btnHex1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 35, Short.MAX_VALUE))
-						.addGap(0))
-				);
-		gl_panelHex1.setVerticalGroup(
-				gl_panelHex1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex1.createSequentialGroup()
-						.addComponent(btnHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-						.addComponent(spinHex1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				);
-		panelHex1.setLayout(gl_panelHex1);
-
-
-
+		
+		/*
 		gl_panelHex2.setHorizontalGroup(
 				gl_panelHex2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelHex2.createSequentialGroup()
@@ -909,88 +709,43 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex35, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex35.setLayout(gl_panelHex35);
-
+*/
 		// ==================== SCROLL CONTAINER SETTINGS ==================== //
 		GroupLayout gl_panelScrollContainer = new GroupLayout(panelScrollContainer);
-		gl_panelScrollContainer.setHorizontalGroup(
-				gl_panelScrollContainer.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelScrollContainer.createSequentialGroup()
-						.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex5, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex6, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex7, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex8, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex9, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex10, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex11, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex12, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex13, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex14, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex15, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex16, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex17, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex18, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex19, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex20, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex21, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex22, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex23, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex24, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex25, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex26, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex27, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex28, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex29, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex30, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex31, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex32, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex33, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex34, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelHex35, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						));
-		gl_panelScrollContainer.setVerticalGroup(
-				gl_panelScrollContainer.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelScrollContainer.createSequentialGroup()
-						.addGroup(gl_panelScrollContainer.createParallelGroup(Alignment.LEADING)
-								.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex2, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex3, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex4, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex5, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex6, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex7, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex8, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex9, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex10, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex11, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex12, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex13, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex14, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex15, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex16, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex17, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex18, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex19, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex20, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex21, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex22, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex23, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex24, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex25, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex26, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex27, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex28, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex29, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex30, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex31, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex32, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex33, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex34, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelHex35, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
-						));
+		
+			ParallelGroup pargroup = gl_panelScrollContainer.createParallelGroup(Alignment.TRAILING).addGroup(gl_panelScrollContainer.createParallelGroup(Alignment.LEADING));
+			ParallelGroup pargroup2 = gl_panelScrollContainer.createParallelGroup(Alignment.LEADING).addGroup(gl_panelScrollContainer.createSequentialGroup());
+		
+		
+						for(int i = 1; i <= 35; i++){
+							JPanel panelHex1 = new JPanel();
+							JSpinner spinHex1 = new JSpinner();
+							JButton btnHex1 = new JButton(""); 
+							/*btnHex1.setIcon(new ImageIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/1.png"))
+									.getImage().getScaledInstance(30, 30,java.awt.Image.SCALE_SMOOTH)));*/
+							btnHex1.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/"+i+".png")));
+							GroupLayout gl_panelHex1 = new GroupLayout(panelHex1);
+							gl_panelHex1.setHorizontalGroup(
+								gl_panelHex1.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_panelHex1.createSequentialGroup()
+										.addComponent(spinHex1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+							);
+							gl_panelHex1.setVerticalGroup(
+								gl_panelHex1.createParallelGroup(Alignment.LEADING)
+									.addComponent(btnHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+									.addComponent(spinHex1, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+							);
+							panelHex1.setLayout(gl_panelHex1);
+							pargroup.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
+							pargroup2.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE);
+						}
+	
+					
+						gl_panelScrollContainer.setHorizontalGroup(pargroup);
+						gl_panelScrollContainer.setVerticalGroup(pargroup2);
+		
+		
 		panelScrollContainer.setLayout(gl_panelScrollContainer);
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
