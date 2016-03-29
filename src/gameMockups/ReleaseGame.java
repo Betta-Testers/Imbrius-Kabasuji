@@ -1,0 +1,227 @@
+package gameMockups;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+
+import releaseGUIClasses.NumbersReleased;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.event.KeyEvent;
+import java.awt.Component;
+
+public class ReleaseGame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ReleaseGame frame = new ReleaseGame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ReleaseGame() {
+		setTitle("Release");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 620, 651);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+
+		JPanel panelContentArea = new JPanel();
+		panelContentArea.setBackground(Color.WHITE);
+
+		JPanel panelButtonGroup = new JPanel();
+
+		JPanel panelLevelDescription = new JPanel();
+		
+		JPanel panelBullpenPlaceholder = new JPanel();
+		
+		JPanel panel = new JPanel();
+
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(panel, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(55))
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panelBullpenPlaceholder, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+								.addComponent(panelLevelDescription, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+							.addContainerGap())))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(panelLevelDescription, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panelBullpenPlaceholder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		
+		JLabel lblSetsReleased = new JLabel("Sets Released");
+		lblSetsReleased.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		NumbersReleased numbersReleased_1 = new NumbersReleased();
+		
+		NumbersReleased numbersReleased_2 = new NumbersReleased();
+		
+		NumbersReleased numbersReleased_3 = new NumbersReleased();
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(66)
+							.addComponent(lblSetsReleased))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(numbersReleased_1, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(numbersReleased_2, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(numbersReleased_3, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(15, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(5)
+					.addComponent(lblSetsReleased)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(numbersReleased_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(numbersReleased_2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(numbersReleased_3, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(20, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+		
+		JLabel lblBullpenGoesHere = new JLabel("Bullpen Goes Here");
+		GroupLayout gl_panelBullpenPlaceholder = new GroupLayout(panelBullpenPlaceholder);
+		gl_panelBullpenPlaceholder.setHorizontalGroup(
+			gl_panelBullpenPlaceholder.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelBullpenPlaceholder.createSequentialGroup()
+					.addGap(56)
+					.addComponent(lblBullpenGoesHere))
+		);
+		gl_panelBullpenPlaceholder.setVerticalGroup(
+			gl_panelBullpenPlaceholder.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelBullpenPlaceholder.createSequentialGroup()
+					.addGap(5)
+					.addComponent(lblBullpenGoesHere))
+		);
+		panelBullpenPlaceholder.setLayout(gl_panelBullpenPlaceholder);
+
+		JLabel lblLevel = new JLabel("Level");
+		lblLevel.setFont(new Font("Tahoma", Font.BOLD, 13));
+
+		JLabel lblLevelNumber = new JLabel("1");
+		lblLevelNumber.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GroupLayout gl_panelLevelDescription = new GroupLayout(panelLevelDescription);
+		gl_panelLevelDescription.setHorizontalGroup(
+			gl_panelLevelDescription.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelLevelDescription.createSequentialGroup()
+					.addGap(19)
+					.addComponent(lblLevel)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblLevelNumber, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		gl_panelLevelDescription.setVerticalGroup(
+			gl_panelLevelDescription.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelLevelDescription.createSequentialGroup()
+					.addGap(5)
+					.addGroup(gl_panelLevelDescription.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblLevel)
+						.addComponent(lblLevelNumber))
+					.addContainerGap(82, Short.MAX_VALUE))
+		);
+		panelLevelDescription.setLayout(gl_panelLevelDescription);
+
+		JToggleButton btnShowHint = new JToggleButton("Show Hint");
+		btnShowHint.setMnemonic(KeyEvent.VK_ENTER);
+
+		btnShowHint.setToolTipText("Pieces on board are turned into a hint");
+		GroupLayout gl_panelButtonGroup = new GroupLayout(panelButtonGroup);
+		gl_panelButtonGroup.setHorizontalGroup(
+			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panelButtonGroup.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnShowHint)
+					.addContainerGap())
+		);
+		gl_panelButtonGroup.setVerticalGroup(
+			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelButtonGroup.createSequentialGroup()
+					.addGap(9)
+					.addComponent(btnShowHint, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(27, Short.MAX_VALUE))
+		);
+		panelButtonGroup.setLayout(gl_panelButtonGroup);
+
+		JPanel panelBoard = new JPanel();
+		panelBoard.setBackground(Color.WHITE);
+
+		JPanel panelPieceViewer = new JPanel();
+		panelPieceViewer.setBackground(Color.CYAN);
+		GroupLayout gl_panelContentArea = new GroupLayout(panelContentArea);
+		gl_panelContentArea.setHorizontalGroup(
+				gl_panelContentArea.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelContentArea.createSequentialGroup()
+						.addGroup(gl_panelContentArea.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(panelPieceViewer, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+								.addComponent(panelBoard, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)))
+				);
+		gl_panelContentArea.setVerticalGroup(
+				gl_panelContentArea.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelContentArea.createSequentialGroup()
+						.addComponent(panelPieceViewer, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelBoard, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
+				);
+		panelContentArea.setLayout(gl_panelContentArea);
+		contentPane.setLayout(gl_contentPane);
+	}
+}
