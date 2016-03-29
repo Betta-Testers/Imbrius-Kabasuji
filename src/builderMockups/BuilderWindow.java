@@ -74,692 +74,123 @@ public class BuilderWindow extends JFrame {
 		JPanel panelScrollContainer = new JPanel();
 		panelScrollContainer.setBackground(Color.WHITE);
 		scrollpaneBullpen.setViewportView(panelScrollContainer);
-
 		
-		JPanel panelHex1=new JPanel(),panelHex2=new JPanel(),panelHex3=new JPanel(),panelHex4=new JPanel(),
-				panelHex5=new JPanel(),panelHex6=new JPanel(),panelHex7=new JPanel(),panelHex8=new JPanel(),
-				panelHex9=new JPanel(),panelHex10=new JPanel(),panelHex11=new JPanel(),panelHex12=new JPanel(),
-				panelHex13=new JPanel(),panelHex14=new JPanel(),panelHex15=new JPanel(),panelHex16=new JPanel(),
-				panelHex17=new JPanel(),panelHex18=new JPanel(),panelHex19=new JPanel(),panelHex20=new JPanel(),
-				panelHex21=new JPanel(),panelHex22=new JPanel(),panelHex23=new JPanel(),panelHex24=new JPanel(),
-				panelHex25=new JPanel(),panelHex26=new JPanel(),panelHex27=new JPanel(),panelHex28=new JPanel(),
-				panelHex29=new JPanel(),panelHex30=new JPanel(),panelHex31=new JPanel(),panelHex32=new JPanel(), 
-				panelHex33=new JPanel(),panelHex34=new JPanel(),panelHex35=new JPanel();
+		PieceGroup piece1 = new PieceGroup(1);
+		PieceGroup piece2 = new PieceGroup(2);
+		PieceGroup piece3 = new PieceGroup(3);
+		PieceGroup piece4 = new PieceGroup(4);
+		PieceGroup piece5 = new PieceGroup(5);
+		PieceGroup piece6 = new PieceGroup(6);
+		PieceGroup piece7 = new PieceGroup(7);
+		PieceGroup piece8 = new PieceGroup(8);
+		PieceGroup piece9 = new PieceGroup(9);
+		PieceGroup piece10 = new PieceGroup(10);
+		PieceGroup piece11 = new PieceGroup(11);
+		PieceGroup piece12 = new PieceGroup(12);
+		PieceGroup piece13 = new PieceGroup(13);
+		PieceGroup piece14 = new PieceGroup(14);
+		PieceGroup piece15 = new PieceGroup(15);
+		PieceGroup piece16 = new PieceGroup(16);
+		PieceGroup piece17 = new PieceGroup(17);
+		PieceGroup piece18 = new PieceGroup(18);
+		PieceGroup piece19 = new PieceGroup(19);
+		PieceGroup piece20 = new PieceGroup(20);
+		PieceGroup piece21 = new PieceGroup(21);
+		PieceGroup piece22 = new PieceGroup(22);
+		PieceGroup piece23 = new PieceGroup(23);
+		PieceGroup piece24 = new PieceGroup(24);
+		PieceGroup piece25 = new PieceGroup(25);
+		PieceGroup piece26 = new PieceGroup(26);
+		PieceGroup piece27 = new PieceGroup(27);
+		PieceGroup piece28 = new PieceGroup(28);
+		PieceGroup piece29 = new PieceGroup(29);
+		PieceGroup piece30 = new PieceGroup(30);
+		PieceGroup piece31 = new PieceGroup(31);
+		PieceGroup piece32 = new PieceGroup(32);
+		PieceGroup piece33 = new PieceGroup(33);
+		PieceGroup piece34 = new PieceGroup(34);
+		PieceGroup piece35 = new PieceGroup(35);
 		
-		JSpinner spinHex1 = new JSpinner(),spinHex2 = new JSpinner(),spinHex3 = new JSpinner(),spinHex4 = new JSpinner(),
-				spinHex5 = new JSpinner(),spinHex6 = new JSpinner(),spinHex7 = new JSpinner(),spinHex8 = new JSpinner(),
-				spinHex9 = new JSpinner(),spinHex10 = new JSpinner(),spinHex11 = new JSpinner(),spinHex12 = new JSpinner(),
-				spinHex13 = new JSpinner(),spinHex14 = new JSpinner(),spinHex15 = new JSpinner(),spinHex16 = new JSpinner(),
-				spinHex17 = new JSpinner(),spinHex18 = new JSpinner(),spinHex19 = new JSpinner(),spinHex20 = new JSpinner(),
-				spinHex21 = new JSpinner(),spinHex22= new JSpinner(),spinHex23 = new JSpinner(),spinHex24 = new JSpinner(),
-				spinHex25 = new JSpinner(),spinHex26 = new JSpinner(),spinHex27 = new JSpinner(),spinHex28 = new JSpinner(),
-				spinHex29 = new JSpinner(),spinHex30 = new JSpinner(),spinHex31 = new JSpinner(),spinHex32 = new JSpinner(),
-				spinHex33 = new JSpinner(),spinHex34 = new JSpinner(),spinHex35 = new JSpinner();
-
-		JButton btnHex1 = new JButton(""),btnHex2 = new JButton(""),btnHex3 = new JButton(""),btnHex4 = new JButton(""),
-				btnHex5 = new JButton(""),btnHex6 = new JButton(""),btnHex7 = new JButton(""),btnHex8 = new JButton(""),
-				btnHex9 = new JButton(""),btnHex10 = new JButton(""),btnHex11 = new JButton(""),btnHex12 = new JButton(""),
-				btnHex13 = new JButton(""),btnHex14 = new JButton(""),btnHex15 = new JButton(""),btnHex16 = new JButton(""),
-				btnHex17 = new JButton(""),btnHex18 = new JButton(""),btnHex19 = new JButton(""),btnHex20 = new JButton(""),
-				btnHex21 = new JButton(""),btnHex22 = new JButton(""),btnHex23 = new JButton(""),btnHex24 = new JButton(""),
-				btnHex25 = new JButton(""),btnHex26 = new JButton(""),btnHex27 = new JButton(""),btnHex28 = new JButton(""),
-				btnHex29 = new JButton(""),btnHex30 = new JButton(""),btnHex31 = new JButton(""),btnHex32 = new JButton(""),
-				btnHex33 = new JButton(""),btnHex34 = new JButton(""),btnHex35 = new JButton("");
-
-		GroupLayout gl_panelHex1 = new GroupLayout(panelHex1),gl_panelHex2 = new GroupLayout(panelHex2),gl_panelHex3 = new GroupLayout(panelHex3),
-				gl_panelHex4 = new GroupLayout(panelHex4),gl_panelHex5 = new GroupLayout(panelHex5),gl_panelHex6 = new GroupLayout(panelHex6),
-				gl_panelHex7 = new GroupLayout(panelHex7),gl_panelHex8 = new GroupLayout(panelHex8),gl_panelHex9 = new GroupLayout(panelHex9),
-				gl_panelHex10 = new GroupLayout(panelHex10),gl_panelHex11 = new GroupLayout(panelHex11),gl_panelHex12 = new GroupLayout(panelHex12),
-				gl_panelHex13 = new GroupLayout(panelHex13),gl_panelHex14 = new GroupLayout(panelHex14),gl_panelHex15 = new GroupLayout(panelHex15),
-				gl_panelHex16 = new GroupLayout(panelHex16),gl_panelHex17 = new GroupLayout(panelHex17),gl_panelHex18 = new GroupLayout(panelHex18),
-				gl_panelHex19 = new GroupLayout(panelHex19),gl_panelHex20 = new GroupLayout(panelHex20),gl_panelHex21 = new GroupLayout(panelHex21),
-				gl_panelHex22 = new GroupLayout(panelHex22),gl_panelHex23 = new GroupLayout(panelHex23),gl_panelHex24 = new GroupLayout(panelHex24),
-				gl_panelHex25 = new GroupLayout(panelHex25),gl_panelHex26 = new GroupLayout(panelHex26),gl_panelHex27 = new GroupLayout(panelHex27),
-				gl_panelHex28 = new GroupLayout(panelHex28),gl_panelHex29 = new GroupLayout(panelHex29),gl_panelHex30 = new GroupLayout(panelHex30),
-				gl_panelHex31 = new GroupLayout(panelHex31),gl_panelHex32 = new GroupLayout(panelHex32),gl_panelHex33 = new GroupLayout(panelHex33),
-				gl_panelHex34 = new GroupLayout(panelHex34),gl_panelHex35 = new GroupLayout(panelHex35);
-		
-		btnHex1.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/1.png")));
-		btnHex2.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/2.png")));
-		btnHex3.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/3.png")));
-		btnHex4.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/4.png")));
-		btnHex5.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/5.png")));
-		btnHex6.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/6.png")));
-		btnHex7.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/7.png")));
-		btnHex8.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/8.png")));
-		btnHex9.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/9.png")));
-		btnHex10.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/10.png")));
-		btnHex11.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/11.png")));
-		btnHex12.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/12.png")));
-		btnHex13.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/13.png")));
-		btnHex14.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/14.png")));
-		btnHex15.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/15.png")));
-		btnHex16.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/16.png")));
-		btnHex17.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/17.png")));
-		btnHex18.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/18.png")));
-		btnHex19.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/19.png")));
-		btnHex20.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/20.png")));
-		btnHex21.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/21.png")));
-		btnHex22.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/22.png")));
-		btnHex23.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/23.png")));
-		btnHex24.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/24.png")));
-		btnHex25.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/25.png")));
-		btnHex26.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/26.png")));
-		btnHex27.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/27.png")));
-		btnHex28.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/28.png")));
-		btnHex29.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/29.png")));
-		btnHex30.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/30.png")));
-		btnHex31.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/31.png")));
-		btnHex32.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/32.png")));
-		btnHex33.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/33.png")));
-		btnHex34.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/34.png")));
-		btnHex35.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/35.png")));
-		
-		gl_panelHex1.setHorizontalGroup(
-				gl_panelHex1.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_panelHex1.createSequentialGroup()
-						.addComponent(spinHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-			);
-			gl_panelHex1.setVerticalGroup(
-				gl_panelHex1.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_panelHex1.createSequentialGroup()
-						.addGroup(gl_panelHex1.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex1)
-							.addComponent(btnHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-			);
-		panelHex1.setLayout(gl_panelHex1);
-
-		gl_panelHex2.setHorizontalGroup(
-				gl_panelHex2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex2.createSequentialGroup()
-						.addComponent(spinHex2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex2.setVerticalGroup(
-				gl_panelHex2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex2.createSequentialGroup()
-						.addGroup(gl_panelHex2.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex2)
-							.addComponent(btnHex2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex2.setLayout(gl_panelHex2);
-		
-		gl_panelHex3.setHorizontalGroup(
-				gl_panelHex3.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex3.createSequentialGroup()
-						.addComponent(spinHex3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex3.setVerticalGroup(
-				gl_panelHex3.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex3.createSequentialGroup()
-						.addGroup(gl_panelHex3.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex3)
-							.addComponent(btnHex3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex3.setLayout(gl_panelHex3);
-
-		gl_panelHex4.setHorizontalGroup(
-				gl_panelHex4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex4.createSequentialGroup()
-						.addComponent(spinHex4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex4.setVerticalGroup(
-				gl_panelHex4.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex4.createSequentialGroup()
-						.addGroup(gl_panelHex4.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex4)
-							.addComponent(btnHex4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex4.setLayout(gl_panelHex4);
-
-		gl_panelHex5.setHorizontalGroup(
-				gl_panelHex5.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex5.createSequentialGroup()
-						.addComponent(spinHex5, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex5, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex5.setVerticalGroup(
-				gl_panelHex5.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex5.createSequentialGroup()
-						.addGroup(gl_panelHex5.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex5)
-							.addComponent(btnHex5, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex5.setLayout(gl_panelHex5);
-
-		gl_panelHex6.setHorizontalGroup(
-				gl_panelHex6.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex6.createSequentialGroup()
-						.addComponent(spinHex6, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex6, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex6.setVerticalGroup(
-				gl_panelHex6.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex6.createSequentialGroup()
-						.addGroup(gl_panelHex6.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex6)
-							.addComponent(btnHex6, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex6.setLayout(gl_panelHex6);
-		
-		gl_panelHex7.setHorizontalGroup(
-				gl_panelHex7.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex7.createSequentialGroup()
-						.addComponent(spinHex7, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex7, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex7.setVerticalGroup(
-				gl_panelHex7.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex7.createSequentialGroup()
-						.addGroup(gl_panelHex7.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex7)
-							.addComponent(btnHex7, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex7.setLayout(gl_panelHex7);
-
-		gl_panelHex8.setHorizontalGroup(
-				gl_panelHex8.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex8.createSequentialGroup()
-						.addComponent(spinHex8, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex8, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex8.setVerticalGroup(
-				gl_panelHex8.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex8.createSequentialGroup()
-						.addGroup(gl_panelHex8.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex8)
-							.addComponent(btnHex8, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex8.setLayout(gl_panelHex8);
-
-		gl_panelHex9.setHorizontalGroup(
-				gl_panelHex9.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex9.createSequentialGroup()
-						.addComponent(spinHex9, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex9, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex9.setVerticalGroup(
-				gl_panelHex9.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex9.createSequentialGroup()
-						.addGroup(gl_panelHex9.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex9)
-							.addComponent(btnHex9, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex9.setLayout(gl_panelHex9);
-
-		gl_panelHex10.setHorizontalGroup(
-				gl_panelHex10.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex10.createSequentialGroup()
-						.addComponent(spinHex10, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex10, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex10.setVerticalGroup(
-				gl_panelHex10.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex10.createSequentialGroup()
-						.addGroup(gl_panelHex10.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex10)
-							.addComponent(btnHex10, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex10.setLayout(gl_panelHex10);
-
-		gl_panelHex11.setHorizontalGroup(
-				gl_panelHex11.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex11.createSequentialGroup()
-						.addComponent(spinHex11, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex11, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex11.setVerticalGroup(
-				gl_panelHex11.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex11.createSequentialGroup()
-						.addGroup(gl_panelHex11.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex11)
-							.addComponent(btnHex11, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex11.setLayout(gl_panelHex11);
-
-		gl_panelHex12.setHorizontalGroup(
-				gl_panelHex12.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex12.createSequentialGroup()
-						.addComponent(spinHex12, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex12, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex12.setVerticalGroup(
-				gl_panelHex12.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex12.createSequentialGroup()
-						.addGroup(gl_panelHex12.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex12)
-							.addComponent(btnHex12, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex12.setLayout(gl_panelHex12);
-
-		gl_panelHex13.setHorizontalGroup(
-				gl_panelHex13.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex13.createSequentialGroup()
-						.addComponent(spinHex13, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex13, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex13.setVerticalGroup(
-				gl_panelHex13.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex13.createSequentialGroup()
-						.addGroup(gl_panelHex13.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex13)
-							.addComponent(btnHex13, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex13.setLayout(gl_panelHex13);
-
-		gl_panelHex14.setHorizontalGroup(
-				gl_panelHex14.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex14.createSequentialGroup()
-						.addComponent(spinHex14, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex14, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex14.setVerticalGroup(
-				gl_panelHex14.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex14.createSequentialGroup()
-						.addGroup(gl_panelHex14.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex14)
-							.addComponent(btnHex14, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex14.setLayout(gl_panelHex14);
-
-		gl_panelHex15.setHorizontalGroup(
-				gl_panelHex15.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex15.createSequentialGroup()
-						.addComponent(spinHex15, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex15, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex15.setVerticalGroup(
-				gl_panelHex15.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex15.createSequentialGroup()
-						.addGroup(gl_panelHex15.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex15)
-							.addComponent(btnHex15, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex15.setLayout(gl_panelHex15);
-
-		gl_panelHex16.setHorizontalGroup(
-				gl_panelHex16.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex16.createSequentialGroup()
-						.addComponent(spinHex16, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex16, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex16.setVerticalGroup(
-				gl_panelHex16.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex16.createSequentialGroup()
-						.addGroup(gl_panelHex16.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex16)
-							.addComponent(btnHex16, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex16.setLayout(gl_panelHex16);
-
-		gl_panelHex17.setHorizontalGroup(
-				gl_panelHex17.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex17.createSequentialGroup()
-						.addComponent(spinHex17, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex17, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex17.setVerticalGroup(
-				gl_panelHex17.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex17.createSequentialGroup()
-						.addGroup(gl_panelHex17.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex17)
-							.addComponent(btnHex17, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex17.setLayout(gl_panelHex17);
-
-		gl_panelHex18.setHorizontalGroup(
-				gl_panelHex18.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex18.createSequentialGroup()
-						.addComponent(spinHex18, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex18, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex18.setVerticalGroup(
-				gl_panelHex18.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex18.createSequentialGroup()
-						.addGroup(gl_panelHex18.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex18)
-							.addComponent(btnHex18, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex18.setLayout(gl_panelHex18);
-
-		gl_panelHex19.setHorizontalGroup(
-				gl_panelHex19.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex19.createSequentialGroup()
-						.addComponent(spinHex19, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex19, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex19.setVerticalGroup(
-				gl_panelHex19.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex19.createSequentialGroup()
-						.addGroup(gl_panelHex19.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex19)
-							.addComponent(btnHex19, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex19.setLayout(gl_panelHex19);
-
-		gl_panelHex20.setHorizontalGroup(
-				gl_panelHex20.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex20.createSequentialGroup()
-						.addComponent(spinHex20, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex20, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex20.setVerticalGroup(
-				gl_panelHex20.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex20.createSequentialGroup()
-						.addGroup(gl_panelHex20.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex20)
-							.addComponent(btnHex20, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex20.setLayout(gl_panelHex20);
-
-		gl_panelHex21.setHorizontalGroup(
-				gl_panelHex21.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex21.createSequentialGroup()
-						.addComponent(spinHex21, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex21, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex21.setVerticalGroup(
-				gl_panelHex21.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex21.createSequentialGroup()
-						.addGroup(gl_panelHex21.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex21)
-							.addComponent(btnHex21, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex21.setLayout(gl_panelHex21);
-
-		gl_panelHex22.setHorizontalGroup(
-				gl_panelHex22.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex22.createSequentialGroup()
-						.addComponent(spinHex22, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex22, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex22.setVerticalGroup(
-				gl_panelHex22.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex22.createSequentialGroup()
-						.addGroup(gl_panelHex22.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex22)
-							.addComponent(btnHex22, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex22.setLayout(gl_panelHex22);
-
-		gl_panelHex23.setHorizontalGroup(
-				gl_panelHex23.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex23.createSequentialGroup()
-						.addComponent(spinHex23, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex23, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex23.setVerticalGroup(
-				gl_panelHex23.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex23.createSequentialGroup()
-						.addGroup(gl_panelHex23.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex23)
-							.addComponent(btnHex23, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex23.setLayout(gl_panelHex23);
-
-		gl_panelHex24.setHorizontalGroup(
-				gl_panelHex24.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex24.createSequentialGroup()
-						.addComponent(spinHex24, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex24, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex24.setVerticalGroup(
-				gl_panelHex24.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex24.createSequentialGroup()
-						.addGroup(gl_panelHex24.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex24)
-							.addComponent(btnHex24, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex24.setLayout(gl_panelHex24);
-
-		gl_panelHex25.setHorizontalGroup(
-				gl_panelHex25.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex25.createSequentialGroup()
-						.addComponent(spinHex25, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex25, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex25.setVerticalGroup(
-				gl_panelHex25.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex25.createSequentialGroup()
-						.addGroup(gl_panelHex25.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex25)
-							.addComponent(btnHex25, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex25.setLayout(gl_panelHex25);
-
-		gl_panelHex26.setHorizontalGroup(
-				gl_panelHex26.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex26.createSequentialGroup()
-						.addComponent(spinHex26, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex26, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex26.setVerticalGroup(
-				gl_panelHex26.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex26.createSequentialGroup()
-						.addGroup(gl_panelHex26.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex26)
-							.addComponent(btnHex26, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex26.setLayout(gl_panelHex26);
-
-		gl_panelHex27.setHorizontalGroup(
-				gl_panelHex27.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex27.createSequentialGroup()
-						.addComponent(spinHex27, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex27, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex27.setVerticalGroup(
-				gl_panelHex27.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex27.createSequentialGroup()
-						.addGroup(gl_panelHex27.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex27)
-							.addComponent(btnHex27, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex27.setLayout(gl_panelHex27);
-
-		gl_panelHex28.setHorizontalGroup(
-				gl_panelHex28.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex28.createSequentialGroup()
-						.addComponent(spinHex28, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex28, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex28.setVerticalGroup(
-				gl_panelHex28.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex28.createSequentialGroup()
-						.addGroup(gl_panelHex28.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex28)
-							.addComponent(btnHex28, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex28.setLayout(gl_panelHex28);
-
-		gl_panelHex29.setHorizontalGroup(
-				gl_panelHex29.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex29.createSequentialGroup()
-						.addComponent(spinHex29, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex29, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex29.setVerticalGroup(
-				gl_panelHex29.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex29.createSequentialGroup()
-						.addGroup(gl_panelHex29.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex29)
-							.addComponent(btnHex29, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex29.setLayout(gl_panelHex29);
-
-		gl_panelHex30.setHorizontalGroup(
-				gl_panelHex30.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex30.createSequentialGroup()
-						.addComponent(spinHex30, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex30, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex30.setVerticalGroup(
-				gl_panelHex30.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex30.createSequentialGroup()
-						.addGroup(gl_panelHex30.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex30)
-							.addComponent(btnHex30, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex30.setLayout(gl_panelHex30);
-
-		gl_panelHex31.setHorizontalGroup(
-				gl_panelHex31.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex31.createSequentialGroup()
-						.addComponent(spinHex31, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex31, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex31.setVerticalGroup(
-				gl_panelHex31.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex31.createSequentialGroup()
-						.addGroup(gl_panelHex31.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex31)
-							.addComponent(btnHex31, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex31.setLayout(gl_panelHex31);
-
-		gl_panelHex32.setHorizontalGroup(
-				gl_panelHex32.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex32.createSequentialGroup()
-						.addComponent(spinHex32, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex32, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex32.setVerticalGroup(
-				gl_panelHex32.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex32.createSequentialGroup()
-						.addGroup(gl_panelHex32.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex32)
-							.addComponent(btnHex32, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex32.setLayout(gl_panelHex32);
-
-		gl_panelHex33.setHorizontalGroup(
-				gl_panelHex33.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex33.createSequentialGroup()
-						.addComponent(spinHex33, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex33, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex33.setVerticalGroup(
-				gl_panelHex33.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex33.createSequentialGroup()
-						.addGroup(gl_panelHex33.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex33)
-							.addComponent(btnHex33, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex33.setLayout(gl_panelHex33);
-
-		gl_panelHex34.setHorizontalGroup(
-				gl_panelHex34.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex34.createSequentialGroup()
-						.addComponent(spinHex34, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex34, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex34.setVerticalGroup(
-				gl_panelHex34.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex34.createSequentialGroup()
-						.addGroup(gl_panelHex34.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex34)
-							.addComponent(btnHex34, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex34.setLayout(gl_panelHex34);
-
-		gl_panelHex35.setHorizontalGroup(
-				gl_panelHex35.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHex35.createSequentialGroup()
-						.addComponent(spinHex35, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHex35, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				);
-		gl_panelHex35.setVerticalGroup(
-				gl_panelHex35.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelHex35.createSequentialGroup()
-						.addGroup(gl_panelHex35.createParallelGroup(Alignment.LEADING)
-							.addComponent(spinHex35)
-							.addComponent(btnHex35, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelHex35.setLayout(gl_panelHex35);
-
 		// ==================== SCROLL CONTAINER SETTINGS ==================== //
 		GroupLayout gl_panelScrollContainer = new GroupLayout(panelScrollContainer);
 		gl_panelScrollContainer.setHorizontalGroup(
 			gl_panelScrollContainer.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panelScrollContainer.createSequentialGroup()
 					.addGroup(gl_panelScrollContainer.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(panelHex1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex3,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex4,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex5,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex6,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex7,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex8,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex9,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex10,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex11,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex12,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex13,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex14,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex15,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex16,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex17,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex18,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex19,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex20,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex21,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex22,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex23,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex24,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex25,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex26,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex27,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex28,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex29,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex30,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex31,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex32,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex33,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex34,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelHex35,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addComponent(piece1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece3,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece4,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece5,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece6,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece7,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece8,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece9,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece10,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece11,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece12,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece13,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece14,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece15,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece16,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece17,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece18,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece19,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece20,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece21,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece22,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece23,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece24,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece25,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece26,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece27,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece28,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece29,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece30,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece31,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece32,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece33,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece34,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(piece35,GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 		);
 		gl_panelScrollContainer.setVerticalGroup(
 			gl_panelScrollContainer.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelScrollContainer.createSequentialGroup()
-					.addComponent(panelHex1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex5, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex6, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex7, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex8, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex9, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex10, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex11, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex12, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex13, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex14, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex15, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex16, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex17, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex18, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex19, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex20, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex21, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex22, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex23, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex24, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex25, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex26, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex27, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex28, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex29, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex30, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex31, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex32, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex33, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex34, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panelHex35, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addComponent(piece1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece5, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece6, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece7, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece8, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece9, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece10, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece11, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece12, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece13, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece14, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece15, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece16, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece17, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece18, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece19, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece20, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece21, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece22, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece23, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece24, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece25, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece26, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece27, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece28, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece29, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece30, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece31, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece32, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece33, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece34, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(piece35, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 		);
 		panelScrollContainer.setLayout(gl_panelScrollContainer);
 
