@@ -15,12 +15,16 @@ public class PieceGroup extends JPanel{
 	JButton button;
 	GroupLayout layout;
 	
-	public PieceGroup(int pieceNumber) {
-		this.setPreferredSize(new Dimension(72, 35));
+	public PieceGroup(int pieceNumber){
+		setPreferredSize(new Dimension(72, 35));
 		button = new JButton("");
 		spinner = new JSpinner();
 		
-		button.setIcon(new ImageIcon(PieceGroup.class.getResource("/pieces/"+pieceNumber+".png")));
+		if(pieceNumber > 35 || pieceNumber < 1){
+			button.setText("N/A");
+		}else{
+			button.setIcon(new ImageIcon(PieceGroup.class.getResource("/pieces/"+pieceNumber+".png")));
+		}
 		
 		layout = new GroupLayout(this);
 		layout.setHorizontalGroup(
