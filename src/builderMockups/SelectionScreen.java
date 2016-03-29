@@ -60,11 +60,11 @@ public class SelectionScreen {
 	 */
 	private void initialize() {
 		
-		Dimension levelPreviewSize = new Dimension(96, 96);
+		Dimension levelPreviewSize = new Dimension(108, 108);
 		
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 640, 640);
+		frame.setBounds(100, 100, 576, 688);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
 		
@@ -171,13 +171,13 @@ public class SelectionScreen {
 		gl_levelTypesPanel.setHorizontalGroup(
 			gl_levelTypesPanel.createParallelGroup(Alignment.CENTER)
 				.addGroup(Alignment.CENTER, gl_levelTypesPanel.createSequentialGroup()
-					.addContainerGap(20, Short.MAX_VALUE)
+					.addContainerGap(5, Short.MAX_VALUE)
 					.addComponent(tglbtnPuzzle)
-					.addContainerGap(20, Short.MAX_VALUE)
+					.addContainerGap(5, Short.MAX_VALUE)
 					.addComponent(tglbtnLightning)
-					.addContainerGap(20, Short.MAX_VALUE)
+					.addContainerGap(5, Short.MAX_VALUE)
 					.addComponent(tglbtnRelease)
-					.addContainerGap(20, Short.MAX_VALUE))
+					.addContainerGap(5, Short.MAX_VALUE))
 		);
 		gl_levelTypesPanel.setVerticalGroup(
 			gl_levelTypesPanel.createParallelGroup(Alignment.CENTER)
