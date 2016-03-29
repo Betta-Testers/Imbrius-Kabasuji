@@ -1,6 +1,5 @@
 package builderMockups;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,22 +10,19 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
-import javax.swing.JList;
 import javax.swing.SpinnerListModel;
 import java.awt.Font;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
+import java.awt.Component;
 
 public class BuilderWindow extends JFrame {
 
@@ -55,13 +51,13 @@ public class BuilderWindow extends JFrame {
 	public BuilderWindow() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setBounds(100, 100, 576, 725);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		JPanel panelBoard = new JPanel();
-		panelBoard.setBackground(Color.WHITE);
+		JPanel panelContentArea = new JPanel();
+		panelContentArea.setBackground(Color.WHITE);
 
 		JLabel lblNewLabel = new JLabel("Tile Creation");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -69,10 +65,7 @@ public class BuilderWindow extends JFrame {
 		JButton btn1 = new JButton("1");
 		btn1.setForeground(Color.BLACK);
 		btn1.setBackground(Color.BLUE);
-		btn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+
 
 		JButton btn2 = new JButton("2");
 		btn2.setForeground(Color.BLACK);
@@ -95,24 +88,14 @@ public class BuilderWindow extends JFrame {
 		JSpinner spinTime = new JSpinner();
 		spinTime.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 
-		JButton btnResetLevel = new JButton("Reset Level");
-		btnResetLevel.setToolTipText("Clear level and start over");
-
 		JButton btnRedo = new JButton("");
 		btnRedo.setToolTipText("Redo");
 		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Redo.png")));
 
 		JButton btnUndo = new JButton("");
 		btnUndo.setToolTipText("Undo");
-		btnUndo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+	
 		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Undo.png")));
-
-		JScrollPane scrollpaneBullpen = new JScrollPane();
-		scrollpaneBullpen.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollpaneBullpen.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 		JButton btn4 = new JButton("4");
 		btn4.setForeground(Color.BLACK);
@@ -134,177 +117,139 @@ public class BuilderWindow extends JFrame {
 		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
 
 		JLabel lblColor = new JLabel("Color:");
-
-		JButton btnRemovePieces = new JButton("Remove Pieces");
-		btnRemovePieces.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnRemovePieces.setToolTipText("Remove all pieces on the board");
-
-		JButton btnValidateSave = new JButton("Validate & Save");
-		btnValidateSave.setToolTipText("Check if level is valid and save if so");
-
-		JToggleButton btnConvertHint = new JToggleButton("Convert to Hint");
-		btnConvertHint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
 		
-		JLabel lblControls = new JLabel("Controls:");
-		
-		JLabel lblARotate = new JLabel("A - Rotate left  D - Rotate Right");
-		JLabel lblBRotate = new JLabel("W - Flip Y          S - Flip X");
-		
-		JLabel lblNewLabel_1 = new JLabel("R - Reset Orientation");
+		JPanel panelButtonGroup = new JPanel();
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblTileCount)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblTuleCountVar, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-					.addGap(319))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblLevelProperties)
-							.addGap(138)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblControls)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblARotate))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(49)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel_1)
-										.addComponent(lblBRotate))))
-							.addGap(17))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(1)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-											.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-											.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
-										.addComponent(btnValidateSave, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addContainerGap()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-											.addGroup(gl_contentPane.createSequentialGroup()
-												.addComponent(btn3, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(btn4, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(lblNewLabel)
-												.addGroup(gl_contentPane.createSequentialGroup()
-													.addComponent(btn1)
-													.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-													.addComponent(btn2))))
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(btn5, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(btn6, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(lblColor, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(btnUndo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblSetMoves)
-										.addComponent(lblSetTime))
-									.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblLevelProperties)
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addComponent(lblTileCount)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(lblTuleCountVar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+											.addComponent(lblSetMoves)
+											.addComponent(lblSetTime))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(spinMoves, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(68))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addComponent(btn3, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(btn4, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(spinTime)
-										.addComponent(spinMoves, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)))
-								.addComponent(btnResetLevel))
-							.addPreferredGap(ComponentPlacement.UNRELATED, 12, Short.MAX_VALUE)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(panelBoard, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 342, GroupLayout.PREFERRED_SIZE)
-								.addComponent(scrollpaneBullpen, GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE))))
-					.addContainerGap())
+										.addComponent(lblNewLabel)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(btn1)
+											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(btn2))))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(btn5, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btn6, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblColor, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(btnUndo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
+					.addGap(0, 1, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(1)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblLevelProperties)
-									.addGap(18))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-											.addComponent(lblControls)
-											.addComponent(lblARotate))
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGap(14)
-											.addComponent(lblBRotate)))
-									.addPreferredGap(ComponentPlacement.UNRELATED)))
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblTileCount)
-										.addComponent(lblTuleCountVar))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblSetMoves)
-										.addComponent(spinMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblSetTime)
-										.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGap(25))
-								.addComponent(scrollpaneBullpen, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblLevelProperties)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblTileCount)
+								.addComponent(lblTuleCountVar))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblSetMoves)
+								.addComponent(spinMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblSetTime)
+								.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(32)
+							.addComponent(lblNewLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btn1)
+								.addComponent(btn2))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btn4)
+								.addComponent(btn3))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btn5)
+								.addComponent(btn6))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblColor)
+								.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(panelBoard, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblNewLabel)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btn1)
-										.addComponent(btn2))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btn4)
-										.addComponent(btn3))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btn5)
-										.addComponent(btn6))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblColor)
-										.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(btnRedo)
-										.addComponent(btnUndo))
-									.addGap(18)
-									.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnValidateSave, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(29)
-							.addComponent(lblNewLabel_1)
-							.addGap(67)
-							.addComponent(btnResetLevel)))
-					.addGap(7))
+								.addComponent(btnRedo)
+								.addComponent(btnUndo))
+							.addGap(50)
+							.addComponent(panelButtonGroup, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, 688, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
+		
+				JButton btnRemovePieces = new JButton("Remove Pieces");
+				
+						btnRemovePieces.setToolTipText("Remove all pieces on the board");
+		
+				JToggleButton btnConvertHint = new JToggleButton("Convert to Hint");
+				
+						btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
+		
+				JButton btnSave = new JButton("Save");
+				btnSave.setToolTipText("Save Level");
+		GroupLayout gl_panelButtonGroup = new GroupLayout(panelButtonGroup);
+		gl_panelButtonGroup.setHorizontalGroup(
+			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+				.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+				.addComponent(btnConvertHint)
+				.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+		);
+		gl_panelButtonGroup.setVerticalGroup(
+			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelButtonGroup.createSequentialGroup()
+					.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+					.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panelButtonGroup.linkSize(SwingConstants.VERTICAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
+		gl_panelButtonGroup.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
+		panelButtonGroup.setLayout(gl_panelButtonGroup);
+
+		JScrollPane scrollpaneBullpen = new JScrollPane();
+		scrollpaneBullpen.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollpaneBullpen.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 		// ==================== THE BULLPEN - Declarations ==================== //
 		JPanel panelScrollContainer = new JPanel();
@@ -642,7 +587,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex7.setLayout(gl_panelHex7);
-		
+
 		gl_panelHex8.setHorizontalGroup(
 				gl_panelHex8.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -660,7 +605,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex8.setLayout(gl_panelHex8);
-		
+
 		gl_panelHex9.setHorizontalGroup(
 				gl_panelHex9.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -678,7 +623,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex9.setLayout(gl_panelHex9);
-		
+
 		gl_panelHex10.setHorizontalGroup(
 				gl_panelHex10.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -696,7 +641,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex10.setLayout(gl_panelHex10);
-		
+
 		gl_panelHex11.setHorizontalGroup(
 				gl_panelHex11.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -714,7 +659,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex11.setLayout(gl_panelHex11);
-		
+
 		gl_panelHex12.setHorizontalGroup(
 				gl_panelHex12.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -732,7 +677,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex12, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex12.setLayout(gl_panelHex12);
-		
+
 		gl_panelHex13.setHorizontalGroup(
 				gl_panelHex13.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -750,7 +695,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex13, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex13.setLayout(gl_panelHex13);
-		
+
 		gl_panelHex14.setHorizontalGroup(
 				gl_panelHex14.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -768,7 +713,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex14.setLayout(gl_panelHex14);
-		
+
 		gl_panelHex15.setHorizontalGroup(
 				gl_panelHex15.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -804,7 +749,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex16, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex16.setLayout(gl_panelHex16);
-		
+
 		gl_panelHex17.setHorizontalGroup(
 				gl_panelHex17.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -822,7 +767,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex17, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex17.setLayout(gl_panelHex17);
-		
+
 		gl_panelHex18.setHorizontalGroup(
 				gl_panelHex18.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -840,7 +785,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex18.setLayout(gl_panelHex18);
-		
+
 		gl_panelHex19.setHorizontalGroup(
 				gl_panelHex19.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -858,7 +803,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex19, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex19.setLayout(gl_panelHex19);
-		
+
 		gl_panelHex20.setHorizontalGroup(
 				gl_panelHex20.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -876,7 +821,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex20, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex20.setLayout(gl_panelHex20);
-		
+
 		gl_panelHex21.setHorizontalGroup(
 				gl_panelHex21.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -894,7 +839,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex21, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex21.setLayout(gl_panelHex21);
-		
+
 		gl_panelHex22.setHorizontalGroup(
 				gl_panelHex22.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -912,7 +857,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex22, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex22.setLayout(gl_panelHex22);
-		
+
 		gl_panelHex23.setHorizontalGroup(
 				gl_panelHex23.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -948,7 +893,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex24, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex24.setLayout(gl_panelHex24);
-		
+
 		gl_panelHex25.setHorizontalGroup(
 				gl_panelHex25.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -966,7 +911,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex25, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex25.setLayout(gl_panelHex25);
-		
+
 		gl_panelHex26.setHorizontalGroup(
 				gl_panelHex26.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -984,7 +929,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex26, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex26.setLayout(gl_panelHex26);
-		
+
 		gl_panelHex27.setHorizontalGroup(
 				gl_panelHex27.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -1002,7 +947,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex27, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex27.setLayout(gl_panelHex27);
-		
+
 		gl_panelHex28.setHorizontalGroup(
 				gl_panelHex28.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -1020,7 +965,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex28, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex28.setLayout(gl_panelHex28);
-		
+
 		gl_panelHex29.setHorizontalGroup(
 				gl_panelHex29.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -1038,7 +983,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex29, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex29.setLayout(gl_panelHex29);
-		
+
 		gl_panelHex30.setHorizontalGroup(
 				gl_panelHex30.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -1056,7 +1001,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex30, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex30.setLayout(gl_panelHex30);
-		
+
 		gl_panelHex31.setHorizontalGroup(
 				gl_panelHex31.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -1074,7 +1019,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex31, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex31.setLayout(gl_panelHex31);
-		
+
 		gl_panelHex32.setHorizontalGroup(
 				gl_panelHex32.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -1092,7 +1037,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex32, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex32.setLayout(gl_panelHex32);
-		
+
 		gl_panelHex33.setHorizontalGroup(
 				gl_panelHex33.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -1110,7 +1055,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex33, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex33.setLayout(gl_panelHex33);
-		
+
 		gl_panelHex34.setHorizontalGroup(
 				gl_panelHex34.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -1128,7 +1073,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(spinHex34, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
 		panelHex34.setLayout(gl_panelHex34);
-		
+
 		gl_panelHex35.setHorizontalGroup(
 				gl_panelHex35.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 35, Short.MAX_VALUE)
@@ -1187,7 +1132,7 @@ public class BuilderWindow extends JFrame {
 						.addComponent(panelHex33, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelHex34, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelHex35, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-				));
+						));
 		gl_panelScrollContainer.setVerticalGroup(
 				gl_panelScrollContainer.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panelScrollContainer.createSequentialGroup()
@@ -1227,8 +1172,33 @@ public class BuilderWindow extends JFrame {
 								.addComponent(panelHex33, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
 								.addComponent(panelHex34, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
 								.addComponent(panelHex35, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
-				));
+						));
 		panelScrollContainer.setLayout(gl_panelScrollContainer);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.CYAN);
+		GroupLayout gl_panelContentArea = new GroupLayout(panelContentArea);
+		gl_panelContentArea.setHorizontalGroup(
+			gl_panelContentArea.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelContentArea.createSequentialGroup()
+					.addGroup(gl_panelContentArea.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+						.addComponent(scrollpaneBullpen, 0, 0, Short.MAX_VALUE))
+					.addGap(0))
+		);
+		gl_panelContentArea.setVerticalGroup(
+			gl_panelContentArea.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelContentArea.createSequentialGroup()
+					.addComponent(scrollpaneBullpen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(1)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
+		);
+		panelContentArea.setLayout(gl_panelContentArea);
 		contentPane.setLayout(gl_contentPane);
 	}
 }
