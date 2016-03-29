@@ -66,6 +66,7 @@ public class BuilderWindow extends JFrame {
 		JPanel panelLevelProperties = new JPanel();
 
 		JScrollPane scrollpaneBullpen = new JScrollPane();
+		scrollpaneBullpen.getVerticalScrollBar().setUnitIncrement(35);
 		scrollpaneBullpen.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollpaneBullpen.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
