@@ -118,9 +118,8 @@ public class BuilderWindow extends JFrame {
 				gl_panelHex28 = new GroupLayout(panelHex28),gl_panelHex29 = new GroupLayout(panelHex29),gl_panelHex30 = new GroupLayout(panelHex30),
 				gl_panelHex31 = new GroupLayout(panelHex31),gl_panelHex32 = new GroupLayout(panelHex32),gl_panelHex33 = new GroupLayout(panelHex33),
 				gl_panelHex34 = new GroupLayout(panelHex34),gl_panelHex35 = new GroupLayout(panelHex35);
-
-		btnHex1.setIcon(new ImageIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/1.png"))
-				.getImage().getScaledInstance(30, 30,java.awt.Image.SCALE_SMOOTH)));
+		
+		btnHex1.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/1.png")));
 		btnHex2.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/2.png")));
 		btnHex3.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/3.png")));
 		btnHex4.setIcon(new ImageIcon(BuilderWindow.class.getResource("/pieces/4.png")));
