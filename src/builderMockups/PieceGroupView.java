@@ -10,12 +10,12 @@ import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class PieceGroup extends JPanel{	
+public class PieceGroupView extends JPanel{	
 	JSpinner spinner;
 	JButton button;
 	GroupLayout layout;
 	
-	public PieceGroup(int pieceNumber){
+	public PieceGroupView(int pieceNumber){
 		setPreferredSize(new Dimension(72, 35));
 		button = new JButton("");
 		spinner = new JSpinner();
@@ -23,7 +23,7 @@ public class PieceGroup extends JPanel{
 		if(pieceNumber > 35 || pieceNumber < 1){
 			button.setText("N/A");
 		}else{
-			button.setIcon(new ImageIcon(PieceGroup.class.getResource("/pieces/"+pieceNumber+".png")));
+			button.setIcon(new ImageIcon(PieceGroupView.class.getResource("/pieces/"+pieceNumber+".png")));
 		}
 		
 		layout = new GroupLayout(this);

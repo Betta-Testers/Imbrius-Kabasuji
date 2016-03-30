@@ -59,7 +59,7 @@ public class BuilderWindow extends JFrame {
 		JPanel panelButtonGroup = new JPanel();
 		JPanel panelTileCreation = new JPanel();
 		JPanel panelLevelProperties = new JPanel();
-		JScrollPane bullPen = new BullPen();
+		JScrollPane bullPen = new BullPenView();
 		
 		panelPlayingArea.setBackground(Color.WHITE);
 		

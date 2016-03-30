@@ -8,9 +8,9 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.GroupLayout.Alignment;
 
-public class BullPen extends JScrollPane {
+public class BullPenView extends JScrollPane {
 	
-	public BullPen(){
+	public BullPenView(){
 		getVerticalScrollBar().setUnitIncrement(35);
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -19,41 +19,41 @@ public class BullPen extends JScrollPane {
 		panelScrollContainer.setBackground(Color.WHITE);
 		setViewportView(panelScrollContainer);
 		
-		PieceGroup piece1 = new PieceGroup(1);
-		PieceGroup piece2 = new PieceGroup(2);
-		PieceGroup piece3 = new PieceGroup(3);
-		PieceGroup piece4 = new PieceGroup(4);
-		PieceGroup piece5 = new PieceGroup(5);
-		PieceGroup piece6 = new PieceGroup(6);
-		PieceGroup piece7 = new PieceGroup(7);
-		PieceGroup piece8 = new PieceGroup(8);
-		PieceGroup piece9 = new PieceGroup(9);
-		PieceGroup piece10 = new PieceGroup(10);
-		PieceGroup piece11 = new PieceGroup(11);
-		PieceGroup piece12 = new PieceGroup(12);
-		PieceGroup piece13 = new PieceGroup(13);
-		PieceGroup piece14 = new PieceGroup(14);
-		PieceGroup piece15 = new PieceGroup(15);
-		PieceGroup piece16 = new PieceGroup(16);
-		PieceGroup piece17 = new PieceGroup(17);
-		PieceGroup piece18 = new PieceGroup(18);
-		PieceGroup piece19 = new PieceGroup(19);
-		PieceGroup piece20 = new PieceGroup(20);
-		PieceGroup piece21 = new PieceGroup(21);
-		PieceGroup piece22 = new PieceGroup(22);
-		PieceGroup piece23 = new PieceGroup(23);
-		PieceGroup piece24 = new PieceGroup(24);
-		PieceGroup piece25 = new PieceGroup(25);
-		PieceGroup piece26 = new PieceGroup(26);
-		PieceGroup piece27 = new PieceGroup(27);
-		PieceGroup piece28 = new PieceGroup(28);
-		PieceGroup piece29 = new PieceGroup(29);
-		PieceGroup piece30 = new PieceGroup(30);
-		PieceGroup piece31 = new PieceGroup(31);
-		PieceGroup piece32 = new PieceGroup(32);
-		PieceGroup piece33 = new PieceGroup(33);
-		PieceGroup piece34 = new PieceGroup(34);
-		PieceGroup piece35 = new PieceGroup(35);
+		PieceGroupView piece1 = new PieceGroupView(1);
+		PieceGroupView piece2 = new PieceGroupView(2);
+		PieceGroupView piece3 = new PieceGroupView(3);
+		PieceGroupView piece4 = new PieceGroupView(4);
+		PieceGroupView piece5 = new PieceGroupView(5);
+		PieceGroupView piece6 = new PieceGroupView(6);
+		PieceGroupView piece7 = new PieceGroupView(7);
+		PieceGroupView piece8 = new PieceGroupView(8);
+		PieceGroupView piece9 = new PieceGroupView(9);
+		PieceGroupView piece10 = new PieceGroupView(10);
+		PieceGroupView piece11 = new PieceGroupView(11);
+		PieceGroupView piece12 = new PieceGroupView(12);
+		PieceGroupView piece13 = new PieceGroupView(13);
+		PieceGroupView piece14 = new PieceGroupView(14);
+		PieceGroupView piece15 = new PieceGroupView(15);
+		PieceGroupView piece16 = new PieceGroupView(16);
+		PieceGroupView piece17 = new PieceGroupView(17);
+		PieceGroupView piece18 = new PieceGroupView(18);
+		PieceGroupView piece19 = new PieceGroupView(19);
+		PieceGroupView piece20 = new PieceGroupView(20);
+		PieceGroupView piece21 = new PieceGroupView(21);
+		PieceGroupView piece22 = new PieceGroupView(22);
+		PieceGroupView piece23 = new PieceGroupView(23);
+		PieceGroupView piece24 = new PieceGroupView(24);
+		PieceGroupView piece25 = new PieceGroupView(25);
+		PieceGroupView piece26 = new PieceGroupView(26);
+		PieceGroupView piece27 = new PieceGroupView(27);
+		PieceGroupView piece28 = new PieceGroupView(28);
+		PieceGroupView piece29 = new PieceGroupView(29);
+		PieceGroupView piece30 = new PieceGroupView(30);
+		PieceGroupView piece31 = new PieceGroupView(31);
+		PieceGroupView piece32 = new PieceGroupView(32);
+		PieceGroupView piece33 = new PieceGroupView(33);
+		PieceGroupView piece34 = new PieceGroupView(34);
+		PieceGroupView piece35 = new PieceGroupView(35);
 		
 		// ==================== SCROLL CONTAINER SETTINGS ==================== //
 		GroupLayout gl_panelScrollContainer = new GroupLayout(panelScrollContainer);
