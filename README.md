@@ -28,6 +28,6 @@ Software engineering game about Hexominoes
 * <b>Builder GUI</b>
   * [x] Change "Make Hint" button into a toggle JButton, to toggle piece placement into hint placement
   * [x] Remove rotate buttons for Bullpen and replace with JLabels for Keyboard control.
-  * [ ] Increase window size
-  * [ ] Prevent window resizing
-  * [ ] Breakdown mega class into subclasses based on functionalities (Bullpen, Board, TileCreation, Property Grouping, Button Grouping)
+  * [x] Increase window size
+  * [x] Prevent window resizing
+  * [x] Breakdown mega class into subclasses based on functionalities (Bullpen, Board, TileCreation, Property Grouping, Button Grouping)
