@@ -1,5 +1,6 @@
 package builderMockups;
 
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
@@ -12,6 +13,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class LevelPropertiesView extends JPanel{
+	GroupLayout gl_panelLevelProperties;
 	JLabel lblTitle;
 	JLabel lblTileCount;
 	JLabel lblTileCountVar;
@@ -21,6 +23,7 @@ public class LevelPropertiesView extends JPanel{
 	JSpinner spinTime;
 	
 	public LevelPropertiesView(){
+		setPreferredSize(new Dimension(107, 90));
 		lblTitle = new JLabel("Level Properties");
 		lblTileCount = new JLabel("Tile Count:");
 		lblTileCountVar = new JLabel("0");
@@ -40,43 +43,41 @@ public class LevelPropertiesView extends JPanel{
 	}
 	
 	private void setupLayout(){
-		GroupLayout gl_panelLevelProperties = new GroupLayout(this);
+		gl_panelLevelProperties = new GroupLayout(this);
 		gl_panelLevelProperties.setHorizontalGroup(
-				gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
+			gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelLevelProperties.createSequentialGroup()
-						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING, false)
-										.addGroup(Alignment.TRAILING, gl_panelLevelProperties.createSequentialGroup()
-												.addComponent(lblTileCount, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addGap(4)
-												.addComponent(lblTileCountVar, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panelLevelProperties.createSequentialGroup()
-												.addComponent(lblTitle)))
-								.addGroup(Alignment.TRAILING, gl_panelLevelProperties.createSequentialGroup()
-										.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(lblSetTime, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(lblSetMoves, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-										.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(spinTime)
-												.addComponent(spinMoves)))))
-				);
-		gl_panelLevelProperties.setVerticalGroup(
-				gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelLevelProperties.createSequentialGroup()
-						.addComponent(lblTitle)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, gl_panelLevelProperties.createSequentialGroup()
+							.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblTileCount)
-								.addComponent(lblTileCountVar))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblSetMoves)
-								.addComponent(spinMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblSetTime)
-								.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-				);
+								.addComponent(lblSetMoves))
+							.addGap(11)
+							.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
+								.addComponent(spinMoves)
+								.addComponent(spinTime)
+								.addComponent(lblTileCountVar, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)))
+						.addComponent(lblTitle, Alignment.LEADING))
+					.addGap(14))
+		);
+		gl_panelLevelProperties.setVerticalGroup(
+			gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelLevelProperties.createSequentialGroup()
+					.addComponent(lblTitle)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTileCount)
+						.addComponent(lblTileCountVar))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblSetMoves)
+						.addComponent(spinMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblSetTime)
+						.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+		);
 		this.setLayout(gl_panelLevelProperties);
 	}
 

@@ -54,7 +54,7 @@ public class BuilderWindow extends JFrame {
 		setContentPane(contentPane);
 
 		JPanel panelPlayingArea = new JPanel();
-		JPanel panelButtonGroup = new JPanel();
+		ButtonGroupView panelButtonGroup = new ButtonGroupView();
 		
 		TileCreationView tileCreation = new TileCreationView();
 		LevelPropertiesView levelProperties = new LevelPropertiesView();
@@ -64,19 +64,19 @@ public class BuilderWindow extends JFrame {
 		
 
 		// ==================== BUTTON PALETTE ==================== // 
-		JButton btnUndo = new JButton("");
-		JButton btnRedo = new JButton("");
-		JButton btnRemovePieces = new JButton("Remove Pieces");
-		JToggleButton btnConvertHint = new JToggleButton("Convert to Hint");
-		JButton btnSave = new JButton("Save");
-		btnRemovePieces.setToolTipText("Remove all pieces on the board");
-
-		btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
-		btnSave.setToolTipText("Save Level");
-		btnUndo.setToolTipText("Undo");
-		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Undo.png")));
-		btnRedo.setToolTipText("Redo");
-		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Redo.png")));
+//		JButton btnUndo = new JButton("");
+//		JButton btnRedo = new JButton("");
+//		JButton btnRemovePieces = new JButton("Remove Pieces");
+//		JToggleButton btnConvertHint = new JToggleButton("Convert to Hint");
+//		JButton btnSave = new JButton("Save");
+//		btnRemovePieces.setToolTipText("Remove all pieces on the board");
+//
+//		btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
+//		btnSave.setToolTipText("Save Level");
+//		btnUndo.setToolTipText("Undo");
+//		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Undo.png")));
+//		btnRedo.setToolTipText("Redo");
+//		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Redo.png")));
 		
 		// ==================== Playing Area ==================== // 
 		JPanel panelBoard = new JPanel();
@@ -117,30 +117,30 @@ public class BuilderWindow extends JFrame {
 
 
 		// ==================== LAYOUT SETTINGS - Button Palette ==================== // 
-		GroupLayout gl_panelButtonGroup = new GroupLayout(panelButtonGroup);
-		gl_panelButtonGroup.setHorizontalGroup(
-			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-				.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-				.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-				.addGroup(gl_panelButtonGroup.createSequentialGroup()
-					.addComponent(btnUndo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-					.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panelButtonGroup.setVerticalGroup(
-			gl_panelButtonGroup.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panelButtonGroup.createSequentialGroup()
-					.addGroup(gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnUndo)
-						.addComponent(btnRedo))
-					.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panelButtonGroup.linkSize(SwingConstants.VERTICAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
-		gl_panelButtonGroup.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
-		panelButtonGroup.setLayout(gl_panelButtonGroup);
+//		GroupLayout gl_panelButtonGroup = new GroupLayout(panelButtonGroup);
+//		gl_panelButtonGroup.setHorizontalGroup(
+//			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+//				.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+//				.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+//				.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+//				.addGroup(gl_panelButtonGroup.createSequentialGroup()
+//					.addComponent(btnUndo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+//					.addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+//					.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+//		);
+//		gl_panelButtonGroup.setVerticalGroup(
+//			gl_panelButtonGroup.createParallelGroup(Alignment.TRAILING)
+//				.addGroup(Alignment.LEADING, gl_panelButtonGroup.createSequentialGroup()
+//					.addGroup(gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+//						.addComponent(btnUndo)
+//						.addComponent(btnRedo))
+//					.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+//					.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+//					.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+//		);
+//		gl_panelButtonGroup.linkSize(SwingConstants.VERTICAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
+//		gl_panelButtonGroup.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
+//		panelButtonGroup.setLayout(gl_panelButtonGroup);
 		
 		// ==================== LAYOUT SETTINGS - PlayingArea ==================== //
 		GroupLayout gl_panelPlayingArea = new GroupLayout(panelPlayingArea);

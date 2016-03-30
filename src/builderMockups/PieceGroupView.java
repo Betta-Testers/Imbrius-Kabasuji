@@ -26,6 +26,10 @@ public class PieceGroupView extends JPanel{
 			button.setIcon(new ImageIcon(PieceGroupView.class.getResource("/pieces/"+pieceNumber+".png")));
 		}
 		
+		setupLayout();
+	}
+	
+	private void setupLayout(){
 		layout = new GroupLayout(this);
 		layout.setHorizontalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
