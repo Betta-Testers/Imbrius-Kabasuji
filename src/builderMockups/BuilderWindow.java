@@ -8,18 +8,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
-import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.JLabel;
-import javax.swing.JSpinner;
-import java.awt.Font;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.ImageIcon;
-import javax.swing.JToggleButton;
-import java.awt.Component;
 
 public class BuilderWindow extends JFrame {
 	private JPanel contentPane;
