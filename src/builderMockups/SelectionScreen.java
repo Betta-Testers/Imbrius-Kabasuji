@@ -205,42 +205,15 @@ public class SelectionScreen {
 		levelViewer.setViewportView(levelsList);
 		
 		for (int i=1; i<=5; i++){
-			JLabel lblPuzzle = new JLabel("Puzzle "+i);
-			lblPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/PuzzleSm.png")));
-			lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
-			lblPuzzle.setHorizontalTextPosition(SwingConstants.CENTER);
-			lblPuzzle.setVerticalTextPosition(SwingConstants.BOTTOM);
-			lblPuzzle.setPreferredSize(levelPreviewSize);
-			lblPuzzle.setMaximumSize(levelPreviewSize);
-			lblPuzzle.setMinimumSize(levelPreviewSize);
-			lblPuzzle.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			levelsList.add(lblPuzzle);
+			levelsList.add(new ExistingLevelView("Puzzle", i));
 		}
 		
 		for (int i=1; i<=5; i++){
-			JLabel lblLightning = new JLabel("Lightning "+i);
-			lblLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/LightningSm.png")));
-			lblLightning.setHorizontalAlignment(SwingConstants.CENTER);
-			lblLightning.setHorizontalTextPosition(SwingConstants.CENTER);
-			lblLightning.setVerticalTextPosition(SwingConstants.BOTTOM);
-			lblLightning.setPreferredSize(levelPreviewSize);
-			lblLightning.setMaximumSize(levelPreviewSize);
-			lblLightning.setMinimumSize(levelPreviewSize);
-			lblLightning.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			levelsList.add(lblLightning);
+			levelsList.add(new ExistingLevelView("Lightning", i));
 		}
 		
 		for (int i=1; i<=5; i++){
-			JLabel lblRelease = new JLabel("Release "+i);
-			lblRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/ReleaseSm.png")));
-			lblRelease.setHorizontalAlignment(SwingConstants.CENTER);
-			lblRelease.setHorizontalTextPosition(SwingConstants.CENTER);
-			lblRelease.setVerticalTextPosition(SwingConstants.BOTTOM);
-			lblRelease.setPreferredSize(levelPreviewSize);
-			lblRelease.setMaximumSize(levelPreviewSize);
-			lblRelease.setMinimumSize(levelPreviewSize);
-			lblRelease.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			levelsList.add(lblRelease);
+			levelsList.add(new ExistingLevelView("Release", i));
 		}
 		
 	}
