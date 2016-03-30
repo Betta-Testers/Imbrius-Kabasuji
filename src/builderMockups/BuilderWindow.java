@@ -15,10 +15,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerListModel;
 import java.awt.Font;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 import java.awt.Component;
@@ -57,27 +55,12 @@ public class BuilderWindow extends JFrame {
 
 		JPanel panelPlayingArea = new JPanel();
 		JPanel panelButtonGroup = new JPanel();
-		TileCreationView panelTileCreation = new TileCreationView();
-		JPanel panelLevelProperties = new JPanel();
+		
+		TileCreationView tileCreation = new TileCreationView();
+		LevelPropertiesView levelProperties = new LevelPropertiesView();
 		BullPenView bullPen = new BullPenView();
 		
 		panelPlayingArea.setBackground(Color.WHITE);
-		
-		// ==================== LEVEL PROPERTIES ==================== //
-		JLabel lblLevelProperties = new JLabel("Level Properties");
-		JLabel lblTileCount = new JLabel("Tile Count:");
-		JLabel lblTileCountVar = new JLabel("0");
-		JLabel lblSetMoves = new JLabel("Set Moves:");
-		JLabel lblSetTime = new JLabel("Set Time:");
-		JSpinner spinMoves = new JSpinner();
-		JSpinner spinTime = new JSpinner();
-		
-		lblLevelProperties.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblTileCount.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblSetMoves.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblSetTime.setHorizontalAlignment(SwingConstants.RIGHT);
-		spinMoves.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spinTime.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		
 
 		// ==================== BUTTON PALETTE ==================== // 
@@ -111,8 +94,8 @@ public class BuilderWindow extends JFrame {
 					.addComponent(panelPlayingArea, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelTileCreation, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelLevelProperties, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tileCreation, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+						.addComponent(levelProperties, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(bullPen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 		);
@@ -123,54 +106,14 @@ public class BuilderWindow extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(bullPen, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(panelLevelProperties, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(levelProperties, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panelTileCreation, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tileCreation, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(panelPlayingArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-
-		// ==================== LAYOUT SETTINGS - Level Properties ==================== //
-		GroupLayout gl_panelLevelProperties = new GroupLayout(panelLevelProperties);
-		gl_panelLevelProperties.setHorizontalGroup(
-				gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelLevelProperties.createSequentialGroup()
-						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING, false)
-										.addGroup(Alignment.TRAILING, gl_panelLevelProperties.createSequentialGroup()
-												.addComponent(lblTileCount, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addGap(4)
-												.addComponent(lblTileCountVar, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panelLevelProperties.createSequentialGroup()
-												.addComponent(lblLevelProperties)))
-								.addGroup(Alignment.TRAILING, gl_panelLevelProperties.createSequentialGroup()
-										.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(lblSetTime, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(lblSetMoves, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-										.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(spinTime)
-												.addComponent(spinMoves)))))
-				);
-		gl_panelLevelProperties.setVerticalGroup(
-				gl_panelLevelProperties.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelLevelProperties.createSequentialGroup()
-						.addComponent(lblLevelProperties)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblTileCount)
-								.addComponent(lblTileCountVar))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblSetMoves)
-								.addComponent(spinMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelLevelProperties.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblSetTime)
-								.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-				);
-		panelLevelProperties.setLayout(gl_panelLevelProperties);
 
 
 		// ==================== LAYOUT SETTINGS - Button Palette ==================== // 
