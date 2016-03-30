@@ -60,7 +60,6 @@ public class SelectionScreen {
 	 */
 	private void initialize() {
 		
-		Dimension levelPreviewSize = new Dimension(108, 108);
 		
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -73,11 +72,27 @@ public class SelectionScreen {
 		levelViewerAndSelector.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		frame.getContentPane().add(levelViewerAndSelector);
 		
+		ExistingLevelViewer levelViewer = new ExistingLevelViewer();
+		levelViewerAndSelector.setLeftComponent(levelViewer);
+		
+		
+		
+		for (int i=1; i<=5; i++){
+			levelViewer.addLevelView("Puzzle", i);
+			levelViewer.addLevelView("Lightning", i);
+			levelViewer.addLevelView("Release", i);
+		}
+		
 		JSplitPane levelSelectorAndCreator = new JSplitPane();
 		levelSelectorAndCreator.setResizeWeight(1.0);
 		levelSelectorAndCreator.setEnabled(false);
 		levelSelectorAndCreator.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		levelViewerAndSelector.setRightComponent(levelSelectorAndCreator);
+		
+				
+		LevelTypesAndText levelTypesAndText = new LevelTypesAndText();
+		levelSelectorAndCreator.setLeftComponent(levelTypesAndText);
+		
 		
 		JPanel createBtnPanel = new JPanel();
 		levelSelectorAndCreator.setRightComponent(createBtnPanel);
@@ -89,8 +104,6 @@ public class SelectionScreen {
 			
 			}
 		});
-		
-		levelSelectorAndCreator.setDividerLocation(1.0);
 		
 		GroupLayout gl_createBtnPanel = new GroupLayout(createBtnPanel);
 		gl_createBtnPanel.setAutoCreateGaps(true);
@@ -110,112 +123,7 @@ public class SelectionScreen {
 					.addGap(10))
 		);
 		createBtnPanel.setLayout(gl_createBtnPanel);
-		
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setResizeWeight(0.5);
-		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		levelSelectorAndCreator.setLeftComponent(splitPane);
-		
-		final JTextArea txtrTextAboutLevel = new JTextArea();
-		txtrTextAboutLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-		txtrTextAboutLevel.setText("Puzzle");
-		splitPane.setRightComponent(txtrTextAboutLevel);
-		
-		ButtonGroup levelTypeGroup = new ButtonGroup();
-		
-		JToggleButton tglbtnPuzzle = new JToggleButton("");
-		tglbtnPuzzle.setBackground(Color.WHITE);
-		tglbtnPuzzle.setSelected(true);
-		tglbtnPuzzle.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/Puzzle.png")));
-		levelTypeGroup.add(tglbtnPuzzle);
-		tglbtnPuzzle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//#TODO: move this to controller
-				JToggleButton tBtn = (JToggleButton)arg0.getSource();
-	            if (tBtn.isSelected()) {
-	            	txtrTextAboutLevel.setText("Puzzle");
-	            }
-			}
-		});
-		
-		JToggleButton tglbtnLightning = new JToggleButton("");
-		tglbtnLightning.setBackground(Color.WHITE);
-		tglbtnLightning.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/Lightning.png")));
-		levelTypeGroup.add(tglbtnLightning);
-		tglbtnLightning.addActionListener(new ActionListener() {
-			//#TODO: move this to controller
-			public void actionPerformed(ActionEvent arg0) {
-				JToggleButton tBtn = (JToggleButton)arg0.getSource();
-	            if (tBtn.isSelected()) {
-	            	txtrTextAboutLevel.setText("Lightning");
-	            }
-			}
-		});
-		
-		JToggleButton tglbtnRelease = new JToggleButton("");
-		tglbtnRelease.setBackground(Color.WHITE);
-		tglbtnRelease.setIcon(new ImageIcon(SelectionScreen.class.getResource("/icons/Release.png")));
-		levelTypeGroup.add(tglbtnRelease);
-		tglbtnRelease.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//#TODO: move this to controller
-				JToggleButton tBtn = (JToggleButton)arg0.getSource();
-	            if (tBtn.isSelected()) {
-	            	txtrTextAboutLevel.setText("Release");
-	            }
-			}
-		});
-		
-		JPanel levelTypesPanel = new JPanel();
-		splitPane.setLeftComponent(levelTypesPanel);
-		GroupLayout gl_levelTypesPanel = new GroupLayout(levelTypesPanel);
-		gl_levelTypesPanel.setAutoCreateGaps(true);
-		gl_levelTypesPanel.setAutoCreateContainerGaps(true);
-		gl_levelTypesPanel.setHorizontalGroup(
-			gl_levelTypesPanel.createParallelGroup(Alignment.CENTER)
-				.addGroup(Alignment.CENTER, gl_levelTypesPanel.createSequentialGroup()
-					.addContainerGap(5, Short.MAX_VALUE)
-					.addComponent(tglbtnPuzzle)
-					.addContainerGap(5, Short.MAX_VALUE)
-					.addComponent(tglbtnLightning)
-					.addContainerGap(5, Short.MAX_VALUE)
-					.addComponent(tglbtnRelease)
-					.addContainerGap(5, Short.MAX_VALUE))
-		);
-		gl_levelTypesPanel.setVerticalGroup(
-			gl_levelTypesPanel.createParallelGroup(Alignment.CENTER)
-				.addGroup(Alignment.CENTER, gl_levelTypesPanel.createSequentialGroup()
-						.addContainerGap(5, Short.MAX_VALUE)
-						.addGroup(gl_levelTypesPanel.createParallelGroup()
-							.addComponent(tglbtnPuzzle)
-							.addComponent(tglbtnLightning)
-							.addComponent(tglbtnRelease))
-						.addContainerGap(5, Short.MAX_VALUE))
-		);
-		levelTypesPanel.setLayout(gl_levelTypesPanel);
-		
-		
-		
-		JScrollPane levelViewer = new JScrollPane();
-		levelViewer.setEnabled(false);
-		levelViewer.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		levelViewerAndSelector.setLeftComponent(levelViewer);
-		
-		JPanel levelsList = new JPanel();
-		levelViewer.setViewportView(levelsList);
-		
-		for (int i=1; i<=5; i++){
-			levelsList.add(new ExistingLevelView("Puzzle", i));
-		}
-		
-		for (int i=1; i<=5; i++){
-			levelsList.add(new ExistingLevelView("Lightning", i));
-		}
-		
-		for (int i=1; i<=5; i++){
-			levelsList.add(new ExistingLevelView("Release", i));
-		}
-		
+			
 	}
 }
 
