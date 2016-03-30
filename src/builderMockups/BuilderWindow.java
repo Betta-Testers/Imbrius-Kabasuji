@@ -57,9 +57,9 @@ public class BuilderWindow extends JFrame {
 
 		JPanel panelPlayingArea = new JPanel();
 		JPanel panelButtonGroup = new JPanel();
-		JPanel panelTileCreation = new JPanel();
+		TileCreationView panelTileCreation = new TileCreationView();
 		JPanel panelLevelProperties = new JPanel();
-		JScrollPane bullPen = new BullPenView();
+		BullPenView bullPen = new BullPenView();
 		
 		panelPlayingArea.setBackground(Color.WHITE);
 		
@@ -79,31 +79,6 @@ public class BuilderWindow extends JFrame {
 		spinMoves.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spinTime.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		
-		// ==================== TILE CREATION ==================== //
-		JLabel lblNewLabel = new JLabel("Tile Creation");
-		JButton btn1 = new JButton("1");
-		JButton btn2 = new JButton("2");
-		JButton btn3 = new JButton("3");
-		JButton btn4 = new JButton("4");
-		JButton btn5 = new JButton("5");
-		JButton btn6 = new JButton("6");
-		JLabel lblColor = new JLabel("Color:");
-		JSpinner spinner = new JSpinner();
-		
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btn1.setForeground(Color.BLACK);
-		btn1.setBackground(Color.BLUE);
-		btn2.setForeground(Color.BLACK);
-		btn2.setBackground(Color.BLUE);
-		btn3.setForeground(Color.BLACK);
-		btn3.setBackground(Color.BLUE);
-		btn4.setForeground(Color.BLACK);
-		btn4.setBackground(Color.BLUE);
-		btn5.setForeground(Color.BLACK);
-		btn5.setBackground(Color.BLUE);
-		btn6.setForeground(Color.BLACK);
-		btn6.setBackground(Color.BLUE);
-		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
 
 		// ==================== BUTTON PALETTE ==================== // 
 		JButton btnUndo = new JButton("");
@@ -136,7 +111,7 @@ public class BuilderWindow extends JFrame {
 					.addComponent(panelPlayingArea, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelTileCreation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelTileCreation, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelLevelProperties, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(bullPen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
@@ -197,64 +172,6 @@ public class BuilderWindow extends JFrame {
 				);
 		panelLevelProperties.setLayout(gl_panelLevelProperties);
 
-		// ==================== LAYOUT SETTINGS - Tile Creation ==================== //
-		GroupLayout gl_panelTileCreation = new GroupLayout(panelTileCreation);
-		gl_panelTileCreation.setHorizontalGroup(
-				gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelTileCreation.createSequentialGroup()
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(lblNewLabel))
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
-										.addGap(8)
-										.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_panelTileCreation.createSequentialGroup()
-														.addComponent(btn5)
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(btn6))
-												.addGroup(gl_panelTileCreation.createSequentialGroup()
-														.addComponent(btn3)
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(btn4))
-												.addGroup(gl_panelTileCreation.createSequentialGroup()
-														.addComponent(btn1)
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(btn2))))
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
-										.addGap(8)
-										.addComponent(lblColor)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
-		gl_panelTileCreation.setVerticalGroup(
-				gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelTileCreation.createSequentialGroup()
-						.addGap(5)
-						.addComponent(lblNewLabel)
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(btn1))
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
-										.addGap(6)
-										.addComponent(btn2)))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btn3)
-								.addComponent(btn4))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btn5)
-								.addComponent(btn6))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblColor)
-								.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
-		panelTileCreation.setLayout(gl_panelTileCreation);
 
 		// ==================== LAYOUT SETTINGS - Button Palette ==================== // 
 		GroupLayout gl_panelButtonGroup = new GroupLayout(panelButtonGroup);
