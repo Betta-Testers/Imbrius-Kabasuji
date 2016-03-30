@@ -19,7 +19,7 @@ class ExistingLevelView extends JLabel {
 		} else if (levelType.equals("Puzzle")) {
 			icon = new ImageIcon(SelectionScreen.class.getResource("/icons/PuzzleSm.png"));
 		} else {
-			
+			//#TODO: some kind of behavior here
 		}
 		this.setIcon(icon);
 		this.setHorizontalAlignment(SwingConstants.CENTER);
