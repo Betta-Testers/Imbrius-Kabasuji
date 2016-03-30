@@ -14,17 +14,25 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TileCreationView extends JPanel{
+	GroupLayout gl_panelTileCreation;
+	JLabel lblTitle;
+	JLabel lblColor;
+	JButton btn1, btn2, btn3, btn4, btn5, btn6;
+	JSpinner spinner;
+	
 	public TileCreationView(){
 		setPreferredSize(new Dimension(100, 140));
-		JLabel lblTitle = new JLabel("Tile Creation");
-		JButton btn1 = new JButton("1");
-		JButton btn2 = new JButton("2");
-		JButton btn3 = new JButton("3");
-		JButton btn4 = new JButton("4");
-		JButton btn5 = new JButton("5");
-		JButton btn6 = new JButton("6");
-		JLabel lblColor = new JLabel("Color:");
-		JSpinner spinner = new JSpinner();
+		gl_panelTileCreation = new GroupLayout(this);
+		
+		lblTitle = new JLabel("Tile Creation");
+		lblColor = new JLabel("Color:");
+		btn1 = new JButton("1");
+		btn2 = new JButton("2");
+		btn3 = new JButton("3");
+		btn4 = new JButton("4");
+		btn5 = new JButton("5");
+		btn6 = new JButton("6");
+		spinner = new JSpinner();
 		
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btn1.setForeground(Color.BLACK);
@@ -40,8 +48,11 @@ public class TileCreationView extends JPanel{
 		btn6.setForeground(Color.BLACK);
 		btn6.setBackground(Color.BLUE);
 		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
-		
-		GroupLayout gl_panelTileCreation = new GroupLayout(this);
+
+		setupLayout();
+	}
+	
+	private void setupLayout(){
 		gl_panelTileCreation.setHorizontalGroup(
 				gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelTileCreation.createSequentialGroup()
