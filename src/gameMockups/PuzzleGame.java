@@ -1,6 +1,7 @@
 package gameMockups;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -10,7 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
+import releaseGUIClasses.NumbersReleased;
+
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.KeyEvent;
 
@@ -63,42 +68,76 @@ public class PuzzleGame extends JFrame {
 					.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelBullpenPlaceholder, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-						.addComponent(panelLevelDescription, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelButtonGroup, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panelBullpenPlaceholder, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+								.addComponent(panelLevelDescription, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(62))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(panelLevelDescription, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panelBullpenPlaceholder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
 						.addComponent(panelContentArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		
 		JLabel lblBullpenGoesHere = new JLabel("Bullpen Goes Here");
-		panelBullpenPlaceholder.add(lblBullpenGoesHere);
+		GroupLayout gl_panelBullpenPlaceholder = new GroupLayout(panelBullpenPlaceholder);
+		gl_panelBullpenPlaceholder.setHorizontalGroup(
+			gl_panelBullpenPlaceholder.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelBullpenPlaceholder.createSequentialGroup()
+					.addGap(56)
+					.addComponent(lblBullpenGoesHere))
+		);
+		gl_panelBullpenPlaceholder.setVerticalGroup(
+			gl_panelBullpenPlaceholder.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelBullpenPlaceholder.createSequentialGroup()
+					.addGap(5)
+					.addComponent(lblBullpenGoesHere))
+		);
+		panelBullpenPlaceholder.setLayout(gl_panelBullpenPlaceholder);
 
 		JLabel lblLevel = new JLabel("Level");
 		lblLevel.setFont(new Font("Tahoma", Font.BOLD, 13));
 
 		JLabel lblLevelNumber = new JLabel("1");
 		lblLevelNumber.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		JLabel labelStar1 = new JLabel("");
+		labelStar1.setIcon(new ImageIcon(ReleaseGame.class.getResource("/board/blankStar.png")));
+		
+		JLabel labelStar2 = new JLabel("");
+		labelStar2.setIcon(new ImageIcon(ReleaseGame.class.getResource("/board/blankStar.png")));
+		
+		JLabel labelStar3 = new JLabel("");
+		labelStar3.setIcon(new ImageIcon(ReleaseGame.class.getResource("/board/blankStar.png")));
 		GroupLayout gl_panelLevelDescription = new GroupLayout(panelLevelDescription);
 		gl_panelLevelDescription.setHorizontalGroup(
 			gl_panelLevelDescription.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelLevelDescription.createSequentialGroup()
-					.addGap(19)
-					.addComponent(lblLevel)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblLevelNumber, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addContainerGap()
+					.addGroup(gl_panelLevelDescription.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelLevelDescription.createSequentialGroup()
+							.addComponent(lblLevel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblLevelNumber, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelLevelDescription.createSequentialGroup()
+							.addComponent(labelStar1, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(labelStar2, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(labelStar3, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panelLevelDescription.setVerticalGroup(
 			gl_panelLevelDescription.createParallelGroup(Alignment.LEADING)
@@ -107,7 +146,12 @@ public class PuzzleGame extends JFrame {
 					.addGroup(gl_panelLevelDescription.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLevel)
 						.addComponent(lblLevelNumber))
-					.addContainerGap(82, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panelLevelDescription.createParallelGroup(Alignment.LEADING)
+						.addComponent(labelStar3, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+						.addComponent(labelStar1, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+						.addComponent(labelStar2, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(12, Short.MAX_VALUE))
 		);
 		panelLevelDescription.setLayout(gl_panelLevelDescription);
 
@@ -118,14 +162,17 @@ public class PuzzleGame extends JFrame {
 		GroupLayout gl_panelButtonGroup = new GroupLayout(panelButtonGroup);
 		gl_panelButtonGroup.setHorizontalGroup(
 			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnShowHint)
+				.addGroup(Alignment.TRAILING, gl_panelButtonGroup.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnShowHint)
+					.addContainerGap())
 		);
 		gl_panelButtonGroup.setVerticalGroup(
-			gl_panelButtonGroup.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panelButtonGroup.createSequentialGroup()
-					.addGap(56)
+			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelButtonGroup.createSequentialGroup()
+					.addGap(9)
 					.addComponent(btnShowHint, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(113, Short.MAX_VALUE))
+					.addContainerGap(27, Short.MAX_VALUE))
 		);
 		panelButtonGroup.setLayout(gl_panelButtonGroup);
 
