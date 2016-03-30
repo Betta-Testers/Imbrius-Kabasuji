@@ -22,8 +22,12 @@ import javax.swing.JToggleButton;
 import java.awt.Component;
 
 public class BuilderWindow extends JFrame {
-
 	private JPanel contentPane;
+	BullPenView bullPen;
+	PlayingAreaView panelPlayingArea;
+	ButtonGroupView panelButtonGroup;
+	TileCreationView tileCreation;
+	LevelPropertiesView levelProperties;
 
 	/**
 	 * Launch the application.
@@ -53,16 +57,18 @@ public class BuilderWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		PlayingAreaView panelPlayingArea = new PlayingAreaView();
-		ButtonGroupView panelButtonGroup = new ButtonGroupView();
-		TileCreationView tileCreation = new TileCreationView();
-		LevelPropertiesView levelProperties = new LevelPropertiesView();
-		BullPenView bullPen = new BullPenView();
+		panelPlayingArea = new PlayingAreaView();
+		panelButtonGroup = new ButtonGroupView();
+		tileCreation = new TileCreationView();
+		levelProperties = new LevelPropertiesView();
+		bullPen = new BullPenView();
 		
 		panelPlayingArea.setBackground(Color.WHITE);
 		
-		
-		// ==================== LAYOUT SETTINGS - Overall ==================== //
+		setupLayout();		
+	}
+	
+	private void setupLayout(){
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
