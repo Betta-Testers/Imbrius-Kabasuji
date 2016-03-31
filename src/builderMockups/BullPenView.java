@@ -8,7 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.GroupLayout.Alignment;
 
-public class BullPenView extends JScrollPane {
+public class BullpenView extends JScrollPane {
 	GroupLayout gl_panelScrollContainer;
 	JPanel panelScrollContainer;
 	PieceGroupView piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8,
@@ -17,7 +17,7 @@ public class BullPenView extends JScrollPane {
 		piece26, piece27, piece28, piece29, piece30, piece31, piece32, piece33, piece34,
 		piece35;
 	
-	public BullPenView(){
+	public BullpenView(){
 		getVerticalScrollBar().setUnitIncrement(35);
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
