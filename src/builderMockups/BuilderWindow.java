@@ -14,7 +14,7 @@ import javax.swing.UIManager;
 
 public class BuilderWindow extends JFrame {
 	private JPanel contentPane;
-	BullPenView bullPen;
+	BullpenView bullPen;
 	PlayingAreaView panelPlayingArea;
 	ButtonGroupView panelButtonGroup;
 	TileCreationView tileCreation;
@@ -52,7 +52,7 @@ public class BuilderWindow extends JFrame {
 		panelButtonGroup = new ButtonGroupView();
 		tileCreation = new TileCreationView();
 		levelProperties = new LevelPropertiesView();
-		bullPen = new BullPenView();
+		bullPen = new BullpenView();
 		
 		panelPlayingArea.setBackground(Color.WHITE);
 		
