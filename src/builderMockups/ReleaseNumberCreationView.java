@@ -13,18 +13,18 @@ import javax.swing.SpinnerListModel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class TileCreationView extends JPanel{
+public class ReleaseNumberCreationView extends JPanel{
 	GroupLayout gl_panelTileCreation;
 	JLabel lblTitle;
 	JLabel lblColor;
 	JButton btn1, btn2, btn3, btn4, btn5, btn6;
 	JSpinner spinner;
 	
-	public TileCreationView(){
-		setPreferredSize(new Dimension(100, 140));
+	public ReleaseNumberCreationView(){
+		setPreferredSize(new Dimension(100, 145));
 		gl_panelTileCreation = new GroupLayout(this);
 		
-		lblTitle = new JLabel("Tile Creation");
+		lblTitle = new JLabel("Release Numbers");
 		lblColor = new JLabel("Color:");
 		btn1 = new JButton("1");
 		btn2 = new JButton("2");
@@ -34,7 +34,7 @@ public class TileCreationView extends JPanel{
 		btn6 = new JButton("6");
 		spinner = new JSpinner();
 		
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btn1.setForeground(Color.BLACK);
 		btn1.setBackground(Color.BLUE);
 		btn2.setForeground(Color.BLACK);
@@ -58,7 +58,6 @@ public class TileCreationView extends JPanel{
 				.addGroup(gl_panelTileCreation.createSequentialGroup()
 						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panelTileCreation.createSequentialGroup()
-										.addContainerGap()
 										.addComponent(lblTitle))
 								.addGroup(gl_panelTileCreation.createSequentialGroup()
 										.addGap(8)
@@ -109,5 +108,25 @@ public class TileCreationView extends JPanel{
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
 		this.setLayout(gl_panelTileCreation);
+	}
+	
+	public void disablePanel(){
+		spinner.setEnabled(false);
+		btn1.setEnabled(false);
+		btn2.setEnabled(false);
+		btn3.setEnabled(false);
+		btn4.setEnabled(false);
+		btn5.setEnabled(false); 
+		btn6.setEnabled(false);
+	}
+	
+	public void enablePanel(){
+		spinner.setEnabled(true);
+		btn1.setEnabled(true);
+		btn2.setEnabled(true);
+		btn3.setEnabled(true);
+		btn4.setEnabled(true);
+		btn5.setEnabled(true); 
+		btn6.setEnabled(true);
 	}
 }

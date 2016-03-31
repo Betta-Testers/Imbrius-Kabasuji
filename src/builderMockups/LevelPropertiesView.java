@@ -29,8 +29,10 @@ public class LevelPropertiesView extends JPanel{
 		lblTileCountVar = new JLabel("0");
 		lblSetMoves = new JLabel("Set Moves:");
 		lblSetTime = new JLabel("Set Time:");
+		lblSetTime.setEnabled(false);
 		spinMoves = new JSpinner();
 		spinTime = new JSpinner();
+		spinTime.setEnabled(false);
 		
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblTileCount.setHorizontalAlignment(SwingConstants.RIGHT);

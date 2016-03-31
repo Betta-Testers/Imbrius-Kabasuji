@@ -17,7 +17,7 @@ public class BuilderWindow extends JFrame {
 	BullpenView bullPen;
 	PlayingAreaView panelPlayingArea;
 	ButtonGroupView panelButtonGroup;
-	TileCreationView tileCreation;
+	ReleaseNumberCreationView releaseNumbers;
 	LevelPropertiesView levelProperties;
 
 	/**
@@ -50,7 +50,7 @@ public class BuilderWindow extends JFrame {
 
 		panelPlayingArea = new PlayingAreaView();
 		panelButtonGroup = new ButtonGroupView();
-		tileCreation = new TileCreationView();
+		releaseNumbers = new ReleaseNumberCreationView();
 		levelProperties = new LevelPropertiesView();
 		bullPen = new BullpenView();
 		
@@ -66,11 +66,11 @@ public class BuilderWindow extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(panelPlayingArea, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(tileCreation, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-						.addComponent(levelProperties, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(levelProperties, GroupLayout.PREFERRED_SIZE, 111, Short.MAX_VALUE)
 						.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(bullPen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(bullPen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(releaseNumbers, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -81,7 +81,7 @@ public class BuilderWindow extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(levelProperties, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(tileCreation, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+							.addComponent(releaseNumbers, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panelButtonGroup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(panelPlayingArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
