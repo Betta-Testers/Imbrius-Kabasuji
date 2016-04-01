@@ -1,4 +1,4 @@
-package releaseGUIClasses;
+package gameMockups;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 
-public class NumbersReleased extends JPanel {
+public class NumbersReleasedView extends JPanel {
 
 	/**
 	 * 
@@ -23,7 +23,7 @@ public class NumbersReleased extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NumbersReleased() {
+	public NumbersReleasedView() {
 		
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
