@@ -16,7 +16,7 @@ public class BullpenView extends JScrollPane {
 		piece17, piece18, piece19, piece20, piece21, piece22, piece23, piece24, piece25,
 		piece26, piece27, piece28, piece29, piece30, piece31, piece32, piece33, piece34,
 		piece35;
-	
+	//#EPIC
 	public BullpenView(){
 		getVerticalScrollBar().setUnitIncrement(35);
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
