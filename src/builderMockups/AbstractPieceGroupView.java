@@ -8,8 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public abstract class AbstractPieceGroupView extends JPanel{
-	JButton button;
 	GroupLayout layout;
+	JButton button;
 	
 	public AbstractPieceGroupView(int id){
 		setPreferredSize(new Dimension(72, 35));

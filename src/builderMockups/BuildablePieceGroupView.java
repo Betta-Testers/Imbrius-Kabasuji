@@ -6,10 +6,11 @@ import javax.swing.GroupLayout.Alignment;
 
 public class BuildablePieceGroupView extends AbstractPieceGroupView{	
 	JSpinner spinner;
-	
+
 	public BuildablePieceGroupView(int id){
 		super(id);
 		spinner = new JSpinner();
+		
 		setupLayout();
 	}
 	

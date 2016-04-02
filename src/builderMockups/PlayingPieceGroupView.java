@@ -11,11 +11,12 @@ public class PlayingPieceGroupView extends AbstractPieceGroupView{
 	public PlayingPieceGroupView(int id){
 		super(id);
 		label = new JLabel("0");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
+
 		setupLayout();
 	}
 	
 	void setupLayout(){
+		label.setHorizontalAlignment(SwingConstants.CENTER);
 		layout = new GroupLayout(this);
 		layout.setHorizontalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
