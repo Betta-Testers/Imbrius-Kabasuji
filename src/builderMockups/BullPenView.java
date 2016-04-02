@@ -13,7 +13,7 @@ public class BullpenView extends JScrollPane {
 	
 	AbstractPieceGroupView availablePieces[];
 	
-	public BullpenView(AbstractPieceGroupView pieces[]){
+	public BullpenView(String pieceGroupType){
 		getVerticalScrollBar().setUnitIncrement(35);
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -21,7 +21,26 @@ public class BullpenView extends JScrollPane {
 		panelScrollContainer.setBackground(Color.WHITE);
 		setViewportView(panelScrollContainer);
 		
-		availablePieces = pieces;
+		if(pieceGroupType.equals("builder")){
+			//TODO: Read the bullpen model for the size of the PIECEGROUP array. Initialize this array to that.
+			availablePieces = new AbstractPieceGroupView[35];
+			for(int i = 0; i<availablePieces.length; i++){
+				//TODO: Change the constructor of BuilderPieceGroupView to take a PieceGroup
+				availablePieces[i] = new BuilderPieceGroupView(i+1);
+			}
+			
+		}else if(pieceGroupType.equals("playing")){
+			//TODO: Read the bullpen model for the size of the PIECEGROUP array. Initialize this array to that.
+			availablePieces = new AbstractPieceGroupView[35];
+			for(int i = 0; i<availablePieces.length; i++){
+				//TODO: Change the constructor of PlayingPieceGroupView to take a PieceGroup instead of ID
+				availablePieces[i] = new PlayingPieceGroupView(i+1);
+			}
+			
+		}else{
+			//TODO: THROW ERROR
+		}
+		
 		setupLayout();
 	}
 	

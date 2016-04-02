@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 public class PlayingPieceGroupView extends AbstractPieceGroupView{
 	JLabel label;
 	
+	//TODO: Use the PieceGroup's piece count to initialize the JLabel
 	public PlayingPieceGroupView(int id){
 		super(id);
 		label = new JLabel("0");

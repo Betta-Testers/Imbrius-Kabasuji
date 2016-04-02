@@ -14,7 +14,6 @@ import javax.swing.UIManager;
 
 public class BuilderWindow extends JFrame {
 	private JPanel contentPane;
-	//BullpenView bullPen;
 	BullpenView bullPen;
 	PlayingAreaView panelPlayingArea;
 	ButtonGroupView panelButtonGroup;
@@ -53,15 +52,25 @@ public class BuilderWindow extends JFrame {
 		panelButtonGroup = new ButtonGroupView();
 		releaseNumbers = new ReleaseNumberCreationView();
 		levelProperties = new LevelPropertiesView();
-		//bullPen = new BullpenView();
 		
 		
-		AbstractPieceGroupView pieces[] = new AbstractPieceGroupView[35];
-		for(int i = 0; i<35; i++){
-			pieces[i] = new BuilderPieceGroupView(i+1);
-		}
-
-		bullPen = new BullpenView(pieces);
+		
+		
+		//*********************** HEY! LOOK HERE GUYS!! *****************************//
+		// Toggle one of these lines to see the difference between the two bullpens. 
+		// Right now only pieces can be generated in sequential order, but that's just
+		// because I don't have an entity to read and it was easiest. If you want to generate
+		// fewer pieces, you'll have to go dig around the BullpenView class and change 
+		// the size of the AvailablePiece array to be less than 35
+		
+		bullPen = new BullpenView("builder");
+		//bullPen = new BullpenView("playing");
+		
+		
+		
+		
+		
+		
 		
 		panelPlayingArea.setBackground(Color.WHITE);
 		

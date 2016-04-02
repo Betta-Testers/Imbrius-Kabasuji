@@ -7,6 +7,7 @@ import javax.swing.GroupLayout.Alignment;
 public class BuilderPieceGroupView extends AbstractPieceGroupView{	
 	JSpinner spinner;
 
+	//TODO: The PieceGroup isn't used in the BuilderPieceGroupView (since the spinner sets the piece count, not other way around)
 	public BuilderPieceGroupView(int id){
 		super(id);
 		spinner = new JSpinner();
