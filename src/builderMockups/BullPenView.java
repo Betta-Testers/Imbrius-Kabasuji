@@ -12,7 +12,7 @@ public class BullpenView extends JScrollPane {
 	JPanel panelScrollContainer;
 	
 	AbstractPieceGroupView availablePieces[];
-	
+	//ECHO ALSO
 	public BullpenView(String pieceGroupType){
 		getVerticalScrollBar().setUnitIncrement(35);
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
