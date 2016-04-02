@@ -56,9 +56,9 @@ public class BuilderWindow extends JFrame {
 		//bullPen = new BullpenView();
 		
 		
-		AbstractPieceGroupView pieces[] = new AbstractPieceGroupView[5];
-		for(int i = 0; i<5; i++){
-			pieces[i] = new PlayingPieceGroupView(i+1);
+		AbstractPieceGroupView pieces[] = new AbstractPieceGroupView[35];
+		for(int i = 0; i<35; i++){
+			pieces[i] = new BuilderPieceGroupView(i+1);
 		}
 
 		bullPen = new BullpenView(pieces);

@@ -18,7 +18,7 @@ public abstract class AbstractPieceGroupView extends JPanel{
 		if(id > 35 || id < 1){
 			button.setText("N/A");
 		}else{
-			button.setIcon(new ImageIcon(BuildablePieceGroupView.class.getResource("/pieces/"+id+".png")));
+			button.setIcon(new ImageIcon(AbstractPieceGroupView.class.getResource("/pieces/"+id+".png")));
 		}
 	}
 	

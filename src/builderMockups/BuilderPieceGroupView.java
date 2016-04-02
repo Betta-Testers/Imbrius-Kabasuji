@@ -4,10 +4,10 @@ import javax.swing.JSpinner;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class BuildablePieceGroupView extends AbstractPieceGroupView{	
+public class BuilderPieceGroupView extends AbstractPieceGroupView{	
 	JSpinner spinner;
 
-	public BuildablePieceGroupView(int id){
+	public BuilderPieceGroupView(int id){
 		super(id);
 		spinner = new JSpinner();
 		
