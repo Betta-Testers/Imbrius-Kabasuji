@@ -1,7 +1,5 @@
 package builderMockups;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,8 +7,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import javax.swing.UIManager;
 
 public class BuilderWindow extends JFrame {
 	private JPanel contentPane;
@@ -20,26 +16,6 @@ public class BuilderWindow extends JFrame {
 	ReleaseNumberCreationView releaseNumbers;
 	LevelPropertiesView levelProperties;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					BuilderWindow frame = new BuilderWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public BuilderWindow() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +28,8 @@ public class BuilderWindow extends JFrame {
 		panelButtonGroup = new ButtonGroupView();
 		releaseNumbers = new ReleaseNumberCreationView();
 		levelProperties = new LevelPropertiesView();
+		
+		
 		
 		
 		
