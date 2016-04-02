@@ -26,7 +26,7 @@ import javax.swing.JToggleButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class SelectionScreen {
+public class LevelTypeSelectView {
 
 	private JFrame frame;
 	
@@ -39,7 +39,7 @@ public class SelectionScreen {
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					SelectionScreen window = new SelectionScreen();
+					LevelTypeSelectView window = new LevelTypeSelectView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class SelectionScreen {
 	/**
 	 * Create the application.
 	 */
-	public SelectionScreen() {
+	public LevelTypeSelectView() {
 		initialize();
 	}
 

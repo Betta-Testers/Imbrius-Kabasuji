@@ -13,11 +13,11 @@ class ExistingLevelView extends JLabel {
 		super(levelType+" "+levelNumber.toString());
 		Dimension levelPreviewSize = new Dimension(108, 108);
 		if (levelType.equals("Release")) {
-			icon = new ImageIcon(SelectionScreen.class.getResource("/icons/ReleaseSm.png"));
+			icon = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/ReleaseSm.png"));
 		} else if (levelType.equals("Lightning")) {
-			icon = new ImageIcon(SelectionScreen.class.getResource("/icons/LightningSm.png"));
+			icon = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/LightningSm.png"));
 		} else if (levelType.equals("Puzzle")) {
-			icon = new ImageIcon(SelectionScreen.class.getResource("/icons/PuzzleSm.png"));
+			icon = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/PuzzleSm.png"));
 		} else {
 			//#TODO: some kind of behavior here
 		}

@@ -19,11 +19,11 @@ public class LevelTypeButtons extends JPanel {
 		super();
 		
 		levelTypeButtons = new ButtonGroup();
-		puzzleBtn = new JToggleButton("", new ImageIcon(SelectionScreen.class.getResource("/icons/Puzzle.png")));
+		puzzleBtn = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Puzzle.png")));
 		levelTypeButtons.add(puzzleBtn);
-		lightningBtn = new JToggleButton("", new ImageIcon(SelectionScreen.class.getResource("/icons/Lightning.png")));
+		lightningBtn = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Lightning.png")));
 		levelTypeButtons.add(lightningBtn);
-		releaseBtn = new JToggleButton("", new ImageIcon(SelectionScreen.class.getResource("/icons/Release.png")));
+		releaseBtn = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Release.png")));
 		levelTypeButtons.add(releaseBtn);
 		
 		GroupLayout gl_levelTypesPanel = new GroupLayout(this);
