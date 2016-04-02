@@ -5,10 +5,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JToggleButton;
 import javax.swing.SpinnerListModel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -17,7 +17,7 @@ public class ReleaseNumberCreationView extends JPanel{
 	GroupLayout gl_panelTileCreation;
 	JLabel lblTitle;
 	JLabel lblColor;
-	JButton btn1, btn2, btn3, btn4, btn5, btn6;
+	JToggleButton btn1, btn2, btn3, btn4, btn5, btn6;
 	JSpinner spinner;
 	
 	public ReleaseNumberCreationView(){
@@ -26,27 +26,22 @@ public class ReleaseNumberCreationView extends JPanel{
 		
 		lblTitle = new JLabel("Release Numbers");
 		lblColor = new JLabel("Color:");
-		btn1 = new JButton("1");
-		btn2 = new JButton("2");
-		btn3 = new JButton("3");
-		btn4 = new JButton("4");
-		btn5 = new JButton("5");
-		btn6 = new JButton("6");
+		btn1 = new JToggleButton("1");
+		btn2 = new JToggleButton("2");
+		btn3 = new JToggleButton("3");
+		btn4 = new JToggleButton("4");
+		btn5 = new JToggleButton("5");
+		btn6 = new JToggleButton("6");
 		spinner = new JSpinner();
 		
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btn1.setForeground(Color.BLACK);
-		btn1.setBackground(Color.BLUE);
-		btn2.setForeground(Color.BLACK);
-		btn2.setBackground(Color.BLUE);
-		btn3.setForeground(Color.BLACK);
-		btn3.setBackground(Color.BLUE);
-		btn4.setForeground(Color.BLACK);
-		btn4.setBackground(Color.BLUE);
-		btn5.setForeground(Color.BLACK);
-		btn5.setBackground(Color.BLUE);
-		btn6.setForeground(Color.BLACK);
-		btn6.setBackground(Color.BLUE);
+		btn1.setForeground(Color.BLUE);
+		btn2.setForeground(Color.BLUE);
+		btn3.setForeground(Color.BLUE);
+		btn4.setForeground(Color.BLUE);
+		btn5.setForeground(Color.BLUE);
+		btn6.setForeground(Color.BLUE);
+
 		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
 
 		setupLayout();
