@@ -12,13 +12,14 @@ public class SelectedPieceView extends JPanel{
 	GroupLayout groupLayout;
 	JLabel lblSelectedPieceImage;
 	
-	public SelectedPieceView(){
+	public SelectedPieceView(ImageIcon image){
 		setPreferredSize(new Dimension(384, 224));
 		
 		//TODO: Comment the setIcon line to remove the image from the viewer for Mockups
 		//TODO: remove lblSelectedPieceImage from the class once mockups are done
+		//TODO: remove constructor argument
 		lblSelectedPieceImage = new JLabel("");
-		lblSelectedPieceImage.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/board/selectedPieceArea.png")));
+		lblSelectedPieceImage.setIcon(image);
 		
 		setupLayout();
 	}

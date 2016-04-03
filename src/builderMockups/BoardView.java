@@ -12,14 +12,15 @@ public class BoardView extends JPanel{
 	private JLabel lblBoardImage;
 	GroupLayout groupLayout;
 
-	public BoardView(){
+	public BoardView(ImageIcon image){
 		setPreferredSize(new Dimension(384, 384));
 
 
 		//TODO: Change this line to set the image displayed for mockups
 		//TODO: Remove lblBoardImage after mockups are done
+		//TODO: remove constructor argument
 		lblBoardImage = new JLabel("");
-		lblBoardImage.setIcon(new ImageIcon(BoardView.class.getResource("/board/emptyBoardMockup.png")));
+		lblBoardImage.setIcon(image);
 
 
 		setupLayout();
