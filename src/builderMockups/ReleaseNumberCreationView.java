@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -43,7 +44,17 @@ public class ReleaseNumberCreationView extends JPanel{
 		btn6.setForeground(Color.BLUE);
 
 		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
-
+		
+		ButtonGroup creationGroup = new ButtonGroup();
+		
+		creationGroup.add(btn1);
+		creationGroup.add(btn2);
+		creationGroup.add(btn3);
+		creationGroup.add(btn4);
+		creationGroup.add(btn5);
+		creationGroup.add(btn6);
+	
+	
 		setupLayout();
 	}
 	

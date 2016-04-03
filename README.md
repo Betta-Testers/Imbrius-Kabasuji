@@ -31,7 +31,7 @@ Software engineering game about Hexominoes
   * [x] Increase window size
   * [x] Prevent window resizing
   * [x] Breakdown mega class into subclasses based on functionalities (Bullpen, Board, TileCreation, Property Grouping, Button Grouping)
-  * [ ] Add in rotation buttons
+  * [x] Add in rotation buttons
   * [ ] Merge Release Numbers into a toggle button group
-  * [ ] Add grids to the board and bullpen
+  * [x] Add grids to the board and bullpen
   * [ ] Generate and display a complete bullpen, with some pieces toggled to have more count than others
