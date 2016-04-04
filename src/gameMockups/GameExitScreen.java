@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 public class GameExitScreen {
 
@@ -43,45 +44,33 @@ public class GameExitScreen {
 	private void initialize() {
 		frmGameOver = new JFrame();
 		frmGameOver.setTitle("GAME OVER");
-		frmGameOver.setBounds(100, 100, 260, 160);
+		frmGameOver.setBounds(100, 100, 260, 175);
 		frmGameOver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(GameExitScreen.class.getResource("/gameMockups/star.png")));
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(GameExitScreen.class.getResource("/gameMockups/star.png")));
-		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(GameExitScreen.class.getResource("/gameMockups/outline_star.png")));
-		
 		JButton btnReturnToLevel = new JButton("Return to Level Select");
+		
+		JPanel panel = new JPanel();
+		StarView starView = new StarView();
+		panel.add(starView);
 		GroupLayout groupLayout = new GroupLayout(frmGameOver.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblNewLabel)
-							.addGap(37)
-							.addComponent(lblNewLabel_1)
-							.addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-							.addComponent(lblNewLabel_2))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(43)
-							.addComponent(btnReturnToLevel)))
+							.addComponent(btnReturnToLevel))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel)
-						.addComponent(lblNewLabel_2)
-						.addComponent(lblNewLabel_1))
-					.addPreferredGap(ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnReturnToLevel)
 					.addContainerGap())
 		);
