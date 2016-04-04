@@ -55,16 +55,8 @@ public class LevelTypeSelectView extends JFrame{
 		levelViewerAndSelector.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		this.getContentPane().add(levelViewerAndSelector);
 		
-		ExistingLevelViewer levelViewer = new ExistingLevelViewer();
-		levelViewerAndSelector.setLeftComponent(levelViewer);
-		
-		
-		
-		for (int i=1; i<=5; i++){
-			levelViewer.addLevelView("Puzzle", i);
-			levelViewer.addLevelView("Lightning", i);
-			levelViewer.addLevelView("Release", i);
-		}
+		ViewAndEditLevels viewerAndEditor = new ViewAndEditLevels();
+		levelViewerAndSelector.setLeftComponent(viewerAndEditor);
 		
 		JSplitPane levelSelectorAndCreator = new JSplitPane();
 		levelSelectorAndCreator.setResizeWeight(1.0);
