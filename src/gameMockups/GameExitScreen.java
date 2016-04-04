@@ -49,9 +49,8 @@ public class GameExitScreen {
 		
 		JButton btnReturnToLevel = new JButton("Return to Level Select");
 		
-		JPanel panel = new JPanel();
 		StarView starView = new StarView();
-		panel.add(starView);
+				
 		GroupLayout groupLayout = new GroupLayout(frmGameOver.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -61,16 +60,16 @@ public class GameExitScreen {
 							.addGap(43)
 							.addComponent(btnReturnToLevel))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
+							.addGap(22)
+							.addComponent(starView, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(starView, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+					.addGap(9)
 					.addComponent(btnReturnToLevel)
 					.addContainerGap())
 		);
