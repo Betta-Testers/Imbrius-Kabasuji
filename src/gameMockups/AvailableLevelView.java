@@ -22,6 +22,7 @@ public class AvailableLevelView extends JPanel {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setPreferredSize(new Dimension(148, 99));
 		lvlButton = new JButton("");
+		lvlButton.setEnabled(false);
 		lvlButton.setIcon(new ImageIcon(AvailableLevelView.class.getResource("/icons/LockIcon.png")));
 		lvlButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		lvlname = s;
@@ -54,6 +55,7 @@ public class AvailableLevelView extends JPanel {
 		void unlocklevel(int i){
 			lvlButton.setText(lvlname);
 			lvlButton.setIcon(null);
+			lvlButton.setEnabled(true);
 			if(i==1){
 				starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
 			}
