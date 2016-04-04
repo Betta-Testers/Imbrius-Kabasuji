@@ -22,7 +22,7 @@ public class ReleaseNumberCreationView extends JPanel{
 	JSpinner spinner;
 	
 	public ReleaseNumberCreationView(){
-		setPreferredSize(new Dimension(100, 145));
+		setPreferredSize(new Dimension(105, 135));
 		gl_panelTileCreation = new GroupLayout(this);
 		
 		lblTitle = new JLabel("Release Numbers");

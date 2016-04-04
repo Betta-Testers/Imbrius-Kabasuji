@@ -21,7 +21,7 @@ public class ButtonGroupView extends JPanel{
 	JToggleButton btnConvertHint;
 	
 	public ButtonGroupView(){
-		setPreferredSize(new Dimension(107, 115));
+		setPreferredSize(new Dimension(105, 115));
 		btnUndo = new JButton("");
 		btnRedo = new JButton("");
 		btnRemovePieces = new JButton("Remove Pieces");
@@ -45,7 +45,7 @@ public class ButtonGroupView extends JPanel{
 			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelButtonGroup.createSequentialGroup()
 					.addComponent(btnUndo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+					.addGap(27)
 					.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_panelButtonGroup.createSequentialGroup()
 					.addGroup(gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
