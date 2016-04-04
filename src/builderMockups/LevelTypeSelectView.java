@@ -26,32 +26,16 @@ import javax.swing.JToggleButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class LevelTypeSelectView {
+public class LevelTypeSelectView extends JFrame{
 
 	private JFrame frame;
-	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					LevelTypeSelectView window = new LevelTypeSelectView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
 	public LevelTypeSelectView() {
+		super();
 		initialize();
 	}
 
@@ -61,16 +45,15 @@ public class LevelTypeSelectView {
 	private void initialize() {
 		
 		
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 576, 688);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
+		this.setResizable(false);
+		this.setBounds(100, 100, 576, 688);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.X_AXIS));
 		
 		JSplitPane levelViewerAndSelector = new JSplitPane();
 		levelViewerAndSelector.setEnabled(false);
 		levelViewerAndSelector.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		frame.getContentPane().add(levelViewerAndSelector);
+		this.getContentPane().add(levelViewerAndSelector);
 		
 		ExistingLevelViewer levelViewer = new ExistingLevelViewer();
 		levelViewerAndSelector.setLeftComponent(levelViewer);
