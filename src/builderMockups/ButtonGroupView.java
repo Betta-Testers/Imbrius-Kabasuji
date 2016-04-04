@@ -21,7 +21,7 @@ public class ButtonGroupView extends JPanel{
 	JToggleButton btnConvertHint;
 	
 	public ButtonGroupView(){
-		setPreferredSize(new Dimension(107, 130));
+		setPreferredSize(new Dimension(107, 115));
 		btnUndo = new JButton("");
 		btnRedo = new JButton("");
 		btnRemovePieces = new JButton("Remove Pieces");
@@ -43,23 +43,26 @@ public class ButtonGroupView extends JPanel{
 		gl_panelButtonGroup = new GroupLayout(this);
 		gl_panelButtonGroup.setHorizontalGroup(
 			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-				.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-				.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 				.addGroup(gl_panelButtonGroup.createSequentialGroup()
 					.addComponent(btnUndo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
 					.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panelButtonGroup.createSequentialGroup()
+					.addGroup(gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
 		gl_panelButtonGroup.setVerticalGroup(
-			gl_panelButtonGroup.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panelButtonGroup.createSequentialGroup()
+			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelButtonGroup.createSequentialGroup()
 					.addGroup(gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnUndo)
 						.addComponent(btnRedo))
-					.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_panelButtonGroup.linkSize(SwingConstants.VERTICAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
 		gl_panelButtonGroup.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
