@@ -1,4 +1,4 @@
-package releaseGUIClasses;
+package gameMockups;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;

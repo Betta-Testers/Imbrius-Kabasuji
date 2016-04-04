@@ -10,9 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-
-import releaseGUIClasses.NumbersReleased;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.KeyEvent;
