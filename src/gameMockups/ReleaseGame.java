@@ -15,11 +15,13 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.event.KeyEvent;
 import java.awt.Component;
 import javax.swing.ImageIcon;
+import builderMockups.BullpenView;
+import builderMockups.SelectedPieceView;
 
 public class ReleaseGame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel LevelView;
 	/**
 	 * @wbp.nonvisual location=159,742
 	 */
@@ -49,9 +51,9 @@ public class ReleaseGame extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 620, 651);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		LevelView = new JPanel();
+		LevelView.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(LevelView);
 		
 		JPanel panelNumberSets = new JPanel();
 		
@@ -60,49 +62,58 @@ public class ReleaseGame extends JFrame {
 				
 						btnShowHint.setToolTipText("Pieces on board are turned into a hint");
 		
-		BullpenView bullpenView = new BullpenView();
+		BullpenView bullpenView = new BullpenView("playing");
 		
-		PlayingAreaViewRelease playingAreaView = new PlayingAreaViewRelease();
+		BoardViewRelease playingAreaView = new BoardViewRelease();
 		
 		LevelInfoView levelInfoView_1 = new LevelInfoView();
+		
+		SelectedPieceView selectedPieceView = new SelectedPieceView((ImageIcon) null);
 
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(playingAreaView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-								.addGap(89)
+		GroupLayout gl_LevelView = new GroupLayout(LevelView);
+		gl_LevelView.setHorizontalGroup(
+			gl_LevelView.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_LevelView.createSequentialGroup()
+					.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_LevelView.createSequentialGroup()
+							.addGap(2)
+							.addComponent(playingAreaView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE))
+						.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_LevelView.createSequentialGroup()
+								.addGap(28)
+								.addComponent(levelInfoView_1, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap())
+							.addGroup(gl_LevelView.createSequentialGroup()
+								.addGap(69)
 								.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addGap(121))
-							.addGroup(gl_contentPane.createSequentialGroup()
+								.addContainerGap())
+							.addGroup(gl_LevelView.createSequentialGroup()
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_contentPane.createSequentialGroup()
-										.addComponent(levelInfoView_1, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE)
-										.addContainerGap())
-									.addComponent(panelNumberSets, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(79)
+								.addComponent(panelNumberSets, GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+								.addContainerGap()))
+						.addGroup(gl_LevelView.createSequentialGroup()
+							.addGap(70)
 							.addComponent(btnShowHint)
 							.addContainerGap())))
 		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(levelInfoView_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(panelNumberSets, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnShowHint))
-						.addComponent(playingAreaView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		gl_LevelView.setVerticalGroup(
+			gl_LevelView.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_LevelView.createSequentialGroup()
+					.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(playingAreaView, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_LevelView.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(levelInfoView_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panelNumberSets, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnShowHint)
+					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		
 		JLabel lblSetsReleased = new JLabel("Sets Released");
@@ -138,6 +149,6 @@ public class ReleaseGame extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelNumberSets.setLayout(gl_panelNumberSets);
-		contentPane.setLayout(gl_contentPane);
+		LevelView.setLayout(gl_LevelView);
 	}
 }

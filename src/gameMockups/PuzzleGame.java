@@ -16,11 +16,13 @@ import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.KeyEvent;
 import javax.swing.border.LineBorder;
+import builderMockups.BullpenView;
+import builderMockups.SelectedPieceView;
 
 public class PuzzleGame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel LevelView;
 
 	/**
 	 * Launch the application.
@@ -45,53 +47,70 @@ public class PuzzleGame extends JFrame {
 		setTitle("Puzzle");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 640, 640);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		setBounds(100, 100, 620, 651);
+		LevelView = new JPanel();
+		LevelView.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(LevelView);
 		
-		PlayingAreaViewPuzzle playingAreaView = new PlayingAreaViewPuzzle();
-		playingAreaView.setBorder(new LineBorder(new Color(0, 0, 0)));
+		BoardViewPuzzle BoardView = new BoardViewPuzzle();
+		BoardView.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		LevelInfoView levelInfoView = new LevelInfoView();
+		LevelInfoView LevelInfoView = new LevelInfoView();
 		
-		BullpenView bullpenView = new BullpenView();
+		BullpenView bullpenView = new BullpenView("playing");
 		
 				JToggleButton btnShowHint = new JToggleButton("Show Hint");
 				btnShowHint.setMnemonic(KeyEvent.VK_ENTER);
 				
 						btnShowHint.setToolTipText("Pieces on board are turned into a hint");
+		
+		SelectedPieceView selectedPieceView = new SelectedPieceView((ImageIcon) null);
+		
+		NumberMovesLeftView numberMovesLeftView = new NumberMovesLeftView();
 
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(playingAreaView, GroupLayout.PREFERRED_SIZE, 388, GroupLayout.PREFERRED_SIZE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(72)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnShowHint)
-								.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(61))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(levelInfoView, GroupLayout.PREFERRED_SIZE, 229, Short.MAX_VALUE)
-							.addContainerGap())))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(levelInfoView, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+		GroupLayout gl_LevelView = new GroupLayout(LevelView);
+		gl_LevelView.setHorizontalGroup(
+			gl_LevelView.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_LevelView.createSequentialGroup()
+					.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+						.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 388, GroupLayout.PREFERRED_SIZE)
+						.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_LevelView.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 398, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnShowHint))
-						.addComponent(playingAreaView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(242))
+							.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+								.addComponent(LevelInfoView, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+								.addGroup(gl_LevelView.createSequentialGroup()
+									.addGap(62)
+									.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(29)))
+							.addGap(18))
+						.addGroup(gl_LevelView.createSequentialGroup()
+							.addGap(58)
+							.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_LevelView.createSequentialGroup()
+									.addGap(10)
+									.addComponent(btnShowHint))
+								.addComponent(numberMovesLeftView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(63))))
 		);
-		contentPane.setLayout(gl_contentPane);
+		gl_LevelView.setVerticalGroup(
+			gl_LevelView.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_LevelView.createSequentialGroup()
+					.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE))
+				.addGroup(Alignment.LEADING, gl_LevelView.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(LevelInfoView, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 349, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(numberMovesLeftView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnShowHint)
+					.addContainerGap(21, Short.MAX_VALUE))
+		);
+		LevelView.setLayout(gl_LevelView);
 	}
 }

@@ -16,11 +16,13 @@ import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextPane;
+import builderMockups.BullpenView;
+import builderMockups.SelectedPieceView;
 
 public class LightningGame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel LevelView;
 
 	/**
 	 * Launch the application.
@@ -46,58 +48,66 @@ public class LightningGame extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 620, 651);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		LevelView = new JPanel();
+		LevelView.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(LevelView);
 		
 				JToggleButton btnShowHint = new JToggleButton("Show Hint");
 				btnShowHint.setMnemonic(KeyEvent.VK_ENTER);
 				
 						btnShowHint.setToolTipText("Pieces on board are turned into a hint");
 		
-		BullpenView bullpenView = new BullpenView();
+		BullpenView bullpenView = new BullpenView("playing");
 		
 		LevelInfoView levelInfoView = new LevelInfoView();
 		
 		TimeRemainingView timeRemainingView = new TimeRemainingView();
 		
-		PlayingAreaViewLightning playingAreaView = new PlayingAreaViewLightning();
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(playingAreaView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addGap(81)
-								.addComponent(btnShowHint))
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(levelInfoView, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+		BoardViewLightning playingAreaView = new BoardViewLightning();
+		
+		SelectedPieceView selectedPieceView = new SelectedPieceView((ImageIcon) null);
+		GroupLayout gl_LevelView = new GroupLayout(LevelView);
+		gl_LevelView.setHorizontalGroup(
+			gl_LevelView.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_LevelView.createSequentialGroup()
+					.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+						.addComponent(playingAreaView, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
+						.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_LevelView.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(timeRemainingView, GroupLayout.PREFERRED_SIZE, 237, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(79)
-							.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
+							.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_LevelView.createSequentialGroup()
+									.addGap(70)
+									.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(gl_LevelView.createSequentialGroup()
+									.addGroup(gl_LevelView.createParallelGroup(Alignment.TRAILING)
+										.addComponent(timeRemainingView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(levelInfoView, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
+									.addGap(39))))
+						.addGroup(gl_LevelView.createSequentialGroup()
+							.addGap(77)
+							.addComponent(btnShowHint)))
+					.addGap(39))
 		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(levelInfoView, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)
-							.addGap(21)
-							.addComponent(timeRemainingView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(21)
-							.addComponent(btnShowHint))
-						.addComponent(playingAreaView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
+		gl_LevelView.setVerticalGroup(
+			gl_LevelView.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_LevelView.createSequentialGroup()
+					.addGap(12)
+					.addComponent(levelInfoView, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(timeRemainingView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnShowHint)
+					.addContainerGap(31, Short.MAX_VALUE))
+				.addGroup(gl_LevelView.createSequentialGroup()
+					.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(playingAreaView, 0, 0, Short.MAX_VALUE))
 		);
-		contentPane.setLayout(gl_contentPane);
+		LevelView.setLayout(gl_LevelView);
 	}
 }
