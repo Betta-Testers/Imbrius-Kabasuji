@@ -10,6 +10,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import java.awt.Font;
 
 public class GameExitScreen {
 
@@ -50,6 +51,7 @@ public class GameExitScreen {
 		frmGameOver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnReturnToLevel = new JButton("Return to Level Select");
+		btnReturnToLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		
 		StarView starView = new StarView();
 				
