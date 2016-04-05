@@ -16,7 +16,7 @@ public class BoardViewRelease extends JPanel{
 	public BoardViewRelease() {
 		
 		lblBoardView = new JLabel("");
-		lblBoardView.setIcon(new ImageIcon(BoardViewRelease.class.getResource("/board/boardMockupRelease.png")));
+		lblBoardView.setIcon(new ImageIcon(BoardViewRelease.class.getResource("/board/releaseBoardMockup.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)

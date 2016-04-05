@@ -16,7 +16,7 @@ public class BoardViewPuzzle extends JPanel{
 	public BoardViewPuzzle() {
 		
 		lblBoardView = new JLabel("");
-		lblBoardView.setIcon(new ImageIcon(BoardViewPuzzle.class.getResource("/board/gameBoard.png")));
+		lblBoardView.setIcon(new ImageIcon(BoardViewPuzzle.class.getResource("/board/boardMockupPuzzle.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
