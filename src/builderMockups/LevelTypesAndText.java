@@ -18,6 +18,9 @@ public class LevelTypesAndText extends JSplitPane {
 		
 		levelTypeDescription = new JTextArea();
 		levelTypeDescription.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		levelTypeDescription.setLineWrap(true);
+		levelTypeDescription.setWrapStyleWord(true);
+		levelTypeDescription.setText("Information about each level type will go here when the corresponding toggle button is selected");
 		this.setRightComponent(levelTypeDescription);
 	}
 }
