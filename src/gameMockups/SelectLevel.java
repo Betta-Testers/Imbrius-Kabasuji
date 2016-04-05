@@ -85,8 +85,7 @@ public class SelectLevel extends JFrame {
 		
 		levels[0].unlocklevel(2);
 		levels[1].unlocklevel(3);
-		levels[2].unlocklevel(1);
-		levels[3].unlocklevel(0);
+		levels[2].unlocklevel(0);
 		
 		
 		
@@ -94,15 +93,13 @@ public class SelectLevel extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(128)
-					.addComponent(lblLevelSelect)
-					.addContainerGap(118, Short.MAX_VALUE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(233, Short.MAX_VALUE)
-					.addGap(222))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 594, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(128)
+							.addComponent(lblLevelSelect))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 594, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -111,9 +108,8 @@ public class SelectLevel extends JFrame {
 					.addGap(45)
 					.addComponent(lblLevelSelect)
 					.addGap(102)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(48)
-					.addGap(119))
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+					.addGap(229))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
