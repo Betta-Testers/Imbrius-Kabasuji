@@ -42,6 +42,8 @@ public class GameExitScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//don't change now, but eventually make it so it passes in a starview
+		
 		frmGameOver = new JFrame();
 		frmGameOver.setTitle("GAME OVER");
 		frmGameOver.setBounds(100, 100, 260, 175);
