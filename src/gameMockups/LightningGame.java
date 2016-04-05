@@ -16,7 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextPane;
-import builderMockups.BullpenView;
 import builderMockups.SelectedPieceView;
 
 public class LightningGame extends JFrame {

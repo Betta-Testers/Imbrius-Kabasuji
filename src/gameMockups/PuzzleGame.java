@@ -16,8 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.KeyEvent;
 import javax.swing.border.LineBorder;
-import builderMockups.BullpenView;
-import builderMockups.SelectedPieceView;
 
 public class PuzzleGame extends JFrame {
 

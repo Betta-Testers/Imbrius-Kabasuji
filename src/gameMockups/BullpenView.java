@@ -1,4 +1,4 @@
-package builderMockups;
+package gameMockups;
 
 import java.awt.Color;
 
