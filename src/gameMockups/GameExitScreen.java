@@ -12,30 +12,37 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Font;
 
-public class GameExitScreen {
+public class GameExitScreen extends JFrame{
 
-	private JFrame frmGameOver;
+	JButton btnReturnToLevel;
 	StarView stars;
+	/*
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new GameExitScreen(new StarView());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	*/
 
 	public GameExitScreen(StarView stars) {
 		this.stars = stars;
-		initialize();
-	}
-
-	private void initialize() {
-		//don't change now, but eventually make it so it passes in a starview
+		this.setTitle("GAME OVER");
+		this.setBounds(100, 100, 260, 175);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frmGameOver = new JFrame();
-		frmGameOver.setTitle("GAME OVER");
-		frmGameOver.setBounds(100, 100, 260, 175);
-		frmGameOver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JButton btnReturnToLevel = new JButton("Return to Level Select");
+		btnReturnToLevel = new JButton("Return to Level Select");
 		btnReturnToLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
-		
-		
-				
-		GroupLayout groupLayout = new GroupLayout(frmGameOver.getContentPane());
+		setupLayout();
+	}
+	
+	void setupLayout(){
+		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -57,6 +64,7 @@ public class GameExitScreen {
 					.addComponent(btnReturnToLevel)
 					.addContainerGap())
 		);
-		frmGameOver.getContentPane().setLayout(groupLayout);
+		this.getContentPane().setLayout(groupLayout);
+		this.setVisible(true);
 	}
 }
