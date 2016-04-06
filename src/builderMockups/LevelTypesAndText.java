@@ -14,7 +14,7 @@ public class LevelTypesAndText extends JSplitPane {
 		this.setResizeWeight(0.5);
 		this.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		levelTypeButtons = new LevelTypeButtons();
-		this.setTopComponent(levelTypeButtons);
+		this.setLeftComponent(levelTypeButtons);
 		
 		levelTypeDescription = new JTextArea();
 		levelTypeDescription.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));

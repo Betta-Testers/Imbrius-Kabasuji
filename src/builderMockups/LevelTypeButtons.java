@@ -26,6 +26,28 @@ public class LevelTypeButtons extends JPanel {
 		releaseBtn = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Release.png")));
 		levelTypeButtons.add(releaseBtn);
 		
+		puzzleBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		
+		lightningBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		
+		releaseBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+								
+			}
+		});
+		
+		setupLayout();
+	}
+	
+	void setupLayout() {
 		GroupLayout gl_levelTypesPanel = new GroupLayout(this);
 		gl_levelTypesPanel.setAutoCreateGaps(true);
 		gl_levelTypesPanel.setAutoCreateContainerGaps(true);
@@ -51,23 +73,5 @@ public class LevelTypeButtons extends JPanel {
 						.addContainerGap(5, Short.MAX_VALUE))
 		);
 		this.setLayout(gl_levelTypesPanel);
-		
-		puzzleBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		
-		lightningBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		
-		releaseBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-								
-			}
-		});
 	}
 }

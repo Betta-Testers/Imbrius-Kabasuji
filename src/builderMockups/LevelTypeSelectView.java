@@ -26,16 +26,21 @@ import javax.swing.JToggleButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class LevelTypeSelectView extends JFrame{
+public class LevelTypeSelectView extends JFrame {
 
 	private JFrame frame;
-
+	ViewAndEditLevels viewerAndEditor;
+	LevelTypesAndText levelTypesAndText;
+	JButton createLevelBtn;
 
 	/**
 	 * Create the application.
 	 */
 	public LevelTypeSelectView() {
 		super();
+		viewerAndEditor = new ViewAndEditLevels();
+		levelTypesAndText = new LevelTypesAndText();
+		createLevelBtn = new JButton("Create Level");
 		initialize();
 	}
 
@@ -53,28 +58,16 @@ public class LevelTypeSelectView extends JFrame{
 		JSplitPane levelViewerAndSelector = new JSplitPane();
 		levelViewerAndSelector.setEnabled(false);
 		levelViewerAndSelector.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		this.getContentPane().add(levelViewerAndSelector);
-		
-		ViewAndEditLevels viewerAndEditor = new ViewAndEditLevels();
-		levelViewerAndSelector.setLeftComponent(viewerAndEditor);
 		
 		JSplitPane levelSelectorAndCreator = new JSplitPane();
 		levelSelectorAndCreator.setResizeWeight(1.0);
 		levelSelectorAndCreator.setEnabled(false);
 		levelSelectorAndCreator.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		levelViewerAndSelector.setRightComponent(levelSelectorAndCreator);
-		
-				
-		LevelTypesAndText levelTypesAndText = new LevelTypesAndText();
-		levelSelectorAndCreator.setLeftComponent(levelTypesAndText);
-		
 		
 		JPanel createBtnPanel = new JPanel();
-		levelSelectorAndCreator.setRightComponent(createBtnPanel);
-				
-		JButton btnCreateLevel = new JButton("Create Level");
-		btnCreateLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-		btnCreateLevel.addActionListener(new ActionListener() {
+		
+		createLevelBtn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		createLevelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
 			}
@@ -87,18 +80,29 @@ public class LevelTypeSelectView extends JFrame{
 			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
 				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
 					.addGap(256)
-					.addComponent(btnCreateLevel)
+					.addComponent(createLevelBtn)
 					.addContainerGap(255, Short.MAX_VALUE))
 		);
 		gl_createBtnPanel.setVerticalGroup(
 			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
 				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
 					.addGap(10)
-					.addComponent(btnCreateLevel)
+					.addComponent(createLevelBtn)
 					.addGap(10))
 		);
 		createBtnPanel.setLayout(gl_createBtnPanel);
-			
+		
+		levelViewerAndSelector.setLeftComponent(viewerAndEditor);
+		levelViewerAndSelector.setRightComponent(levelSelectorAndCreator);
+		
+		levelSelectorAndCreator.setLeftComponent(levelTypesAndText);
+		levelSelectorAndCreator.setRightComponent(createBtnPanel);
+		
+		this.getContentPane().add(levelViewerAndSelector);
+	}
+	
+	void setupLayout() {
+		
 	}
 }
 
