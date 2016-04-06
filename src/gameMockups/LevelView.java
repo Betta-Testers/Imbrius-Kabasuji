@@ -1,5 +1,7 @@
 package gameMockups;
 
+import java.awt.EventQueue;
+
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -34,13 +36,27 @@ public class LevelView extends JFrame {
 	// remove this later
 	int sets = 3;
 	
+	
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					new LevelView();
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+	
+	
 	public LevelView() {
 
 		availablePieces = new BullpenView("playing");
 		levelInfo = new LevelInfoView();
 		timeLeftView = new TimeRemainingView();
 		boardView = new BoardView(gameType); 
-		selectedPiece = new SelectedPieceView((ImageIcon) null);
+		selectedPiece = new SelectedPieceView();
 		for(int i = 0; i < sets; i++) {
 			numbersReleasedView[i] = new NumbersReleasedView();
 		}
@@ -73,7 +89,7 @@ public class LevelView extends JFrame {
 										.addComponent(levelInfo, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
 										.addGroup(gl_LevelView.createSequentialGroup()
 											.addGap(62)
-											.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 											.addGap(29)))
 									.addGap(18))
 								.addGroup(gl_LevelView.createSequentialGroup()
@@ -94,7 +110,7 @@ public class LevelView extends JFrame {
 							.addContainerGap()
 							.addComponent(levelInfo, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 349, GroupLayout.PREFERRED_SIZE)
+							.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, 349, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(movesLeftView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -113,7 +129,7 @@ public class LevelView extends JFrame {
 								.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
 									.addGroup(gl_LevelView.createSequentialGroup()
 										.addGap(70)
-										.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addPreferredGap(ComponentPlacement.RELATED))
 									.addGroup(gl_LevelView.createSequentialGroup()
 										.addGroup(gl_LevelView.createParallelGroup(Alignment.TRAILING)
@@ -130,7 +146,7 @@ public class LevelView extends JFrame {
 						.addGap(12)
 						.addComponent(levelInfo, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
+						.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
 						.addGap(18)
 						.addComponent(timeLeftView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -157,7 +173,7 @@ public class LevelView extends JFrame {
 										.addContainerGap())
 									.addGroup(gl_LevelView.createSequentialGroup()
 										.addGap(69)
-										.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addContainerGap())
 									.addGroup(gl_LevelView.createSequentialGroup()
 										.addPreferredGap(ComponentPlacement.RELATED)
@@ -181,7 +197,7 @@ public class LevelView extends JFrame {
 							.addContainerGap()
 							.addComponent(levelInfo, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+							.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(numbersReleasedView[0], GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
