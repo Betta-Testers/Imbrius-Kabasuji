@@ -15,16 +15,18 @@ import java.awt.Color;
 public class AvailableLevelView extends JPanel {
 	GroupLayout layout;
 	StarView starView;
-	JButton lvlButton;
+	JButton btnSelectLevel;
 	String lvlname;
+	//AbstractLevelModel modelLevel;
+	//#TODO: add to constructor
 	
 	public AvailableLevelView(String s) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
-		setPreferredSize(new Dimension(148, 99));
-		lvlButton = new JButton("");
-		lvlButton.setEnabled(false);
-		lvlButton.setIcon(new ImageIcon(AvailableLevelView.class.getResource("/icons/LockIcon.png")));
-		lvlButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		setPreferredSize(new Dimension(148, 100));
+		btnSelectLevel = new JButton("");
+		btnSelectLevel.setEnabled(false);
+		btnSelectLevel.setIcon(new ImageIcon(AvailableLevelView.class.getResource("/icons/LockIcon.png")));
+		btnSelectLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		lvlname = s;
 		starView = new StarView();
 		
@@ -38,36 +40,36 @@ public class AvailableLevelView extends JPanel {
 				.addGroup(layout.createSequentialGroup()
 					.addGap(1)
 					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lvlButton, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+						.addComponent(btnSelectLevel, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
 						.addComponent(starView, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(35, Short.MAX_VALUE))
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(layout.createSequentialGroup()
-					.addComponent(lvlButton, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+					.addComponent(btnSelectLevel, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(starView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		this.setLayout(layout);
 	}
 	
-		void unlocklevel(int i){
-			lvlButton.setText(lvlname);
-			lvlButton.setIcon(null);
-			lvlButton.setEnabled(true);
-			if(i==1){
-				starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			}
-			if(i==2){
-				starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-				starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			}
-			if(i==3){
-				starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-				starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-				starView.lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			}
+	void unlockLevel(int i){
+		btnSelectLevel.setText(lvlname);
+		btnSelectLevel.setIcon(null);
+		btnSelectLevel.setEnabled(true);
+		if(i==1){
+			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
 		}
+		if(i==2){
+			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+		}
+		if(i==3){
+			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			starView.lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+		}
+	}
 
 }
