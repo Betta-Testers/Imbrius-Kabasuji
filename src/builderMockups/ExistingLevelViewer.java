@@ -5,7 +5,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 public class ExistingLevelViewer extends JScrollPane {
-	private JPanel levelsList;
+	JPanel levelsList;
 	ExistingLevelViewer(){
 		super();
 		this.setEnabled(false);

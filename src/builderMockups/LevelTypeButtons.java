@@ -12,33 +12,33 @@ import javax.swing.JToggleButton;
 
 public class LevelTypeButtons extends JPanel {
 	private ButtonGroup levelTypeButtons;
-	private JToggleButton puzzleBtn;
-	private JToggleButton lightningBtn;
-	private JToggleButton releaseBtn;
+	private JToggleButton tglBtnPuzzle;
+	private JToggleButton tglBtnLightning;
+	private JToggleButton tglBtnRelease;
 	LevelTypeButtons () {
 		super();
 		
 		levelTypeButtons = new ButtonGroup();
-		puzzleBtn = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Puzzle.png")));
-		levelTypeButtons.add(puzzleBtn);
-		lightningBtn = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Lightning.png")));
-		levelTypeButtons.add(lightningBtn);
-		releaseBtn = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Release.png")));
-		levelTypeButtons.add(releaseBtn);
+		tglBtnPuzzle = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Puzzle.png")));
+		levelTypeButtons.add(tglBtnPuzzle);
+		tglBtnLightning = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Lightning.png")));
+		levelTypeButtons.add(tglBtnLightning);
+		tglBtnRelease = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Release.png")));
+		levelTypeButtons.add(tglBtnRelease);
 		
-		puzzleBtn.addActionListener(new ActionListener() {
+		tglBtnPuzzle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 			}
 		});
 		
-		lightningBtn.addActionListener(new ActionListener() {
+		tglBtnLightning.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 			}
 		});
 		
-		releaseBtn.addActionListener(new ActionListener() {
+		tglBtnRelease.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 								
 			}
@@ -55,11 +55,11 @@ public class LevelTypeButtons extends JPanel {
 			gl_levelTypesPanel.createParallelGroup(Alignment.CENTER)
 				.addGroup(Alignment.CENTER, gl_levelTypesPanel.createSequentialGroup()
 					.addContainerGap(5, Short.MAX_VALUE)
-					.addComponent(puzzleBtn)
+					.addComponent(tglBtnPuzzle)
 					.addContainerGap(5, Short.MAX_VALUE)
-					.addComponent(lightningBtn)
+					.addComponent(tglBtnLightning)
 					.addContainerGap(5, Short.MAX_VALUE)
-					.addComponent(releaseBtn)
+					.addComponent(tglBtnRelease)
 					.addContainerGap(5, Short.MAX_VALUE))
 		);
 		gl_levelTypesPanel.setVerticalGroup(
@@ -67,9 +67,9 @@ public class LevelTypeButtons extends JPanel {
 				.addGroup(Alignment.CENTER, gl_levelTypesPanel.createSequentialGroup()
 						.addContainerGap(5, Short.MAX_VALUE)
 						.addGroup(gl_levelTypesPanel.createParallelGroup()
-							.addComponent(puzzleBtn)
-							.addComponent(lightningBtn)
-							.addComponent(releaseBtn))
+							.addComponent(tglBtnPuzzle)
+							.addComponent(tglBtnLightning)
+							.addComponent(tglBtnRelease))
 						.addContainerGap(5, Short.MAX_VALUE))
 		);
 		this.setLayout(gl_levelTypesPanel);
