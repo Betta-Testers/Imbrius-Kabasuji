@@ -1,18 +1,14 @@
 package gameMockups;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.event.KeyEvent;
 import java.awt.Component;
 import javax.swing.ImageIcon;
 
@@ -55,11 +51,6 @@ public class ReleaseGame extends JFrame {
 		
 		JPanel panelNumberSets = new JPanel();
 		
-				JToggleButton btnShowHint = new JToggleButton("Show Hint");
-				btnShowHint.setMnemonic(KeyEvent.VK_ENTER);
-				
-						btnShowHint.setToolTipText("Pieces on board are turned into a hint");
-		
 		BullpenView bullpenView = new BullpenView("playing");
 		
 		BoardViewRelease playingAreaView = new BoardViewRelease();
@@ -93,7 +84,6 @@ public class ReleaseGame extends JFrame {
 								.addContainerGap()))
 						.addGroup(gl_LevelView.createSequentialGroup()
 							.addGap(70)
-							.addComponent(btnShowHint)
 							.addContainerGap())))
 		);
 		gl_LevelView.setVerticalGroup(
@@ -110,7 +100,6 @@ public class ReleaseGame extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelNumberSets, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnShowHint)
 					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		

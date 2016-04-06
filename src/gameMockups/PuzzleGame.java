@@ -1,20 +1,15 @@
 package gameMockups;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.Font;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.event.KeyEvent;
 import javax.swing.border.LineBorder;
 
 public class PuzzleGame extends JFrame {
@@ -57,10 +52,6 @@ public class PuzzleGame extends JFrame {
 		
 		BullpenView bullpenView = new BullpenView("playing");
 		
-				JToggleButton btnShowHint = new JToggleButton("Show Hint");
-				btnShowHint.setMnemonic(KeyEvent.VK_ENTER);
-				
-						btnShowHint.setToolTipText("Pieces on board are turned into a hint");
 		
 		SelectedPieceView selectedPieceView = new SelectedPieceView((ImageIcon) null);
 		
@@ -87,8 +78,7 @@ public class PuzzleGame extends JFrame {
 							.addGap(58)
 							.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_LevelView.createSequentialGroup()
-									.addGap(10)
-									.addComponent(btnShowHint))
+									.addGap(10))
 								.addComponent(numberMovesLeftView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(63))))
 		);
@@ -106,7 +96,6 @@ public class PuzzleGame extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(numberMovesLeftView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnShowHint)
 					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		LevelView.setLayout(gl_LevelView);
