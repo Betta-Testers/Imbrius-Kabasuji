@@ -13,7 +13,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ButtonGroupView extends JPanel{
-	GroupLayout gl_panelButtonGroup;
+	GroupLayout groupLayout;
 	JButton btnUndo;
 	JButton btnRedo;
 	JButton btnSave;
@@ -33,39 +33,39 @@ public class ButtonGroupView extends JPanel{
 		btnSave.setToolTipText("Save Level");
 		btnUndo.setToolTipText("Undo");
 		btnRedo.setToolTipText("Redo");
-		btnUndo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Undo.png")));
-		btnRedo.setIcon(new ImageIcon(BuilderWindow.class.getResource("/icons/Redo.png")));
+		btnUndo.setIcon(new ImageIcon(BuilderView.class.getResource("/icons/Undo.png")));
+		btnRedo.setIcon(new ImageIcon(BuilderView.class.getResource("/icons/Redo.png")));
 		
 		setupLayout();
 	}
 	
 	private void setupLayout(){
-		gl_panelButtonGroup = new GroupLayout(this);
-		gl_panelButtonGroup.setHorizontalGroup(
-			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelButtonGroup.createSequentialGroup()
+		groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(btnUndo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 					.addGap(27)
 					.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panelButtonGroup.createSequentialGroup()
-					.addGroup(gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
-		gl_panelButtonGroup.setVerticalGroup(
-			gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelButtonGroup.createSequentialGroup()
-					.addGroup(gl_panelButtonGroup.createParallelGroup(Alignment.LEADING)
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnUndo)
 						.addComponent(btnRedo))
 					.addComponent(btnRemovePieces, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addComponent(btnConvertHint, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 		);
-		gl_panelButtonGroup.linkSize(SwingConstants.VERTICAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
-		gl_panelButtonGroup.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
-		this.setLayout(gl_panelButtonGroup);
+		groupLayout.linkSize(SwingConstants.VERTICAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
+		this.setLayout(groupLayout);
 	}
 }

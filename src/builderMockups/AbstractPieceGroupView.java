@@ -8,8 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public abstract class AbstractPieceGroupView extends JPanel{
-	GroupLayout layout;
 	JButton button;
+	//TODO Add Attribute: PieceGroup modelPieceGroup
 	
 	//TODO: Change AbstractPieceGroupView contructor to take in a piece group. Get the Piece ID from the piece in the PieceGroup
 	public AbstractPieceGroupView(int id){

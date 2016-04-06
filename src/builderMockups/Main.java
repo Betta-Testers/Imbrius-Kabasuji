@@ -12,7 +12,7 @@ public class Main {
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					BuilderWindow frame = new BuilderWindow();
+					BuilderView frame = new BuilderView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

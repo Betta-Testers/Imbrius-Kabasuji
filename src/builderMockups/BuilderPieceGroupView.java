@@ -5,9 +5,10 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 public class BuilderPieceGroupView extends AbstractPieceGroupView{	
+	GroupLayout groupLayout;
 	JSpinner spinner;
 
-	//TODO: The PieceGroup isn't used in the BuilderPieceGroupView (since the spinner sets the piece count, not other way around)
+	//TODO Change Arguments: Needs a PieceGroup pg so it has a piece group to set
 	public BuilderPieceGroupView(int id){
 		super(id);
 		spinner = new JSpinner();
@@ -16,19 +17,19 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 	}
 	
 	void setupLayout(){
-		layout = new GroupLayout(this);
-		layout.setHorizontalGroup(
-			layout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(layout.createSequentialGroup()
+		groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 		);
-		layout.setVerticalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 					.addComponent(spinner, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
 					.addComponent(button, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 		);
-		setLayout(layout);
+		setLayout(groupLayout);
 	}
 }

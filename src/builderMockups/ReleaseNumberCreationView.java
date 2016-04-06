@@ -15,7 +15,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ReleaseNumberCreationView extends JPanel{
-	GroupLayout gl_panelTileCreation;
+	GroupLayout groupLayout;
 	JLabel lblTitle;
 	JLabel lblColor;
 	JToggleButton btn1, btn2, btn3, btn4, btn5, btn6;
@@ -23,7 +23,7 @@ public class ReleaseNumberCreationView extends JPanel{
 	
 	public ReleaseNumberCreationView(){
 		setPreferredSize(new Dimension(105, 135));
-		gl_panelTileCreation = new GroupLayout(this);
+		groupLayout = new GroupLayout(this);
 		
 		lblTitle = new JLabel("Release Numbers");
 		lblColor = new JLabel("Color:");
@@ -59,61 +59,61 @@ public class ReleaseNumberCreationView extends JPanel{
 	}
 	
 	private void setupLayout(){
-		gl_panelTileCreation.setHorizontalGroup(
-				gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelTileCreation.createSequentialGroup()
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
+		groupLayout.setHorizontalGroup(
+				groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
 										.addComponent(lblTitle))
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
+								.addGroup(groupLayout.createSequentialGroup()
 										.addGap(8)
-										.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_panelTileCreation.createSequentialGroup()
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addGroup(groupLayout.createSequentialGroup()
 														.addComponent(btn5)
 														.addPreferredGap(ComponentPlacement.RELATED)
 														.addComponent(btn6))
-												.addGroup(gl_panelTileCreation.createSequentialGroup()
+												.addGroup(groupLayout.createSequentialGroup()
 														.addComponent(btn3)
 														.addPreferredGap(ComponentPlacement.RELATED)
 														.addComponent(btn4))
-												.addGroup(gl_panelTileCreation.createSequentialGroup()
+												.addGroup(groupLayout.createSequentialGroup()
 														.addComponent(btn1)
 														.addPreferredGap(ComponentPlacement.RELATED)
 														.addComponent(btn2))))
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
+								.addGroup(groupLayout.createSequentialGroup()
 										.addGap(8)
 										.addComponent(lblColor)
 										.addPreferredGap(ComponentPlacement.RELATED)
 										.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
-		gl_panelTileCreation.setVerticalGroup(
-				gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelTileCreation.createSequentialGroup()
+		groupLayout.setVerticalGroup(
+				groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 						.addGap(5)
 						.addComponent(lblTitle)
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
 										.addPreferredGap(ComponentPlacement.RELATED)
 										.addComponent(btn1))
-								.addGroup(gl_panelTileCreation.createSequentialGroup()
+								.addGroup(groupLayout.createSequentialGroup()
 										.addGap(6)
 										.addComponent(btn2)))
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.BASELINE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btn3)
 								.addComponent(btn4))
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.BASELINE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btn5)
 								.addComponent(btn6))
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panelTileCreation.createParallelGroup(Alignment.BASELINE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblColor)
 								.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
-		this.setLayout(gl_panelTileCreation);
+		this.setLayout(groupLayout);
 	}
 	
 	public void disablePanel(){

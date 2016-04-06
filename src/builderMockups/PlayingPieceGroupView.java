@@ -6,32 +6,35 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class PlayingPieceGroupView extends AbstractPieceGroupView{
+	GroupLayout groupLayout;
 	JLabel label;
 	
-	//TODO: Use the PieceGroup's piece count to initialize the JLabel
+	//TODO Change Arguments: PieceGroup pg
 	public PlayingPieceGroupView(int id){
 		super(id);
+		
+		//TODO: Initialize JLabel text to piece group count.
 		label = new JLabel("0");
-
+		
 		setupLayout();
 	}
 	
 	void setupLayout(){
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		layout = new GroupLayout(this);
-		layout.setHorizontalGroup(
-			layout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+		groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addComponent(label, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 		);
-		layout.setVerticalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
-					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(button, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 		);
 
-		setLayout(layout);
+		setLayout(groupLayout);
 	}
 }

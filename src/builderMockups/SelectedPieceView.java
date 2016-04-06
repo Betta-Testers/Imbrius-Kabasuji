@@ -12,13 +12,14 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class SelectedPieceView extends JPanel{
 	GroupLayout groupLayout;
-	JLabel lblSelectedPieceImage;
 	JButton btnRotateLeft;
 	JButton btnRotateRight;
 	JButton btnFlipX;
 	JButton btnFlipY;
+	//TODO Add Attribute: modelBullpen
 	
-	public SelectedPieceView(ImageIcon image){
+	//TODO Change Arguments: Bullpen bp
+	public SelectedPieceView(){
 		setPreferredSize(new Dimension(384, 224));
 		
 		btnRotateLeft = new JButton("");
@@ -31,18 +32,10 @@ public class SelectedPieceView extends JPanel{
 		btnFlipY.setToolTipText("Flip Y");
 		
 		
-		//TODO: Comment the setIcon line to remove the image from the viewer for Mockups
-		//TODO: remove lblSelectedPieceImage from the class once mockups are done
-		//TODO: remove constructor argument
-		lblSelectedPieceImage = new JLabel("");
-		lblSelectedPieceImage.setIcon(image);
-		
-		
 		setupLayout();
 	}
 
 	private void setupLayout(){
-		lblSelectedPieceImage.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		btnRotateLeft.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/RotateLeft.png")));
 		btnRotateRight.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/RotateRight.png")));
@@ -54,7 +47,6 @@ public class SelectedPieceView extends JPanel{
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addContainerGap(96, Short.MAX_VALUE)
-					.addComponent(lblSelectedPieceImage)
 					.addGap(9)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -79,8 +71,7 @@ public class SelectedPieceView extends JPanel{
 							.addPreferredGap(ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnFlipX)
-								.addComponent(btnFlipY)))
-						.addComponent(lblSelectedPieceImage))
+								.addComponent(btnFlipY))))
 					.addContainerGap())
 		);
 		setLayout(groupLayout);

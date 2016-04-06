@@ -8,11 +8,12 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 public class BullpenView extends JScrollPane {
-	GroupLayout gl_panelScrollContainer;
+	GroupLayout groupLayout;
 	JPanel panelScrollContainer;
+	AbstractPieceGroupView piecesInBullpen[];
+	//TODO Add Attribute: modelBullpen
 	
-	AbstractPieceGroupView availablePieces[];
-	//ECHO ALSO
+	//TODO Change Arguments: Buullpen bp, String pieceGroupType
 	public BullpenView(String pieceGroupType){
 		getVerticalScrollBar().setUnitIncrement(35);
 		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -23,18 +24,18 @@ public class BullpenView extends JScrollPane {
 		
 		if(pieceGroupType.equals("builder")){
 			//TODO: Read the bullpen model for the size of the PIECEGROUP array. Initialize this array to that.
-			availablePieces = new AbstractPieceGroupView[35];
-			for(int i = 0; i<availablePieces.length; i++){
+			piecesInBullpen = new AbstractPieceGroupView[35];
+			for(int i = 0; i<piecesInBullpen.length; i++){
 				//TODO: Change the constructor of BuilderPieceGroupView to take a PieceGroup
-				availablePieces[i] = new BuilderPieceGroupView(i+1);
+				piecesInBullpen[i] = new BuilderPieceGroupView(i+1);
 			}
 			
 		}else if(pieceGroupType.equals("playing")){
 			//TODO: Read the bullpen model for the size of the PIECEGROUP array. Initialize this array to that.
-			availablePieces = new AbstractPieceGroupView[35];
-			for(int i = 0; i<availablePieces.length; i++){
-				//TODO: Change the constructor of PlayingPieceGroupView to take a PieceGroup instead of ID
-				availablePieces[i] = new PlayingPieceGroupView(i+1);
+			piecesInBullpen = new AbstractPieceGroupView[35];
+			for(int i = 0; i<piecesInBullpen.length; i++){
+				//TODO: Change the constructor of PlayingPieceGroupView to take a PieceGroup
+				piecesInBullpen[i] = new PlayingPieceGroupView(i+1);
 			}
 			
 		}else{
@@ -45,24 +46,24 @@ public class BullpenView extends JScrollPane {
 	}
 	
 	private void setupLayout(){
-		gl_panelScrollContainer = new GroupLayout(panelScrollContainer);
-		GroupLayout.ParallelGroup hGroup = gl_panelScrollContainer.createParallelGroup(GroupLayout.Alignment.TRAILING);
-		GroupLayout.ParallelGroup vGroup = gl_panelScrollContainer.createParallelGroup(GroupLayout.Alignment.LEADING);
+		groupLayout = new GroupLayout(panelScrollContainer);
+		GroupLayout.ParallelGroup hGroup = groupLayout.createParallelGroup(GroupLayout.Alignment.TRAILING);
+		GroupLayout.ParallelGroup vGroup = groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
 		
-		GroupLayout.SequentialGroup sGroup = gl_panelScrollContainer.createSequentialGroup();
-		GroupLayout.SequentialGroup s2Group = gl_panelScrollContainer.createSequentialGroup();
+		GroupLayout.SequentialGroup sGroup = groupLayout.createSequentialGroup();
+		GroupLayout.SequentialGroup s2Group = groupLayout.createSequentialGroup();
 		
-		GroupLayout.ParallelGroup pGroup = gl_panelScrollContainer.createParallelGroup(GroupLayout.Alignment.LEADING, false);
+		GroupLayout.ParallelGroup pGroup = groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false);
 		
 		
-		for(int i=0; i<availablePieces.length; i++){
-			pGroup.addComponent(availablePieces[i], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
-			s2Group.addComponent(availablePieces[i], GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE);
+		for(int i=0; i<piecesInBullpen.length; i++){
+			pGroup.addComponent(piecesInBullpen[i], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+			s2Group.addComponent(piecesInBullpen[i], GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE);
 		}
 		
-		gl_panelScrollContainer.setHorizontalGroup(hGroup.addGroup(sGroup.addGroup(pGroup)));
-		gl_panelScrollContainer.setVerticalGroup(vGroup.addGroup(s2Group));
-		panelScrollContainer.setLayout(gl_panelScrollContainer);	
+		groupLayout.setHorizontalGroup(hGroup.addGroup(sGroup.addGroup(pGroup)));
+		groupLayout.setVerticalGroup(vGroup.addGroup(s2Group));
+		panelScrollContainer.setLayout(groupLayout);	
 	}
 		
 }
