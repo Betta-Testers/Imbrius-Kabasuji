@@ -15,33 +15,13 @@ import java.awt.Font;
 public class GameExitScreen {
 
 	private JFrame frmGameOver;
+	StarView stars;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GameExitScreen window = new GameExitScreen();
-					window.frmGameOver.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public GameExitScreen() {
+	public GameExitScreen(StarView stars) {
+		this.stars = stars;
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		//don't change now, but eventually make it so it passes in a starview
 		
@@ -53,7 +33,7 @@ public class GameExitScreen {
 		JButton btnReturnToLevel = new JButton("Return to Level Select");
 		btnReturnToLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		
-		StarView starView = new StarView();
+		
 				
 		GroupLayout groupLayout = new GroupLayout(frmGameOver.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -65,14 +45,14 @@ public class GameExitScreen {
 							.addComponent(btnReturnToLevel))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(22)
-							.addComponent(starView, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(stars, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(starView, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+					.addComponent(stars, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
 					.addGap(9)
 					.addComponent(btnReturnToLevel)
 					.addContainerGap())
