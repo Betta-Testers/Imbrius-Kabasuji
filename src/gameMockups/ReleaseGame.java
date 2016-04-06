@@ -103,9 +103,6 @@ public class ReleaseGame extends JFrame {
 					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		
-		JLabel lblSetsReleased = new JLabel("Sets Released");
-		lblSetsReleased.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
 		NumbersReleasedView numbersReleased_1 = new NumbersReleasedView();
 		
 		NumbersReleasedView numbersReleased_2 = new NumbersReleasedView();
@@ -114,20 +111,14 @@ public class ReleaseGame extends JFrame {
 		GroupLayout gl_panelNumberSets = new GroupLayout(panelNumberSets);
 		gl_panelNumberSets.setHorizontalGroup(
 			gl_panelNumberSets.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelNumberSets.createSequentialGroup()
-					.addGap(66)
-					.addComponent(lblSetsReleased)
-					.addContainerGap(75, Short.MAX_VALUE))
-				.addComponent(numbersReleased_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-				.addComponent(numbersReleased_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-				.addComponent(numbersReleased_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+				.addComponent(numbersReleased_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+				.addComponent(numbersReleased_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+				.addComponent(numbersReleased_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
 		);
 		gl_panelNumberSets.setVerticalGroup(
 			gl_panelNumberSets.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelNumberSets.createSequentialGroup()
-					.addGap(5)
-					.addComponent(lblSetsReleased)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(27)
 					.addComponent(numbersReleased_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(numbersReleased_2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
