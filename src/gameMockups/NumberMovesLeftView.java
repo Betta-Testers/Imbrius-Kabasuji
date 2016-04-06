@@ -11,11 +11,14 @@ import java.awt.Font;
 public class NumberMovesLeftView extends JPanel {
 	public NumberMovesLeftView() {
 		
-		JTextPane textPaneMoves = new JTextPane();
-		textPaneMoves.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		textPaneMoves.setText("4");
+		JTextPane numberMoves = new JTextPane();
+		numberMoves.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		numberMoves.setText("4");
 		
-		JLabel lblMovesRemaining = new JLabel("Moves Remaining");
+		JLabel lblTitle = new JLabel("Moves Remaining");
+		
+		// TODO setupLayout and consumes AbstractLevelModel
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -23,19 +26,19 @@ public class NumberMovesLeftView extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(lblMovesRemaining))
+							.addComponent(lblTitle))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(45)
-							.addComponent(textPaneMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(numberMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(27, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(6)
-					.addComponent(lblMovesRemaining)
+					.addComponent(lblTitle)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textPaneMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(numberMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);

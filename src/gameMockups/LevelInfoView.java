@@ -14,6 +14,9 @@ public class LevelInfoView extends JPanel {
 		StarView starView = new StarView();
 		
 		JLabel lblLevelNumber = new JLabel("Level 1");
+		
+		// TODO constructor consuming an AbstractLevelModel
+		
 		lblLevelNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLevelNumber.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GroupLayout groupLayout = new GroupLayout(this);

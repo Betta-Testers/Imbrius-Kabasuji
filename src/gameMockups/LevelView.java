@@ -2,6 +2,9 @@ package gameMockups;
 
 import javax.swing.JToggleButton;
 
+import builderMockups.BullpenView;
+import builderMockups.SelectedPieceView;
+
 public class LevelView {
 	// TODO AbstractLevelModel m;
 	SelectedPieceView selectedPiece;

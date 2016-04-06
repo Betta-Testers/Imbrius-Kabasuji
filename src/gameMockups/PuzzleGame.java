@@ -12,6 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.LineBorder;
 
+import builderMockups.BullpenView;
+import builderMockups.SelectedPieceView;
+
 public class PuzzleGame extends JFrame {
 
 	private static final long serialVersionUID = 1L;

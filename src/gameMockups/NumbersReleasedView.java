@@ -57,6 +57,10 @@ public class NumbersReleasedView extends JPanel {
 		textField_5.setText("6");
 		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_5.setColumns(10);
+		
+		// TODO create setupLayout method
+		// TODO setupLayout and consumes AbstractLevelModel
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

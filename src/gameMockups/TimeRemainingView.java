@@ -15,7 +15,11 @@ public class TimeRemainingView extends JPanel {
 		textPaneTime.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		textPaneTime.setText("0:00");
 		
-		JLabel lblTimeRemaining = new JLabel("Time Remaining");
+		JLabel lblTitle = new JLabel("Time Remaining");
+		
+		// TODO setupLayout
+		// TODO setupLayout and consumes AbstractLevelModel
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -25,14 +29,14 @@ public class TimeRemainingView extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(10)
 							.addComponent(textPaneTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblTimeRemaining))
+						.addComponent(lblTitle))
 					.addContainerGap(45, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblTimeRemaining)
+					.addComponent(lblTitle)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textPaneTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(12, Short.MAX_VALUE))
