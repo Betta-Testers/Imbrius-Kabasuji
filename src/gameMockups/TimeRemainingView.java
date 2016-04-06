@@ -9,16 +9,22 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
 public class TimeRemainingView extends JPanel {
+	JTextPane textPaneTime;
+	JLabel lblTitle;
+	// TODO AbstractLevelModel m
+	
 	public TimeRemainingView() {
 		
 		JTextPane textPaneTime = new JTextPane();
 		textPaneTime.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		textPaneTime.setText("0:00");
 		
-		JLabel lblTitle = new JLabel("Time Remaining");
+		lblTitle = new JLabel("Time Remaining");
 		
-		// TODO setupLayout
-		// TODO setupLayout and consumes AbstractLevelModel
+		setupLayout();
+	}
+	
+	private void setupLayout() {
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

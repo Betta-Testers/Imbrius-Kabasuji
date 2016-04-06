@@ -9,76 +9,79 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 
 public class NumbersReleasedView extends JPanel {
-
+	
+	// TODO consumes AbstractLevelModel
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	JTextField number1;
+	JTextField number2;
+	JTextField number3;
+	JTextField number4;
+	JTextField number5;
+	JTextField number6;
+	JLabel lblColor;
 
 	/**
 	 * Create the panel.
 	 */
 	public NumbersReleasedView() {
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setText("1");
-		textField.setColumns(10);
+		number1 = new JTextField();
+		number1.setHorizontalAlignment(SwingConstants.CENTER);
+		number1.setText("1");
+		number1.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("2");
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setColumns(10);
+		number2 = new JTextField();
+		number2.setText("2");
+		number2.setHorizontalAlignment(SwingConstants.CENTER);
+		number2.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("3");
-		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_2.setColumns(10);
+		number3 = new JTextField();
+		number3.setText("3");
+		number3.setHorizontalAlignment(SwingConstants.CENTER);
+		number3.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("4");
-		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_3.setColumns(10);
+		number4 = new JTextField();
+		number4.setText("4");
+		number4.setHorizontalAlignment(SwingConstants.CENTER);
+		number4.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setText("5");
-		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_4.setColumns(10);
+		number5 = new JTextField();
+		number5.setText("5");
+		number5.setHorizontalAlignment(SwingConstants.CENTER);
+		number5.setColumns(10);
 		
-		JLabel lblColour = new JLabel("Colour:");
+		number6 = new JTextField();
+		number6.setText("6");
+		number6.setHorizontalAlignment(SwingConstants.CENTER);
+		number6.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setText("6");
-		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_5.setColumns(10);
+		lblColor = new JLabel("Color:");
 		
-		// TODO create setupLayout method
-		// TODO setupLayout and consumes AbstractLevelModel
+		setupLayout();
+	}
 		
+	private void setupLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(13)
-					.addComponent(lblColour)
+					.addComponent(lblColor)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+					.addComponent(number1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 					.addGap(2)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+					.addComponent(number2, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 					.addGap(2)
-					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+					.addComponent(number3, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 					.addGap(2)
-					.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+					.addComponent(number4, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 					.addGap(2)
-					.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+					.addComponent(number5, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 					.addGap(2)
-					.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+					.addComponent(number6, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(252, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -86,13 +89,13 @@ public class NumbersReleasedView extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(6)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblColour)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(number1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(number4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(number5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(number2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(number3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblColor)
+						.addComponent(number6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(274, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);

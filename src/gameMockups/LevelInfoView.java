@@ -5,17 +5,29 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 
 public class LevelInfoView extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
+	private static String level = "Level 1"; // note, this will come from the AbstractLevelModel class
+	
+	StarView starView;
+	JLabel lblLevelNumber;
+	// TODO AbstractLevelModel m
+	
 	public LevelInfoView() {
 		
-		StarView starView = new StarView();
+		starView = new StarView();
+		lblLevelNumber = new JLabel(level);
 		
-		JLabel lblLevelNumber = new JLabel("Level 1");
-		
-		// TODO constructor consuming an AbstractLevelModel
+		setupLayout();
+	}
+	
+	private void setupLayout() {
 		
 		lblLevelNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLevelNumber.setFont(new Font("Tahoma", Font.PLAIN, 22));

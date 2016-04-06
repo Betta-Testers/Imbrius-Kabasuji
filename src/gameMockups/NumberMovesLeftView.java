@@ -9,15 +9,22 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
 public class NumberMovesLeftView extends JPanel {
+	JTextPane numberMoves;
+	JLabel lblTitle;
+	// TODO AbstractLevelModel m
 	public NumberMovesLeftView() {
 		
-		JTextPane numberMoves = new JTextPane();
+		numberMoves = new JTextPane();
 		numberMoves.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		numberMoves.setText("4");
 		
-		JLabel lblTitle = new JLabel("Moves Remaining");
+		lblTitle = new JLabel("Moves Remaining");
 		
-		// TODO setupLayout and consumes AbstractLevelModel
+		setupLayout();
+		
+	}
+	
+	private void setupLayout() {
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
