@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.UIManager;
 
-/*public class Main {
+public class Main {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -18,14 +18,14 @@ import javax.swing.UIManager;
 			}
 		});
 	}
-}*/
+}
 
 
 /**
  * Launch the application.
  */
 
-public class Main {
+/*public class Main {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -38,4 +38,4 @@ public class Main {
 			}
 		});
 	}
-}
+}*/

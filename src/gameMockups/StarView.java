@@ -28,6 +28,11 @@ public class StarView extends JPanel {
 		
 		lblStar3 = new JLabel("");
 		lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/outline_star.png")));
+		setupLayout();
+
+	}
+	
+	void setupLayout(){
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -44,8 +49,7 @@ public class StarView extends JPanel {
 						.addComponent(lblStar2)
 						.addComponent(lblStar3)))
 		);
-		setLayout(groupLayout);
-
+		this.setLayout(groupLayout);
 	}
 
 }
