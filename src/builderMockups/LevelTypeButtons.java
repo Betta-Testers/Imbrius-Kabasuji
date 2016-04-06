@@ -11,10 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
 public class LevelTypeButtons extends JPanel {
-	private ButtonGroup levelTypeButtons;
-	private JToggleButton tglBtnPuzzle;
-	private JToggleButton tglBtnLightning;
-	private JToggleButton tglBtnRelease;
+	ButtonGroup levelTypeButtons;
+	JToggleButton tglBtnPuzzle;
+	JToggleButton tglBtnLightning;
+	JToggleButton tglBtnRelease;
 	LevelTypeButtons () {
 		super();
 		

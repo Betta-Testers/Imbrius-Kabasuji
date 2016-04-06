@@ -9,7 +9,7 @@ import javax.swing.BorderFactory;
 import java.awt.Dimension;
 
 class ExistingLevelView extends JButton {	
-	private ImageIcon icon;
+	ImageIcon icon;
 	ExistingLevelView(String levelType, Integer levelNumber) {
 		super(levelType+" "+levelNumber.toString());
 		Dimension levelPreviewSize = new Dimension(108, 108);

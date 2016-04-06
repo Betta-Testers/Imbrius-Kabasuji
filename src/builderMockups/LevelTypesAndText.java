@@ -6,8 +6,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 public class LevelTypesAndText extends JSplitPane {
-	private JTextArea txtAreaLevelTypeDescription;
-	private LevelTypeButtons levelTypeButtons;
+	JTextArea txtAreaLevelTypeDescription;
+	LevelTypeButtons levelTypeButtons;
 	
 	LevelTypesAndText() {
 		super();

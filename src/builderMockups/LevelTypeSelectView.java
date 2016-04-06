@@ -28,7 +28,6 @@ import java.awt.Color;
 
 public class LevelTypeSelectView extends JFrame {
 
-	private JFrame frame;
 	ViewAndEditLevels viewerAndEditor;
 	LevelTypesAndText levelTypesAndText;
 	JButton createLevelBtn;
