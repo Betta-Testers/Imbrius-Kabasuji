@@ -13,6 +13,15 @@ Software engineering game about Hexominoes
 * <b>Guys, I forgot how to use Git</b>
    * Here's a [tutorial](https://try.github.io/levels/1/challenges/1) on the command line version of git.
    * Here's a [GUI](https://desktop.github.com/) front end for git, reducing the need for the commandline. Dead simple to follow.
+* <b>What's the structure for eclipse?</b>
+   * Src folder with two packages in there: gameMockups, builderMockups
+   * Put your files in there accordingly
+   * Put the resource folder into the root folder of your project (not inside the src folder!) and link in eclipse as a source folder
+* <b>Rules and Regulations for Happiness</b>
+   * DON'T merge your branch INTO master branch!
+   * DO merge master branch INTO your branch. (RECOGNIZE THE DIFFERENCE)
+   * When you want to merge your branch into master, go into your branch and create a new pull request (can be done on github.com or from the gui in the upper right).
+   * DON'T approve your own merge, someone else MUST review it.
 
 ### WindowBuilder Related
 * <b>I opened Eclipse and it's not showing the WindowBuilder Designer!</b>
