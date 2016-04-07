@@ -10,8 +10,12 @@ public class Main {
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					LevelView frame = new LevelView();
+					LevelView frame = new LevelView("Puzzle");
+					LevelView frame1 = new LevelView("Lightning");
+					LevelView frame2 = new LevelView("Release");
 					frame.setVisible(true);
+					frame1.setVisible(true);
+					frame2.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

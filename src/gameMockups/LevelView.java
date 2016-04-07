@@ -13,7 +13,6 @@ import builderMockups.SelectedPieceView;
 public class LevelView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private static String gameType = "Puzzle"; // note, this will come from the AbstractLevelModel class
 	
 	
 	// TODO AbstractLevelModel m;
@@ -30,7 +29,7 @@ public class LevelView extends JFrame {
 	// remove this later
 	int sets = 3;
 	
-	public LevelView() {
+	public LevelView(String gameType) {
 
 		availablePieces = new BullpenView("playing");
 		levelInfo = new LevelInfoView();
@@ -39,6 +38,9 @@ public class LevelView extends JFrame {
 		selectedPiece = new SelectedPieceView();
 		movesLeftView = new NumberMovesLeftView();
 		numbersReleasedView = new NumbersReleasedView[sets];
+		for(int i = 0; i < sets; i++) {
+			numbersReleasedView[i] = new NumbersReleasedView();
+		}
 		
 		setupLayout(gameType);
 	}
@@ -46,13 +48,16 @@ public class LevelView extends JFrame {
 	private void setupLayout(String type) {
 		setTitle(type);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // TODO this will change with the intercept
 		setBounds(100, 100, 620, 651);
 		content = new JPanel();
 		content.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(content);
 		GroupLayout gl_LevelView = new GroupLayout(this.getContentPane());
 		content.setLayout(gl_LevelView);
+
+		gl_LevelView.setAutoCreateGaps(true);
+		gl_LevelView.setAutoCreateContainerGaps(true);
 		
 	
 		if(type.equals("Puzzle")) {
@@ -148,46 +153,38 @@ public class LevelView extends JFrame {
 									.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE))
 								.addComponent(selectedPiece, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_LevelView.createSequentialGroup()
-										.addGap(28)
-										.addComponent(levelInfo, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
-										.addContainerGap())
-									.addGroup(gl_LevelView.createSequentialGroup()
-										.addGap(69)
-										.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addContainerGap())
-									.addGroup(gl_LevelView.createSequentialGroup()
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(numbersReleasedView[0], GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(numbersReleasedView[1], GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(numbersReleasedView[2], GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-										.addContainerGap()))
 								.addGroup(gl_LevelView.createSequentialGroup()
-									.addGap(70)
-									.addContainerGap())))
+									.addGap(28)
+									.addComponent(levelInfo, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_LevelView.createSequentialGroup()
+									.addGap(69)
+									.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_LevelView.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_LevelView.createParallelGroup(Alignment.LEADING)
+										.addComponent(numbersReleasedView[0], GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
+										.addComponent(numbersReleasedView[1], GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
+										.addComponent(numbersReleasedView[2], GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE))))
+							.addContainerGap())
 				);
 				gl_LevelView.setVerticalGroup(
 					gl_LevelView.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_LevelView.createSequentialGroup()
 							.addComponent(selectedPiece, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
 							.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_LevelView.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(levelInfo, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(35)
 							.addComponent(numbersReleasedView[0], GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(6)
 							.addComponent(numbersReleasedView[1], GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(6)
 							.addComponent(numbersReleasedView[2], GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addContainerGap(36, Short.MAX_VALUE))
+							.addContainerGap(109, Short.MAX_VALUE))
 				);
 				setLayout(gl_LevelView);
 		}
