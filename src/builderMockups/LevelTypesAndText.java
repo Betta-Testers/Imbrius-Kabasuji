@@ -6,6 +6,10 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 public class LevelTypesAndText extends JSplitPane {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JTextArea txtAreaLevelTypeDescription;
 	LevelTypeButtons levelTypeButtons;
 	

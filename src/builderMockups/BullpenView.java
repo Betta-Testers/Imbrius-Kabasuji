@@ -8,6 +8,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 public class BullpenView extends JScrollPane {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JPanel panelScrollContainer;
 	AbstractPieceGroupView piecesInBullpen[];

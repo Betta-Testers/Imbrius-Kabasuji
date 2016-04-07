@@ -13,6 +13,10 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 public class AvailableLevelView extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	GroupLayout layout;
 	StarView starView;
 	JButton btnSelectLevel;

@@ -1,19 +1,18 @@
 package gameMockups;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import java.awt.Font;
 
 public class GameExitScreen extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton btnReturnToLevel;
 	StarView stars;
 	/*

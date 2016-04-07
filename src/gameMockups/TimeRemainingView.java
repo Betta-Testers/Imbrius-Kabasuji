@@ -9,13 +9,17 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
 public class TimeRemainingView extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JTextPane textPaneTime;
 	JLabel lblTitle;
 	// TODO AbstractLevelModel m
 	
 	public TimeRemainingView() {
 		
-		JTextPane textPaneTime = new JTextPane();
+		textPaneTime = new JTextPane();
 		textPaneTime.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		textPaneTime.setText("0:00");
 		

@@ -6,6 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class PlayingPieceGroupView extends AbstractPieceGroupView{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JLabel label;
 	

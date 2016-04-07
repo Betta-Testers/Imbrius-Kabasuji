@@ -5,10 +5,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.Color;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class BuilderView extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	BoardView boardView;
 	ButtonGroupView buttonGroupView;

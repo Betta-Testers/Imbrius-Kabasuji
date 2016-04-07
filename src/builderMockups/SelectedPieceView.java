@@ -4,13 +4,15 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class SelectedPieceView extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JButton btnRotateLeft;
 	JButton btnRotateRight;

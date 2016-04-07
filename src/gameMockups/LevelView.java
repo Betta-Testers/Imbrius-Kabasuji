@@ -3,16 +3,12 @@ package gameMockups;
 import java.awt.EventQueue;
 
 import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import builderMockups.BullpenView;
-import builderMockups.SelectedPieceView;
 import builderMockups.BullpenView;
 import builderMockups.SelectedPieceView;
 
@@ -37,17 +33,17 @@ public class LevelView extends JFrame {
 	int sets = 3;
 	
 	
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					new LevelView();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new LevelView();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 	
 	public LevelView() {
@@ -57,9 +53,8 @@ public class LevelView extends JFrame {
 		timeLeftView = new TimeRemainingView();
 		boardView = new BoardView(gameType); 
 		selectedPiece = new SelectedPieceView();
-		for(int i = 0; i < sets; i++) {
-			numbersReleasedView[i] = new NumbersReleasedView();
-		}
+		movesLeftView = new NumberMovesLeftView();
+		numbersReleasedView = new NumbersReleasedView[sets];
 		
 		setupLayout(gameType);
 	}
@@ -116,6 +111,7 @@ public class LevelView extends JFrame {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addContainerGap(21, Short.MAX_VALUE))
 				);
+				setLayout(gl_LevelView);
 		} else if(type.equals("Lightning")) {
 			gl_LevelView.setHorizontalGroup(
 				gl_LevelView.createParallelGroup(Alignment.TRAILING)
@@ -156,6 +152,7 @@ public class LevelView extends JFrame {
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(boardView, 0, 0, Short.MAX_VALUE))
 			);
+			setLayout(gl_LevelView);
 		}  else if(type.equals("Release")) {
 			gl_LevelView.setHorizontalGroup(
 					gl_LevelView.createParallelGroup(Alignment.TRAILING)
@@ -207,8 +204,8 @@ public class LevelView extends JFrame {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addContainerGap(36, Short.MAX_VALUE))
 				);
+				setLayout(gl_LevelView);
 		}
-		setLayout(gl_LevelView);
 	}
 	
 

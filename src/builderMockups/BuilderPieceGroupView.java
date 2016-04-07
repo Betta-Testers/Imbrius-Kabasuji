@@ -5,6 +5,10 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 public class BuilderPieceGroupView extends AbstractPieceGroupView{	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JSpinner spinner;
 

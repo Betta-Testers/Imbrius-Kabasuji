@@ -11,6 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
 public class LevelTypeButtons extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ButtonGroup levelTypeButtons;
 	JToggleButton tglBtnPuzzle;
 	JToggleButton tglBtnLightning;

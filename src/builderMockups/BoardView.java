@@ -10,6 +10,11 @@ public class BoardView extends JPanel{
 	//TODO Add Attribute: TileView tiles[]
 	//TODO Add Attribute: Board modelBoard
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//TODO Change Arguments: Board b
 	public BoardView(){
 		setPreferredSize(new Dimension(384, 384));

@@ -6,6 +6,11 @@ import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 
 public class ViewAndEditLevels extends JSplitPane {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	ViewAndEditLevels () {
 		super();
 		this.setOrientation(JSplitPane.VERTICAL_SPLIT);

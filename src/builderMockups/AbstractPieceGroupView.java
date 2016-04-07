@@ -2,12 +2,15 @@ package builderMockups;
 
 import java.awt.Dimension;
 
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public abstract class AbstractPieceGroupView extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton button;
 	//TODO Add Attribute: PieceGroup modelPieceGroup
 	

@@ -2,13 +2,16 @@ package builderMockups;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import java.awt.Dimension;
 
 class ExistingLevelView extends JButton {	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ImageIcon icon;
 	ExistingLevelView(String levelType, Integer levelNumber) {
 		super(levelType+" "+levelNumber.toString());

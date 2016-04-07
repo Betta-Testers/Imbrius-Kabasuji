@@ -9,6 +9,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
 public class NumberMovesLeftView extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JTextPane numberMoves;
 	JLabel lblTitle;
 	// TODO AbstractLevelModel m
