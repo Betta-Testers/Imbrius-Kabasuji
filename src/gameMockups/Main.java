@@ -10,7 +10,7 @@ public class Main {
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					SelectLevel frame = new SelectLevel();
+					LevelView frame = new LevelView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

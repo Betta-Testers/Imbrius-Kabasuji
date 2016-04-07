@@ -1,7 +1,5 @@
 package gameMockups;
 
-import java.awt.EventQueue;
-
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,20 +30,6 @@ public class LevelView extends JFrame {
 	// remove this later
 	int sets = 3;
 	
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new LevelView();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	
 	public LevelView() {
 
 		availablePieces = new BullpenView("playing");
@@ -67,8 +51,9 @@ public class LevelView extends JFrame {
 		content = new JPanel();
 		content.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(content);
+		GroupLayout gl_LevelView = new GroupLayout(this.getContentPane());
+		content.setLayout(gl_LevelView);
 		
-		GroupLayout gl_LevelView = new GroupLayout(this);
 	
 		if(type.equals("Puzzle")) {
 			gl_LevelView.setHorizontalGroup(
