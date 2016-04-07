@@ -3,13 +3,14 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import gameMockups.GameExitScreen;
+import gameMockups.SplashScreen;
 
-public class QuitGameButtonController implements ActionListener{
-	GameExitScreen view;
+public class SplashTimerController implements ActionListener{
+	SplashScreen view;
 	//Game model;
 	
-	public QuitGameButtonController(GameExitScreen view){
+	//add Game model to controller???
+	public SplashTimerController(SplashScreen view){
 		this.view = view;
 	}
 	
