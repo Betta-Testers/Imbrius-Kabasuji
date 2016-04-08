@@ -106,7 +106,19 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		createLevelBtn.addActionListener(new CreateLevelBtnController(highestExistingLevel));
+		createLevelBtn.addActionListener(new CreateLevelBtnController(this));
+	}
+	
+	public JTextArea getLevelDescriptionBox() {
+		return levelTypesAndText.getTextArea();
+	}
+	
+	public void setHighestExistingLevel(int newHighest) {
+		this.highestExistingLevel = newHighest;
+	}
+	
+	public int getHighestExistingLevel() {
+		return this.highestExistingLevel;
 	}
 }
 
