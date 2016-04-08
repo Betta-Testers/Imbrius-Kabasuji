@@ -1,7 +1,10 @@
 package view;
 
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
+import javax.swing.AbstractButton;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
@@ -24,7 +27,11 @@ public class LevelTypesAndText extends JSplitPane {
 		this.setRightComponent(txtAreaLevelTypeDescription);
 	}
 	
-	JTextArea getTextArea() {
+	public JTextArea getTextArea() {
 		return txtAreaLevelTypeDescription;
+	}
+	
+	public ArrayList<LevelTypeToggle> getLevelTypeButtons() {
+		return levelTypeButtons.getButtons();
 	}
 }

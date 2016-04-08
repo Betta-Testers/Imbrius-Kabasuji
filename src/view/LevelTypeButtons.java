@@ -2,7 +2,10 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -12,37 +15,25 @@ import javax.swing.JToggleButton;
 
 public class LevelTypeButtons extends JPanel {
 	ButtonGroup levelTypeButtons;
-	JToggleButton tglBtnPuzzle;
-	JToggleButton tglBtnLightning;
-	JToggleButton tglBtnRelease;
+	ArrayList<LevelTypeToggle> levelTypeButtonsList;
+	LevelTypeToggle tglBtnPuzzle;
+	LevelTypeToggle tglBtnLightning;
+	LevelTypeToggle tglBtnRelease;
 	LevelTypeButtons () {
 		super();
 		
 		levelTypeButtons = new ButtonGroup();
-		tglBtnPuzzle = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Puzzle.png")));
+		levelTypeButtonsList = new ArrayList<LevelTypeToggle>();
+		tglBtnPuzzle = new LevelTypeToggle("Puzzle", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Puzzle.png")));
 		levelTypeButtons.add(tglBtnPuzzle);
-		tglBtnLightning = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Lightning.png")));
+		levelTypeButtonsList.add(tglBtnPuzzle);
+		tglBtnLightning = new LevelTypeToggle("Lightning", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Lightning.png")));
 		levelTypeButtons.add(tglBtnLightning);
-		tglBtnRelease = new JToggleButton("", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Release.png")));
+		levelTypeButtonsList.add(tglBtnLightning);
+		tglBtnRelease = new LevelTypeToggle("Release", new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Release.png")));
 		levelTypeButtons.add(tglBtnRelease);
+		levelTypeButtonsList.add(tglBtnRelease);
 		
-		tglBtnPuzzle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		
-		tglBtnLightning.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		
-		tglBtnRelease.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-								
-			}
-		});
 		
 		setupLayout();
 	}
@@ -73,5 +64,9 @@ public class LevelTypeButtons extends JPanel {
 						.addContainerGap(5, Short.MAX_VALUE))
 		);
 		this.setLayout(gl_levelTypesPanel);
+	}
+	
+	public ArrayList<LevelTypeToggle> getButtons() {
+		return levelTypeButtonsList;
 	}
 }

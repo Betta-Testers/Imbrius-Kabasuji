@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
@@ -8,6 +9,7 @@ import javax.swing.JSplitPane;
 import controllers.ExistingLevelEditController;
 
 public class ViewAndEditLevels extends JSplitPane {
+	ExistingLevelViewer levelViewer;	
 	ViewAndEditLevels () {
 		super();
 		this.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -15,7 +17,7 @@ public class ViewAndEditLevels extends JSplitPane {
 		JLabel lblExistingLevels = new JLabel("Existing Levels (Click to edit)");
 		lblExistingLevels.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		this.setLeftComponent(lblExistingLevels);
-		ExistingLevelViewer levelViewer = new ExistingLevelViewer();
+		levelViewer = new ExistingLevelViewer();
 		this.setRightComponent(levelViewer);
 		
 		for (int i=1; i<=15; i++){
@@ -25,5 +27,9 @@ public class ViewAndEditLevels extends JSplitPane {
 			i++;
 			levelViewer.addLevelView("Release", i);
 		}
+	}
+	
+	public ArrayList<ExistingLevelView> getExistingLevelButtons() {
+		return levelViewer.getExistingLevelButtons();
 	}
 }

@@ -11,10 +11,12 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import java.awt.Dimension;
 
-class ExistingLevelView extends JButton {	
+public class ExistingLevelView extends JButton {	
 	ImageIcon icon;
+	int levelNumber;
 	ExistingLevelView(String levelType, Integer levelNumber) {
 		super(levelType+" "+levelNumber.toString());
+		this.levelNumber = levelNumber;
 		Dimension levelPreviewSize = new Dimension(126, 126);
 		if (levelType.equals("Release")) {
 			icon = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/ReleaseSm.png"));
@@ -33,6 +35,9 @@ class ExistingLevelView extends JButton {
 		this.setMaximumSize(levelPreviewSize);
 		this.setMinimumSize(levelPreviewSize);
 		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		this.addActionListener(new ExistingLevelEditController(levelNumber));
+	}
+	
+	public int getLevelNumber() {
+		return this.levelNumber;
 	}
 }

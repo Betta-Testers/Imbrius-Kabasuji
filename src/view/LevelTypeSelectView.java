@@ -8,6 +8,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import controllers.CreateLevelBtnController;
+import controllers.ExistingLevelEditController;
+import controllers.NewLevelTypeController;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -107,6 +109,12 @@ public class LevelTypeSelectView extends JFrame {
 	
 	void initializeControllers() {
 		createLevelBtn.addActionListener(new CreateLevelBtnController(this));
+		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
+			elv.addActionListener(new ExistingLevelEditController());
+		}
+		for (LevelTypeToggle ltt : levelTypesAndText.getLevelTypeButtons()) {
+			ltt.addActionListener(new NewLevelTypeController(this));
+		}
 	}
 	
 	public JTextArea getLevelDescriptionBox() {
