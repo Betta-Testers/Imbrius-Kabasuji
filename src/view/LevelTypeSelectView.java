@@ -76,6 +76,7 @@ public class LevelTypeSelectView extends JFrame {
 		levelSelectorAndCreator.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
 		createLevelBtn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		createLevelBtn.setEnabled(false);
 		
 		levelViewerAndSelector.setLeftComponent(viewerAndEditor);
 		levelViewerAndSelector.setRightComponent(levelSelectorAndCreator);
@@ -131,6 +132,10 @@ public class LevelTypeSelectView extends JFrame {
 	
 	public String getSelectedLevelType() {
 		return this.levelTypesAndText.getSelectedLevelType();
+	}
+	
+	public JButton getCreateLevelBtn () {
+		return this.createLevelBtn;
 	}
 }
 

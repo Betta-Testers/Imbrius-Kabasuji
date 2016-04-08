@@ -19,6 +19,7 @@ public class NewLevelTypeController implements java.awt.event.ActionListener {
 		//do something
 		clickSource = (LevelTypeToggle) ae.getSource();
 		ltsv.getLevelDescriptionBox().setText(clickSource.getLevelType());
+		ltsv.getCreateLevelBtn().setEnabled(true);
 		//System.out.println("Button " + clickSource.getLevelType());
 	}
 }
