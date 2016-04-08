@@ -34,4 +34,8 @@ public class LevelTypesAndText extends JSplitPane {
 	public ArrayList<LevelTypeToggle> getLevelTypeButtons() {
 		return levelTypeButtons.getButtons();
 	}
+	
+	public String getSelectedLevelType() {
+		return levelTypeButtons.getSelectedLevelType();
+	}
 }

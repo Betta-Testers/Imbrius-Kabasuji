@@ -128,6 +128,10 @@ public class LevelTypeSelectView extends JFrame {
 	public int getHighestExistingLevel() {
 		return this.highestExistingLevel;
 	}
+	
+	public String getSelectedLevelType() {
+		return this.levelTypesAndText.getSelectedLevelType();
+	}
 }
 
 

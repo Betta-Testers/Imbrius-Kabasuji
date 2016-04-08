@@ -14,6 +14,6 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	
 	public void actionPerformed(ActionEvent ae) {
 		//do something
-		System.out.println("Create new level #"+nextLevel);
+		System.out.println("Create new level #"+nextLevel+" of type "+this.ltsv.getSelectedLevelType());
 	}
 }

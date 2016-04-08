@@ -69,4 +69,14 @@ public class LevelTypeButtons extends JPanel {
 	public ArrayList<LevelTypeToggle> getButtons() {
 		return levelTypeButtonsList;
 	}
+	
+	public String getSelectedLevelType() {
+		for (LevelTypeToggle ltt : levelTypeButtonsList) {
+			if (ltt.isSelected()) {
+				return ltt.getLevelType();
+			}
+		}
+		//TODO Throw an exception
+		return "Failure";
+	}
 }
