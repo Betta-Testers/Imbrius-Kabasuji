@@ -123,6 +123,7 @@ public class LevelTypeSelectView extends JFrame {
 	
 	public void addExistingLevel (String levelType, int levelNumber){
 		viewerAndEditor.addLevel(levelType, levelNumber);
+		levelData.put(levelNumber, levelType);
 	}
 	
 	public String getSelectedLevelType() {

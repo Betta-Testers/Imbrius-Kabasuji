@@ -3,6 +3,7 @@ package app;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 
 import view.BuilderView;
 import controllers.CloseBuilderDialog;
@@ -11,19 +12,14 @@ import view.LevelTypeSelectView;
 public class Builder {
 	LevelTypeSelectView ltsv;
 	BuilderView bv;
-	ArrayList<Integer> levelIDs;
+	HashMap<Integer, String> levelData;
 	//TODO add this line: AbstractLevelModel buildingLevel;
 	int highestLevelID;
 
 	Builder(){
-		levelIDs = loadLevelIDs();
-		if(levelIDs.isEmpty()){
-			highestLevelID = 0;
-		}else{
-			highestLevelID = levelIDs.get(levelIDs.size()-1);
-		}
+		levelData = loadLevelData();
 		bv = new BuilderView();
-		ltsv = new LevelTypeSelectView(this, highestLevelID);
+		ltsv = new LevelTypeSelectView(this, levelData);
 		initializeControllers();
 	}
 

@@ -15,9 +15,6 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	
 	//TODO Added a BV to the parameters
 	public CreateLevelBtnController (LevelTypeSelectView ltsv, Builder b) {
-		this.ltsv = ltsv;
-		this.nextLevel = ltsv.getHighestExistingLevel()+1;
-		
 		//TODO Added lines
 		this.b = b;
 	}
@@ -33,6 +30,5 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 		b.setModelLevel(nextLevel);
 		b.setBuilderViewVisible(true);
 		b.setLevelTypeSelectViewVisible(false);
-		ltsv.setHighestExistingLevel(b.getHighestLevelID());
 	}
 }
