@@ -13,7 +13,7 @@ public class Builder {
 	ArrayList<Integer> levelIDs;
 	//TODO add this line: AbstractLevelModel buildingLevel;
 	int highestLevelID;
-	
+
 	Builder(){
 		levelIDs = loadLevelIDs();
 		if(levelIDs.isEmpty()){
@@ -22,29 +22,29 @@ public class Builder {
 			highestLevelID = levelIDs.get(levelIDs.size()-1);
 		}
 		bv = new BuilderView();
-		ltsv = new LevelTypeSelectView(this, highestLevelID, bv);
+		ltsv = new LevelTypeSelectView(this, highestLevelID);
 	}
-	
-	
+
+
 	void initialize(){
 		/**TODO Determine where to get highest level from....
 		 * Probably need to have a method run before this that reads files and stores
 		 * the highest number, then pass that as the argument
 		 */
-		
-		
+
+
 		//initializeView();
 		//initializeControllers();
 	}
-	
+
 	void initializeView(){
 		//TODO Initialize selectionView in here
-		
+
 	}
-	
+
 	void initializeControllers(){
 		//TODO Initialize selectionView controllers here
-		
+
 		/**
 		 * TODO The controller for selection view should read the selection made 
 		 * when you hit "play level" and call a builder initialization method inside
@@ -66,11 +66,11 @@ public class Builder {
 		 * where it updates everything since a model inside must have beens set()
 		 */
 	}
-	
+
 	void initializeLevelModel(int levelID){
-		
+
 	}
-	
+
 	/**
 	 * Reads the directory located in the specified path, taking all files and storing them into an array.
 	 * The files are then filtered to only include those who are of type ".txt" and have a parsable Integer.
@@ -86,43 +86,101 @@ public class Builder {
 		String name;
 		int levelID = 0;
 		ArrayList<Integer> levelIDs = new ArrayList<Integer>();
-		
-		    for (File f: listOfFiles) {
-		    	name = f.getName().substring(0, f.getName().lastIndexOf("."));
-		    	extension = f.getName().substring(f.getName().lastIndexOf("."), f.getName().length());	
-		    	try{
-		    		levelID = Integer.parseInt(name);
-		    	}catch(NumberFormatException e){
-		    		levelID = -1;
-		    	}
-		    	
-		      if (f.isFile() && extension.equals(".txt") && levelID > 0) {
-		        levelIDs.add(levelID);
-		      }
-		      
-		      levelID = 0;
-		    }
 
-		    levelIDs.sort(new Comparator<Integer>() {
-				@Override
-				public int compare(Integer o1, Integer o2) {
-					if(o1 <= o2){return o1;}
-					return o2;
-				}
-		    });
-		    
-		    return levelIDs;
+		for (File f: listOfFiles) {
+			name = f.getName().substring(0, f.getName().lastIndexOf("."));
+			extension = f.getName().substring(f.getName().lastIndexOf("."), f.getName().length());	
+			try{
+				levelID = Integer.parseInt(name);
+			}catch(NumberFormatException e){
+				levelID = -1;
+			}
+
+			if (f.isFile() && extension.equals(".txt") && levelID > 0) {
+				levelIDs.add(levelID);
+			}
+
+			levelID = 0;
+		}
+
+		levelIDs.sort(new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				if(o1 <= o2){return o1;}
+				return o2;
+			}
+		});
+
+		return levelIDs;
+	}
+
+	/**
+	 * For CREATING a level. This method is used by CreateLevelBtnController
+	 * to set the level being built. It increments the highestLevelID to account
+	 * for the new level being created. This allows the Builder class to know
+	 * what level is being made
+	 */
+	public void setModelLevel(){
+		//Prepare the Builder View to display only the relevant sections of the editor
+		switch(ltsv.getSelectedLevelType()){
+		case "Puzzle":
+			highestLevelID++;
+			/** TODO Add these Lines when PuzzleLevel implemented
+			 * PuzzleLevel pl = new PuzzleLevel();
+			 * buildingLevel = pl;
+			 * bv.setModelLevel(pl);
+			 */
+			bv.prepPuzzle();
+			break;
+		case "Lightning":
+			highestLevelID++;
+			/** TODO Add these lines when LightningLevel implemented
+			 * LightningLevel ll = new LightningLevel();
+			 * buildingLevel = ll;
+			 * bv.setModelLevel(ll);
+			 */
+			bv.prepLightning();
+			break;
+		case "Release":
+			highestLevelID++;
+			/** TODO Add these lines when ReleaseLevel implemented
+			 * ReleaseLevel rl = new ReleaseLevel();
+			 * buildingLevel = rl;
+			 * bv.setModelLevel(rl);
+			 */
+			bv.prepRelease();
+			break;
+		}
+	}
+
+	/**
+	 * Method encapsulates the setVisible functionality of builderView,
+	 * to avoid the need of a getter/setter pair. If enabled is true, the
+	 * window is displayed. Else, it's set to be hidden.
+	 * @param enabled True displays window
+	 */
+	public void setBuilderViewVisible(boolean enabled){
+			bv.setVisible(enabled);
 	}
 	
+	/**
+	 * Method encapsulates the setVisible functionality of LevelTypeSelectView,
+	 * to avoid the need of a getter/setter pair. If enabled is true, the
+	 * window is displayed. Else, it's set to be hidden.
+	 * @param enabled True displays window
+	 */
+	public void setLevelTypeSelectViewVisible(boolean enabled){
+			ltsv.setVisible(enabled);
+	}
 	
 	
 	void initializeLevelView(){
 		//TODO Initialize BuilderView in here
 	}
-	
+
 	void initializeLevelControllers(){
 		//TODO Initialize BuilderView Controllers in here
-//		builderView.setVisible(true); to make builderview appear
+		//		builderView.setVisible(true); to make builderview appear
 	}
 
 

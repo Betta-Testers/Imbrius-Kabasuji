@@ -26,14 +26,18 @@ public class LevelTypeSelectView extends JFrame {
 	JPanel createBtnPanel;
 	int highestExistingLevel;
 	
-	//TODO: Verify these attributes
-	BuilderView bv;
+	//TODO: Verify this attribute
 	Builder b;
+	
 	/**
 	 * Create the application.
 	 */
 	//TODO: Verify builder parameter
-	public LevelTypeSelectView(Builder b, int highestExistingLevel, BuilderView builderView) {
+	/**TODO: HighestExistingLevel may not be needed. Depends on what the deal is with
+	 * editing an existing level. If it is needed in that case, is a get/setter needed?
+	 * Maybe only the setter.
+	 */
+	public LevelTypeSelectView(Builder b, int highestExistingLevel) {
 		super();
 		this.highestExistingLevel = highestExistingLevel;
 		viewerAndEditor = new ViewAndEditLevels();
@@ -41,8 +45,7 @@ public class LevelTypeSelectView extends JFrame {
 		createLevelBtn = new JButton("Create Level");
 		createBtnPanel = new JPanel();
 		
-		//TODO verify these lines
-		this.bv = builderView;
+		//TODO verify this line
 		this.b = b;
 		
 		initialize();
@@ -106,8 +109,8 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		//TODO Added b and bv to the parameters of this controller
-		createLevelBtn.addActionListener(new CreateLevelBtnController(this, b, bv));
+		//TODO Added b to the parameters, removed LTSV
+		createLevelBtn.addActionListener(new CreateLevelBtnController(b));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
 			elv.addActionListener(new ExistingLevelEditController());
 		}
