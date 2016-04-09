@@ -1,7 +1,7 @@
+package app;
+
 import java.awt.EventQueue;
-
 import javax.swing.UIManager;
-
 import view.BuilderView;
 import view.LevelTypeSelectView;
 
@@ -25,8 +25,14 @@ public class Builder {
 	}
 	
 	void initialize(){
-		initializeView();
-		initializeControllers();
+		/**TODO Determine where to get highest level from....
+		 * Probably need to have a method run before this that reads files and stores
+		 * the highest number, then pass that as the argument
+		 */
+		selectionView = new LevelTypeSelectView(1, this);
+		
+		//initializeView();
+		//initializeControllers();
 	}
 	
 	void initializeView(){
@@ -36,6 +42,7 @@ public class Builder {
 	
 	void initializeControllers(){
 		//TODO Initialize selectionView controllers here
+		
 		/**
 		 * TODO The controller for selection view should read the selection made 
 		 * when you hit "play level" and call a builder initialization method inside
@@ -73,5 +80,12 @@ public class Builder {
 	void initializeLevelControllers(){
 		//TODO Initialize BuilderView Controllers in here
 //		builderView.setVisible(true); to make builderview appear
+	}
+
+	/**
+	 * Returns the builderView in this model
+	 */
+	public BuilderView getBuilderView() {
+		return builderView;
 	}
 }

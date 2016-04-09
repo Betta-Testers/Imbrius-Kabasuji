@@ -2,6 +2,8 @@ package view;
 
 import java.awt.EventQueue;
 
+import app.Builder;
+
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
@@ -39,17 +41,23 @@ public class LevelTypeSelectView extends JFrame {
 	JButton createLevelBtn;
 	JPanel createBtnPanel;
 	int highestExistingLevel;
+	//TODO: Verify this attribute
+	Builder b;
 
 	/**
 	 * Create the application.
 	 */
-	public LevelTypeSelectView(int highestExistingLevel) {
+	//TODO: Verify builder parameter
+	public LevelTypeSelectView(int highestExistingLevel, Builder b) {
 		super();
 		this.highestExistingLevel = highestExistingLevel;
 		viewerAndEditor = new ViewAndEditLevels();
 		levelTypesAndText = new LevelTypesAndText();
 		createLevelBtn = new JButton("Create Level");
 		createBtnPanel = new JPanel();
+		
+		//TODO verify this line
+		this.b = b;
 		
 		initialize();
 		setupLayout();
@@ -109,7 +117,7 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		createLevelBtn.addActionListener(new CreateLevelBtnController(this));
+		createLevelBtn.addActionListener(new CreateLevelBtnController(this, b.getBuilderView()));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
 			elv.addActionListener(new ExistingLevelEditController());
 		}
