@@ -11,7 +11,7 @@ public class Main {
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					LevelTypeSelectView window = new LevelTypeSelectView();
+					BuilderView window = new BuilderView();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

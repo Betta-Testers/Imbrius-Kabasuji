@@ -18,7 +18,7 @@ public class BuilderView extends JFrame {
 	SelectedPieceView selectedPieceView;
 	//TODO Add attribute: AbstractLevelModel modelLevel 
 	
-
+	//TODO Add constructor argument: AbstractLevelModel m
 	public BuilderView() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,6 +33,7 @@ public class BuilderView extends JFrame {
 		levelPropertyView = new LevelPropertiesView();
 		bullpenView = new BullpenView("builder");		
 		selectedPieceView = new SelectedPieceView();
+		//TODO Initialize: this.modelLevel = m;
 		
 		setupLayout();		
 	}
