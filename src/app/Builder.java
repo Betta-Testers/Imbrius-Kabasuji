@@ -2,7 +2,6 @@ package app;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import view.BuilderView;
 import controllers.CloseBuilderDialog;
