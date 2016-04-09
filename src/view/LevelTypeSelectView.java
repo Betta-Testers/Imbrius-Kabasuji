@@ -4,6 +4,8 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
+import java.util.HashMap;
+
 import app.Builder;
 import controllers.CreateLevelBtnController;
 import controllers.ExistingLevelEditController;
@@ -24,7 +26,7 @@ public class LevelTypeSelectView extends JFrame {
 	LevelTypesAndText levelTypesAndText;
 	JButton createLevelBtn;
 	JPanel createBtnPanel;
-	int highestExistingLevel;
+	HashMap<Integer, String> levelData;
 	
 	//TODO: Verify this attribute
 	Builder b;
@@ -33,10 +35,10 @@ public class LevelTypeSelectView extends JFrame {
 	 * Create the application.
 	 */
 	//TODO: Verify builder parameter
-	public LevelTypeSelectView(Builder b, int highestExistingLevel) {
+	public LevelTypeSelectView(Builder b, HashMap<Integer, String> levelData) {
 		super();
-		this.highestExistingLevel = highestExistingLevel;
-		viewerAndEditor = new ViewAndEditLevels();
+		this.levelData = levelData;
+		viewerAndEditor = new ViewAndEditLevels(levelData);
 		levelTypesAndText = new LevelTypesAndText();
 		createLevelBtn = new JButton("Create Level");
 		createBtnPanel = new JPanel();
@@ -119,12 +121,8 @@ public class LevelTypeSelectView extends JFrame {
 		return levelTypesAndText.getTextArea();
 	}
 	
-	public void setHighestExistingLevel(int newHighest) {
-		this.highestExistingLevel = newHighest;
-	}
-
-	public int getHighestExistingLevel() {
-		return this.highestExistingLevel;
+	public void addExistingLevel (String levelType, int levelNumber){
+		viewerAndEditor.addLevel(levelType, levelNumber);
 	}
 	
 	public String getSelectedLevelType() {

@@ -84,6 +84,15 @@ public class Builder {
 		}
 
 
+		/*levelIDs.sort(new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				if(o1 <= o2){return o1;}
+				return o2;
+			}
+		});*/
+
+
 		return levelIDs;
 	}
 
