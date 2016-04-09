@@ -4,9 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import javax.swing.JOptionPane;
-
 import view.BuilderView;
+import controllers.CloseBuilderDialog;
 import view.LevelTypeSelectView;
 
 public class Builder {
@@ -46,22 +45,7 @@ public class Builder {
 	}
 
 	void initializeControllers(){
-		bv.addWindowListener(new java.awt.event.WindowAdapter() {
-		    @Override
-		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-		    	String message = "<html>Cosing a level will not save your progress and return to level select</html>";
-		    	String title = "Are you sure?";
-		    	int response = JOptionPane.showConfirmDialog(bv,message, title,JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
-		        if (response == JOptionPane.OK_OPTION){
-		        	setBuilderViewVisible(false);
-		        	levelIDs.remove(levelIDs.size()-1);
-		        	highestLevelID = levelIDs.get(levelIDs.size()-1);
-		        	setLevelTypeSelectViewVisible(true);
-		        }else{
-		        	//Close dialog
-		        }
-		    }
-		});
+		bv.addWindowListener(new CloseBuilderDialog(this, bv));
 
 		/**
 		 * TODO The controller for selection view should read the selection made 
@@ -205,6 +189,15 @@ public class Builder {
 	void initializeLevelControllers(){
 		//TODO Initialize BuilderView Controllers in here
 		//		builderView.setVisible(true); to make builderview appear
+	}
+
+
+	
+	public void cancelBuild() {
+		setBuilderViewVisible(false);
+		levelIDs.remove(levelIDs.size()-1);
+		highestLevelID = levelIDs.get(levelIDs.size()-1);
+		setLevelTypeSelectViewVisible(true);
 	}
 
 

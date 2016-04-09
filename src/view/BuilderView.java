@@ -3,6 +3,9 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import app.Builder;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
@@ -68,8 +71,6 @@ public class BuilderView extends JFrame {
 		releaseNumberView.setVisible(true);
 		levelPropertyView.release();
 	}
-	
-	
 	
 	void setupLayout(){
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
