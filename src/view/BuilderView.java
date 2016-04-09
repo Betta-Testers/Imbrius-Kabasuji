@@ -38,7 +38,30 @@ public class BuilderView extends JFrame {
 		setupLayout();		
 	}
 	
-	private void setupLayout(){
+	/**
+	 * Prepares the view of a puzzle level by disabling Timer, TileCreation, PieceCount
+	 */
+	public void prepPuzzle(){
+		
+	}
+	
+	/**
+	 * Prepares the view of a lightning level by disabling MoveCount, TileCreation
+	 */
+	public void prepLightning(){
+		
+	}
+	
+	/**
+	 * Prepares the view of a puzzle level by disabling Timer, MoveCount, PieceCount
+	 */
+	public void prepRelease(){
+	
+	}
+	
+	
+	
+	void setupLayout(){
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
