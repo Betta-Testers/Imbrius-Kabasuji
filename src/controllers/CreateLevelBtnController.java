@@ -12,7 +12,6 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	
 	
 	//TODO Added a BV to the parameters
-	//TODO Add a levelModel, to pass on to the BV
 	public CreateLevelBtnController (LevelTypeSelectView ltsv, BuilderView bv) {
 		this.ltsv = ltsv;
 		this.bv = bv;
@@ -21,10 +20,10 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	
 	/**
 	 * Gets the selected level type from the LevelTypeSelectView and prepares the boardView for it.
-	 * TODO: Set the level model for the BV in this switch
+	 * TODO: Set the generate a level model for the BV in this switch and set it.
 	 */
 	public void actionPerformed(ActionEvent ae) {
-		//Prepare the Builder View to display only the relvant sections of the editor
+		//Prepare the Builder View to display only the relevant sections of the editor
 		switch(ltsv.getSelectedLevelType()){
 			case "Puzzle":
 				bv.prepPuzzle();
