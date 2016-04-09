@@ -42,13 +42,13 @@ public class LevelTypeSelectView extends JFrame {
 	JPanel createBtnPanel;
 	int highestExistingLevel;
 	//TODO: Verify this attribute
-	Builder b;
+	BuilderView bv;
 
 	/**
 	 * Create the application.
 	 */
 	//TODO: Verify builder parameter
-	public LevelTypeSelectView(int highestExistingLevel, Builder b) {
+	public LevelTypeSelectView(int highestExistingLevel, BuilderView builderView) {
 		super();
 		this.highestExistingLevel = highestExistingLevel;
 		viewerAndEditor = new ViewAndEditLevels();
@@ -56,8 +56,9 @@ public class LevelTypeSelectView extends JFrame {
 		createLevelBtn = new JButton("Create Level");
 		createBtnPanel = new JPanel();
 		
-		//TODO verify this line
-		this.b = b;
+		//TODO verify these line
+		this.bv = builderView;
+		setVisible(true);
 		
 		initialize();
 		setupLayout();
@@ -117,7 +118,7 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		createLevelBtn.addActionListener(new CreateLevelBtnController(this, b.getBuilderView()));
+		createLevelBtn.addActionListener(new CreateLevelBtnController(this, bv));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
 			elv.addActionListener(new ExistingLevelEditController());
 		}

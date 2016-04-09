@@ -21,6 +21,7 @@ public class BuilderView extends JFrame {
 	//TODO Add constructor argument: AbstractLevelModel m
 	public BuilderView() {
 		setResizable(false);
+		setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 520, 650);
 		contentPane = new JPanel();

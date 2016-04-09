@@ -16,7 +16,7 @@ public class Builder {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					builderView = new BuilderView();
-				
+					selectionView = new LevelTypeSelectView(1, builderView);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -29,7 +29,7 @@ public class Builder {
 		 * Probably need to have a method run before this that reads files and stores
 		 * the highest number, then pass that as the argument
 		 */
-		selectionView = new LevelTypeSelectView(1, this);
+		
 		
 		//initializeView();
 		//initializeControllers();
@@ -82,10 +82,5 @@ public class Builder {
 //		builderView.setVisible(true); to make builderview appear
 	}
 
-	/**
-	 * Returns the builderView in this model
-	 */
-	public BuilderView getBuilderView() {
-		return builderView;
-	}
+
 }
