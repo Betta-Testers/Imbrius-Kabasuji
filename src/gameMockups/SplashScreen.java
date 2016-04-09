@@ -18,7 +18,7 @@ import java.awt.Font;
 import javax.swing.Timer;
 
 public class SplashScreen extends JFrame {
-/*
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -30,7 +30,7 @@ public class SplashScreen extends JFrame {
 			}
 		});
 	}
-*/
+
 	
 	private JPanel contentPane;
 	JLabel lblGameName;
@@ -77,7 +77,7 @@ public class SplashScreen extends JFrame {
 		this.setVisible(true);
 		
 		
-		//add game to splash screen contoller?
+		//add game to splash screen controller?
 		Timer timer = new Timer(3000, new SplashTimerController(this));
 		timer.setRepeats(false);
 		timer.start();
