@@ -1,14 +1,24 @@
 package app;
 
-import java.awt.EventQueue;
-import javax.swing.UIManager;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 import view.BuilderView;
 import view.LevelTypeSelectView;
 
 public class Builder {
-	LevelTypeSelectView selectionView;
+	LevelTypeSelectView ltsv;
 	// TODO Add Attribute: AbstractLevelModel buildingLevel;
-	BuilderView builderView;
+	BuilderView bv;
+	
+	Builder(){
+		bv = new BuilderView();
+		ltsv = new LevelTypeSelectView(0, bv);
+		System.out.println("Attempting to read files");
+		loadLevelIDs();
+	}
 	
 	
 	void initialize(){
@@ -56,8 +66,47 @@ public class Builder {
 		
 	}
 	
-	void loadLevelIDs(){
+	/**
+	 * Reads the directory located in the specified path, taking all files and storing them into an array.
+	 * The files are then filtered to only include those who are of type ".txt" and have a parsable Integer.
+	 * If the file meets those conditions, it is then added to an ArrayList of levelIDs.
+	 * Finally, the array list is guarenteed to be sorted Lowest -> Highest.
+	 * @return ArrayList with the LevelIDs read. If nothing is found, the arrayList returned is empty. 
+	 * (Can check this with ArrayList.isEmpty())
+	 */
+	ArrayList<Integer> loadLevelIDs(){
+		File folder = new File("./ImbriusBuilderLevels/");
+		File[] listOfFiles = folder.listFiles();
+		String extension;
+		String name;
+		int levelID = 0;
+		ArrayList<Integer> levelIDs = new ArrayList<Integer>();
 		
+		    for (File f: listOfFiles) {
+		    	name = f.getName().substring(0, f.getName().lastIndexOf("."));
+		    	extension = f.getName().substring(f.getName().lastIndexOf("."), f.getName().length());	
+		    	try{
+		    		levelID = Integer.parseInt(name);
+		    	}catch(NumberFormatException e){
+		    		levelID = -1;
+		    	}
+		    	
+		      if (f.isFile() && extension.equals(".txt") && levelID > 0) {
+		        levelIDs.add(levelID);
+		      }
+		      
+		      levelID = 0;
+		    }
+
+		    levelIDs.sort(new Comparator<Integer>() {
+				@Override
+				public int compare(Integer o1, Integer o2) {
+					if(o1 <= o2){return o1;}
+					return o2;
+				}
+		    });
+		    
+		    return levelIDs;
 	}
 	
 	void initializeLevelView(){
