@@ -12,12 +12,18 @@ public class Builder {
 	LevelTypeSelectView ltsv;
 	// TODO Add Attribute: AbstractLevelModel buildingLevel;
 	BuilderView bv;
+	ArrayList<Integer> levelIDs;
+	int highestLevelID;
 	
 	Builder(){
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(0, bv);
-		System.out.println("Attempting to read files");
-		loadLevelIDs();
+		levelIDs = loadLevelIDs();
+		if(levelIDs.isEmpty()){
+			highestLevelID = 0;
+		}else{
+			highestLevelID = levelIDs.get(levelIDs.size()-1);
+		}
 	}
 	
 	
