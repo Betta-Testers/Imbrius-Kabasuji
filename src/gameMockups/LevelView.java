@@ -11,10 +11,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import builderMockups.BullpenView;
-import builderMockups.SelectedPieceView;
-import builderMockups.BullpenView;
-import builderMockups.SelectedPieceView;
+import view.BullpenView;
+import view.SelectedPieceView;
 
 public class LevelView extends JFrame {
 

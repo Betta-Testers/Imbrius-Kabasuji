@@ -1,4 +1,4 @@
-package builderMockups;
+package view;
 
 import javax.swing.JSpinner;
 import javax.swing.GroupLayout;
