@@ -33,10 +33,6 @@ public class LevelTypeSelectView extends JFrame {
 	 * Create the application.
 	 */
 	//TODO: Verify builder parameter
-	/**TODO: HighestExistingLevel may not be needed. Depends on what the deal is with
-	 * editing an existing level. If it is needed in that case, is a get/setter needed?
-	 * Maybe only the setter.
-	 */
 	public LevelTypeSelectView(Builder b, int highestExistingLevel) {
 		super();
 		this.highestExistingLevel = highestExistingLevel;
@@ -109,8 +105,8 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		//TODO Added b to the parameters, removed LTSV
-		createLevelBtn.addActionListener(new CreateLevelBtnController(b));
+		//TODO Added b to the parameters
+		createLevelBtn.addActionListener(new CreateLevelBtnController(this, b));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
 			elv.addActionListener(new ExistingLevelEditController());
 		}
@@ -127,6 +123,9 @@ public class LevelTypeSelectView extends JFrame {
 		this.highestExistingLevel = newHighest;
 	}
 	
+	/**TODO Is this getter necessary? Perhaps it's best to write getters/setters on an
+	 * as-needed basis to reduce unnecessary code clutter.
+	 */
 	public int getHighestExistingLevel() {
 		return this.highestExistingLevel;
 	}

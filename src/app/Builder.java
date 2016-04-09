@@ -173,6 +173,9 @@ public class Builder {
 			ltsv.setVisible(enabled);
 	}
 	
+	public int getHighestLevelID(){
+		return highestLevelID;
+	}
 	
 	void initializeLevelView(){
 		//TODO Initialize BuilderView in here
