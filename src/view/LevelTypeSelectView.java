@@ -108,7 +108,7 @@ public class LevelTypeSelectView extends JFrame {
 	
 	void initializeControllers() {
 		//TODO Added b to the parameters
-		createLevelBtn.addActionListener(new CreateLevelBtnController(this, b));
+		createLevelBtn.addActionListener(new CreateLevelBtnController(b));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
 			elv.addActionListener(new ExistingLevelEditController());
 		}
@@ -123,6 +123,7 @@ public class LevelTypeSelectView extends JFrame {
 	
 	public void addExistingLevel (String levelType, int levelNumber){
 		viewerAndEditor.addLevel(levelType, levelNumber);
+		levelData.put(levelNumber, levelType);
 	}
 	
 	public String getSelectedLevelType() {

@@ -5,20 +5,10 @@ import java.awt.event.ActionEvent;
 import app.Builder;
 import view.LevelTypeSelectView;
 
-public class CreateLevelBtnController implements java.awt.event.ActionListener {
-	int nextLevel;
-	LevelTypeSelectView ltsv;
-	
-	//TODO Added bv and b attributes
+public class CreateLevelBtnController implements java.awt.event.ActionListener {	
 	Builder b;
-	
-	
-	//TODO Added a BV to the parameters
-	public CreateLevelBtnController (LevelTypeSelectView ltsv, Builder b) {
-		this.ltsv = ltsv;
-		this.nextLevel = ltsv.getHighestExistingLevel()+1;
-		
-		//TODO Added lines
+
+	public CreateLevelBtnController (Builder b) {
 		this.b = b;
 	}
 	
@@ -28,11 +18,8 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	 * The LevelTypeSelectView is then hidden.
 	 */
 	public void actionPerformed(ActionEvent ae) {
-		
-		//TODO Verify lines
-		b.setModelLevel(nextLevel);
+		b.setModelLevel();
 		b.setBuilderViewVisible(true);
 		b.setLevelTypeSelectViewVisible(false);
-		ltsv.setHighestExistingLevel(b.getHighestLevelID());
 	}
 }

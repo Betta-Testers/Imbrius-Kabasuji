@@ -1,7 +1,8 @@
 package app;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.HashMap;
+
 
 import view.BuilderView;
 import controllers.CloseBuilderDialog;
@@ -10,19 +11,15 @@ import view.LevelTypeSelectView;
 public class Builder {
 	LevelTypeSelectView ltsv;
 	BuilderView bv;
-	ArrayList<Integer> levelIDs;
+	HashMap<Integer, String> levelData;
 	//TODO add this line: AbstractLevelModel buildingLevel;
 	int highestLevelID;
 
 	Builder(){
-		levelIDs = loadLevelIDs();
-		if(levelIDs.isEmpty()){
-			highestLevelID = 0;
-		}else{
-			highestLevelID = levelIDs.get(levelIDs.size()-1);
-		}
+		levelData = loadLevelData();
 		bv = new BuilderView();
-		ltsv = new LevelTypeSelectView(this, highestLevelID);
+		ltsv = new LevelTypeSelectView(this, levelData);
+
 		initializeControllers();
 	}
 
@@ -102,12 +99,11 @@ public class Builder {
 	 * for the new level being created. This allows the Builder class to know
 	 * what level is being made
 	 */
-	public void setModelLevel(int levelID){
+	public void setModelLevel(){
 		//Prepare the Builder View to display only the relevant sections of the editor
 		switch(ltsv.getSelectedLevelType()){
 		case "Puzzle":
-			levelIDs.add(levelID);
-			highestLevelID = levelID;
+			levelIDs.add(++highestLevelID);
 			/** TODO Add these Lines when PuzzleLevel implemented
 			 * PuzzleLevel pl = new PuzzleLevel();
 			 * buildingLevel = pl;
@@ -116,8 +112,7 @@ public class Builder {
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
-			levelIDs.add(levelID);
-			highestLevelID = levelID;
+			levelIDs.add(++highestLevelID);
 			/** TODO Add these lines when LightningLevel implemented
 			 * LightningLevel ll = new LightningLevel();
 			 * buildingLevel = ll;
@@ -126,8 +121,7 @@ public class Builder {
 			bv.prepLightning();
 			break;
 		case "Release":
-			levelIDs.add(levelID);
-			highestLevelID = levelID;
+			levelIDs.add(++highestLevelID);
 			/** TODO Add these lines when ReleaseLevel implemented
 			 * ReleaseLevel rl = new ReleaseLevel();
 			 * buildingLevel = rl;
