@@ -7,7 +7,7 @@ import javax.swing.UIManager;
 import view.BuilderView;
 import view.LevelTypeSelectView;
 
-public class Main {
+public class MainBuilder {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
