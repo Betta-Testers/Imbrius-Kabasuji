@@ -11,4 +11,5 @@ bin
 .project
 .classpath
 .metadata
+.settings
 
