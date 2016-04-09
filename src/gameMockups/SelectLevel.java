@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SelectLevel extends JFrame {
 
@@ -54,6 +56,12 @@ public class SelectLevel extends JFrame {
 		levels[0].unlockLevel(2);
 		levels[1].unlockLevel(3);
 		levels[2].unlockLevel(0);
+		
+		levels[0].btnSelectLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}
+		});
 		
 		setupLayout();
 		
