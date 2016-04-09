@@ -1,0 +1,41 @@
+package view;
+
+import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Enumeration;
+
+import javax.swing.AbstractButton;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+
+public class LevelTypesAndText extends JSplitPane {
+	JTextArea txtAreaLevelTypeDescription;
+	LevelTypeButtons levelTypeButtons;
+	
+	LevelTypesAndText() {
+		super();
+		this.setResizeWeight(0.5);
+		this.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		levelTypeButtons = new LevelTypeButtons();
+		this.setLeftComponent(levelTypeButtons);
+		
+		txtAreaLevelTypeDescription = new JTextArea();
+		txtAreaLevelTypeDescription.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		txtAreaLevelTypeDescription.setLineWrap(true);
+		txtAreaLevelTypeDescription.setWrapStyleWord(true);
+		txtAreaLevelTypeDescription.setText("Information about each level type will go here when the corresponding toggle button is selected");
+		this.setRightComponent(txtAreaLevelTypeDescription);
+	}
+	
+	public JTextArea getTextArea() {
+		return txtAreaLevelTypeDescription;
+	}
+	
+	public ArrayList<LevelTypeToggle> getLevelTypeButtons() {
+		return levelTypeButtons.getButtons();
+	}
+	
+	public String getSelectedLevelType() {
+		return levelTypeButtons.getSelectedLevelType();
+	}
+}
