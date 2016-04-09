@@ -13,6 +13,15 @@ Software engineering game about Hexominoes
 * <b>Guys, I forgot how to use Git</b>
    * Here's a [tutorial](https://try.github.io/levels/1/challenges/1) on the command line version of git.
    * Here's a [GUI](https://desktop.github.com/) front end for git, reducing the need for the commandline. Dead simple to follow.
+* <b>What's the structure for eclipse?</b>
+   * Src folder with two packages in there: gameMockups, builderMockups
+   * Put your files in there accordingly
+   * Put the resource folder into the root folder of your project (not inside the src folder!) and link in eclipse as a source folder
+* <b>Rules and Regulations for Happiness</b>
+   * DON'T merge your branch INTO master branch!
+   * DO merge master branch INTO your branch. (RECOGNIZE THE DIFFERENCE)
+   * When you want to merge your branch into master, go into your branch and create a new pull request (can be done on github.com or from the gui in the upper right).
+   * DON'T approve your own merge, someone else MUST review it.
 
 ### WindowBuilder Related
 * <b>I opened Eclipse and it's not showing the WindowBuilder Designer!</b>
@@ -28,5 +37,10 @@ Software engineering game about Hexominoes
 * <b>Builder GUI</b>
   * [x] Change "Make Hint" button into a toggle JButton, to toggle piece placement into hint placement
   * [x] Remove rotate buttons for Bullpen and replace with JLabels for Keyboard control.
-  * [ ] Increase window size
-  * [ ] Prevent window resizing
+  * [x] Increase window size
+  * [x] Prevent window resizing
+  * [x] Breakdown mega class into subclasses based on functionalities (Bullpen, Board, TileCreation, Property Grouping, Button Grouping)
+  * [x] Add in rotation buttons
+  * [x] Merge Release Numbers into a toggle button group
+  * [x] Add grids to the board and bullpen
+  * [ ] Generate and display a complete bullpen, with some pieces toggled to have more count than others
