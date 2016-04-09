@@ -12,6 +12,10 @@ public class ExistingLevelViewer extends JScrollPane {
 	ExistingLevelViewer(){
 		super();
 		this.setEnabled(false);
+		/** TODO I set the scroll incremement so if you click the scrollbar it moves
+		 * by the amount of a singular level button's width...
+		 */
+		this.getHorizontalScrollBar().setUnitIncrement(126);
 		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		levelsList = new JPanel();
 		existingLevels = new ArrayList<ExistingLevelView>();
