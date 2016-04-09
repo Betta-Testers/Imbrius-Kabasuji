@@ -9,7 +9,6 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	Builder b;
 
 	public CreateLevelBtnController (Builder b) {
-		
 		this.b = b;
 	}
 	
