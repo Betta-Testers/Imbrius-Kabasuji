@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
@@ -10,7 +11,7 @@ import controllers.ExistingLevelEditController;
 
 public class ViewAndEditLevels extends JSplitPane {
 	ExistingLevelViewer levelViewer;	
-	ViewAndEditLevels () {
+	ViewAndEditLevels (HashMap<Integer, String> levelData) {
 		super();
 		this.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		this.setEnabled(false);
@@ -20,16 +21,16 @@ public class ViewAndEditLevels extends JSplitPane {
 		levelViewer = new ExistingLevelViewer();
 		this.setRightComponent(levelViewer);
 		
-		for (int i=1; i<=15; i++){
-			levelViewer.addLevelView("Puzzle", i);
-			i++;
-			levelViewer.addLevelView("Lightning", i);
-			i++;
-			levelViewer.addLevelView("Release", i);
+		for (int levelNum : levelData.keySet()){
+			addLevel(levelData.get(levelNum), levelNum);
 		}
 	}
 	
 	public ArrayList<ExistingLevelView> getExistingLevelButtons() {
 		return levelViewer.getExistingLevelButtons();
+	}
+	
+	public void addLevel(String levelType, int levelNum) {
+		levelViewer.addLevelView(levelType, levelNum);
 	}
 }
