@@ -2,7 +2,6 @@ package app;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 import view.BuilderView;
@@ -10,20 +9,20 @@ import view.LevelTypeSelectView;
 
 public class Builder {
 	LevelTypeSelectView ltsv;
-	// TODO Add Attribute: AbstractLevelModel buildingLevel;
 	BuilderView bv;
 	ArrayList<Integer> levelIDs;
+	//TODO add this line: AbstractLevelModel buildingLevel;
 	int highestLevelID;
 	
 	Builder(){
-		bv = new BuilderView();
-		ltsv = new LevelTypeSelectView(0, bv);
 		levelIDs = loadLevelIDs();
 		if(levelIDs.isEmpty()){
 			highestLevelID = 0;
 		}else{
 			highestLevelID = levelIDs.get(levelIDs.size()-1);
 		}
+		bv = new BuilderView();
+		ltsv = new LevelTypeSelectView(this, highestLevelID, bv);
 	}
 	
 	
@@ -114,6 +113,8 @@ public class Builder {
 		    
 		    return levelIDs;
 	}
+	
+	
 	
 	void initializeLevelView(){
 		//TODO Initialize BuilderView in here

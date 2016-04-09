@@ -1,14 +1,10 @@
 package view;
 
-import java.awt.EventQueue;
-
-import app.Builder;
-
+//TODO Cleaned out Imports
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 
+import app.Builder;
 import controllers.CreateLevelBtnController;
 import controllers.ExistingLevelEditController;
 import controllers.NewLevelTypeController;
@@ -16,23 +12,11 @@ import controllers.NewLevelTypeController;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JSplitPane;
-import javax.swing.JScrollPane;
-import java.awt.Dimension;
 
-import javax.swing.ScrollPaneConstants;
+import javax.swing.BoxLayout;
+import javax.swing.JSplitPane;
 import javax.swing.JPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
-import javax.swing.JToggleButton;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.Container;
 
 public class LevelTypeSelectView extends JFrame {
 
@@ -41,14 +25,15 @@ public class LevelTypeSelectView extends JFrame {
 	JButton createLevelBtn;
 	JPanel createBtnPanel;
 	int highestExistingLevel;
-	//TODO: Verify this attribute
+	
+	//TODO: Verify these attributes
 	BuilderView bv;
-
+	Builder b;
 	/**
 	 * Create the application.
 	 */
 	//TODO: Verify builder parameter
-	public LevelTypeSelectView(int highestExistingLevel, BuilderView builderView) {
+	public LevelTypeSelectView(Builder b, int highestExistingLevel, BuilderView builderView) {
 		super();
 		this.highestExistingLevel = highestExistingLevel;
 		viewerAndEditor = new ViewAndEditLevels();
@@ -56,13 +41,16 @@ public class LevelTypeSelectView extends JFrame {
 		createLevelBtn = new JButton("Create Level");
 		createBtnPanel = new JPanel();
 		
-		//TODO verify these line
+		//TODO verify these lines
 		this.bv = builderView;
-		setVisible(true);
+		this.b = b;
 		
 		initialize();
 		setupLayout();
 		initializeControllers();
+		
+		//TODO Verify this line
+		setVisible(true);
 	}
 
 	/**
@@ -118,7 +106,8 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		createLevelBtn.addActionListener(new CreateLevelBtnController(this, bv));
+		//TODO Added b and bv to the parameters of this controller
+		createLevelBtn.addActionListener(new CreateLevelBtnController(this, b, bv));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
 			elv.addActionListener(new ExistingLevelEditController());
 		}
