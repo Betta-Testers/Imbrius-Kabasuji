@@ -16,7 +16,7 @@ public class Builder {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					builderView = new BuilderView();
-					selectionView = new LevelTypeSelectView(1, builderView);
+					selectionView = new LevelTypeSelectView(0, builderView);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

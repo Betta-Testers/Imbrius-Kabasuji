@@ -21,14 +21,17 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		//Prepare the Builder View to display only the relveant sections of the editor
 		switch(ltsv.getSelectedLevelType()){
-			case "puzzle":
+			case "Puzzle":
 				bv.prepPuzzle();
 				break;
-			case "lightning":
+			case "Lightning":
 				bv.prepLightning();
 				break;
-			case "release":
-				bv.prepPuzzle();
+			case "Release":
+				bv.prepRelease();
+				break;
+			default:
+				System.out.println("No triggers");
 				break;
 		}
 		

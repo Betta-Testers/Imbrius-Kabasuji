@@ -40,24 +40,32 @@ public class BuilderView extends JFrame {
 	}
 	
 	/**
-	 * Prepares the view of a puzzle level by disabling Timer, TileCreation, PieceCount
+	 * Prepares the view of a puzzle level by disabling release
+	 * tile creation and showing only relevant information in
+	 * property view for a puzzle level.
 	 */
 	public void prepPuzzle(){
-		
+		releaseNumberView.setEnabled(false);
+		levelPropertyView.puzzle();		
 	}
 	
 	/**
-	 * Prepares the view of a lightning level by disabling MoveCount, TileCreation
+	 * Prepares the view of a lightning level by disabling release
+	 * tile creation and showing only relevant information in
+	 * property view for a lightning level.
 	 */
 	public void prepLightning(){
-		
+		releaseNumberView.setEnabled(false);
+		levelPropertyView.lightning();	
 	}
 	
 	/**
-	 * Prepares the view of a puzzle level by disabling Timer, MoveCount, PieceCount
+	 * Prepares the view of a release level by showing only 
+	 * relevant information in the property view for a release
+	 * level (I.E. nothing)
 	 */
 	public void prepRelease(){
-	
+		levelPropertyView.release();
 	}
 	
 	
