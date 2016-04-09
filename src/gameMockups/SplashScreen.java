@@ -18,7 +18,7 @@ import java.awt.Font;
 import javax.swing.Timer;
 
 public class SplashScreen extends JFrame {
-
+/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -31,7 +31,7 @@ public class SplashScreen extends JFrame {
 		});
 	}
 
-	
+	*/
 	private JPanel contentPane;
 	JLabel lblGameName;
 	JLabel lblGroupName;
