@@ -6,23 +6,10 @@ import view.BuilderView;
 import view.LevelTypeSelectView;
 
 public class Builder {
-	static LevelTypeSelectView selectionView;
+	LevelTypeSelectView selectionView;
 	// TODO Add Attribute: AbstractLevelModel buildingLevel;
-	static BuilderView builderView;
+	BuilderView builderView;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					builderView = new BuilderView();
-					selectionView = new LevelTypeSelectView(0, builderView);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	void initialize(){
 		/**TODO Determine where to get highest level from....
