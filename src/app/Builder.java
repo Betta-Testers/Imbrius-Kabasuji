@@ -17,6 +17,13 @@ public class Builder {
 
 	Builder(){
 		levelData = loadLevelData();
+		if(levelData.isEmpty()){
+			highestLevelID = 0;
+		}else{
+			//Iterate though level data and populate with largest value
+		}
+
+
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(this, levelData);
 
@@ -56,41 +63,28 @@ public class Builder {
 	 * @return ArrayList with the LevelIDs read. If nothing is found, the arrayList returned is empty. 
 	 * (Can check this with ArrayList.isEmpty())
 	 */
-	ArrayList<Integer> loadLevelIDs(){
+	HashMap<Integer, String> loadLevelData(){
 		File folder = new File("./ImbriusBuilderLevels/");
 		File[] listOfFiles = folder.listFiles();
-		String extension;
-		String name;
+		String levelType;
+		String levelNum;
 		int levelID = 0;
-		ArrayList<Integer> levelIDs = new ArrayList<Integer>();
+		HashMap<Integer, String> levelData = new HashMap<Integer, String>();
 
 		for (File f: listOfFiles) {
-			name = f.getName().substring(0, f.getName().lastIndexOf("."));
-			extension = f.getName().substring(f.getName().lastIndexOf("."), f.getName().length());	
+			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
+			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
 			try{
-				levelID = Integer.parseInt(name);
+				levelID = Integer.parseInt(levelNum);
 			}catch(NumberFormatException e){
 				levelID = -1;
 			}
 
-			if (f.isFile() && extension.equals(".txt") && levelID > 0) {
-				levelIDs.add(levelID);
-			}
+			levelData.put(levelID, levelType);
 
-			levelID = 0;
 		}
 
-
-		/*levelIDs.sort(new Comparator<Integer>() {
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				if(o1 <= o2){return o1;}
-				return o2;
-			}
-		});*/
-
-
-		return levelIDs;
+		return levelData;
 	}
 
 	/**
@@ -103,7 +97,7 @@ public class Builder {
 		//Prepare the Builder View to display only the relevant sections of the editor
 		switch(ltsv.getSelectedLevelType()){
 		case "Puzzle":
-			levelIDs.add(++highestLevelID);
+			levelData.put(++highestLevelID, "Puzzle");
 			/** TODO Add these Lines when PuzzleLevel implemented
 			 * PuzzleLevel pl = new PuzzleLevel();
 			 * buildingLevel = pl;
@@ -112,7 +106,7 @@ public class Builder {
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
-			levelIDs.add(++highestLevelID);
+			levelData.put(++highestLevelID, "Lightning");
 			/** TODO Add these lines when LightningLevel implemented
 			 * LightningLevel ll = new LightningLevel();
 			 * buildingLevel = ll;
@@ -121,7 +115,7 @@ public class Builder {
 			bv.prepLightning();
 			break;
 		case "Release":
-			levelIDs.add(++highestLevelID);
+			levelData.put(++highestLevelID, "Release");
 			/** TODO Add these lines when ReleaseLevel implemented
 			 * ReleaseLevel rl = new ReleaseLevel();
 			 * buildingLevel = rl;
@@ -139,9 +133,9 @@ public class Builder {
 	 * @param enabled True displays window
 	 */
 	public void setBuilderViewVisible(boolean enabled){
-			bv.setVisible(enabled);
+		bv.setVisible(enabled);
 	}
-	
+
 	/**
 	 * Method encapsulates the setVisible functionality of LevelTypeSelectView,
 	 * to avoid the need of a getter/setter pair. If enabled is true, the
@@ -149,13 +143,13 @@ public class Builder {
 	 * @param enabled True displays window
 	 */
 	public void setLevelTypeSelectViewVisible(boolean enabled){
-			ltsv.setVisible(enabled);
+		ltsv.setVisible(enabled);
 	}
-	
+
 	public int getHighestLevelID(){
 		return highestLevelID;
 	}
-	
+
 	void initializeLevelView(){
 		//TODO Initialize BuilderView in here
 	}
@@ -166,11 +160,11 @@ public class Builder {
 	}
 
 
-	
+
 	public void cancelBuild() {
 		setBuilderViewVisible(false);
-		levelIDs.remove(levelIDs.size()-1);
-		highestLevelID = levelIDs.get(levelIDs.size()-1);
+		levelData.remove(highestLevelID);
+		highestLevelID--;
 		setLevelTypeSelectViewVisible(true);
 	}
 
