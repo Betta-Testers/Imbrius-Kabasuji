@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 
 import view.LevelTypeSelectView;
 
-public class PlayLevelButtonController {
+public class PlayLevelButtonController implements java.awt.event.ActionListener {
 	SelectLevel selectLevel;
 	
 	public PlayLevelButtonController (SelectLevel selectLevel) {

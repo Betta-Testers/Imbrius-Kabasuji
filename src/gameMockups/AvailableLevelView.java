@@ -71,5 +71,9 @@ public class AvailableLevelView extends JPanel {
 			starView.lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
 		}
 	}
+	
+	public JButton getPlayButton(){
+		return btnSelectLevel;
+	}
 
 }
