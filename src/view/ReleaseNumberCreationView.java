@@ -116,6 +116,13 @@ public class ReleaseNumberCreationView extends JPanel{
 		this.setLayout(groupLayout);
 	}
 
+	
+	/**
+	 * Makes all components inside this JPanel invisible or visible based
+	 * on the value given. Overrides JPanel, as this is the intended 
+	 * behavior when making the "panel" invisible
+	 * @param visible True makes everything visible
+	 */
 	@Override
 	public void setVisible(boolean visible){
 		lblTitle.setVisible(visible);

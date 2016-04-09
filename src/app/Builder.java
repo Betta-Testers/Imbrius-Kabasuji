@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import javax.swing.JOptionPane;
+
 import view.BuilderView;
 import view.LevelTypeSelectView;
 
@@ -23,6 +25,7 @@ public class Builder {
 		}
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(this, highestLevelID);
+		initializeControllers();
 	}
 
 
@@ -43,7 +46,22 @@ public class Builder {
 	}
 
 	void initializeControllers(){
-		//TODO Initialize selectionView controllers here
+		bv.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	String message = "<html>Cosing a level will not save your progress and return to level select</html>";
+		    	String title = "Are you sure?";
+		    	int response = JOptionPane.showConfirmDialog(bv,message, title,JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+		        if (response == JOptionPane.OK_OPTION){
+		        	setBuilderViewVisible(false);
+		        	levelIDs.remove(levelIDs.size()-1);
+		        	highestLevelID = levelIDs.get(levelIDs.size()-1);
+		        	setLevelTypeSelectViewVisible(true);
+		        }else{
+		        	//Close dialog
+		        }
+		    }
+		});
 
 		/**
 		 * TODO The controller for selection view should read the selection made 
@@ -120,11 +138,12 @@ public class Builder {
 	 * for the new level being created. This allows the Builder class to know
 	 * what level is being made
 	 */
-	public void setModelLevel(){
+	public void setModelLevel(int levelID){
 		//Prepare the Builder View to display only the relevant sections of the editor
 		switch(ltsv.getSelectedLevelType()){
 		case "Puzzle":
-			highestLevelID++;
+			levelIDs.add(levelID);
+			highestLevelID = levelID;
 			/** TODO Add these Lines when PuzzleLevel implemented
 			 * PuzzleLevel pl = new PuzzleLevel();
 			 * buildingLevel = pl;
@@ -133,7 +152,8 @@ public class Builder {
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
-			highestLevelID++;
+			levelIDs.add(levelID);
+			highestLevelID = levelID;
 			/** TODO Add these lines when LightningLevel implemented
 			 * LightningLevel ll = new LightningLevel();
 			 * buildingLevel = ll;
@@ -142,7 +162,8 @@ public class Builder {
 			bv.prepLightning();
 			break;
 		case "Release":
-			highestLevelID++;
+			levelIDs.add(levelID);
+			highestLevelID = levelID;
 			/** TODO Add these lines when ReleaseLevel implemented
 			 * ReleaseLevel rl = new ReleaseLevel();
 			 * buildingLevel = rl;

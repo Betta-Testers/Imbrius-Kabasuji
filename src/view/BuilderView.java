@@ -22,7 +22,7 @@ public class BuilderView extends JFrame {
 	public BuilderView() {
 		setResizable(false);
 		setVisible(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 520, 650);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,7 +46,7 @@ public class BuilderView extends JFrame {
 	 */
 	public void prepPuzzle(){
 		releaseNumberView.setVisible(false);
-		levelPropertyView.puzzle();		
+		levelPropertyView.puzzle();	
 	}
 	
 	/**
@@ -65,6 +65,7 @@ public class BuilderView extends JFrame {
 	 * level (I.E. nothing)
 	 */
 	public void prepRelease(){
+		releaseNumberView.setVisible(true);
 		levelPropertyView.release();
 	}
 	

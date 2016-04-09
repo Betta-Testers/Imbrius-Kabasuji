@@ -56,21 +56,25 @@ public class LevelPropertiesView extends JPanel{
 		setupLayout();
 	}
 	
+	
 	/**
-	 * Hides irrelevant information to a lightning level
-	 * A lightning level wants to see setPieceCount and
-	 * setTimer
+	 * Hides irrelevant information to a lightning level.
 	 */
 	public void lightning(){
 		lblSetMoves.setVisible(false);
 		spinMoves.setVisible(false);
+		lblSetPieceCt.setVisible(true);
+		spinPieceCt.setVisible(true);
+		lblSetTime.setVisible(true);
+		spinTime.setVisible(true);
 	}
 	
 	/**
-	 * Hides irrelevant information to a puzzle level
-	 * A puzzle level wants to see setMoveCount only.
+	 * Hides irrelevant information to a puzzle level.
 	 */
 	public void puzzle(){
+		lblSetMoves.setVisible(true);
+		spinMoves.setVisible(true);
 		lblSetPieceCt.setVisible(false);
 		spinPieceCt.setVisible(false);
 		lblSetTime.setVisible(false);
@@ -78,9 +82,8 @@ public class LevelPropertiesView extends JPanel{
 	}
 	
 	/**
-	 * Hides irrelevant information to a release level
-	 * A release level wants to see nothing inside the
-	 * level properties view
+	 * Hides irrelevant information to a release level.
+	 * 
 	 */
 	public void release(){
 		lblSetPieceCt.setVisible(false);

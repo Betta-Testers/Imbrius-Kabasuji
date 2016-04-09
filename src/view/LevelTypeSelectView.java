@@ -122,10 +122,7 @@ public class LevelTypeSelectView extends JFrame {
 	public void setHighestExistingLevel(int newHighest) {
 		this.highestExistingLevel = newHighest;
 	}
-	
-	/**TODO Is this getter necessary? Perhaps it's best to write getters/setters on an
-	 * as-needed basis to reduce unnecessary code clutter.
-	 */
+
 	public int getHighestExistingLevel() {
 		return this.highestExistingLevel;
 	}
