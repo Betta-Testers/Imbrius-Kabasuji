@@ -45,7 +45,7 @@ public class BuilderView extends JFrame {
 	 * property view for a puzzle level.
 	 */
 	public void prepPuzzle(){
-		releaseNumberView.setEnabled(false);
+		releaseNumberView.setVisible(false);
 		levelPropertyView.puzzle();		
 	}
 	
@@ -55,7 +55,7 @@ public class BuilderView extends JFrame {
 	 * property view for a lightning level.
 	 */
 	public void prepLightning(){
-		releaseNumberView.setEnabled(false);
+		releaseNumberView.setVisible(false);
 		levelPropertyView.lightning();	
 	}
 	

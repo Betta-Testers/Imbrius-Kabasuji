@@ -62,8 +62,8 @@ public class LevelPropertiesView extends JPanel{
 	 * setTimer
 	 */
 	public void lightning(){
-		lblSetMoves.setEnabled(false);
-		spinMoves.setEnabled(false);
+		lblSetMoves.setVisible(false);
+		spinMoves.setVisible(false);
 	}
 	
 	/**
@@ -71,10 +71,10 @@ public class LevelPropertiesView extends JPanel{
 	 * A puzzle level wants to see setMoveCount only.
 	 */
 	public void puzzle(){
-		lblSetPieceCt.setEnabled(false);
-		spinPieceCt.setEnabled(false);
-		lblSetTime.setEnabled(false);
-		spinTime.setEnabled(false);
+		lblSetPieceCt.setVisible(false);
+		spinPieceCt.setVisible(false);
+		lblSetTime.setVisible(false);
+		spinTime.setVisible(false);
 	}
 	
 	/**
@@ -83,12 +83,12 @@ public class LevelPropertiesView extends JPanel{
 	 * level properties view
 	 */
 	public void release(){
-		lblSetPieceCt.setEnabled(false);
-		spinPieceCt.setEnabled(false);
-		lblSetMoves.setEnabled(false);
-		spinMoves.setEnabled(false);
-		lblSetTime.setEnabled(false);
-		spinTime.setEnabled(false);
+		lblSetPieceCt.setVisible(false);
+		spinPieceCt.setVisible(false);
+		lblSetMoves.setVisible(false);
+		spinMoves.setVisible(false);
+		lblSetTime.setVisible(false);
+		spinTime.setVisible(false);
 	}
 	
 	private void setupLayout(){
