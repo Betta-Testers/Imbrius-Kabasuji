@@ -6,7 +6,7 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 
 import controllers.SplashTimerController;
-import views.SplashScreen;
+import view.SplashScreen;
 
 public class MainBuilder {
 	public static void main(String[] args) {

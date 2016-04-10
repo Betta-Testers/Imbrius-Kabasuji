@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import app.Builder;
-import views.SplashScreen;
+import view.SplashScreen;
 
 public class SplashTimerController implements ActionListener{
 	SplashScreen view;
