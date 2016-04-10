@@ -3,14 +3,31 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controllers.SplashTimerController;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+import javax.swing.Timer;
 
 public class SplashScreen extends JFrame {
+/*
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new SplashScreen();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
+<<<<<<< HEAD:src/view/SplashScreen.java
 	/**
 	 * 
 	 */
@@ -56,6 +73,15 @@ public class SplashScreen extends JFrame {
 		lblName5.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
 		
 		setupLayout();
+		
+		this.setVisible(true);
+		
+		
+		//add game to splash screen controller?
+		Timer timer = new Timer(3000, new SplashTimerController(this));
+		timer.setRepeats(false);
+		timer.start();
+		
 	}
 	
 	void setupLayout() {
