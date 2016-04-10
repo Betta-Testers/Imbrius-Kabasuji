@@ -2,18 +2,21 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 
-import view.LevelTypeSelectView;
-import view.SelectLevel;
+import App.Game;
+import view.LevelSelectionView;
 
 public class PlayLevelButtonController implements java.awt.event.ActionListener {
-	SelectLevel selectLevel;
+	LevelSelectionView selectLevel;
+	Game model;
 	
-	public PlayLevelButtonController (SelectLevel selectLevel) {
+	public PlayLevelButtonController (LevelSelectionView selectLevel, Game g) {
 		this.selectLevel = selectLevel;
+		this.model = g;
 	}
 	
 	public void actionPerformed(ActionEvent ae) {
 		//do something
-		System.out.println("IT WORKED!");
+		this.selectLevel.setVisible(false);
+		model.getLevelView().setVisible(true);
 	}
 }

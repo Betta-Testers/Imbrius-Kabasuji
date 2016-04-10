@@ -6,6 +6,7 @@ import view.LevelSelectionView;
 import view.SplashScreen;
 import view.StarView;
 import controllers.ExitLevelButtonController;
+import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
 
 public class Game {
@@ -40,6 +41,7 @@ public class Game {
 		//TODO add controllers that are needed here
 		levelView.addWindowListener(new ExitLevelButtonController(this.levelView, this));
 		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
+		selectLevel.getAvailableLevelView(0).getPlayButton().addActionListener(new PlayLevelButtonController(selectLevel, this));
 	}
 	
 	void initializeModels(){
@@ -52,6 +54,10 @@ public class Game {
 	
 	public GameExitScreen getExitView() {
 		return this.exitLevel;
+	}
+	
+	public LevelView getLevelView() {
+		return this.levelView;
 	}
 	
 	void unlockNextLevel(int nextLevelID){

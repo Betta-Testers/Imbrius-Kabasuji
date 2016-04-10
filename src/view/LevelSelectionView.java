@@ -50,12 +50,14 @@ public class LevelSelectionView extends JFrame {
 			scrollablePanel.add(levels[i]);
 		}
 		
-		levels[0].unlockLevel(2);
-		levels[1].unlockLevel(3);
-		levels[2].unlockLevel(0);
+		levels[0].unlockLevel(0);
 		
 		setupLayout();
 		
+	}
+	
+	public AvailableLevelView getAvailableLevelView(int index) {
+		return this.levels[index];
 	}
 	
 	void setupLayout() {
