@@ -1,14 +1,23 @@
-package builderMockups;
+package view;
 
+//TODO Cleaned out Imports
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
+
+import java.util.TreeMap;
+
+import app.Builder;
+import controllers.CreateLevelBtnController;
+import controllers.ExistingLevelEditController;
+import controllers.NewLevelTypeController;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+
 import javax.swing.BoxLayout;
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
 
 public class LevelTypeSelectView extends JFrame {
@@ -16,23 +25,33 @@ public class LevelTypeSelectView extends JFrame {
 	ViewAndEditLevels viewerAndEditor;
 	LevelTypesAndText levelTypesAndText;
 	JButton createLevelBtn;
-
+	JPanel createBtnPanel;
+	TreeMap<Integer, String> levelData;
+	Builder b;
+	
 	/**
 	 * Create the application.
 	 */
-	public LevelTypeSelectView() {
+	public LevelTypeSelectView(Builder b, TreeMap<Integer, String> levelData) {
 		super();
-		viewerAndEditor = new ViewAndEditLevels();
+		this.levelData = levelData;
+		this.b = b;
+		viewerAndEditor = new ViewAndEditLevels(levelData);
 		levelTypesAndText = new LevelTypesAndText();
 		createLevelBtn = new JButton("Create Level");
+		createBtnPanel = new JPanel();
+	
+		
 		initialize();
+		setupLayout();
+		initializeControllers();
+		setVisible(false);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
 		
 		this.setResizable(false);
 		this.setBounds(100, 100, 576, 688);
@@ -48,33 +67,8 @@ public class LevelTypeSelectView extends JFrame {
 		levelSelectorAndCreator.setEnabled(false);
 		levelSelectorAndCreator.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
-		JPanel createBtnPanel = new JPanel();
-		
 		createLevelBtn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-		createLevelBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			
-			}
-		});
-		
-		GroupLayout gl_createBtnPanel = new GroupLayout(createBtnPanel);
-		gl_createBtnPanel.setAutoCreateGaps(true);
-		gl_createBtnPanel.setAutoCreateContainerGaps(true);
-		gl_createBtnPanel.setHorizontalGroup(
-			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
-				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
-					.addGap(256)
-					.addComponent(createLevelBtn)
-					.addContainerGap(255, Short.MAX_VALUE))
-		);
-		gl_createBtnPanel.setVerticalGroup(
-			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
-				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
-					.addGap(10)
-					.addComponent(createLevelBtn)
-					.addGap(10))
-		);
-		createBtnPanel.setLayout(gl_createBtnPanel);
+		createLevelBtn.setEnabled(false);
 		
 		levelViewerAndSelector.setLeftComponent(viewerAndEditor);
 		levelViewerAndSelector.setRightComponent(levelSelectorAndCreator);
@@ -86,7 +80,51 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void setupLayout() {
-		
+		GroupLayout gl_createBtnPanel = new GroupLayout(createBtnPanel);
+		gl_createBtnPanel.setAutoCreateGaps(true);
+		gl_createBtnPanel.setAutoCreateContainerGaps(true);
+		gl_createBtnPanel.setHorizontalGroup(
+			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
+				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
+					.addContainerGap(150, Short.MAX_VALUE)
+					.addComponent(createLevelBtn)
+					.addContainerGap(150, Short.MAX_VALUE))
+		);
+		gl_createBtnPanel.setVerticalGroup(
+			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
+				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(createLevelBtn)
+					.addGap(10))
+		);
+		createBtnPanel.setLayout(gl_createBtnPanel);
+	}
+	
+	void initializeControllers() {
+		createLevelBtn.addActionListener(new CreateLevelBtnController(b));
+		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
+			elv.addActionListener(new ExistingLevelEditController(b));
+		}
+		for (LevelTypeToggle ltt : levelTypesAndText.getLevelTypeButtons()) {
+			ltt.addActionListener(new NewLevelTypeController(this));
+		}
+	}
+	
+	public JTextArea getLevelDescriptionBox() {
+		return levelTypesAndText.getTextArea();
+	}
+	
+	public void addExistingLevel (String levelType, int levelNumber){
+		viewerAndEditor.addLevel(levelType, levelNumber);
+		levelData.put(levelNumber, levelType);
+	}
+	
+	public String getSelectedLevelType() {
+		return this.levelTypesAndText.getSelectedLevelType();
+	}
+	
+	public JButton getCreateLevelBtn () {
+		return this.createLevelBtn;
 	}
 }
 
