@@ -130,7 +130,7 @@ public class Builder {
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
 	 */
-	public void setModelLevelEditing(String fileName){
+	public void setModelLevelEditing(int levelID){
 		/** TODO 
 		 * Sort through the 3 types and prepare the BV for the right one
 		 * Create the level model needed w/ string passed to constructor
@@ -138,6 +138,34 @@ public class Builder {
 		 * Then call a method inside that class that RETURNS the entire levelModel
 		 * buildingLevel = levelModel;
 		 */
+		String levelType = levelData.get(levelID);
+		String fileName = levelID+"_"+levelType+".txt";
+		switch(levelType){
+		case "Puzzle":
+			/** TODO Add these Lines when PuzzleLevel implemented (Alternate Constructor used)
+			 * PuzzleLevel pl = new PuzzleLevel(fileName);
+			 * buildingLevel = pl;
+			 * bv.setModelLevel(pl);
+			 */
+			bv.prepPuzzle();
+			break;
+		case "Lightning":
+			/** TODO Add these lines when LightningLevel implemented (Alternate Constructor used)
+			 * LightningLevel ll = new LightningLevel(fileName);
+			 * buildingLevel = ll;
+			 * bv.setModelLevel(ll);
+			 */
+			bv.prepLightning();
+			break;
+		case "Release":
+			/** TODO Add these lines when ReleaseLevel implemented (Alternate Constructor used)
+			 * ReleaseLevel rl = new ReleaseLevel(fileName);
+			 * buildingLevel = rl;
+			 * bv.setModelLevel(rl);
+			 */
+			bv.prepRelease();
+			break;
+		}
 	}
 
 	/**
@@ -185,17 +213,4 @@ public class Builder {
 		highestLevelID--;
 		setLevelTypeSelectViewVisible(true);
 	}
-	
-	/**
-	 * Method to retrieve the type of a level based on it's ID
-	 * This method should always return a string, as existing levels
-	 * are the only available options
-	 * @param levelID - ID of the level being looked up
-	 * @return String type of level found
-	 */
-	public String lookupLevelType(int levelID){
-		return levelData.get(levelID);
-	}
-
-
 }

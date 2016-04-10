@@ -22,9 +22,7 @@ public class ExistingLevelEditController implements java.awt.event.ActionListene
 	public void actionPerformed(ActionEvent ae) {
 		ExistingLevelView sourceButton = (ExistingLevelView) ae.getSource();
 		int levelID = sourceButton.getLevelNumber();
-		String levelType = b.lookupLevelType(levelID);
-		String fileName = levelID+"_"+levelType+".txt";
-		b.setModelLevelEditing(fileName);
+		b.setModelLevelEditing(levelID);
 		b.setBuilderViewVisible(true);
 		b.setLevelTypeSelectViewVisible(false);
 	}

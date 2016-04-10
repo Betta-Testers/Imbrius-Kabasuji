@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.Builder;
+import model.AbstractLevelModel;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -19,9 +20,8 @@ public class BuilderView extends JFrame {
 	LevelPropertiesView levelPropertyView;
 	BullpenView bullpenView;
 	SelectedPieceView selectedPieceView;
-	//TODO Add attribute: AbstractLevelModel modelLevel 
+	AbstractLevelModel modelLevel; 
 	
-	//TODO Add constructor argument: AbstractLevelModel m
 	public BuilderView() {
 		setResizable(false);
 		setVisible(false);
@@ -37,10 +37,25 @@ public class BuilderView extends JFrame {
 		levelPropertyView = new LevelPropertiesView();
 		bullpenView = new BullpenView("builder");		
 		selectedPieceView = new SelectedPieceView();
-		//TODO Initialize: this.modelLevel = m;
 		
 		setupLayout();		
 	}
+	
+	
+	/**
+	 * Sets the level model for this builder. This is critical to setup. After the
+	 * blank builderView has been passed around the type of level model it will be handling
+	 * is determind at runtime. This method is used to set the model level and prepare the 
+	 * view.
+	 * @param m
+	 */
+	/* TODO Implement additional instructions as needed to paint the board, prepare the bullpen,
+	 * etc.
+	 */
+	public void setModelLevel(AbstractLevelModel m){
+		modelLevel = m;
+	}
+	
 	
 	/**
 	 * Prepares the view of a puzzle level by disabling release
@@ -71,6 +86,7 @@ public class BuilderView extends JFrame {
 		releaseNumberView.setVisible(true);
 		levelPropertyView.release();
 	}
+	
 	
 	void setupLayout(){
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
