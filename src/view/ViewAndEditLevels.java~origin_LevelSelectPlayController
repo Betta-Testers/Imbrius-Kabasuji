@@ -9,7 +9,6 @@ import javax.swing.JSplitPane;
 import controllers.ExistingLevelEditController;
 
 public class ViewAndEditLevels extends JSplitPane {
-	private static final long serialVersionUID = 1L;
 	ExistingLevelViewer levelViewer;	
 	ViewAndEditLevels () {
 		super();
