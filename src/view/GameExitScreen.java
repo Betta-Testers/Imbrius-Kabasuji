@@ -40,6 +40,10 @@ public class GameExitScreen extends JFrame{
 		setupLayout();
 	}
 	
+	public JButton getExitButton() {
+		return this.btnReturnToLevel;
+	}
+	
 	void setupLayout(){
 		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(

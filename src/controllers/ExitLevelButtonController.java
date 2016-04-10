@@ -19,7 +19,7 @@ public class ExitLevelButtonController extends WindowAdapter{
 	
 	@Override
 	public void windowClosing(WindowEvent e) {
-		game.getSelectView().setVisible(true);
+		game.getExitView().setVisible(true);
 		view.dispose();
 		
 	}

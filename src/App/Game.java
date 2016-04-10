@@ -1,15 +1,18 @@
 package App;
 
+import view.GameExitScreen;
 import view.LevelView;
 import view.LevelSelectionView;
+import view.StarView;
 import controllers.ExitLevelButtonController;
+import controllers.QuitGameButtonController;
 
 public class Game {
 	LevelSelectionView selectLevel;
 	//TODO add abstractLevelModel levels[]
 	//TODO add abstractLevelModel currentLevel
 	LevelView levelView;
-	//ExitLevelScreen exitLevel
+	GameExitScreen exitLevel;
 	
 	Game(){
 		this.selectLevel = new LevelSelectionView();
@@ -25,6 +28,7 @@ public class Game {
 		//TODO Initialize splash screen or level select view here?
 		this.selectLevel = new LevelSelectionView();
 		this.levelView = new LevelView("Puzzle");
+		this.exitLevel = new GameExitScreen(new StarView());
 		
 		selectLevel.setVisible(false);
 		levelView.setVisible(true);
@@ -33,6 +37,7 @@ public class Game {
 	void initializeControllers(){
 		//TODO add controllers that are needed here
 		levelView.addWindowListener(new ExitLevelButtonController(this.levelView, this));
+		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
 	}
 	
 	void initializeModels(){
@@ -42,6 +47,11 @@ public class Game {
 	public LevelSelectionView getSelectView() {
 		return this.selectLevel;
 	}
+	
+	public GameExitScreen getExitView() {
+		return this.exitLevel;
+	}
+	
 	void unlockNextLevel(int nextLevelID){
 		//TODO add this in when files are put together, 
 		//AvailableLevelView already has an unlocklevel operation, just need to have that run with a for loop
