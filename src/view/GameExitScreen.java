@@ -68,6 +68,5 @@ public class GameExitScreen extends JFrame{
 					.addContainerGap())
 		);
 		this.getContentPane().setLayout(groupLayout);
-		this.setVisible(true);
 	}
 }
