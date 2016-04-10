@@ -1,17 +1,13 @@
-package gameMockups;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+package view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextPane;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
-
 
 public class SplashScreen extends JFrame {
 
@@ -54,7 +50,7 @@ public class SplashScreen extends JFrame {
 		
 		lblName5 = new JLabel("Hans Johnson");
 		lblName5.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
-		
+		setVisible(true);
 		setupLayout();
 	}
 	
