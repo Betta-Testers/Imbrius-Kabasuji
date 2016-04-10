@@ -1,4 +1,4 @@
-package gameMockups;
+package view;
 
 import gameMockups.BoardView;
 import gameMockups.LevelInfoView;
