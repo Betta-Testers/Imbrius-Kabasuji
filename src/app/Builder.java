@@ -6,13 +6,14 @@ import java.util.HashMap;
 
 import view.BuilderView;
 import controllers.CloseBuilderDialog;
+import model.AbstractLevelModel;
 import view.LevelTypeSelectView;
 
 public class Builder {
 	LevelTypeSelectView ltsv;
 	BuilderView bv;
 	HashMap<Integer, String> levelData;
-	//TODO add this line: AbstractLevelModel buildingLevel;
+	AbstractLevelModel buildingLevel;
 	int highestLevelID;
 
 	Builder(){
@@ -30,29 +31,8 @@ public class Builder {
 		initializeControllers();
 	}
 
-
-	void initialize(){
-		/**TODO Determine where to get highest level from....
-		 * Probably need to have a method run before this that reads files and stores
-		 * the highest number, then pass that as the argument
-		 */
-
-
-		//initializeView();
-		//initializeControllers();
-	}
-
-	void initializeView(){
-		//TODO Initialize selectionView in here
-
-	}
-
 	void initializeControllers(){
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
-	}
-
-	void initializeLevelModel(int levelID){
-
 	}
 
 	/**
@@ -192,15 +172,6 @@ public class Builder {
 		return highestLevelID;
 	}
 
-	void initializeLevelView(){
-		//TODO Initialize BuilderView in here
-	}
-
-	void initializeLevelControllers(){
-		//TODO Initialize BuilderView Controllers in here
-		//		builderView.setVisible(true); to make builderview appear
-	}
-
 	/**
 	 * Clean up method called for when the user chooses to prematurely
 	 * close the builder view window. It resets the highestLevelID,
@@ -213,4 +184,12 @@ public class Builder {
 		highestLevelID--;
 		setLevelTypeSelectViewVisible(true);
 	}
+
+//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
+	void initialize(){}
+	void initializeView(){}
+	void initializeLevelModel(int levelID){}
+	void initializeLevelView(){}
+	void initializeLevelControllers(){}
+
 }
