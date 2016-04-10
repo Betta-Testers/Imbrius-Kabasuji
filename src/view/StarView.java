@@ -1,4 +1,4 @@
-package gameMockups;
+package view;
 
 import java.awt.Dimension;
 

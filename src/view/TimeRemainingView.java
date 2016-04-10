@@ -1,4 +1,4 @@
-package gameMockups;
+package view;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
@@ -8,20 +8,20 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
-public class NumberMovesLeftView extends JPanel {
-	JTextPane numberMoves;
+public class TimeRemainingView extends JPanel {
+	JTextPane textPaneTime;
 	JLabel lblTitle;
 	// TODO AbstractLevelModel m
-	public NumberMovesLeftView() {
+	
+	public TimeRemainingView() {
 		
-		numberMoves = new JTextPane();
-		numberMoves.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		numberMoves.setText("4");
+		JTextPane textPaneTime = new JTextPane();
+		textPaneTime.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		textPaneTime.setText("0:00");
 		
-		lblTitle = new JLabel("Moves Remaining");
+		lblTitle = new JLabel("Time Remaining");
 		
 		setupLayout();
-		
 	}
 	
 	private void setupLayout() {
@@ -30,23 +30,22 @@ public class NumberMovesLeftView extends JPanel {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(40)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblTitle))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(45)
-							.addComponent(numberMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(27, Short.MAX_VALUE))
+							.addGap(10)
+							.addComponent(textPaneTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblTitle))
+					.addContainerGap(45, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(6)
+					.addContainerGap()
 					.addComponent(lblTitle)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(numberMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(17, Short.MAX_VALUE))
+					.addComponent(textPaneTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(12, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 	}

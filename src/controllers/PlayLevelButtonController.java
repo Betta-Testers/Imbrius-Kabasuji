@@ -1,10 +1,9 @@
 package controllers;
 
-import gameMockups.SelectLevel;
-
 import java.awt.event.ActionEvent;
 
 import view.LevelTypeSelectView;
+import view.SelectLevel;
 
 public class PlayLevelButtonController implements java.awt.event.ActionListener {
 	SelectLevel selectLevel;

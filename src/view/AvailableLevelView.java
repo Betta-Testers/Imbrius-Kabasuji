@@ -1,4 +1,4 @@
-package gameMockups;
+package view;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 
 public class AvailableLevelView extends JPanel {

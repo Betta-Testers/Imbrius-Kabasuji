@@ -1,8 +1,8 @@
 package App;
 
-import gameMockups.SelectLevel;
 import view.LevelTypeSelectView;
 import view.LevelView;
+import view.SelectLevel;
 
 public class Game {
 	SelectLevel selectLevel;
