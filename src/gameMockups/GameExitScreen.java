@@ -7,6 +7,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import controllers.QuitGameButtonController;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -39,8 +42,13 @@ public class GameExitScreen extends JFrame{
 		btnReturnToLevel = new JButton("Return to Level Select");
 		btnReturnToLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		setupLayout();
+
+		//add Game to constructor
+		btnReturnToLevel.addActionListener(new QuitGameButtonController(this));
 	}
 	
+	
+	//setup the layout of the exit window
 	void setupLayout(){
 		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -66,5 +74,21 @@ public class GameExitScreen extends JFrame{
 		);
 		this.getContentPane().setLayout(groupLayout);
 		this.setVisible(true);
+	}
+	
+	
+	//return "Return to Level Select" Button
+	JButton getBtnReturnToLevel(){
+		return btnReturnToLevel;
+	}
+	
+	//return StarView
+	StarView getStars(){
+		return stars;
+	}
+	
+	//set StarView
+	void setStars(StarView stars){
+		this.stars = stars;
 	}
 }
