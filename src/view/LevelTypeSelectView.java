@@ -27,30 +27,24 @@ public class LevelTypeSelectView extends JFrame {
 	JButton createLevelBtn;
 	JPanel createBtnPanel;
 	HashMap<Integer, String> levelData;
-	
-	//TODO: Verify this attribute
 	Builder b;
 	
 	/**
 	 * Create the application.
 	 */
-	//TODO: Verify builder parameter
 	public LevelTypeSelectView(Builder b, HashMap<Integer, String> levelData) {
 		super();
 		this.levelData = levelData;
+		this.b = b;
 		viewerAndEditor = new ViewAndEditLevels(levelData);
 		levelTypesAndText = new LevelTypesAndText();
 		createLevelBtn = new JButton("Create Level");
 		createBtnPanel = new JPanel();
-		
-		//TODO verify this line
-		this.b = b;
+	
 		
 		initialize();
 		setupLayout();
 		initializeControllers();
-		
-		//TODO Verify this line
 		setVisible(true);
 	}
 
@@ -107,10 +101,9 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		//TODO Added b to the parameters
 		createLevelBtn.addActionListener(new CreateLevelBtnController(b));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
-			elv.addActionListener(new ExistingLevelEditController());
+			elv.addActionListener(new ExistingLevelEditController(b));
 		}
 		for (LevelTypeToggle ltt : levelTypesAndText.getLevelTypeButtons()) {
 			ltt.addActionListener(new NewLevelTypeController(this));

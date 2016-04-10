@@ -18,7 +18,7 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	 * The LevelTypeSelectView is then hidden.
 	 */
 	public void actionPerformed(ActionEvent ae) {
-		b.setModelLevel();
+		b.setModelLevelCreation();
 		b.setBuilderViewVisible(true);
 		b.setLevelTypeSelectViewVisible(false);
 	}

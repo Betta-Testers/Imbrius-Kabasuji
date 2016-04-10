@@ -93,7 +93,7 @@ public class Builder {
 	 * for the new level being created. This allows the Builder class to know
 	 * what level is being made
 	 */
-	public void setModelLevel(){
+	public void setModelLevelCreation(){
 		//Prepare the Builder View to display only the relevant sections of the editor
 		switch(ltsv.getSelectedLevelType()){
 		case "Puzzle":
@@ -124,6 +124,20 @@ public class Builder {
 			bv.prepRelease();
 			break;
 		}
+	}
+	
+	/**
+	 * For EDITING a level. This method is used by the ExistingLevelEditController
+	 * to set the bv up for the level being edited.
+	 */
+	public void setModelLevelEditing(String fileName){
+		/** TODO 
+		 * Sort through the 3 types and prepare the BV for the right one
+		 * Create the level model needed w/ string passed to constructor
+		 * Then get the
+		 * Then call a method inside that class that RETURNS the entire levelModel
+		 * buildingLevel = levelModel;
+		 */
 	}
 
 	/**
@@ -159,13 +173,28 @@ public class Builder {
 		//		builderView.setVisible(true); to make builderview appear
 	}
 
-
-
+	/**
+	 * Clean up method called for when the user chooses to prematurely
+	 * close the builder view window. It resets the highestLevelID,
+	 * hides the builder view, displays the LTSV, and removes the ID from
+	 * the HashMap.
+	 */
 	public void cancelBuild() {
 		setBuilderViewVisible(false);
 		levelData.remove(highestLevelID);
 		highestLevelID--;
 		setLevelTypeSelectViewVisible(true);
+	}
+	
+	/**
+	 * Method to retrieve the type of a level based on it's ID
+	 * This method should always return a string, as existing levels
+	 * are the only available options
+	 * @param levelID - ID of the level being looked up
+	 * @return String type of level found
+	 */
+	public String lookupLevelType(int levelID){
+		return levelData.get(levelID);
 	}
 
 
