@@ -1,4 +1,4 @@
-package builderMockups;
+package view;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
