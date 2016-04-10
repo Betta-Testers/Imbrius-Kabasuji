@@ -4,7 +4,7 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 import app.Builder;
 import controllers.CreateLevelBtnController;
@@ -26,13 +26,13 @@ public class LevelTypeSelectView extends JFrame {
 	LevelTypesAndText levelTypesAndText;
 	JButton createLevelBtn;
 	JPanel createBtnPanel;
-	HashMap<Integer, String> levelData;
+	TreeMap<Integer, String> levelData;
 	Builder b;
 	
 	/**
 	 * Create the application.
 	 */
-	public LevelTypeSelectView(Builder b, HashMap<Integer, String> levelData) {
+	public LevelTypeSelectView(Builder b, TreeMap<Integer, String> levelData) {
 		super();
 		this.levelData = levelData;
 		this.b = b;

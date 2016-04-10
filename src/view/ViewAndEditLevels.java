@@ -2,14 +2,14 @@ package view;
 
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 
 public class ViewAndEditLevels extends JSplitPane {
 	ExistingLevelViewer levelViewer;	
-	ViewAndEditLevels (HashMap<Integer, String> levelData) {
+	ViewAndEditLevels (TreeMap<Integer, String> levelData) {
 		super();
 		this.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		this.setEnabled(false);

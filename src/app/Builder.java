@@ -1,8 +1,7 @@
 package app;
 
 import java.io.File;
-import java.util.HashMap;
-
+import java.util.TreeMap;
 
 import view.BuilderView;
 import controllers.CloseBuilderDialog;
@@ -12,7 +11,7 @@ import view.LevelTypeSelectView;
 public class Builder {
 	LevelTypeSelectView ltsv;
 	BuilderView bv;
-	HashMap<Integer, String> levelData;
+	TreeMap<Integer, String> levelData;
 	AbstractLevelModel buildingLevel;
 	int highestLevelID;
 
@@ -21,10 +20,9 @@ public class Builder {
 		if(levelData.isEmpty()){
 			highestLevelID = 0;
 		}else{
-			//Iterate though level data and populate with largest value
+			levelData.lastKey();
 		}
-
-
+		
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(this, levelData);
 
@@ -43,13 +41,13 @@ public class Builder {
 	 * @return ArrayList with the LevelIDs read. If nothing is found, the arrayList returned is empty. 
 	 * (Can check this with ArrayList.isEmpty())
 	 */
-	HashMap<Integer, String> loadLevelData(){
+	TreeMap<Integer, String> loadLevelData(){
 		File folder = new File("./ImbriusBuilderLevels/");
 		File[] listOfFiles = folder.listFiles();
 		String levelType;
 		String levelNum;
 		int levelID = 0;
-		HashMap<Integer, String> levelData = new HashMap<Integer, String>();
+		TreeMap<Integer, String> levelData = new TreeMap<Integer, String>();
 
 		for (File f: listOfFiles) {
 			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
