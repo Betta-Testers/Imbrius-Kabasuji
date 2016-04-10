@@ -13,15 +13,9 @@ public class Builder {
 	BuilderView bv;
 	TreeMap<Integer, String> levelData;
 	AbstractLevelModel buildingLevel;
-	int highestLevelID;
 
 	Builder(){
 		levelData = loadLevelData();
-		if(levelData.isEmpty()){
-			highestLevelID = 0;
-		}else{
-			highestLevelID = levelData.lastKey();
-		}
 		
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(this, levelData);
@@ -34,12 +28,10 @@ public class Builder {
 	}
 
 	/**
-	 * Reads the directory located in the specified path, taking all files and storing them into an array.
-	 * The files are then filtered to only include those who are of type ".txt" and have a parsable Integer.
-	 * If the file meets those conditions, it is then added to an ArrayList of levelIDs.
-	 * Finally, the array list is guarenteed to be sorted Lowest -> Highest.
-	 * @return ArrayList with the LevelIDs read. If nothing is found, the arrayList returned is empty. 
-	 * (Can check this with ArrayList.isEmpty())
+	 * Reads the directory located in the specified path, taking all level files and storing them into an array.
+	 * Every file has its name read and stored in a TreeMap by LevelID, LevelType.
+	 * Because it is a TreeMap, the levels are guaranteed to be sorted lowest -> highest.
+	 * @return TreeMap with the LevelIDs read. If nothing is found, the TreeList returned is empty. 
 	 */
 	TreeMap<Integer, String> loadLevelData(){
 		File folder = new File("./ImbriusBuilderLevels/");
@@ -67,15 +59,12 @@ public class Builder {
 
 	/**
 	 * For CREATING a level. This method is used by CreateLevelBtnController
-	 * to set the level being built. It increments the highestLevelID to account
-	 * for the new level being created. This allows the Builder class to know
-	 * what level is being made
+	 * to set the level being built. The level being built is stored in buildingLevel
+	 * TODO Store this building level in levelData ON SAVE
 	 */
 	public void setModelLevelCreation(){
-		//Prepare the Builder View to display only the relevant sections of the editor
 		switch(ltsv.getSelectedLevelType()){
 		case "Puzzle":
-			//TODO Store this building level in levelData ON SAVE
 			/** TODO Add these Lines when PuzzleLevel implemented
 			 * PuzzleLevel pl = new PuzzleLevel();
 			 * buildingLevel = pl;
@@ -109,13 +98,6 @@ public class Builder {
 	 * to set the bv up for the level being edited.
 	 */
 	public void setModelLevelEditing(int levelID){
-		/** TODO 
-		 * Sort through the 3 types and prepare the BV for the right one
-		 * Create the level model needed w/ string passed to constructor
-		 * Then get the
-		 * Then call a method inside that class that RETURNS the entire levelModel
-		 * buildingLevel = levelModel;
-		 */
 		String levelType = levelData.get(levelID);
 		String fileName = levelID+"_"+levelType+".txt";
 		switch(levelType){
@@ -166,8 +148,14 @@ public class Builder {
 		ltsv.setVisible(enabled);
 	}
 
+	/**
+	 * Returns the highestLevelID of the loaded levelData. 
+	 * If there is no data inside of levelData, 0 is returned.
+	 * @return highestLevelID
+	 */
 	public int getHighestLevelID(){
-		return highestLevelID;
+		if(levelData.lastKey() == null){ return 0;}
+		return levelData.lastKey();
 	}
 
 
