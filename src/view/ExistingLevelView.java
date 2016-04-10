@@ -1,18 +1,18 @@
-package builderMockups;
+package view;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import java.awt.Color;
-import javax.swing.BorderFactory;
+
 import java.awt.Dimension;
 
-class ExistingLevelView extends JButton {	
+public class ExistingLevelView extends JButton {	
 	ImageIcon icon;
+	int levelNumber;
 	ExistingLevelView(String levelType, Integer levelNumber) {
 		super(levelType+" "+levelNumber.toString());
-		Dimension levelPreviewSize = new Dimension(108, 108);
+		this.levelNumber = levelNumber;
+		Dimension levelPreviewSize = new Dimension(126, 126);
 		if (levelType.equals("Release")) {
 			icon = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/ReleaseSm.png"));
 		} else if (levelType.equals("Lightning")) {
@@ -29,6 +29,10 @@ class ExistingLevelView extends JButton {
 		this.setPreferredSize(levelPreviewSize);
 		this.setMaximumSize(levelPreviewSize);
 		this.setMinimumSize(levelPreviewSize);
-		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	}
+	
+	public int getLevelNumber() {
+		return this.levelNumber;
 	}
 }

@@ -1,7 +1,7 @@
-package builderMockups;
+package view;
 
 import java.awt.Font;
-
+import java.util.ArrayList;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
@@ -22,5 +22,17 @@ public class LevelTypesAndText extends JSplitPane {
 		txtAreaLevelTypeDescription.setWrapStyleWord(true);
 		txtAreaLevelTypeDescription.setText("Information about each level type will go here when the corresponding toggle button is selected");
 		this.setRightComponent(txtAreaLevelTypeDescription);
+	}
+	
+	public JTextArea getTextArea() {
+		return txtAreaLevelTypeDescription;
+	}
+	
+	public ArrayList<LevelTypeToggle> getLevelTypeButtons() {
+		return levelTypeButtons.getButtons();
+	}
+	
+	public String getSelectedLevelType() {
+		return levelTypeButtons.getSelectedLevelType();
 	}
 }

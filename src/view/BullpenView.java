@@ -1,4 +1,4 @@
-package builderMockups;
+package view;
 
 import java.awt.Color;
 

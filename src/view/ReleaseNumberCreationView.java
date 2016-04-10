@@ -1,4 +1,4 @@
-package builderMockups;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,11 +20,11 @@ public class ReleaseNumberCreationView extends JPanel{
 	JLabel lblColor;
 	JToggleButton btn1, btn2, btn3, btn4, btn5, btn6;
 	JSpinner spinner;
-	
+
 	public ReleaseNumberCreationView(){
 		setPreferredSize(new Dimension(105, 135));
 		groupLayout = new GroupLayout(this);
-		
+
 		lblTitle = new JLabel("Release Numbers");
 		lblColor = new JLabel("Color:");
 		btn1 = new JToggleButton("1");
@@ -34,7 +34,7 @@ public class ReleaseNumberCreationView extends JPanel{
 		btn5 = new JToggleButton("5");
 		btn6 = new JToggleButton("6");
 		spinner = new JSpinner();
-		
+
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btn1.setForeground(Color.BLUE);
 		btn2.setForeground(Color.BLUE);
@@ -44,20 +44,20 @@ public class ReleaseNumberCreationView extends JPanel{
 		btn6.setForeground(Color.BLUE);
 
 		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
-		
+
 		ButtonGroup creationGroup = new ButtonGroup();
-		
+
 		creationGroup.add(btn1);
 		creationGroup.add(btn2);
 		creationGroup.add(btn3);
 		creationGroup.add(btn4);
 		creationGroup.add(btn5);
 		creationGroup.add(btn6);
-	
-	
+
+
 		setupLayout();
 	}
-	
+
 	private void setupLayout(){
 		groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
@@ -115,24 +115,24 @@ public class ReleaseNumberCreationView extends JPanel{
 				);
 		this.setLayout(groupLayout);
 	}
+
 	
-	public void disablePanel(){
-		spinner.setEnabled(false);
-		btn1.setEnabled(false);
-		btn2.setEnabled(false);
-		btn3.setEnabled(false);
-		btn4.setEnabled(false);
-		btn5.setEnabled(false); 
-		btn6.setEnabled(false);
-	}
-	
-	public void enablePanel(){
-		spinner.setEnabled(true);
-		btn1.setEnabled(true);
-		btn2.setEnabled(true);
-		btn3.setEnabled(true);
-		btn4.setEnabled(true);
-		btn5.setEnabled(true); 
-		btn6.setEnabled(true);
+	/**
+	 * Makes all components inside this JPanel invisible or visible based
+	 * on the value given. Overrides JPanel, as this is the intended 
+	 * behavior when making the "panel" invisible
+	 * @param visible True makes everything visible
+	 */
+	@Override
+	public void setVisible(boolean visible){
+		lblTitle.setVisible(visible);
+		spinner.setVisible(visible);
+		btn1.setVisible(visible);
+		btn2.setVisible(visible);
+		btn3.setVisible(visible);
+		btn4.setVisible(visible);
+		btn5.setVisible(visible); 
+		btn6.setVisible(visible);
+		lblColor.setVisible(visible);
 	}
 }
