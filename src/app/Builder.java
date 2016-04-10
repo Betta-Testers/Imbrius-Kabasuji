@@ -20,7 +20,7 @@ public class Builder {
 		if(levelData.isEmpty()){
 			highestLevelID = 0;
 		}else{
-			levelData.lastKey();
+			highestLevelID = levelData.lastKey();
 		}
 		
 		bv = new BuilderView();
@@ -75,7 +75,7 @@ public class Builder {
 		//Prepare the Builder View to display only the relevant sections of the editor
 		switch(ltsv.getSelectedLevelType()){
 		case "Puzzle":
-			levelData.put(++highestLevelID, "Puzzle");
+			//TODO Store this building level in levelData ON SAVE
 			/** TODO Add these Lines when PuzzleLevel implemented
 			 * PuzzleLevel pl = new PuzzleLevel();
 			 * buildingLevel = pl;
@@ -84,7 +84,7 @@ public class Builder {
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
-			levelData.put(++highestLevelID, "Lightning");
+
 			/** TODO Add these lines when LightningLevel implemented
 			 * LightningLevel ll = new LightningLevel();
 			 * buildingLevel = ll;
@@ -93,7 +93,7 @@ public class Builder {
 			bv.prepLightning();
 			break;
 		case "Release":
-			levelData.put(++highestLevelID, "Release");
+
 			/** TODO Add these lines when ReleaseLevel implemented
 			 * ReleaseLevel rl = new ReleaseLevel();
 			 * buildingLevel = rl;
@@ -170,18 +170,6 @@ public class Builder {
 		return highestLevelID;
 	}
 
-	/**
-	 * Clean up method called for when the user chooses to prematurely
-	 * close the builder view window. It resets the highestLevelID,
-	 * hides the builder view, displays the LTSV, and removes the ID from
-	 * the HashMap.
-	 */
-	public void cancelBuild() {
-		setBuilderViewVisible(false);
-		levelData.remove(highestLevelID);
-		highestLevelID--;
-		setLevelTypeSelectViewVisible(true);
-	}
 
 //======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
 	void initialize(){}
