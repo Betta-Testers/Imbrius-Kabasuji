@@ -19,8 +19,10 @@ public class ViewAndEditLevels extends JSplitPane {
 		levelViewer = new ExistingLevelViewer();
 		this.setRightComponent(levelViewer);
 		
-		for (int levelNum : levelData.keySet()){
-			addLevel(levelData.get(levelNum), levelNum);
+		if (!levelData.isEmpty()) {
+			for (int levelNum : levelData.keySet()){
+				addLevel(levelData.get(levelNum), levelNum);
+			}
 		}
 	}
 	
