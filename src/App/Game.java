@@ -1,20 +1,18 @@
 package App;
 
-import view.LevelTypeSelectView;
 import view.LevelView;
-import view.SelectLevel;
+import view.LevelSelectionView;
 import controllers.ExitLevelButtonController;
 
 public class Game {
-	SelectLevel selectLevel;
-	LevelTypeSelectView selectView;
+	LevelSelectionView selectLevel;
 	//TODO add abstractLevelModel levels[]
 	//TODO add abstractLevelModel currentLevel
 	LevelView levelView;
 	//ExitLevelScreen exitLevel
 	
 	Game(){
-		this.selectLevel = new SelectLevel();
+		this.selectLevel = new LevelSelectionView();
 	}
 	
 	void initialize(){
@@ -25,10 +23,10 @@ public class Game {
 	
 	void initializeView(){
 		//TODO Initialize splash screen or level select view here?
-		this.selectView = new LevelTypeSelectView();
+		this.selectLevel = new LevelSelectionView();
 		this.levelView = new LevelView("Puzzle");
 		
-		selectView.setVisible(false);
+		selectLevel.setVisible(false);
 		levelView.setVisible(true);
 	}
 	
@@ -41,8 +39,8 @@ public class Game {
 		
 	}
 	
-	public LevelTypeSelectView getSelectView() {
-		return this.selectView;
+	public LevelSelectionView getSelectView() {
+		return this.selectLevel;
 	}
 	void unlockNextLevel(int nextLevelID){
 		//TODO add this in when files are put together, 

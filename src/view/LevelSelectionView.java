@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
-public class SelectLevel extends JFrame {
+public class LevelSelectionView extends JFrame {
 
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class SelectLevel extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SelectLevel() {
+	public LevelSelectionView() {
 		super();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 640);
