@@ -1,37 +1,16 @@
-package gameMockups;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+package views;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controllers.SplashTimerController;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextPane;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
-import javax.swing.Timer;
-
 public class SplashScreen extends JFrame {
-/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new SplashScreen();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
-	
+
 	private JPanel contentPane;
 	JLabel lblGameName;
 	JLabel lblGroupName;
@@ -71,17 +50,8 @@ public class SplashScreen extends JFrame {
 		
 		lblName5 = new JLabel("Hans Johnson");
 		lblName5.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
-		
+		setVisible(true);
 		setupLayout();
-		
-		this.setVisible(true);
-		
-		
-		//add game to splash screen contoller?
-		Timer timer = new Timer(3000, new SplashTimerController(this));
-		timer.setRepeats(false);
-		timer.start();
-		
 	}
 	
 	void setupLayout() {

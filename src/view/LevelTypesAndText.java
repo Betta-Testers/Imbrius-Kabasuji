@@ -2,9 +2,6 @@ package view;
 
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.Enumeration;
-
-import javax.swing.AbstractButton;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 

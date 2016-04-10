@@ -1,30 +1,15 @@
 package builderMockups;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JSplitPane;
-import javax.swing.JScrollPane;
-import java.awt.Dimension;
-
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import javax.swing.JToggleButton;
-import javax.swing.ImageIcon;
-import java.awt.Color;
 
 public class LevelTypeSelectView extends JFrame {
 

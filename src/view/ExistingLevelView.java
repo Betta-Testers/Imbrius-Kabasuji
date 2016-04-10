@@ -2,13 +2,8 @@ package view;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import controllers.ExistingLevelEditController;
-
-import java.awt.Color;
-import javax.swing.BorderFactory;
 import java.awt.Dimension;
 
 public class ExistingLevelView extends JButton {	

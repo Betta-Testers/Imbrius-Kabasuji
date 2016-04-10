@@ -7,8 +7,6 @@ import java.util.HashMap;
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 
-import controllers.ExistingLevelEditController;
-
 public class ViewAndEditLevels extends JSplitPane {
 	ExistingLevelViewer levelViewer;	
 	ViewAndEditLevels (HashMap<Integer, String> levelData) {

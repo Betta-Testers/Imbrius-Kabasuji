@@ -1,37 +1,17 @@
 package gameMockups;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import controllers.QuitGameButtonController;
 
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import java.awt.Font;
 
 public class GameExitScreen extends JFrame{
 
 	JButton btnReturnToLevel;
 	StarView stars;
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new GameExitScreen(new StarView());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
 
 	public GameExitScreen(StarView stars) {
 		this.stars = stars;

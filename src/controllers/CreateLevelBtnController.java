@@ -3,7 +3,6 @@ package controllers;
 import java.awt.event.ActionEvent;
 
 import app.Builder;
-import view.LevelTypeSelectView;
 
 public class CreateLevelBtnController implements java.awt.event.ActionListener {	
 	Builder b;

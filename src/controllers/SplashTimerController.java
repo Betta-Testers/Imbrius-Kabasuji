@@ -3,21 +3,20 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import gameMockups.SplashScreen;
+import app.Builder;
+import views.SplashScreen;
 
 public class SplashTimerController implements ActionListener{
 	SplashScreen view;
-	//Game model;
+	Builder b;
 	
-	//add Game model to controller???
-	public SplashTimerController(SplashScreen view){
+	public SplashTimerController(SplashScreen view, Builder b){
 		this.view = view;
+		this.b = b;
 	}
 	
-	public void actionPerformed(ActionEvent e){
-		
-		//call to game to initialize AvailableLevelView
-		
+	public void actionPerformed(ActionEvent e){		
 		view.dispose();
+		b.setLevelTypeSelectViewVisible(true);
 	}
 }

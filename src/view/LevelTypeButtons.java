@@ -1,17 +1,11 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Enumeration;
-
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 
 public class LevelTypeButtons extends JPanel {
 	ButtonGroup levelTypeButtons;

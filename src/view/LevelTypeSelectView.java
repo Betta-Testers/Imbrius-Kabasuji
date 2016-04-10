@@ -45,7 +45,7 @@ public class LevelTypeSelectView extends JFrame {
 		initialize();
 		setupLayout();
 		initializeControllers();
-		setVisible(true);
+		setVisible(false);
 	}
 
 	/**
