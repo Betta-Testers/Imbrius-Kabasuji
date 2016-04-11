@@ -1,6 +1,6 @@
 package view;
 
-import gameMockups.BoardView;
+import view.BoardView;
 
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
@@ -33,7 +33,7 @@ public class LevelView extends JFrame {
 		availablePieces = new BullpenView("playing");
 		levelInfo = new LevelInfoView();
 		timeLeftView = new TimeRemainingView();
-		boardView = new BoardView(gameType); 
+		boardView = new BoardView(); 
 		selectedPiece = new SelectedPieceView();
 		movesLeftView = new NumberMovesLeftView();
 		numbersReleasedView = new NumbersReleasedView[sets];
