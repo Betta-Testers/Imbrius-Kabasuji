@@ -10,7 +10,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 public class SplashScreen extends JFrame {
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	JLabel lblGameName;
 	JLabel lblGroupName;
@@ -53,6 +56,7 @@ public class SplashScreen extends JFrame {
 		setVisible(true);
 		setupLayout();
 	}
+	
 	
 	void setupLayout() {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

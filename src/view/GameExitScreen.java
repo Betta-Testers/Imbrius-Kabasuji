@@ -1,15 +1,18 @@
-package gameMockups;
+package view;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import controllers.QuitGameButtonController;
-
 import javax.swing.JButton;
 import java.awt.Font;
 
 public class GameExitScreen extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton btnReturnToLevel;
 	StarView stars;
 
@@ -22,13 +25,15 @@ public class GameExitScreen extends JFrame{
 		btnReturnToLevel = new JButton("Return to Level Select");
 		btnReturnToLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		setupLayout();
-
+		
 		//add Game to constructor
-		btnReturnToLevel.addActionListener(new QuitGameButtonController(this));
+		//btnReturnToLevel.addActionListener(new QuitGameButtonController(this));
 	}
 	
-	
-	//setup the layout of the exit window
+	public JButton getExitButton() {
+		return this.btnReturnToLevel;
+	}
+
 	void setupLayout(){
 		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -53,7 +58,6 @@ public class GameExitScreen extends JFrame{
 					.addContainerGap())
 		);
 		this.getContentPane().setLayout(groupLayout);
-		this.setVisible(true);
 	}
 	
 	

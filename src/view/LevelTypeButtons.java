@@ -8,6 +8,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class LevelTypeButtons extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ButtonGroup levelTypeButtons;
 	ArrayList<LevelTypeToggle> levelTypeButtonsList;
 	LevelTypeToggle tglBtnPuzzle;

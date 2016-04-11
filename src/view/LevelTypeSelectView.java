@@ -1,6 +1,6 @@
 package view;
 
-//TODO Cleaned out Imports
+import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
@@ -10,18 +10,20 @@ import app.Builder;
 import controllers.CreateLevelBtnController;
 import controllers.ExistingLevelEditController;
 import controllers.NewLevelTypeController;
-
+import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-
-import javax.swing.BoxLayout;
-import javax.swing.JSplitPane;
 import javax.swing.JPanel;
-import java.awt.Font;
+import javax.swing.JSplitPane;
+
 
 public class LevelTypeSelectView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ViewAndEditLevels viewerAndEditor;
 	LevelTypesAndText levelTypesAndText;
 	JButton createLevelBtn;

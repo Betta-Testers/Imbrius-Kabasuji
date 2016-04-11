@@ -1,4 +1,4 @@
-package gameMockups;
+package view;
 
 import java.awt.Dimension;
 
@@ -10,6 +10,10 @@ import javax.swing.ImageIcon;
 
 public class StarView extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Create the panel.
 	 */

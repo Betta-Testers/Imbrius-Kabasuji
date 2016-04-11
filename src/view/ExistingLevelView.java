@@ -1,10 +1,10 @@
 package view;
 
+import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-
-import java.awt.Dimension;
 
 public class ExistingLevelView extends JButton {	
 	ImageIcon icon;

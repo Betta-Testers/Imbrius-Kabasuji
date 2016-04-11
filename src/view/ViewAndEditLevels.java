@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 
 public class ViewAndEditLevels extends JSplitPane {
+	private static final long serialVersionUID = 1L;
 	ExistingLevelViewer levelViewer;	
 	ViewAndEditLevels (TreeMap<Integer, String> levelData) {
 		super();

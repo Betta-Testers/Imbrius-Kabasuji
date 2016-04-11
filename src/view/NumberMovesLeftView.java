@@ -1,4 +1,4 @@
-package gameMockups;
+package view;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
@@ -9,6 +9,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
 public class NumberMovesLeftView extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JTextPane numberMoves;
 	JLabel lblTitle;
 	// TODO AbstractLevelModel m
