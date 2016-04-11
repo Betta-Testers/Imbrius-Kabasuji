@@ -1,4 +1,5 @@
-package App;
+package app;
+
 
 import java.awt.EventQueue;
 

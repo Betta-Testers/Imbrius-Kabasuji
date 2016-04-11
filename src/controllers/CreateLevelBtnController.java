@@ -2,18 +2,23 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 
-import view.LevelTypeSelectView;
+import app.Builder;
 
-public class CreateLevelBtnController implements java.awt.event.ActionListener {
-	int nextLevel;
-	LevelTypeSelectView ltsv;
-	public CreateLevelBtnController (LevelTypeSelectView ltsv) {
-		this.ltsv = ltsv;
-		this.nextLevel = this.ltsv.getHighestExistingLevel()+1;
+public class CreateLevelBtnController implements java.awt.event.ActionListener {	
+	Builder b;
+
+	public CreateLevelBtnController (Builder b) {
+		this.b = b;
 	}
 	
+	/**
+	 * When the create level button is hit, Builder is notified through setModelLevel().
+	 * The BuilderView is then set visible
+	 * The LevelTypeSelectView is then hidden.
+	 */
 	public void actionPerformed(ActionEvent ae) {
-		//do something
-		System.out.println("Success");
+		b.setModelLevelCreation();
+		b.setBuilderViewVisible(true);
+		b.setLevelTypeSelectViewVisible(false);
 	}
 }

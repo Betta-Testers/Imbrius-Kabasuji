@@ -12,8 +12,9 @@ public class LevelTypeSelectMain {
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					LevelTypeSelectView window = new LevelTypeSelectView(15);
-					window.setVisible(true);
+					//TODO: Commented to compile
+					//LevelTypeSelectView window = new LevelTypeSelectView(15);
+					//window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

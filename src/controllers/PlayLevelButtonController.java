@@ -2,7 +2,7 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 
-import App.Game;
+import app.Game;
 import view.LevelSelectionView;
 
 public class PlayLevelButtonController implements java.awt.event.ActionListener {

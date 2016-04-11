@@ -2,8 +2,6 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JToggleButton;
-
 import view.LevelTypeSelectView;
 import view.LevelTypeToggle;
 

@@ -3,8 +3,8 @@ package controllers;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import app.Game;
 import view.LevelView;
-import App.Game;
 
 public class ExitLevelButtonController extends WindowAdapter{
 	

@@ -39,12 +39,15 @@ public class LevelPropertiesView extends JPanel{
 		
 		spinMoves = new JSpinner();
 		spinTime = new JSpinner();
-		spinTime.setEnabled(false);
 		spinPieceCt = new JSpinner();
 		
-		spinPieceCt.setEnabled(false);
-		lblSetPieceCt.setEnabled(false);
-		lblSetTime.setEnabled(false);
+		spinMoves.setEnabled(true);
+		spinPieceCt.setEnabled(true);
+		spinTime.setEnabled(true);
+		
+		lblSetMoves.setEnabled(true);
+		lblSetPieceCt.setEnabled(true);
+		lblSetTime.setEnabled(true);
 		
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblTileCount.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -55,6 +58,44 @@ public class LevelPropertiesView extends JPanel{
 		spinTime.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		
 		setupLayout();
+	}
+	
+	
+	/**
+	 * Hides irrelevant information to a lightning level.
+	 */
+	public void lightning(){
+		lblSetMoves.setVisible(false);
+		spinMoves.setVisible(false);
+		lblSetPieceCt.setVisible(true);
+		spinPieceCt.setVisible(true);
+		lblSetTime.setVisible(true);
+		spinTime.setVisible(true);
+	}
+	
+	/**
+	 * Hides irrelevant information to a puzzle level.
+	 */
+	public void puzzle(){
+		lblSetMoves.setVisible(true);
+		spinMoves.setVisible(true);
+		lblSetPieceCt.setVisible(false);
+		spinPieceCt.setVisible(false);
+		lblSetTime.setVisible(false);
+		spinTime.setVisible(false);
+	}
+	
+	/**
+	 * Hides irrelevant information to a release level.
+	 * 
+	 */
+	public void release(){
+		lblSetPieceCt.setVisible(false);
+		spinPieceCt.setVisible(false);
+		lblSetMoves.setVisible(false);
+		spinMoves.setVisible(false);
+		lblSetTime.setVisible(false);
+		spinTime.setVisible(false);
 	}
 	
 	private void setupLayout(){
@@ -100,16 +141,5 @@ public class LevelPropertiesView extends JPanel{
 		);
 		this.setLayout(groupLayout);
 	}
-	
-	public void disableSetMoves(){
-		//TODO Fill Stub - disableSetMoves
-	}
-	
-	public void disableSetTime(){
-		//TODO Fill Stub - disableSetTime
-	}
-	
-	public void disableSetPieceCount(){
-		//TODO Fill Stub - disableSetPieceCount
-	}
+
 }

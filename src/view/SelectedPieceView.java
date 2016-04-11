@@ -7,6 +7,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
 
 public class SelectedPieceView extends JPanel{
 	/**
@@ -44,12 +45,17 @@ public class SelectedPieceView extends JPanel{
 		btnFlipX.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipX.png")));
 		btnFlipY.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipY.png")));
 		
+		//TODO REMOVE THIS CODE FOR ACTUAL PIECE
+		JLabel lblSAMPLEpiecePlacement = new JLabel("");
+		lblSAMPLEpiecePlacement.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/board/selectedPieceArea.png")));
+		
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(96, Short.MAX_VALUE)
-					.addGap(9)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(87, Short.MAX_VALUE)
+					.addComponent(lblSAMPLEpiecePlacement)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnFlipX, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
@@ -62,10 +68,11 @@ public class SelectedPieceView extends JPanel{
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblSAMPLEpiecePlacement, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnRotateLeft)

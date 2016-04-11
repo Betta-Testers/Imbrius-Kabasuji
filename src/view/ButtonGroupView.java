@@ -11,6 +11,7 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 
+
 public class ButtonGroupView extends JPanel{
 	/**
 	 * 
@@ -36,8 +37,8 @@ public class ButtonGroupView extends JPanel{
 		btnSave.setToolTipText("Save Level");
 		btnUndo.setToolTipText("Undo");
 		btnRedo.setToolTipText("Redo");
-		btnUndo.setIcon(new ImageIcon(BuilderView.class.getResource("/icons/Undo.png")));
-		btnRedo.setIcon(new ImageIcon(BuilderView.class.getResource("/icons/Redo.png")));
+		btnUndo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Undo.png")));
+		btnRedo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Redo.png")));
 		
 		setupLayout();
 	}
