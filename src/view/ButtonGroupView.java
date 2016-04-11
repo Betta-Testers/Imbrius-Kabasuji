@@ -13,6 +13,10 @@ import javax.swing.GroupLayout.Alignment;
 
 
 public class ButtonGroupView extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JButton btnUndo;
 	JButton btnRedo;

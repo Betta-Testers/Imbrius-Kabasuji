@@ -1,53 +1,59 @@
 package view;
 
-import java.awt.Font;
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
-import java.util.TreeMap;
-
-import app.Builder;
 import controllers.CreateLevelBtnController;
 import controllers.ExistingLevelEditController;
 import controllers.NewLevelTypeController;
-import javax.swing.BoxLayout;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JSplitPane;
+import javax.swing.JScrollPane;
+import java.awt.Dimension;
 
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.JToggleButton;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Container;
 
 public class LevelTypeSelectView extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	ViewAndEditLevels viewerAndEditor;
 	LevelTypesAndText levelTypesAndText;
 	JButton createLevelBtn;
 	JPanel createBtnPanel;
-	TreeMap<Integer, String> levelData;
-	Builder b;
-	
+	int highestExistingLevel;
+
 	/**
 	 * Create the application.
 	 */
-	public LevelTypeSelectView(Builder b, TreeMap<Integer, String> levelData) {
+	public LevelTypeSelectView(int highestExistingLevel) {
 		super();
-		this.levelData = levelData;
-		this.b = b;
-		viewerAndEditor = new ViewAndEditLevels(levelData);
+		this.highestExistingLevel = highestExistingLevel;
+		viewerAndEditor = new ViewAndEditLevels();
 		levelTypesAndText = new LevelTypesAndText();
 		createLevelBtn = new JButton("Create Level");
 		createBtnPanel = new JPanel();
-	
 		
 		initialize();
 		setupLayout();
 		initializeControllers();
-		setVisible(false);
 	}
 
 	/**
@@ -103,9 +109,9 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		createLevelBtn.addActionListener(new CreateLevelBtnController(b));
+		createLevelBtn.addActionListener(new CreateLevelBtnController(this));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
-			elv.addActionListener(new ExistingLevelEditController(b));
+			elv.addActionListener(new ExistingLevelEditController());
 		}
 		for (LevelTypeToggle ltt : levelTypesAndText.getLevelTypeButtons()) {
 			ltt.addActionListener(new NewLevelTypeController(this));
@@ -116,9 +122,12 @@ public class LevelTypeSelectView extends JFrame {
 		return levelTypesAndText.getTextArea();
 	}
 	
-	public void addExistingLevel (String levelType, int levelNumber){
-		viewerAndEditor.addLevel(levelType, levelNumber);
-		levelData.put(levelNumber, levelType);
+	public void setHighestExistingLevel(int newHighest) {
+		this.highestExistingLevel = newHighest;
+	}
+	
+	public int getHighestExistingLevel() {
+		return this.highestExistingLevel;
 	}
 	
 	public String getSelectedLevelType() {
