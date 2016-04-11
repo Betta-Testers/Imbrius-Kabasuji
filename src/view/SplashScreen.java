@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 public class SplashScreen extends JFrame {
-
 	/**
 	 * 
 	 */

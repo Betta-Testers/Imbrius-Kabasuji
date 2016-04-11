@@ -2,8 +2,8 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import app.Game;
+
 import view.GameExitScreen;
 
 public class QuitGameButtonController implements ActionListener{
