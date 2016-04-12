@@ -4,6 +4,12 @@ import java.awt.Color;
 
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
+
 public class testTiles extends TestCase {
 	public void testBoardTile() {
 		BoardTile bt = new BoardTile(1, 1);
