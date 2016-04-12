@@ -3,10 +3,6 @@ package model;
 import java.awt.Color;
 
 public class BoardTile extends AbstractTile{
-	int rowOnBoard;
-	int colOnBoard;
-	String tileType;
-	Color color;
 	
 	public BoardTile (int row, int col) {
 		super(row, col);

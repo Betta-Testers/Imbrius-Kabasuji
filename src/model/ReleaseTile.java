@@ -8,7 +8,6 @@ public class ReleaseTile extends BoardTile {
 	
 	public ReleaseTile(int row, int col, int value, Color cs) {
 		super(row, col);
-		this.color = Color.WHITE;
 		this.tileType = "release";
 		this.value = value;
 		this.colorSet = cs;
