@@ -9,12 +9,13 @@ import view.StarView;
 import controllers.ExitLevelButtonController;
 import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
+import model.AbstractLevelModel;
 
 public class Game {
 	SplashScreen startUp;
 	LevelSelectionView selectLevel;
-	//TODO add abstractLevelModel levels[]
-	//TODO add abstractLevelModel currentLevel
+	AbstractLevelModel levels[];
+	AbstractLevelModel currentLevel;
 	LevelView levelView;
 	GameExitScreen exitLevel;
 	
@@ -66,19 +67,8 @@ public class Game {
 		//AvailableLevelView already has an unlocklevel operation, just need to have that run with a for loop
 	}
 	
-//	void initializeLevelView(){
-//		//TODO initialize the view for levels
-//	}
-//	
-//	void initializeLevelControllers(){
-//		//TODO Add the controllers needed in the level
-//	}
-//	
-//	void initializeExitLevelScreen(){
-//		//TODO initialize the exit level screen made by EVAN
-//	}
-//	
-//	void initializeExitLevelScreenControllers(){
-//		//TODO initialize the controllers needed for the exit level screen
-//	}
+	//TODO Implement reading levels in. Needs to modify levels[] and currentLevel
+//========================== TODO: Questionable Methods to Implement ==========================//
+	void initializeLevelView(){}
+	void initializeLevelControllers(){}
 }
