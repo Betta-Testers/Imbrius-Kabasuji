@@ -39,10 +39,8 @@ public class PuzzleLevel extends AbstractLevelModel{
 	 * If the file can't be opened, the error is caught here. 
 	 * 
 	 * Method for reading: line by line through a buffer. File is closed at end of reading.
-	 *TODO might be worth returning a boolean, so that if the file is being used for editing,
-	 *a boolean can be set and methods can react properly.
 	 */
-	void loadLevel(){
+	boolean loadLevel(){
 		try{
 			FileReader fileReader = new FileReader(sourceFile);
 			BufferedReader br = new BufferedReader(fileReader);
@@ -56,6 +54,7 @@ public class PuzzleLevel extends AbstractLevelModel{
 		}catch (IOException e){//Catch exception if any
 			System.err.println("Error: " + e.getMessage());
 		}
+		return true; //TODO replace this
 	}
 
 	@Override
@@ -76,11 +75,13 @@ public class PuzzleLevel extends AbstractLevelModel{
 		return false;
 	}
 
-
 	@Override
 	void updateProgress() {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public void adjustTileCount(int delta){
+		
+	}
 }

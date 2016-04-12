@@ -14,14 +14,23 @@ public abstract class AbstractLevelModel {
 	/**LevelType is a string telling the model what type this level is. It avoids instanceOf checks!**/
 	final String levelType;
 	
-	/**The starsEarned for a level is an integer 0-3, tracking the best progress thus far on that level**/
+	/**The starsEarned for a level is an integer 0-3, tracking the progress thus far on an attempt at this level**/
 	int starsEarned;
+	
+	/**The most amount of stars a player has earned for this level - the value read in from file**/
+	int maxStarsEarned;
 	
 	/**isLocked is a boolean value telling the model that this level is not yet available to be played**/
 	boolean isLocked;
 	
 	/**CanMovePiece is a boolean value telling the level if pieces can be moved on the board or not**/
 	final boolean canMovePiece;
+	
+	/**The Bullpen that is associated with this level**/
+	//TODO Add Attribute: Bullpen bullpen;
+	
+	/**The Board that is associated with this level**/
+	//TODO Add Attribute: Board board;
 	
 	/**sourceFile is the file on disk associated with THIS level. If execution has reached this phase, this file
 	 * ALWAYS exists - builder or player. Why? Because the Game class is in charge of loading the levels at launch
@@ -60,12 +69,13 @@ public abstract class AbstractLevelModel {
 	 * this method saves the state of the entire level and overwrites any existing level. (Aka: Don't use append mode!)**/
 	abstract boolean saveLevelToFile();
 	
-	/*TODO might be worth returning a boolean, so that if the file is being used for editing,
-	 *a boolean can be set and methods can react properly.
-	 */
-	/**loadLevel is a helper method for each subclasses' constructor to read in the current state of a level. This method
-	 * has to handle reading in an empty file (Aka: making a new level in the Builder)**/
-	abstract void loadLevel();
+	 /*TODO Set maxStarsEarned
+	  *TODO Read in the board and bullpen, store it here.
+	  */
+	/**loadLevel is a helper method for each subclasses' constructor to read in the current state of a level. If the file opened
+	 * is empty, loadLevel() returns false - indicating it could not read in all data and that the fields of a level needs to be 
+	 * initialized for the Builder. This method should NEVER return false for the Player, only Builder!**/
+	abstract boolean loadLevel();
 	
 	
 }
