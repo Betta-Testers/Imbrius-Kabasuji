@@ -5,6 +5,12 @@ import java.awt.event.ActionEvent;
 import view.LevelTypeSelectView;
 import view.LevelTypeToggle;
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
+
 public class NewLevelTypeController implements java.awt.event.ActionListener {
 	String newLevelType;
 	LevelTypeToggle clickSource;

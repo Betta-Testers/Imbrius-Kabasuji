@@ -2,6 +2,12 @@ package model;
 
 import java.awt.Color;
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
+
 public class ReleaseTile extends BoardTile {
 	int value;
 	Color colorSet;

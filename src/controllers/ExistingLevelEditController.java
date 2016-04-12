@@ -6,6 +6,12 @@ import view.ExistingLevelView;
 
 import app.Builder;
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
+
 public class ExistingLevelEditController implements java.awt.event.ActionListener {
 	Builder b;
 	

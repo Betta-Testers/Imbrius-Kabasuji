@@ -2,6 +2,12 @@ package model;
 
 import java.awt.Color;
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
+
 public class EmptyTile extends AbstractTile {
 
 	public EmptyTile(int row, int col) {

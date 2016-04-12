@@ -2,6 +2,12 @@ package model;
 
 import java.awt.Color;
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
+
 public class BoardTile extends AbstractTile{
 	/**
 	 * Create a BoardTile at the specified location on the board

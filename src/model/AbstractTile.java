@@ -2,6 +2,12 @@ package model;
 
 import java.awt.Color;
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
+
 public abstract class AbstractTile {
 	int rowOnBoard;
 	int colOnBoard;

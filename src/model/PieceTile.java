@@ -2,6 +2,12 @@ package model;
 
 import java.awt.Color;
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
+
 public class PieceTile extends AbstractTile {
 	//Piece piece;
 	int colInPiece;
