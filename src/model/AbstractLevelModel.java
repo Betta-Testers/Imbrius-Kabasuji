@@ -1,9 +1,6 @@
 package model;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 /** An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
@@ -44,19 +41,29 @@ public abstract class AbstractLevelModel {
 		this.canMovePiece = canMovePiece;	
 	}
 	
-	
+	/**isComplete is the method capable of telling anyone who asks if the current level is done or not.
+	 * That means specifying if the player has FAILED the level. A followUp method, hasWon() extends this
+	 * functionality.
+	 */
 	abstract boolean isComplete();
 	
-	//Player Save Method - Boolean is to tell if file could not be opened
+	/**hasWon tells the requester if the level was WON (true) or LOST (false). This is different from
+	 * isComplete(), because isComplete() does not specify how the level ended, only IF it has eneded.**/
+	abstract boolean hasWon();
+	
+	/**saveProgressInFile is used in the Player side of Kabasuji. If the player earns a star, that progress
+	 * must be saved. This method does that.**/
 	abstract boolean saveProgressInFile();
 	
-	//Builder Save Method - Boolean is to tell if file could not be opened
-	//When editing, overwrite old file.
+	/**saveLevelToFile is used in the Builder side of Kabasuji. When the builder saves the level being built
+	 * this method saves the state of the entire level and overwrites any existing level. (Aka: Don't use append mode!)**/
 	abstract boolean saveLevelToFile();
 	
 	/*TODO might be worth returning a boolean, so that if the file is being used for editing,
 	 *a boolean can be set and methods can react properly.
 	 */
+	/**loadLevel is a helper method for each subclasses' constructor to read in the current state of a level. This method
+	 * has to handle reading in an empty file (Aka: making a new level in the Builder)**/
 	abstract void loadLevel();
 	
 	

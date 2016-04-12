@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/** An AbstractLevelModel class determines what kind of information all three types of 
+ * levels should store inside of them and the kinds of functionality they should have.
+ * @author Dylan
+ */
 public class ReleaseLevel extends AbstractLevelModel{
 
 	ReleaseLevel(File sourceFile, int levelID) {
@@ -12,24 +16,6 @@ public class ReleaseLevel extends AbstractLevelModel{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	boolean isComplete() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	boolean saveProgressInFile() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	boolean saveLevelToFile() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	/**LoadLevel is a helper method to the constructor. On instantiation, it will attempt to
 	 * read any data about the level it can in. If nothing is found inside the file, then no 
 	 * fields are set and it's apparent the level is being CREATED in the BUILDER. Setters will 
@@ -55,6 +41,30 @@ public class ReleaseLevel extends AbstractLevelModel{
 		}catch (IOException e){//Catch exception if any
 			System.err.println("Error: " + e.getMessage());
 		}
+	}	
+
+	@Override
+	boolean saveProgressInFile() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	boolean saveLevelToFile() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	boolean isComplete() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	boolean hasWon() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -5,7 +5,18 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/** A PuzzleLevel is the model class backing to the puzzle gamemode. Information
+ * relevant to the puzzle mode is stored here.
+ * 
+ * The attributes tracking End Conditions: 
+ * 		moveLimit -> The maximum allowed moves for the level
+ * 		movesMade -> The current number of moves made
+ * 		tilesLeft -> The number of tiles left to be covered in the level
+ * 
+ * @author Dylan
+ */
 public class PuzzleLevel extends AbstractLevelModel{
+	
 
 	PuzzleLevel(File sourceFile, int levelID) {
 		super(sourceFile, levelID, "Puzzle", true);
@@ -13,23 +24,6 @@ public class PuzzleLevel extends AbstractLevelModel{
 	}
 
 	@Override
-	boolean isComplete() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	boolean saveProgressInFile() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	boolean saveLevelToFile() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	/**LoadLevel is a helper method to the constructor. On instantiation, it will attempt to
 	 * read any data about the level it can in. If nothing is found inside the file, then no 
 	 * fields are set and it's apparent the level is being CREATED in the BUILDER. Setters will 
@@ -55,5 +49,29 @@ public class PuzzleLevel extends AbstractLevelModel{
 		}catch (IOException e){//Catch exception if any
 			System.err.println("Error: " + e.getMessage());
 		}
+	}
+
+	@Override
+	boolean saveProgressInFile() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	boolean saveLevelToFile() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	boolean isComplete() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	boolean hasWon() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
