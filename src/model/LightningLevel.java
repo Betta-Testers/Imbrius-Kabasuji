@@ -5,7 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-/** An AbstractLevelModel class determines what kind of information all three types of 
+/** 
+ * An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
  * @author Dylan
  */
@@ -20,7 +21,8 @@ public class LightningLevel extends AbstractLevelModel{
 		// TODO Auto-generated constructor stub
 	}
 
-	/**LoadLevel is a helper method to the constructor. On instantiation, it will attempt to
+	/**
+	 * LoadLevel is a helper method to the constructor. On instantiation, it will attempt to
 	 * read any data about the level it can in. If nothing is found inside the file, then no 
 	 * fields are set and it's apparent the level is being CREATED in the BUILDER. Setters will 
 	 * handle the rest from here out in that case.
@@ -59,7 +61,8 @@ public class LightningLevel extends AbstractLevelModel{
 	}
 	
 
-	/** A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
+	/** 
+	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
 	 * has achieved the most they can.
 	 * 
 	 * OR
@@ -75,7 +78,8 @@ public class LightningLevel extends AbstractLevelModel{
 		return false;
 	}
 
-	/**updateProgress occurs after every move is made. This updates the stars earned for the current level if
+	/**
+	 * updateProgress occurs after every move is made. This updates the stars earned for the current level if
 	 * the number of marked tiles is equal to the thresholds. The starsEarned is set rather than incremented
 	 * to prevent duplicate triggers of the same threshold. (Ie place a piece that marks all but 12 tiles and
 	 * the place another piece that marks all but 8 tiles. That would increment twice - not wanted).

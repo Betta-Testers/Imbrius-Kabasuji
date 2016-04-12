@@ -5,7 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-/** A PuzzleLevel is the model class backing to the puzzle gamemode. Information
+/** 
+ * A PuzzleLevel is the model class backing to the puzzle gamemode. Information
  * relevant to the puzzle mode is stored here.
  * 
  * The attributes tracking End Conditions: 
@@ -30,8 +31,9 @@ public class PuzzleLevel extends AbstractLevelModel{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	/**LoadLevel is a helper method to the constructor. On instantiation, it will attempt to
+	
+	/**
+	 * LoadLevel is a helper method to the constructor. On instantiation, it will attempt to
 	 * read any data about the level it can in. If nothing is found inside the file, then no 
 	 * fields are set and it's apparent the level is being CREATED in the BUILDER. Setters will 
 	 * handle the rest from here out in that case.
@@ -40,6 +42,7 @@ public class PuzzleLevel extends AbstractLevelModel{
 	 * 
 	 * Method for reading: line by line through a buffer. File is closed at end of reading.
 	 */
+	@Override
 	boolean loadLevel(){
 		try{
 			FileReader fileReader = new FileReader(sourceFile);
@@ -69,7 +72,8 @@ public class PuzzleLevel extends AbstractLevelModel{
 		return false;
 	}
 
-	/** A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
+	/** 
+	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
 	 * has achieved the most they can.
 	 * 
 	 * OR
@@ -85,7 +89,8 @@ public class PuzzleLevel extends AbstractLevelModel{
 		return false;
 	}
 
-	/**updateProgress occurs after every move is made. This updates the stars earned for the current level if
+	/**
+	 * updateProgress occurs after every move is made. This updates the stars earned for the current level if
 	 * the number of tiles left uncovered on the board is remaining is 0/6/12. The starsEarned is set rather than incremented
 	 * to prevent duplicate triggers of the same threshold (Since you can moves a piece off a board and back onto it).
 	 * 
@@ -120,7 +125,7 @@ public class PuzzleLevel extends AbstractLevelModel{
 	}
 	
 	/**
-	 * AdjustTileCount takes in a detla and offsets the tilesLeft to be converted on the board
+	 * AdjustTileCount takes in a delta and offsets the tilesLeft to be converted on the board
 	 * by that amount. The ultimate goal is to get the tilesLeft value to 0.
 	 * @param delta A positive or negative integer representing the number of tiles a piece is replacing the board
 	 * This value is *anticipated* to always be +- 6
