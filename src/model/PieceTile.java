@@ -1,9 +1,13 @@
 package model;
 
-public class PieceTile extends BoardTile {
+import java.awt.Color;
 
-	public PieceTile() {
-		// TODO Auto-generated constructor stub
+public class PieceTile extends AbstractTile {
+
+	public PieceTile(int row, int col, Color c) {
+		super(row, col);
+		this.color = c;
+		this.tileType = "piece";
 	}
 
 }

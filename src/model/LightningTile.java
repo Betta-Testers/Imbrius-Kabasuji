@@ -1,9 +1,13 @@
 package model;
 
-public class LightningTile extends BoardTile {
+import java.awt.Color;
 
-	public LightningTile() {
-		// TODO Auto-generated constructor stub
+public class LightningTile extends AbstractTile {
+
+	public LightningTile(int row, int col) {
+		super(row, col);
+		this.color = Color.GREEN;
+		this.tileType = "lightning";
 	}
 
 }

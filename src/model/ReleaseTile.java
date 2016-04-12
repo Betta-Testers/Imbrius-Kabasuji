@@ -1,9 +1,25 @@
 package model;
 
-public class ReleaseTile extends BoardTile {
+import java.awt.Color;
 
-	public ReleaseTile() {
-		// TODO Auto-generated constructor stub
+public class ReleaseTile extends BoardTile {
+	int value;
+	Color colorSet;
+	
+	public ReleaseTile(int row, int col, int value, Color cs) {
+		super(row, col);
+		this.color = Color.WHITE;
+		this.tileType = "release";
+		this.value = value;
+		this.colorSet = cs;
+	}
+	
+	public Color getColorSet () {
+		return this.colorSet;
+	}
+	
+	public int getNumber() {
+		return this.value;
 	}
 
 }

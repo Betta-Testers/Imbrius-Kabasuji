@@ -1,9 +1,13 @@
 package model;
 
-public class EmptyTile extends BoardTile {
+import java.awt.Color;
 
-	public EmptyTile() {
+public class EmptyTile extends AbstractTile {
+
+	public EmptyTile(int row, int col) {
+		super(row, col);
+		this.color = Color.LIGHT_GRAY;
+		this.tileType = "empty";
 		// TODO Auto-generated constructor stub
 	}
-
 }
