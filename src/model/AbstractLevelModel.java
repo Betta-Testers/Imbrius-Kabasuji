@@ -31,17 +31,19 @@ public abstract class AbstractLevelModel {
 	 * and the Builder class is will create a placeholder file for the level if it's creating a new level!
 	 * TODO Verify if this is the 
 	 **/
-	File sourceFile;
+	final File sourceFile;
 
 	/**You CANNOT instantiate an AbstractLevelModel. This constructor is here so you can super() set the 
 	 * final fields within the subclasses. Otherwise, these fields would have a hard time being set AND
 	 * being final!
 	 **/
-	AbstractLevelModel(int levelID, String levelType, boolean canMovePiece){
+	AbstractLevelModel(File sourceFile, int levelID, String levelType, boolean canMovePiece){
+		this.sourceFile = sourceFile;
 		this.levelID = levelID;
 		this.levelType = levelType;
-		this.canMovePiece = canMovePiece;
+		this.canMovePiece = canMovePiece;	
 	}
+	
 	
 	abstract boolean isComplete();
 	
@@ -52,27 +54,12 @@ public abstract class AbstractLevelModel {
 	//When editing, overwrite old file.
 	abstract boolean saveLevelToFile();
 	
-	/**
-	 * Method capable of opening the given file and reading it line by
-	 * line through a buffer, after which closing the file. Use this method
-	 * to read in a level and set the properties of it.
-	 * @param FileName
+	/*TODO might be worth returning a boolean, so that if the file is being used for editing,
+	 *a boolean can be set and methods can react properly.
 	 */
-	public void loadLevel(String fileName){
-		try{
-			FileReader levelFile = new FileReader(fileName);
-			BufferedReader br = new BufferedReader(levelFile);
-			String strLine;
-			while ((strLine = br.readLine()) != null)   {
-				//Read the file LINE by LINE and do something with each line
-				strLine.length(); //Do something with strLine...
-			}
-			//End Of File Reached, Close the file
-			levelFile.close();
-		}catch (IOException e){//Catch exception if any
-			System.err.println("Error: " + e.getMessage());
-		}
-	}
+	abstract void loadLevel();
+	
+	
 }
 
 
