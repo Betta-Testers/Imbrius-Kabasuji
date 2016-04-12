@@ -8,6 +8,5 @@ public class EmptyTile extends AbstractTile {
 		super(row, col);
 		this.color = Color.LIGHT_GRAY;
 		this.tileType = "empty";
-		// TODO Auto-generated constructor stub
 	}
 }
