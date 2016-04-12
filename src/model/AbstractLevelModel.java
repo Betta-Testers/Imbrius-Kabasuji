@@ -41,15 +41,16 @@ public abstract class AbstractLevelModel {
 		this.canMovePiece = canMovePiece;	
 	}
 	
-	/**isComplete is the method capable of telling anyone who asks if the current level is done or not.
-	 * That means specifying if the player has FAILED the level. A followUp method, hasWon() extends this
-	 * functionality.
+	/**updateProgress occurs after every move is made. This updates the current state of play in the level, such as
+	 * the movesMade, how many tiles have been covered, etc. Because of this, updateProgress can also trigger 
+	 * saveProgressToFile() when a star threshold has been earned. 
 	 */
-	abstract boolean isComplete();
+	abstract void updateProgress();
 	
-	/**hasWon tells the requester if the level was WON (true) or LOST (false). This is different from
-	 * isComplete(), because isComplete() does not specify how the level ended, only IF it has eneded.**/
-	abstract boolean hasWon();
+	/**isComplete() returns a boolean describing if the player has finished the level or not. 
+	 * It's a matter of are they out of moves/pieces/time OR did they earn 3 stars.**/
+	abstract boolean isComplete();
+
 	
 	/**saveProgressInFile is used in the Player side of Kabasuji. If the player earns a star, that progress
 	 * must be saved. This method does that.**/

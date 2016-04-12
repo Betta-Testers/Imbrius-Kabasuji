@@ -16,7 +16,14 @@ import java.io.IOException;
  * @author Dylan
  */
 public class PuzzleLevel extends AbstractLevelModel{
+	/**The moveLimit is the maximum number of moves THIS level allows to be made**/
+	int moveLimit;
 	
+	/**The movesMade is the number of moves a player has made on THIS level**/
+	int movesMade;
+	
+	/**The tilesLeft is the number of tiles left for the player to cover on THIS level**/
+	int tilesLeft;
 
 	PuzzleLevel(File sourceFile, int levelID) {
 		super(sourceFile, levelID, "Puzzle", true);
@@ -68,10 +75,12 @@ public class PuzzleLevel extends AbstractLevelModel{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
+
 	@Override
-	boolean hasWon() {
+	void updateProgress() {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
+
 }

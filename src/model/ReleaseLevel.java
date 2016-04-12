@@ -60,11 +60,11 @@ public class ReleaseLevel extends AbstractLevelModel{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	@Override
-	boolean hasWon() {
+	void updateProgress() {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 }

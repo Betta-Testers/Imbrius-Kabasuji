@@ -60,9 +60,10 @@ public class LightningLevel extends AbstractLevelModel{
 		return false;
 	}
 
+
 	@Override
-	boolean hasWon() {
+	void updateProgress() {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 }
