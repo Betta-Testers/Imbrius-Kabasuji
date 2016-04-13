@@ -22,7 +22,7 @@ public class ReleaseLevel extends AbstractLevelModel{
 	int totalYellows;
 	int totalBlues;
 
-	ReleaseLevel(int levelID) {
+	public ReleaseLevel(int levelID) {
 		super(levelID, "Release", false);
 		// TODO Auto-generated constructor stub
 	}

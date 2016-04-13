@@ -16,7 +16,7 @@ public class LightningLevel extends AbstractLevelModel{
 	int unmarkedTiles;
 	int piecesToGen;
 
-	LightningLevel(int levelID) {
+	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
 		// TODO Auto-generated constructor stub
 	}
