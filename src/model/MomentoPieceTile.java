@@ -1,4 +1,4 @@
-package model.momento;
+package model;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Records the state of a hint tile for for persistent storage.
  * @author Dylan
  */
-public class ReleaseMomento implements Serializable{
+public class MomentoPieceTile implements Serializable{
 
 	/**
 	 * Unique tag for momentos of this type on disk
@@ -19,7 +19,7 @@ public class ReleaseMomento implements Serializable{
 	 * reconstituted. 
 	 * @param
 	 */
-	public ReleaseMomento() {
+	public MomentoPieceTile() {
 
 	}
 }
