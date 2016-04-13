@@ -15,7 +15,7 @@ public class MainBuilder {
 			public void run() {
 				try {
 					/** The directory where files are saved and loaded from**/
-					final String defaultDirectory = "imbriusLevelFiles";
+					final String defaultDirectory = "./imbriusLevelFiles/";
 					
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					

@@ -104,7 +104,7 @@ public class Builder {
 	public void saveLevel(){
 		ObjectOutputStream oos = null;
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(defaultDirectory));
+			oos = new ObjectOutputStream(new FileOutputStream(defaultDirectory+buildingLevel.+"_"+));
 			oos.writeObject(buildingLevel);
 		} catch (Exception e) {
 			System.err.println("Unable to store state:" + e.getMessage());
