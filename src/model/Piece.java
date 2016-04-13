@@ -2,13 +2,15 @@ package model;
 
 import java.awt.Color;
 
+
+/*
+ * @author ejbosia
+ */
+
 public class Piece {
 	
 	/*
 	 * TO DO
-	 * 
-	 * add toString for saving - look at group meeting notes 4/12
-	 * add pieces based off of IDs
 	 * add methods that takes in string and returns object with those values
 	 */
 	
@@ -25,9 +27,17 @@ public class Piece {
 		generatePiece(ID);
 	}
 	
-	//PieceTile getOrigin(){
-	//	return origin;
-	//}
+	
+	/**
+	 * Method used to break down Piece into a for saving
+	 * @param none
+	 */
+	public String toString(){
+		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
+				tiles[3].toString() + "," + tiles[4].toString() + "," + tiles[5].toString() + "," +
+				ID + "," + origin.toString() + "," + color.toString();
+	}
+	
 	
 	int getID(){
 		return ID;
@@ -61,14 +71,27 @@ public class Piece {
 		return origin.rowInPiece;
 	}
 	
+	/**
+	 * Method used to get the column location of the origin
+	 * @return int
+	 */
 	int getOriginCol(){
 		return origin.colInPiece;
 	}
 	
+	/**
+	 * Method used to set the origin of the piece
+	 * @param PieceTile
+	 */
 	void setOrigin(PieceTile origin){
 		this.origin = origin;
 	}
 	
+	/**
+	 * Method used for generating the correct tile placement of the piece given its ID
+	 * @param int
+	 * @throws RuntimeException
+	 */
 	protected void generatePiece(int ID) throws RuntimeException{
 		switch(ID){
 		case 0:
