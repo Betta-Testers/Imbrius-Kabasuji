@@ -50,7 +50,9 @@ public class LightningLevel extends AbstractLevelModel{
 
 	@Override
 	boolean saveProgressInFile() {
-		// TODO Auto-generated method stub
+		if(starsEarned > maxStarsEarned){
+			//save starsEarned instead of maxStarsEarned
+		}
 		return false;
 	}
 
@@ -99,10 +101,6 @@ public class LightningLevel extends AbstractLevelModel{
 		
 		if(unmarkedTiles == 0){
 			starsEarned = 3;
-		}
-		
-		if(starsEarned > maxStarsEarned){
-			saveProgressInFile();
 		}
 	}
 	

@@ -57,13 +57,16 @@ public class ReleaseLevel extends AbstractLevelModel{
 
 	@Override
 	boolean saveProgressInFile() {
-		// TODO Auto-generated method stub
+		if(starsEarned > maxStarsEarned){
+			//save starsEarned instead of maxStarsEarned
+		}
 		return false;
 	}
 
 	@Override
 	boolean saveLevelToFile() {
-		// TODO Auto-generated method stub
+		
+		
 		return false;
 	}
 
@@ -105,10 +108,6 @@ public class ReleaseLevel extends AbstractLevelModel{
 		
 		if(yellows.size() == totalYellows){
 			starsEarned++;
-		}
-		
-		if(starsEarned > maxStarsEarned){
-			saveProgressInFile();
 		}
 	}
 	

@@ -62,7 +62,9 @@ public class PuzzleLevel extends AbstractLevelModel{
 
 	@Override
 	boolean saveProgressInFile() {
-		// TODO Auto-generated method stub
+		if(starsEarned > maxStarsEarned){
+			//save starsEarned instead of maxStarsEarned
+		}
 		return false;
 	}
 
@@ -115,12 +117,6 @@ public class PuzzleLevel extends AbstractLevelModel{
 				break;
 			default:
 				starsEarned = 0;
-		}
-		
-		//TODO This line is now in the wrong place. If a player drops their total stars earned during play, but exceeded their best at one point, this would be an
-		//in accurate reflection of their actual performance
-		if(starsEarned > maxStarsEarned){
-			saveProgressInFile();
 		}
 	}
 	
