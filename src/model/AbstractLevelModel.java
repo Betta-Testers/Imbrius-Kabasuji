@@ -65,6 +65,21 @@ public abstract class AbstractLevelModel {
 	 * It's a matter of are they out of moves/pieces/time OR did they earn 3 stars.**/
 	abstract boolean isComplete();
 
+	/**
+	 * Returns the ID of the level
+	 * @return levelID - Integer
+	 */
+	public int getID(){
+		return levelID;
+	}
+	
+	/**
+	 * Returns the type of the level
+	 * @return levelType - String version of level: Puzzle, Release, or Lightning
+	 */
+	public String getType(){
+		return levelType;
+	}
 	
 	/**
 	 * saveProgressInFile is used in the Player side of Kabasuji. If the player earns a star, that progress

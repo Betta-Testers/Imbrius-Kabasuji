@@ -102,9 +102,11 @@ public class Builder {
 	}
 	
 	public void saveLevel(){
+		//Get the ID
+		//Get the levelType from buildingLevel
 		ObjectOutputStream oos = null;
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(defaultDirectory+buildingLevel.+"_"+));
+			oos = new ObjectOutputStream(new FileOutputStream(defaultDirectory+buildingLevel.getID()+"_"+buildingLevel.getType()));
 			oos.writeObject(buildingLevel);
 		} catch (Exception e) {
 			System.err.println("Unable to store state:" + e.getMessage());

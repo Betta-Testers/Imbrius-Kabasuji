@@ -35,10 +35,9 @@ Software engineering game about Hexominoes
 
 ## A Few Todos
 * <b>Serialization</b>
-   * HintTile, ReleaseTile, BoardTile, LightningTile, Empty Tile, PieceTile
-   * Bullpen
-      * [ ] I need to be able to getID() and getCount() from each pieceGroup
-   * Board
-   * Lighting, Release, Puzzle
-      * [ ] Implemenent restoreMomento(Momento m) methods in every class
-      * [ ] Implement momento getState() methods in every class
+   * Make everything serializeable
+   * Mark unwanted fields transient inside each entity
+   * Write the saveLevel and loadLevel functionality in the Builder and Game classes
+* <b>BuilderView</b>
+   * Correct the ReleaseTileCreationView to show the spinner (Something wonky is up)
+   * Push that change to master so others can grab it
