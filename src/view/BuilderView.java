@@ -56,6 +56,7 @@ public class BuilderView extends JFrame {
 	 */
 	public void setModelLevel(AbstractLevelModel m){
 		modelLevel = m;
+		levelPropertyView.setLevelModel(m);
 	}
 	
 	
