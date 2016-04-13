@@ -9,6 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+
+import controllers.SetNumberOfMovesSpinnerController;
+import model.AbstractLevelModel;
+import model.PuzzleLevel;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -27,6 +32,7 @@ public class LevelPropertiesView extends JPanel{
 	JSpinner spinMoves;
 	JSpinner spinTime;
 	JSpinner spinPieceCt;
+	AbstractLevelModel levelModel;
 	
 	public LevelPropertiesView(){
 		setPreferredSize(new Dimension(120, 120));
@@ -83,6 +89,7 @@ public class LevelPropertiesView extends JPanel{
 		spinPieceCt.setVisible(false);
 		lblSetTime.setVisible(false);
 		spinTime.setVisible(false);
+		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel)levelModel, spinMoves));
 	}
 	
 	/**
@@ -96,6 +103,10 @@ public class LevelPropertiesView extends JPanel{
 		spinMoves.setVisible(false);
 		lblSetTime.setVisible(false);
 		spinTime.setVisible(false);
+	}
+	
+	public void setLevelModel(AbstractLevelModel levelModel) {
+		this.levelModel = levelModel;
 	}
 	
 	private void setupLayout(){
