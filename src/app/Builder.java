@@ -12,11 +12,19 @@ import model.AbstractLevelModel;
 import view.LevelTypeSelectView;
 
 public class Builder {
+	/**Directory specified in main for storing and loading files**/
 	String defaultDirectory;
 	
+	/**The LevelTypeSelectionView to select the type of level the builder wants to make**/
 	LevelTypeSelectView ltsv;
+	
+	/**The BuilderView, for displaying the level once the builder has choosen to edit/create a level**/
 	BuilderView bv;
+	
+	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
 	TreeMap<Integer, String> levelData;
+	
+	/**The current level being built or edited**/
 	AbstractLevelModel buildingLevel;
 
 	Builder(String defaultDirectory){
@@ -101,19 +109,27 @@ public class Builder {
 		}
 	}
 	
+	/**
+	 * Saves the level being edited to disk. If the level is not already in levelData, it is
+	 * then added to levelData.
+	 */
 	public void saveLevel(){
-		//Get the ID
-		//Get the levelType from buildingLevel
+		int id = buildingLevel.getID();
+		String type = buildingLevel.getType();
 		ObjectOutputStream oos = null;
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(defaultDirectory+buildingLevel.getID()+"_"+buildingLevel.getType()));
+			oos = new ObjectOutputStream(new FileOutputStream(defaultDirectory+id+"_"+type));
 			oos.writeObject(buildingLevel);
 		} catch (Exception e) {
-			System.err.println("Unable to store state:" + e.getMessage());
+			System.err.println("Unable to save the level:" + e.getMessage());
 		}
 		
 		if (oos != null) {
 			try { oos.close(); } catch (IOException ioe) { } 
+		}
+		
+		if(id > levelData.lastKey()){
+			levelData.put(id, type);
 		}
 	}
 	
