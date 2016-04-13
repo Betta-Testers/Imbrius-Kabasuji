@@ -16,6 +16,13 @@ import java.io.IOException;
  * 
  * @author Dylan
  */
+
+/***************************************************************
+ * 			TODO GO LOOK AT LAUNCHWORDMAP in WORDMAP. 
+ * 			TODO LOOK AT BOARD IN WORDMAP 
+ ***************************************************************/
+
+
 public class PuzzleLevel extends AbstractLevelModel{
 	/**The moveLimit is the maximum number of moves THIS level allows to be made**/
 	int moveLimit;
@@ -68,6 +75,9 @@ public class PuzzleLevel extends AbstractLevelModel{
 		return false;
 	}
 
+	/**
+	 * saveLevelToFile is used in the Builder side of Kabasuji. When the builder saves the level being built
+	 * this method saves the state of the entire level and overwrites any existing level. (Aka: Don't use append mode!)**/
 	@Override
 	boolean saveLevelToFile() {
 		// TODO Auto-generated method stub

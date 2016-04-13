@@ -37,7 +37,7 @@ public abstract class AbstractLevelModel {
 	 * sourceFile is the file on disk associated with THIS level. If execution has reached this phase, this file
 	 * ALWAYS exists - builder or player. Why? Because the Game class is in charge of loading the levels at launch
 	 * and the Builder class is will create a placeholder file for the level if it's creating a new level!
-	 * TODO Verify if this is the 
+	 * TODO Use SourceFile to open the FileReaderStream and then pass into ObjectInputStream.
 	 **/
 	final File sourceFile;
 
