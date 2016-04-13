@@ -10,15 +10,16 @@ import javax.swing.event.ChangeListener;
 import model.AbstractLevelModel;
 import model.PuzzleLevel;
 import view.BuilderView;
+import view.LevelPropertiesView;
 
 /**
  * @author hejohnson
  *
  */
 public class SetNumberOfMovesSpinnerController implements ChangeListener {
-	PuzzleLevel levelModel;
-	public SetNumberOfMovesSpinnerController(PuzzleLevel levelModel) {
-		this.levelModel = levelModel;
+	LevelPropertiesView levelPropView;
+	public SetNumberOfMovesSpinnerController(LevelPropertiesView levelPropView) {
+		this.levelPropView = levelPropView;
 	}
 	
 	public void stateChanged(ChangeEvent ce) {
@@ -28,6 +29,7 @@ public class SetNumberOfMovesSpinnerController implements ChangeListener {
 			numberMovesSpinner.setValue(0);
 		}
 		int moves = (int) numberMovesSpinner.getValue();
+		PuzzleLevel levelModel = (PuzzleLevel)levelPropView.getLevelModel();
 		levelModel.setNumberMoves(moves);
 	}
 }

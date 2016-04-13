@@ -61,6 +61,7 @@ public class LevelPropertiesView extends JPanel{
 		lblSetTime.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		spinMoves.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController(this));
 		spinTime.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		
 		setupLayout();
@@ -152,8 +153,8 @@ public class LevelPropertiesView extends JPanel{
 		this.setLayout(groupLayout);
 	}
 	
-	public JSpinner getMoveSpinner() {
-		return spinMoves;
+	public AbstractLevelModel getLevelModel() {
+		return levelModel;
 	}
 
 }

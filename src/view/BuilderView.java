@@ -70,7 +70,6 @@ public class BuilderView extends JFrame {
 	public void prepPuzzle(){
 		releaseNumberView.setVisible(false);
 		levelPropertyView.puzzle();	
-		levelPropertyView.getMoveSpinner().addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel) modelLevel));
 	}
 	
 	/**
