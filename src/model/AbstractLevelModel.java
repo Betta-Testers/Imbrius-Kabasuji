@@ -31,10 +31,10 @@ public abstract class AbstractLevelModel implements Serializable {
 	final boolean canMovePiece;
 	
 	/**The Bullpen that is associated with this level**/
-	//TODO Add Attribute: Bullpen bullpen;
+	Bullpen bullpen;
 	
 	/**The Board that is associated with this level**/
-	//TODO Add Attribute: Board board;
+	Board board;
 
 	/**
 	 * You CANNOT instantiate an AbstractLevelModel. This constructor is here so you can super() set the 
@@ -74,16 +74,6 @@ public abstract class AbstractLevelModel implements Serializable {
 	public String getType(){
 		return levelType;
 	}
-	
-	/**
-	 * saveProgressInFile is used in the Player side of Kabasuji. If the player earns a star, that progress
-	 * must be saved. This method does that.**/
-	abstract boolean saveProgressInFile();
-	
-	/**
-	 * saveLevelToFile is used in the Builder side of Kabasuji. When the builder saves the level being built
-	 * this method saves the state of the entire level and overwrites any existing level. (Aka: Don't use append mode!)**/
-	abstract boolean saveLevelToFile();
 	
 	 //TODO Set maxStarsEarned
 	 //TODO Read in the board and bullpen, store it here.

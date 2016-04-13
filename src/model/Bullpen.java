@@ -76,4 +76,9 @@ public class Bullpen {
 	public Piece getSelectedPiece() {
 		return this.selectedPiece;
 	}
+
+	public boolean empty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

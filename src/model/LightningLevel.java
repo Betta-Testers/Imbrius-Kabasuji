@@ -9,38 +9,28 @@ public class LightningLevel extends AbstractLevelModel{
 	/**Serialized ID used for writing to disk**/
 	private static final long serialVersionUID = 407028463108073009L;
 	
+	/**Total time the level has to be played, in seconds**/
 	int totalTime;
-	int timeLeft;
-	int unmarkedTiles;
+	
+	/**Time remaining in current level. This value is transient.**/
+	transient int timeLeft;
+	
+	/**Number of tiles unmarked in the current attempt. This value is transient**/
+	transient int unmarkedTiles;
+	
+	/**Overall size of the bullpen for this level**/
 	int piecesToGen;
 
 	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	boolean saveProgressInFile() {
-		if(starsEarned > maxStarsEarned){
-			//save starsEarned instead of maxStarsEarned
-		}
-		return false;
-	}
-
-	@Override
-	boolean saveLevelToFile() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
+	}	
 
 	/** 
 	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
 	 * has achieved the most they can.
-	 * 
 	 * OR
-	 * 
 	 * The player is out of time. 
+	 * @return true if the level is done.
 	 */
 	@Override
 	boolean isComplete() {

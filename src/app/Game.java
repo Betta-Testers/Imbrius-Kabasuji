@@ -23,6 +23,7 @@ public class Game {
 		this.initialize();
 	}
 	
+	//TODO GAME NEEDS TO SAVE PROGRESS OF LEVEL EVERYTIME YOU GET A STAR
 	void initialize(){
 		this.initializeView();
 		this.initializeControllers();
