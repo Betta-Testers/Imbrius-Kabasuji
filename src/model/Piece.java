@@ -21,9 +21,8 @@ public class Piece {
 	int ID;
 	PieceTile origin;
 	Color color;
-	public Piece(int ID, Color color){
+	public Piece(int ID){
 		this.ID = ID;
-		this.color = color;
 		generatePiece(ID);
 	}
 	
