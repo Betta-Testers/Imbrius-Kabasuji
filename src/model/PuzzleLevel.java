@@ -12,11 +12,6 @@ package model;
  * @author Dylan
  */
 
-/***************************************************************
- * 			TODO GO LOOK AT LAUNCHWORDMAP in WORDMAP. 
- * 			TODO LOOK AT BOARD IN WORDMAP 
- ***************************************************************/
-
 
 public class PuzzleLevel extends AbstractLevelModel{
 	/**Serialized ID used for writing file to disk**/

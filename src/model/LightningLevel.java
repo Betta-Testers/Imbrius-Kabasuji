@@ -1,8 +1,8 @@
 package model;
 
 /** 
- * An AbstractLevelModel class determines what kind of information all three types of 
- * levels should store inside of them and the kinds of functionality they should have.
+ * A LightningLevel handles the back end for a Lightning game mode, tracking the end conditions and progress of 
+ * the game.
  * @author Dylan
  */
 public class LightningLevel extends AbstractLevelModel{
