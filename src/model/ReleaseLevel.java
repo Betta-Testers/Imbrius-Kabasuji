@@ -1,9 +1,5 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /** 
@@ -12,6 +8,9 @@ import java.util.ArrayList;
  * @author Dylan
  */
 public class ReleaseLevel extends AbstractLevelModel{
+	/**Serialized ID used for writing to disk**/
+	private static final long serialVersionUID = -1980934631273821149L;
+	
 	//TODO Verify there will only be 6 of any color on board
 	ArrayList<Integer> reds = new ArrayList<Integer>();
 	ArrayList<Integer> yellows = new ArrayList<Integer>();

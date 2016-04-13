@@ -1,10 +1,5 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
 /** 
  * A PuzzleLevel is the model class backing to the puzzle gamemode. Information
  * relevant to the puzzle mode is stored here.
@@ -24,6 +19,9 @@ import java.io.IOException;
 
 
 public class PuzzleLevel extends AbstractLevelModel{
+	/**Serialized ID used for writing file to disk**/
+	private static final long serialVersionUID = 1570651687735468714L;
+
 	/**The moveLimit is the maximum number of moves THIS level allows to be made**/
 	int moveLimit;
 	

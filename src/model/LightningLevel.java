@@ -1,16 +1,14 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
 /** 
  * An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
  * @author Dylan
  */
 public class LightningLevel extends AbstractLevelModel{
+	/**Serialized ID used for writing to disk**/
+	private static final long serialVersionUID = 407028463108073009L;
+	
 	int totalTime;
 	int timeLeft;
 	int unmarkedTiles;

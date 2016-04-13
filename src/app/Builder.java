@@ -138,7 +138,7 @@ public class Builder {
 		}
 		return m;
 
-/*
+		/*
 		ObjectInputStream ois = null;
 		PuzzleLevel pl = null;
 		ReleaseLevel rl = null;
@@ -193,14 +193,13 @@ public class Builder {
 		default:
 			return null;
 		}
-*/
+		 */
 
 	}
 
 	/**
 	 * For CREATING a level. This method is used by CreateLevelBtnController
 	 * to set the level being built. The level being built is stored in buildingLevel
-	 * TODO Store this building level in levelData ON SAVE
 	 */
 	public void setModelLevelCreation(){
 		switch(ltsv.getSelectedLevelType()){
@@ -240,19 +239,15 @@ public class Builder {
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
-			/** TODO Add these lines when LightningLevel implemented (Alternate Constructor used)
-			 * LightningLevel ll = new LightningLevel(fileName);
-			 * buildingLevel = ll;
-			 * bv.setModelLevel(ll);
-			 */
+			LightningLevel ll = (LightningLevel) loadLevel(levelID);
+			buildingLevel = ll;
+			bv.setModelLevel(ll);
 			bv.prepLightning();
 			break;
 		case "Release":
-			/** TODO Add these lines when ReleaseLevel implemented (Alternate Constructor used)
-			 * ReleaseLevel rl = new ReleaseLevel(fileName);
-			 * buildingLevel = rl;
-			 * bv.setModelLevel(rl);
-			 */
+			ReleaseLevel rl = (ReleaseLevel) loadLevel(levelID);
+			buildingLevel = rl;
+			bv.setModelLevel(rl);
 			bv.prepRelease();
 			break;
 		}
