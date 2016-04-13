@@ -15,9 +15,9 @@ public class Piece {
 	
 	
 	
-	//PieceTile[] tiles = new PieceTile[6];
+	PieceTile[] tiles = new PieceTile[6];
 	int ID;
-	//PieceTile origin;
+	PieceTile origin;
 	Color color;
 	public Piece(int ID, Color color){
 		this.ID = ID;
@@ -49,10 +49,22 @@ public class Piece {
 		
 	}
 	
+	int getOriginRow(){
+		return origin.getRow();
+	}
+	
+	int getOriginColumn(){
+		return origin.getColumn();
+	}
+	
+	void setOrigin(PieceTile origin){
+		this.origin = origin;
+	}
+	
 	private void generatePiece(int ID){
 		switch(ID){
 		case 0:
-			tiles[0] = new PieceTile(/* row, col, rowinpiece, colinpiece, this */);
+			tiles[0] = new PieceTile(/* rowinpiece, colinpiece, this */);
 			tiles[1] = new PieceTile();
 			tiles[2] = new PieceTile();
 			tiles[3] = new PieceTile();
