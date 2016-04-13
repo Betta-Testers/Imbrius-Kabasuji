@@ -32,22 +32,13 @@ public abstract class AbstractLevelModel {
 	
 	/**The Board that is associated with this level**/
 	//TODO Add Attribute: Board board;
-	
-	/**
-	 * sourceFile is the file on disk associated with THIS level. If execution has reached this phase, this file
-	 * ALWAYS exists - builder or player. Why? Because the Game class is in charge of loading the levels at launch
-	 * and the Builder class is will create a placeholder file for the level if it's creating a new level!
-	 * TODO Use SourceFile to open the FileReaderStream and then pass into ObjectInputStream.
-	 **/
-	final File sourceFile;
 
 	/**
 	 * You CANNOT instantiate an AbstractLevelModel. This constructor is here so you can super() set the 
 	 * final fields within the subclasses. Otherwise, these fields would have a hard time being set AND
 	 * being final!
 	 **/
-	AbstractLevelModel(File sourceFile, int levelID, String levelType, boolean canMovePiece){
-		this.sourceFile = sourceFile;
+	AbstractLevelModel(int levelID, String levelType, boolean canMovePiece){
 		this.levelID = levelID;
 		this.levelType = levelType;
 		this.canMovePiece = canMovePiece;	
@@ -94,11 +85,6 @@ public abstract class AbstractLevelModel {
 	 //TODO Set maxStarsEarned
 	 //TODO Read in the board and bullpen, store it here.
 	  
-	/**
-	 * loadLevel is a helper method for each subclasses' constructor to read in the current state of a level. If the file opened
-	 * is empty, loadLevel() returns false - indicating it could not read in all data and that the fields of a level needs to be 
-	 * initialized for the Builder. This method should NEVER return false for the Player, only Builder!**/
-	abstract boolean loadLevel();
 	
 	
 }

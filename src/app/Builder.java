@@ -1,35 +1,40 @@
 package app;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.TreeMap;
 
 import view.BuilderView;
 import controllers.CloseBuilderDialog;
 import model.AbstractLevelModel;
+import model.LightningLevel;
+import model.PuzzleLevel;
+import model.ReleaseLevel;
 import view.LevelTypeSelectView;
 
 public class Builder {
 	/**Directory specified in main for storing and loading files**/
 	String defaultDirectory;
-	
+
 	/**The LevelTypeSelectionView to select the type of level the builder wants to make**/
 	LevelTypeSelectView ltsv;
-	
+
 	/**The BuilderView, for displaying the level once the builder has choosen to edit/create a level**/
 	BuilderView bv;
-	
+
 	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
 	TreeMap<Integer, String> levelData;
-	
+
 	/**The current level being built or edited**/
 	AbstractLevelModel buildingLevel;
 
 	Builder(String defaultDirectory){
 		this.defaultDirectory = defaultDirectory;
-		
+
 		levelData = loadLevelData();
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(this, levelData);
@@ -72,70 +77,154 @@ public class Builder {
 	}
 
 	/**
-	 * For CREATING a level. This method is used by CreateLevelBtnController
-	 * to set the level being built. The level being built is stored in buildingLevel
-	 * TODO Store this building level in levelData ON SAVE
-	 * TODO When making a new level, create a File and pass it into the constructor
-	 * TODO That means when CANCELLING a level, you need to delete the file that was created for it!
-	 */
-	public void setModelLevelCreation(){
-		switch(ltsv.getSelectedLevelType()){
-		case "Puzzle":
-			/** TODO Add these Lines when PuzzleLevel implemented
-			 * PuzzleLevel pl = new PuzzleLevel();
-			 * buildingLevel = pl;
-			 * bv.setModelLevel(pl);
-			 */
-			bv.prepPuzzle();
-			break;
-		case "Lightning":
-
-			/** TODO Add these lines when LightningLevel implemented
-			 * LightningLevel ll = new LightningLevel();
-			 * buildingLevel = ll;
-			 * bv.setModelLevel(ll);
-			 */
-			bv.prepLightning();
-			break;
-		case "Release":
-
-			/** TODO Add these lines when ReleaseLevel implemented
-			 * ReleaseLevel rl = new ReleaseLevel();
-			 * buildingLevel = rl;
-			 * bv.setModelLevel(rl);
-			 */
-			bv.prepRelease();
-			break;
-		}
-	}
-	
-	/**
+	 *TODO THIS METHOD NEEDS TESTING. It stores the level as an abstract level model for now. If that is enough, I 
+	 *am not yet sure
 	 * Saves the level being edited to disk. If the level is not already in levelData, it is
-	 * then added to levelData.
+	 * then added to levelData. This method assumes the board/bullpen/any termination conditions have
+	 * already been reset to a default state (bullpen has all pieces restored to it if they were testing, board has all pieces
+	 * cleared from it, etc).
 	 */
 	public void saveLevel(){
+		ObjectOutputStream oos = null;
+
 		int id = buildingLevel.getID();
 		String type = buildingLevel.getType();
-		ObjectOutputStream oos = null;
+		String location = defaultDirectory+id+"_"+type+".storage";
+
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(defaultDirectory+id+"_"+type));
+			oos = new ObjectOutputStream(new FileOutputStream(location));
 			oos.writeObject(buildingLevel);
 		} catch (Exception e) {
 			System.err.println("Unable to save the level:" + e.getMessage());
 		}
-		
+
 		if (oos != null) {
 			try { oos.close(); } catch (IOException ioe) { } 
 		}
-		
+
 		if(id > levelData.lastKey()){
 			levelData.put(id, type);
 		}
 	}
-	
-	public void loadLevel(){
-		
+
+	/**
+	 * TODO WORK IN PROGRESS THE BELOW COMMENT IS NO LONGER TRUE
+	 * Right now it reads in an abstract level model and returns that. As to whether that is enough
+	 * information or not, I am not sure yet. I need to test this.
+	 * 
+	 * Given a levelID, the method looks up the associated levelType from the LevelData tree.
+	 * Using this information it generates the path to the file, determines the correct type of level
+	 * to create, and returns that object.
+	 * @param levelID - ID of the level being opened
+	 */
+	public AbstractLevelModel loadLevel(int levelID){
+		ObjectInputStream ois = null;
+		AbstractLevelModel m = null;
+
+		String type = levelData.get(levelID);
+		String location = defaultDirectory+levelID+"_"+type+".storage";
+
+		try {
+			ois = new ObjectInputStream (new FileInputStream(location));
+			m = (AbstractLevelModel) ois.readObject();
+			ois.close();
+		} catch (Exception e) { 
+			System.err.println("Unable to load state from:" + location);
+			m = null;
+		}
+
+		if (ois != null) { 
+			try { ois.close(); } catch (IOException ioe) { }
+		}
+		return m;
+
+/*
+		ObjectInputStream ois = null;
+		PuzzleLevel pl = null;
+		ReleaseLevel rl = null;
+		LightningLevel ll = null;
+
+		String type = levelData.get(levelID);
+		String location = defaultDirectory+levelID+"_"+type+".storage";
+
+		switch(type){
+		case "Puzzle":
+			try {
+				ois = new ObjectInputStream (new FileInputStream(location));
+				pl = (PuzzleLevel) ois.readObject();
+				ois.close();
+			} catch (Exception e) { 
+				System.err.println("Unable to load state from:" + location);
+				pl = null;
+			}
+
+			if (ois != null) { 
+				try { ois.close(); } catch (IOException ioe) { }
+			}
+			return pl;
+		case "Release":
+			try {
+				ois = new ObjectInputStream (new FileInputStream(location));
+				rl = (ReleaseLevel) ois.readObject();
+				ois.close();
+			} catch (Exception e) { 
+				System.err.println("Unable to load state from:" + location);
+				rl = null;
+			}
+
+			if (ois != null) { 
+				try { ois.close(); } catch (IOException ioe) { }
+			}
+			return rl;
+		case "Lightning":
+			try {
+				ois = new ObjectInputStream (new FileInputStream(location));
+				ll = (LightningLevel) ois.readObject();
+				ois.close();
+			} catch (Exception e) { 
+				System.err.println("Unable to load state from:" + location);
+				ll = null;
+			}
+
+			if (ois != null) { 
+				try { ois.close(); } catch (IOException ioe) { }
+			}
+			return ll;
+		default:
+			return null;
+		}
+*/
+
 	}
+
+	/**
+	 * For CREATING a level. This method is used by CreateLevelBtnController
+	 * to set the level being built. The level being built is stored in buildingLevel
+	 * TODO Store this building level in levelData ON SAVE
+	 */
+	public void setModelLevelCreation(){
+		switch(ltsv.getSelectedLevelType()){
+		case "Puzzle":
+			PuzzleLevel pl = new PuzzleLevel(levelData.lastKey()+1);
+			buildingLevel = pl;
+			bv.setModelLevel(pl);
+			bv.prepPuzzle();
+			break;
+		case "Lightning":
+			LightningLevel ll = new LightningLevel(levelData.lastKey()+1);
+			buildingLevel = ll;
+			bv.setModelLevel(ll);
+			bv.prepLightning();
+			break;
+		case "Release":
+			ReleaseLevel rl = new ReleaseLevel(levelData.lastKey()+1);
+			buildingLevel = rl;
+			bv.setModelLevel(rl);
+			bv.prepRelease();
+			break;
+		}
+	}
+
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
@@ -143,14 +232,11 @@ public class Builder {
 	 */
 	public void setModelLevelEditing(int levelID){
 		String levelType = levelData.get(levelID);
-		String fileName = levelID+"_"+levelType+".txt";
 		switch(levelType){
 		case "Puzzle":
-			/** TODO Add these Lines when PuzzleLevel implemented (Alternate Constructor used)
-			 * PuzzleLevel pl = new PuzzleLevel(fileName);
-			 * buildingLevel = pl;
-			 * bv.setModelLevel(pl);
-			 */
+			PuzzleLevel pl = (PuzzleLevel) loadLevel(levelID);
+			buildingLevel = pl;
+			bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
@@ -203,7 +289,7 @@ public class Builder {
 	}
 
 
-//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
+	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
 	void initialize(){}
 	void initializeView(){}
 	void initializeLevelModel(int levelID){}
