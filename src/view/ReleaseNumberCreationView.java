@@ -27,8 +27,7 @@ public class ReleaseNumberCreationView extends JPanel{
 	JLabel lblTitle;
 	JLabel lblColor;
 	JToggleButton numButtons[];
-	JSpinner spinner;
-	JComboBox colorSelector;
+	JComboBox<String> colorSelector;
 
 	public ReleaseNumberCreationView(){
 		setPreferredSize(new Dimension(105, 135));
@@ -46,13 +45,10 @@ public class ReleaseNumberCreationView extends JPanel{
 			creationGroup.add(numBtn);
 			numButtons[i] = numBtn;
 		}
-		spinner = new JSpinner();
 
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-//		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
-//		spinner.addChangeListener(new SetReleaseTileColorController(this));
-		colorSelector = new JComboBox(new String[] {"Blue", "Yellow", "Red"});
+		colorSelector = new JComboBox<String>(new String[] {"Blue", "Yellow", "Red"});
 		colorSelector.addActionListener(new SetReleaseTileColorController(this));
 
 		setupLayout();
