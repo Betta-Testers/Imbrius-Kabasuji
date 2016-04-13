@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  */
 
-public class TestPiece ePieceGrouptCase{
+public class TestMergeSort extends TestCase{
 	ArrayList<PieceGroup> unsorted;
 	ArrayList<PieceGroup> sorted;
 	
@@ -46,8 +46,9 @@ public class TestPiece ePieceGrouptCase{
 	
 	
 	public void testSort(){
+		System.out.println(sorted);
 		System.out.println(unsorted);
-		MergeSort.sort(unsorted);
+		unsorted = MergeSort.sort(unsorted);
 		System.out.println(unsorted);
 	}
 	

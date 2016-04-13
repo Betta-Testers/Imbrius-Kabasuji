@@ -53,6 +53,10 @@ public class PieceGroup implements Comparable{
 	public Integer getNumPieces() {
 		return this.numPieces;
 	}
+	
+	public String toString(){
+		return "ID:"+this.piece.getID();
+	}
 
 	@Override
 	//negative if THIS is less than THAT

@@ -3,27 +3,23 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// Proper Merge Sort from Sedgewick, 4ed
+// Proper Merge Sort from Sedgewick, 4ed adapted for sorting PieceGroups
 public class MergeSort {
     
-	@SuppressWarnings("rawtypes")
-	static Comparable aux[];
-	@SuppressWarnings("rawtypes")
-	Comparable[] b;
+	static PieceGroup aux[];
+	PieceGroup[] b;
 
 	
-    @SuppressWarnings("rawtypes")
-	public static void sort(ArrayList<Comparable> a) {
-    	Comparable[] b = new Comparable[a.size()];
+	public static ArrayList<PieceGroup> sort(ArrayList<PieceGroup> a) {
+		PieceGroup[] b = new PieceGroup[a.size()];
     	b = a.toArray(b);
-    	aux = new Comparable[b.length];
+    	aux = new PieceGroup[b.length];
     	sort (b, 0, b.length-1);
-    	a = new ArrayList<Comparable>(Arrays.asList(aux));
+    	return new ArrayList<PieceGroup>(Arrays.asList(aux));
     }
     
     // recursive helper function
-    @SuppressWarnings("rawtypes")
-	static void sort (Comparable[] a, int lo, int hi) {
+	static void sort (PieceGroup[] a, int lo, int hi) {
     	if (hi <= lo) return;
     	
     	int mid = lo + (hi - lo)/2;
@@ -34,8 +30,7 @@ public class MergeSort {
     }
     
     // merge sorted results a[lo..mid] with a[mid+1..hi] back into a
-    @SuppressWarnings("rawtypes")
-	static void merge (Comparable[] a, int lo, int mid, int hi) {
+	static void merge (PieceGroup[] a, int lo, int mid, int hi) {
     	int i = lo;     // starting index into left sorted sub-array
     	int j = mid+1;  // starting index into right sorted sub-array
     	
@@ -55,8 +50,7 @@ public class MergeSort {
     }
 
     // is v < w ?
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	private static boolean less(Comparable v, Comparable w) {
+	private static boolean less(PieceGroup v, PieceGroup w) {
         return v.compareTo(w) < 0;
     }
 }
