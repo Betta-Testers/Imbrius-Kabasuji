@@ -3,6 +3,9 @@
  */
 package controllers;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -17,13 +20,13 @@ import view.ReleaseNumberCreationView;
  * @author hejohnson
  *
  */
-public class SetReleaseTileColorController implements ChangeListener {
+public class SetReleaseTileColorController implements ActionListener {
 	ReleaseNumberCreationView rncv;
 	public SetReleaseTileColorController(ReleaseNumberCreationView rncv) {
 		this.rncv = rncv;
 	}
 	
-	public void stateChanged(ChangeEvent ce) {
+	public void actionPerformed(ActionEvent ce) {
 		//TODO Move class?
 		rncv.updateNumberColors();
 	}

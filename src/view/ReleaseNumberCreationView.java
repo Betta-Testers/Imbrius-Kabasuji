@@ -15,6 +15,7 @@ import javax.swing.SpinnerListModel;
 import controllers.SetReleaseTileColorController;
 
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ReleaseNumberCreationView extends JPanel{
@@ -27,6 +28,7 @@ public class ReleaseNumberCreationView extends JPanel{
 	JLabel lblColor;
 	JToggleButton numButtons[];
 	JSpinner spinner;
+	JComboBox colorSelector;
 
 	public ReleaseNumberCreationView(){
 		setPreferredSize(new Dimension(105, 135));
@@ -39,6 +41,8 @@ public class ReleaseNumberCreationView extends JPanel{
 		for (int i = 0; i<6; i++) {
 			JToggleButton numBtn = new JToggleButton(""+(i+1));
 			numBtn.setForeground(Color.BLUE);
+			numBtn.setOpaque(true);
+			numBtn.setBackground(Color.DARK_GRAY);
 			creationGroup.add(numBtn);
 			numButtons[i] = numBtn;
 		}
@@ -46,8 +50,10 @@ public class ReleaseNumberCreationView extends JPanel{
 
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
-		spinner.addChangeListener(new SetReleaseTileColorController(this));
+//		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
+//		spinner.addChangeListener(new SetReleaseTileColorController(this));
+		colorSelector = new JComboBox(new String[] {"Blue", "Yellow", "Red"});
+		colorSelector.addActionListener(new SetReleaseTileColorController(this));
 
 		setupLayout();
 	}
@@ -78,7 +84,7 @@ public class ReleaseNumberCreationView extends JPanel{
 										.addGap(8)
 										.addComponent(lblColor)
 										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(colorSelector, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
 		groupLayout.setVerticalGroup(
@@ -104,7 +110,7 @@ public class ReleaseNumberCreationView extends JPanel{
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblColor)
-								.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(colorSelector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
 		this.setLayout(groupLayout);
@@ -120,7 +126,7 @@ public class ReleaseNumberCreationView extends JPanel{
 	@Override
 	public void setVisible(boolean visible){
 		lblTitle.setVisible(visible);
-		spinner.setVisible(visible);
+		colorSelector.setVisible(visible);
 		
 		for (JToggleButton numBtn : numButtons) {
 			numBtn.setVisible(visible);
@@ -135,9 +141,9 @@ public class ReleaseNumberCreationView extends JPanel{
 	}
 	
 	public Color getColorSelected() {
-		if (this.spinner.getValue() == "Red") {
+		if (this.colorSelector.getSelectedItem() == "Red") {
 			return Color.RED;
-		} else if (this.spinner.getValue() == "Yellow") {
+		} else if (this.colorSelector.getSelectedItem() == "Yellow") {
 			return Color.YELLOW;
 		} else {
 			return Color.BLUE;
