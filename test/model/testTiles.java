@@ -43,12 +43,14 @@ public class testTiles extends TestCase {
 		assertEquals("lightning", lt.toString());
 		
 		HintTile ht = new HintTile(1,1);
-		assertEquals(Color.BLUE, ht.color);
+		assertEquals(Color.DARK_GRAY, ht.color);
 		assertEquals("hint", ht.toString());
 	}
 	
 	public void testPieceTile() {
-		PieceTile pt = new PieceTile(1, 1, -1, 3);
+		PieceTile pt = new PieceTile(1, 1, false);
+		
+		PieceTile pt2 = new PieceTile(1, 1, true);
 		//assertEquals(Color.WHITE, pt.color); //Doesn't make sense to test yet since there's no piece to get the color from
 		assertEquals("piece", pt.toString());
 	}
