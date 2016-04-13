@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JToggleButton;
 import javax.swing.SpinnerListModel;
+
+import controllers.SetReleaseTileColorController;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -44,6 +47,7 @@ public class ReleaseNumberCreationView extends JPanel{
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
+		spinner.addChangeListener(new SetReleaseTileColorController(this));
 
 		setupLayout();
 	}
