@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+
+import controllers.SaveAndCloseLevelButtonController;
+
 import javax.swing.GroupLayout.Alignment;
 
 
@@ -24,7 +27,7 @@ public class ButtonGroupView extends JPanel{
 	JButton btnRemovePieces;
 	JToggleButton btnConvertHint;
 	
-	public ButtonGroupView(){
+	public ButtonGroupView(BuilderView bv){
 		setPreferredSize(new Dimension(105, 115));
 		btnUndo = new JButton("");
 		btnRedo = new JButton("");
@@ -35,6 +38,7 @@ public class ButtonGroupView extends JPanel{
 		btnRemovePieces.setToolTipText("Remove all pieces on the board");
 		btnConvertHint.setToolTipText("Pieces on board are turned into a hint");
 		btnSave.setToolTipText("Save Level");
+		btnSave.addActionListener(new SaveAndCloseLevelButtonController(bv.getBuilder()));
 		btnUndo.setToolTipText("Undo");
 		btnRedo.setToolTipText("Redo");
 		btnUndo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Undo.png")));

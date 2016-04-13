@@ -19,7 +19,7 @@ public class Builder {
 	Builder(){
 		levelData = loadLevelData();
 		
-		bv = new BuilderView();
+		bv = new BuilderView(this);
 		ltsv = new LevelTypeSelectView(this, levelData);
 
 		initializeControllers();
@@ -166,6 +166,9 @@ public class Builder {
 		return levelData.lastKey();
 	}
 
+	public void saveLevel() {
+		System.out.println("Yo man, I heard you wanted to save your file");
+	}
 
 //======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
 	void initialize(){}
