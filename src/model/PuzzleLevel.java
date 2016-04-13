@@ -24,24 +24,6 @@ public class PuzzleLevel extends AbstractLevelModel{
 		// TODO Auto-generated constructor stub
 	}
 
-
-	@Override
-	boolean saveProgressInFile() {
-		if(starsEarned > maxStarsEarned){
-			//save starsEarned instead of maxStarsEarned
-		}
-		return false;
-	}
-
-	/**
-	 * saveLevelToFile is used in the Builder side of Kabasuji. When the builder saves the level being built
-	 * this method saves the state of the entire level and overwrites any existing level. (Aka: Don't use append mode!)**/
-	@Override
-	boolean saveLevelToFile() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	/** 
 	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
 	 * has achieved the most they can.
