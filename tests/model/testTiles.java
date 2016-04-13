@@ -48,10 +48,12 @@ public class testTiles extends TestCase {
 	}
 	
 	public void testPieceTile() {
-		PieceTile pt = new PieceTile(1, 1, false);
+		Piece piece = new Piece(0, Color.blue);
+		PieceTile pt = new PieceTile(1, 1, piece);
 		
-		PieceTile pt2 = new PieceTile(1, 1, true);
+		PieceTile pt2 = new PieceTile(1, 1, piece);
 		//assertEquals(Color.WHITE, pt.color); //Doesn't make sense to test yet since there's no piece to get the color from
 		assertEquals("piece", pt.toString());
 	}
+	
 }
