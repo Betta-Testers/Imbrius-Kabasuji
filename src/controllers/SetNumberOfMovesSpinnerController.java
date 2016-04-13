@@ -17,14 +17,13 @@ import view.BuilderView;
  */
 public class SetNumberOfMovesSpinnerController implements ChangeListener {
 	PuzzleLevel levelModel;
-	JSpinner numberMovesSpinner;
-	public SetNumberOfMovesSpinnerController(PuzzleLevel levelModel, JSpinner numMovesSpinner) {
+	public SetNumberOfMovesSpinnerController(PuzzleLevel levelModel) {
 		this.levelModel = levelModel;
-		this.numberMovesSpinner = numMovesSpinner;
 	}
 	
 	public void stateChanged(ChangeEvent ce) {
 		//TODO Move class?
+		JSpinner numberMovesSpinner = (JSpinner) ce.getSource();
 		if ((int)numberMovesSpinner.getValue()<0) {
 			numberMovesSpinner.setValue(0);
 		}

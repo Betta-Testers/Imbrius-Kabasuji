@@ -89,7 +89,6 @@ public class LevelPropertiesView extends JPanel{
 		spinPieceCt.setVisible(false);
 		lblSetTime.setVisible(false);
 		spinTime.setVisible(false);
-		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel)levelModel, spinMoves));
 	}
 	
 	/**
@@ -151,6 +150,10 @@ public class LevelPropertiesView extends JPanel{
 						.addComponent(spinPieceCt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 		);
 		this.setLayout(groupLayout);
+	}
+	
+	public JSpinner getMoveSpinner() {
+		return spinMoves;
 	}
 
 }
