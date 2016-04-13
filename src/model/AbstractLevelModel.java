@@ -1,7 +1,5 @@
 package model;
 
-import java.io.File;
-
 /**
  * An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
