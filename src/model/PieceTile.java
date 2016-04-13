@@ -9,7 +9,7 @@ import java.awt.Color;
  */
 
 public class PieceTile extends AbstractTile {
-	//Piece piece;
+	Piece piece;
 	int colInPiece;
 	int rowInPiece;
 	
@@ -22,17 +22,18 @@ public class PieceTile extends AbstractTile {
 	 * @param rinPiece Tile's row within the piece (can be negative)
 	 * @param cInPiece Tile's column within the piece (can be negative)
 	 */
-	public PieceTile(int row, int col) {
+	public PieceTile(int row, int col, Piece p) {
 		super(row, col);
 		this.tileType = "piece";
 		this.piece = p;
 		this.color = p.getColor();
 		
-		if (p.getOriginTile() == null) {
+		if (p.getOrigin() == null) {
 			this.colInPiece = 0;
 			this.rowInPiece = 0;
 			this.rowOnBoard = row;
 			this.colOnBoard = col;
+			p.setOrigin(this);
 		} else {
 			this.rowInPiece = row;
 			this.colInPiece = col;
@@ -59,26 +60,28 @@ public class PieceTile extends AbstractTile {
 	}
 	
 	public void updateRowInPiece(int newRow) {
-		if (p.getOriginTile == this) {
+		if (piece.getOrigin() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
-			return;
+			
+			//return; --> shouldn't need this with run time exception
 		}
 		this.rowInPiece = newRow;
 		updateBoardPosition();
 	}
 	
 	public void updateColInPiece(int newCol) {
-		if (p.getOriginTile == this) {
+		if (piece.getOrigin() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
-			return;
+			
+			//return; --> shouldn't need this with run time exception
 		}
 		this.colInPiece = newCol;
 		updateBoardPosition();
 	}
 	
 	public void updateBoardPosition() {
-		this.colOnBoard = p.getOriginCol() + this.colInPiece;
-		this.rowOnBoard = p.getOriginRow() + this.rowInPiece;
+		this.colOnBoard = piece.getOriginCol() + this.colInPiece;
+		this.rowOnBoard = piece.getOriginRow() + this.rowInPiece;
 	}
 
 }

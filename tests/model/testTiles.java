@@ -10,7 +10,7 @@ import junit.framework.TestCase;
  *
  */
 
-public class testTiles extends TestCase {
+public class TestTiles extends TestCase {
 	public void testBoardTile() {
 		BoardTile bt = new BoardTile(1, 1);
 		
@@ -48,10 +48,12 @@ public class testTiles extends TestCase {
 	}
 	
 	public void testPieceTile() {
-		PieceTile pt = new PieceTile(1, 1, false);
+		Piece piece = new Piece(0);
+		PieceTile pt = new PieceTile(1, 1, piece);
 		
-		PieceTile pt2 = new PieceTile(1, 1, true);
+		PieceTile pt2 = new PieceTile(1, 1, piece);
 		//assertEquals(Color.WHITE, pt.color); //Doesn't make sense to test yet since there's no piece to get the color from
 		assertEquals("piece", pt.toString());
 	}
+	
 }
