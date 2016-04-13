@@ -1,17 +1,10 @@
 package model;
 
 /** 
- * A PuzzleLevel is the model class backing to the puzzle gamemode. Information
- * relevant to the puzzle mode is stored here.
- * 
- * The attributes tracking End Conditions: 
- * 		moveLimit -> The maximum allowed moves for the level
- * 		movesMade -> The current number of moves made
- * 		tilesLeft -> The number of tiles left to be covered in the level
- * 
+ * A PuzzleLevel handles the back end for a Puzzle game mode, tracking the end conditions and progress of 
+ * the game.
  * @author Dylan
  */
-
 
 public class PuzzleLevel extends AbstractLevelModel{
 	/**Serialized ID used for writing file to disk**/
@@ -21,10 +14,10 @@ public class PuzzleLevel extends AbstractLevelModel{
 	int moveLimit;
 	
 	/**The movesMade is the number of moves a player has made on THIS level**/
-	int movesMade;
+	transient int movesMade;
 	
 	/**The tilesLeft is the number of tiles left for the player to cover on THIS level**/
-	int tilesLeft;
+	transient int tilesLeft;
 
 	public PuzzleLevel(int levelID) {
 		super(levelID, "Puzzle", true);

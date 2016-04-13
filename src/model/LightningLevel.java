@@ -12,10 +12,10 @@ public class LightningLevel extends AbstractLevelModel{
 	/**Total time the level has to be played, in seconds**/
 	int totalTime;
 	
-	/**Time remaining in current level. This value is transient.**/
+	/**Time remaining in current level.**/
 	transient int timeLeft;
 	
-	/**Number of tiles unmarked in the current attempt. This value is transient**/
+	/**Number of tiles unmarked in the current attempt.**/
 	transient int unmarkedTiles;
 	
 	/**Overall size of the bullpen for this level**/

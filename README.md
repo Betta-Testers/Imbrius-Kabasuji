@@ -38,6 +38,5 @@ Software engineering game about Hexominoes
    * Make everything serializeable
    * Mark unwanted fields transient inside each entity
    * Write the saveLevel and loadLevel functionality in the Builder and Game classes
-* <b>BuilderView</b>
-   * Correct the ReleaseTileCreationView to show the spinner (Something wonky is up)
-   * Push that change to master so others can grab it
+* <b>Level Types</b>
+   * Figure out the issue with initializing level specific properties from an object. Where do they get set? Probably in the controllers?
