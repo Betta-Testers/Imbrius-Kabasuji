@@ -76,4 +76,8 @@ public class ButtonGroupView extends JPanel{
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnRemovePieces, btnConvertHint, btnSave});
 		this.setLayout(groupLayout);
 	}
+	
+	public boolean getHintSelected() {
+		return btnConvertHint.isSelected();
+	}
 }
