@@ -48,7 +48,7 @@ public class TestTiles extends TestCase {
 	}
 	
 	public void testPieceTile() {
-		Piece piece = new Piece(0, Color.blue);
+		Piece piece = new Piece(0);
 		PieceTile pt = new PieceTile(1, 1, piece);
 		
 		PieceTile pt2 = new PieceTile(1, 1, piece);
