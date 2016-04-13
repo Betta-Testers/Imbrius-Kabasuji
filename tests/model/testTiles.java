@@ -10,7 +10,7 @@ import junit.framework.TestCase;
  *
  */
 
-public class testTiles extends TestCase {
+public class TestTiles extends TestCase {
 	public void testBoardTile() {
 		BoardTile bt = new BoardTile(1, 1);
 		
