@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Records the state of a hint tile for for persistent storage.
  * @author Dylan
  */
-public class LightningTileMomento implements Serializable{
+public class MomentoLightningTile implements Serializable{
 
 	/**
 	 * Unique tag for momentos of this type on disk
@@ -19,7 +19,7 @@ public class LightningTileMomento implements Serializable{
 	 * reconstituted. 
 	 * @param
 	 */
-	public LightningTileMomento() {
+	public MomentoLightningTile() {
 
 	}
 }
