@@ -1,6 +1,9 @@
 package app;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.TreeMap;
 
 import view.BuilderView;
@@ -9,14 +12,17 @@ import model.AbstractLevelModel;
 import view.LevelTypeSelectView;
 
 public class Builder {
+	String defaultDirectory;
+	
 	LevelTypeSelectView ltsv;
 	BuilderView bv;
 	TreeMap<Integer, String> levelData;
 	AbstractLevelModel buildingLevel;
 
-	Builder(){
-		levelData = loadLevelData();
+	Builder(String defaultDirectory){
+		this.defaultDirectory = defaultDirectory;
 		
+		levelData = loadLevelData();
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(this, levelData);
 
@@ -34,7 +40,7 @@ public class Builder {
 	 * @return TreeMap with the LevelIDs read. If nothing is found, the TreeList returned is empty. 
 	 */
 	TreeMap<Integer, String> loadLevelData(){
-		File folder = new File("./ImbriusBuilderLevels/");
+		File folder = new File(defaultDirectory);
 		File[] listOfFiles = folder.listFiles();
 		String levelType;
 		String levelNum;
@@ -95,6 +101,23 @@ public class Builder {
 		}
 	}
 	
+	public void saveLevel(){
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream(defaultDirectory));
+			oos.writeObject(buildingLevel);
+		} catch (Exception e) {
+			System.err.println("Unable to store state:" + e.getMessage());
+		}
+		
+		if (oos != null) {
+			try { oos.close(); } catch (IOException ioe) { } 
+		}
+	}
+	
+	public void loadLevel(){
+		
+	}
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
