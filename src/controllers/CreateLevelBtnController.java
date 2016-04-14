@@ -3,6 +3,7 @@ package controllers;
 import java.awt.event.ActionEvent;
 
 import app.Builder;
+import view.LevelTypeSelectView;
 
 /**
  * 
@@ -12,13 +13,15 @@ import app.Builder;
 
 public class CreateLevelBtnController implements java.awt.event.ActionListener {	
 	Builder b;
+	LevelTypeSelectView ltsv;
 
 	/**
 	 * Controller for the button on the level type select screen of the builder to create a new level
 	 * @param b The builder object that this is a part of
 	 */
-	public CreateLevelBtnController (Builder b) {
+	public CreateLevelBtnController (Builder b, LevelTypeSelectView ltsv) {
 		this.b = b;
+		this.ltsv = ltsv;
 	}
 	
 	/**
@@ -28,7 +31,7 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	 * @param ae The event that triggered this controller
 	 */
 	public void actionPerformed(ActionEvent ae) {
-		b.setModelLevelCreation();
+		b.setModelLevelCreation(ltsv.getSelectedLevelType());
 		b.setBuilderViewVisible(true);
 		b.setLevelTypeSelectViewVisible(false);
 	}
