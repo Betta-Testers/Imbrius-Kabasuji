@@ -9,12 +9,13 @@ import view.StarView;
 import controllers.ExitLevelButtonController;
 import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
+import model.AbstractLevelModel;
 
 public class Game {
 	SplashScreen startUp;
 	LevelSelectionView selectLevel;
-	//TODO add abstractLevelModel levels[]
-	//TODO add abstractLevelModel currentLevel
+	AbstractLevelModel levels[];
+	AbstractLevelModel currentLevel;
 	LevelView levelView;
 	GameExitScreen exitLevel;
 	
@@ -62,23 +63,15 @@ public class Game {
 	}
 	
 	void unlockNextLevel(int nextLevelID){
-		//TODO add this in when files are put together, 
-		//AvailableLevelView already has an unlocklevel operation, just need to have that run with a for loop
+		//TODO This method must unlock a level in the AvailableLevelView.
+		/*TODO This method must set the levelMODEL to be unlocked as well, which means opening the file associated with
+		 * levelID, reading line by line until the unlocked marker is found, and changing that value in the file.
+		 */
 	}
 	
-//	void initializeLevelView(){
-//		//TODO initialize the view for levels
-//	}
-//	
-//	void initializeLevelControllers(){
-//		//TODO Add the controllers needed in the level
-//	}
-//	
-//	void initializeExitLevelScreen(){
-//		//TODO initialize the exit level screen made by EVAN
-//	}
-//	
-//	void initializeExitLevelScreenControllers(){
-//		//TODO initialize the controllers needed for the exit level screen
-//	}
+	//TODO Implement reading levels in. Needs to modify levels[] and currentLevel
+	//TODO When reading in levels, it's expected you pass the File associated with the level to that level's constructor
+//========================== TODO: Questionable Methods to Implement ==========================//
+	void initializeLevelView(){}
+	void initializeLevelControllers(){}
 }

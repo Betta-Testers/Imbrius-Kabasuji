@@ -19,7 +19,6 @@ public class Piece {
 	
 	PieceTile[] tiles = new PieceTile[6];
 	int ID;
-	PieceTile origin;
 	Color color;
 	public Piece(int ID){
 		this.ID = ID;
@@ -34,11 +33,11 @@ public class Piece {
 	public String toString(){
 		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
 				tiles[3].toString() + "," + tiles[4].toString() + "," + tiles[5].toString() + "," +
-				ID + "," + origin.toString() + "," + color.toString();
+				ID + "," + tiles[0].toString() + "," + color.toString();
 	}
 	
 	
-	int getID(){
+	public int getID(){
 		return ID;
 	}
 	
@@ -62,12 +61,16 @@ public class Piece {
 		return color;
 	}
 	
-	PieceTile getOrigin(){
-		return origin;
-	}
-	
-	int getOriginRow(){
-		return origin.rowInPiece;
+	/** 
+	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
+	 * @param row
+	 * @param col
+	 */
+	public void setLocation(int row, int col) {
+		this.tiles[0].setLocation(row, col);
+		for (PieceTile p : tiles) {
+			p.updateBoardPosition();
+		}
 	}
 	
 	/**
@@ -75,15 +78,15 @@ public class Piece {
 	 * @return int
 	 */
 	int getOriginCol(){
-		return origin.colInPiece;
+		return tiles[0].colInPiece;
 	}
 	
-	/**
-	 * Method used to set the origin of the piece
-	 * @param PieceTile
-	 */
-	void setOrigin(PieceTile origin){
-		this.origin = origin;
+	int getOriginRow(){
+		return tiles[0].rowInPiece;
+	}
+	
+	public PieceTile getOriginTile() {
+		return tiles[0];
 	}
 	
 	/**

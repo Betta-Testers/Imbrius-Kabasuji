@@ -23,19 +23,27 @@ public class PieceTile extends AbstractTile {
 	 * @param rinPiece Tile's row within the piece (can be negative)
 	 * @param cInPiece Tile's column within the piece (can be negative)
 	 */
+<<<<<<< HEAD
 
 	public PieceTile(int row, int col, Piece p) {
+=======
+	public PieceTile(int row, int col, Piece p) {
+
+>>>>>>> refs/remotes/origin/BuilderControllers-H
 		super(row, col);
 		this.tileType = "piece";
 		this.piece = p;
 		this.color = p.getColor();
+<<<<<<< HEAD
+=======
+		this.defaultColor = color;
+>>>>>>> refs/remotes/origin/BuilderControllers-H
 		
-		if (p.getOrigin() == null) {
+		if (p.getOriginTile() == null) {
 			this.colInPiece = 0;
 			this.rowInPiece = 0;
 			this.rowOnBoard = row;
 			this.colOnBoard = col;
-			p.setOrigin(this);
 		} else {
 			this.rowInPiece = row;
 			this.colInPiece = col;
@@ -45,6 +53,7 @@ public class PieceTile extends AbstractTile {
 		
 	}
 	
+<<<<<<< HEAD
 	public void setPreviousTile(AbstractTile t){
 		this.previousTile = t;
 	}
@@ -57,6 +66,8 @@ public class PieceTile extends AbstractTile {
 		return this.colOnBoard;
 	}
 	
+=======
+>>>>>>> refs/remotes/origin/BuilderControllers-H
 	public int getRowInPiece() {
 		return this.rowInPiece;
 	}
@@ -66,7 +77,7 @@ public class PieceTile extends AbstractTile {
 	}
 	
 	public void updateRowInPiece(int newRow) {
-		if (piece.getOrigin() == this) {
+		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
 			
 			//return; --> shouldn't need this with run time exception
@@ -76,7 +87,7 @@ public class PieceTile extends AbstractTile {
 	}
 	
 	public void updateColInPiece(int newCol) {
-		if (piece.getOrigin() == this) {
+		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
 			
 			//return; --> shouldn't need this with run time exception
@@ -90,8 +101,26 @@ public class PieceTile extends AbstractTile {
 		this.rowOnBoard = piece.getOriginRow() + this.rowInPiece;
 	}
 	
+	/**
+	 * Can only directly change the location of the origin tile
+	 * @param row
+	 */
+	public void setLocation(int row, int col) {
+		if(piece.getOriginTile() == this) {
+			this.rowOnBoard = row;
+			this.colOnBoard = col;
+		}
+	}
+	
 	public AbstractTile getPreviousTile() {
 		return this.getPreviousTile();
 	}
-
+	
+	public void setPreviousTile(AbstractTile at) {
+		this.previousTile = at;
+	}
+	
+	public Piece getPiece() {
+		return this.piece;
+	}
 }
