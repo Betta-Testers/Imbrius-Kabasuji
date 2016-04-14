@@ -97,4 +97,8 @@ public class PieceTile extends AbstractTile {
 	public void setPreviousTile(AbstractTile at) {
 		this.previousTile = at;
 	}
+	
+	public Piece getPiece() {
+		return this.piece;
+	}
 }
