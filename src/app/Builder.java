@@ -304,23 +304,5 @@ public class Builder {
 	void initializeLevelModel(int levelID){}
 	void initializeLevelView(){}
 	void initializeLevelControllers(){}
-	
-	//======================== TODO: MOVE THESE METHODS TO GAME ========================// 
-	/**
-	 * Updates the Maximum stars for a given LevelID and star count. 
-	 * If the count passed in is less than the value recorded in levelData,
-	 * the value is not recorded.
-	 * @param levelID
-	 * @param starsEarned - the current number of stars earned on a level
-	 */
-	public void updateStars(int levelID, int starsEarned){
-		if(starsEarned > levelData.getMaxStars(levelID)){
-			levelData.setMaxStars(levelID, starsEarned);
-		}
-	}
-	
-	//TODO SaveStarMap
-	//TODO LoadStarMap
-	//TODO LoadLevel
 
 }
