@@ -67,7 +67,7 @@ public class Builder extends LevelIO{
 	 * For CREATING a level. This method is used by CreateLevelBtnController
 	 * to set the level being built. The level being built is stored in currentLevel
 	 */
-	public void setModelLevelCreation(String type){
+	public void createLevel(String type){
 		switch(type){
 		case "Puzzle":
 			PuzzleLevel pl = new PuzzleLevel(levelData.lastKey()+1);
@@ -95,7 +95,7 @@ public class Builder extends LevelIO{
 	 * to set the bv up for the level being edited.
 	 * TODO Don't pass a String fileName. Pass a File sourceFile instead
 	 */
-	public void setModelLevelEditing(int levelID){
+	public void editLevel(int levelID){
 		String levelType = levelData.get(levelID);
 		switch(levelType){
 		case "Puzzle":

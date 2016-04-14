@@ -10,7 +10,7 @@ import model.AbstractLevelModel;
 
 public abstract class LevelIO {
 	/**Directory specified in main for storing and loading files**/
-	final String defaultDirectory = "./imbriusLevelFiles/";
+	String defaultDirectory = "./imbriusLevelFiles/";
 
 	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
 	StarMap levelData;
@@ -18,6 +18,18 @@ public abstract class LevelIO {
 	/**The current level being manipulated*/
 	AbstractLevelModel currentLevel;
 
+	/**
+	 * Method for toggling the directory for testing. 
+	 * Useful to preserve levels in the later stages of the project
+	 * @param forTesting - true changes to test directory
+	 */
+	public void setDirectoryForTesting(boolean forTesting){
+		if(forTesting){
+			defaultDirectory = "./imbriusLevelTESTING/";
+		}else{
+			defaultDirectory = "./imbriusLevelFiles/";
+		}
+	}
 	/**
 	 * Returns a StarMap object read from disk. If the StarMap cannot be read
 	 * for any reason, a blank starmap is generated
