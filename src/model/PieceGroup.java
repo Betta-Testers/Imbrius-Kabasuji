@@ -1,6 +1,6 @@
 package model;
 
-public class PieceGroup {
+public class PieceGroup implements Comparable<PieceGroup> {
 	/**
 	 * @author awharrison
 	 */
@@ -39,6 +39,13 @@ public class PieceGroup {
 	}
 	
 	/**
+	 * allows collections of PieceGroup to be easily sorted
+	 */
+	public int compareTo(PieceGroup other) {
+		return Integer.compare(this.getPiece().ID, other.getPiece().ID);
+	}
+	
+	/**
 	 * returns the piece type of this group
 	 * @return
 	 */
@@ -50,7 +57,7 @@ public class PieceGroup {
 	 * returns the number of pieces available
 	 * @return
 	 */
-	public Integer getNumPieces() {
+	public int getNumPieces() {
 		return this.numPieces;
 	}
 }
