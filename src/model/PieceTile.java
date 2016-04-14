@@ -53,6 +53,14 @@ public class PieceTile extends AbstractTile {
 		return this.colInPiece;
 	}
 	
+	public int getRowOnBoard() {
+		return this.rowOnBoard;
+	}
+	
+	public int getColOnBoard() {
+		return this.colOnBoard;
+	}
+	
 	public void updateRowInPiece(int newRow) {
 		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");

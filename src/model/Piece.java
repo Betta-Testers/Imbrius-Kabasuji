@@ -78,11 +78,11 @@ public class Piece {
 	 * @return int
 	 */
 	int getOriginCol(){
-		return tiles[0].colInPiece;
+		return tiles[0].getColOnBoard();
 	}
 	
 	int getOriginRow(){
-		return tiles[0].rowInPiece;
+		return tiles[0].getColOnBoard();
 	}
 	
 	public PieceTile getOriginTile() {
