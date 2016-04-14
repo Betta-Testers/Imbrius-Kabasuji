@@ -68,13 +68,7 @@ public abstract class AbstractLevelModel {
 	 */
 	public String getType(){
 		return levelType;
-	}
-	
-	 //TODO Set maxStarsEarned
-	 //TODO Read in the board and bullpen, store it here.
-	  
-	
-	
+	}	
 }
 
 

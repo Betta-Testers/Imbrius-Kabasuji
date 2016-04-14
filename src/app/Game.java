@@ -1,6 +1,5 @@
 package app;
 
-
 import view.GameExitScreen;
 import view.LevelView;
 import view.LevelSelectionView;
@@ -12,14 +11,26 @@ import controllers.QuitGameButtonController;
 import model.AbstractLevelModel;
 
 public class Game {
-	SplashScreen startUp;
+	/**Directory specified in main for loading files**/
+	String defaultDirectory;
+	
+	/**The LevelSelectionView to view all levels**/
 	LevelSelectionView selectLevel;
+	
+	/**Array of all levels available**/
 	AbstractLevelModel levels[];
+	
+	/**The current level being played**/
 	AbstractLevelModel currentLevel;
+	
+	/**The View of the level being played**/
 	LevelView levelView;
+	
+	/**The view displayed at the end of the level being played**/
 	GameExitScreen exitLevel;
 	
-	Game(){
+	Game(String defaultDirectory){
+		this.defaultDirectory = defaultDirectory;
 		this.initialize();
 	}
 	
@@ -32,12 +43,9 @@ public class Game {
 	
 	void initializeView(){
 		//TODO Initialize splash screen or level select view here?
-		this.startUp = new SplashScreen();
 		this.selectLevel = new LevelSelectionView();
 		this.levelView = new LevelView("Puzzle");
 		this.exitLevel = new GameExitScreen(new StarView());
-		
-		startUp.setVisible(true);
 	}
 	
 	void initializeControllers(){
