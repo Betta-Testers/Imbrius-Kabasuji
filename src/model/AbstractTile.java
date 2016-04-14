@@ -30,4 +30,12 @@ public abstract class AbstractTile {
 	public String toString() {
 		return this.tileType;
 	}
+	
+	public int getRow() {
+		return this.rowOnBoard;
+	}
+	
+	public int getCol() {
+		return this.colOnBoard;
+	}
 }
