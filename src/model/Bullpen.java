@@ -92,6 +92,9 @@ public class Bullpen {
 		return (this.playablePieces.size() == 0);
 	}
 	
+	/**
+	 * sorts the Bullpen pieceGroups in ascending order by ID
+	 */
 	public void sortBullpen() {
 		Collections.sort(this.playablePieces);
 	}
@@ -124,5 +127,19 @@ public class Bullpen {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * nulls the selectedPiece attribute
+	 */
+	public void clearSelectedPiece() {
+		this.selectedPiece = null;
+	}
+	
+	/**
+	 * decrements the number of pieces in the selected pieceGroup by 1
+	 */
+	public void decrementSelectedPiece() {
+		this.playablePieces.get(this.selectedPiece.getID()).decrementCount();
 	}
 }

@@ -7,7 +7,7 @@ import model.Bullpen;
 import model.Piece;
 import model.PieceGroup;
 
-public class TestBullpen extends TestCase {
+public class TestBullpenAbby extends TestCase {
 
 	ArrayList<PieceGroup> testPlayablePieces= new ArrayList<PieceGroup>();
 	ArrayList<PieceGroup> testGetPieces = new ArrayList<PieceGroup>();
