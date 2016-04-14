@@ -19,12 +19,13 @@ public class TestBuilder extends TestCase {
 		b = new Builder();
 	}
 	
-	public void testSetModelLevelCreation(){
-	}
-	
 	@Override
 	protected void tearDown(){
-		
+		b.getBuilderView().dispose();
+		b.getLevelTypeSelectView().dispose();
+	}
+	
+	public void testSetModelLevelCreation(){
 	}
 	
 	public void testSaveStarMap(){

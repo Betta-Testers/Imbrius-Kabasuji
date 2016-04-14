@@ -120,23 +120,19 @@ public class Builder extends LevelIO{
 	}
 
 	/**
-	 * Method encapsulates the setVisible functionality of builderView,
-	 * to avoid the need of a getter/setter pair. If enabled is true, the
-	 * window is displayed. Else, it's set to be hidden.
+	 * Returns the BuilderView associated with this Builder
 	 * @param enabled True displays window
 	 */
-	public void setBuilderViewVisible(boolean enabled){
-		bv.setVisible(enabled);
+	public BuilderView getBuilderView(){
+		return bv;
 	}
 
 	/**
-	 * Method encapsulates the setVisible functionality of LevelTypeSelectView,
-	 * to avoid the need of a getter/setter pair. If enabled is true, the
-	 * window is displayed. Else, it's set to be hidden.
+	 * Returns the LevelTypeSelectView associated with this level
 	 * @param enabled True displays window
 	 */
-	public void setLevelTypeSelectViewVisible(boolean enabled){
-		ltsv.setVisible(enabled);
+	public LevelTypeSelectView getLevelTypeSelectView(){
+		return ltsv;
 	}
 
 	/**

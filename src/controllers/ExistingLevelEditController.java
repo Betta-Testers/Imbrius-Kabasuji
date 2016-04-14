@@ -36,7 +36,7 @@ public class ExistingLevelEditController implements java.awt.event.ActionListene
 		ExistingLevelView sourceButton = (ExistingLevelView) ae.getSource();
 		int levelID = sourceButton.getLevelNumber();
 		b.setModelLevelEditing(levelID);
-		b.setBuilderViewVisible(true);
-		b.setLevelTypeSelectViewVisible(false);
+		b.getBuilderView().setVisible(true);
+		b.getLevelTypeSelectView().setVisible(false);
 	}
 }
