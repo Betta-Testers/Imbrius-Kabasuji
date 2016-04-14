@@ -20,7 +20,7 @@ public class GameExitScreen extends JFrame{
 		this.stars = stars;
 		this.setTitle("GAME OVER");
 		this.setBounds(100, 100, 260, 175);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		btnReturnToLevel = new JButton("Return to Level Select");
 		btnReturnToLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
