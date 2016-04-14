@@ -20,6 +20,9 @@ import view.BullpenView;
 public class PuzzleBoardMouseController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
 	Piece draggedPiece;
+	AbstractTile source;
+	Piece p;
+	Move m;
 	
 	PuzzleBoardMouseController (AbstractLevelModel levelModel) {
 		this.levelModel = levelModel;
@@ -47,7 +50,7 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 
 	@Override
 	public void mousePressed(MouseEvent me) {
-		AbstractTile source  = levelModel.getTileAt(me.getX(), me.getY());
+		source  = levelModel.getTileAt(me.getX(), me.getY());
 		if (source instanceof PieceTile) {
 			draggedPiece = ((PieceTile)source).getPiece();
 			levelModel.getBoard().removePiece(draggedPiece);		
@@ -56,19 +59,16 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		AbstractTile source  = levelModel.getTileAt(me.getX(), me.getY());
-		Piece p;
+		source  = levelModel.getTileAt(me.getX(), me.getY());
 		
 		if (draggedPiece == null) {
-			p = levelModel.getBullpen().getSelectedPiece();
-			Move m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
+			m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
 		} else {
-			p = draggedPiece;
-			Move m = new MovePieceOnBoardMove(levelModel, source, draggedPiece);
+			m = new MovePieceOnBoardMove(levelModel, source, draggedPiece);
 		}
 		
 		if (m.doMove()) {
-			level.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
+			levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
 		} else {
 			if (draggedPiece != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
 				levelModel.getBoard().placePiece(p, p.getOriginRow(), p.getOriginCol());
@@ -87,7 +87,7 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 	 */
 	@Override
 	public void mouseMoved(MouseEvent me) {
-		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
+		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		Piece p = levelModel.getBullpen().getSelectedPiece();
 		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
 	}
