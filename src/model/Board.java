@@ -21,19 +21,25 @@ public class Board {
 	 * @param col The column that the anchor tile should be placed on
 	 * @return the tile that was replaced.
 	 */
-	boolean putPieceOnBoard(Piece p, int row, int col){
+	boolean putPieceOnBoard(Piece p, int row, int col) {
 		pieces.add(p);
-		for(int i = 0; i<=6;i++){
-			AbstractTile temp = board[row+p.tiles[i].rowOnBoard][col+p.tiles[i].colOnBoard];
-			board[row+p.tiles[i].rowOnBoard][col+p.tiles[i].colOnBoard] = p.tiles[i];
-			p.tiles[i].setPreviousTile(temp);
+		if (willFit(p, row, col)) {
+			for (int i = 0; i <= 6; i++) {
+				AbstractTile temp = board[row + p.tiles[i].rowOnBoard][col + p.tiles[i].colOnBoard];
+				board[row + p.tiles[i].rowOnBoard][col + p.tiles[i].colOnBoard] = p.tiles[i];
+				p.tiles[i].setPreviousTile(temp);
+			}
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
-	void resetBoard(){
-		//TODO: Reset board so that no pieces are on it, piece tiles will have a list of what they replaced. 
-		//needs to return something that will contain all the pieces
+	ArrayList<Piece> resetBoard(){
+		ArrayList<Piece> piecesTemp = new ArrayList<Piece>();
+		while(!pieces.isEmpty()){
+			removePiece(pieces.get(0));
+		}
+		return piecesTemp;
 	}
 	
 	/**
@@ -43,20 +49,32 @@ public class Board {
 	 * @param col The column that the anchor tile should be placed on
 	 * @return boolean of whether or not the piece can be placed at that location or not
 	 */
-	boolean willFit(Piece p, int row, int col){
-		for(int i = 0; i <=6;i++){
-			if(board[row+p.tiles[i].rowInPiece][col+p.tiles[i].colInPiece].tileType.equals("empty")
-			 ||board[row+p.tiles[i].rowInPiece][col+p.tiles[i].colInPiece].tileType.equals("piece")){
+	boolean willFit(Piece p, int row, int col) {
+		for (int i = 0; i <= 6; i++) {
+			if (row + p.tiles[i].rowInPiece < 0 || row + p.tiles[i].rowInPiece > 11 || col + p.tiles[i].colInPiece < 0
+					|| col + p.tiles[i].colInPiece > 11) {
 				return false;
+			} else {
+				if (board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("empty")
+						|| board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("piece")) {
+					return false;
+				}
 			}
 		}
 		return true;
 	}
 	
-	//boolean removePiece(Piece p){
-		//TODO: Will need to remove piece from board, and delete it from the list of pieces on the board
-		// Should this still just return a boolean? or should it return the piece that was removed?
-	//}
+	boolean removePiece(Piece p) {
+		if (pieces.contains(p)) {
+			int place = pieces.indexOf(p);
+			for (int i = 0; i < 6; i++) {
+				swapTile(p.tiles[i], p.tiles[i].rowOnBoard, p.tiles[i].colOnBoard);
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	/**
 	 * Swaps a tile on the board with a new tile

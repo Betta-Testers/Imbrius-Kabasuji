@@ -73,9 +73,9 @@ public class Builder {
 			 * buildingLevel = pl;
 			 * bv.setModelLevel(pl);
 			 */
-			PuzzleLevel pl = new PuzzleLevel();
-			buildingLevel = pl;
-			bv.setModelLevel(pl);
+	//		PuzzleLevel pl = new PuzzleLevel();
+	//		buildingLevel = pl;
+	//		bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
@@ -114,9 +114,9 @@ public class Builder {
 			 * buildingLevel = pl;
 			 * bv.setModelLevel(pl);
 			 */
-			PuzzleLevel pl = new PuzzleLevel();
-			buildingLevel = pl;
-			bv.setModelLevel(pl);
+	//		PuzzleLevel pl = new PuzzleLevel();
+	///		buildingLevel = pl;
+	//		bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":

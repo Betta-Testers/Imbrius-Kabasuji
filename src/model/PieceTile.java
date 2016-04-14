@@ -23,21 +23,13 @@ public class PieceTile extends AbstractTile {
 	 * @param rinPiece Tile's row within the piece (can be negative)
 	 * @param cInPiece Tile's column within the piece (can be negative)
 	 */
-<<<<<<< HEAD
-
-	public PieceTile(int row, int col, Piece p) {
-=======
 	public PieceTile(int row, int col, Piece p) {
 
->>>>>>> refs/remotes/origin/BuilderControllers-H
 		super(row, col);
 		this.tileType = "piece";
 		this.piece = p;
 		this.color = p.getColor();
-<<<<<<< HEAD
-=======
 		this.defaultColor = color;
->>>>>>> refs/remotes/origin/BuilderControllers-H
 		
 		if (p.getOriginTile() == null) {
 			this.colInPiece = 0;
@@ -53,21 +45,6 @@ public class PieceTile extends AbstractTile {
 		
 	}
 	
-<<<<<<< HEAD
-	public void setPreviousTile(AbstractTile t){
-		this.previousTile = t;
-	}
-	
-	public int getRow() {
-		return this.rowOnBoard;
-	}
-	
-	public int getCol() {
-		return this.colOnBoard;
-	}
-	
-=======
->>>>>>> refs/remotes/origin/BuilderControllers-H
 	public int getRowInPiece() {
 		return this.rowInPiece;
 	}
