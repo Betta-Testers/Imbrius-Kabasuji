@@ -50,7 +50,7 @@ public class PieceGroup {
 	 * returns the number of pieces available
 	 * @return
 	 */
-	public Integer getNumPieces() {
+	public int getNumPieces() {
 		return this.numPieces;
 	}
 }
