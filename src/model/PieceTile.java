@@ -43,14 +43,6 @@ public class PieceTile extends AbstractTile {
 		
 	}
 	
-	public int getRow() {
-		return this.rowOnBoard;
-	}
-	
-	public int getCol() {
-		return this.colOnBoard;
-	}
-	
 	public int getRowInPiece() {
 		return this.rowInPiece;
 	}
@@ -83,5 +75,15 @@ public class PieceTile extends AbstractTile {
 		this.colOnBoard = piece.getOriginCol() + this.colInPiece;
 		this.rowOnBoard = piece.getOriginRow() + this.rowInPiece;
 	}
-
+	
+	/**
+	 * Can only directly change the location of the origin tile
+	 * @param row
+	 */
+	public void setLocation(int row, int col) {
+		if(piece.getOrigin() == this) {
+			this.rowOnBoard = row;
+			this.colOnBoard = col;
+		}
+	}
 }
