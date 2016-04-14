@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
+
 /** 
  * A LightningLevel handles the back end for a Lightning game mode, tracking the end conditions and progress of 
  * the game.
  * @author Dylan
  */
-public class LightningLevel extends AbstractLevelModel{
+public class LightningLevel extends AbstractLevelModel implements Serializable{
 	/**Serialized ID used for writing to disk**/
 	private static final long serialVersionUID = 407028463108073009L;
 	

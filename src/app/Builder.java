@@ -27,7 +27,7 @@ public class Builder {
 	BuilderView bv;
 
 	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
-	TreeMap<Integer, String> levelData;
+	StarMap<Integer, String, Integer> levelData;
 
 	/**The current level being built or edited**/
 	AbstractLevelModel buildingLevel;
@@ -52,13 +52,13 @@ public class Builder {
 	 * Because it is a TreeMap, the levels are guaranteed to be sorted lowest -> highest.
 	 * @return TreeMap with the LevelIDs read. If nothing is found, the TreeList returned is empty. 
 	 */
-	TreeMap<Integer, String> loadLevelData(){
+	StarMap<Integer, String, Integer> loadLevelData(){
 		File folder = new File(defaultDirectory);
 		File[] listOfFiles = folder.listFiles();
 		String levelType;
 		String levelNum;
 		int levelID = 0;
-		TreeMap<Integer, String> levelData = new TreeMap<Integer, String>();
+		StarMap<Integer, String, Integer> levelData = new TreeMap<Integer, String>();
 
 		for (File f: listOfFiles) {
 			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));

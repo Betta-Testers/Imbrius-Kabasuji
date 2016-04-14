@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 /** 
  * A PuzzleLevel handles the back end for a Puzzle game mode, tracking the end conditions and progress of 
  * the game.
  * @author Dylan
  */
 
-public class PuzzleLevel extends AbstractLevelModel{
+public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	/**Serialized ID used for writing file to disk**/
 	private static final long serialVersionUID = 1570651687735468714L;
 

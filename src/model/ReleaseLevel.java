@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
+
 /** 
  * A ReleaseLevel handles the back end for a Release game mode, tracking the end conditions and progress of 
  * the game.
  * @author Dylan
  */
-public class ReleaseLevel extends AbstractLevelModel{
+public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**Serialized ID used for writing to disk**/
 	private static final long serialVersionUID = -1980934631273821149L;
 	
