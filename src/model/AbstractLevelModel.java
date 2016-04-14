@@ -73,10 +73,6 @@ public abstract class AbstractLevelModel implements Serializable{
 	 */
 	public String getType(){
 		return levelType;
-	}	
-	
-	public String toString(){
-		return levelType+levelID;
 	}
 }
 

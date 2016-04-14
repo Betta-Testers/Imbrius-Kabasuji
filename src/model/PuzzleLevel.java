@@ -1,5 +1,6 @@
 package model;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 /** 
@@ -13,7 +14,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	private static final long serialVersionUID = 1570651687735468714L;
 
 	/**The moveLimit is the maximum number of moves THIS level allows to be made**/
-	int moveLimit;
+	int moveLimit = 1;
 	
 	/**The movesMade is the number of moves a player has made on THIS level**/
 	transient int movesMade;
@@ -23,7 +24,22 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 
 	public PuzzleLevel(int levelID) {
 		super(levelID, "Puzzle", true);
-		// TODO Auto-generated constructor stub
+		//moveLimit = 0;
+		initialize();
+	}
+	
+	/**
+	 * Initialize is here to redirect the contructor. When deserializing an object, it's 
+	 * constructor is ignored. Because of this, any transient fields won't get initialized.
+	 * To prevent this, a readObject() method is implemented and inside logic to initialize
+	 * these fields is put there. To prevent duplicate code from the constructor, however,
+	 * all this logic is done here.
+	 * 
+	 * Exploit this fact to initialize non-transient files in the constructor!
+	 */
+	void initialize() {
+		movesMade = 0;
+		tilesLeft = 0;
 	}
 
 	/** 
@@ -88,5 +104,18 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 */
 	public void incrementMovesMade(){
 		movesMade++;
+	}
+	
+	public String toString(){
+		return levelType+levelID+moveLimit;
+	}
+	
+	/**
+	 * When deserializing this, the transient fields needs to be initialized.
+	 * This method does just that, by calling the initialize method.
+	 */
+	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
+		in.defaultReadObject();
+		initialize();
 	}
 }

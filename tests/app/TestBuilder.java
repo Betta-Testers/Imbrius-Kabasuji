@@ -40,6 +40,8 @@ public class TestBuilder extends TestCase {
 		b.createLevel("Puzzle");
 		b.saveLevel();
 		m = b.loadLevel(1);
+		System.out.println(m.toString());
+		System.out.println(pl.toString());
 		assertEquals(m.toString(), pl.toString());
 		assertTrue(m instanceof PuzzleLevel);
 		
@@ -56,11 +58,24 @@ public class TestBuilder extends TestCase {
 		assertTrue(m instanceof LightningLevel);
 	}
 	
+	/**
+	 * Case 2: Make a level, but don't save it. Shouldn't be able to load
+	 * it. Then verify by trying to load a level that doesn't exist
+	 */
 	public void testCreateLevelCase2(){
-
-		//======== CASE 2: Make a level, Don't save, Can't Load ========
-		//======== CASE 3: Load same level multiple times ========
+		
+		
 	}
+	
+	/**
+	 * Case 3: Make a level, load it more than one time. Is the keySet
+	 * of StarMap changed? It shouldn't.
+	 */
+	public void testCreateLevelCase3(){
+		
+		
+	}
+	
 	
 	public void testSaveStarMap(){
 		
