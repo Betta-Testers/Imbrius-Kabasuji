@@ -4,7 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllers.SetNumberOfMovesSpinnerController;
 import model.AbstractLevelModel;
+import model.PuzzleLevel;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -47,7 +49,7 @@ public class BuilderView extends JFrame {
 	/**
 	 * Sets the level model for this builder. This is critical to setup. After the
 	 * blank builderView has been passed around the type of level model it will be handling
-	 * is determind at runtime. This method is used to set the model level and prepare the 
+	 * is determined at runtime. This method is used to set the model level and prepare the 
 	 * view.
 	 * @param m
 	 */
@@ -56,6 +58,7 @@ public class BuilderView extends JFrame {
 	 */
 	public void setModelLevel(AbstractLevelModel m){
 		modelLevel = m;
+		levelPropertyView.setLevelModel(m);
 	}
 	
 	

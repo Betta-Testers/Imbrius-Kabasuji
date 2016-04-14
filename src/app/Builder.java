@@ -7,6 +7,7 @@ import java.util.TreeMap;
 import view.BuilderView;
 import controllers.CloseBuilderDialog;
 import model.AbstractLevelModel;
+import model.PuzzleLevel;
 import view.LevelTypeSelectView;
 
 public class Builder {
@@ -71,6 +72,9 @@ public class Builder {
 			 * buildingLevel = pl;
 			 * bv.setModelLevel(pl);
 			 */
+			PuzzleLevel pl = new PuzzleLevel();
+			buildingLevel = pl;
+			bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
@@ -108,6 +112,9 @@ public class Builder {
 			 * buildingLevel = pl;
 			 * bv.setModelLevel(pl);
 			 */
+			PuzzleLevel pl = new PuzzleLevel();
+			buildingLevel = pl;
+			bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
