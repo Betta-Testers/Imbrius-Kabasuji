@@ -28,9 +28,10 @@ public class BoardTileController implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 		//Place piece if valid, with origin tile at this location
 		Piece p = levelModel.getSelectedPiece();
-		levelModel.placePieceOnBoard(p, source);
-		levelModel.clearSelectedPiece();
-		levelModel.updateLevelEndConditions();
+		if (levelModel.getBoard().willFit(p, source.getRow(), source.getCol()))
+			levelModel.placePieceOnBoard(source.getRow(), source.getCol());
+			levelModel.clearSelectedPiece();
+			levelModel.updateLevelEndConditions();
 	}
 
 	@Override
@@ -38,12 +39,12 @@ public class BoardTileController implements MouseListener{
 		// ask the board if placing a piece with the origin at this location is valid
 		// mark the affected tiles appropriately either way
 		Piece p = levelModel.getSelectedPiece();
-		levelModel.showPieceOnBoard(p, source);
+		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		levelModel.getBoard().clearPiecePreview();
 		
 	}
 

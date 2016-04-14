@@ -70,6 +70,18 @@ public class Piece {
 		return origin.rowInPiece;
 	}
 	
+	/** 
+	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
+	 * @param row
+	 * @param col
+	 */
+	public void setLocation(int row, int col) {
+		this.origin.setLocation(row, col);
+		for (PieceTile p : tiles) {
+			p.updateBoardPosition();
+		}
+	}
+	
 	/**
 	 * Method used to get the column location of the origin
 	 * @return int
