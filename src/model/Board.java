@@ -26,7 +26,7 @@ public class Board {
 		for(int i = 0; i<=6;i++){
 			AbstractTile temp = board[row+p.tiles[i].rowOnBoard][col+p.tiles[i].colOnBoard];
 			board[row+p.tiles[i].rowOnBoard][col+p.tiles[i].colOnBoard] = p.tiles[i];
-			//p.tiles[i].oldTile = temp;
+			p.tiles[i].setPreviousTile(temp);
 		}
 		return true;
 	}
@@ -71,9 +71,14 @@ public class Board {
 		return temp;
 	}
 	
+	/**
+	 * returns the AbstractTile that is located at an x,y co ordinate 
+	 * @param bt the tile being put onto the board
+	 * @return the tile that was replaced.
+	 */
 	AbstractTile getTileAt(int x, int y){
-		int row = x/tileSize;
-		int column = y/tileSize;
+		int row = y/tileSize;
+		int column = x/tileSize;
 		
 		return board[row][column];
 	}

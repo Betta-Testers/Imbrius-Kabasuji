@@ -24,12 +24,11 @@ public class PieceTile extends AbstractTile {
 	 * @param cInPiece Tile's column within the piece (can be negative)
 	 */
 
-	public PieceTile(int row, int col, AbstractTile previousTile) {
+	public PieceTile(int row, int col, Piece p) {
 		super(row, col);
 		this.tileType = "piece";
 		this.piece = p;
 		this.color = p.getColor();
-		this.previousTile = previousTile;
 		
 		if (p.getOrigin() == null) {
 			this.colInPiece = 0;
@@ -44,6 +43,10 @@ public class PieceTile extends AbstractTile {
 			this.colOnBoard = p.getOriginCol() + colInPiece;
 		}
 		
+	}
+	
+	public void setPreviousTile(AbstractTile t){
+		this.previousTile = t;
 	}
 	
 	public int getRow() {
