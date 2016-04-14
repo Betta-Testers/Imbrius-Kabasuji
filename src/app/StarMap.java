@@ -2,6 +2,7 @@ package app;
 
 import java.io.Serializable;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -14,12 +15,12 @@ import java.util.TreeMap;
  * @param <K> Generic Key
  * @param <V> Generic Value
  */
-public class StarMap<K, V, W> implements Serializable{
+public class StarMap<K, V> implements Serializable{
 	/**This class is saved to disk to store the max number of stars earned for a level**/
 	private static final long serialVersionUID = 7576231489845563260L;
 	
 	/**TreeMap that stores the ID of a level (Key) with the maximum stars earned for that level (Value)**/
-	TreeMap<K, W> stars = new TreeMap<K, W>();
+	TreeMap<K, K> stars = new TreeMap<K, K>();
 	
 	/**TreeMap stores levelID with levelType**/
 	TreeMap<K, V> levelData = new TreeMap<K, V>();
@@ -56,7 +57,7 @@ public class StarMap<K, V, W> implements Serializable{
 	 * @param starsEarned - should be maximum number of stars earned
 	 * @return true if the stars could be stored, false if level did not exist
 	 */
-	public boolean setMaxStars(K key, W starsEarned){
+	public boolean setMaxStars(K key, K starsEarned){
 		if(levelData.containsKey(key)){
 			stars.put(key, starsEarned);
 			return true;
@@ -71,7 +72,7 @@ public class StarMap<K, V, W> implements Serializable{
 	 * @param key
 	 * @return value associated with key - the maxStarsEarned or null if the levelID does not have a value associated with it
 	 */
-	public W getMaxStars(K key){
+	public K getMaxStars(K key){
 		return stars.get(key);
 	}
 	
@@ -79,10 +80,25 @@ public class StarMap<K, V, W> implements Serializable{
 	 * Returns an iterator of keys in the StarMap
 	 * @return Iterator of keys in levelData
 	 */
-	public Iterator getKeys(){
-		return levelData.keySet().iterator();
+	public Set<K> keySet(){
+		return levelData.keySet();
 	}
 
+	/**
+	 * Returns the last key in the tree - the highest value key.
+	 * @return Highest valued Key
+	 */
+	public K lastKey(){
+		return levelData.lastKey();
+	}
+	
+	/**
+	 * Tells whether the levelData is empty or not
+	 * @return true if levelData is empty
+	 */
+	public boolean isEmpty(){
+		return levelData.isEmpty();
+	}
 	
 	
 	

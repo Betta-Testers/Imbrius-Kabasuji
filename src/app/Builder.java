@@ -27,7 +27,7 @@ public class Builder {
 	BuilderView bv;
 
 	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
-	StarMap<Integer, String, Integer> levelData;
+	StarMap<Integer, String> levelData;
 
 	/**The current level being built or edited**/
 	AbstractLevelModel buildingLevel;
@@ -35,7 +35,7 @@ public class Builder {
 	Builder(String defaultDirectory){
 		this.defaultDirectory = defaultDirectory;
 
-		levelData = loadLevelData();
+		levelData = loadStarMap();
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(this, levelData);
 
@@ -46,35 +46,74 @@ public class Builder {
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
 	}
 
-	/**
-	 * Reads the directory located in the specified path, taking all level files and storing them into an array.
-	 * Every file has its name read and stored in a TreeMap by LevelID, LevelType.
-	 * Because it is a TreeMap, the levels are guaranteed to be sorted lowest -> highest.
-	 * @return TreeMap with the LevelIDs read. If nothing is found, the TreeList returned is empty. 
-	 */
-	StarMap<Integer, String, Integer> loadLevelData(){
-		File folder = new File(defaultDirectory);
-		File[] listOfFiles = folder.listFiles();
-		String levelType;
-		String levelNum;
-		int levelID = 0;
-		StarMap<Integer, String, Integer> levelData = new TreeMap<Integer, String>();
+	
+	public StarMap<Integer, String> loadStarMap(){
+		ObjectInputStream ois = null;
+		StarMap<Integer, String> m = null;
 
-		for (File f: listOfFiles) {
-			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
-			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
-			try{
-				levelID = Integer.parseInt(levelNum);
-			}catch(NumberFormatException e){
-				levelID = -1;
-			}
+		String location = defaultDirectory+"StarMap.storage";
 
-			levelData.put(levelID, levelType);
-
+		try {
+			ois = new ObjectInputStream (new FileInputStream(location));
+			m = (StarMap<Integer, String>) ois.readObject();
+			ois.close();
+		} catch (Exception e) { 
+			System.err.println("Unable to load levelData from:" + location);
+			m = null;
 		}
 
-		return levelData;
+		if (ois != null) { 
+			try { ois.close(); } catch (IOException ioe) { }
+		}
+		return m;
 	}
+	
+	public void saveStarMap(){
+		ObjectOutputStream oos = null;
+
+		String location = defaultDirectory+"StarMap.storage";
+
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream(location));
+			oos.writeObject(levelData);
+		} catch (Exception e) {
+			System.err.println("Unable to save the levelData:" + e.getMessage());
+		}
+
+		if (oos != null) {
+			try { oos.close(); } catch (IOException ioe) { } 
+		}
+	}
+	
+//	/**
+//	 * Reads the directory located in the specified path, taking all level files and storing them into an array.
+//	 * Every file has its name read and stored in a TreeMap by LevelID, LevelType.
+//	 * Because it is a TreeMap, the levels are guaranteed to be sorted lowest -> highest.
+//	 * @return TreeMap with the LevelIDs read. If nothing is found, the TreeList returned is empty. 
+//	 */
+//	StarMap<Integer, String, Integer> loadLevelData(){
+//		File folder = new File(defaultDirectory);
+//		File[] listOfFiles = folder.listFiles();
+//		String levelType;
+//		String levelNum;
+//		int levelID = 0;
+//		StarMap<Integer, String, Integer> levelData = new StarMap<Integer, String, Integer>();
+//
+//		for (File f: listOfFiles) {
+//			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
+//			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
+//			try{
+//				levelID = Integer.parseInt(levelNum);
+//			}catch(NumberFormatException e){
+//				levelID = -1;
+//			}
+//
+//			levelData.put(levelID, levelType);
+//
+//		}
+//
+//		return levelData;
+//	}
 
 	/**
 	 *TODO THIS METHOD NEEDS TESTING. It stores the level as an abstract level model for now. If that is enough, I 

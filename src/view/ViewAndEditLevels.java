@@ -7,10 +7,12 @@ import java.util.TreeMap;
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 
+import app.StarMap;
+
 public class ViewAndEditLevels extends JSplitPane {
 	private static final long serialVersionUID = 1L;
 	ExistingLevelViewer levelViewer;	
-	ViewAndEditLevels (TreeMap<Integer, String> levelData) {
+	ViewAndEditLevels (StarMap<Integer, String> levelData) {
 		super();
 		this.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		this.setEnabled(false);
