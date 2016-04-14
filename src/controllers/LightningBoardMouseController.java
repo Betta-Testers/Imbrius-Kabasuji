@@ -17,6 +17,9 @@ import view.BullpenView;
  * @author hejohnson
  *
  */
+
+//TODO add view update stuff
+
 public class LightningBoardMouseController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
 	
@@ -60,9 +63,6 @@ public class LightningBoardMouseController implements MouseListener, MouseMotion
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
-	 */
 	@Override
 	public void mouseMoved(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());

@@ -17,6 +17,9 @@ import view.BullpenView;
  * @author hejohnson
  *
  */
+
+//TODO add view update stuff
+
 public class PuzzleBoardMouseController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
 	Piece draggedPiece;
