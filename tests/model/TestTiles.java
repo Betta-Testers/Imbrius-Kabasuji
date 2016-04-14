@@ -34,6 +34,10 @@ public class TestTiles extends TestCase {
 		EmptyTile et = new EmptyTile(1,1);
 		assertEquals(Color.LIGHT_GRAY, et.color);
 		assertEquals("empty", et.toString());
+		et.setMouseOverColor(true);
+		assertEquals(Color.GREEN, et.color);
+		et.resetColor();
+		assertEquals(Color.LIGHT_GRAY, et.color);
 		
 		LightningTile lt = new LightningTile(1,1);
 		assertEquals(Color.GREEN, lt.color);

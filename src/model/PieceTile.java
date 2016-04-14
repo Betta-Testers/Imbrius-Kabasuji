@@ -12,6 +12,7 @@ public class PieceTile extends AbstractTile {
 	Piece piece;
 	int colInPiece;
 	int rowInPiece;
+	AbstractTile previousTile;
 	
 	//TODO update when piece entity exists, including comments. Do we need to store the position within the piece?
 	
@@ -27,13 +28,14 @@ public class PieceTile extends AbstractTile {
 		this.tileType = "piece";
 		this.piece = p;
 		this.color = p.getColor();
+		this.defaultColor = color;
+
 		
-		if (p.getOrigin() == null) {
+		if (p.getOriginTile() == null) {
 			this.colInPiece = 0;
 			this.rowInPiece = 0;
 			this.rowOnBoard = row;
 			this.colOnBoard = col;
-			p.setOrigin(this);
 		} else {
 			this.rowInPiece = row;
 			this.colInPiece = col;
@@ -41,14 +43,6 @@ public class PieceTile extends AbstractTile {
 			this.colOnBoard = p.getOriginCol() + colInPiece;
 		}
 		
-	}
-	
-	public int getRow() {
-		return this.rowOnBoard;
-	}
-	
-	public int getCol() {
-		return this.colOnBoard;
 	}
 	
 	public int getRowInPiece() {
@@ -60,7 +54,7 @@ public class PieceTile extends AbstractTile {
 	}
 	
 	public void updateRowInPiece(int newRow) {
-		if (piece.getOrigin() == this) {
+		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
 			
 			//return; --> shouldn't need this with run time exception
@@ -70,7 +64,7 @@ public class PieceTile extends AbstractTile {
 	}
 	
 	public void updateColInPiece(int newCol) {
-		if (piece.getOrigin() == this) {
+		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
 			
 			//return; --> shouldn't need this with run time exception
@@ -84,8 +78,26 @@ public class PieceTile extends AbstractTile {
 		this.rowOnBoard = piece.getOriginRow() + this.rowInPiece;
 	}
 	
+	/**
+	 * Can only directly change the location of the origin tile
+	 * @param row
+	 */
+	public void setLocation(int row, int col) {
+		if(piece.getOriginTile() == this) {
+			this.rowOnBoard = row;
+			this.colOnBoard = col;
+		}
+	}
+	
 	public AbstractTile getPreviousTile() {
 		return this.getPreviousTile();
 	}
-
+	
+	public void setPreviousTile(AbstractTile at) {
+		this.previousTile = at;
+	}
+	
+	public Piece getPiece() {
+		return this.piece;
+	}
 }

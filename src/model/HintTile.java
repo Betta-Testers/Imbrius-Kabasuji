@@ -13,6 +13,7 @@ public class HintTile extends AbstractTile {
 	public HintTile(int row, int col) {
 		super(row, col);
 		this.color = Color.DARK_GRAY;
+		this.defaultColor = color;
 		this.tileType = "hint";
 	}
 
