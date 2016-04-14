@@ -41,8 +41,10 @@ public class StarMap implements Serializable{
 	 * @param value - should be levelType
 	 */
 	public void put(Integer key, String value){
-		levelData.put(key, value);
-		stars.put(key, 0);
+		if(!levelData.containsKey(key)){
+			levelData.put(key, value);
+			stars.put(key, 0);
+		}
 	}
 
 	/**

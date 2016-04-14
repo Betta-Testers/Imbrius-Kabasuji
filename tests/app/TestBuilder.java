@@ -31,29 +31,35 @@ public class TestBuilder extends TestCase {
 		for(File file: dir.listFiles()) file.delete();
 	}
 	
+	/**
+	 * Case 1: Try to make multiple different types of levels in a row
+	 * Load each one in. They should load in to be the type they were
+	 * saved as.
+	 */
 	public void testCreateLevelCase1(){
-//======== CASE 1: Multiple created levels back to back ========
 		b.createLevel("Puzzle");
 		b.saveLevel();
 		m = b.loadLevel(1);
 		assertEquals(m.toString(), pl.toString());
+		assertTrue(m instanceof PuzzleLevel);
 		
 		b.createLevel("Release");
 		b.saveLevel();
 		m = b.loadLevel(2);
 		assertEquals(m.toString(), rl.toString());
+		assertTrue(m instanceof ReleaseLevel);
 		
 		b.createLevel("Lightning");
 		b.saveLevel();
 		m = b.loadLevel(3);
-		assertEquals(m.toString(), ll.toString());
-		
-//======== CASE 2: Make a level, Don't save, Can't Load ========
-		
+		assertEquals(m.toString(), ll.toString());	
+		assertTrue(m instanceof LightningLevel);
 	}
 	
 	public void testCreateLevelCase2(){
-		
+
+		//======== CASE 2: Make a level, Don't save, Can't Load ========
+		//======== CASE 3: Load same level multiple times ========
 	}
 	
 	public void testSaveStarMap(){
