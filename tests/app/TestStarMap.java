@@ -41,38 +41,38 @@ public class TestStarMap extends TestCase {
 		
 		//load the starMap
 		b.loadStarMap();
-		
+		assertEquals("[1,Puzzle,0],[2,Puzzle,0],[3,Puzzle,0],[4,Puzzle,0]", b.levelData.toString());
 	}
 	
-	public void testLoad(){
-
-	}
-	
-	public void testPut(){
-
-	}
-
-	public void testGet(){
-
-	}
-
-	public void testSetMaxStars(){
-
-	}
-
-	public void testGetMaxStars(){
-
-	}
-
-	public void testKeySet(){
-		
-	}
-
-	public void testLastKey(){
-	}
-
-	public void testIsEmpty(){
-	}
+//	public void testLoad(){
+//
+//	}
+//	
+//	public void testPut(){
+//
+//	}
+//
+//	public void testGet(){
+//
+//	}
+//
+//	public void testSetMaxStars(){
+//
+//	}
+//
+//	public void testGetMaxStars(){
+//
+//	}
+//
+//	public void testKeySet(){
+//		
+//	}
+//
+//	public void testLastKey(){
+//	}
+//
+//	public void testIsEmpty(){
+//	}
 
 
 }

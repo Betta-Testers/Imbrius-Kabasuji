@@ -154,15 +154,21 @@ public class StarMap implements Serializable{
 	 * is populated with levelIDs found and their types.
 	 */
 	void populateEmptyMap(){
+		System.out.println("Populating Empty Map @"+directory);
 		File[] folder = (new File(directory)).listFiles();
 		String levelNum;
 		String levelType;
 
 		for (File f: folder) {
+			//If the folder is empty, because no level files exist, dont populate anything
+			//in the star map
+			if(folder.length == 0){ break;}
+			if(f.getName().equals("StarMap.storage")){ continue;}
+			
+			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
+			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
 			int levelID;
 			try{
-				levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
-				levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
 				levelID = Integer.parseInt(levelNum);
 				this.put(levelID, levelType);
 				this.setMaxStars(levelID, 0);
