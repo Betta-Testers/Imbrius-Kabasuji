@@ -10,7 +10,7 @@ import model.AbstractLevelModel;
 
 public abstract class LevelIO {
 	/**Directory specified in main for storing and loading files**/
-	String defaultDirectory = "./imbriusLevelFiles/";
+	String defaultDirectory;
 
 	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
 	StarMap levelData;
@@ -30,12 +30,12 @@ public abstract class LevelIO {
 		String location = defaultDirectory+"StarMap.storage";
 
 		try {
-			ois = new ObjectInputStream (new FileInputStream(location));
+			ois = new ObjectInputStream(new FileInputStream(location));
 			m = (StarMap) ois.readObject();
 			ois.close();
 		}catch (Exception e){
-			System.err.println("StarMap not readable, creating new object");
-			m = new StarMap();
+			System.err.println("StarMap not reachable @"+location);
+			m = new StarMap(defaultDirectory);
 		}
 
 		if (ois != null) { 
@@ -108,5 +108,9 @@ public abstract class LevelIO {
 	
 	public StarMap getLevelData(){
 		return levelData;
+	}
+	
+	public LevelIO getLevelIO(){
+		return this;
 	}
 }

@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import view.BuilderView;
+import view.LevelTypeSelectView;
 import controllers.CloseBuilderDialog;
+import controllers.ShutdownController;
 import model.LightningLevel;
 import model.PuzzleLevel;
 import model.ReleaseLevel;
-import view.LevelTypeSelectView;
+
 
 public class Builder extends LevelIO{
 
@@ -27,9 +29,21 @@ public class Builder extends LevelIO{
 
 		initializeControllers();
 	}
+	
+	/**Testing constuctor gives ability to change defaultDirectory**/
+	Builder(String directory){
+		super();
+		this.defaultDirectory = directory;
+		levelData = loadStarMap();
+		bv = new BuilderView();
+		ltsv = new LevelTypeSelectView(this, levelData);
+
+		initializeControllers();
+	}
 
 	void initializeControllers(){
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
+		ltsv.addWindowListener(new ShutdownController(this));
 	}
 
 	/**

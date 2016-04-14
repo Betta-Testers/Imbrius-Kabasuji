@@ -28,7 +28,10 @@ public class StarMap implements Serializable{
 	/**TreeMap stores levelID with levelType**/
 	TreeMap<Integer, String> levelData = new TreeMap<Integer, String>();
 
-	StarMap(){
+	String directory;
+	
+	StarMap(String directory){
+		this.directory = directory;
 		populateEmptyMap();
 	}
 
@@ -121,7 +124,7 @@ public class StarMap implements Serializable{
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
 		
-		File[] folder = (new File("./imbriusLevelFiles/")).listFiles();
+		File[] folder = (new File(directory)).listFiles();
 		ArrayList<Integer> keys = new ArrayList<Integer>();
 		String levelNum;
 
@@ -151,15 +154,15 @@ public class StarMap implements Serializable{
 	 * is populated with levelIDs found and their types.
 	 */
 	void populateEmptyMap(){
-		File[] folder = (new File("./imbriusLevelFiles/")).listFiles();
+		File[] folder = (new File(directory)).listFiles();
 		String levelNum;
 		String levelType;
 
 		for (File f: folder) {
-			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
-			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
 			int levelID;
 			try{
+				levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
+				levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
 				levelID = Integer.parseInt(levelNum);
 				this.put(levelID, levelType);
 				this.setMaxStars(levelID, 0);
@@ -177,5 +180,14 @@ public class StarMap implements Serializable{
 	
 	public String keyToString(){
 		return this.keySet().toString();
+	}
+	
+	public String toString(){
+		StringBuilder s = new StringBuilder();
+		for(int k: this.keySet()){
+			s.append("["+k+","+levelData.get(k)+","+stars.get(k)+"],");			
+		}
+		s.deleteCharAt(s.length()-1);
+		return s.toString();
 	}
 }
