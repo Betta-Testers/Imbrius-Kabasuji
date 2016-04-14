@@ -1,6 +1,5 @@
 package app;
 
-
 import java.io.File;
 import java.util.TreeMap;
 
@@ -63,6 +62,8 @@ public class Builder {
 	 * For CREATING a level. This method is used by CreateLevelBtnController
 	 * to set the level being built. The level being built is stored in buildingLevel
 	 * TODO Store this building level in levelData ON SAVE
+	 * TODO When making a new level, create a File and pass it into the constructor
+	 * TODO That means when CANCELLING a level, you need to delete the file that was created for it!
 	 */
 	public void setModelLevelCreation(){
 		switch(ltsv.getSelectedLevelType()){
@@ -101,6 +102,7 @@ public class Builder {
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
+	 * TODO Don't pass a String fileName. Pass a File sourceFile instead
 	 */
 	public void setModelLevelEditing(int levelID){
 		String levelType = levelData.get(levelID);
