@@ -8,7 +8,7 @@ public class Bullpen {
 	/**
 	 * @author awharrison
 	 */
-	ArrayList<PieceGroup> playablePieces;
+	ArrayList<PieceGroup> playablePieces = new ArrayList<PieceGroup>();
 	Piece selectedPiece;
 	
 	/**
@@ -16,7 +16,7 @@ public class Bullpen {
 	 * @param pieces
 	 */
 	public Bullpen(ArrayList<PieceGroup> pieces) {
-		this.playablePieces = pieces;
+		this.playablePieces.addAll(pieces);
 		sortBullpen();
 	}
 	
@@ -25,8 +25,11 @@ public class Bullpen {
 	 * @param sizeOfBullpen
 	 */
 	public Bullpen(int sizeOfBullpen) {
+		if (sizeOfBullpen < 0) {
+			throw new RuntimeException("Cannot create a Bullpen with a negative number of pieces");
+		}
 		for(int i = 0; i < sizeOfBullpen; i++) {
-			this.playablePieces.add(new PieceGroup(new Random().nextInt(36), 1));
+			this.playablePieces.add(new PieceGroup(new Random().nextInt(35), 1));
 		}
 		sortBullpen();; // sort the bullpen by ID
 	}
@@ -36,23 +39,27 @@ public class Bullpen {
 	 * @param numPieces
 	 */
 	public void addRandomPieces(int numPieces) {
-		for(int i = 0; i < numPieces; i++) {
-			this.playablePieces.add(new PieceGroup(new Random().nextInt(36), 1));
+		if (numPieces < 0) {
+			throw new RuntimeException("Cannot add a negative number of pieces to the Bullpen");
 		}
-		sortBullpen();; // sort the bullpen by ID
+		for(int i = 0; i < numPieces; i++) {
+			this.playablePieces.add(new PieceGroup(new Random().nextInt(35), 1));
+		}
+		sortBullpen(); // sort the bullpen by ID
 	}
 	
 	/**
 	 * remove a piece has the given ID from this bullpen's playable pieces
 	 * @param ID
 	 */
-	public void removeSinglePiece(int ID) {
+	public boolean removeSinglePiece(int ID) {
 		for(int i = 0; i < this.playablePieces.size(); i++) {
-			if(this.playablePieces.get(i).piece.ID == ID) {
+			if(this.playablePieces.get(i).getPiece().ID == ID) {
 				this.playablePieces.remove(i);
-				break; // do not need to sort as removing a single piece from a sorted list still remains sorted
+				return true; // do not need to sort as removing a single piece from a sorted list still remains sorted
 			}
 		}
+		return false;
 	}
 	
 	/**
@@ -70,7 +77,11 @@ public class Bullpen {
 	 * @return
 	 */
 	public int numAvailablePieces() {
-		return this.playablePieces.size();
+		int count = 0;
+		for(int i = 0; i < this.playablePieces.size(); i++) {
+			count += this.playablePieces.get(i).numPieces;
+		}
+		return count;
 	}
 	
 	/**
@@ -99,5 +110,19 @@ public class Bullpen {
 	 */
 	public Piece getSelectedPiece() {
 		return this.selectedPiece;
+	}
+	/**
+	 * sets the selected piece from the bullpen using a given ID
+	 * returns true if the piece is available, false if not
+	 * @return
+	 */
+	public boolean setSelectedPiece(int ID) {
+		for(int i = 0; i < this.playablePieces.size(); i++) {
+			if(this.playablePieces.get(i).getPiece().ID == ID) {
+				this.selectedPiece = this.playablePieces.get(i).getPiece();
+				return true; // do not need to sort as removing a single piece from a sorted list still remains sorted
+			}
+		}
+		return false;
 	}
 }
