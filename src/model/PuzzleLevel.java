@@ -14,7 +14,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	private static final long serialVersionUID = 1570651687735468714L;
 
 	/**The moveLimit is the maximum number of moves THIS level allows to be made**/
-	int moveLimit = 1;
+	int moveLimit;
 	
 	/**The movesMade is the number of moves a player has made on THIS level**/
 	transient int movesMade;
@@ -24,7 +24,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 
 	public PuzzleLevel(int levelID) {
 		super(levelID, "Puzzle", true);
-		//moveLimit = 0;
+		moveLimit = 0;
 		initialize();
 	}
 	
@@ -35,7 +35,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 * these fields is put there. To prevent duplicate code from the constructor, however,
 	 * all this logic is done here.
 	 * 
-	 * Exploit this fact to initialize non-transient files in the constructor!
+	 * Exploit this fact to initialize non-transient fields in the constructor!
 	 */
 	void initialize() {
 		movesMade = 0;
@@ -104,6 +104,10 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 */
 	public void incrementMovesMade(){
 		movesMade++;
+	}
+	
+	public void setMoveLimit(int moves){
+		moveLimit = moves;
 	}
 	
 	public String toString(){

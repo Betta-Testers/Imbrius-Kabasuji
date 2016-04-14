@@ -169,4 +169,13 @@ public class StarMap implements Serializable{
 			}
 		}
 	}
+
+	
+	public boolean containsKey(int key) {
+		return levelData.containsKey(key);
+	}
+	
+	public String keyToString(){
+		return this.keySet().toString();
+	}
 }

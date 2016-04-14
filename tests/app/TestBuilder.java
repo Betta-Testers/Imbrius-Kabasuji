@@ -36,44 +36,46 @@ public class TestBuilder extends TestCase {
 	 * Load each one in. They should load in to be the type they were
 	 * saved as.
 	 */
-	public void testCreateLevelCase1(){
+	public void testCreateLevelCase1(){;
 		b.createLevel("Puzzle");
 		b.saveLevel();
 		m = b.loadLevel(1);
-		System.out.println(m.toString());
-		System.out.println(pl.toString());
-		assertEquals(m.toString(), pl.toString());
+		assertEquals(pl.toString(), m.toString());
 		assertTrue(m instanceof PuzzleLevel);
 		
 		b.createLevel("Release");
 		b.saveLevel();
 		m = b.loadLevel(2);
-		assertEquals(m.toString(), rl.toString());
+		assertEquals(rl.toString(), m.toString());
 		assertTrue(m instanceof ReleaseLevel);
 		
 		b.createLevel("Lightning");
 		b.saveLevel();
 		m = b.loadLevel(3);
-		assertEquals(m.toString(), ll.toString());	
+		assertEquals(ll.toString(), m.toString());	
 		assertTrue(m instanceof LightningLevel);
+		
+		b.createLevel("Puzzle");
+		((PuzzleLevel)b.getCurrentLevel()).setMoveLimit(2);
+		b.saveLevel();
+		m = b.loadLevel(4);
+		assertNotSame(pl.toString(), m.toString());
+		assertEquals("Puzzle42", m.toString());
+		assertTrue(m instanceof PuzzleLevel);
 	}
 	
 	/**
 	 * Case 2: Make a level, but don't save it. Shouldn't be able to load
-	 * it. Then verify by trying to load a level that doesn't exist
+	 * it.
 	 */
 	public void testCreateLevelCase2(){
-		
-		
-	}
-	
-	/**
-	 * Case 3: Make a level, load it more than one time. Is the keySet
-	 * of StarMap changed? It shouldn't.
-	 */
-	public void testCreateLevelCase3(){
-		
-		
+		b.createLevel("Puzzle");
+		m = b.loadLevel(0);
+		assertEquals(null, m);
+		m = b.loadLevel(1);
+		assertEquals(null, m);
+		m = b.loadLevel(2);
+		assertEquals(null, m);
 	}
 	
 	
@@ -85,8 +87,17 @@ public class TestBuilder extends TestCase {
 		
 	}
 	
+	/**
+	 * Case 1: Make a level, save it more than one time. Should not put
+	 * into levelData more than once!
+	 */
 	public void testSaveLevel(){
-		
+		b.createLevel("Puzzle");
+		assertFalse(b.getLevelData().containsKey(1));
+		b.saveLevel();
+		assertTrue(b.getLevelData().containsKey(1));
+		b.saveLevel();
+		assertEquals("[1]",b.getLevelData().keyToString());
 	}
 	
 	public void testLoadLevel(){

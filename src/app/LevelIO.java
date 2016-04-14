@@ -91,6 +91,8 @@ public abstract class LevelIO {
 		ObjectInputStream ois = null;
 		AbstractLevelModel m = null;
 
+		if(!levelData.containsKey(levelID)){ return null;}
+		
 		String type = levelData.get(levelID);
 		String location = defaultDirectory+levelID+"_"+type+".storage";
 
@@ -108,65 +110,15 @@ public abstract class LevelIO {
 			try { ois.close(); } catch (IOException ioe) { }
 		}
 		return m;
-
-		/*
-		ObjectInputStream ois = null;
-		PuzzleLevel pl = null;
-		ReleaseLevel rl = null;
-		LightningLevel ll = null;
-
-		String type = levelData.get(levelID);
-		String location = defaultDirectory+levelID+"_"+type+".storage";
-
-		switch(type){
-		case "Puzzle":
-			try {
-				ois = new ObjectInputStream (new FileInputStream(location));
-				pl = (PuzzleLevel) ois.readObject();
-				ois.close();
-			} catch (Exception e) { 
-				System.err.println("Unable to load state from:" + location);
-				pl = null;
-			}
-
-			if (ois != null) { 
-				try { ois.close(); } catch (IOException ioe) { }
-			}
-			return pl;
-		case "Release":
-			try {
-				ois = new ObjectInputStream (new FileInputStream(location));
-				rl = (ReleaseLevel) ois.readObject();
-				ois.close();
-			} catch (Exception e) { 
-				System.err.println("Unable to load state from:" + location);
-				rl = null;
-			}
-
-			if (ois != null) { 
-				try { ois.close(); } catch (IOException ioe) { }
-			}
-			return rl;
-		case "Lightning":
-			try {
-				ois = new ObjectInputStream (new FileInputStream(location));
-				ll = (LightningLevel) ois.readObject();
-				ois.close();
-			} catch (Exception e) { 
-				System.err.println("Unable to load state from:" + location);
-				ll = null;
-			}
-
-			if (ois != null) { 
-				try { ois.close(); } catch (IOException ioe) { }
-			}
-			return ll;
-		default:
-			return null;
-		}
-		 */
-
 	}
 
 
+//================== TESTING METHODS (FOR NOW) ================== 
+	public AbstractLevelModel getCurrentLevel(){
+		return currentLevel;
+	}
+	
+	public StarMap getLevelData(){
+		return levelData;
+	}
 }
