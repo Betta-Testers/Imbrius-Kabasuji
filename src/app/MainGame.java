@@ -14,13 +14,10 @@ public class MainGame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					/** The directory where files are loaded from**/
-					final String defaultDirectory = "./imbriusLevelFiles/";
-					
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					
 					SplashScreen splash = new SplashScreen();
-					Game game = new Game(defaultDirectory);
+					Game game = new Game();
 					
 					Timer timer = new Timer(2000, new GameSplashTimerController(splash, game));
 					timer.setRepeats(false);

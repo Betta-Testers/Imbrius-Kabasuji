@@ -29,13 +29,13 @@ public class LevelTypeSelectView extends JFrame {
 	LevelTypesAndText levelTypesAndText;
 	JButton createLevelBtn;
 	JPanel createBtnPanel;
-	StarMap<Integer, String> levelData;
+	StarMap levelData;
 	Builder b;
 	
 	/**
 	 * Create the application.
 	 */
-	public LevelTypeSelectView(Builder b, StarMap<Integer, String> levelData) {
+	public LevelTypeSelectView(Builder b, StarMap levelData) {
 		super();
 		this.levelData = levelData;
 		this.b = b;
@@ -104,7 +104,7 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		createLevelBtn.addActionListener(new CreateLevelBtnController(b));
+		createLevelBtn.addActionListener(new CreateLevelBtnController(b, this));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
 			elv.addActionListener(new ExistingLevelEditController(b));
 		}

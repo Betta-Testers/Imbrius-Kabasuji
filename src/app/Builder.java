@@ -1,22 +1,17 @@
 package app;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import view.BuilderView;
 import controllers.CloseBuilderDialog;
-import model.AbstractLevelModel;
 import model.LightningLevel;
 import model.PuzzleLevel;
 import model.ReleaseLevel;
 import view.LevelTypeSelectView;
 
-public class Builder {
-	/**Directory specified in main for storing and loading files**/
-	String defaultDirectory;
+public class Builder extends LevelIO{
 
 	/**The LevelTypeSelectionView to select the type of level the builder wants to make**/
 	LevelTypeSelectView ltsv;
@@ -24,15 +19,8 @@ public class Builder {
 	/**The BuilderView, for displaying the level once the builder has choosen to edit/create a level**/
 	BuilderView bv;
 
-	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
-	StarMap<Integer, String> levelData;
-
-	/**The current level being built or edited**/
-	AbstractLevelModel buildingLevel;
-
-	Builder(String defaultDirectory){
-		this.defaultDirectory = defaultDirectory;
-
+	Builder(){
+		super();
 		levelData = loadStarMap();
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(this, levelData);
@@ -42,53 +30,6 @@ public class Builder {
 
 	void initializeControllers(){
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
-	}
-
-	/**
-	 * Returns a StarMap object read from disk. If the StarMap cannot be read, null is
-	 * returned instead and an error is printed.
-	 * @return StarMap
-	 */
-	public StarMap<Integer, String> loadStarMap(){
-		ObjectInputStream ois = null;
-		StarMap<Integer, String> m = null;
-
-		String location = defaultDirectory+"StarMap.storage";
-
-		try {
-			ois = new ObjectInputStream (new FileInputStream(location));
-			m = (StarMap<Integer, String>) ois.readObject();
-			ois.close();
-		} catch (Exception e) { 
-			System.err.println("Unable to load levelData from:" + location);
-			m = null;
-		}
-
-		if (ois != null) { 
-			try { ois.close(); } catch (IOException ioe) { }
-		}
-		return m;
-	}
-	
-	/**
-	 * Stores a StarMap to disk. If the starmap cannot be saved, an error is
-	 * printed to the console
-	 */
-	public void saveStarMap(){
-		ObjectOutputStream oos = null;
-
-		String location = defaultDirectory+"StarMap.storage";
-
-		try {
-			oos = new ObjectOutputStream(new FileOutputStream(location));
-			oos.writeObject(levelData);
-		} catch (Exception e) {
-			System.err.println("Unable to save the levelData:" + e.getMessage());
-		}
-
-		if (oos != null) {
-			try { oos.close(); } catch (IOException ioe) { } 
-		}
 	}
 
 	/**
@@ -102,13 +43,13 @@ public class Builder {
 	public void saveLevel(){
 		ObjectOutputStream oos = null;
 
-		int id = buildingLevel.getID();
-		String type = buildingLevel.getType();
+		int id = currentLevel.getID();
+		String type = currentLevel.getType();
 		String location = defaultDirectory+id+"_"+type+".storage";
 
 		try {
 			oos = new ObjectOutputStream(new FileOutputStream(location));
-			oos.writeObject(buildingLevel);
+			oos.writeObject(currentLevel);
 		} catch (Exception e) {
 			System.err.println("Unable to save the level:" + e.getMessage());
 		}
@@ -123,116 +64,26 @@ public class Builder {
 	}
 
 	/**
-	 * TODO WORK IN PROGRESS THE BELOW COMMENT IS NO LONGER TRUE
-	 * Right now it reads in an abstract level model and returns that. As to whether that is enough
-	 * information or not, I am not sure yet. I need to test this.
-	 * 
-	 * Given a levelID, the method looks up the associated levelType from the LevelData tree.
-	 * Using this information it generates the path to the file, determines the correct type of level
-	 * to create, and returns that object.
-	 * @param levelID - ID of the level being opened
+	 * For CREATING a level. This method is used by CreateLevelBtnController
+	 * to set the level being built. The level being built is stored in currentLevel
 	 */
-	public AbstractLevelModel loadLevel(int levelID){
-		ObjectInputStream ois = null;
-		AbstractLevelModel m = null;
-
-		String type = levelData.get(levelID);
-		String location = defaultDirectory+levelID+"_"+type+".storage";
-
-		try {
-			ois = new ObjectInputStream (new FileInputStream(location));
-			m = (AbstractLevelModel) ois.readObject();
-			ois.close();
-		} catch (Exception e) { 
-			System.err.println("Unable to load state from:" + location);
-			m = null;
-		}
-
-		if (ois != null) { 
-			try { ois.close(); } catch (IOException ioe) { }
-		}
-		return m;
-
-		/*
-		ObjectInputStream ois = null;
-		PuzzleLevel pl = null;
-		ReleaseLevel rl = null;
-		LightningLevel ll = null;
-
-		String type = levelData.get(levelID);
-		String location = defaultDirectory+levelID+"_"+type+".storage";
-
+	public void setModelLevelCreation(String type){
 		switch(type){
 		case "Puzzle":
-			try {
-				ois = new ObjectInputStream (new FileInputStream(location));
-				pl = (PuzzleLevel) ois.readObject();
-				ois.close();
-			} catch (Exception e) { 
-				System.err.println("Unable to load state from:" + location);
-				pl = null;
-			}
-
-			if (ois != null) { 
-				try { ois.close(); } catch (IOException ioe) { }
-			}
-			return pl;
-		case "Release":
-			try {
-				ois = new ObjectInputStream (new FileInputStream(location));
-				rl = (ReleaseLevel) ois.readObject();
-				ois.close();
-			} catch (Exception e) { 
-				System.err.println("Unable to load state from:" + location);
-				rl = null;
-			}
-
-			if (ois != null) { 
-				try { ois.close(); } catch (IOException ioe) { }
-			}
-			return rl;
-		case "Lightning":
-			try {
-				ois = new ObjectInputStream (new FileInputStream(location));
-				ll = (LightningLevel) ois.readObject();
-				ois.close();
-			} catch (Exception e) { 
-				System.err.println("Unable to load state from:" + location);
-				ll = null;
-			}
-
-			if (ois != null) { 
-				try { ois.close(); } catch (IOException ioe) { }
-			}
-			return ll;
-		default:
-			return null;
-		}
-		 */
-
-	}
-
-	/**
-	 * For CREATING a level. This method is used by CreateLevelBtnController
-	 * to set the level being built. The level being built is stored in buildingLevel
-	 */
-	public void setModelLevelCreation(){
-		switch(ltsv.getSelectedLevelType()){
-		case "Puzzle":
 			PuzzleLevel pl = new PuzzleLevel(levelData.lastKey()+1);
-			buildingLevel = pl;
+			currentLevel = pl;
 			bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
 			LightningLevel ll = new LightningLevel(levelData.lastKey()+1);
-			buildingLevel = ll;
+			currentLevel = ll;
 			bv.setModelLevel(ll);
 			bv.prepLightning();
 			break;
 		case "Release":
 			ReleaseLevel rl = new ReleaseLevel(levelData.lastKey()+1);
-			buildingLevel = rl;
+			currentLevel = rl;
 			bv.setModelLevel(rl);
 			bv.prepRelease();
 			break;
@@ -249,19 +100,19 @@ public class Builder {
 		switch(levelType){
 		case "Puzzle":
 			PuzzleLevel pl = (PuzzleLevel) loadLevel(levelID);
-			buildingLevel = pl;
+			currentLevel = pl;
 			bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
 			LightningLevel ll = (LightningLevel) loadLevel(levelID);
-			buildingLevel = ll;
+			currentLevel = ll;
 			bv.setModelLevel(ll);
 			bv.prepLightning();
 			break;
 		case "Release":
 			ReleaseLevel rl = (ReleaseLevel) loadLevel(levelID);
-			buildingLevel = rl;
+			currentLevel = rl;
 			bv.setModelLevel(rl);
 			bv.prepRelease();
 			break;

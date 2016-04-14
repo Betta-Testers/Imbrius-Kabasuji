@@ -12,7 +12,7 @@ import app.StarMap;
 public class ViewAndEditLevels extends JSplitPane {
 	private static final long serialVersionUID = 1L;
 	ExistingLevelViewer levelViewer;	
-	ViewAndEditLevels (StarMap<Integer, String> levelData) {
+	ViewAndEditLevels (StarMap levelData) {
 		super();
 		this.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		this.setEnabled(false);
