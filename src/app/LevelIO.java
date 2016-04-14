@@ -11,16 +11,16 @@ import model.AbstractLevelModel;
 public abstract class LevelIO {
 	/**Directory specified in main for storing and loading files**/
 	final String defaultDirectory = "./imbriusLevelFiles/";
-	
+
 	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
 	StarMap levelData;
-	
+
 	/**The current level being manipulated*/
 	AbstractLevelModel currentLevel;
 
 	/**
-	 * Returns a StarMap object read from disk. If the StarMap cannot be read, null is
-	 * returned instead and an error is printed.
+	 * Returns a StarMap object read from disk. If the StarMap cannot be read
+	 * for any reason, a blank starmap is generated
 	 * @return StarMap
 	 */
 	public StarMap loadStarMap(){
@@ -33,9 +33,9 @@ public abstract class LevelIO {
 			ois = new ObjectInputStream (new FileInputStream(location));
 			m = (StarMap) ois.readObject();
 			ois.close();
-		} catch (Exception e) { 
-			System.err.println("Unable to load levelData from:" + location);
-			m = null;
+		}catch (Exception e){
+			System.err.println("StarMap file not readable, creating new StarMap...");
+			m = new StarMap();
 		}
 
 		if (ois != null) { 
@@ -43,7 +43,7 @@ public abstract class LevelIO {
 		}
 		return m;
 	}
-	
+
 	/**
 	 * Stores a StarMap to disk. If the starmap cannot be saved, an error is
 	 * printed to the console
@@ -64,7 +64,7 @@ public abstract class LevelIO {
 			try { oos.close(); } catch (IOException ioe) { } 
 		}
 	}
-	
+
 	/**
 	 * TODO WORK IN PROGRESS THE BELOW COMMENT IS NO LONGER TRUE
 	 * Right now it reads in an abstract level model and returns that. As to whether that is enough

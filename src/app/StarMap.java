@@ -28,6 +28,7 @@ public class StarMap implements Serializable{
 	TreeMap<Integer, String> levelData = new TreeMap<Integer, String>();
 
 	StarMap(){
+		populateEmptyMap();
 	}
 
 	/**
@@ -40,7 +41,7 @@ public class StarMap implements Serializable{
 	 */
 	public void put(Integer key, String value){
 		levelData.put(key, value);
-		stars.put(key, null);
+		stars.put(key, 0);
 	}
 
 	/**
@@ -137,5 +138,28 @@ public class StarMap implements Serializable{
 		}
 	}
 
+	/**
+	 * A new StarMap is made if the map can't be deserialized in an attempt to continue play. The only
+	 * information lost in such an event is the player's earned stars progress. The rest of the map
+	 * is populated with levelIDs found and their types.
+	 */
+	void populateEmptyMap(){
+		File[] folder = (new File("./imbriusLevelFiles/")).listFiles();
+		String levelNum;
+		String levelType;
 
+		for (File f: folder) {
+			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
+			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
+			int levelID;
+			try{
+				levelID = Integer.parseInt(levelNum);
+				this.put(levelID, levelType);
+				this.setMaxStars(levelID, 0);
+			}catch(NumberFormatException e){
+				System.err.println("Could not parse in from file, skipping...");
+				continue;
+			}
+		}
+	}
 }

@@ -20,7 +20,6 @@ public class TestBuilder extends TestCase {
 	}
 	
 	public void testSetModelLevelCreation(){
-		
 	}
 	
 	@Override
