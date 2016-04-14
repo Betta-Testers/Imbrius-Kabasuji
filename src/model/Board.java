@@ -11,6 +11,11 @@ public class Board {
 	int tileSize = 32;
 	
 	public Board(){
+		for(int i = 0;i<12;i++){
+			for(int j = 0;j<12;j++){
+				board[i][j] = new EmptyTile(i,j);
+			}
+		}
 		
 	}
 	
@@ -26,7 +31,9 @@ public class Board {
 		if (willFit(p, row, col)) {
 			for (int i = 0; i <= 6; i++) {
 				AbstractTile temp = board[row + p.tiles[i].rowOnBoard][col + p.tiles[i].colOnBoard];
-				board[row + p.tiles[i].rowOnBoard][col + p.tiles[i].colOnBoard] = p.tiles[i];
+				board[row + p.tiles[i].rowInPiece]	[col + p.tiles[i].colInPiece] = p.tiles[i];
+				p.tiles[i].rowOnBoard = row + p.tiles[i].rowInPiece;
+				p.tiles[i].colOnBoard = col + p.tiles[i].colInPiece;
 				p.tiles[i].setPreviousTile(temp);
 			}
 			return true;
@@ -99,4 +106,29 @@ public class Board {
 		int column = x/tileSize;
 		return board[row][column];
 	}
+	
+	/**
+	 * changes color of tiles that may be placed, green if
+	 * @param bt the tile being put onto the board
+	 * @return the tile that was replaced.
+	 */
+	
+	//CAN BE DONE MORE EFFICIENTLY! CHECK IF IT CAN BE PLACED WITH FIT METHOD IF IT CAN THEN CHANGE ALL TO GREEN!
+	//IF NOT THEN MORE SCRUTINY NEEDED!
+	void PiecePreview(Piece p, int row, int col){
+		for(int i = 0; i<6; i++){
+			if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
+					|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+row > 11){
+				//DO NOTHING! IT WILL BE OUT OF THE BOARD!
+			}else{
+				if(board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("empty")
+						|| board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("piece")){
+					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+				}else{
+					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+				}
+			}
+		}
+	}
+	
 }
