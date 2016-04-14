@@ -3,7 +3,7 @@ package model;
 import java.awt.Color;
 
 
-/*
+/**
  * @author ejbosia
  */
 
@@ -13,10 +13,7 @@ public class Piece {
 	 * TO DO
 	 * add methods that takes in string and returns object with those values
 	 */
-	
-	
-	
-	
+
 	PieceTile[] tiles = new PieceTile[6];
 	int ID;
 	PieceTile origin;
@@ -29,7 +26,7 @@ public class Piece {
 	
 	/**
 	 * Method used to break down Piece into a for saving
-	 * @param none
+	 * @return String
 	 */
 	public String toString(){
 		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
@@ -37,35 +34,62 @@ public class Piece {
 				ID + "," + origin.toString() + "," + color.toString();
 	}
 	
-	
+	/**
+	 * Method used to return ID of piece
+	 * @return int
+	 */
 	int getID(){
 		return ID;
 	}
 	
+	/**
+	 * Method used to change orientation of the piece as if it was rotated counterclockwise
+	 */
 	void rotateLeft(){
 		
 	}
 	
+	/**
+	 * Method used to change orientation of the piece as if it was rotated clockwise
+	 */
 	void rotateRight(){
 		
 	}
 	
+	/**
+	 * Method used to change orientation of the piece as if it was flipped horizontally
+	 */
 	void flipH(){
 		
 	}
 	
-	void flipL(){
+	/**
+	 * Method used to change orientation of the piece as if it was flipped vertically
+	 */
+	void flipV(){
 		
 	}
 	
+	/**
+	 * Method used to return color of piece
+	 * @return Color
+	 */
 	Color getColor(){
 		return color;
 	}
 	
+	/**
+	 * Method used to return origin tile of piece
+	 * @return PieceTile
+	 */
 	PieceTile getOrigin(){
 		return origin;
 	}
 	
+	/**
+	 * Method used to get the row location of the origin
+	 * @return int
+	 */
 	int getOriginRow(){
 		return origin.rowInPiece;
 	}

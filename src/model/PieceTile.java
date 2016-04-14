@@ -12,6 +12,7 @@ public class PieceTile extends AbstractTile {
 	Piece piece;
 	int colInPiece;
 	int rowInPiece;
+	AbstractTile previousTile;
 	
 	//TODO update when piece entity exists, including comments. Do we need to store the position within the piece?
 	
@@ -22,11 +23,16 @@ public class PieceTile extends AbstractTile {
 	 * @param rinPiece Tile's row within the piece (can be negative)
 	 * @param cInPiece Tile's column within the piece (can be negative)
 	 */
+<<<<<<< HEAD
 	public PieceTile(int row, int col, Piece p) {
+=======
+	public PieceTile(int row, int col, AbstractTile previousTile) {
+>>>>>>> refs/remotes/origin/Tiles
 		super(row, col);
 		this.tileType = "piece";
 		this.piece = p;
 		this.color = p.getColor();
+		this.previousTile = previousTile;
 		
 		if (p.getOrigin() == null) {
 			this.colInPiece = 0;
@@ -82,6 +88,10 @@ public class PieceTile extends AbstractTile {
 	public void updateBoardPosition() {
 		this.colOnBoard = piece.getOriginCol() + this.colInPiece;
 		this.rowOnBoard = piece.getOriginRow() + this.rowInPiece;
+	}
+	
+	public AbstractTile getPreviousTile() {
+		return this.getPreviousTile();
 	}
 
 }

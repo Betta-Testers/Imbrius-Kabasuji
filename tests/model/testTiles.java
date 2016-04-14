@@ -20,10 +20,7 @@ public class TestTiles extends TestCase {
 		assertEquals(Color.RED, bt.color);
 		bt.resetColor();
 		assertEquals(Color.WHITE, bt.color);
-		
 		assertEquals("board", bt.toString());
-		
-		
 	}
 	
 	public void testReleaseTile() {
