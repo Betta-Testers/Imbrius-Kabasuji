@@ -1,12 +1,10 @@
 package app;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.TreeMap;
 
 import view.BuilderView;
 import controllers.CloseBuilderDialog;
@@ -46,7 +44,11 @@ public class Builder {
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
 	}
 
-	
+	/**
+	 * Returns a StarMap object read from disk. If the StarMap cannot be read, null is
+	 * returned instead and an error is printed.
+	 * @return StarMap
+	 */
 	public StarMap<Integer, String> loadStarMap(){
 		ObjectInputStream ois = null;
 		StarMap<Integer, String> m = null;
@@ -68,6 +70,10 @@ public class Builder {
 		return m;
 	}
 	
+	/**
+	 * Stores a StarMap to disk. If the starmap cannot be saved, an error is
+	 * printed to the console
+	 */
 	public void saveStarMap(){
 		ObjectOutputStream oos = null;
 
@@ -84,36 +90,6 @@ public class Builder {
 			try { oos.close(); } catch (IOException ioe) { } 
 		}
 	}
-	
-//	/**
-//	 * Reads the directory located in the specified path, taking all level files and storing them into an array.
-//	 * Every file has its name read and stored in a TreeMap by LevelID, LevelType.
-//	 * Because it is a TreeMap, the levels are guaranteed to be sorted lowest -> highest.
-//	 * @return TreeMap with the LevelIDs read. If nothing is found, the TreeList returned is empty. 
-//	 */
-//	StarMap<Integer, String, Integer> loadLevelData(){
-//		File folder = new File(defaultDirectory);
-//		File[] listOfFiles = folder.listFiles();
-//		String levelType;
-//		String levelNum;
-//		int levelID = 0;
-//		StarMap<Integer, String, Integer> levelData = new StarMap<Integer, String, Integer>();
-//
-//		for (File f: listOfFiles) {
-//			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
-//			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
-//			try{
-//				levelID = Integer.parseInt(levelNum);
-//			}catch(NumberFormatException e){
-//				levelID = -1;
-//			}
-//
-//			levelData.put(levelID, levelType);
-//
-//		}
-//
-//		return levelData;
-//	}
 
 	/**
 	 *TODO THIS METHOD NEEDS TESTING. It stores the level as an abstract level model for now. If that is enough, I 
@@ -322,12 +298,29 @@ public class Builder {
 		return levelData.lastKey();
 	}
 
-
 	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
 	void initialize(){}
 	void initializeView(){}
 	void initializeLevelModel(int levelID){}
 	void initializeLevelView(){}
 	void initializeLevelControllers(){}
+	
+	//======================== TODO: MOVE THESE METHODS TO GAME ========================// 
+	/**
+	 * Updates the Maximum stars for a given LevelID and star count. 
+	 * If the count passed in is less than the value recorded in levelData,
+	 * the value is not recorded.
+	 * @param levelID
+	 * @param starsEarned - the current number of stars earned on a level
+	 */
+	public void updateStars(int levelID, int starsEarned){
+		if(starsEarned > levelData.getMaxStars(levelID)){
+			levelData.setMaxStars(levelID, starsEarned);
+		}
+	}
+	
+	//TODO SaveStarMap
+	//TODO LoadStarMap
+	//TODO LoadLevel
 
 }
