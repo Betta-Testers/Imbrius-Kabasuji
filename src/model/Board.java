@@ -7,6 +7,8 @@ public class Board {
 	//Standard row/column of matrix [row][column][0][0] is top left one below it is [1][0]
 	ArrayList<Piece> pieces = new ArrayList<Piece>();
 	
+	int origBoardPieces;
+	
 	
 	int tileSize = 32;
 	
@@ -41,6 +43,11 @@ public class Board {
 		return false;
 	}
 	
+	/**
+	 * Resets the board, removing every piece from the board and replacing them 
+	 * with the tiles that used to be in their locations
+	 * @return Returns an array list containing all of the old pieces that used to be on the board
+	 */
 	ArrayList<Piece> resetBoard(){
 		ArrayList<Piece> piecesTemp = new ArrayList<Piece>();
 		while(!pieces.isEmpty()){
@@ -71,6 +78,11 @@ public class Board {
 		return true;
 	}
 	
+	/**
+	 * Remove a given piece from the board, the piece must already exist on the board
+	 * @param p the piece being removed from the board
+	 * @return boolean of whether or not the piece was able to be removed, if used properly should ALWAYS return true
+	 */
 	boolean removePiece(Piece p) {
 		if (pieces.contains(p)) {
 			int place = pieces.indexOf(p);
@@ -130,5 +142,7 @@ public class Board {
 			}
 		}
 	}
+	
+	//TODO Figure out best way to calculate number of board pieces left, to cross reference with origBoardPieces
 	
 }
