@@ -24,7 +24,11 @@ public class PieceTile extends AbstractTile {
 	 * @param cInPiece Tile's column within the piece (can be negative)
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public PieceTile(int row, int col, Piece p) {
+=======
+	public PieceTile(int row, int col, AbstractTile previousTile) {
+>>>>>>> refs/remotes/origin/Tiles
 =======
 	public PieceTile(int row, int col, AbstractTile previousTile) {
 >>>>>>> refs/remotes/origin/Tiles
@@ -88,6 +92,10 @@ public class PieceTile extends AbstractTile {
 	public void updateBoardPosition() {
 		this.colOnBoard = piece.getOriginCol() + this.colInPiece;
 		this.rowOnBoard = piece.getOriginRow() + this.rowInPiece;
+	}
+	
+	public AbstractTile getPreviousTile() {
+		return this.getPreviousTile();
 	}
 	
 	public AbstractTile getPreviousTile() {
