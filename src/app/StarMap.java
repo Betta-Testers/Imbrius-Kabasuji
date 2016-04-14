@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -93,7 +94,11 @@ public class StarMap implements Serializable{
 	 * @return Highest valued Key
 	 */
 	public Integer lastKey(){
-		return levelData.lastKey();
+		try{
+			return levelData.lastKey();
+		}catch(NoSuchElementException e){
+			return 0;
+		}
 	}
 
 	/**

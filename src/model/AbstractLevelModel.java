@@ -1,11 +1,16 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
  * @author Dylan
  */
-public abstract class AbstractLevelModel {
+public abstract class AbstractLevelModel implements Serializable{
+
+	/**While an this class should NEVER be serialized, this is needed to serialize subclasses**/
+	private static final long serialVersionUID = -5159764997744131193L;
 
 	/**The ID of a level is a unique integer of value 1+ and corresponds to the file name**/
 	final int levelID;
@@ -69,6 +74,10 @@ public abstract class AbstractLevelModel {
 	public String getType(){
 		return levelType;
 	}	
+	
+	public String toString(){
+		return levelType+levelID;
+	}
 }
 
 

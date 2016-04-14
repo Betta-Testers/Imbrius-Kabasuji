@@ -27,6 +27,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 			blues[i] = -1;
 		}
 	}
+	
 
 	/** 
 	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player

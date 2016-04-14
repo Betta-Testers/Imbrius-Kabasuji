@@ -87,6 +87,7 @@ public abstract class LevelIO {
 			m = (AbstractLevelModel) ois.readObject();
 			ois.close();
 		} catch (Exception e) { 
+			e.printStackTrace();
 			System.err.println("Unable to load state from:" + location);
 			m = null;
 		}
