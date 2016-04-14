@@ -28,6 +28,7 @@ public class PieceTile extends AbstractTile {
 		this.tileType = "piece";
 		this.piece = p;
 		this.color = p.getColor();
+		System.out.println(p.getColor());
 		this.defaultColor = color;
 
 		

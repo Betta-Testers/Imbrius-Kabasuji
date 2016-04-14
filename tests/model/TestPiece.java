@@ -42,29 +42,9 @@ public class TestPiece extends TestCase{
 		}
 	}
 	
-	public void testTileInPiece(){
-		assertEquals(piece.tiles[1].getColInPiece(), 1);
-		assertEquals(piece.tiles[1].getRowInPiece(), 0);
-		
-		piece.tiles[1].updateColInPiece(-1);
-		piece.tiles[1].updateRowInPiece(-1);
-		
-		try{
-			piece.tiles[0].updateColInPiece(-1);
-			fail();
-		}catch (RuntimeException e){
-
-		}
-		
-		try{
-			piece.tiles[0].updateRowInPiece(-1);
-			fail();
-		}catch (RuntimeException e){
-
-		}
-		
-		
-	}
+	/**
+	 * Test if incorrect ID is used to instantiate piece
+	 */
 	public void testIncorrectID(){
 		try{
 			new Piece(-1);
