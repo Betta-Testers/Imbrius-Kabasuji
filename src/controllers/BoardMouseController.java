@@ -29,17 +29,16 @@ public class BoardMouseController implements MouseListener, MouseMotionListener{
 	public void mouseClicked(MouseEvent me) {
 		AbstractTile source  = levelModel.getTileAt(me.getX(), me.getY());
 		//Place piece if valid, with origin tile at this location
-		if (draggedPiece != null) {
+		if (draggedPiece == null) {
 			Piece p = levelModel.getSelectedPiece();
 			if (levelModel.getBoard().willFit(p, source.getRow(), source.getCol())) {
-				levelModel.placePieceOnBoard(draggedPiece, source.getRow(), source.getCol());
+				levelModel.getBoard().placePiece(p, source.getRow(), source.getCol());
 				levelModel.clearSelectedPiece();
 				levelModel.updateLevelEndConditions();
 			}
 		} else {
 			if (levelModel.getBoard().willFit(draggedPiece, source.getRow(), source.getCol())) {
-				levelModel.placePieceOnBoard(draggedPiece, source.getRow(), source.getCol());
-				levelModel.clearSelectedPiece();
+				levelModel.getBoard().placePiece(draggedPiece, source.getRow(), source.getCol());
 				levelModel.updateLevelEndConditions();
 			}
 		}
@@ -58,7 +57,7 @@ public class BoardMouseController implements MouseListener, MouseMotionListener{
 		if (draggedPiece == null) {
 			levelModel.getBoard().clearPiecePreview();
 		} else {
-			levelModel.addPieceToBullpen(draggedPiece);
+			levelModel.getBullpen().addSinglePiece(draggedPiece.getID());
 		}
 		
 	}

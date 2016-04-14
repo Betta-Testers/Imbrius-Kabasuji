@@ -38,7 +38,7 @@ public class Piece {
 	}
 	
 	
-	int getID(){
+	public int getID(){
 		return ID;
 	}
 	
