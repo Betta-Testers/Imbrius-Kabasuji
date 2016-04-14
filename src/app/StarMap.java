@@ -124,28 +124,30 @@ public class StarMap implements Serializable{
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
 		
-		File[] folder = (new File(directory)).listFiles();
-		ArrayList<Integer> keys = new ArrayList<Integer>();
-		String levelNum;
-
-		for (File f: folder) {
-			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
-			int levelID;
-			try{
-				levelID = Integer.parseInt(levelNum);
-				keys.add(levelID);
-			}catch(NumberFormatException e){
-				System.err.println("Could not parse in from file, skipping...");
-				continue;
-			}
-		}
-		
-		for(Integer k: this.keySet()){
-			if(!keys.contains(k)){
-				levelData.remove(k);
-				stars.remove(k);
-			}
-		}
+//		File[] folder = (new File(directory)).listFiles();
+//		ArrayList<Integer> keys = new ArrayList<Integer>();
+//		String levelNum;
+//
+//		for (File f: folder) {
+//			
+//			if(f.getName().equals("StarMap.storage")){ continue;}
+//			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
+//			int levelID;
+//			try{
+//				levelID = Integer.parseInt(levelNum);
+//				keys.add(levelID);
+//			}catch(NumberFormatException e){
+//				System.err.println("Could not parse in from file, skipping...");
+//				continue;
+//			}
+//		}
+//		
+//		for(Integer k: this.keySet()){
+//			if(!keys.contains(k)){
+//				levelData.remove(k);
+//				stars.remove(k);
+//			}
+//		}
 	}
 
 	/**

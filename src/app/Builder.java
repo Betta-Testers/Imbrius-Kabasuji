@@ -34,7 +34,7 @@ public class Builder extends LevelIO{
 	Builder(String directory){
 		super();
 		this.defaultDirectory = directory;
-		levelData = loadStarMap();
+		this.levelData = loadStarMap();
 		bv = new BuilderView();
 		ltsv = new LevelTypeSelectView(this, levelData);
 

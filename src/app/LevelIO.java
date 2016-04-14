@@ -30,7 +30,8 @@ public abstract class LevelIO {
 		String location = defaultDirectory+"StarMap.storage";
 
 		try {
-			ois = new ObjectInputStream(new FileInputStream(location));
+			FileInputStream infile = new FileInputStream(location);
+			ois = new ObjectInputStream(infile);
 			m = (StarMap) ois.readObject();
 			ois.close();
 		}catch (Exception e){

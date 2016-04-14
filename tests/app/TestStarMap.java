@@ -40,8 +40,9 @@ public class TestStarMap extends TestCase {
 		assertEquals(null, b.levelData);
 		
 		//load the starMap
-		b.loadStarMap();
-		assertEquals("[1,Puzzle,0],[2,Puzzle,0],[3,Puzzle,0],[4,Puzzle,0]", b.levelData.toString());
+		b.levelData = b.loadStarMap();
+		
+		assertEquals("[1,Puzzle,0],[2,Puzzle,0],[3,Puzzle,0],[4,Puzzle,0]", b.levelData.toString() );
 	}
 	
 //	public void testLoad(){
