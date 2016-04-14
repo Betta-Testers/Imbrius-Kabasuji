@@ -63,9 +63,8 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-	AbstractTile swapTile(AbstractTile bt){
-		int row = bt.rowOnBoard;
-		int col = bt.colOnBoard;
+	//DONE
+	AbstractTile swapTile(AbstractTile bt, int row, int col){
 		AbstractTile temp = board[row][col];
 		board[row][col] = bt;
 		return temp;
@@ -76,10 +75,10 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
+	//DONE
 	AbstractTile getTileAt(int x, int y){
 		int row = y/tileSize;
 		int column = x/tileSize;
-		
 		return board[row][column];
 	}
 }
