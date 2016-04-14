@@ -19,18 +19,6 @@ public abstract class LevelIO {
 	AbstractLevelModel currentLevel;
 
 	/**
-	 * Method for toggling the directory for testing. 
-	 * Useful to preserve levels in the later stages of the project
-	 * @param forTesting - true changes to test directory
-	 */
-	public void setDirectoryForTesting(boolean forTesting){
-		if(forTesting){
-			defaultDirectory = "./imbriusLevelTESTING/";
-		}else{
-			defaultDirectory = "./imbriusLevelFiles/";
-		}
-	}
-	/**
 	 * Returns a StarMap object read from disk. If the StarMap cannot be read
 	 * for any reason, a blank starmap is generated
 	 * @return StarMap
@@ -46,7 +34,7 @@ public abstract class LevelIO {
 			m = (StarMap) ois.readObject();
 			ois.close();
 		}catch (Exception e){
-			System.err.println("StarMap file not readable, creating new StarMap...");
+			System.err.println("StarMap not readable, creating new object");
 			m = new StarMap();
 		}
 

@@ -5,15 +5,10 @@ import view.LevelView;
 import view.LevelSelectionView;
 import view.StarView;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 import controllers.ExitLevelButtonController;
 import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
+import controllers.ShutdownController;
 import model.AbstractLevelModel;
 
 public class Game extends LevelIO{
@@ -55,10 +50,11 @@ public class Game extends LevelIO{
 		levelView.addWindowListener(new ExitLevelButtonController(this.levelView, this));
 		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
 		selectLevel.getAvailableLevelView(0).getPlayButton().addActionListener(new PlayLevelButtonController(selectLevel, this));
+		selectLevel.addWindowListener(new ShutdownController(this));
 	}
 	
 	void initializeModels(){
-		
+		loadStarMap();
 	}
 	
 	public LevelSelectionView getSelectView() {
