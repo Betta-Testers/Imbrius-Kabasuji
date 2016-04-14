@@ -31,12 +31,11 @@ public class PieceTile extends AbstractTile {
 		this.color = p.getColor();
 		this.defaultColor = color;
 		
-		if (p.getOrigin() == null) {
+		if (p.getOriginTile() == null) {
 			this.colInPiece = 0;
 			this.rowInPiece = 0;
 			this.rowOnBoard = row;
 			this.colOnBoard = col;
-			p.setOrigin(this);
 		} else {
 			this.rowInPiece = row;
 			this.colInPiece = col;
@@ -55,7 +54,7 @@ public class PieceTile extends AbstractTile {
 	}
 	
 	public void updateRowInPiece(int newRow) {
-		if (piece.getOrigin() == this) {
+		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
 			
 			//return; --> shouldn't need this with run time exception
@@ -65,7 +64,7 @@ public class PieceTile extends AbstractTile {
 	}
 	
 	public void updateColInPiece(int newCol) {
-		if (piece.getOrigin() == this) {
+		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
 			
 			//return; --> shouldn't need this with run time exception
@@ -84,7 +83,7 @@ public class PieceTile extends AbstractTile {
 	 * @param row
 	 */
 	public void setLocation(int row, int col) {
-		if(piece.getOrigin() == this) {
+		if(piece.getOriginTile() == this) {
 			this.rowOnBoard = row;
 			this.colOnBoard = col;
 		}
