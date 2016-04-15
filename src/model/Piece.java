@@ -43,21 +43,55 @@ public class Piece {
 	}
 	
 	public void rotateLeft(){
-		
+		for (int i=1; i<6; i++) {
+			PieceTile pt = tiles[1];
+			int row = pt.getRowInPiece();
+			int col = pt.getColInPiece();
+			if (pt.getColInPiece() >= 0 && pt.getRowInPiece() >= 0) {
+				pt.updateRowInPiece(-1*col);
+				pt.updateColInPiece(row);
+			} else if (pt.getColInPiece() >= 0 && pt.getRowInPiece() <= 0) {
+				pt.updateRowInPiece(-1*col);
+				pt.updateColInPiece(-1*row);
+			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() <= 0) {
+				pt.updateRowInPiece(col);
+				pt.updateColInPiece(row);
+			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() >= 0) {
+				pt.updateRowInPiece(-1*col);
+				pt.updateColInPiece(row);	
+			}
+		}
 	}
 	
 	public void rotateRight(){
-		
+		for (int i=1; i<6; i++) {
+			PieceTile pt = tiles[1];
+			int row = pt.getRowInPiece();
+			int col = pt.getColInPiece();
+			if (pt.getColInPiece() >= 0 && pt.getRowInPiece() >= 0) {
+				pt.updateRowInPiece(col);
+				pt.updateColInPiece(-1*row);
+			} else if (pt.getColInPiece() >= 0 && pt.getRowInPiece() <= 0) {
+				pt.updateRowInPiece(col);
+				pt.updateColInPiece(-1*row);
+			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() <= 0) {
+				pt.updateRowInPiece(-1*col);
+				pt.updateColInPiece(-1*row);
+			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() >= 0) {
+				pt.updateRowInPiece(col);
+				pt.updateColInPiece(row);
+			}
+		}
 	}
 	
 	public void flipH(){
-		for (int i=1; i<=5; i++) {
+		for (int i=1; i<6; i++) {
 			tiles[i].updateColInPiece(-1*tiles[i].getColInPiece());
 		}
 	}
 	
 	public void flipV(){
-		for (int i=1; i<=5; i++) {
+		for (int i=1; i<6; i++) {
 			tiles[i].updateRowInPiece(-1*tiles[i].getRowInPiece());
 		}
 	}
