@@ -56,18 +56,18 @@ public class TestBoard extends TestCase{
 		b.board[5][1] = new BoardTile(5,1);
 		
 		Piece p2 = new Piece(1);
-		b.PiecePreview(p2, 2, 1);
+		b.showPiecePreview(p2, 2, 1);
 		
 		assertEquals(Color.GREEN, b.board[1][1].color);
 		
 		Piece p3 = new Piece(1);
 		
-		b.PiecePreview(p3, 2, 2);
+		b.showPiecePreview(p3, 2, 2);
 		assertEquals(Color.RED, b.board[2][2].color);
 		
 		Piece p4 = new Piece(1);
 		
-		b.PiecePreview(p4, 0, 3);
+		b.showPiecePreview(p4, 0, 3);
 		assertEquals(Color.RED, b.board[0][3].color);
 		b.clearPiecePreview();
 		

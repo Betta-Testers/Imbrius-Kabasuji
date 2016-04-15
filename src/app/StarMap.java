@@ -162,8 +162,8 @@ public class StarMap implements Serializable{
 		String levelNum;
 
 		for (File f: folder) {
-
 			if(f.getName().equals("StarMap.storage")){ continue;}
+
 			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
 			int levelID;
 			try{
@@ -213,6 +213,4 @@ public class StarMap implements Serializable{
 			}
 		}
 	}
-
-
 }

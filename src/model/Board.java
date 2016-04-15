@@ -12,10 +12,7 @@ public class Board {
 	AbstractTile board[][] = new AbstractTile[12][12];
 	//Standard row/column of matrix [row][column][0][0] is top left one below it is [1][0]
 	ArrayList<Piece> pieces = new ArrayList<Piece>();
-	
 	int origBoardPieces;
-	
-	
 	int tileSize = 32;
 	
 	public Board(){
@@ -67,7 +64,7 @@ public class Board {
 	 * @param col The column that the anchor tile should be placed on
 	 * @return boolean of whether or not the piece can be placed at that location or not
 	 */
-	boolean willFit(Piece p, int row, int col) {
+	public boolean willFit(Piece p, int row, int col) {
 		for (int i = 0; i < 6; i++) {
 			if (row + p.tiles[i].rowInPiece < 0 || row + p.tiles[i].rowInPiece > 11 || col + p.tiles[i].colInPiece < 0
 					|| col + p.tiles[i].colInPiece > 11) {
@@ -170,12 +167,11 @@ public class Board {
 	 * Will clear all piece previewing from the board, setting all tiles back to their original colors.
 	 * @return void
 	 */
-	void clearPiecePreview(){
+	public void clearPiecePreview(){
 		for(int i = 0; i <12; i++){
 			for(int j = 0; j <12; j++){
 				board[i][j].resetColor();
 			}
 		}
 	}
-	
 }

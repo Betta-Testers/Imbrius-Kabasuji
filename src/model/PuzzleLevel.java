@@ -18,7 +18,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	
 	/**The movesMade is the number of moves a player has made on THIS level**/
 	transient int movesMade;
-
+	
 	public PuzzleLevel(int levelID) {
 		super(levelID, "Puzzle", true);
 		moveLimit = 0;

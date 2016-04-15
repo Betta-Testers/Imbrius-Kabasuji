@@ -74,6 +74,4 @@ public class TestStarMap extends TestCase {
 //
 //	public void testIsEmpty(){
 //	}
-
-
 }

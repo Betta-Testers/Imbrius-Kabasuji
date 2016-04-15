@@ -76,8 +76,7 @@ public class TestBuilder extends TestCase {
 		m = b.loadLevel(2);
 		assertEquals(null, m);
 	}
-	
-	
+
 	public void testSaveStarMap(){
 		
 	}

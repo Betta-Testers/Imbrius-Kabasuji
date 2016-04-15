@@ -47,7 +47,7 @@ public class Game extends LevelIO{
 		currentLevel = loadLevel(LevelID);
 		
 		//Step 2)
-		currentLevel.setLevelIO(this);
+		//currentLevel.setLevelIO(this);
 		
 		//WHY not merge steps 2 and 3? Might be worth it!
 		/**TODO

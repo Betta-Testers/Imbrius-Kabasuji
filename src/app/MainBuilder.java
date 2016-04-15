@@ -23,7 +23,6 @@ public class MainBuilder {
 					timer.setRepeats(false);
 					timer.start();
 
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

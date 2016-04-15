@@ -85,7 +85,7 @@ public abstract class LevelIO {
 		AbstractLevelModel m = null;
 
 		if(!levelData.containsKey(levelID)){ return null;}
-		
+
 		String type = levelData.get(levelID);
 		String location = defaultDirectory+levelID+"_"+type+".storage";
 

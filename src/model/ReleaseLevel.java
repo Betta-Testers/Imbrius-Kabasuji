@@ -21,7 +21,6 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 
 	public ReleaseLevel(int levelID) {
 		super(levelID, "Release", false);
-		
 		initializeVars();
 	}
 	
@@ -46,6 +45,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 			blues[i] = -1;
 		}
 	}
+
 
 	/**
 	 * CheckStatus occurs after every move is made. This updates the stars earned for the current level if 
@@ -127,5 +127,4 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		in.defaultReadObject();
 		initializeVars();
 	}
-
 }
