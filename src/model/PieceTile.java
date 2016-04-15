@@ -110,7 +110,4 @@ public class PieceTile extends AbstractTile {
 	public Piece getPiece() {
 		return this.piece;
 	}
-
 }
-
-

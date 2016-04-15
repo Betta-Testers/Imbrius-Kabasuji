@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import app.Game;
+import app.LevelIO;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Piece;
@@ -20,15 +22,17 @@ import view.BullpenView;
 
 //TODO add view update stuff
 
-public class PuzzleBoardMouseController implements MouseListener, MouseMotionListener{
+public class PuzzleBoardGameController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
 	Piece draggedPiece;
 	AbstractTile source;
 	Piece p;
 	Move m;
+	Game game;
 	
-	PuzzleBoardMouseController (AbstractLevelModel levelModel) {
-		this.levelModel = levelModel;
+	PuzzleBoardGameController (Game game) {
+		this.game = game;
+		this.levelModel = game.getCurrentLevel();
 	}
 
 	@Override
@@ -45,15 +49,18 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 	public void mouseExited(MouseEvent arg0) {
 		if (draggedPiece == null) {
 			levelModel.getBoard().clearPiecePreview();
-		} else {
-			levelModel.getBullpen().addSinglePiece(draggedPiece.getID());
-			levelModel.updateLevelEndConditions();
+		} else { // currently dragging a piece
+			Move m = new MovePieceOffBoardMove(levelModel, draggedPiece);
+			m.doMove();
+			if (levelModel.checkStatus()) {
+				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
+			}
 		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent me) {
-		source  = levelModel.getTileAt(me.getX(), me.getY());
+		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		if (source instanceof PieceTile) {
 			draggedPiece = ((PieceTile)source).getPiece();
 			levelModel.getBoard().removePiece(draggedPiece);		
@@ -61,8 +68,8 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		source  = levelModel.getTileAt(me.getX(), me.getY());
+	public void mouseReleased(MouseEvent me) {
+		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		
 		if (draggedPiece == null) {
 			m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
@@ -71,12 +78,16 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 		}
 		
 		if (m.doMove()) {
-			levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
+			//levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
+			if (levelModel.checkStatus()) {
+				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
+			}
 		} else {
 			if (draggedPiece != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
-				levelModel.getBoard().placePiece(p, p.getOriginRow(), p.getOriginCol());
+				levelModel.getBoard().putPieceOnBoard(p, p.getOriginRow(), p.getOriginCol());
 			}
 		} 
+		draggedPiece = null;
 	}
 
 	@Override

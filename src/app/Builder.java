@@ -4,6 +4,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import view.BuilderView;
+import view.LevelTypeSelectView;
+
 import controllers.CloseBuilderDialog;
 import controllers.ShutdownController;
 import view.BuilderView;
@@ -146,7 +149,7 @@ public class Builder extends LevelIO{
 		if(levelData.lastKey() == null){ return 0;}
 		return levelData.lastKey();
 	}
-	
+
 	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
 	void initialize(){}
 	void initializeView(){}

@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import app.Game;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Piece;
@@ -20,20 +21,24 @@ import view.BullpenView;
 
 //TODO add view update stuff
 
-public class LightningBoardMouseController implements MouseListener, MouseMotionListener{
+public class LightningBoardGameController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
+	Game game;
 	
-	LightningBoardMouseController (AbstractLevelModel levelModel) {
-		this.levelModel = levelModel;
+	LightningBoardGameController (Game game) {
+		this.game = game;
+		this.levelModel = game.getCurrentLevel();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
-		AbstractTile source  = levelModel.getTileAt(me.getX(), me.getY());
+		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		Move m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
 		
 		if (m.doMove()) {
-			level.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
+			if (levelModel.checkStatus()) {
+				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
+			}
 		}
 	}
 

@@ -30,10 +30,9 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 	
 	public boolean doMove() {
 		if (isValid()) {
-			board.placePiece(p, sourceTile.getRow(), sourceTile.getCol());
+			board.putPieceOnBoard(p, sourceTile.getRow(), sourceTile.getCol());
 			bullpen.decrementSelectedPiece();
 			bullpen.clearSelectedPiece();
-			levelModel.updateLevelEndConditions();
 			return true;
 		}
 		return false;
@@ -46,5 +45,10 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 	public boolean undo() {
 		board.removePiece(p);
 		bullpen.addSinglePiece(p.getID());
+		return true;
+	}
+	
+	public Piece getPlacedPiece() {
+		return this.p;
 	}
 }

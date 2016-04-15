@@ -58,6 +58,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * @return	boolean - true if level is complete
 	 */
 	@Override
+
 	public boolean checkStatus() {
 		boolean redSum = sumIsSix(reds);
 		boolean blueSum = sumIsSix(blues);
