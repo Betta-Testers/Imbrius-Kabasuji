@@ -15,9 +15,6 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	/**Total time the level has to be played, in seconds**/
 	int totalTime;
 	
-	/**Time remaining in current level.**/
-	transient int timeLeft;
-	
 	/**Number of tiles unmarked in the current attempt.**/
 	transient int unmarkedTiles;
 	
@@ -41,20 +38,18 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 * Exploit this fact to initialize non-transient files in the constructor!
 	 */
 	void initialize() {
-		timeLeft = 0;
 		unmarkedTiles = 0;
 	}
 
 	/** 
 	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
-	 * has achieved the most they can.
-	 * OR
-	 * The player is out of time. 
+	 * has achieved the most they can. Instead of handling timeLeft on the entity backing, a Timer is used in a controller to 
+	 * track how long the game is meant to run for.
 	 * @return true if the level is done.
 	 */
 	@Override
 	boolean isComplete() {
-		if(starsEarned == 3 || timeLeft == 0){
+		if(unmarkedTiles == 0){
 			return true;
 		}
 		
@@ -67,22 +62,22 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 * to prevent duplicate triggers of the same threshold. (Ie place a piece that marks all but 12 tiles and
 	 * the place another piece that marks all but 8 tiles. That would increment twice - not wanted).
 	 * 
+	 * Additionally, updateProgress updates all level end conditions (Hence, progress towards end of level...). So for a Lightning
+	 * that means setting the number of unmarked tiles (which are the number of remaining boardTiles).
+	 * 
 	 * After all checks are made, the level is saved if the current play through has earned more stars than 
 	 * the number tracked on file.
 	 */
 	@Override
 	void updateProgress() {
-		if(unmarkedTiles <= 12 && unmarkedTiles > 6){
-			starsEarned = 1;
-		}
+		unmarkedTiles = board.getNumBoardTiles();
 		
-		if(unmarkedTiles <= 6 && unmarkedTiles > 0){
-			starsEarned = 2;
-		}
+		boolean check = false;
+		if(unmarkedTiles <= 12 && unmarkedTiles > 6){	starsEarned = 1;}
+		if(unmarkedTiles <= 6 && unmarkedTiles > 0){ 	starsEarned = 2;}
+		if(unmarkedTiles == 0){ 						starsEarned = 3;}
 		
-		if(unmarkedTiles == 0){
-			starsEarned = 3;
-		}
+		if(check){ levelIO.updateStars(this.levelID, this.starsEarned); }
 	}
 	
 	/**

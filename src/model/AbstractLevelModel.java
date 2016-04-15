@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 
+import app.LevelIO;
+
 /**
  * An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
@@ -21,9 +23,6 @@ public abstract class AbstractLevelModel implements Serializable{
 	/**The starsEarned for a level is an integer 0-3, tracking the progress thus far on an attempt at this level**/
 	int starsEarned;
 	
-	/**The most amount of stars a player has earned for this level - the value read in from file**/
-	int maxStarsEarned;
-	
 	/**isLocked is a boolean value telling the model that this level is not yet available to be played**/
 	boolean isLocked;
 	
@@ -35,8 +34,9 @@ public abstract class AbstractLevelModel implements Serializable{
 	
 	/**The Board that is associated with this level**/
 	Board board;
-
-	//TODO ADD getter for bullpen and board
+	
+	/**LevelIO is used to write information to disk, specifically the StarMap**/
+	LevelIO levelIO;
 	
 	/**
 	 * You CANNOT instantiate an AbstractLevelModel. This constructor is here so you can super() set the 
@@ -91,6 +91,10 @@ public abstract class AbstractLevelModel implements Serializable{
 	 */
 	public Board getBoard(){
 		return board;
+	}
+
+	public void setLevelIO(LevelIO levelIO) {
+		this.levelIO = levelIO;
 	}
 }
 

@@ -28,8 +28,9 @@ public class StarMap implements Serializable{
 	/**TreeMap stores levelID with levelType**/
 	TreeMap<Integer, String> levelData = new TreeMap<Integer, String>();
 
-	String directory;
-	
+	/**Path to Directory assigned in the constructor to save the StarMap serialization**/
+	transient String directory;
+
 	StarMap(String directory){
 		this.directory = directory;
 		populateEmptyMap();
@@ -95,6 +96,21 @@ public class StarMap implements Serializable{
 	}
 
 	/**
+	 * Unlocked Levels returns an iterator over the levelIDs that counts as unlocked
+	 * This fact is computed by checking the stars earned for a levelID inside the stars
+	 * treemap. If the levelID has a value associated with it that is greater than 0, it
+	 * counts as unlocked.
+	 * @return Iterator of integers - levelIDs
+	 */
+	public Set<Integer> unlockedLevels(){
+		Set<Integer> keys = levelData.keySet();
+		for(Integer key: keys){
+			if(stars.get(key) == 0){ keys.remove(key);}
+		}
+		return keys;
+	}
+
+	/**
 	 * Returns the last key in the tree - the highest value key.
 	 * @return Highest valued Key
 	 */
@@ -114,6 +130,23 @@ public class StarMap implements Serializable{
 		return levelData.isEmpty();
 	}
 
+	public boolean containsKey(int key) {
+		return levelData.containsKey(key);
+	}
+
+	public String keyToString(){
+		return this.keySet().toString();
+	}
+
+	public String toString(){
+		StringBuilder s = new StringBuilder();
+		for(int k: this.keySet()){
+			s.append("["+k+","+levelData.get(k)+","+stars.get(k)+"],");			
+		}
+		s.deleteCharAt(s.length()-1);
+		return s.toString();
+	}
+
 	/**
 	 * When a StarMap is deserialized, it needs to synchronize with the levels
 	 * available in the directory (in case an outside user deleted a level file).
@@ -123,13 +156,13 @@ public class StarMap implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
-		
+
 		File[] folder = (new File(directory)).listFiles();
 		ArrayList<Integer> keys = new ArrayList<Integer>();
 		String levelNum;
 
 		for (File f: folder) {
-			
+
 			if(f.getName().equals("StarMap.storage")){ continue;}
 			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
 			int levelID;
@@ -141,7 +174,7 @@ public class StarMap implements Serializable{
 				continue;
 			}
 		}
-		
+
 		for(Integer k: this.keySet()){
 			if(!keys.contains(k)){
 				levelData.remove(k);
@@ -166,7 +199,7 @@ public class StarMap implements Serializable{
 			//in the star map
 			if(folder.length == 0){ break;}
 			if(f.getName().equals("StarMap.storage")){ continue;}
-			
+
 			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
 			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
 			int levelID;
@@ -181,21 +214,5 @@ public class StarMap implements Serializable{
 		}
 	}
 
-	
-	public boolean containsKey(int key) {
-		return levelData.containsKey(key);
-	}
-	
-	public String keyToString(){
-		return this.keySet().toString();
-	}
-	
-	public String toString(){
-		StringBuilder s = new StringBuilder();
-		for(int k: this.keySet()){
-			s.append("["+k+","+levelData.get(k)+","+stars.get(k)+"],");			
-		}
-		s.deleteCharAt(s.length()-1);
-		return s.toString();
-	}
+
 }

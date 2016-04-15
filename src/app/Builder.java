@@ -23,19 +23,8 @@ public class Builder extends LevelIO{
 	/**The BuilderView, for displaying the level once the builder has choosen to edit/create a level**/
 	BuilderView bv;
 
-	Builder(){
-		super();
-		levelData = loadStarMap();
-		bv = new BuilderView(this);
-		ltsv = new LevelTypeSelectView(this, levelData);
-
-		initializeControllers();
-	}
-	
-	/**Testing constuctor gives ability to change defaultDirectory**/
 	Builder(String directory){
-		super();
-		this.defaultDirectory = directory;
+		super(directory);
 		this.levelData = loadStarMap();
 		bv = new BuilderView(this);
 		ltsv = new LevelTypeSelectView(this, levelData);
@@ -49,12 +38,12 @@ public class Builder extends LevelIO{
 	}
 
 	/**
-	 *TODO THIS METHOD NEEDS TESTING. It stores the level as an abstract level model for now. If that is enough, I 
-	 *am not yet sure
 	 * Saves the level being edited to disk. If the level is not already in levelData, it is
 	 * then added to levelData. This method assumes the board/bullpen/any termination conditions have
 	 * already been reset to a default state (bullpen has all pieces restored to it if they were testing, board has all pieces
 	 * cleared from it, etc).
+	 * 
+	 * The file format is ID_TYPE.storage
 	 */
 	public void saveLevel(){
 		ObjectOutputStream oos = null;

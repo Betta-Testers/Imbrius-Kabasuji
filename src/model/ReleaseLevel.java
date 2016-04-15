@@ -1,9 +1,7 @@
 package model;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /** 
  * A ReleaseLevel handles the back end for a Release game mode, tracking the end conditions and progress of 
@@ -58,7 +56,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	boolean isComplete() {
-		if(starsEarned == 3 || bullpen.empty()){
+		if((sumIsSix(reds)&&sumIsSix(blues)&&sumIsSix(yellows)) || bullpen.empty()){
 			return true;
 		}
 		
@@ -70,14 +68,23 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * a set has been released. Each set is checked in a separate statement as a way to ensure that if more
 	 * that one set was released at a time, the number of stars earned is updated correctly. 
 	 * 
-	 * After all checks are made, the level is saved if the current playthrough has earned more stars than 
-	 * the number tracked on file.
+	 * After all checks are made, the stars are checked against the known max to see if they need to be updated
+	 * 
+	 * Additionally, updateProgress updates all level end conditions (Hence, progress towards end of level...). Release
+	 * is a special case, however, as this is managed by the controller to prevent the need to pass a piece to update
+	 * progress
 	 */
 	@Override
 	void updateProgress() {
-		if(sumIsSix(reds)){  	starsEarned++; 	}
-		if(sumIsSix(blues)){ 	starsEarned++; 	}
-		if(sumIsSix(yellows)){	starsEarned++;	}
+		boolean check = false;
+		if(sumIsSix(reds)){  	starsEarned++; 	
+								check = true; 	}
+		if(sumIsSix(blues)){ 	starsEarned++;
+								check = true; 	}
+		if(sumIsSix(yellows)){	starsEarned++;
+								check = true; 	}
+		
+		if(check){ levelIO.updateStars(this.levelID, this.starsEarned); }
 	}
 	
 	/**

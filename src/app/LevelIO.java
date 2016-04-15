@@ -18,6 +18,10 @@ public abstract class LevelIO {
 	/**The current level being manipulated*/
 	AbstractLevelModel currentLevel;
 
+	public LevelIO(String directory) {
+		this.defaultDirectory = directory;
+	}
+
 	/**
 	 * Returns a StarMap object read from disk. If the StarMap cannot be read
 	 * for any reason, a blank starmap is generated
@@ -99,6 +103,19 @@ public abstract class LevelIO {
 			try { ois.close(); } catch (IOException ioe) { }
 		}
 		return m;
+	}
+	
+	/**
+	 * Updates the Maximum stars for a given LevelID and star count. 
+	 * If the count passed in is less than the value recorded in levelData,
+	 * the value is not recorded.
+	 * @param levelID
+	 * @param starsEarned - the current number of stars earned on a level
+	 */
+	public void updateStars(int levelID, int starsEarned){
+		if(starsEarned > levelData.getMaxStars(levelID)){
+			levelData.setMaxStars(levelID, starsEarned);
+		}
 	}
 
 
