@@ -17,19 +17,12 @@ import java.awt.Font;
 
 public class LevelSelectionView extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	JPanel contentPane;
 	JLabel lblTitle;
 	JScrollPane availableLevels;
 	AvailableLevelView levels[];
 	
-	//Game game;
-	/**
-	 * Create the frame.
-	 */
 	public LevelSelectionView() {
 		super();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,10 +54,6 @@ public class LevelSelectionView extends JFrame {
 		setupLayout();
 		
 	}
-	
-//	public AvailableLevelView getAvailableLevelView(int index) {
-//		return this.levels[index];
-//	}
 
 	/**
 	 * Adds a PlayLevelButtonController to the button for the given ID

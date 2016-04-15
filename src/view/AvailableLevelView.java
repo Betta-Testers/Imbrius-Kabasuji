@@ -21,10 +21,7 @@ public class AvailableLevelView extends JPanel {
 	JButton btnSelectLevel;
 	String lvlname;
 	
-	
-	//AbstractLevelModel modelLevel - DO you need to? (Answer is no so far)
-	//#TODO: add to constructor
-	
+
 	public AvailableLevelView(String s) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setPreferredSize(new Dimension(148, 100));
