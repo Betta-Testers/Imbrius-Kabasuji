@@ -69,12 +69,13 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 * the number tracked on file.
 	 */
 	@Override
-	void updateProgress() {
+	public boolean checkStatus() {
 		unmarkedTiles = board.getNumBoardTiles();
 		
 		if(unmarkedTiles <= 12 && unmarkedTiles > 6){	starsEarned = 1;}
 		if(unmarkedTiles <= 6 && unmarkedTiles > 0){ 	starsEarned = 2;}
 		if(unmarkedTiles == 0){ 						starsEarned = 3;}
+		return (unmarkedTiles == 0);
 	}
 	
 	/**
