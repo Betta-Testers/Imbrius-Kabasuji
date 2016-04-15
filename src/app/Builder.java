@@ -106,12 +106,12 @@ public class Builder extends LevelIO{
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
-	 * TODO Don't pass a String fileName. Pass a File sourceFile instead
 	 */
 	public void editLevel(int levelID){
 		String levelType = levelData.get(levelID);
 		switch(levelType){
 		case "Puzzle":
+
 			PuzzleLevel pl = (PuzzleLevel) loadLevel(levelID);
 			currentLevel = pl;
 			bv.setModelLevel(pl);
