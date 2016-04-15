@@ -35,7 +35,7 @@ public class Board {
 		}
 		ArrayList<AbstractTile> temp = tiles;
 		while(!temp.isEmpty()){
-			this.swapTile(temp.get(0), temp.get(0).rowOnBoard, temp.get(0).colOnBoard);
+			this.swapTile(temp.get(0));
 			temp.remove(0);
 		}
 	}
@@ -48,10 +48,10 @@ public class Board {
 	 * @return the tile that was replaced.
 	 */
 	public boolean putPieceOnBoard(Piece p, int row, int col) {
+		p.setLocation(row, col);
 		if (willFit(p, row, col)) {
 			for (int i = 0; i < 6; i++) {
-				swapTile(p.tiles[i],row + p.tiles[i].rowInPiece, col + p.tiles[i].colInPiece);
-				AbstractTile temp = board[row + p.tiles[i].rowOnBoard][col + p.tiles[i].colOnBoard];
+				AbstractTile temp = swapTile(p.tiles[i]);
 				p.tiles[i].setPreviousTile(temp);
 			}
 			pieces.add(p);
@@ -102,9 +102,8 @@ public class Board {
 	 */
 	public boolean removePiece(Piece p) {
 		if (pieces.contains(p)) {
-			int place = pieces.indexOf(p);
 			for (int i = 0; i < 6; i++) {
-				swapTile(p.tiles[i], p.tiles[i].rowOnBoard, p.tiles[i].colOnBoard);
+				swapTile(p.tiles[i].getPreviousTile());
 			}
 			pieces.remove(p);
 			return true;
@@ -119,11 +118,13 @@ public class Board {
 	 * @return the tile that was replaced.
 	 */
 	
-	public AbstractTile swapTile(AbstractTile bt, int row, int col){
+	public AbstractTile swapTile(AbstractTile at){
+		int row = at.getRow();
+		int col = at.getCol();
+		//System.out.println(row);
+		//System.out.println(col);
 		AbstractTile temp = board[row][col];
-		board[row][col] = bt;
-		bt.rowOnBoard = row;
-		bt.colOnBoard = col;
+		board[row][col] = at;
 		return temp;
 	}
 	
