@@ -16,6 +16,7 @@ import model.Piece;
 public class MovePieceOnBoardMove extends Move{
 	AbstractLevelModel levelModel;
 	Board board;
+	Bullpen bullpen;
 	Piece p;
 	AbstractTile sourceTile;
 	int originalRow;
@@ -24,6 +25,7 @@ public class MovePieceOnBoardMove extends Move{
 	MovePieceOnBoardMove (AbstractLevelModel lm, AbstractTile tile, Piece p) {
 		this.levelModel = lm;
 		this.board = levelModel.getBoard();
+		this.bullpen = levelModel.getBullpen();
 		this.sourceTile = tile;
 		this.p = p;
 		this.originalRow = p.getOriginRow();
@@ -32,7 +34,7 @@ public class MovePieceOnBoardMove extends Move{
 	
 	public boolean doMove() {
 		if (isValid()) {
-			board.placePiece(p, sourceTile.getRow(), sourceTile.getCol());
+			board.putPieceOnBoard(p, sourceTile.getRow(), sourceTile.getCol());
 			bullpen.decrementSelectedPiece();
 			bullpen.clearSelectedPiece();
 			levelModel.updateLevelEndConditions();
@@ -47,6 +49,7 @@ public class MovePieceOnBoardMove extends Move{
 	
 	public boolean undo() {
 		board.removePiece(p);
-		board.placePiece(p, originalRow, originalCol);
+		board.putPieceOnBoard(p, originalRow, originalCol);
+		return true;
 	}
 }

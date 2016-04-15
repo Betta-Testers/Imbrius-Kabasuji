@@ -22,7 +22,7 @@ public class MovePieceOffBoardMove extends Move {
 	 */
 	@Override
 	public boolean doMove() {
-		levelModel.getBullpen().addSinglePiece(draggedPiece.getID());
+		levelModel.getBullpen().addSinglePiece(piece.getID());
 		levelModel.updateLevelEndConditions();
 		return true;
 	}
@@ -41,8 +41,8 @@ public class MovePieceOffBoardMove extends Move {
 	 */
 	@Override
 	public boolean undo() {
-		levelModel.getBullpen().removeSinglePiece(p.getID());
-		levelModel.getBoard().placePiece(p, p.getOriginRow(), p.getOriginCol());
+		levelModel.getBullpen().removeSinglePiece(piece.getID());
+		levelModel.getBoard().putPieceOnBoard(piece, piece.getOriginRow(), piece.getOriginCol());
 		return true;
 	}
 

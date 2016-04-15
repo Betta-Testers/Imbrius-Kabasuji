@@ -48,13 +48,13 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 		} else { // currently draggin a piece
 			Move m = new MovePieceOffBoardMove(levelModel, draggedPiece);
 			m.doMove();
-			levelModel.pushMove(m);
+			//levelModel.pushMove(m);
 		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent me) {
-		source  = levelModel.getTileAt(me.getX(), me.getY());
+		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		if (source instanceof PieceTile) {
 			draggedPiece = ((PieceTile)source).getPiece();
 			levelModel.getBoard().removePiece(draggedPiece);		
@@ -62,8 +62,8 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		source  = levelModel.getTileAt(me.getX(), me.getY());
+	public void mouseReleased(MouseEvent me) {
+		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		
 		if (draggedPiece == null) {
 			m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
@@ -72,10 +72,10 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 		}
 		
 		if (m.doMove()) {
-			levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
+			//levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
 		} else {
 			if (draggedPiece != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
-				levelModel.getBoard().placePiece(p, p.getOriginRow(), p.getOriginCol());
+				levelModel.getBoard().putPieceOnBoard(p, p.getOriginRow(), p.getOriginCol());
 			}
 		} 
 		draggedPiece = null;

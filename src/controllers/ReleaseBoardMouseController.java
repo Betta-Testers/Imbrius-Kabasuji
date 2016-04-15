@@ -29,11 +29,11 @@ public class ReleaseBoardMouseController implements MouseListener, MouseMotionLi
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
-		AbstractTile source  = levelModel.getTileAt(me.getX(), me.getY());
+		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		Move m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
 		
 		if (m.doMove()) {
-			level.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
+			//levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
 		}
 	}
 
