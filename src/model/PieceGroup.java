@@ -66,17 +66,4 @@ public class PieceGroup implements Comparable<PieceGroup> {
 	public String toString(){
 		return "ID:"+this.piece.getID();
 	}
-
-	@Override
-	//negative if THIS is less than THAT
-	public int compareTo(Object o) {
-		PieceGroup o1 = (PieceGroup)o;
-		if(this.piece.getID() < o1.piece.getID()){ 
-			return -1;
-		}else if(this.piece.getID() > o1.piece.getID()){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
 }
