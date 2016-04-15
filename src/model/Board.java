@@ -27,6 +27,19 @@ public class Board {
 		
 	}
 	
+	public Board(ArrayList<AbstractTile> tiles){
+		for(int i = 0;i<12;i++){
+			for(int j = 0;j<12;j++){
+				board[i][j] = new EmptyTile(i,j);
+			}
+		}
+		ArrayList<AbstractTile> temp = tiles;
+		while(!temp.isEmpty()){
+			this.swapTile(temp.get(0), temp.get(0).rowOnBoard, temp.get(0).colOnBoard);
+			temp.remove(0);
+		}
+	}
+	
 	/**
 	 * Places a piece onto the board: Adding it to the list of pieces, and swapping in its tiles
 	 * @param p the piece being put onto the board
@@ -52,7 +65,7 @@ public class Board {
 	 * with the tiles that used to be in their locations
 	 * @return Returns an array list containing all of the old pieces that used to be on the board
 	 */
-	ArrayList<Piece> resetBoard(){
+	public ArrayList<Piece> resetBoard(){
 		ArrayList<Piece> piecesTemp = new ArrayList<Piece>();
 		while(!pieces.isEmpty()){
 			removePiece(pieces.get(0));
@@ -67,7 +80,7 @@ public class Board {
 	 * @param col The column that the anchor tile should be placed on
 	 * @return boolean of whether or not the piece can be placed at that location or not
 	 */
-	boolean willFit(Piece p, int row, int col) {
+	public boolean willFit(Piece p, int row, int col) {
 		for (int i = 0; i < 6; i++) {
 			if (row + p.tiles[i].rowInPiece < 0 || row + p.tiles[i].rowInPiece > 11 || col + p.tiles[i].colInPiece < 0
 					|| col + p.tiles[i].colInPiece > 11) {
@@ -106,7 +119,7 @@ public class Board {
 	 * @return the tile that was replaced.
 	 */
 	
-	AbstractTile swapTile(AbstractTile bt, int row, int col){
+	public AbstractTile swapTile(AbstractTile bt, int row, int col){
 		AbstractTile temp = board[row][col];
 		board[row][col] = bt;
 		bt.rowOnBoard = row;
@@ -119,7 +132,6 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-	//DONE
 	public AbstractTile getTileAt(int x, int y){
 		int row = y/tileSize;
 		int column = x/tileSize;
@@ -131,9 +143,6 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-
-	//CAN BE DONE MORE EFFICIENTLY! CHECK IF IT CAN BE PLACED WITH FIT METHOD IF IT CAN THEN CHANGE ALL TO GREEN!
-	//IF NOT THEN MORE SCRUTINY NEEDED!
 	public void showPiecePreview(Piece p, int row, int col){
 		for(int i = 0; i<6; i++){
 			if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
@@ -154,7 +163,7 @@ public class Board {
 	 * Returns the total number of board tiles still remaining on the board
 	 * @return the total number of board tiles still remaining on the board
 	 */
-	int getNumBoardTiles(){
+	public int getNumBoardTiles(){
 		int count = 0;
 		for(int i = 0; i <12;i++){
 			for(int j = 0; j<12;j++){
@@ -170,7 +179,7 @@ public class Board {
 	 * Will clear all piece previewing from the board, setting all tiles back to their original colors.
 	 * @return void
 	 */
-	void clearPiecePreview(){
+	public void clearPiecePreview(){
 		for(int i = 0; i <12; i++){
 			for(int j = 0; j <12; j++){
 				board[i][j].resetColor();
