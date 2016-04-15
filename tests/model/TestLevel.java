@@ -22,16 +22,16 @@ public class TestLevel extends TestCase {
 	}
 	
 	public void testLightningLevel(){
-		LightningLevel l = new LightningLevel(f, 0);
+		LightningLevel l = new LightningLevel(0);
 		//l.decrementUnmarked(0);	
 	}
 	
 	public void testPuzzleLevel(){
-		PuzzleLevel l = new PuzzleLevel(f, 0);
+		PuzzleLevel l = new PuzzleLevel(0);
 	}
 	
 	public void testReleaseLevel(){
-		ReleaseLevel l = new ReleaseLevel(f, 0);
+		ReleaseLevel l = new ReleaseLevel(0);
 	}
 	
 	
