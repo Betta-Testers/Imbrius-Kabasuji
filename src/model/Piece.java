@@ -41,20 +41,24 @@ public class Piece {
 		return ID;
 	}
 	
-	void rotateLeft(){
+	public void rotateLeft(){
 		
 	}
 	
-	void rotateRight(){
+	public void rotateRight(){
 		
 	}
 	
-	void flipH(){
-		
+	public void flipH(){
+		for (int i=1; i<=5; i++) {
+			tiles[i].updateColInPiece(-1*tiles[i].getColInPiece());
+		}
 	}
 	
-	void flipL(){
-		
+	public void flipV(){
+		for (int i=1; i<=5; i++) {
+			tiles[i].updateRowInPiece(-1*tiles[i].getRowInPiece());
+		}
 	}
 	
 	Color getColor(){
