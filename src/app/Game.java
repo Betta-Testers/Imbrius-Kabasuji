@@ -5,7 +5,6 @@ import view.LevelView;
 import view.LevelSelectionView;
 import view.StarView;
 
-import controllers.ExitLevelButtonController;
 import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
 import controllers.ShutdownController;
