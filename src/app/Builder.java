@@ -100,9 +100,20 @@ public class Builder extends LevelIO{
 		String levelType = levelData.get(levelID);
 		switch(levelType){
 		case "Puzzle":
+<<<<<<< HEAD
 			PuzzleLevel pl = (PuzzleLevel) loadLevel(levelID);
 			currentLevel = pl;
 			bv.setModelLevel(pl);
+=======
+			/** TODO Add these Lines when PuzzleLevel implemented (Alternate Constructor used)
+			 * PuzzleLevel pl = new PuzzleLevel(fileName);
+			 * buildingLevel = pl;
+			 * bv.setModelLevel(pl);
+			 */
+	//		PuzzleLevel pl = new PuzzleLevel();
+	///		buildingLevel = pl;
+	//		bv.setModelLevel(pl);
+>>>>>>> origin/BuilderEntity+TestCases
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
