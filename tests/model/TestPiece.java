@@ -27,8 +27,7 @@ public class TestPiece extends TestCase{
 	
 	
 	public void testOrigin(){
-		assertEquals(piece.origin, piece.tiles[0]);
-		assertEquals(piece.origin, piece.getOrigin());
+		assertEquals(piece.tiles[0], piece.getOriginTile());
 	}
 	public void testColor(){
 		assertEquals(piece.color, new Color(240, 0, 0));
@@ -42,15 +41,19 @@ public class TestPiece extends TestCase{
 			new Piece(i);
 		}
 	}
+	
+	/**
+	 * Test if incorrect ID is used to instantiate piece
+	 */
 	public void testIncorrectID(){
 		try{
-			Piece p = new Piece(-1);
+			new Piece(-1);
 			fail("Incorrect ID");
 		}catch (RuntimeException e){
 
 		}
 		try{
-			Piece p = new Piece(35);
+			new Piece(35);
 			fail("Incorrect ID");
 		}catch (RuntimeException e){
 

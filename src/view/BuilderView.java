@@ -4,7 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import app.Builder;
+import controllers.SetNumberOfMovesSpinnerController;
 import model.AbstractLevelModel;
+import model.PuzzleLevel;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -23,8 +26,10 @@ public class BuilderView extends JFrame {
 	BullpenView bullpenView;
 	SelectedPieceView selectedPieceView;
 	AbstractLevelModel modelLevel; 
+	Builder builder;
 	
-	public BuilderView() {
+	public BuilderView(Builder b) {
+		this.builder = b;
 		setResizable(false);
 		setVisible(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -34,7 +39,7 @@ public class BuilderView extends JFrame {
 		setContentPane(contentPane);
 		
 		boardView = new BoardView();
-		buttonGroupView = new ButtonGroupView();
+		buttonGroupView = new ButtonGroupView(this);
 		releaseNumberView = new ReleaseNumberCreationView();
 		levelPropertyView = new LevelPropertiesView();
 		bullpenView = new BullpenView("builder");		
@@ -43,11 +48,14 @@ public class BuilderView extends JFrame {
 		setupLayout();		
 	}
 	
+	public Builder getBuilder() {
+		return this.builder;
+	}
 	
 	/**
 	 * Sets the level model for this builder. This is critical to setup. After the
 	 * blank builderView has been passed around the type of level model it will be handling
-	 * is determind at runtime. This method is used to set the model level and prepare the 
+	 * is determined at runtime. This method is used to set the model level and prepare the 
 	 * view.
 	 * @param m
 	 */
@@ -56,6 +64,11 @@ public class BuilderView extends JFrame {
 	 */
 	public void setModelLevel(AbstractLevelModel m){
 		modelLevel = m;
+		levelPropertyView.setLevelModel(m);
+	}
+	
+	public AbstractLevelModel getModelLevel() {
+		return this.modelLevel;
 	}
 	
 	

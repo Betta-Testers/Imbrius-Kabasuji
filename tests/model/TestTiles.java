@@ -10,7 +10,7 @@ import junit.framework.TestCase;
  *
  */
 
-public class TestTiles extends TestCase {
+public class TestTiles extends TestCase {	
 	public void testBoardTile() {
 		BoardTile bt = new BoardTile(1, 1);
 		
@@ -20,10 +20,7 @@ public class TestTiles extends TestCase {
 		assertEquals(Color.RED, bt.color);
 		bt.resetColor();
 		assertEquals(Color.WHITE, bt.color);
-		
 		assertEquals("board", bt.toString());
-		
-		
 	}
 	
 	public void testReleaseTile() {
@@ -37,6 +34,10 @@ public class TestTiles extends TestCase {
 		EmptyTile et = new EmptyTile(1,1);
 		assertEquals(Color.LIGHT_GRAY, et.color);
 		assertEquals("empty", et.toString());
+		et.setMouseOverColor(true);
+		assertEquals(Color.GREEN, et.color);
+		et.resetColor();
+		assertEquals(Color.LIGHT_GRAY, et.color);
 		
 		LightningTile lt = new LightningTile(1,1);
 		assertEquals(Color.GREEN, lt.color);
@@ -49,11 +50,38 @@ public class TestTiles extends TestCase {
 	
 	public void testPieceTile() {
 		Piece piece = new Piece(0);
-		PieceTile pt = new PieceTile(1, 1, piece);
+		assertNotNull(piece.getColor());
+		PieceTile tile = piece.tiles[1];
+		PieceTile origin = piece.tiles[0];
 		
-		PieceTile pt2 = new PieceTile(1, 1, piece);
-		//assertEquals(Color.WHITE, pt.color); //Doesn't make sense to test yet since there's no piece to get the color from
-		assertEquals("piece", pt.toString());
+		assertEquals(piece.tiles[1].getColInPiece(), 1);
+		assertEquals(piece.tiles[1].getRowInPiece(), 0);
+		
+		tile.updateColInPiece(-1);
+		tile.updateRowInPiece(-1);
+		
+		try{
+			origin.updateColInPiece(-1);
+			fail();
+		}catch (RuntimeException e){
+
+		}
+		
+		try{
+			origin.updateRowInPiece(-1);
+			fail();
+		}catch (RuntimeException e){
+
+		}
+		
+		assertEquals("piece", tile.toString());
+		
+		assertEquals(new Color(240, 0, 0), tile.color);
+		
+		origin.setLocation(5, 7);
+		assertEquals(origin.colOnBoard, 7);
+		assertEquals(origin.rowOnBoard, 5);
+		
 	}
 	
 }
