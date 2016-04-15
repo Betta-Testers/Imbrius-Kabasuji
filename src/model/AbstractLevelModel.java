@@ -76,6 +76,22 @@ public abstract class AbstractLevelModel implements Serializable{
 	public String getType(){
 		return levelType;
 	}
+	
+	/**
+	 * Returns the Bullpen of this level
+	 * @return Bullpen
+	 */
+	public Bullpen getBullpen(){
+		return bullpen;
+	}
+	
+	/**
+	 * Returns the Board of this level
+	 * @return Board
+	 */
+	public Board getBoard(){
+		return board;
+	}
 }
 
 

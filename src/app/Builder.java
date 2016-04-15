@@ -6,12 +6,14 @@ import java.io.ObjectOutputStream;
 
 import view.BuilderView;
 import view.LevelTypeSelectView;
+
 import controllers.CloseBuilderDialog;
 import controllers.ShutdownController;
+import view.BuilderView;
+import view.LevelTypeSelectView;
 import model.LightningLevel;
-import model.PuzzleLevel;
 import model.ReleaseLevel;
-
+import model.PuzzleLevel;
 
 public class Builder extends LevelIO{
 
@@ -107,7 +109,6 @@ public class Builder extends LevelIO{
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
-	 * TODO Don't pass a String fileName. Pass a File sourceFile instead
 	 */
 	public void editLevel(int levelID){
 		String levelType = levelData.get(levelID);
@@ -159,7 +160,6 @@ public class Builder extends LevelIO{
 		if(levelData.lastKey() == null){ return 0;}
 		return levelData.lastKey();
 	}
-
 
 	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
 	void initialize(){}
