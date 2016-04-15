@@ -61,6 +61,7 @@ public class Piece {
 		return color;
 	}
 	
+<<<<<<< HEAD
 	/** 
 	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
 	 * @param row
@@ -71,6 +72,14 @@ public class Piece {
 		for (PieceTile p : tiles) {
 			p.updateBoardPosition();
 		}
+=======
+	PieceTile getOrigin(){
+		return origin;
+	}
+	
+	int getOriginRow(){
+		return origin.rowInPiece;
+>>>>>>> origin/bullpenModels
 	}
 	
 	/**
@@ -78,6 +87,7 @@ public class Piece {
 	 * @return int
 	 */
 	int getOriginCol(){
+<<<<<<< HEAD
 		return tiles[0].getColOnBoard();
 	}
 	
@@ -87,6 +97,17 @@ public class Piece {
 	
 	public PieceTile getOriginTile() {
 		return tiles[0];
+=======
+		return origin.colInPiece;
+	}
+	
+	/**
+	 * Method used to set the origin of the piece
+	 * @param PieceTile
+	 */
+	void setOrigin(PieceTile origin){
+		this.origin = origin;
+>>>>>>> origin/bullpenModels
 	}
 	
 	/**

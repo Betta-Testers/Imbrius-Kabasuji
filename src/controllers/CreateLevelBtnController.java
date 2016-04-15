@@ -11,6 +11,12 @@ import view.LevelTypeSelectView;
  *
  */
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
+
 public class CreateLevelBtnController implements java.awt.event.ActionListener {	
 	Builder b;
 	LevelTypeSelectView ltsv;
@@ -19,6 +25,7 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	 * Controller for the button on the level type select screen of the builder to create a new level
 	 * @param b The builder object that this is a part of
 	 */
+
 	public CreateLevelBtnController (Builder b, LevelTypeSelectView ltsv) {
 		this.b = b;
 		this.ltsv = ltsv;

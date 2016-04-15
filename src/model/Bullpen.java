@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Bullpen {
@@ -16,6 +17,7 @@ public class Bullpen {
 	 */
 	public Bullpen(ArrayList<PieceGroup> pieces) {
 		this.playablePieces = pieces;
+		sortBullpen();
 	}
 	
 	/**
@@ -24,8 +26,9 @@ public class Bullpen {
 	 */
 	public Bullpen(int sizeOfBullpen) {
 		for(int i = 0; i < sizeOfBullpen; i++) {
-			this.playablePieces.add(new PieceGroup(new Random().nextInt(36), 0));
+			this.playablePieces.add(new PieceGroup(new Random().nextInt(36), 1));
 		}
+		sortBullpen();; // sort the bullpen by ID
 	}
 	
 	/**
@@ -36,6 +39,7 @@ public class Bullpen {
 		for(int i = 0; i < numPieces; i++) {
 			this.playablePieces.add(new PieceGroup(new Random().nextInt(36), 1));
 		}
+		sortBullpen();; // sort the bullpen by ID
 	}
 	
 	/**
@@ -43,11 +47,10 @@ public class Bullpen {
 	 * @param ID
 	 */
 	public void removeSinglePiece(int ID) {
-		int temp;
 		for(int i = 0; i < this.playablePieces.size(); i++) {
 			if(this.playablePieces.get(i).piece.ID == ID) {
 				this.playablePieces.remove(i);
-				break;
+				break; // do not need to sort as removing a single piece from a sorted list still remains sorted
 			}
 		}
 	}
@@ -59,6 +62,27 @@ public class Bullpen {
 	public void addSinglePiece(int ID) {
 		PieceGroup newPieceGroup = new PieceGroup(ID, 1);
 		this.playablePieces.add(newPieceGroup);
+		sortBullpen(); // sort the bullpen after adding a pieceGroup to keep ordering by ID
+	}
+	
+	/**
+	 * returns the number of pieces available in the bullpen
+	 * @return
+	 */
+	public int numAvailablePieces() {
+		return this.playablePieces.size();
+	}
+	
+	/**
+	 * returns true if the bullpen is empty, false if it is not empty
+	 * @return
+	 */
+	public boolean isEmpty() {
+		return (this.playablePieces.size() == 0);
+	}
+	
+	public void sortBullpen() {
+		Collections.sort(this.playablePieces);
 	}
 	
 	/**
