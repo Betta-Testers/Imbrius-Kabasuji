@@ -44,7 +44,7 @@ public class Game extends LevelIO{
 	 */
 	public void displayLevel(int LevelID) {
 
-		/**
+		/**TODO
 		 * 1) deserialize level, store in currentLevel
 		 * 2) set the levelIO object = this
 		 * 3) Call currentLevel.initialize() (Should return the view of the level)
@@ -70,7 +70,7 @@ public class Game extends LevelIO{
 		selectLevel.addWindowListener(new ShutdownController(this));
 	}
 
-	/**
+	/**TODO
 	 * Prepares all buttons available at game launch by setting the button to 
 	 * unlocked and adding a play level listener to it
 	 * @author Dylan
