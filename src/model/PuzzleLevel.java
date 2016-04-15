@@ -1,88 +1,30 @@
 
 package model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.Serializable;
 
 /** 
- * A PuzzleLevel is the model class backing to the puzzle gamemode. Information
- * relevant to the puzzle mode is stored here.
- * 
- * The attributes tracking End Conditions: 
- * 		moveLimit -> The maximum allowed moves for the level
- * 		movesMade -> The current number of moves made
- * 		tilesLeft -> The number of tiles left to be covered in the level
- * 
+ * A PuzzleLevel handles the back end for a Puzzle game mode, tracking the end conditions and progress of 
+ * the game.
  * @author Dylan
  */
 
-/***************************************************************
- * 			TODO GO LOOK AT LAUNCHWORDMAP in WORDMAP. 
- * 			TODO LOOK AT BOARD IN WORDMAP 
- ***************************************************************/
+public class PuzzleLevel extends AbstractLevelModel implements Serializable{
+	/**Serialized ID used for writing file to disk**/
+	private static final long serialVersionUID = 1570651687735468714L;
 
-
-public class PuzzleLevel extends AbstractLevelModel{
 	/**The moveLimit is the maximum number of moves THIS level allows to be made**/
 	int moveLimit;
 	
 	/**The movesMade is the number of moves a player has made on THIS level**/
-	int movesMade;
+	transient int movesMade;
 	
 	/**The tilesLeft is the number of tiles left for the player to cover on THIS level**/
-	int tilesLeft;
+	transient int tilesLeft;
 
-	PuzzleLevel(File sourceFile, int levelID) {
-		super(sourceFile, levelID, "Puzzle", true);
+	public PuzzleLevel(int levelID) {
+		super(levelID, "Puzzle", true);
 		// TODO Auto-generated constructor stub
-	}
-
-	
-	/**
-	 * LoadLevel is a helper method to the constructor. On instantiation, it will attempt to
-	 * read any data about the level it can in. If nothing is found inside the file, then no 
-	 * fields are set and it's apparent the level is being CREATED in the BUILDER. Setters will 
-	 * handle the rest from here out in that case.
-	 * 
-	 * If the file can't be opened, the error is caught here. 
-	 * 
-	 * Method for reading: line by line through a buffer. File is closed at end of reading.
-	 */
-	@Override
-	boolean loadLevel(){
-		try{
-			FileReader fileReader = new FileReader(sourceFile);
-			BufferedReader br = new BufferedReader(fileReader);
-			String strLine;
-			while ((strLine = br.readLine()) != null)   {
-				//Read the file LINE by LINE and do something with each line
-				strLine.length(); //Do something with strLine...
-			}
-			//End Of File Reached, Close the file
-			fileReader.close();
-		}catch (IOException e){//Catch exception if any
-			System.err.println("Error: " + e.getMessage());
-		}
-		return true; //TODO replace this
-	}
-
-	@Override
-	boolean saveProgressInFile() {
-		if(starsEarned > maxStarsEarned){
-			//save starsEarned instead of maxStarsEarned
-		}
-		return false;
-	}
-
-	/**
-	 * saveLevelToFile is used in the Builder side of Kabasuji. When the builder saves the level being built
-	 * this method saves the state of the entire level and overwrites any existing level. (Aka: Don't use append mode!)**/
-	@Override
-	boolean saveLevelToFile() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	/** 
