@@ -6,12 +6,15 @@ package controllers;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import app.Game;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Piece;
 import model.PieceTile;
+import model.ReleaseLevel;
+import model.ReleaseTile;
 import view.BullpenView;
 
 /**
@@ -22,12 +25,12 @@ import view.BullpenView;
 //TODO add view update stuff
 
 public class ReleaseBoardGameController implements MouseListener, MouseMotionListener{
-	AbstractLevelModel levelModel;
+	ReleaseLevel levelModel;
 	Game game;
 	
 	ReleaseBoardGameController (Game game) {
 		this.game = game;
-		this.levelModel = game.getCurrentLevel();
+		this.levelModel = (ReleaseLevel)game.getCurrentLevel();
 	}
 
 	@Override
@@ -36,7 +39,9 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
 		
 		if (m.doMove()) {
-			m.getPlacedPiece();
+			Piece p = m.getPlacedPiece();
+			updateReleasedNumbers(p);
+			
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
@@ -48,6 +53,29 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		Piece p = levelModel.getBullpen().getSelectedPiece();
 		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+	}
+	
+	void updateReleasedNumbers(Piece p) {
+		ArrayList<AbstractTile> coveredTiles = p.getPreviousTiles();
+		for (AbstractTile at : coveredTiles) {
+			if (at instanceof ReleaseTile) {
+				String color  = ((ReleaseTile) at).getColorSet().toString();
+				int number = ((ReleaseTile) at).getNumber();
+				switch (color){
+					case "Red":
+						levelModel.addToRedReleased(number);
+						break;
+					case "Blue":
+						levelModel.addToBlueReleased(number);
+						break;
+					case "Yellow":
+						levelModel.addToYellowReleased(number);
+						break;
+					default:
+						throw new RuntimeException("Unknown color");
+				}
+			}
+		}
 	}
 	
 	@Override

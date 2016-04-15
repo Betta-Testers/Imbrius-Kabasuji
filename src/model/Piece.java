@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 
 /**
@@ -133,6 +134,14 @@ public class Piece {
 	
 	public PieceTile getOriginTile() {
 		return tiles[0];
+	}
+	
+	public ArrayList<AbstractTile> getPreviousTiles() {
+		ArrayList<AbstractTile> prevTiles = new ArrayList<AbstractTile>();
+		for (PieceTile p : tiles) {
+			prevTiles.add(p.getPreviousTile());
+		}
+		return prevTiles;
 	}
 	
 	/**
