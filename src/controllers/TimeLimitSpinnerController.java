@@ -1,10 +1,32 @@
 package controllers;
 
+import javax.swing.JSpinner;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import model.AbstractLevelModel;
+import view.BuilderView;
+
 /**
  * 
  * @author awharrison
  *
  */
-public class TimeLimitSpinnerController {
-
+public class TimeLimitSpinnerController implements ChangeListener {
+	BuilderView app;
+	AbstractLevelModel model;
+	
+	public TimeLimitSpinnerController(BuilderView app, AbstractLevelModel model) {
+		this.app = app;
+		this.model = model;
+	}
+	
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		// TODO make this compatible with the timing objects used to calculate time
+		int timeVal = (int)((JSpinner)e.getSource()).getValue();
+		model.setTime = timeVal;
+	}
+	
+	
 }

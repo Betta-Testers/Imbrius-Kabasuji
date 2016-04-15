@@ -21,19 +21,24 @@ public class TileConversionController extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 		if(e.getClickCount() > 1) {
 			AbstractTile tile = (AbstractTile) view.getModelElement();
+			
+			(if tile == null) {
+				throw new RuntimeException("TileConversionController::somehow did not click a tile");
+			}
+			
 			String type = tile.getTileType();
 			switch(type) {
 			case "Board":
+				// TODO if toggle release number is on, set to release tile
+				tile.setTileType("Empty");
 				break;
 			case "Empty":
+				tile.setTileType("Board");
 				break;
 			case "Piece":
 				break;
 			case "Release":
-				break;
-			case "Hint":
-				break;
-			case "Lightning":
+				tile.setTileType("Board");
 				break;
 			default:
 				break;
