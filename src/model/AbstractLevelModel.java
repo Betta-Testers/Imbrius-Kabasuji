@@ -23,9 +23,6 @@ public abstract class AbstractLevelModel implements Serializable{
 	/**The starsEarned for a level is an integer 0-3, tracking the progress thus far on an attempt at this level**/
 	int starsEarned;
 	
-	/**The most amount of stars a player has earned for this level - the value read in from file**/
-	int maxStarsEarned;
-	
 	/**isLocked is a boolean value telling the model that this level is not yet available to be played**/
 	boolean isLocked;
 	
@@ -94,6 +91,10 @@ public abstract class AbstractLevelModel implements Serializable{
 	 */
 	public Board getBoard(){
 		return board;
+	}
+
+	public void setLevelIO(LevelIO levelIO) {
+		this.levelIO = levelIO;
 	}
 }
 

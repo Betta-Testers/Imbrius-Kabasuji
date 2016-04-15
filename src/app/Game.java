@@ -48,6 +48,8 @@ public class Game extends LevelIO{
 		
 		//Step 2)
 		currentLevel.setLevelIO(this);
+		
+		//WHY not merge steps 2 and 3? Might be worth it!
 		/**TODO
 		 * 1) deserialize level, store in currentLevel
 		 * 2) set the levelIO object = this
