@@ -1,46 +1,57 @@
 package app;
 
-
 import view.GameExitScreen;
 import view.LevelView;
 import view.LevelSelectionView;
-import view.SplashScreen;
 import view.StarView;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import controllers.ExitLevelButtonController;
 import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
 import model.AbstractLevelModel;
 
-public class Game {
-	SplashScreen startUp;
+public class Game extends LevelIO{
+	
+	/**The LevelSelectionView to view all levels**/
 	LevelSelectionView selectLevel;
+	
+	/**Array of all levels available**/
 	AbstractLevelModel levels[];
-	AbstractLevelModel currentLevel;
+	
+	/**The View of the level being played**/
 	LevelView levelView;
+	
+	/**The view displayed at the end of the level being played**/
 	GameExitScreen exitLevel;
 	
 	Game(){
+		super();
 		this.initialize();
 	}
 	
+	//TODO GAME NEEDS TO SAVE PROGRESS OF LEVEL EVERYTIME YOU GET A STAR
 	void initialize(){
+		this.initializeModels();
 		this.initializeView();
 		this.initializeControllers();
-		this.initializeModels();
+		
+		// TODO prepare state here. Such as unlocking any levels needed to be unlocked,
+		// etc
 	}
 	
 	void initializeView(){
-		//TODO Initialize splash screen or level select view here?
-		this.startUp = new SplashScreen();
 		this.selectLevel = new LevelSelectionView();
 		this.levelView = new LevelView("Puzzle");
 		this.exitLevel = new GameExitScreen(new StarView());
-		
-		startUp.setVisible(true);
 	}
 	
 	void initializeControllers(){
-		//TODO add controllers that are needed here
 		levelView.addWindowListener(new ExitLevelButtonController(this.levelView, this));
 		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
 		selectLevel.getAvailableLevelView(0).getPlayButton().addActionListener(new PlayLevelButtonController(selectLevel, this));
@@ -69,8 +80,19 @@ public class Game {
 		 */
 	}
 	
-	//TODO Implement reading levels in. Needs to modify levels[] and currentLevel
-	//TODO When reading in levels, it's expected you pass the File associated with the level to that level's constructor
+	/**
+	 * Updates the Maximum stars for a given LevelID and star count. 
+	 * If the count passed in is less than the value recorded in levelData,
+	 * the value is not recorded.
+	 * @param levelID
+	 * @param starsEarned - the current number of stars earned on a level
+	 */
+	public void updateStars(int levelID, int starsEarned){
+		if(starsEarned > levelData.getMaxStars(levelID)){
+			levelData.setMaxStars(levelID, starsEarned);
+		}
+	}
+
 //========================== TODO: Questionable Methods to Implement ==========================//
 	void initializeLevelView(){}
 	void initializeLevelControllers(){}

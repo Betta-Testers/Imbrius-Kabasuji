@@ -60,7 +60,7 @@ public class Piece {
 	Color getColor(){
 		return color;
 	}
-	
+
 	/** 
 	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
 	 * @param row
@@ -78,11 +78,11 @@ public class Piece {
 	 * @return int
 	 */
 	int getOriginCol(){
-		return tiles[0].colInPiece;
+		return tiles[0].getColOnBoard();
 	}
 	
 	int getOriginRow(){
-		return tiles[0].rowInPiece;
+		return tiles[0].getColOnBoard();
 	}
 	
 	public PieceTile getOriginTile() {

@@ -8,18 +8,15 @@ import view.SplashScreen;
 
 public class GameSplashTimerController implements ActionListener{
 	SplashScreen view;
-	Game model;
+	Game g;
 	
-	//add Game model to controller???
 	public GameSplashTimerController(SplashScreen view, Game g){
 		this.view = view;
-		this.model = g;
+		this.g = g;
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		
-		//call to game to initialize AvailableLevelView
-		model.getSelectView().setVisible(true);
 		view.dispose();
+		g.getSelectView().setVisible(true);
 	}
 }
