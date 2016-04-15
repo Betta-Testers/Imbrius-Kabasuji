@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 
+import app.LevelIO;
+
 /**
  * An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
@@ -35,8 +37,9 @@ public abstract class AbstractLevelModel implements Serializable{
 	
 	/**The Board that is associated with this level**/
 	Board board;
-
-	//TODO ADD getter for bullpen and board
+	
+	/**LevelIO is used to write information to disk, specifically the StarMap**/
+	LevelIO levelIO;
 	
 	/**
 	 * You CANNOT instantiate an AbstractLevelModel. This constructor is here so you can super() set the 

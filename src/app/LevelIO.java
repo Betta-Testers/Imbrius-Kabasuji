@@ -100,6 +100,19 @@ public abstract class LevelIO {
 		}
 		return m;
 	}
+	
+	/**
+	 * Updates the Maximum stars for a given LevelID and star count. 
+	 * If the count passed in is less than the value recorded in levelData,
+	 * the value is not recorded.
+	 * @param levelID
+	 * @param starsEarned - the current number of stars earned on a level
+	 */
+	public void updateStars(int levelID, int starsEarned){
+		if(starsEarned > levelData.getMaxStars(levelID)){
+			levelData.setMaxStars(levelID, starsEarned);
+		}
+	}
 
 
 //================== TESTING METHODS (FOR NOW) ================== 

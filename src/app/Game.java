@@ -9,15 +9,11 @@ import controllers.ExitLevelButtonController;
 import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
 import controllers.ShutdownController;
-import model.AbstractLevelModel;
 
 public class Game extends LevelIO{
 	
 	/**The LevelSelectionView to view all levels**/
 	LevelSelectionView selectLevel;
-	
-	/**Array of all levels available**/
-	AbstractLevelModel levels[];
 	
 	/**The View of the level being played**/
 	LevelView levelView;
@@ -74,19 +70,6 @@ public class Game extends LevelIO{
 		/*TODO This method must set the levelMODEL to be unlocked as well, which means opening the file associated with
 		 * levelID, reading line by line until the unlocked marker is found, and changing that value in the file.
 		 */
-	}
-	
-	/**
-	 * Updates the Maximum stars for a given LevelID and star count. 
-	 * If the count passed in is less than the value recorded in levelData,
-	 * the value is not recorded.
-	 * @param levelID
-	 * @param starsEarned - the current number of stars earned on a level
-	 */
-	public void updateStars(int levelID, int starsEarned){
-		if(starsEarned > levelData.getMaxStars(levelID)){
-			levelData.setMaxStars(levelID, starsEarned);
-		}
 	}
 
 //========================== TODO: Questionable Methods to Implement ==========================//
