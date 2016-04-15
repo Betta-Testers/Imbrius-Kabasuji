@@ -1,11 +1,16 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
  * @author Dylan
  */
-public abstract class AbstractLevelModel {
+public abstract class AbstractLevelModel implements Serializable{
+
+	/**While an this class should NEVER be serialized, this is needed to serialize subclasses**/
+	private static final long serialVersionUID = -5159764997744131193L;
 
 	/**The ID of a level is a unique integer of value 1+ and corresponds to the file name**/
 	final int levelID;
@@ -31,6 +36,8 @@ public abstract class AbstractLevelModel {
 	/**The Board that is associated with this level**/
 	Board board;
 
+	//TODO ADD getter for bullpen and board
+	
 	/**
 	 * You CANNOT instantiate an AbstractLevelModel. This constructor is here so you can super() set the 
 	 * final fields within the subclasses. Otherwise, these fields would have a hard time being set AND
@@ -68,7 +75,7 @@ public abstract class AbstractLevelModel {
 	 */
 	public String getType(){
 		return levelType;
-	}	
+	}
 }
 
 

@@ -1,6 +1,9 @@
 package model;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /** 
  * A ReleaseLevel handles the back end for a Release game mode, tracking the end conditions and progress of 
@@ -14,12 +17,29 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**Each of these arrays can hold up to 1 set of numbers, of the corresponding color.
 	 * Only numbers 1-6 exist, and only 1 set of each color exists. So when a number is released
 	 * it is populated into the index = value-1**/
-	transient int reds[] = new int[6];
-	transient int yellows[] = new int[6];
-	transient int blues[] = new int[6];
+	transient int reds[];
+	transient int yellows[];
+	transient int blues[];
 
 	public ReleaseLevel(int levelID) {
 		super(levelID, "Release", false);
+		
+		initialize();
+	}
+	
+	/**
+	 * Initialize is here to redirect the contructor. When deserializing an object, it's 
+	 * constructor is ignored. Because of this, any transient fields won't get initialized.
+	 * To prevent this, a readObject() method is implemented and inside logic to initialize
+	 * these fields is put there. To prevent duplicate code from the constructor, however,
+	 * all this logic is done here.
+	 * 
+	 * Exploit this fact to initialize non-transient files in the constructor!
+	 */
+	void initialize() {
+		reds = new int[6];
+		yellows = new int[6];
+		blues = new int[6];
 		
 		for(int i=0; i<6; i++){
 			reds[i] = -1;
@@ -27,7 +47,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 			blues[i] = -1;
 		}
 	}
-
+	
 	/** 
 	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
 	 * has achieved the most they can.
@@ -98,6 +118,19 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	public void addToYellowReleased(int releasedNum){
 		if(yellows[releasedNum-1] != 1) { yellows[releasedNum-1] = 1; }
+	}
+
+	public String toString(){
+		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(yellows);
+	}
+	
+	/**
+	 * When deserializing this, the transient fields needs to be initialized.
+	 * This method does just that, by calling the initialize method.
+	 */
+	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
+		in.defaultReadObject();
+		initialize();
 	}
 
 }

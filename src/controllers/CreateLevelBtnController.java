@@ -38,8 +38,8 @@ public class CreateLevelBtnController implements java.awt.event.ActionListener {
 	 * @param ae The event that triggered this controller
 	 */
 	public void actionPerformed(ActionEvent ae) {
-		b.setModelLevelCreation(ltsv.getSelectedLevelType());
-		b.setBuilderViewVisible(true);
-		b.setLevelTypeSelectViewVisible(false);
+		b.createLevel(ltsv.getSelectedLevelType());
+		b.getBuilderView().setVisible(true);
+		b.getLevelTypeSelectView().setVisible(false);
 	}
 }

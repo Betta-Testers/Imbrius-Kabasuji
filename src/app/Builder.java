@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import view.BuilderView;
+import view.LevelTypeSelectView;
 import controllers.CloseBuilderDialog;
-
+import controllers.ShutdownController;
 import model.LightningLevel;
 import model.PuzzleLevel;
 import model.ReleaseLevel;
-import view.LevelTypeSelectView;
+
 
 public class Builder extends LevelIO{
 
@@ -28,9 +29,21 @@ public class Builder extends LevelIO{
 
 		initializeControllers();
 	}
+	
+	/**Testing constuctor gives ability to change defaultDirectory**/
+	Builder(String directory){
+		super();
+		this.defaultDirectory = directory;
+		this.levelData = loadStarMap();
+		bv = new BuilderView(this);
+		ltsv = new LevelTypeSelectView(this, levelData);
+
+		initializeControllers();
+	}
 
 	void initializeControllers(){
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
+		ltsv.addWindowListener(new ShutdownController(this));
 	}
 
 	/**
@@ -68,7 +81,7 @@ public class Builder extends LevelIO{
 	 * For CREATING a level. This method is used by CreateLevelBtnController
 	 * to set the level being built. The level being built is stored in currentLevel
 	 */
-	public void setModelLevelCreation(String type){
+	public void createLevel(String type){
 		switch(type){
 		case "Puzzle":
 			PuzzleLevel pl = new PuzzleLevel(levelData.lastKey()+1);
@@ -96,7 +109,7 @@ public class Builder extends LevelIO{
 	 * to set the bv up for the level being edited.
 	 * TODO Don't pass a String fileName. Pass a File sourceFile instead
 	 */
-	public void setModelLevelEditing(int levelID){
+	public void editLevel(int levelID){
 		String levelType = levelData.get(levelID);
 		switch(levelType){
 		case "Puzzle":
@@ -122,23 +135,19 @@ public class Builder extends LevelIO{
 	}
 
 	/**
-	 * Method encapsulates the setVisible functionality of builderView,
-	 * to avoid the need of a getter/setter pair. If enabled is true, the
-	 * window is displayed. Else, it's set to be hidden.
+	 * Returns the BuilderView associated with this Builder
 	 * @param enabled True displays window
 	 */
-	public void setBuilderViewVisible(boolean enabled){
-		bv.setVisible(enabled);
+	public BuilderView getBuilderView(){
+		return bv;
 	}
 
 	/**
-	 * Method encapsulates the setVisible functionality of LevelTypeSelectView,
-	 * to avoid the need of a getter/setter pair. If enabled is true, the
-	 * window is displayed. Else, it's set to be hidden.
+	 * Returns the LevelTypeSelectView associated with this level
 	 * @param enabled True displays window
 	 */
-	public void setLevelTypeSelectViewVisible(boolean enabled){
-		ltsv.setVisible(enabled);
+	public LevelTypeSelectView getLevelTypeSelectView(){
+		return ltsv;
 	}
 
 	/**

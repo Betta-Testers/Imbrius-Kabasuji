@@ -1,5 +1,6 @@
 package model;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 /** 
@@ -25,7 +26,24 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 
 	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
-	}	
+		totalTime = 0;
+		piecesToGen = 0;
+		initialize();
+	}
+	
+	/**
+	 * Initialize is here to redirect the contructor. When deserializing an object, it's 
+	 * constructor is ignored. Because of this, any transient fields won't get initialized.
+	 * To prevent this, a readObject() method is implemented and inside logic to initialize
+	 * these fields is put there. To prevent duplicate code from the constructor, however,
+	 * all this logic is done here.
+	 * 
+	 * Exploit this fact to initialize non-transient files in the constructor!
+	 */
+	void initialize() {
+		timeLeft = 0;
+		unmarkedTiles = 0;
+	}
 
 	/** 
 	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
@@ -75,5 +93,18 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	public void decrementUnmarked(int numMarked){
 		unmarkedTiles -= numMarked;
+	}
+	
+	public String toString(){
+		return levelType+levelID+totalTime+piecesToGen;
+	}
+	
+	/**
+	 * When deserializing this, the transient fields needs to be initialized.
+	 * This method does just that, by calling the initialize method.
+	 */
+	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
+		in.defaultReadObject();
+		initialize();
 	}
 }
