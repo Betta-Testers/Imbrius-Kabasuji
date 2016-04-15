@@ -75,6 +75,10 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 		movesMade++;
 	}
 	
+	/**
+	 * Allows the setting of the move
+	 * @param moves
+	 */
 	public void setMoveLimit(int moves){
 		moveLimit = moves;
 	}

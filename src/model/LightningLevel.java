@@ -45,6 +45,24 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 		return (unmarkedTiles == 0);
 	}
 	
+	/**
+	 * Sets the totalTime for the lightning level
+	 * @author Dylan
+	 * @param totalTime
+	 */
+	public void setTotalTime(int totalTime){
+		this.totalTime = totalTime;
+	}
+	
+	/**
+	 * Returns the totalTime this lightning level allows
+	 * @author Dylan
+	 * @return totalTime
+	 */
+	public int getTotalTime(){
+		return this.totalTime;
+	}
+	
 	public String toString(){
 		return levelType+levelID+totalTime+piecesToGen;
 	}
