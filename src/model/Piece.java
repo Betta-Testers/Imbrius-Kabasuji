@@ -81,11 +81,11 @@ public class Piece {
 	 * Method used to get the column location of the origin
 	 * @return int
 	 */
-	int getOriginCol(){
+	public int getOriginCol(){
 		return tiles[0].getColOnBoard();
 	}
 	
-	int getOriginRow(){
+	public int getOriginRow(){
 		return tiles[0].getColOnBoard();
 	}
 	

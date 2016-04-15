@@ -45,9 +45,10 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 	public void mouseExited(MouseEvent arg0) {
 		if (draggedPiece == null) {
 			levelModel.getBoard().clearPiecePreview();
-		} else {
-			levelModel.getBullpen().addSinglePiece(draggedPiece.getID());
-			levelModel.updateLevelEndConditions();
+		} else { // currently draggin a piece
+			Move m = new MovePieceOffBoardMove(levelModel, draggedPiece);
+			m.doMove();
+			levelModel.pushMove(m);
 		}
 	}
 
@@ -77,6 +78,7 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 				levelModel.getBoard().placePiece(p, p.getOriginRow(), p.getOriginCol());
 			}
 		} 
+		draggedPiece = null;
 	}
 
 	@Override
