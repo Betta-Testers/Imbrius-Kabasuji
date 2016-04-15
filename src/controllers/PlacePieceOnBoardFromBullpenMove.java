@@ -33,7 +33,6 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 			board.putPieceOnBoard(p, sourceTile.getRow(), sourceTile.getCol());
 			bullpen.decrementSelectedPiece();
 			bullpen.clearSelectedPiece();
-			levelModel.updateProgress();
 			return true;
 		}
 		return false;
