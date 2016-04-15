@@ -22,7 +22,7 @@ public class TestBuilder extends TestCase {
 		ll = new LightningLevel(3);
 		b = new Builder();
 		b.defaultDirectory = "./imbriusLevelTESTING/";
-		b.levelData = new StarMap();
+		b.levelData = new StarMap("./imbriusLevelTESTING/");
 	}
 	
 	@Override
