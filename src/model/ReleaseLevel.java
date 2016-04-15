@@ -55,7 +55,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * @return true if the level is done.
 	 */
 	@Override
-	boolean isComplete() {
+	public boolean isComplete() {
 		if((sumIsSix(reds)&&sumIsSix(blues)&&sumIsSix(yellows)) || bullpen.empty()){
 			return true;
 		}
@@ -75,7 +75,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * progress
 	 */
 	@Override
-	void updateProgress() {
+	public void updateProgress() {
 		boolean check = false;
 		if(sumIsSix(reds)){  	starsEarned++; 	
 								check = true; 	}

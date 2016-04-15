@@ -54,12 +54,12 @@ public abstract class AbstractLevelModel implements Serializable{
 	 * the movesMade, how many tiles have been covered, etc. Because of this, updateProgress can also trigger 
 	 * saveProgressToFile() when a star threshold has been earned. 
 	 */
-	abstract void updateProgress();
+	public abstract void updateProgress();
 	
 	/**
 	 * isComplete() returns a boolean describing if the player has finished the level or not. 
 	 * It's a matter of are they out of moves/pieces/time OR did they earn 3 stars.**/
-	abstract boolean isComplete();
+	public abstract boolean isComplete();
 
 	/**
 	 * Returns the ID of the level

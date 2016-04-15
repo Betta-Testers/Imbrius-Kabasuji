@@ -23,7 +23,7 @@ public class MovePieceOffBoardMove extends Move {
 	@Override
 	public boolean doMove() {
 		levelModel.getBullpen().addSinglePiece(piece.getID());
-		levelModel.updateLevelEndConditions();
+		levelModel.updateProgress();
 		return true;
 	}
 

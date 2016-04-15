@@ -52,7 +52,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 * The player is out of moves. 
 	 */
 	@Override
-	boolean isComplete() {
+	public boolean isComplete() {
 		if(tilesLeft == 0 || (moveLimit-movesMade) == 0){
 			return true;
 		}
@@ -76,7 +76,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 * TODO Save stars of a puzzle level
 	 */
 	@Override
-	void updateProgress() {
+	public void updateProgress() {
 		movesMade++;
 		tilesLeft = board.getNumBoardTiles();
 		switch(tilesLeft){

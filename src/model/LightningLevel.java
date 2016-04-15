@@ -48,7 +48,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 * @return true if the level is done.
 	 */
 	@Override
-	boolean isComplete() {
+	public boolean isComplete() {
 		if(unmarkedTiles == 0){
 			return true;
 		}
@@ -69,7 +69,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 * the number tracked on file.
 	 */
 	@Override
-	void updateProgress() {
+	public void updateProgress() {
 		unmarkedTiles = board.getNumBoardTiles();
 		
 		boolean check = false;
