@@ -23,6 +23,8 @@ public class FlipPieceHorizontalController implements ActionListener {
 	//TODO add redraw stuff
 	public void actionPerformed(ActionEvent ae) {
 		p = bullpen.getSelectedPiece();
-		p.flipV();
+		if (p != null) {
+			p.flipV();
+		}
 	}
 }
