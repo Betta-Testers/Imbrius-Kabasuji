@@ -15,9 +15,6 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	/**Total time the level has to be played, in seconds**/
 	int totalTime;
 	
-	/**Number of tiles unmarked in the current attempt.**/
-	transient int unmarkedTiles;
-	
 	/**Overall size of the bullpen for this level**/
 	int piecesToGen;
 
@@ -25,22 +22,8 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 		super(levelID, "Lightning", false);
 		totalTime = 0;
 		piecesToGen = 0;
-		initializeVars();
 	}
 	
-	/**
-	 * InitializeVars is here to redirect the contructor. When deserializing an object, it's 
-	 * constructor is ignored. Because of this, any transient fields won't get initialized.
-	 * To prevent this, a readObject() method is implemented and inside logic to initialize
-	 * these fields is put there. To prevent duplicate code from the constructor, however,
-	 * all this logic is done here.
-	 * 
-	 * Exploit this fact to initialize non-transient files in the constructor!
-	 */
-	void initializeVars() {
-		unmarkedTiles = 0;
-	}
-
 	/**
 	 * CheckStatus occurs after every move is made. This updates the stars earned for the current level if
 	 * the number of marked tiles is equal to the thresholds. The starsEarned is set rather than incremented
@@ -52,22 +35,14 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 * @return boolean - true if level is done
 	 */
 	@Override
-	public boolean checkStatus() {		
+	public boolean checkStatus() {
+		int unmarkedTiles = board.getNumBoardTiles();
+		
 		if(unmarkedTiles <= 12 && unmarkedTiles > 6){	starsEarned = 1;}
 		if(unmarkedTiles <= 6 && unmarkedTiles > 0){ 	starsEarned = 2;}
-		if(unmarkedTiles == 0){ 	
-			starsEarned = 3;}
+		if(unmarkedTiles == 0){ 						starsEarned = 3;}
+		
 		return (unmarkedTiles == 0);
-	}
-	
-	/**
-	 * Decreases the number of unmarked tiles. This works towards the level termination
-	 * condition of marking an entire board.
-	 * @param numMarked The number of tiles marked. Since pieces can overlap, this number won't
-	 * always be 6.
-	 */
-	public void decrementUnmarked(int numMarked){
-		unmarkedTiles -= numMarked;
 	}
 	
 	public String toString(){
@@ -80,6 +55,5 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
-		initializeVars();
 	}
 }
