@@ -106,15 +106,7 @@ public class Piece {
 	Color getColor(){
 		return color;
 	}
-
-	/**
-	 * Method used to get the row location of the origin
-	 * @return int
-	 */
-	int getOriginRow1(){
-		return tiles[0].rowInPiece;
-	}
-
+	
 	/** 
 	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
 	 * @param row

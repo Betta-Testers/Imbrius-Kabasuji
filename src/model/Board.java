@@ -36,11 +36,9 @@ public class Board {
 	 */
 	public boolean putPieceOnBoard(Piece p, int row, int col) {
 		if (willFit(p, row, col)) {
-			for (int i = 0; i <= 6; i++) {
+			for (int i = 0; i < 6; i++) {
+				swapTile(p.tiles[i],row + p.tiles[i].rowInPiece, col + p.tiles[i].colInPiece);
 				AbstractTile temp = board[row + p.tiles[i].rowOnBoard][col + p.tiles[i].colOnBoard];
-				board[row + p.tiles[i].rowInPiece]	[col + p.tiles[i].colInPiece] = p.tiles[i];
-				p.tiles[i].rowOnBoard = row + p.tiles[i].rowInPiece;
-				p.tiles[i].colOnBoard = col + p.tiles[i].colInPiece;
 				p.tiles[i].setPreviousTile(temp);
 			}
 			pieces.add(p);
@@ -69,8 +67,8 @@ public class Board {
 	 * @param col The column that the anchor tile should be placed on
 	 * @return boolean of whether or not the piece can be placed at that location or not
 	 */
-	public boolean willFit(Piece p, int row, int col) {
-		for (int i = 0; i <= 6; i++) {
+	boolean willFit(Piece p, int row, int col) {
+		for (int i = 0; i < 6; i++) {
 			if (row + p.tiles[i].rowInPiece < 0 || row + p.tiles[i].rowInPiece > 11 || col + p.tiles[i].colInPiece < 0
 					|| col + p.tiles[i].colInPiece > 11) {
 				return false;
@@ -95,6 +93,7 @@ public class Board {
 			for (int i = 0; i < 6; i++) {
 				swapTile(p.tiles[i], p.tiles[i].rowOnBoard, p.tiles[i].colOnBoard);
 			}
+			pieces.remove(p);
 			return true;
 		} else {
 			return false;
@@ -106,10 +105,12 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-	//DONE
+	
 	AbstractTile swapTile(AbstractTile bt, int row, int col){
 		AbstractTile temp = board[row][col];
 		board[row][col] = bt;
+		bt.rowOnBoard = row;
+		bt.colOnBoard = col;
 		return temp;
 	}
 	
@@ -130,14 +131,14 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-	
+
 	//CAN BE DONE MORE EFFICIENTLY! CHECK IF IT CAN BE PLACED WITH FIT METHOD IF IT CAN THEN CHANGE ALL TO GREEN!
 	//IF NOT THEN MORE SCRUTINY NEEDED!
 	public void showPiecePreview(Piece p, int row, int col){
 		for(int i = 0; i<6; i++){
 			if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
 					|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+row > 11){
-				//DO NOTHING! IT WILL BE OUT OF THE BOARD!
+				//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 			}else{
 				if(board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("empty")
 						|| board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("piece")){
@@ -163,6 +164,18 @@ public class Board {
 			}
 		}
 		return count;
+	}
+	
+	/**
+	 * Will clear all piece previewing from the board, setting all tiles back to their original colors.
+	 * @return void
+	 */
+	void clearPiecePreview(){
+		for(int i = 0; i <12; i++){
+			for(int j = 0; j <12; j++){
+				board[i][j].resetColor();
+			}
+		}
 	}
 	
 }
