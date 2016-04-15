@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import junit.framework.TestCase;
 
 public class TestPieceGroup extends TestCase{
-	PieceGroup p;
+	PieceGroup p;	
 	
 	@Override
 	protected void setUp(){
@@ -15,9 +15,7 @@ public class TestPieceGroup extends TestCase{
 	protected void tearDown(){
 		
 	}
-	
-	
-	
+
 	public void testIncrementCount() {
 		assertTrue(p.incrementCount());
 		assertEquals(p.numPieces, 1);
@@ -33,10 +31,9 @@ public class TestPieceGroup extends TestCase{
 		assertTrue(!p.decrementCount());
 		assertEquals(p.numPieces, 0);		
 	}
+	
 	public void testGetMethods(){
 		assertEquals(p.getPiece(), p.piece);
 		assertEquals(p.getNumPieces(), p.numPieces);
 	}
-	
-
 }
