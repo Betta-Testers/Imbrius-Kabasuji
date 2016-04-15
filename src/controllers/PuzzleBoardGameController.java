@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import app.Game;
+import app.LevelIO;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Piece;
@@ -20,15 +22,17 @@ import view.BullpenView;
 
 //TODO add view update stuff
 
-public class PuzzleBoardMouseController implements MouseListener, MouseMotionListener{
+public class PuzzleBoardGameController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
 	Piece draggedPiece;
 	AbstractTile source;
 	Piece p;
 	Move m;
+	Game game;
 	
-	PuzzleBoardMouseController (AbstractLevelModel levelModel) {
-		this.levelModel = levelModel;
+	PuzzleBoardGameController (Game game) {
+		this.game = game;
+		this.levelModel = game.getCurrentLevel();
 	}
 
 	@Override
@@ -45,9 +49,12 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 	public void mouseExited(MouseEvent arg0) {
 		if (draggedPiece == null) {
 			levelModel.getBoard().clearPiecePreview();
-		} else { // currently draggin a piece
+		} else { // currently dragging a piece
 			Move m = new MovePieceOffBoardMove(levelModel, draggedPiece);
 			m.doMove();
+			if (levelModel.checkStatus()) {
+				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
+			}
 			//levelModel.pushMove(m);
 		}
 	}
@@ -73,6 +80,9 @@ public class PuzzleBoardMouseController implements MouseListener, MouseMotionLis
 		
 		if (m.doMove()) {
 			//levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
+			if (levelModel.checkStatus()) {
+				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
+			}
 		} else {
 			if (draggedPiece != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
 				levelModel.getBoard().putPieceOnBoard(p, p.getOriginRow(), p.getOriginCol());
