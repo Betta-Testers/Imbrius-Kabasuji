@@ -2,6 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author bwoconnor
+ *
+ */
+
 public class Board {
 	AbstractTile board[][] = new AbstractTile[12][12];
 	//Standard row/column of matrix [row][column][0][0] is top left one below it is [1][0]
@@ -29,7 +35,6 @@ public class Board {
 	 * @return the tile that was replaced.
 	 */
 	boolean putPieceOnBoard(Piece p, int row, int col) {
-		pieces.add(p);
 		if (willFit(p, row, col)) {
 			for (int i = 0; i <= 6; i++) {
 				AbstractTile temp = board[row + p.tiles[i].rowOnBoard][col + p.tiles[i].colOnBoard];
@@ -38,6 +43,7 @@ public class Board {
 				p.tiles[i].colOnBoard = col + p.tiles[i].colInPiece;
 				p.tiles[i].setPreviousTile(temp);
 			}
+			pieces.add(p);
 			return true;
 		}
 		return false;
@@ -143,6 +149,20 @@ public class Board {
 		}
 	}
 	
-	//TODO Figure out best way to calculate number of board pieces left, to cross reference with origBoardPieces
+	/**
+	 * Returns the total number of board tiles still remaining on the board
+	 * @return the total number of board tiles still remaining on the board
+	 */
+	int getNumBoardTiles(){
+		int count = 0;
+		for(int i = 0; i <12;i++){
+			for(int j = 0; j<12;j++){
+				if(board[i][j].tileType.equals("board")){
+					count++;
+				}
+			}
+		}
+		return count;
+	}
 	
 }
