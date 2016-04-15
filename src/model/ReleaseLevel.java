@@ -22,19 +22,20 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	public ReleaseLevel(int levelID) {
 		super(levelID, "Release", false);
 		
-		initialize();
+		initializeVars();
 	}
 	
 	/**
-	 * Initialize is here to redirect the contructor. When deserializing an object, it's 
+	 * InitializeVars is here to redirect the contructor. When deserializing an object, it's 
 	 * constructor is ignored. Because of this, any transient fields won't get initialized.
 	 * To prevent this, a readObject() method is implemented and inside logic to initialize
 	 * these fields is put there. To prevent duplicate code from the constructor, however,
 	 * all this logic is done here.
 	 * 
 	 * Exploit this fact to initialize non-transient files in the constructor!
+	 * @author Dylan
 	 */
-	void initialize() {
+	void initializeVars() {
 		reds = new int[6];
 		yellows = new int[6];
 		blues = new int[6];
@@ -45,51 +46,35 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 			blues[i] = -1;
 		}
 	}
-	
-	/** 
-	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
-	 * has achieved the most they can.
-	 * OR
-	 * The player is out of pieces to move in the bullpen. This means in order to check this, the level needs to ask the bullpen
-	 * if it is empty or not.
-	 * @return true if the level is done.
-	 */
-	@Override
-	public boolean isComplete() {
-		if((sumIsSix(reds)&&sumIsSix(blues)&&sumIsSix(yellows)) || bullpen.empty()){
-			return true;
-		}
-		
-		return false;
-	}
 
 	/**
-	 * updateProgress occurs after every move is made. This updates the stars earned for the current level if 
+	 * CheckStatus occurs after every move is made. This updates the stars earned for the current level if 
 	 * a set has been released. Each set is checked in a separate statement as a way to ensure that if more
 	 * that one set was released at a time, the number of stars earned is updated correctly. 
 	 * 
-	 * After all checks are made, the stars are checked against the known max to see if they need to be updated
-	 * 
-	 * Additionally, updateProgress updates all level end conditions (Hence, progress towards end of level...). Release
-	 * is a special case, however, as this is managed by the controller to prevent the need to pass a piece to update
-	 * progress
+	 * After the StarsEarned is modified, checkStatus then returns the boolean as to whether or not the level is 
+	 * completed. It returns true if all sets are released OR the bullpen no longer has any pieces to be played.
+	 * @author Dylan
+	 * @return	boolean - true if level is complete
 	 */
 	@Override
-	public void updateProgress() {
-		boolean check = false;
-		if(sumIsSix(reds)){  	starsEarned++; 	
-								check = true; 	}
-		if(sumIsSix(blues)){ 	starsEarned++;
-								check = true; 	}
-		if(sumIsSix(yellows)){	starsEarned++;
-								check = true; 	}
+
+	public boolean checkStatus() {
+		boolean redSum = sumIsSix(reds);
+		boolean blueSum = sumIsSix(blues);
+		boolean yellowSum = sumIsSix(yellows);
 		
-		if(check){ levelIO.updateStars(this.levelID, this.starsEarned); }
+		if(redSum){  	starsEarned++;}
+		if(blueSum){ 	starsEarned++;}
+		if(yellowSum){	starsEarned++;}
+		
+		return (redSum&&blueSum&&yellowSum) || bullpen.empty();
 	}
 	
 	/**
 	 * Helper method to update progress. Allows to check the array passed in sums to 6, indicating all
 	 * numbers in a set is released.
+	 * @author Dylan
 	 * @param array being summed
 	 * @return true if the array sums to 6
 	 */
@@ -103,6 +88,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the reds array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
+	 * @author Dylan
 	 * @param releasedNum Is the number that was released
 	 */
 	public void addToRedReleased(int releasedNum){
@@ -112,6 +98,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the blues array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
+	 * @author Dylan
 	 * @param releasedNum Is the number that was released
 	 */
 	public void addToBlueReleased(int releasedNum){
@@ -121,6 +108,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the yellows array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
+	 * @author Dylan
 	 * @param releasedNum Is the number that was released
 	 */
 	public void addToYellowReleased(int releasedNum){
@@ -137,7 +125,8 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
-		initialize();
+		initializeVars();
 	}
 
 }
+//
