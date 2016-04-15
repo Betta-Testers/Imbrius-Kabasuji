@@ -25,11 +25,11 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 		super(levelID, "Lightning", false);
 		totalTime = 0;
 		piecesToGen = 0;
-		initialize();
+		initializeVars();
 	}
 	
 	/**
-	 * Initialize is here to redirect the contructor. When deserializing an object, it's 
+	 * InitializeVars is here to redirect the contructor. When deserializing an object, it's 
 	 * constructor is ignored. Because of this, any transient fields won't get initialized.
 	 * To prevent this, a readObject() method is implemented and inside logic to initialize
 	 * these fields is put there. To prevent duplicate code from the constructor, however,
@@ -37,44 +37,26 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 * 
 	 * Exploit this fact to initialize non-transient files in the constructor!
 	 */
-	void initialize() {
+	void initializeVars() {
 		unmarkedTiles = 0;
 	}
 
-	/** 
-	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
-	 * has achieved the most they can. Instead of handling timeLeft on the entity backing, a Timer is used in a controller to 
-	 * track how long the game is meant to run for.
-	 * @return true if the level is done.
-	 */
-	@Override
-	boolean isComplete() {
-		if(unmarkedTiles == 0){
-			return true;
-		}
-		
-		return false;
-	}
-
 	/**
-	 * updateProgress occurs after every move is made. This updates the stars earned for the current level if
+	 * CheckStatus occurs after every move is made. This updates the stars earned for the current level if
 	 * the number of marked tiles is equal to the thresholds. The starsEarned is set rather than incremented
 	 * to prevent duplicate triggers of the same threshold. (Ie place a piece that marks all but 12 tiles and
 	 * the place another piece that marks all but 8 tiles. That would increment twice - not wanted).
 	 * 
-	 * Additionally, updateProgress updates all level end conditions (Hence, progress towards end of level...). So for a Lightning
-	 * that means setting the number of unmarked tiles (which are the number of remaining boardTiles).
-	 * 
-	 * After all checks are made, the level is saved if the current play through has earned more stars than 
-	 * the number tracked on file.
+	 * CheckStatus then returns true if the level's termination conditions are met or not (all tiles marked).
+	 * @author Dylan
+	 * @return boolean - true if level is done
 	 */
 	@Override
-	public boolean checkStatus() {
-		unmarkedTiles = board.getNumBoardTiles();
-		
+	public boolean checkStatus() {		
 		if(unmarkedTiles <= 12 && unmarkedTiles > 6){	starsEarned = 1;}
 		if(unmarkedTiles <= 6 && unmarkedTiles > 0){ 	starsEarned = 2;}
-		if(unmarkedTiles == 0){ 						starsEarned = 3;}
+		if(unmarkedTiles == 0){ 	
+			starsEarned = 3;}
 		return (unmarkedTiles == 0);
 	}
 	
@@ -98,6 +80,6 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
-		initialize();
+		initializeVars();
 	}
 }
