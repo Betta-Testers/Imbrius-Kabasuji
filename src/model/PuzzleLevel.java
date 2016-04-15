@@ -53,7 +53,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	boolean isComplete() {
-		if(starsEarned == 3 || (moveLimit-movesMade) == 0){
+		if(tilesLeft == 0 || (moveLimit-movesMade) == 0){
 			return true;
 		}
 		
@@ -68,12 +68,17 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 * This also means it is possible to lower a player's current star count due to moving a piece off the board, reducing the
 	 * number of tiles covered.
 	 * 
+	 * Additionally, updateProgress updates all level end conditions (Hence, progress towards end of level...). So for a Puzzle
+	 * that means incrementing the moves made and checking the tiles left from the board.
+	 * 
 	 * After all checks are made, the level is saved if the current play through has earned more stars than 
 	 * the number tracked on file.
+	 * TODO Save stars of a puzzle level
 	 */
 	@Override
 	void updateProgress() {
-		
+		movesMade++;
+		tilesLeft = board.getNumBoardTiles();
 		switch(tilesLeft){
 			case(12):
 				starsEarned = 1;

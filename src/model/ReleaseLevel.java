@@ -56,7 +56,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	boolean isComplete() {
-		if(starsEarned == 3 || bullpen.empty()){
+		if((sumIsSix(reds)&&sumIsSix(blues)&&sumIsSix(yellows)) || bullpen.empty()){
 			return true;
 		}
 		
@@ -69,6 +69,10 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * that one set was released at a time, the number of stars earned is updated correctly. 
 	 * 
 	 * After all checks are made, the stars are checked against the known max to see if they need to be updated
+	 * 
+	 * Additionally, updateProgress updates all level end conditions (Hence, progress towards end of level...). Release
+	 * is a special case, however, as this is managed by the controller to prevent the need to pass a piece to update
+	 * progress
 	 */
 	@Override
 	void updateProgress() {

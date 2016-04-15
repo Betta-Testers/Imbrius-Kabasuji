@@ -18,6 +18,10 @@ public abstract class LevelIO {
 	/**The current level being manipulated*/
 	AbstractLevelModel currentLevel;
 
+	public LevelIO(String directory) {
+		this.defaultDirectory = directory;
+	}
+
 	/**
 	 * Returns a StarMap object read from disk. If the StarMap cannot be read
 	 * for any reason, a blank starmap is generated

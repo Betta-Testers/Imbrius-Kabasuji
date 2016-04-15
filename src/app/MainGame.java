@@ -17,7 +17,7 @@ public class MainGame {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					
 					SplashScreen splash = new SplashScreen();
-					Game game = new Game();
+					Game game = new Game("./imbriusLevelFiles/");
 					
 					Timer timer = new Timer(2000, new GameSplashTimerController(splash, game));
 					timer.setRepeats(false);

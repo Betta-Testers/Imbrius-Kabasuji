@@ -20,8 +20,7 @@ public class TestBuilder extends TestCase {
 		pl = new PuzzleLevel(1);
 		rl = new ReleaseLevel(2);
 		ll = new LightningLevel(3);
-		b = new Builder();
-		b.defaultDirectory = "./imbriusLevelTESTING/";
+		b = new Builder("./imbriusLevelTESTING/");
 		b.levelData = new StarMap("./imbriusLevelTESTING/");
 	}
 	

@@ -20,19 +20,8 @@ public class Builder extends LevelIO{
 	/**The BuilderView, for displaying the level once the builder has choosen to edit/create a level**/
 	BuilderView bv;
 
-	Builder(){
-		super();
-		levelData = loadStarMap();
-		bv = new BuilderView(this);
-		ltsv = new LevelTypeSelectView(this, levelData);
-
-		initializeControllers();
-	}
-	
-	/**Testing constuctor gives ability to change defaultDirectory**/
 	Builder(String directory){
-		super();
-		this.defaultDirectory = directory;
+		super(directory);
 		this.levelData = loadStarMap();
 		bv = new BuilderView(this);
 		ltsv = new LevelTypeSelectView(this, levelData);

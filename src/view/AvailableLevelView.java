@@ -14,15 +14,15 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 public class AvailableLevelView extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	GroupLayout layout;
 	StarView starView;
 	JButton btnSelectLevel;
 	String lvlname;
-	//AbstractLevelModel modelLevel;
+	
+	
+	//AbstractLevelModel modelLevel - DO you need to? (Answer is no so far)
 	//#TODO: add to constructor
 	
 	public AvailableLevelView(String s) {
@@ -36,6 +36,56 @@ public class AvailableLevelView extends JPanel {
 		starView = new StarView();
 		
 		setupLayout();
+	}
+	
+	
+	/**
+	 * Sets the number of stars displayed for this level to the specified number
+	 * @author Dylan
+	 * @param starsEarned - number of stars to display. Any number other than 1-3 will not change stars
+	 */
+	void updateStars(int starsEarned){
+		if(starsEarned==1){
+			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+		}
+		if(starsEarned==2){
+			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+		}
+		if(starsEarned==3){
+			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			starView.lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+		}
+	}
+	
+	/**
+	 * Method for enabling the button to the user. This sets the level to be "unlocked"
+	 * By default a button has an icon set, is disabled, and text is not set.
+	 * Passing it an integer 1,2 or 3 will also display the correct number of stars for the
+	 * level!
+	 * @param i
+	 */
+	void unlockLevel(int i){
+		btnSelectLevel.setText(lvlname);
+		btnSelectLevel.setIcon(null);
+		btnSelectLevel.setEnabled(true);
+		if(i==1){
+			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+		}
+		if(i==2){
+			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+		}
+		if(i==3){
+			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			starView.lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+		}
+	}
+	
+	public JButton getPlayButton(){
+		return btnSelectLevel;
 	}
 	
 	void setupLayout(){
@@ -57,28 +107,6 @@ public class AvailableLevelView extends JPanel {
 					.addComponent(starView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		this.setLayout(layout);
-	}
-	
-	void unlockLevel(int i){
-		btnSelectLevel.setText(lvlname);
-		btnSelectLevel.setIcon(null);
-		btnSelectLevel.setEnabled(true);
-		if(i==1){
-			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-		}
-		if(i==2){
-			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-		}
-		if(i==3){
-			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			starView.lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-		}
-	}
-	
-	public JButton getPlayButton(){
-		return btnSelectLevel;
 	}
 
 }
