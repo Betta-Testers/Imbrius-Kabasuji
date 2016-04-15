@@ -57,10 +57,19 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Returns the totalTime this lightning level allows
 	 * @author Dylan
-	 * @return totalTime
+	 * @return int - totalTime in seconds
 	 */
 	public int getTotalTime(){
 		return this.totalTime;
+	}
+	
+	/**
+	 * Returns the number of pieces to initialize the bullpen to.
+	 * @author Dylan
+	 * @return int - pieces to gen
+	 */
+	public int getPiecesToGen(){
+		return this.piecesToGen;
 	}
 	
 	public String toString(){
