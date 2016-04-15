@@ -47,7 +47,7 @@ public class Board {
 	 * @param col The column that the anchor tile should be placed on
 	 * @return the tile that was replaced.
 	 */
-	boolean putPieceOnBoard(Piece p, int row, int col) {
+	public boolean putPieceOnBoard(Piece p, int row, int col) {
 		if (willFit(p, row, col)) {
 			for (int i = 0; i < 6; i++) {
 				swapTile(p.tiles[i],row + p.tiles[i].rowInPiece, col + p.tiles[i].colInPiece);
@@ -65,7 +65,7 @@ public class Board {
 	 * with the tiles that used to be in their locations
 	 * @return Returns an array list containing all of the old pieces that used to be on the board
 	 */
-	ArrayList<Piece> resetBoard(){
+	public ArrayList<Piece> resetBoard(){
 		ArrayList<Piece> piecesTemp = new ArrayList<Piece>();
 		while(!pieces.isEmpty()){
 			removePiece(pieces.get(0));
@@ -80,7 +80,7 @@ public class Board {
 	 * @param col The column that the anchor tile should be placed on
 	 * @return boolean of whether or not the piece can be placed at that location or not
 	 */
-	boolean willFit(Piece p, int row, int col) {
+	public boolean willFit(Piece p, int row, int col) {
 		for (int i = 0; i < 6; i++) {
 			if (row + p.tiles[i].rowInPiece < 0 || row + p.tiles[i].rowInPiece > 11 || col + p.tiles[i].colInPiece < 0
 					|| col + p.tiles[i].colInPiece > 11) {
@@ -100,7 +100,7 @@ public class Board {
 	 * @param p the piece being removed from the board
 	 * @return boolean of whether or not the piece was able to be removed, if used properly should ALWAYS return true
 	 */
-	boolean removePiece(Piece p) {
+	public boolean removePiece(Piece p) {
 		if (pieces.contains(p)) {
 			int place = pieces.indexOf(p);
 			for (int i = 0; i < 6; i++) {
@@ -119,7 +119,7 @@ public class Board {
 	 * @return the tile that was replaced.
 	 */
 	
-	AbstractTile swapTile(AbstractTile bt, int row, int col){
+	public AbstractTile swapTile(AbstractTile bt, int row, int col){
 		AbstractTile temp = board[row][col];
 		board[row][col] = bt;
 		bt.rowOnBoard = row;
@@ -132,7 +132,7 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-	AbstractTile getTileAt(int x, int y){
+	public AbstractTile getTileAt(int x, int y){
 		int row = y/tileSize;
 		int column = x/tileSize;
 		return board[row][column];
@@ -143,7 +143,7 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-	void PiecePreview(Piece p, int row, int col){
+	public void PiecePreview(Piece p, int row, int col){
 		for(int i = 0; i<6; i++){
 			if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
 					|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+row > 11){
@@ -163,7 +163,7 @@ public class Board {
 	 * Returns the total number of board tiles still remaining on the board
 	 * @return the total number of board tiles still remaining on the board
 	 */
-	int getNumBoardTiles(){
+	public int getNumBoardTiles(){
 		int count = 0;
 		for(int i = 0; i <12;i++){
 			for(int j = 0; j<12;j++){
@@ -179,7 +179,7 @@ public class Board {
 	 * Will clear all piece previewing from the board, setting all tiles back to their original colors.
 	 * @return void
 	 */
-	void clearPiecePreview(){
+	public void clearPiecePreview(){
 		for(int i = 0; i <12; i++){
 			for(int j = 0; j <12; j++){
 				board[i][j].resetColor();
