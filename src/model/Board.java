@@ -36,11 +36,9 @@ public class Board {
 	 */
 	boolean putPieceOnBoard(Piece p, int row, int col) {
 		if (willFit(p, row, col)) {
-			for (int i = 0; i <= 6; i++) {
+			for (int i = 0; i < 6; i++) {
+				swapTile(p.tiles[i],row + p.tiles[i].rowInPiece, col + p.tiles[i].colInPiece);
 				AbstractTile temp = board[row + p.tiles[i].rowOnBoard][col + p.tiles[i].colOnBoard];
-				board[row + p.tiles[i].rowInPiece]	[col + p.tiles[i].colInPiece] = p.tiles[i];
-				p.tiles[i].rowOnBoard = row + p.tiles[i].rowInPiece;
-				p.tiles[i].colOnBoard = col + p.tiles[i].colInPiece;
 				p.tiles[i].setPreviousTile(temp);
 			}
 			pieces.add(p);
@@ -70,7 +68,7 @@ public class Board {
 	 * @return boolean of whether or not the piece can be placed at that location or not
 	 */
 	boolean willFit(Piece p, int row, int col) {
-		for (int i = 0; i <= 6; i++) {
+		for (int i = 0; i < 6; i++) {
 			if (row + p.tiles[i].rowInPiece < 0 || row + p.tiles[i].rowInPiece > 11 || col + p.tiles[i].colInPiece < 0
 					|| col + p.tiles[i].colInPiece > 11) {
 				return false;
@@ -110,6 +108,8 @@ public class Board {
 	AbstractTile swapTile(AbstractTile bt, int row, int col){
 		AbstractTile temp = board[row][col];
 		board[row][col] = bt;
+		bt.rowOnBoard = row;
+		bt.colOnBoard = col;
 		return temp;
 	}
 	
@@ -163,6 +163,15 @@ public class Board {
 			}
 		}
 		return count;
+	}
+	
+	boolean clearPiecePreview(){
+		for(int i = 0; i <12; i++){
+			for(int j = 0; j <12; j++){
+				board[i][j].resetColor();
+			}
+		}
+		return true;
 	}
 	
 }
