@@ -43,7 +43,11 @@ public class Game extends LevelIO{
 	 * @param ID of the level requested to play
 	 */
 	public void displayLevel(int LevelID) {
-
+		//Step 1)
+		currentLevel = loadLevel(LevelID);
+		
+		//Step 2)
+		currentLevel.setLevelIO(this);
 		/**TODO
 		 * 1) deserialize level, store in currentLevel
 		 * 2) set the levelIO object = this
@@ -70,19 +74,19 @@ public class Game extends LevelIO{
 		selectLevel.addWindowListener(new ShutdownController(this));
 	}
 
-	/**TODO
-	 * Prepares all buttons available at game launch by setting the button to 
-	 * unlocked and adding a play level listener to it
+	/**
+	 * Prepares all buttons of the levels available for play at launch of application.
+	 * After levelData has been read in, the the method iterates over all levelds that count as
+	 * unlocked (retrieved from a method call to StarMap). It unlocks the button in the view and then
+	 * adds a listener to that button in the view that "connects" the entity to the button.
+	 * This method assumes levelData has been read in.
 	 * @author Dylan
 	 */
 	void initializeButtons(){
-		//TODO iterate over all levelIDs in levelData, "unlocking" every button for levels
-		//that have enough stars (implement a method in starmap that returns levels with
-		//at least 1 star
-		selectLevel.unlockLevel(1, 0);
-		//TODO iterate over all unlocked levels (see todo in initialize view) and add a 
-		//listener to each button
-		selectLevel.addListenerToButton(1, this);
+		for(int id: levelData.unlockedLevels()){
+			selectLevel.unlockLevel(id, levelData.getMaxStars(id));
+			selectLevel.addListenerToButton(id, this);
+		}
 	}
 
 	/**
