@@ -11,7 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JToggleButton;
 import javax.swing.SpinnerListModel;
+
+import controllers.SetReleaseTileColorController;
+
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ReleaseNumberCreationView extends JPanel{
@@ -22,8 +26,8 @@ public class ReleaseNumberCreationView extends JPanel{
 	GroupLayout groupLayout;
 	JLabel lblTitle;
 	JLabel lblColor;
-	JToggleButton btn1, btn2, btn3, btn4, btn5, btn6;
-	JSpinner spinner;
+	JToggleButton numButtons[];
+	JComboBox<String> colorSelector;
 
 	public ReleaseNumberCreationView(){
 		setPreferredSize(new Dimension(105, 135));
@@ -31,33 +35,21 @@ public class ReleaseNumberCreationView extends JPanel{
 
 		lblTitle = new JLabel("Release Numbers");
 		lblColor = new JLabel("Color:");
-		btn1 = new JToggleButton("1");
-		btn2 = new JToggleButton("2");
-		btn3 = new JToggleButton("3");
-		btn4 = new JToggleButton("4");
-		btn5 = new JToggleButton("5");
-		btn6 = new JToggleButton("6");
-		spinner = new JSpinner();
+		ButtonGroup creationGroup = new ButtonGroup();
+		numButtons =  new JToggleButton[6];
+		for (int i = 0; i<6; i++) {
+			JToggleButton numBtn = new JToggleButton(""+(i+1));
+			numBtn.setForeground(Color.BLUE);
+			numBtn.setOpaque(true);
+			numBtn.setBackground(Color.DARK_GRAY);
+			creationGroup.add(numBtn);
+			numButtons[i] = numBtn;
+		}
 
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btn1.setForeground(Color.BLUE);
-		btn2.setForeground(Color.BLUE);
-		btn3.setForeground(Color.BLUE);
-		btn4.setForeground(Color.BLUE);
-		btn5.setForeground(Color.BLUE);
-		btn6.setForeground(Color.BLUE);
 
-		spinner.setModel(new SpinnerListModel(new String[] {"Blue", "Yellow", "Red"}));
-
-		ButtonGroup creationGroup = new ButtonGroup();
-
-		creationGroup.add(btn1);
-		creationGroup.add(btn2);
-		creationGroup.add(btn3);
-		creationGroup.add(btn4);
-		creationGroup.add(btn5);
-		creationGroup.add(btn6);
-
+		colorSelector = new JComboBox<String>(new String[] {"Blue", "Yellow", "Red"});
+		colorSelector.addActionListener(new SetReleaseTileColorController(this));
 
 		setupLayout();
 	}
@@ -73,22 +65,22 @@ public class ReleaseNumberCreationView extends JPanel{
 										.addGap(8)
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(btn5)
+														.addComponent(numButtons[4])
 														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(btn6))
+														.addComponent(numButtons[5]))
 												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(btn3)
+														.addComponent(numButtons[2])
 														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(btn4))
+														.addComponent(numButtons[3]))
 												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(btn1)
+														.addComponent(numButtons[0])
 														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(btn2))))
+														.addComponent(numButtons[1]))))
 								.addGroup(groupLayout.createSequentialGroup()
 										.addGap(8)
 										.addComponent(lblColor)
 										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(colorSelector, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
 		groupLayout.setVerticalGroup(
@@ -99,22 +91,22 @@ public class ReleaseNumberCreationView extends JPanel{
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(btn1))
+										.addComponent(numButtons[0]))
 								.addGroup(groupLayout.createSequentialGroup()
 										.addGap(6)
-										.addComponent(btn2)))
+										.addComponent(numButtons[1])))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btn3)
-								.addComponent(btn4))
+								.addComponent(numButtons[2])
+								.addComponent(numButtons[3]))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btn5)
-								.addComponent(btn6))
+								.addComponent(numButtons[4])
+								.addComponent(numButtons[5]))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblColor)
-								.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(colorSelector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
 		this.setLayout(groupLayout);
@@ -130,13 +122,36 @@ public class ReleaseNumberCreationView extends JPanel{
 	@Override
 	public void setVisible(boolean visible){
 		lblTitle.setVisible(visible);
-		spinner.setVisible(visible);
-		btn1.setVisible(visible);
-		btn2.setVisible(visible);
-		btn3.setVisible(visible);
-		btn4.setVisible(visible);
-		btn5.setVisible(visible); 
-		btn6.setVisible(visible);
+		colorSelector.setVisible(visible);
+		
+		for (JToggleButton numBtn : numButtons) {
+			numBtn.setVisible(visible);
+		}
 		lblColor.setVisible(visible);
+	}
+	
+	public void updateNumberColors() {
+		for (JToggleButton numBtn : numButtons) {
+			numBtn.setForeground(getColorSelected());
+		}
+	}
+	
+	public Color getColorSelected() {
+		if (this.colorSelector.getSelectedItem() == "Red") {
+			return Color.RED;
+		} else if (this.colorSelector.getSelectedItem() == "Yellow") {
+			return Color.YELLOW;
+		} else {
+			return Color.BLUE;
+		}
+	}
+	
+	public int getNumberSelected() {
+		for (JToggleButton numBtn : numButtons) {
+			if (numBtn.isSelected()) {
+				return Integer.parseInt(numBtn.getText());
+			}
+		}
+		throw new RuntimeException("No number selected to add to tile");
 	}
 }

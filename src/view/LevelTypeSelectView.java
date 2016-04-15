@@ -7,6 +7,7 @@ import javax.swing.JTextArea;
 import java.util.TreeMap;
 
 import app.Builder;
+import app.StarMap;
 import controllers.CreateLevelBtnController;
 import controllers.ExistingLevelEditController;
 import controllers.NewLevelTypeController;
@@ -28,13 +29,13 @@ public class LevelTypeSelectView extends JFrame {
 	LevelTypesAndText levelTypesAndText;
 	JButton createLevelBtn;
 	JPanel createBtnPanel;
-	TreeMap<Integer, String> levelData;
+	StarMap levelData;
 	Builder b;
 	
 	/**
 	 * Create the application.
 	 */
-	public LevelTypeSelectView(Builder b, TreeMap<Integer, String> levelData) {
+	public LevelTypeSelectView(Builder b, StarMap levelData) {
 		super();
 		this.levelData = levelData;
 		this.b = b;
@@ -103,7 +104,7 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	void initializeControllers() {
-		createLevelBtn.addActionListener(new CreateLevelBtnController(b));
+		createLevelBtn.addActionListener(new CreateLevelBtnController(b, this));
 		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
 			elv.addActionListener(new ExistingLevelEditController(b));
 		}

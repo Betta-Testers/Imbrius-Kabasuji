@@ -1,6 +1,8 @@
 package model;
 
+
 public class PieceGroup implements Comparable<PieceGroup> {
+
 	/**
 	 * @author awharrison
 	 */
@@ -59,5 +61,9 @@ public class PieceGroup implements Comparable<PieceGroup> {
 	 */
 	public int getNumPieces() {
 		return this.numPieces;
+	}
+	
+	public String toString(){
+		return "ID:"+this.piece.getID();
 	}
 }

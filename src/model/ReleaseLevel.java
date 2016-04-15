@@ -1,0 +1,103 @@
+package model;
+
+import java.io.Serializable;
+
+/** 
+ * A ReleaseLevel handles the back end for a Release game mode, tracking the end conditions and progress of 
+ * the game.
+ * @author Dylan
+ */
+public class ReleaseLevel extends AbstractLevelModel implements Serializable{
+	/**Serialized ID used for writing to disk**/
+	private static final long serialVersionUID = -1980934631273821149L;
+	
+	/**Each of these arrays can hold up to 1 set of numbers, of the corresponding color.
+	 * Only numbers 1-6 exist, and only 1 set of each color exists. So when a number is released
+	 * it is populated into the index = value-1**/
+	transient int reds[] = new int[6];
+	transient int yellows[] = new int[6];
+	transient int blues[] = new int[6];
+
+	public ReleaseLevel(int levelID) {
+		super(levelID, "Release", false);
+		
+		for(int i=0; i<6; i++){
+			reds[i] = -1;
+			yellows[i] = -1;
+			blues[i] = -1;
+		}
+	}
+
+	/** 
+	 * A level is complete if the total number of stars earned is 3, meaning there are no more moves to be made, the player
+	 * has achieved the most they can.
+	 * OR
+	 * The player is out of pieces to move in the bullpen. This means in order to check this, the level needs to ask the bullpen
+	 * if it is empty or not.
+	 * @return true if the level is done.
+	 */
+	@Override
+	boolean isComplete() {
+		if(starsEarned == 3 || bullpen.empty()){
+			return true;
+		}
+		
+		return false;
+	}
+
+	/**
+	 * updateProgress occurs after every move is made. This updates the stars earned for the current level if 
+	 * a set has been released. Each set is checked in a separate statement as a way to ensure that if more
+	 * that one set was released at a time, the number of stars earned is updated correctly. 
+	 * 
+	 * After all checks are made, the level is saved if the current playthrough has earned more stars than 
+	 * the number tracked on file.
+	 */
+	@Override
+	void updateProgress() {
+		if(sumIsSix(reds)){  	starsEarned++; 	}
+		if(sumIsSix(blues)){ 	starsEarned++; 	}
+		if(sumIsSix(yellows)){	starsEarned++;	}
+	}
+	
+	/**
+	 * Helper method to update progress. Allows to check the array passed in sums to 6, indicating all
+	 * numbers in a set is released.
+	 * @param array being summed
+	 * @return true if the array sums to 6
+	 */
+	boolean sumIsSix(int array[]){
+		int total = 0;
+		for(int i: array){ total += i; }
+		if(total == 6){ return true;}
+		return false;
+	}
+	
+	/**
+	 * Fills the index of the reds array with a marker, indicating the corresponding number was released.
+	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
+	 * @param releasedNum Is the number that was released
+	 */
+	public void addToRedReleased(int releasedNum){
+		if(reds[releasedNum-1] != 1) { reds[releasedNum-1] = 1; }
+	}
+	
+	/**
+	 * Fills the index of the blues array with a marker, indicating the corresponding number was released.
+	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
+	 * @param releasedNum Is the number that was released
+	 */
+	public void addToBlueReleased(int releasedNum){
+		if(blues[releasedNum-1] != 1) { blues[releasedNum-1] = 1; }
+	}
+	
+	/**
+	 * Fills the index of the yellows array with a marker, indicating the corresponding number was released.
+	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
+	 * @param releasedNum Is the number that was released
+	 */
+	public void addToYellowReleased(int releasedNum){
+		if(yellows[releasedNum-1] != 1) { yellows[releasedNum-1] = 1; }
+	}
+
+}

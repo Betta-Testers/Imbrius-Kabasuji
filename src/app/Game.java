@@ -1,45 +1,57 @@
 package app;
 
-
 import view.GameExitScreen;
 import view.LevelView;
 import view.LevelSelectionView;
-import view.SplashScreen;
 import view.StarView;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import controllers.ExitLevelButtonController;
 import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
+import model.AbstractLevelModel;
 
-public class Game {
-	SplashScreen startUp;
+public class Game extends LevelIO{
+	
+	/**The LevelSelectionView to view all levels**/
 	LevelSelectionView selectLevel;
-	//TODO add abstractLevelModel levels[]
-	//TODO add abstractLevelModel currentLevel
+	
+	/**Array of all levels available**/
+	AbstractLevelModel levels[];
+	
+	/**The View of the level being played**/
 	LevelView levelView;
+	
+	/**The view displayed at the end of the level being played**/
 	GameExitScreen exitLevel;
 	
 	Game(){
+		super();
 		this.initialize();
 	}
 	
+	//TODO GAME NEEDS TO SAVE PROGRESS OF LEVEL EVERYTIME YOU GET A STAR
 	void initialize(){
+		this.initializeModels();
 		this.initializeView();
 		this.initializeControllers();
-		this.initializeModels();
+		
+		// TODO prepare state here. Such as unlocking any levels needed to be unlocked,
+		// etc
 	}
 	
 	void initializeView(){
-		//TODO Initialize splash screen or level select view here?
-		this.startUp = new SplashScreen();
 		this.selectLevel = new LevelSelectionView();
 		this.levelView = new LevelView("Puzzle");
 		this.exitLevel = new GameExitScreen(new StarView());
-		
-		startUp.setVisible(true);
 	}
 	
 	void initializeControllers(){
-		//TODO add controllers that are needed here
 		levelView.addWindowListener(new ExitLevelButtonController(this.levelView, this));
 		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
 		selectLevel.getAvailableLevelView(0).getPlayButton().addActionListener(new PlayLevelButtonController(selectLevel, this));
@@ -62,23 +74,26 @@ public class Game {
 	}
 	
 	void unlockNextLevel(int nextLevelID){
-		//TODO add this in when files are put together, 
-		//AvailableLevelView already has an unlocklevel operation, just need to have that run with a for loop
+		//TODO This method must unlock a level in the AvailableLevelView.
+		/*TODO This method must set the levelMODEL to be unlocked as well, which means opening the file associated with
+		 * levelID, reading line by line until the unlocked marker is found, and changing that value in the file.
+		 */
 	}
 	
-//	void initializeLevelView(){
-//		//TODO initialize the view for levels
-//	}
-//	
-//	void initializeLevelControllers(){
-//		//TODO Add the controllers needed in the level
-//	}
-//	
-//	void initializeExitLevelScreen(){
-//		//TODO initialize the exit level screen made by EVAN
-//	}
-//	
-//	void initializeExitLevelScreenControllers(){
-//		//TODO initialize the controllers needed for the exit level screen
-//	}
+	/**
+	 * Updates the Maximum stars for a given LevelID and star count. 
+	 * If the count passed in is less than the value recorded in levelData,
+	 * the value is not recorded.
+	 * @param levelID
+	 * @param starsEarned - the current number of stars earned on a level
+	 */
+	public void updateStars(int levelID, int starsEarned){
+		if(starsEarned > levelData.getMaxStars(levelID)){
+			levelData.setMaxStars(levelID, starsEarned);
+		}
+	}
+
+//========================== TODO: Questionable Methods to Implement ==========================//
+	void initializeLevelView(){}
+	void initializeLevelControllers(){}
 }

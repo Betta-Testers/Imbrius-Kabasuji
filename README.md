@@ -34,13 +34,9 @@ Software engineering game about Hexominoes
 
 
 ## A Few Todos
-* <b>Builder GUI</b>
-  * [x] Change "Make Hint" button into a toggle JButton, to toggle piece placement into hint placement
-  * [x] Remove rotate buttons for Bullpen and replace with JLabels for Keyboard control.
-  * [x] Increase window size
-  * [x] Prevent window resizing
-  * [x] Breakdown mega class into subclasses based on functionalities (Bullpen, Board, TileCreation, Property Grouping, Button Grouping)
-  * [x] Add in rotation buttons
-  * [x] Merge Release Numbers into a toggle button group
-  * [x] Add grids to the board and bullpen
-  * [ ] Generate and display a complete bullpen, with some pieces toggled to have more count than others
+* <b>Serialization</b>
+   * Make everything serializeable
+   * Mark unwanted fields transient inside each entity
+   * Write the saveLevel and loadLevel functionality in the Builder and Game classes
+* <b>Level Types</b>
+   * Figure out the issue with initializing level specific properties from an object. Where do they get set? Probably in the controllers?
