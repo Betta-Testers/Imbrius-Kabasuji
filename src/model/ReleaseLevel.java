@@ -76,15 +76,10 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	void updateProgress() {
-		boolean check = false;
-		if(sumIsSix(reds)){  	starsEarned++; 	
-								check = true; 	}
-		if(sumIsSix(blues)){ 	starsEarned++;
-								check = true; 	}
-		if(sumIsSix(yellows)){	starsEarned++;
-								check = true; 	}
-		
-		if(check){ levelIO.updateStars(this.levelID, this.starsEarned); }
+		if(sumIsSix(reds)){  	starsEarned++;}
+		if(sumIsSix(blues)){ 	starsEarned++;}
+		if(sumIsSix(yellows)){	starsEarned++;}
+	
 	}
 	
 	/**

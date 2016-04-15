@@ -35,9 +35,6 @@ public abstract class AbstractLevelModel implements Serializable{
 	/**The Board that is associated with this level**/
 	Board board;
 	
-	/**LevelIO is used to write information to disk, specifically the StarMap**/
-	LevelIO levelIO;
-	
 	/**
 	 * You CANNOT instantiate an AbstractLevelModel. This constructor is here so you can super() set the 
 	 * final fields within the subclasses. Otherwise, these fields would have a hard time being set AND

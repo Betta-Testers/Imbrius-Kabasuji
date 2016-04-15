@@ -72,12 +72,9 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	void updateProgress() {
 		unmarkedTiles = board.getNumBoardTiles();
 		
-		boolean check = false;
 		if(unmarkedTiles <= 12 && unmarkedTiles > 6){	starsEarned = 1;}
 		if(unmarkedTiles <= 6 && unmarkedTiles > 0){ 	starsEarned = 2;}
 		if(unmarkedTiles == 0){ 						starsEarned = 3;}
-		
-		if(check){ levelIO.updateStars(this.levelID, this.starsEarned); }
 	}
 	
 	/**
