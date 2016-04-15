@@ -3,6 +3,7 @@
  */
 package controllers;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -59,20 +60,16 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		ArrayList<AbstractTile> coveredTiles = p.getPreviousTiles();
 		for (AbstractTile at : coveredTiles) {
 			if (at instanceof ReleaseTile) {
-				String color  = ((ReleaseTile) at).getColorSet().toString();
+				Color color  = ((ReleaseTile) at).getColorSet();
 				int number = ((ReleaseTile) at).getNumber();
-				switch (color){
-					case "Red":
-						levelModel.addToRedReleased(number);
-						break;
-					case "Blue":
-						levelModel.addToBlueReleased(number);
-						break;
-					case "Yellow":
-						levelModel.addToYellowReleased(number);
-						break;
-					default:
-						throw new RuntimeException("Unknown color");
+				if(color == Color.RED){
+					levelModel.addToRedReleased(number);
+				} else if (color == Color.BLUE) {
+					levelModel.addToBlueReleased(number);
+				} else if (color == Color.YELLOW) {
+					levelModel.addToYellowReleased(number);
+				} else {
+					throw new RuntimeException("Unknown color");
 				}
 			}
 		}
