@@ -55,7 +55,6 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
-			//levelModel.pushMove(m);
 		}
 	}
 

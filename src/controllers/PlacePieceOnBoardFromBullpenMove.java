@@ -47,4 +47,8 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 		bullpen.addSinglePiece(p.getID());
 		return true;
 	}
+	
+	public Piece getPlacedPiece() {
+		return this.p;
+	}
 }

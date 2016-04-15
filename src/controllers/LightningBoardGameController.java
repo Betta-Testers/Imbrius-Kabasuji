@@ -36,7 +36,6 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 		Move m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
 		
 		if (m.doMove()) {
-			//levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}

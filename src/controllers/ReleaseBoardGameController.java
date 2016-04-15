@@ -33,16 +33,23 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	@Override
 	public void mouseClicked(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		Move m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
 		
 		if (m.doMove()) {
+			m.getPlacedPiece();
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
-			//levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
 		}
 	}
 
+	@Override
+	public void mouseMoved(MouseEvent me) {
+		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
+		Piece p = levelModel.getBullpen().getSelectedPiece();
+		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent me) {
 	
@@ -67,15 +74,5 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	/* (non-Javadoc)
-	 * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
-	 */
-	@Override
-	public void mouseMoved(MouseEvent me) {
-		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		Piece p = levelModel.getBullpen().getSelectedPiece();
-		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
 	}
 }
