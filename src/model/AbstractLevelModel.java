@@ -2,8 +2,6 @@ package model;
 
 import java.io.Serializable;
 
-import app.LevelIO;
-
 /**
  * An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
@@ -45,20 +43,15 @@ public abstract class AbstractLevelModel implements Serializable{
 	}
 
 	/**
-	 * updateProgress occurs after every move is made. This updates the current state of play in the level, such as
-	 * the movesMade, how many tiles have been covered, etc. Because of this, updateProgress can also trigger 
-	 * saveProgressToFile() when a star threshold has been earned. 
+	 * Check status occurs after every move is made. This updates the current state of play in the level, such as
+	 * the movesMade, how many tiles have been covered, etc. It returns a boolean indicating if the level is finished
+	 * (true) or false if the level has not hit the end of play
+	 * @author Dylan
 	 */
-	abstract void updateProgress();
-
-	/**
-	 * isComplete() returns a boolean describing if the player has finished the level or not. 
-	 * It's a matter of are they out of moves/pieces/time OR did they earn 3 stars.**/
-	abstract boolean isComplete();
+	public abstract boolean checkStatus();
 
 
 	//============================== SETTERS ==================================
-
 	/**
 	 * sets the board associated with this level to the one passed in
 	 * @author Dylan
@@ -108,6 +101,14 @@ public abstract class AbstractLevelModel implements Serializable{
 	 */
 	public Board getBoard(){
 		return board;
+	}
+	/**
+	 * Returns the number of stars currently earned on this playthrough
+	 * @author Dylan
+	 * @return int between 0-3
+	 */
+	public int getStarsEarned(){
+		return this.starsEarned;
 	}
 }
 
