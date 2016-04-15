@@ -13,6 +13,7 @@ public class PieceTile extends AbstractTile {
 	int colInPiece;
 	int rowInPiece;
 	AbstractTile previousTile;
+
 	
 	//TODO update when piece entity exists, including comments. Do we need to store the position within the piece?
 	
@@ -45,12 +46,21 @@ public class PieceTile extends AbstractTile {
 		
 	}
 	
+
 	public int getRowInPiece() {
 		return this.rowInPiece;
 	}
 	
 	public int getColInPiece() {
 		return this.colInPiece;
+	}
+	
+	public int getRowOnBoard() {
+		return this.rowOnBoard;
+	}
+	
+	public int getColOnBoard() {
+		return this.colOnBoard;
 	}
 	
 	public void updateRowInPiece(int newRow) {
@@ -100,4 +110,5 @@ public class PieceTile extends AbstractTile {
 	public Piece getPiece() {
 		return this.piece;
 	}
+
 }

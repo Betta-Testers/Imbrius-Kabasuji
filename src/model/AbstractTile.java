@@ -14,6 +14,7 @@ public abstract class AbstractTile {
 	String tileType;
 	Color color;
 	Color defaultColor;
+
 	
 	/**
 	 * Abstract constructor for all types of tiles to use. Creates a tile at the specified location
@@ -58,4 +59,5 @@ public abstract class AbstractTile {
 	public void resetColor() {
 		this.color = this.defaultColor;
 	}
+
 }

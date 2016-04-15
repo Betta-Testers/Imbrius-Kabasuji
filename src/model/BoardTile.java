@@ -20,4 +20,5 @@ public class BoardTile extends AbstractTile{
 		this.defaultColor = color;
 		this.tileType = "board";
 	}
+
 }

@@ -4,14 +4,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import view.BuilderView;
 import controllers.CloseBuilderDialog;
-import model.PuzzleLevel;
-import view.LevelTypeSelectView;
 import controllers.ShutdownController;
+import view.BuilderView;
+import view.LevelTypeSelectView;
 import model.LightningLevel;
 import model.ReleaseLevel;
-
+import model.PuzzleLevel;
 
 public class Builder extends LevelIO{
 
@@ -158,7 +157,7 @@ public class Builder extends LevelIO{
 		if(levelData.lastKey() == null){ return 0;}
 		return levelData.lastKey();
 	}
-
+	
 	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
 	void initialize(){}
 	void initializeView(){}

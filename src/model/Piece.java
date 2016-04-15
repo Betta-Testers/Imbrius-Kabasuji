@@ -42,32 +42,24 @@ public class Piece {
 		return ID;
 	}
 	
-	/**
-	 * Method used to change orientation of the piece as if it was rotated counterclockwise
-	 */
-	void rotateLeft(){
+	public void rotateLeft(){
 		
 	}
 	
-	/**
-	 * Method used to change orientation of the piece as if it was rotated clockwise
-	 */
-	void rotateRight(){
+	public void rotateRight(){
 		
 	}
 	
-	/**
-	 * Method used to change orientation of the piece as if it was flipped horizontally
-	 */
-	void flipH(){
-		
+	public void flipH(){
+		for (int i=1; i<=5; i++) {
+			tiles[i].updateColInPiece(-1*tiles[i].getColInPiece());
+		}
 	}
 	
-	/**
-	 * Method used to change orientation of the piece as if it was flipped vertically
-	 */
-	void flipV(){
-		
+	public void flipV(){
+		for (int i=1; i<=5; i++) {
+			tiles[i].updateRowInPiece(-1*tiles[i].getRowInPiece());
+		}
 	}
 	
 	/**
@@ -77,7 +69,7 @@ public class Piece {
 	Color getColor(){
 		return color;
 	}
-	
+
 	/**
 	 * Method used to get the row location of the origin
 	 * @return int
@@ -85,6 +77,7 @@ public class Piece {
 	int getOriginRow1(){
 		return tiles[0].rowInPiece;
 	}
+
 	/** 
 	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
 	 * @param row
@@ -102,11 +95,11 @@ public class Piece {
 	 * @return int
 	 */
 	int getOriginCol(){
-		return tiles[0].colInPiece;
+		return tiles[0].getColOnBoard();
 	}
 	
 	int getOriginRow(){
-		return tiles[0].rowInPiece;
+		return tiles[0].getColOnBoard();
 	}
 	
 	public PieceTile getOriginTile() {
