@@ -27,6 +27,19 @@ public class Board {
 		
 	}
 	
+	public Board(ArrayList<AbstractTile> tiles){
+		for(int i = 0;i<12;i++){
+			for(int j = 0;j<12;j++){
+				board[i][j] = new EmptyTile(i,j);
+			}
+		}
+		ArrayList<AbstractTile> temp = tiles;
+		while(!temp.isEmpty()){
+			this.swapTile(temp.get(0), temp.get(0).rowOnBoard, temp.get(0).colOnBoard);
+			temp.remove(0);
+		}
+	}
+	
 	/**
 	 * Places a piece onto the board: Adding it to the list of pieces, and swapping in its tiles
 	 * @param p the piece being put onto the board
