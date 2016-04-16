@@ -49,6 +49,9 @@ public class BullpenView extends JScrollPane {
 		setupLayout();
 	}
 	
+	/**
+	 * Method for setting up the layout for the BullpenView
+	 */
 	private void setupLayout(){
 		groupLayout = new GroupLayout(panelScrollContainer);
 		GroupLayout.ParallelGroup hGroup = groupLayout.createParallelGroup(GroupLayout.Alignment.TRAILING);

@@ -47,6 +47,9 @@ public class ButtonGroupView extends JPanel{
 		setupLayout();
 	}
 	
+	/**
+	 * Method for setting up the layout for the available level view
+	 */
 	private void setupLayout(){
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
