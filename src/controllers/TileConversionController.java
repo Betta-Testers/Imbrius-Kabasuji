@@ -3,7 +3,9 @@ package controllers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import view.BoardView;
 import model.AbstractTile;
+import model.Board;
 
 /**
  * 
@@ -11,38 +13,22 @@ import model.AbstractTile;
  *
  */
 public class TileConversionController extends MouseAdapter {
-	TileView view;
+	Board model;
+	BoardView view;
 
-	public TileConversionController(TileView v) {
-		this.view = v;
+	public TileConversionController(Board model, BoardView view) {
+		this.model = model;
+		this.view = view;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getClickCount() > 1) {
-			AbstractTile tile = (AbstractTile) view.getModelElement();
+			int xPoint = e.getLocationOnScreen().x;
+			int yPoint = e.getLocationOnScreen().y;
 			
-			(if tile == null) {
-				throw new RuntimeException("TileConversionController::somehow did not click a tile");
-			}
-			
-			String type = tile.getTileType();
-			switch(type) {
-			case "Board":
-				// TODO if toggle release number is on, set to release tile
-				tile.setTileType("Empty");
-				break;
-			case "Empty":
-				tile.setTileType("Board");
-				break;
-			case "Piece":
-				break;
-			case "Release":
-				tile.setTileType("Board");
-				break;
-			default:
-				break;
-			}
+			AbstractTile toSwap = model.getTileAt(xPoint, yPoint);
+			// TODO Delete this soon, turning into move classes
 		}
 	}
 }

@@ -3,7 +3,7 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JToggleButton;
-import model.ReleaseTile;
+import model.Board;
 import view.ReleaseNumberCreationView;
 
 /**
@@ -12,10 +12,10 @@ import view.ReleaseNumberCreationView;
  *
  */
 public class SetNumberTileController implements ActionListener {
-	ReleaseNumberCreationView rncv; // TODO pretty sure that this will just be a JToggle Button from the ReleaseNumberCreationView class
-	ReleaseTile model;
+	JToggleButton rncv; // TODO pretty sure that this will just be a JToggle Button from the ReleaseNumberCreationView class
+	Board model;
 	
-	public SetNumberTileController(ReleaseNumberCreationView rncv, ReleaseTile model) {
+	public SetNumberTileController(JToggleButton rncv, Board model) {
 		this.rncv = rncv;
 		this.model = model;
 	}
@@ -24,7 +24,7 @@ public class SetNumberTileController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String stringValue = ((JToggleButton) e.getSource()).getText();
 		int value = Integer.parseInt(stringValue);
-		model.setNumber(value);
+		model.toggleReleaseNumber(value);
 	}
 
 	

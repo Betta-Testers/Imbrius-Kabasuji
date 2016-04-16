@@ -102,6 +102,15 @@ public class BuilderView extends JFrame {
 		levelPropertyView.release();
 	}
 	
+	/**
+	 * returns the ReleaseNumberView so the number selected
+	 * can be retrieved 
+	 * @return
+	 */
+	public ReleaseNumberCreationView getReleaseNumberView(){
+		return this.releaseNumberView;
+	}
+	
 	
 	void setupLayout(){
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
