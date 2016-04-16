@@ -3,15 +3,19 @@
  */
 package controllers;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import app.Game;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Piece;
 import model.PieceTile;
+import model.ReleaseLevel;
+import model.ReleaseTile;
 import view.BullpenView;
 
 /**
@@ -22,12 +26,12 @@ import view.BullpenView;
 //TODO add view update stuff
 
 public class ReleaseBoardGameController implements MouseListener, MouseMotionListener{
-	AbstractLevelModel levelModel;
+	ReleaseLevel levelModel;
 	Game game;
 	
 	ReleaseBoardGameController (Game game) {
 		this.game = game;
-		this.levelModel = game.getCurrentLevel();
+		this.levelModel = (ReleaseLevel)game.getCurrentLevel();
 	}
 
 	@Override
@@ -36,7 +40,9 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
 		
 		if (m.doMove()) {
-			m.getPlacedPiece();
+			Piece p = m.getPlacedPiece();
+			updateReleasedNumbers(p);
+			
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
@@ -48,6 +54,25 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		Piece p = levelModel.getBullpen().getSelectedPiece();
 		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+	}
+	
+	void updateReleasedNumbers(Piece p) {
+		ArrayList<AbstractTile> coveredTiles = p.getPreviousTiles();
+		for (AbstractTile at : coveredTiles) {
+			if (at instanceof ReleaseTile) {
+				Color color  = ((ReleaseTile) at).getColorSet();
+				int number = ((ReleaseTile) at).getNumber();
+				if(color == Color.RED){
+					levelModel.addToRedReleased(number);
+				} else if (color == Color.BLUE) {
+					levelModel.addToBlueReleased(number);
+				} else if (color == Color.YELLOW) {
+					levelModel.addToYellowReleased(number);
+				} else {
+					throw new RuntimeException("Unknown color");
+				}
+			}
+		}
 	}
 	
 	@Override

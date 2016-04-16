@@ -30,7 +30,6 @@ public class PieceTile extends AbstractTile {
 		this.piece = p;
 		this.color = p.getColor();
 		this.defaultColor = color;
-
 		
 		if (p.getOriginTile() == null) {
 			this.colInPiece = 0;
@@ -53,14 +52,6 @@ public class PieceTile extends AbstractTile {
 	
 	public int getColInPiece() {
 		return this.colInPiece;
-	}
-	
-	public int getRowOnBoard() {
-		return this.rowOnBoard;
-	}
-	
-	public int getColOnBoard() {
-		return this.colOnBoard;
 	}
 	
 	public void updateRowInPiece(int newRow) {
@@ -100,7 +91,7 @@ public class PieceTile extends AbstractTile {
 	}
 	
 	public AbstractTile getPreviousTile() {
-		return this.getPreviousTile();
+		return this.previousTile;
 	}
 	
 	public void setPreviousTile(AbstractTile at) {

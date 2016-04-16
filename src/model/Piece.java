@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 
 /**
@@ -115,8 +116,8 @@ public class Piece {
 	 */
 	public void setLocation(int row, int col) {
 		this.tiles[0].setLocation(row, col);
-		for (PieceTile p : tiles) {
-			p.updateBoardPosition();
+		for (PieceTile pt : tiles) {
+			pt.updateBoardPosition();
 		}
 	}
 	
@@ -125,15 +126,23 @@ public class Piece {
 	 * @return int
 	 */
 	public int getOriginCol(){
-		return tiles[0].getColOnBoard();
+		return tiles[0].getCol();
 	}
 	
 	public int getOriginRow(){
-		return tiles[0].getRowOnBoard();
+		return tiles[0].getRow();
 	}
 	
 	public PieceTile getOriginTile() {
 		return tiles[0];
+	}
+	
+	public ArrayList<AbstractTile> getPreviousTiles() {
+		ArrayList<AbstractTile> prevTiles = new ArrayList<AbstractTile>();
+		for (PieceTile p : tiles) {
+			prevTiles.add(p.getPreviousTile());
+		}
+		return prevTiles;
 	}
 	
 	/**

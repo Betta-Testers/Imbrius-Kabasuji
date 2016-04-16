@@ -24,6 +24,19 @@ public class Board {
 		
 	}
 	
+	public Board(ArrayList<AbstractTile> tiles){
+		for(int i = 0;i<12;i++){
+			for(int j = 0;j<12;j++){
+				board[i][j] = new EmptyTile(i,j);
+			}
+		}
+		ArrayList<AbstractTile> temp = tiles;
+		while(!temp.isEmpty()){
+			this.swapTile(temp.get(0));
+			temp.remove(0);
+		}
+	}
+	
 	/**
 	 * Places a piece onto the board: Adding it to the list of pieces, and swapping in its tiles
 	 * @param p the piece being put onto the board
@@ -32,10 +45,10 @@ public class Board {
 	 * @return the tile that was replaced.
 	 */
 	public boolean putPieceOnBoard(Piece p, int row, int col) {
+		p.setLocation(row, col);
 		if (willFit(p, row, col)) {
 			for (int i = 0; i < 6; i++) {
-				swapTile(p.tiles[i],row + p.tiles[i].rowInPiece, col + p.tiles[i].colInPiece);
-				AbstractTile temp = board[row + p.tiles[i].rowOnBoard][col + p.tiles[i].colOnBoard];
+				AbstractTile temp = swapTile(p.tiles[i]);
 				p.tiles[i].setPreviousTile(temp);
 			}
 			pieces.add(p);
@@ -49,7 +62,7 @@ public class Board {
 	 * with the tiles that used to be in their locations
 	 * @return Returns an array list containing all of the old pieces that used to be on the board
 	 */
-	ArrayList<Piece> resetBoard(){
+	public ArrayList<Piece> resetBoard(){
 		ArrayList<Piece> piecesTemp = new ArrayList<Piece>();
 		while(!pieces.isEmpty()){
 			removePiece(pieces.get(0));
@@ -86,9 +99,8 @@ public class Board {
 	 */
 	public boolean removePiece(Piece p) {
 		if (pieces.contains(p)) {
-			int place = pieces.indexOf(p);
 			for (int i = 0; i < 6; i++) {
-				swapTile(p.tiles[i], p.tiles[i].rowOnBoard, p.tiles[i].colOnBoard);
+				swapTile(p.tiles[i].getPreviousTile());
 			}
 			pieces.remove(p);
 			return true;
@@ -103,11 +115,13 @@ public class Board {
 	 * @return the tile that was replaced.
 	 */
 	
-	AbstractTile swapTile(AbstractTile bt, int row, int col){
+	public AbstractTile swapTile(AbstractTile at){
+		int row = at.getRow();
+		int col = at.getCol();
+		//System.out.println(row);
+		//System.out.println(col);
 		AbstractTile temp = board[row][col];
-		board[row][col] = bt;
-		bt.rowOnBoard = row;
-		bt.colOnBoard = col;
+		board[row][col] = at;
 		return temp;
 	}
 	
@@ -116,7 +130,6 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-	//DONE
 	public AbstractTile getTileAt(int x, int y){
 		int row = y/tileSize;
 		int column = x/tileSize;
@@ -128,9 +141,6 @@ public class Board {
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-
-	//CAN BE DONE MORE EFFICIENTLY! CHECK IF IT CAN BE PLACED WITH FIT METHOD IF IT CAN THEN CHANGE ALL TO GREEN!
-	//IF NOT THEN MORE SCRUTINY NEEDED!
 	public void showPiecePreview(Piece p, int row, int col){
 		for(int i = 0; i<6; i++){
 			if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
@@ -151,7 +161,7 @@ public class Board {
 	 * Returns the total number of board tiles still remaining on the board
 	 * @return the total number of board tiles still remaining on the board
 	 */
-	int getNumBoardTiles(){
+	public int getNumBoardTiles(){
 		int count = 0;
 		for(int i = 0; i <12;i++){
 			for(int j = 0; j<12;j++){

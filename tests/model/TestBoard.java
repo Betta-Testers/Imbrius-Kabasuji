@@ -22,7 +22,8 @@ public class TestBoard extends TestCase{
 		b.board[5][0] = new BoardTile(5,0);
 		
 		BoardTile bt = new BoardTile(0,0);
-		b.swapTile(bt, 0, 0);
+		b.swapTile(bt);
+		assertEquals("board r:0 c:0", b.board[0][0].toString());
 		
 		int i = b.getNumBoardTiles();
 		
@@ -37,6 +38,8 @@ public class TestBoard extends TestCase{
 		
 		Piece p = new Piece(1);
 		assertTrue(b.willFit(p, 2, 0));
+		
+		
 		
 		b.putPieceOnBoard(p, 2, 0);
 		
