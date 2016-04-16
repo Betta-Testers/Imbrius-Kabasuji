@@ -45,7 +45,6 @@ public class TestStarMap extends TestCase {
 	//Prove levelData is empty
 	assertEquals(null, b.levelData);
 
-	System.out.println("About to test load");
 	//load the starMap
 	b.levelData = b.loadStarMap();
 
