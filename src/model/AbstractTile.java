@@ -59,5 +59,11 @@ public abstract class AbstractTile {
 	public void resetColor() {
 		this.color = this.defaultColor;
 	}
-
+	
+	/**
+	 * @return the type of the tile
+	 */
+	public String getTileType() {
+		return this.tileType;
+	}
 }

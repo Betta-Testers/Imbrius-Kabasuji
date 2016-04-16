@@ -111,6 +111,15 @@ public class BuilderView extends JFrame {
 		return this.releaseNumberView;
 	}
 	
+	/**
+	 * returns the BullpenView
+	 * @return
+	 */
+	public BullpenView getBullpenView() {
+		// TODO Auto-generated method stub
+		return this.bullpenView;
+	}
+	
 	
 	void setupLayout(){
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
