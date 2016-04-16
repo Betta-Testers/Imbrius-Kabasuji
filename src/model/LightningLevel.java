@@ -18,14 +18,10 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	
 	/**Total time the level has to be played, in seconds**/
 	int totalTime;
-	
-	/**Overall size of the bullpen for this level**/
-	int piecesToGen;
 
 	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
 		totalTime = 0;
-		piecesToGen = 0;
 	}
 	
 	/**
@@ -68,15 +64,6 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Returns the number of pieces to initialize the bullpen to.
-	 * @author Dylan
-	 * @return int - pieces to gen
-	 */
-	public int getPiecesToGen(){
-		return this.piecesToGen;
-	}
-	
-	/**
 	 * Initializes the view to display correctly for a lightninglevel. 
 	 * @return LevelView - view of the initialized LevelView
 	 */
@@ -89,7 +76,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	
 	
 	public String toString(){
-		return levelType+levelID+totalTime+piecesToGen;
+		return levelType+levelID+totalTime;
 	}
 	
 	/**

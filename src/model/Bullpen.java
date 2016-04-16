@@ -32,9 +32,9 @@ public class Bullpen implements Serializable{
 			throw new RuntimeException("Cannot create a Bullpen with a negative number of pieces");
 		}
 		for(int i = 0; i < sizeOfBullpen; i++) {
-			this.playablePieces.add(new PieceGroup(new Random().nextInt(35), 1));
+			this.playablePieces.add(new PieceGroup(1+(new Random().nextInt(35)), 1));
 		}
-		sortBullpen();; // sort the bullpen by ID
+		sortBullpen(); // sort the bullpen by ID
 	}
 	
 	/**

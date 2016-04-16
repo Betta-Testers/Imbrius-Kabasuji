@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
@@ -36,7 +34,7 @@ public class StarMap implements Serializable{
 
 	StarMap(String directory){
 		this.directory = directory;
-		populateEmptyMap();
+		this.put(0, "EmptyKey");
 	}
 
 	/**
@@ -44,8 +42,13 @@ public class StarMap implements Serializable{
 	 * information lost in such an event is the player's earned stars progress. The rest of the map
 	 * is populated with levelIDs found and their types.
 	 */
-	void populateEmptyMap(){
+	void populateFromDirectory(){
 		System.out.println("StarMap is Constructing in @"+directory);
+		
+		//Clear data initialized in constructor
+		levelData.remove(0);
+		stars.remove(0);
+		
 		File[] folder = (new File(directory)).listFiles();
 		String levelNum;
 		String levelType;
@@ -159,14 +162,28 @@ public class StarMap implements Serializable{
 	 * Returns the last key in the tree - the highest value key.
 	 * @return Highest valued Key
 	 */
-	public Integer lastKey(){
+	public Integer lastID(){
 		try{
 			return levelData.lastKey();
 		}catch(NoSuchElementException e){
-			return 0;
+			e.printStackTrace();
+			throw new RuntimeException("StarMap didn't intialize the first ID");
 		}
 	}
 
+	/**
+	 * Returns the next open ID for level generation
+	 * @return levelID that is free
+	 */
+	public Integer nextOpenID(){
+		try{
+			return levelData.lastKey()+1;
+		}catch(NoSuchElementException e){
+			e.printStackTrace();
+			throw new RuntimeException("Current Highest ID doesn't exist in StarMap");
+		}
+	}
+	
 	/**
 	 * Tells whether the levelData is empty or not
 	 * @return true if levelData is empty

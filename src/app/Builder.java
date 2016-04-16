@@ -63,7 +63,7 @@ public class Builder extends LevelIO{
 			try { oos.close(); } catch (IOException ioe) { } 
 		}
 
-		if(id > levelData.lastKey()){
+		if(id > levelData.lastID()){
 			levelData.put(id, type);
 		}
 	}
@@ -75,19 +75,19 @@ public class Builder extends LevelIO{
 	public void createLevel(String type){
 		switch(type){
 		case "Puzzle":
-			PuzzleLevel pl = new PuzzleLevel(levelData.lastKey()+1);
+			PuzzleLevel pl = new PuzzleLevel(levelData.nextOpenID());
 			currentLevel = pl;
 			bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
-			LightningLevel ll = new LightningLevel(levelData.lastKey()+1);
+			LightningLevel ll = new LightningLevel(levelData.nextOpenID());
 			currentLevel = ll;
 			bv.setModelLevel(ll);
 			bv.prepLightning();
 			break;
 		case "Release":
-			ReleaseLevel rl = new ReleaseLevel(levelData.lastKey()+1);
+			ReleaseLevel rl = new ReleaseLevel(levelData.nextOpenID());
 			currentLevel = rl;
 			bv.setModelLevel(rl);
 			bv.prepRelease();
@@ -146,8 +146,8 @@ public class Builder extends LevelIO{
 	 * @return highestLevelID
 	 */
 	public int getHighestLevelID(){
-		if(levelData.lastKey() == null){ return 0;}
-		return levelData.lastKey();
+		if(levelData == null){ return 0;}
+		return levelData.lastID();
 	}
 
 	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 

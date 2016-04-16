@@ -22,7 +22,7 @@ public abstract class AbstractLevelModel implements Serializable{
 	final String levelType;
 
 	/**The starsEarned for a level is an integer 0-3, tracking the progress thus far on an attempt at this level**/
-	int starsEarned;
+	transient int starsEarned;
 
 	/**CanMovePiece is a boolean value telling the level if pieces can be moved on the board or not**/
 	final boolean canMovePiece;

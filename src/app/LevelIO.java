@@ -40,6 +40,7 @@ public abstract class LevelIO {
 		}catch (FileNotFoundException e){
 			System.err.println("StarMap.storage DNE. Making new StarMap");
 			m = new StarMap(defaultDirectory);
+			m.populateFromDirectory();
 		}catch (Exception e){
 			e.printStackTrace();
 			throw new RuntimeException("LevelIO couldn't load StarMap @"+location);
