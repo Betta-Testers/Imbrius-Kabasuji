@@ -12,12 +12,11 @@ import java.awt.Color;
  */
 
 public class TestPiece extends TestCase{
-	Piece piece, piece2;
+	Piece piece;
 	
 	@Override
 	protected void setUp(){
-		piece = new Piece(0);
-		piece2 = new Piece(2);
+		piece = new Piece(1);
 	}
 	
 	@Override
@@ -29,15 +28,18 @@ public class TestPiece extends TestCase{
 	public void testOrigin(){
 		assertEquals(piece.tiles[0], piece.getOriginTile());
 	}
+	
 	public void testColor(){
 		assertEquals(piece.color, new Color(240, 0, 0));
 		assertEquals(piece.color, piece.getColor());
 	}
+	
 	public void testID(){
 		assertEquals(piece.ID, piece.getID());
 	}
+	
 	public void testPieces(){
-		for(int i = 0; i < 35; i++){
+		for(int i = 1; i < 36; i++){
 			new Piece(i);
 		}
 	}
@@ -47,13 +49,13 @@ public class TestPiece extends TestCase{
 	 */
 	public void testIncorrectID(){
 		try{
-			new Piece(-1);
+			new Piece(0);
 			fail("Incorrect ID");
 		}catch (RuntimeException e){
 
 		}
 		try{
-			new Piece(35);
+			new Piece(36);
 			fail("Incorrect ID");
 		}catch (RuntimeException e){
 
