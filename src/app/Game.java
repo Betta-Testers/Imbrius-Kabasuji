@@ -33,7 +33,6 @@ public class Game extends LevelIO{
 		//TODO save the levelData in ShutdownController
 		this.levelData = loadStarMap();
 
-
 		this.initializeView();
 		this.initializeControllers();
 		this.initializeButtons();
@@ -49,6 +48,9 @@ public class Game extends LevelIO{
 	public void displayLevel(int LevelID) {
 		//Step 1)
 		currentLevel = loadLevel(LevelID);
+		System.out.println("Level Loaded"+currentLevel.getID());
+		levelView = currentLevel.initializeGame(this);
+		levelView.setVisible(true);
 		
 		//Step 2)
 		//currentLevel.setLevelIO(this);
@@ -90,6 +92,7 @@ public class Game extends LevelIO{
 	 */
 	void initializeButtons(){
 		for(int id: levelData.unlockedLevels()){
+			System.out.println("unlocking:"+id);
 			selectLevel.unlockLevel(id, levelData.getMaxStars(id));
 			selectLevel.addListenerToButton(id, this);
 		}

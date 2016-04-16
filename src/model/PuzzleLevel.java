@@ -4,6 +4,10 @@ package model;
 import java.io.IOException;
 import java.io.Serializable;
 
+import app.Game;
+import controllers.ExitLevelButtonController;
+import view.LevelView;
+
 /** 
  * A PuzzleLevel handles the back end for a Puzzle game mode, tracking the end conditions and progress of 
  * the game.
@@ -81,6 +85,17 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 */
 	public void setMoveLimit(int moves){
 		moveLimit = moves;
+	}
+	
+	/**
+	 * Initializes the view to display correctly for a lightninglevel. 
+	 * @return LevelView - view of the initialized LevelView
+	 */
+	@Override
+	public LevelView initializeGame(Game g) {
+		LevelView view = new LevelView("Puzzle");
+		view.addWindowListener(new ExitLevelButtonController(view, g));
+		return view;
 	}
 	
 	public String toString(){

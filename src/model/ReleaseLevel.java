@@ -3,6 +3,10 @@ package model;
 import java.io.IOException;
 import java.io.Serializable;
 
+import app.Game;
+import controllers.ExitLevelButtonController;
+import view.LevelView;
+
 /** 
  * A ReleaseLevel handles the back end for a Release game mode, tracking the end conditions and progress of 
  * the game.
@@ -115,6 +119,17 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		if(yellows[releasedNum-1] != 1) { yellows[releasedNum-1] = 1; }
 	}
 
+	/**
+	 * Initializes the view to display correctly for a lightninglevel. 
+	 * @return LevelView - view of the initialized LevelView
+	 */
+	@Override
+	public LevelView initializeGame(Game g) {
+		LevelView view = new LevelView("Release");
+		view.addWindowListener(new ExitLevelButtonController(view, g));
+		return view;
+	}
+	
 	public String toString(){
 		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(yellows);
 	}

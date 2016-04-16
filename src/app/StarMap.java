@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
@@ -131,23 +133,25 @@ public class StarMap implements Serializable{
 	 * Returns a set of keys in the StarMap
 	 * @return set of keys in levelData
 	 */
-	public Set<Integer> keySet(){
-		return levelData.keySet();
+	public ArrayList<Integer> keySet(){
+		return new ArrayList<Integer>(levelData.keySet()); 
 	}
 
 	/**
-	 * Unlocked Levels returns an iterator over the levelIDs that counts as unlocked
+	 * Unlocked Levels returns a set over the levelIDs that counts as unlocked
 	 * This fact is computed by checking the stars earned for a levelID inside the stars
 	 * treemap. If the levelID has a value associated with it that is greater than 0, it
 	 * counts as unlocked.
-	 * @return Iterator of integers - levelIDs
+	 * @return set of integers - levelIDs
 	 */
-	public Set<Integer> unlockedLevels(){
+	public ArrayList<Integer> unlockedLevels(){
+		
+		ArrayList<Integer> keyList = new ArrayList<Integer>(levelData.keySet()); 
 		Set<Integer> keys = levelData.keySet();
 		for(Integer key: keys){
-			if(stars.get(key) == 0){ keys.remove(key);}
+			if(key != 1 && stars.get(key) == 0){ keyList.remove(key);}
 		}
-		return keys;
+		return keyList;
 	}
 
 	//========================== INFORMATION METHODS ==========================
