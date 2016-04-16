@@ -1,15 +1,18 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Bullpen {
-	/**
-	 * @author awharrison
-	 */
+/**
+ * @author awharrison
+ */
+public class Bullpen implements Serializable{
+	private static final long serialVersionUID = 354746744366050487L;
+	
 	ArrayList<PieceGroup> playablePieces = new ArrayList<PieceGroup>();
-	Piece selectedPiece;
+	transient Piece selectedPiece;
 	
 	/**
 	 * Create a Bullpen containing a specified group of pieces

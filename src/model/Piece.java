@@ -1,6 +1,8 @@
 package model;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -8,18 +10,15 @@ import java.util.ArrayList;
  * @author ejbosia
  */
 
-public class Piece {
+public class Piece implements Serializable{
+	private static final long serialVersionUID = -5341675534216265771L;
 	
-	/*
-	 * TO DO
-	 * add methods that takes in string and returns object with those values
-	 */
-
-	PieceTile[] tiles = new PieceTile[6];
+	transient PieceTile[] tiles;
 	int ID;
 	Color color;
 	public Piece(int ID){
 		this.ID = ID;
+		this.tiles = new PieceTile[6];
 		generatePiece(ID);
 	}
 	
@@ -143,6 +142,20 @@ public class Piece {
 			prevTiles.add(p.getPreviousTile());
 		}
 		return prevTiles;
+	}
+	
+	/**
+	 * When serializing a Piece, the pieceTile information is not needed. Instead of serializing those,
+	 * the piece serializes it's ID. Then, when read it, it generates the tiles needed using the built
+	 * in generatePiece() method.
+	 * @param in
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
+		in.defaultReadObject();
+		this.tiles = new PieceTile[6];
+		generatePiece(this.ID);
 	}
 	
 	/**
