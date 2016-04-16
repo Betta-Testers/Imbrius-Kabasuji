@@ -22,8 +22,8 @@ public class CloseBuilderDialog extends WindowAdapter{
 		String title = "Are you sure?";
 		int response = JOptionPane.showConfirmDialog(bv,message, title,JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 		if (response == JOptionPane.OK_OPTION){
-			b.setBuilderViewVisible(false);
-			b.setLevelTypeSelectViewVisible(true);
+			b.getBuilderView().setVisible(false);
+			b.getLevelTypeSelectView().setVisible(true);
 		}else{
 			//Close dialog
 		}
