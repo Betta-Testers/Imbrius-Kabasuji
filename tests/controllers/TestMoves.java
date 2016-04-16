@@ -36,7 +36,7 @@ public class TestMoves extends TestCase {
 		pl.setBullpen(bp);
 	}
 	
-	public void testMovePieceOnBoard() {
+	public void testMoves() {
 		b.swapTile(new BoardTile(0,0));
 		b.swapTile(new BoardTile(1,0));
 		b.swapTile(new BoardTile(2,0));
@@ -82,6 +82,21 @@ public class TestMoves extends TestCase {
 		assertEquals(2, p.getOriginRow());
 		assertEquals(6, b.getNumBoardTiles());
 		assertEquals(6, bp.numAvailablePieces());
+		m.doMove();
+		
+		bp.setSelectedPiece(1);
+		PlacePieceOnBoardFromBullpenMove pfbm = new PlacePieceOnBoardFromBullpenMove(pl, placementTileFail);
+		assertFalse(pfbm.doMove());
+		pfbm = new PlacePieceOnBoardFromBullpenMove(pl, placementTile);
+		assertTrue(pfbm.doMove());
+		Piece pp = pfbm.getPlacedPiece();
+		assertEquals(1, pp.getOriginCol());
+		assertEquals(2, pp.getOriginRow());
+		assertEquals(6, b.getNumBoardTiles());
+		assertTrue(pfbm.undo());
+		assertEquals(12, b.getNumBoardTiles());
+		assertEquals(7, bp.numAvailablePieces());
+		
 	}
 
 }
