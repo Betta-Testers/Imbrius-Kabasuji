@@ -24,16 +24,6 @@ public class LevelFactory{
 		LevelFactory factory = new LevelFactory("./imbriusLevelFiles/");
 	}
 	
-	/**
-	 * Level Factory needs to :
-	 * Generate 15 levels, 5 of each type. For Each:
-	 * 		-> Generate a board
-	 * 		-> Generate a Bullpen
-	 * 			-> Set those
-	 * 		-> Save to disk
-	 * 			-> put in StarMap
-	 * @param directory
-	 */
 	public LevelFactory(String directory){
 		System.out.println("Factory Started...");
 		this.directory = directory;
