@@ -8,6 +8,7 @@ import view.StarView;
 import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
 import controllers.ShutdownController;
+import model.AbstractLevelModel;
 
 public class Game extends LevelIO{
 
@@ -19,7 +20,10 @@ public class Game extends LevelIO{
 
 	/**The view displayed at the end of the level being played**/
 	GameExitScreen exitLevel;
-
+	
+	/**TODO May not need this: The current level being played**/	
+	AbstractLevelModel currentLevel;
+	
 	Game(String directory){
 		super(directory);
 		this.initialize();

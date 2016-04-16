@@ -68,7 +68,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		if(blueSum){ 	starsEarned++;}
 		if(yellowSum){	starsEarned++;}
 		
-		return (redSum&&blueSum&&yellowSum) || bullpen.empty();
+		return (redSum&&blueSum&&yellowSum) || bullpen.isEmpty();
 	}
 	
 	/**

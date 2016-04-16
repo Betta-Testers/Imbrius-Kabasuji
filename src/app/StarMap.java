@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeMap;
@@ -28,7 +30,7 @@ public class StarMap implements Serializable{
 	TreeMap<Integer, String> levelData = new TreeMap<Integer, String>();
 
 	/**Path to Directory assigned in the constructor to save the StarMap serialization**/
-	transient String directory;
+	final String directory;
 
 	StarMap(String directory){
 		this.directory = directory;
@@ -41,7 +43,7 @@ public class StarMap implements Serializable{
 	 * is populated with levelIDs found and their types.
 	 */
 	void populateEmptyMap(){
-		System.out.println("Populating Empty Map @"+directory);
+		System.out.println("StarMap is Constructing in @"+directory);
 		File[] folder = (new File(directory)).listFiles();
 		String levelNum;
 		String levelType;
@@ -126,8 +128,8 @@ public class StarMap implements Serializable{
 
 	//========================== Iterator METHODS =============================
 	/**
-	 * Returns an iterator of keys in the StarMap
-	 * @return Iterator of keys in levelData
+	 * Returns a set of keys in the StarMap
+	 * @return set of keys in levelData
 	 */
 	public Set<Integer> keySet(){
 		return levelData.keySet();
@@ -183,7 +185,8 @@ public class StarMap implements Serializable{
 		for(int k: this.keySet()){
 			s.append("["+k+","+levelData.get(k)+","+stars.get(k)+"],");			
 		}
-		s.deleteCharAt(s.length()-1);
+		if(s.length() > 0){ s.deleteCharAt(s.length()-1);}
+		
 		return s.toString();
 	}
 
@@ -197,7 +200,7 @@ public class StarMap implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
-
+		
 		File[] folder = (new File(directory)).listFiles();
 		ArrayList<Integer> keys = new ArrayList<Integer>();
 		String levelNum;
@@ -215,27 +218,30 @@ public class StarMap implements Serializable{
 				continue;
 			}
 		}
-
-		for(Integer k: this.keySet()){
-			if(!keys.contains(k)){
-				levelData.remove(k);
-				stars.remove(k);
-			}
-		}
+		
+		for(Iterator<Entry<Integer, String>> it = levelData.entrySet().iterator(); it.hasNext(); ) {
+		      Entry<Integer, String> entry = it.next();
+		      if(!keys.contains(entry.getKey())) {
+		        it.remove();
+		        stars.remove(entry.getKey());
+		      }
+		    }
 	}
 
 	/**
 	 * Stores a StarMap to disk. If the starmap cannot be saved, an error is
-	 * printed to the console
+	 * printed to the console. Becuase a starMap saves itself on change, this method
+	 * does not need to be called outside of this class
 	 */
-	public void save(){
+	void save(){
 		ObjectOutputStream oos = null;
 
 		String location = directory+"StarMap.storage";
+		//System.out.println("Saving StarMap @:"+location);
 
 		try {
 			oos = new ObjectOutputStream(new FileOutputStream(location));
-			oos.writeObject(levelData);
+			oos.writeObject(this);
 		} catch (Exception e) {
 			System.err.println("Unable to save the levelData:" + e.getMessage());
 		}
@@ -244,4 +250,5 @@ public class StarMap implements Serializable{
 			try { oos.close(); } catch (IOException ioe) { } 
 		}
 	}
+
 }

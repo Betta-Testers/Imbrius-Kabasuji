@@ -115,12 +115,6 @@ public class Bullpen {
 		return this.selectedPiece;
 	}
 
-
-	public boolean empty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	/**
 	 * sets the selected piece from the bullpen using a given ID
 	 * returns true if the piece is available, false if not

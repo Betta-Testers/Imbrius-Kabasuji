@@ -1,10 +1,9 @@
 package app;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 import model.AbstractLevelModel;
 
@@ -38,9 +37,12 @@ public abstract class LevelIO {
 			ois = new ObjectInputStream(infile);
 			m = (StarMap) ois.readObject();
 			ois.close();
-		}catch (Exception e){
-			System.err.println("StarMap not reachable @"+location);
+		}catch (FileNotFoundException e){
+			System.err.println("StarMap.storage DNE. Making new StarMap");
 			m = new StarMap(defaultDirectory);
+		}catch (Exception e){
+			e.printStackTrace();
+			throw new RuntimeException("LevelIO couldn't load StarMap @"+location);
 		}
 
 		if (ois != null) { 
@@ -50,10 +52,6 @@ public abstract class LevelIO {
 	}
 
 	/**
-	 * TODO WORK IN PROGRESS THE BELOW COMMENT IS NO LONGER TRUE
-	 * Right now it reads in an abstract level model and returns that. As to whether that is enough
-	 * information or not, I am not sure yet. I need to test this.
-	 * 
 	 * Given a levelID, the method looks up the associated levelType from the LevelData tree.
 	 * Using this information it generates the path to the file, determines the correct type of level
 	 * to create, and returns that object.
