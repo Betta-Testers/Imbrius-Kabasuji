@@ -1,7 +1,9 @@
 package app;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -14,9 +16,6 @@ import java.util.TreeMap;
  * The second TreeMap, however, cannot add a Key,Value pair unless the first map has the key.
  * 
  * @author Dylan
- *
- * @param <Integer> Generic Key
- * @param <String> Generic Value
  */
 public class StarMap implements Serializable{
 	/**This class is saved to disk to store the max number of stars earned for a level**/
@@ -37,10 +36,44 @@ public class StarMap implements Serializable{
 	}
 
 	/**
+	 * A new StarMap is made if the map can't be deserialized in an attempt to continue play. The only
+	 * information lost in such an event is the player's earned stars progress. The rest of the map
+	 * is populated with levelIDs found and their types.
+	 */
+	void populateEmptyMap(){
+		System.out.println("Populating Empty Map @"+directory);
+		File[] folder = (new File(directory)).listFiles();
+		String levelNum;
+		String levelType;
+
+		for (File f: folder) {
+			//If the folder is empty, because no level files exist, dont populate anything
+			//in the star map
+			if(folder.length == 0){ break;}
+			if(f.getName().equals("StarMap.storage")){ continue;}
+
+			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
+			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
+			int levelID;
+			try{
+				levelID = Integer.parseInt(levelNum);
+				this.put(levelID, levelType);
+				this.setMaxStars(levelID, 0);
+			}catch(NumberFormatException e){
+				System.err.println("Could not parse in from file, skipping...");
+				continue;
+			}
+		}
+	}
+	
+	//========================== LEVEL ID METHODS =============================
+	/**
 	 * Put method for adding levelData. Stores the Key, Value pair in a TreeMap
 	 * Also initializes the key in the stars TreeMap, to prevent null pointer
 	 * exceptions when trying to access a maxStarsEarned amount that hasn't been set
 	 * yet
+	 * 
+	 * This will force the StarMap to save itself to disk if a new key is added
 	 * @param key - should be levelID
 	 * @param value - should be levelType
 	 */
@@ -48,6 +81,7 @@ public class StarMap implements Serializable{
 		if(!levelData.containsKey(key)){
 			levelData.put(key, value);
 			stars.put(key, 0);
+			save();
 		}
 	}
 
@@ -62,8 +96,10 @@ public class StarMap implements Serializable{
 		return levelData.get(key);
 	}
 
+	//========================== MAX STAR METHODS =============================
 	/**
 	 * Sets the stars of the given Key, if that key is registered in the levelData map
+	 * If the star was stored, StarMap writes itself to disk
 	 * @param key - should be LevelID
 	 * @param starsEarned - should be maximum number of stars earned
 	 * @return true if the stars could be stored, false if level did not exist
@@ -71,6 +107,7 @@ public class StarMap implements Serializable{
 	public boolean setMaxStars(Integer key, Integer starsEarned){
 		if(levelData.containsKey(key)){
 			stars.put(key, starsEarned);
+			save();
 			return true;
 		}	
 		return false;
@@ -87,6 +124,7 @@ public class StarMap implements Serializable{
 		return stars.get(key);
 	}
 
+	//========================== Iterator METHODS =============================
 	/**
 	 * Returns an iterator of keys in the StarMap
 	 * @return Iterator of keys in levelData
@@ -110,6 +148,7 @@ public class StarMap implements Serializable{
 		return keys;
 	}
 
+	//========================== INFORMATION METHODS ==========================
 	/**
 	 * Returns the last key in the tree - the highest value key.
 	 * @return Highest valued Key
@@ -134,6 +173,7 @@ public class StarMap implements Serializable{
 		return levelData.containsKey(key);
 	}
 
+	//========================== TO STRING METHODS ============================
 	public String keyToString(){
 		return this.keySet().toString();
 	}
@@ -147,6 +187,7 @@ public class StarMap implements Serializable{
 		return s.toString();
 	}
 
+	//========================== Reading and Saving METHODS ===================
 	/**
 	 * When a StarMap is deserialized, it needs to synchronize with the levels
 	 * available in the directory (in case an outside user deleted a level file).
@@ -184,33 +225,23 @@ public class StarMap implements Serializable{
 	}
 
 	/**
-	 * A new StarMap is made if the map can't be deserialized in an attempt to continue play. The only
-	 * information lost in such an event is the player's earned stars progress. The rest of the map
-	 * is populated with levelIDs found and their types.
+	 * Stores a StarMap to disk. If the starmap cannot be saved, an error is
+	 * printed to the console
 	 */
-	void populateEmptyMap(){
-		System.out.println("Populating Empty Map @"+directory);
-		File[] folder = (new File(directory)).listFiles();
-		String levelNum;
-		String levelType;
+	public void save(){
+		ObjectOutputStream oos = null;
 
-		for (File f: folder) {
-			//If the folder is empty, because no level files exist, dont populate anything
-			//in the star map
-			if(folder.length == 0){ break;}
-			if(f.getName().equals("StarMap.storage")){ continue;}
+		String location = directory+"StarMap.storage";
 
-			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
-			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
-			int levelID;
-			try{
-				levelID = Integer.parseInt(levelNum);
-				this.put(levelID, levelType);
-				this.setMaxStars(levelID, 0);
-			}catch(NumberFormatException e){
-				System.err.println("Could not parse in from file, skipping...");
-				continue;
-			}
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream(location));
+			oos.writeObject(levelData);
+		} catch (Exception e) {
+			System.err.println("Unable to save the levelData:" + e.getMessage());
+		}
+
+		if (oos != null) {
+			try { oos.close(); } catch (IOException ioe) { } 
 		}
 	}
 }

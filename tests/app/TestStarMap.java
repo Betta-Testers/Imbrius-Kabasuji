@@ -31,7 +31,7 @@ public class TestStarMap extends TestCase {
 		assertEquals("[1,Puzzle,0],[2,Puzzle,0],[3,Puzzle,0],[4,Puzzle,0]", b.levelData.toString());
 		
 		//Save levelData to disk
-		b.saveStarMap();
+		b.levelData.save();
 		
 		//Delete information in levelData
 		b.levelData = null;

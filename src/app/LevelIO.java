@@ -50,27 +50,6 @@ public abstract class LevelIO {
 	}
 
 	/**
-	 * Stores a StarMap to disk. If the starmap cannot be saved, an error is
-	 * printed to the console
-	 */
-	public void saveStarMap(){
-		ObjectOutputStream oos = null;
-
-		String location = defaultDirectory+"StarMap.storage";
-
-		try {
-			oos = new ObjectOutputStream(new FileOutputStream(location));
-			oos.writeObject(levelData);
-		} catch (Exception e) {
-			System.err.println("Unable to save the levelData:" + e.getMessage());
-		}
-
-		if (oos != null) {
-			try { oos.close(); } catch (IOException ioe) { } 
-		}
-	}
-
-	/**
 	 * TODO WORK IN PROGRESS THE BELOW COMMENT IS NO LONGER TRUE
 	 * Right now it reads in an abstract level model and returns that. As to whether that is enough
 	 * information or not, I am not sure yet. I need to test this.
@@ -118,7 +97,7 @@ public abstract class LevelIO {
 		}
 	}
 
-
+	
 //================== TESTING METHODS (FOR NOW) ================== 
 	public AbstractLevelModel getCurrentLevel(){
 		return currentLevel;
