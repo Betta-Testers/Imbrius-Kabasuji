@@ -7,7 +7,6 @@ import java.awt.event.MouseMotionListener;
 
 import app.Builder;
 import view.LevelTypeSelectView;
-import view.LevelTypeToggle;
 
 /**
  * 
@@ -36,9 +35,9 @@ public class NewLevelTypeController implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Logic for starting new level
-		builder.createLevel(descriptionText.split(":")[0]);
+		/*builder.createLevel(descriptionText.split(":")[0]);
 		builder.getLevelTypeSelectView().setVisible(false);
-		builder.getBuilderView().setVisible(true);
+		builder.getBuilderView().setVisible(true);*/
 	}
 
 	/* (non-Javadoc)
@@ -56,7 +55,7 @@ public class NewLevelTypeController implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		ltsv.setDescriptionText("Mouse over a level to see it's description");
+		ltsv.setDescriptionText("Mouse over a level to see its description");
 	}
 
 	/* (non-Javadoc)

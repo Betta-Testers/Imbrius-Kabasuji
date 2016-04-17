@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,7 +10,6 @@ import java.util.TreeMap;
 
 import app.Builder;
 import app.StarMap;
-import controllers.CreateLevelBtnController;
 import controllers.ExistingLevelEditController;
 import controllers.NewLevelTypeController;
 import javax.swing.BoxLayout;
@@ -56,8 +56,20 @@ public class LevelTypeSelectView extends JFrame {
 		
 		initialize();
 		setupLayout();
+		loadExistingLevelViews();
 		initializeControllers();
 		setVisible(false);
+	}
+
+	/**
+	 * 
+	 */
+	void loadExistingLevelViews() {
+		existingLevels.addLevelView("Puzzle", 1);
+		//TODO uncomment when there's stuff in StarMap
+		//for (int key : levelData.keySet()) {
+		//	existingLevels.addLevelView(levelData.get(key), key);
+		//}
 	}
 
 	/**
@@ -73,11 +85,17 @@ public class LevelTypeSelectView extends JFrame {
 		txtAreaLevelTypeDescription.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 		txtAreaLevelTypeDescription.setLineWrap(true);
 		txtAreaLevelTypeDescription.setWrapStyleWord(true);
-		txtAreaLevelTypeDescription.setText("Mouse over a level to see it's description");
+		txtAreaLevelTypeDescription.setText("Mouse over a level to see its description");
 		
 		createPuzzle.setIcon(new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Puzzle.png")));
 		createLightning.setIcon(new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Lightning.png")));
 		createRelease.setIcon(new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Release.png")));
+		
+		existingLevelMsg.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		
+		existingLevels.setPreferredSize(new Dimension(536, 164));
+		existingLevels.setMaximumSize(new Dimension(536, 164));
+		existingLevels.setMinimumSize(new Dimension(536, 164));
 		
 		container.add(existingLevelMsg);
 		container.add(existingLevels);
@@ -97,13 +115,13 @@ public class LevelTypeSelectView extends JFrame {
 					.addComponent(existingLevelMsg)
 					.addComponent(existingLevels)
 					.addGroup(gl_createBtnPanel.createSequentialGroup()
-						.addContainerGap(50, Short.MAX_VALUE)
+						.addGap(10)
 						.addComponent(createPuzzle)
-						.addContainerGap(50, Short.MAX_VALUE)
+						.addContainerGap(10, Short.MAX_VALUE)
 						.addComponent(createLightning)
-						.addContainerGap(50, Short.MAX_VALUE)
+						.addContainerGap(10, Short.MAX_VALUE)
 						.addComponent(createRelease)
-						.addContainerGap(50, Short.MAX_VALUE))
+						.addGap(10))
 					.addComponent(txtAreaLevelTypeDescription)
 		);
 		gl_createBtnPanel.setVerticalGroup(
