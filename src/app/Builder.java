@@ -84,6 +84,21 @@ public class Builder extends LevelIO{
 		}
 	}
 
+	public void createReleaseLevel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createPuzzleLevel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createLightningLevel() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	/**
 	 * For CREATING a level. This method is used by CreateLevelBtnController
 	 * to set the level being built. The level being built is stored in currentLevel
@@ -164,5 +179,4 @@ public class Builder extends LevelIO{
 	void initializeLevelModel(int levelID){}
 	void initializeLevelView(){}
 	void initializeLevelControllers(){}
-
 }

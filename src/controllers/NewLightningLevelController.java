@@ -12,7 +12,7 @@ import app.Builder;
  * @author dfontana
  */
 public class NewLightningLevelController implements MouseListener{
-	Builder builder;
+	Builder b;
 	JTextArea textArea;
 	String descriptionText;
 	
@@ -23,7 +23,7 @@ public class NewLightningLevelController implements MouseListener{
 	 * @author hejohnson
 	 */
 	public NewLightningLevelController (Builder b, JTextArea textArea, String descriptionText) {
-		this.builder = b;
+		this.b = b;
 		this.textArea = textArea;
 		this.descriptionText = descriptionText;
 	}
@@ -34,10 +34,9 @@ public class NewLightningLevelController implements MouseListener{
 	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Logic for starting new level
-		/*builder.createLevel(descriptionText.split(":")[0]);
-		builder.getLevelTypeSelectView().setVisible(false);
-		builder.getBuilderView().setVisible(true);*/
+		b.createLightningLevel();
+		b.getLevelTypeSelectView().setVisible(false);
+		b.getBuilderView().setVisible(true);
 	}
 
 	/**
