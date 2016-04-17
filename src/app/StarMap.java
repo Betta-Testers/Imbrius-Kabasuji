@@ -34,7 +34,6 @@ public class StarMap implements Serializable{
 
 	StarMap(String directory){
 		this.directory = directory;
-		this.put(0, "EmptyKey");
 	}
 
 	/**
@@ -78,41 +77,56 @@ public class StarMap implements Serializable{
 	 * Put method for adding levelData. Stores the Key, Value pair in a TreeMap
 	 * Also initializes the key in the stars TreeMap, to prevent null pointer
 	 * exceptions when trying to access a maxStarsEarned amount that hasn't been set
-	 * yet
+	 * yet.
 	 * 
 	 * This will force the StarMap to save itself to disk if a new key is added
-	 * @param key - should be levelID
+	 * @param key - should be levelID, greater than 0 or else it can't be placed
 	 * @param value - should be levelType
+	 * @return boolean - true if the level was added successfully
 	 */
-	public void put(Integer key, String value){
-		if(!levelData.containsKey(key)){
+	public boolean put(Integer key, String value){
+		if(!levelData.containsKey(key) && key > 0){
 			levelData.put(key, value);
 			stars.put(key, 0);
 			save();
+			return true;
 		}
+		return false;
 	}
 
 	/**
 	 * Get the type associated with the levelID
 	 * Returns null if the key does not have a value associated with it
-	 * Throws a null pointer exception if the key does not exist in the map
+	 * If the gotten key DNE, instead of letting the get method return null
+	 * (since it is returning a data type that support null), a null pointer
+	 * exception is throw instead. This allows consistency with the getMaxStars()
+	 * method. 
 	 * @param key
 	 * @return value associated with key - the level type
 	 */
-	public String get(Integer key){
-		return levelData.get(key);
+	public String get(Integer key) throws NullPointerException{
+		String retVal = levelData.get(key);
+		if(retVal == null){
+			throw new NullPointerException("Key does not exist in StarMap");
+		}
+		
+		return retVal;
 	}
 
 	//========================== MAX STAR METHODS =============================
 	/**
 	 * Sets the stars of the given Key, if that key is registered in the levelData map
-	 * If the star was stored, StarMap writes itself to disk
+	 * If the star was stored, StarMap writes itself to disk. This method checks the
+	 * parameters for validity: stars earned between 0-3 inclusive. Note: Key does not
+	 * need to be verified as greater than 0 because the key is already verified when
+	 * put() is called and this method won't set a starCount for a key that isn't 
+	 * already put() into the levelData.
 	 * @param key - should be LevelID
 	 * @param starsEarned - should be maximum number of stars earned
 	 * @return true if the stars could be stored, false if level did not exist
 	 */
 	public boolean setMaxStars(Integer key, Integer starsEarned){
-		if(levelData.containsKey(key)){
+		if(levelData.containsKey(key) && starsEarned >= 0 && starsEarned < 4){
 			stars.put(key, starsEarned);
 			save();
 			return true;
@@ -127,8 +141,14 @@ public class StarMap implements Serializable{
 	 * @param key
 	 * @return value associated with key - the maxStarsEarned or null if the levelID does not have a value associated with it
 	 */
-	public Integer getMaxStars(Integer key){
-		return stars.get(key);
+	public Integer getMaxStars(Integer key) throws NullPointerException{
+		int retVal;
+		try{
+			retVal = stars.get(key);
+		}catch(NullPointerException e){
+			throw new NullPointerException("Key does not exist in StarMap");
+		}
+		return retVal;
 	}
 
 	//========================== Iterator METHODS =============================

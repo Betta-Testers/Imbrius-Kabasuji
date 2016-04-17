@@ -186,6 +186,8 @@ public class LevelFactory{
 	 * @param level - Level you wish to save to disk
 	 */
 	public void saveLevel(AbstractLevelModel level){
+		if(directory == null){ throw new RuntimeException("Did not set Factory's Directory!");}
+		
 		ObjectOutputStream oos = null;
 
 		int id = level.getID();
