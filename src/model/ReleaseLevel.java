@@ -3,6 +3,11 @@ package model;
 import java.io.IOException;
 import java.io.Serializable;
 
+import app.Game;
+import controllers.ExitLevelButtonController;
+import view.LevelView;
+import view.NumbersReleasedView;
+
 /** 
  * A ReleaseLevel handles the back end for a Release game mode, tracking the end conditions and progress of 
  * the game.
@@ -46,7 +51,6 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		}
 	}
 
-
 	/**
 	 * CheckStatus occurs after every move is made. This updates the stars earned for the current level if 
 	 * a set has been released. Each set is checked in a separate statement as a way to ensure that if more
@@ -68,7 +72,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		if(blueSum){ 	starsEarned++;}
 		if(yellowSum){	starsEarned++;}
 		
-		return (redSum&&blueSum&&yellowSum) || bullpen.empty();
+		return (redSum&&blueSum&&yellowSum) || bullpen.isEmpty();
 	}
 	
 	/**
@@ -115,6 +119,17 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		if(yellows[releasedNum-1] != 1) { yellows[releasedNum-1] = 1; }
 	}
 
+	/**
+	 * Initializes the view to display correctly for a lightninglevel. 
+	 * @return LevelView - view of the initialized LevelView
+	 */
+	@Override
+	public LevelView initializeGame(Game g) {
+		LevelView view = new LevelView("Release", new NumbersReleasedView());
+		view.addWindowListener(new ExitLevelButtonController(view, g));
+		return view;
+	}
+	
 	public String toString(){
 		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(yellows);
 	}

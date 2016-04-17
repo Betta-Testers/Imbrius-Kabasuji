@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  * 
@@ -8,7 +9,8 @@ import java.awt.Color;
  *
  */
 
-public class EmptyTile extends AbstractTile {
+public class EmptyTile extends AbstractTile implements Serializable{
+	private static final long serialVersionUID = -8744970312057997685L;
 
 	public EmptyTile(int row, int col) {
 		super(row, col);

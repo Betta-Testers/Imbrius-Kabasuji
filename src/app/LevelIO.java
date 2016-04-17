@@ -1,10 +1,9 @@
 package app;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 import model.AbstractLevelModel;
 
@@ -14,9 +13,6 @@ public abstract class LevelIO {
 
 	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
 	StarMap levelData;
-
-	/**The current level being manipulated*/
-	AbstractLevelModel currentLevel;
 
 	public LevelIO(String directory) {
 		this.defaultDirectory = directory;
@@ -38,9 +34,13 @@ public abstract class LevelIO {
 			ois = new ObjectInputStream(infile);
 			m = (StarMap) ois.readObject();
 			ois.close();
-		}catch (Exception e){
-			System.err.println("StarMap not reachable @"+location);
+		}catch (FileNotFoundException e){
+			System.err.println("StarMap.storage DNE. Making new StarMap");
 			m = new StarMap(defaultDirectory);
+			m.populateFromDirectory();
+		}catch (Exception e){
+			e.printStackTrace();
+			throw new RuntimeException("LevelIO couldn't load StarMap @"+location);
 		}
 
 		if (ois != null) { 
@@ -50,31 +50,6 @@ public abstract class LevelIO {
 	}
 
 	/**
-	 * Stores a StarMap to disk. If the starmap cannot be saved, an error is
-	 * printed to the console
-	 */
-	public void saveStarMap(){
-		ObjectOutputStream oos = null;
-
-		String location = defaultDirectory+"StarMap.storage";
-
-		try {
-			oos = new ObjectOutputStream(new FileOutputStream(location));
-			oos.writeObject(levelData);
-		} catch (Exception e) {
-			System.err.println("Unable to save the levelData:" + e.getMessage());
-		}
-
-		if (oos != null) {
-			try { oos.close(); } catch (IOException ioe) { } 
-		}
-	}
-
-	/**
-	 * TODO WORK IN PROGRESS THE BELOW COMMENT IS NO LONGER TRUE
-	 * Right now it reads in an abstract level model and returns that. As to whether that is enough
-	 * information or not, I am not sure yet. I need to test this.
-	 * 
 	 * Given a levelID, the method looks up the associated levelType from the LevelData tree.
 	 * Using this information it generates the path to the file, determines the correct type of level
 	 * to create, and returns that object.
@@ -118,11 +93,8 @@ public abstract class LevelIO {
 		}
 	}
 
-
+	
 //================== TESTING METHODS (FOR NOW) ================== 
-	public AbstractLevelModel getCurrentLevel(){
-		return currentLevel;
-	}
 	
 	public StarMap getLevelData(){
 		return levelData;

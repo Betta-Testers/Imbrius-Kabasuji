@@ -1,5 +1,7 @@
 package model;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,13 +10,17 @@ import java.util.ArrayList;
  *
  */
 
-public class Board {
-	AbstractTile board[][] = new AbstractTile[12][12];
-	//Standard row/column of matrix [row][column][0][0] is top left one below it is [1][0]
-	ArrayList<Piece> pieces = new ArrayList<Piece>();
-	int origBoardPieces;
-	int tileSize = 32;
+public class Board implements Serializable{
+	/**ID for serialization**/
+	private static final long serialVersionUID = -5485493680104033292L;
 	
+	AbstractTile board[][] = new AbstractTile[12][12];
+	/**Constant Tile Size**/
+	final int tileSize = 32;
+	
+	//Standard row/column of matrix [row][column][0][0] is top left one below it is [1][0]
+	transient ArrayList<Piece> pieces = new ArrayList<Piece>();
+
 	public Board(){
 		for(int i = 0;i<12;i++){
 			for(int j = 0;j<12;j++){
@@ -188,4 +194,15 @@ public class Board {
 	public int getTileSize() {
 		return this.tileSize;
 	}
+
+	/**
+	 * Custom serialization clears the boards of piece tiles and replaces those tiles with what they were covering
+	 * Allows system to not care if the board has pieces on it when saving
+	 * @param stream
+	 * @throws IOException
+	 */
+	 private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
+		 resetBoard();
+		 stream.defaultWriteObject();
+	 }
 }

@@ -6,11 +6,9 @@ import java.io.ObjectOutputStream;
 
 import view.BuilderView;
 import view.LevelTypeSelectView;
-
 import controllers.CloseBuilderDialog;
 import controllers.ShutdownController;
-import view.BuilderView;
-import view.LevelTypeSelectView;
+import model.AbstractLevelModel;
 import model.LightningLevel;
 import model.ReleaseLevel;
 import model.PuzzleLevel;
@@ -23,18 +21,36 @@ public class Builder extends LevelIO{
 	/**The BuilderView, for displaying the level once the builder has choosen to edit/create a level**/
 	BuilderView bv;
 
+	/**Current level being edited.**/
+	AbstractLevelModel currentLevel;
+
 	Builder(String directory){
 		super(directory);
-		this.levelData = loadStarMap();
-		bv = new BuilderView(this);
-		ltsv = new LevelTypeSelectView(this, levelData);
+		this.initialize();
+	}
 
-		initializeControllers();
+	void initialize(){
+		this.levelData = loadStarMap();
+		System.out.println("Levels Loaded:"+levelData.toString());
+
+		this.initializeView();
+		this.initializeControllers();
+	}
+
+	void initializeView(){
+		bv = new BuilderView(this);
+		ltsv = new LevelTypeSelectView();
+		
+		for(int id: levelData.keySet()){
+			ltsv.addExistingLevel(levelData.get(id), id);
+		}
 	}
 
 	void initializeControllers(){
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
 		ltsv.addWindowListener(new ShutdownController(this));
+
+		ltsv.initializeControllers(this);
 	}
 
 	/**
@@ -63,7 +79,7 @@ public class Builder extends LevelIO{
 			try { oos.close(); } catch (IOException ioe) { } 
 		}
 
-		if(id > levelData.lastKey()){
+		if(id > levelData.lastID()){
 			levelData.put(id, type);
 		}
 	}
@@ -75,19 +91,19 @@ public class Builder extends LevelIO{
 	public void createLevel(String type){
 		switch(type){
 		case "Puzzle":
-			PuzzleLevel pl = new PuzzleLevel(levelData.lastKey()+1);
+			PuzzleLevel pl = new PuzzleLevel(levelData.nextOpenID());
 			currentLevel = pl;
 			bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
-			LightningLevel ll = new LightningLevel(levelData.lastKey()+1);
+			LightningLevel ll = new LightningLevel(levelData.nextOpenID());
 			currentLevel = ll;
 			bv.setModelLevel(ll);
 			bv.prepLightning();
 			break;
 		case "Release":
-			ReleaseLevel rl = new ReleaseLevel(levelData.lastKey()+1);
+			ReleaseLevel rl = new ReleaseLevel(levelData.nextOpenID());
 			currentLevel = rl;
 			bv.setModelLevel(rl);
 			bv.prepRelease();
@@ -124,35 +140,27 @@ public class Builder extends LevelIO{
 		}
 	}
 
-	/**
-	 * Returns the BuilderView associated with this Builder
-	 * @param enabled True displays window
-	 */
+	//========================== Getters ==========================//
 	public BuilderView getBuilderView(){
 		return bv;
 	}
-
-	/**
-	 * Returns the LevelTypeSelectView associated with this level
-	 * @param enabled True displays window
-	 */
 	public LevelTypeSelectView getLevelTypeSelectView(){
 		return ltsv;
 	}
-
 	/**
 	 * Returns the highestLevelID of the loaded levelData. 
 	 * If there is no data inside of levelData, 0 is returned.
 	 * @return highestLevelID
 	 */
 	public int getHighestLevelID(){
-		if(levelData.lastKey() == null){ return 0;}
-		return levelData.lastKey();
+		if(levelData == null){ return 0;}
+		return levelData.lastID();
+	}
+	public AbstractLevelModel getCurrentLevel(){
+		return currentLevel;
 	}
 
 	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
-	void initialize(){}
-	void initializeView(){}
 	void initializeLevelModel(int levelID){}
 	void initializeLevelView(){}
 	void initializeLevelControllers(){}

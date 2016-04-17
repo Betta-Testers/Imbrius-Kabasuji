@@ -1,15 +1,18 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Bullpen {
-	/**
-	 * @author awharrison
-	 */
+/**
+ * @author awharrison
+ */
+public class Bullpen implements Serializable{
+	private static final long serialVersionUID = 354746744366050487L;
+	
 	ArrayList<PieceGroup> playablePieces = new ArrayList<PieceGroup>();
-	Piece selectedPiece;
+	transient Piece selectedPiece;
 	
 	/**
 	 * Create a Bullpen containing a specified group of pieces
@@ -29,9 +32,9 @@ public class Bullpen {
 			throw new RuntimeException("Cannot create a Bullpen with a negative number of pieces");
 		}
 		for(int i = 0; i < sizeOfBullpen; i++) {
-			this.playablePieces.add(new PieceGroup(new Random().nextInt(35), 1));
+			this.playablePieces.add(new PieceGroup(1+(new Random().nextInt(35)), 1));
 		}
-		sortBullpen();; // sort the bullpen by ID
+		sortBullpen(); // sort the bullpen by ID
 	}
 	
 	/**
@@ -113,12 +116,6 @@ public class Bullpen {
 	 */
 	public Piece getSelectedPiece() {
 		return this.selectedPiece;
-	}
-
-
-	public boolean empty() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	/**
