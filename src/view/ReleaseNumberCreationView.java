@@ -152,6 +152,6 @@ public class ReleaseNumberCreationView extends JPanel{
 				return Integer.parseInt(numBtn.getText());
 			}
 		}
-		throw new RuntimeException("No number selected to add to tile");
+		return 0;
 	}
 }
