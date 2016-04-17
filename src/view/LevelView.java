@@ -34,7 +34,7 @@ public class LevelView extends JFrame {
 	public LevelView(String gameType) {
 		this.setPreferredSize(new Dimension(600, 665));
 		availablePieces = new BullpenView("playing");
-		levelInfo = new LevelInfoView();
+		levelInfo = new LevelInfoView(1);
 		timeLeftView = new TimeRemainingView();
 		boardView = new BoardView(); 
 		selectedPiece = new SelectedPieceView();
