@@ -4,23 +4,22 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.SwingConstants;
 
 public class LevelInfoView extends JPanel {
-	
 	private static final long serialVersionUID = 1L;
-	private static String level = "Level 1"; // note, this will come from the AbstractLevelModel class
 	
 	StarView starView;
 	JLabel lblLevelNumber;
-	// TODO AbstractLevelModel m
 	
-	public LevelInfoView() {
-		
+	public LevelInfoView(int levelID) {
+		this.setPreferredSize(new Dimension(145, 80));
 		starView = new StarView();
-		lblLevelNumber = new JLabel(level);
+		lblLevelNumber = new JLabel("Level "+levelID);
 		
 		setupLayout();
 	}
@@ -33,21 +32,21 @@ public class LevelInfoView extends JPanel {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(starView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(243, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(293, Short.MAX_VALUE)
-					.addComponent(lblLevelNumber)
-					.addGap(78))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(37)
+							.addComponent(lblLevelNumber))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(starView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addComponent(lblLevelNumber)
 					.addGap(5)
-					.addComponent(starView, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(184, Short.MAX_VALUE))
+					.addComponent(starView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(39, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 	}
