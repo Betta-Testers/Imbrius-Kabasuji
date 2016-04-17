@@ -2,13 +2,14 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+
 import app.Builder;
-import app.StarMap;
 import controllers.ExistingLevelEditController;
-import controllers.NewLevelTypeController;
+import controllers.NewPuzzleLevelController;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -22,9 +23,6 @@ public class LevelTypeSelectView extends JFrame {
 
 	ExistingLevelViewer existingLevels;
 	JTextArea txtAreaLevelTypeDescription;
-	//TODO FIX CONTROLLER INITIALIZATION
-	StarMap levelData;
-	Builder b;
 	JButton createPuzzle;
 	JButton createLightning;
 	JButton createRelease;
@@ -47,20 +45,7 @@ public class LevelTypeSelectView extends JFrame {
 		
 		initialize();
 		setupLayout();
-		loadExistingLevelViews();
-		initializeControllers();
 		setVisible(false);
-	}
-
-	/**
-	 * 
-	 */
-	void loadExistingLevelViews() {
-		existingLevels.addLevelView("Puzzle", 1);
-		//TODO uncomment when there's stuff in StarMap
-		//for (int key : levelData.keySet()) {
-		//	existingLevels.addLevelView(levelData.get(key), key);
-		//}
 	}
 
 	/**
@@ -97,19 +82,24 @@ public class LevelTypeSelectView extends JFrame {
 		this.getContentPane().add(container);
 	}
 	
-	/**
-	 * This method adds a view of an EXISTING level, meaning under NO 
-	 * circumstances should it add information to a model. Period.
-	 * Rather the model gets updated, and then the view updates to 
-	 * reflect the model. 
-	 * @author Dylan.
-	 * @param levelType
-	 * @param levelNumber
-	 */
-	public void addExistingLevel(int id, String type){
-		//viewerAndEditor.addLevel(type, id);
+	public void initializeControllers(Builder b) {
+		for (ExistingLevelView elv : existingLevels.getExistingLevelButtons()) {
+			elv.addActionListener(new ExistingLevelEditController(b));
+		}
+		createPuzzle.addMouseListener(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
+		createLightning.addMouseListener(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Lightning: Cover as many tiles as you can before time runs out!"));
+		createRelease.addMouseListener(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Release: Cover tiles to release number/color sequences and win!"));
+		// add JButton mouse listeners
 	}
 	
+	public JTextArea getLevelDescriptionBox() {
+		return txtAreaLevelTypeDescription;
+	}
+	
+	public void addExistingLevel (String levelType, int levelNumber){
+		existingLevels.addLevelView(levelType, levelNumber);
+	}
+
 	void setupLayout() {
 		GroupLayout gl_createBtnPanel = new GroupLayout(container);
 		gl_createBtnPanel.setAutoCreateGaps(true);
@@ -145,27 +135,6 @@ public class LevelTypeSelectView extends JFrame {
 		container.setLayout(gl_createBtnPanel);
 	}
 	
-	void initializeControllers() {
-		for (ExistingLevelView elv : existingLevels.getExistingLevelButtons()) {
-			elv.addActionListener(new ExistingLevelEditController(b));
-		}
-		createPuzzle.addMouseListener(new NewLevelTypeController(b, this, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
-		createLightning.addMouseListener(new NewLevelTypeController(b, this, "Lightning: Cover as many tiles as you can before time runs out!"));
-		createRelease.addMouseListener(new NewLevelTypeController(b, this, "Release: Cover tiles to release number/color sequences and win!"));
-		// add JButton mouse listeners
-	}
-	
-	public JTextArea getLevelDescriptionBox() {
-		return txtAreaLevelTypeDescription;
-	}
-	
-	public void addExistingLevel (String levelType, int levelNumber){
-		existingLevels.addLevelView(levelType, levelNumber);
-	}
-	
-	public void setDescriptionText(String description) {
-		txtAreaLevelTypeDescription.setText(description);
-	}
 }
 
 

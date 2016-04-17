@@ -5,11 +5,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import view.BuilderView;
-import view.ExistingLevelView;
 import view.LevelTypeSelectView;
 import controllers.CloseBuilderDialog;
-import controllers.CreateLevelBtnController;
-import controllers.ExistingLevelEditController;
 import controllers.ShutdownController;
 import model.AbstractLevelModel;
 import model.LightningLevel;
@@ -45,7 +42,7 @@ public class Builder extends LevelIO{
 		ltsv = new LevelTypeSelectView();
 		
 		for(int id: levelData.keySet()){
-			ltsv.addExistingLevel(id, levelData.get(id));
+			ltsv.addExistingLevel(levelData.get(id), id);
 		}
 	}
 
@@ -53,13 +50,7 @@ public class Builder extends LevelIO{
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
 		ltsv.addWindowListener(new ShutdownController(this));
 
-		/**Add Controller to Create Button**/
-		ltsv.getCreateLevelBtn().addActionListener(new CreateLevelBtnController(this, ltsv));
-		
-		/**Add controllers to the existingLevels**/
-		for (ExistingLevelView elv : ltsv.getExistingLevelButtons()) {
-			elv.addActionListener(new ExistingLevelEditController(this));
-		}
+		ltsv.initializeControllers(this);
 	}
 
 	/**
