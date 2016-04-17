@@ -184,4 +184,8 @@ public class Board {
 			}
 		}
 	}
+
+	public int getTileSize() {
+		return this.tileSize;
+	}
 }
