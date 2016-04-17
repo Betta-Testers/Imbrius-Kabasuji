@@ -15,6 +15,18 @@ public class Bullpen implements Serializable{
 	transient Piece selectedPiece;
 	
 	/**
+	 * A blank constructor for a Bullpen, like for Board, generates a clean slate
+	 * for the builder to work with. In this case, a "clean slate" is all 35 pieces
+	 * with 0 count to each. The order of pieces added is increasing, 1-35
+	 * @author Dylan
+	 */
+	public Bullpen() {
+		for(int i=1; i<=35; i++){
+			this.playablePieces.add(new PieceGroup(i, 0));
+		}
+	}
+	
+	/**
 	 * Create a Bullpen containing a specified group of pieces
 	 * @param pieces
 	 */
@@ -37,6 +49,7 @@ public class Bullpen implements Serializable{
 		sortBullpen(); // sort the bullpen by ID
 	}
 	
+
 	/**
 	 * Add a specified number of random pieces to this bullpen
 	 * @param numPieces

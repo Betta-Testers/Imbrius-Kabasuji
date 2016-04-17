@@ -62,8 +62,8 @@ public class LevelFactory{
 	 * @param tiles - ArrayList of all tiles to be added to the board.
 	 * @return ReleaseLevel
 	 */
-	ReleaseLevel GenerateSpecificRelease(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
-		System.out.println("	Generating Specific Release @"+id);
+	public ReleaseLevel GenerateSpecificRelease(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
+		System.out.println("	Generating NOTSAVED Specific Release @"+id);
 		ReleaseLevel rl = new ReleaseLevel(id);
 		Board board = new Board(tiles);
 		Bullpen bullpen = new Bullpen(pieces);
@@ -80,8 +80,8 @@ public class LevelFactory{
 	 * @param tiles - ArrayList of all tiles to be added to the board.
 	 * @return ReleaseLevel
 	 */
-	LightningLevel GenerateSpecificLightning(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
-		System.out.println("	Generating Specific Lightning @"+id);
+	public LightningLevel GenerateSpecificLightning(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
+		System.out.println("	Generating NOTSAVED Specific Lightning @"+id);
 		LightningLevel ll = new LightningLevel(id);
 		Board board = new Board(tiles);
 		Bullpen bullpen = new Bullpen(pieces);
@@ -98,8 +98,8 @@ public class LevelFactory{
 	 * @param tiles - ArrayList of all tiles to be added to the board.
 	 * @return ReleaseLevel
 	 */
-	PuzzleLevel GenerateSpecificPuzzle(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
-		System.out.println("	Generating Specific Puzzle @"+id);
+	public PuzzleLevel GenerateSpecificPuzzle(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
+		System.out.println("	Generating NOTSAVED Specific Puzzle @"+id);
 		PuzzleLevel pl = new PuzzleLevel(id);
 		Board board = new Board(tiles);
 		Bullpen bullpen = new Bullpen(pieces);
@@ -116,8 +116,8 @@ public class LevelFactory{
 	 * @param bullpenSize - Size of randomly generated bullpen
 	 * @return ReleaseLevel
 	 */
-	ReleaseLevel GenerateRelease(int id, int bullpenSize) {
-		System.out.println("	Generating Release @"+id);
+	public ReleaseLevel GenerateRelease(int id, int bullpenSize) {
+		System.out.println("	Generating NOTSAVED Release @"+id);
 		ReleaseLevel rl = new ReleaseLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen(bullpenSize);
@@ -134,8 +134,8 @@ public class LevelFactory{
 	 * @param bullpenSize - Size of randomly generated bullpen
 	 * @return LightningLevel
 	 */
-	LightningLevel GenerateLightning(int id, int bullpenSize) {
-		System.out.println("	Generating Lightning @"+id);
+	public LightningLevel GenerateLightning(int id, int bullpenSize) {
+		System.out.println("	Generating NOTSAVED Lightning @"+id);
 		LightningLevel ll = new LightningLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen(bullpenSize);
@@ -153,14 +153,68 @@ public class LevelFactory{
 	 * @param bullpenSize - Size of randomly generated bullpen
 	 * @return PuzzleLevel
 	 */
-	PuzzleLevel GeneratePuzzle(int id, int bullpenSize) {
-		System.out.println("	Generating Puzzle @"+id);
+	public PuzzleLevel GeneratePuzzle(int id, int bullpenSize) {
+		System.out.println("	Generating NOTSAVED Puzzle @"+id);
 		PuzzleLevel pl = new PuzzleLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen(bullpenSize);
 		pl.setBoard(board);
 		pl.setBullpen(bullpen);
 		pl.setMoveLimit(20);
+		return pl;
+	}
+	
+	/**
+	 * Generates a ReleaseLevel with the given ID and bullpen size
+	 * Note the bullpen is random in this case. If you want to specify
+	 * the exact pieces in the bullpen/board, use the alternate method
+	 * @param id	- LevelID
+	 * @param bullpenSize - Size of randomly generated bullpen
+	 * @return ReleaseLevel
+	 */
+	public ReleaseLevel GenerateBlankRelease(int id){
+		System.out.println("	Generating NOTSAVED Blank Release @"+id);
+		ReleaseLevel rl = new ReleaseLevel(id);
+		Board board = new Board();
+		Bullpen bullpen = new Bullpen();
+		rl.setBoard(board);
+		rl.setBullpen(bullpen);
+		return rl;
+	}
+
+	/**
+	 * Generates a LightningLevel with the given ID and bullpen size
+	 * Note the bullpen is random in this case. If you want to specify
+	 * the exact pieces in the bullpen/board, use the alternate method
+	 * @param id	- LevelID
+	 * @param bullpenSize - Size of randomly generated bullpen
+	 * @return LightningLevel
+	 */
+	public LightningLevel GenerateBlankLightning(int id){
+		System.out.println("	Generating NOTSAVED Blank Lightning @"+id);
+		LightningLevel ll = new LightningLevel(id);
+		Board board = new Board();
+		Bullpen bullpen = new Bullpen();
+		ll.setBoard(board);
+		ll.setBullpen(bullpen);
+		return ll;
+	}
+
+	/**
+	 * Generates a puzzle level with the given ID and bullpen size
+	 * Note the bullpen is random in this case. If you want to specify
+	 * the exact pieces in the bullpen/board, use the alternate method
+	 * @param id	- LevelID
+	 * @param bullpenSize - Size of randomly generated bullpen
+	 * @return PuzzleLevel
+	 */
+	public PuzzleLevel GenerateBlankPuzzle(int id){
+		System.out.println("	Generating NOTSAVED Blank Puzzle @"+id);
+		PuzzleLevel pl = new PuzzleLevel(id);
+		Board board = new Board();
+		Bullpen bullpen = new Bullpen();
+		pl.setBoard(board);
+		pl.setBullpen(bullpen);
 		return pl;
 	}
 	
