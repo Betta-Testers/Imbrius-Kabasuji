@@ -1,10 +1,13 @@
 package controllers;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import view.LevelTypeToggle;
+import app.Builder;
+import view.LevelTypeSelectView;
+
 
 /**
  * 
@@ -12,31 +15,69 @@ import view.LevelTypeToggle;
  *
  */
 
-public class NewLevelTypeController implements java.awt.event.ActionListener {
-	String newLevelType;
-	LevelTypeToggle clickSource;
-	JButton createLevel;
-	JTextArea levelDescription;
-	
+
+public class NewLevelTypeController implements MouseListener{
+	LevelTypeSelectView ltsv;
+	String descriptionText;
+	Builder builder;
+
 	/**
 	 * Controller to change the text displayed in the level type description box
 	 * @param levelDescription - JTextArea being updated
 	 * @param createLevel - CreateLevelButton being set enabled/disabled
 	 * @author dfontana
 	 */
-	public NewLevelTypeController (JTextArea levelDescription, JButton createLevel) {
-		this.levelDescription = levelDescription;
-		this.createLevel = createLevel;
+
+	public NewLevelTypeController (Builder b, LevelTypeSelectView ltsv, String descriptionText) {
+		this.ltsv = ltsv;
+		this.descriptionText = descriptionText;
+		this.builder = b;
 	}
-	
-	/**
-	 * Sets the text in the text area to describe the type of level selected
-	 * @param ae the event that triggered this controller. Source of this event is used to determine the text to display
-	 * @author hejohnson
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 	 */
-	public void actionPerformed(ActionEvent ae) {
-		clickSource = (LevelTypeToggle) ae.getSource();
-		levelDescription.setText(clickSource.getLevelType());
-		createLevel.setEnabled(true);
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Logic for starting new level
+		/*builder.createLevel(descriptionText.split(":")[0]);
+		builder.getLevelTypeSelectView().setVisible(false);
+		builder.getBuilderView().setVisible(true);*/
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		ltsv.setDescriptionText(descriptionText);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		ltsv.setDescriptionText("Mouse over a level to see its description");
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+	 */
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+	 */
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
 	}
 }

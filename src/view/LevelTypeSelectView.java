@@ -1,40 +1,66 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Font;
-import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import app.Builder;
+import app.StarMap;
+import controllers.ExistingLevelEditController;
+import controllers.NewLevelTypeController;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
 
 
 public class LevelTypeSelectView extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
-	ViewAndEditLevels viewerAndEditor;
-	LevelTypesAndText levelTypesAndText;
-	JButton createLevelBtn;
-	JPanel createBtnPanel;
+
+	ExistingLevelViewer existingLevels;
+	JTextArea txtAreaLevelTypeDescription;
+	//TODO FIX CONTROLLER INITIALIZATION
+	StarMap levelData;
+	Builder b;
+	JButton createPuzzle;
+	JButton createLightning;
+	JButton createRelease;
+	JPanel container;
+	JLabel existingLevelMsg;
 	
 	/**
 	 * Create the application.
 	 */
 	public LevelTypeSelectView() {
 		super();
-		viewerAndEditor = new ViewAndEditLevels();
-		levelTypesAndText = new LevelTypesAndText();
-		createLevelBtn = new JButton("Create Level");
-		createBtnPanel = new JPanel();
+		container = new JPanel();
+		existingLevels = new ExistingLevelViewer();
+		createPuzzle = new JButton();
+		createLightning = new JButton();
+		createRelease = new JButton();
 	
+		txtAreaLevelTypeDescription = new JTextArea();
+		existingLevelMsg = new JLabel("Click a level below to edit:");
 		
 		initialize();
 		setupLayout();
+		loadExistingLevelViews();
 		initializeControllers();
 		setVisible(false);
+	}
+
+	/**
+	 * 
+	 */
+	void loadExistingLevelViews() {
+		existingLevels.addLevelView("Puzzle", 1);
+		//TODO uncomment when there's stuff in StarMap
+		//for (int key : levelData.keySet()) {
+		//	existingLevels.addLevelView(levelData.get(key), key);
+		//}
 	}
 
 	/**
@@ -47,25 +73,28 @@ public class LevelTypeSelectView extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.X_AXIS));
 		
-		JSplitPane levelViewerAndSelector = new JSplitPane();
-		levelViewerAndSelector.setEnabled(false);
-		levelViewerAndSelector.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		txtAreaLevelTypeDescription.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		txtAreaLevelTypeDescription.setLineWrap(true);
+		txtAreaLevelTypeDescription.setWrapStyleWord(true);
+		txtAreaLevelTypeDescription.setText("Mouse over a level to see its description");
 		
-		JSplitPane levelSelectorAndCreator = new JSplitPane();
-		levelSelectorAndCreator.setResizeWeight(1.0);
-		levelSelectorAndCreator.setEnabled(false);
-		levelSelectorAndCreator.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		createPuzzle.setIcon(new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Puzzle.png")));
+		createLightning.setIcon(new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Lightning.png")));
+		createRelease.setIcon(new ImageIcon(LevelTypeSelectView.class.getResource("/icons/Release.png")));
 		
-		createLevelBtn.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-		createLevelBtn.setEnabled(false);
+		existingLevelMsg.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
-		levelViewerAndSelector.setLeftComponent(viewerAndEditor);
-		levelViewerAndSelector.setRightComponent(levelSelectorAndCreator);
+		existingLevels.setPreferredSize(new Dimension(536, 164));
+		existingLevels.setMaximumSize(new Dimension(536, 164));
+		existingLevels.setMinimumSize(new Dimension(536, 164));
 		
-		levelSelectorAndCreator.setLeftComponent(levelTypesAndText);
-		levelSelectorAndCreator.setRightComponent(createBtnPanel);
-		
-		this.getContentPane().add(levelViewerAndSelector);
+		container.add(existingLevelMsg);
+		container.add(existingLevels);
+		container.add(createPuzzle);
+		container.add(createLightning);
+		container.add(createRelease);
+				
+		this.getContentPane().add(container);
 	}
 	
 	/**
@@ -78,48 +107,64 @@ public class LevelTypeSelectView extends JFrame {
 	 * @param levelNumber
 	 */
 	public void addExistingLevel(int id, String type){
-		viewerAndEditor.addLevel(type, id);
+		//viewerAndEditor.addLevel(type, id);
 	}
 	
-	void initializeControllers() {
-		levelTypesAndText.getLevelTypeButtons().addControllers(levelTypesAndText.getTextArea(), createLevelBtn);
-	}
-	
-	public ArrayList<ExistingLevelView> getExistingLevelButtons() {
-		return viewerAndEditor.getExistingLevelButtons();
-	}
-	public JTextArea getLevelDescriptionBox() {
-		return levelTypesAndText.getTextArea();
-	}
-	public ViewAndEditLevels getViewAndEditLevels(){
-		return viewerAndEditor;
-	}
-	public String getSelectedLevelType() {
-		return this.levelTypesAndText.getSelectedLevelType();
-	}
-	public JButton getCreateLevelBtn () {
-		return this.createLevelBtn;
-	}
-
 	void setupLayout() {
-		GroupLayout gl_createBtnPanel = new GroupLayout(createBtnPanel);
+		GroupLayout gl_createBtnPanel = new GroupLayout(container);
 		gl_createBtnPanel.setAutoCreateGaps(true);
 		gl_createBtnPanel.setAutoCreateContainerGaps(true);
 		gl_createBtnPanel.setHorizontalGroup(
 			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
-				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
-					.addContainerGap(150, Short.MAX_VALUE)
-					.addComponent(createLevelBtn)
-					.addContainerGap(150, Short.MAX_VALUE))
+					.addComponent(existingLevelMsg)
+					.addComponent(existingLevels)
+					.addGroup(gl_createBtnPanel.createSequentialGroup()
+						.addGap(10)
+						.addComponent(createPuzzle)
+						.addContainerGap(10, Short.MAX_VALUE)
+						.addComponent(createLightning)
+						.addContainerGap(10, Short.MAX_VALUE)
+						.addComponent(createRelease)
+						.addGap(10))
+					.addComponent(txtAreaLevelTypeDescription)
 		);
 		gl_createBtnPanel.setVerticalGroup(
-			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
-				.addGroup(Alignment.CENTER, gl_createBtnPanel.createSequentialGroup()
-					.addGap(10)
-					.addComponent(createLevelBtn)
-					.addGap(10))
+			gl_createBtnPanel.createSequentialGroup()
+				.addGap(10)
+				.addComponent(existingLevelMsg)
+				.addGap(10)
+				.addComponent(existingLevels)
+				.addGap(10)
+				.addGroup(gl_createBtnPanel.createParallelGroup()
+						.addComponent(createPuzzle)
+						.addComponent(createLightning)
+						.addComponent(createRelease))
+				.addGap(10)
+				.addComponent(txtAreaLevelTypeDescription)
 		);
-		createBtnPanel.setLayout(gl_createBtnPanel);
+		container.setLayout(gl_createBtnPanel);
+	}
+	
+	void initializeControllers() {
+		for (ExistingLevelView elv : existingLevels.getExistingLevelButtons()) {
+			elv.addActionListener(new ExistingLevelEditController(b));
+		}
+		createPuzzle.addMouseListener(new NewLevelTypeController(b, this, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
+		createLightning.addMouseListener(new NewLevelTypeController(b, this, "Lightning: Cover as many tiles as you can before time runs out!"));
+		createRelease.addMouseListener(new NewLevelTypeController(b, this, "Release: Cover tiles to release number/color sequences and win!"));
+		// add JButton mouse listeners
+	}
+	
+	public JTextArea getLevelDescriptionBox() {
+		return txtAreaLevelTypeDescription;
+	}
+	
+	public void addExistingLevel (String levelType, int levelNumber){
+		existingLevels.addLevelView(levelType, levelNumber);
+	}
+	
+	public void setDescriptionText(String description) {
+		txtAreaLevelTypeDescription.setText(description);
 	}
 }
 
