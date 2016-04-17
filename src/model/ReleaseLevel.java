@@ -6,6 +6,7 @@ import java.io.Serializable;
 import app.Game;
 import controllers.ExitLevelButtonController;
 import view.LevelView;
+import view.NumbersReleasedView;
 
 /** 
  * A ReleaseLevel handles the back end for a Release game mode, tracking the end conditions and progress of 
@@ -49,7 +50,6 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 			blues[i] = -1;
 		}
 	}
-
 
 	/**
 	 * CheckStatus occurs after every move is made. This updates the stars earned for the current level if 
@@ -125,7 +125,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Release");
+		LevelView view = new LevelView("Release", new NumbersReleasedView());
 		view.addWindowListener(new ExitLevelButtonController(view, g));
 		return view;
 	}

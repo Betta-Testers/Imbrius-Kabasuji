@@ -6,6 +6,7 @@ import java.io.Serializable;
 import app.Game;
 import controllers.ExitLevelButtonController;
 import view.LevelView;
+import view.TimeRemainingView;
 
 /** 
  * A LightningLevel handles the back end for a Lightning game mode, tracking the end conditions and progress of 
@@ -69,11 +70,10 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Lightning");
+		LevelView view = new LevelView("Lightning", new TimeRemainingView());
 		view.addWindowListener(new ExitLevelButtonController(view, g));
 		return view;
 	}
-	
 	
 	public String toString(){
 		return levelType+levelID+totalTime;

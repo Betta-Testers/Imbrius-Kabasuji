@@ -7,6 +7,7 @@ import java.io.Serializable;
 import app.Game;
 import controllers.ExitLevelButtonController;
 import view.LevelView;
+import view.NumberMovesLeftView;
 
 /** 
  * A PuzzleLevel handles the back end for a Puzzle game mode, tracking the end conditions and progress of 
@@ -93,7 +94,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Puzzle");
+		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView());
 		view.addWindowListener(new ExitLevelButtonController(view, g));
 		return view;
 	}

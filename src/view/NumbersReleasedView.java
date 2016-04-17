@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JPanel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.GroupLayout;
@@ -12,10 +13,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 
 public class NumbersReleasedView extends JPanel {
-	
-	// TODO consumes AbstractLevelModel
-
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	JLabel lblColorRed;
 	JLabel lblColorBlue;
 	JLabel lblColorYellow;
@@ -24,25 +22,6 @@ public class NumbersReleasedView extends JPanel {
 	JTextField blueNums[] = new JTextField[7];
 	JTextField yellowNums[] = new JTextField[7];
 	
-//	JTextField numRed1;
-//	JTextField numRed2;
-//	JTextField numRed3;
-//	JTextField numRed4;
-//	JTextField numRed5;
-//	JTextField numRed6;
-//	JTextField numBlue1;
-//	JTextField numBlue2;
-//	JTextField numBlue3;
-//	JTextField numBlue4;
-//	JTextField numBlue5;
-//	JTextField numBlue6;
-//	JTextField numYellow1;
-//	JTextField numYellow2;
-//	JTextField numYellow3;
-//	JTextField numYellow4;
-//	JTextField numYellow5;
-//	JTextField numYellow6;
-
 	public NumbersReleasedView() {
 		this.setPreferredSize(new Dimension(180, 90));
 		lblColorRed = new JLabel("Red:");
@@ -68,7 +47,40 @@ public class NumbersReleasedView extends JPanel {
 	
 		setupLayout();
 	}
-		
+	
+	/**
+	 * Changes the background of the red textpane corresponding to number
+	 * to be red. This denotes to the player that the number is released from
+	 * that set.
+	 * @author Dylan
+	 * @param number
+	 */
+	void setReleasedRed(int number){
+		redNums[number].setBackground(Color.red);
+	}
+	
+	/**
+	 * Changes the background of the blue textpane corresponding to number
+	 * to be blue. This denotes to the player that the number is released from
+	 * that set.
+	 * @author Dylan
+	 * @param number
+	 */
+	void setReleasedBlue(int number){
+		blueNums[number].setBackground(Color.blue);
+	}
+	
+	/**
+	 * Changes the background of the yellow textpane corresponding to number
+	 * to be yellow. This denotes to the player that the number is released from
+	 * that set.
+	 * @author Dylan
+	 * @param number
+	 */
+	void setReleasedYellow(int number){
+		yellowNums[number].setBackground(Color.yellow);
+	}
+	
 	private void setupLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
