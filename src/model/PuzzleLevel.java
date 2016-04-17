@@ -88,7 +88,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Initializes the view to display correctly for a lightninglevel. 
+	 * Initializes the view to display correctly for a puzzle level. 
 	 * @return LevelView - view of the initialized LevelView
 	 */
 	@Override

@@ -84,7 +84,7 @@ public class Game extends LevelIO{
 
 	/**
 	 * Prepares all buttons of the levels available for play at launch of application.
-	 * After levelData has been read in, the the method iterates over all levelds that count as
+	 * After levelData has been read in, the the method iterates over all levelids that count as
 	 * unlocked (retrieved from a method call to StarMap). It unlocks the button in the view and then
 	 * adds a listener to that button in the view that "connects" the entity to the button.
 	 * This method assumes levelData has been read in.
