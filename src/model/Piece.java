@@ -145,6 +145,10 @@ public class Piece {
 		return prevTiles;
 	}
 	
+	public PieceTile[] getTiles() {
+		return tiles;
+	}
+	
 	/**
 	 * Method used for generating the correct tile placement of the piece given its ID
 	 * @param int
