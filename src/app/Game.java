@@ -30,7 +30,6 @@ public class Game extends LevelIO{
 	}
 
 	void initialize(){
-		//TODO save the levelData in ShutdownController
 		this.levelData = loadStarMap();
 		System.out.println("Levels Loaded:"+levelData.toString());
 		
@@ -39,7 +38,7 @@ public class Game extends LevelIO{
 		this.initializeButtons();
 	}
 
-	/**TODO implement
+	/**
 	 * DisplayLevel is called when the user has hit the button of the level they want to
 	 * play. With this information known, it is possible to load the level requested and 
 	 * make that level prepare its view and controllers (Timer for lightning for example)
@@ -119,6 +118,9 @@ public class Game extends LevelIO{
 	}
 	public LevelView getLevelView() {
 		return this.levelView;
+	}
+	public AbstractLevelModel getCurrentLevel(){
+		return currentLevel;
 	}
 
 	//========================== TODO: Questionable Methods to Implement ==========================//

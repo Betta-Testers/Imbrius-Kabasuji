@@ -14,9 +14,6 @@ public abstract class LevelIO {
 	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
 	StarMap levelData;
 
-	/**The current level being manipulated*/
-	AbstractLevelModel currentLevel;
-
 	public LevelIO(String directory) {
 		this.defaultDirectory = directory;
 	}
@@ -98,9 +95,6 @@ public abstract class LevelIO {
 
 	
 //================== TESTING METHODS (FOR NOW) ================== 
-	public AbstractLevelModel getCurrentLevel(){
-		return currentLevel;
-	}
 	
 	public StarMap getLevelData(){
 		return levelData;

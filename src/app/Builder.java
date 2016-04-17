@@ -9,8 +9,7 @@ import view.LevelTypeSelectView;
 
 import controllers.CloseBuilderDialog;
 import controllers.ShutdownController;
-import view.BuilderView;
-import view.LevelTypeSelectView;
+import model.AbstractLevelModel;
 import model.LightningLevel;
 import model.ReleaseLevel;
 import model.PuzzleLevel;
@@ -22,16 +21,28 @@ public class Builder extends LevelIO{
 
 	/**The BuilderView, for displaying the level once the builder has choosen to edit/create a level**/
 	BuilderView bv;
+	
+	/**Current level being edited.**/
+	AbstractLevelModel currentLevel;
 
 	Builder(String directory){
 		super(directory);
+		this.initialize();
+	}
+	
+	void initialize(){
 		this.levelData = loadStarMap();
+		System.out.println("Levels Loaded:"+levelData.toString());
+		
+		this.initializeView();
+		this.initializeControllers();
+	}
+	
+	void initializeView(){
 		bv = new BuilderView(this);
 		ltsv = new LevelTypeSelectView(this, levelData);
-
-		initializeControllers();
 	}
-
+	
 	void initializeControllers(){
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
 		ltsv.addWindowListener(new ShutdownController(this));
@@ -124,22 +135,13 @@ public class Builder extends LevelIO{
 		}
 	}
 
-	/**
-	 * Returns the BuilderView associated with this Builder
-	 * @param enabled True displays window
-	 */
+	//========================== Getters ==========================//
 	public BuilderView getBuilderView(){
 		return bv;
 	}
-
-	/**
-	 * Returns the LevelTypeSelectView associated with this level
-	 * @param enabled True displays window
-	 */
 	public LevelTypeSelectView getLevelTypeSelectView(){
 		return ltsv;
 	}
-
 	/**
 	 * Returns the highestLevelID of the loaded levelData. 
 	 * If there is no data inside of levelData, 0 is returned.
@@ -149,10 +151,11 @@ public class Builder extends LevelIO{
 		if(levelData == null){ return 0;}
 		return levelData.lastID();
 	}
+	public AbstractLevelModel getCurrentLevel(){
+		return currentLevel;
+	}
 
 	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
-	void initialize(){}
-	void initializeView(){}
 	void initializeLevelModel(int levelID){}
 	void initializeLevelView(){}
 	void initializeLevelControllers(){}

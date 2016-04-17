@@ -3,11 +3,14 @@ package app;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import model.AbstractLevelModel;
+import model.AbstractTile;
 import model.Board;
 import model.Bullpen;
 import model.LightningLevel;
+import model.PieceGroup;
 import model.PuzzleLevel;
 import model.ReleaseLevel;
 
@@ -49,6 +52,60 @@ public class LevelFactory{
 			saveLevel(rl);
 			addToData(rl, 1);
 		}
+	}
+	
+	/**
+	 * Generates a ReleaseLevel with the given ID. The Board and bullpen of this release
+	 * level are populated with the pieces and tiles passed in.
+	 * @param id	- LevelID
+	 * @param pieces - ArrayList of all pieces to be put into the bullpen
+	 * @param tiles - ArrayList of all tiles to be added to the board.
+	 * @return ReleaseLevel
+	 */
+	ReleaseLevel GenerateSpecificRelease(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
+		System.out.println("	Generating Specific Release @"+id);
+		ReleaseLevel rl = new ReleaseLevel(id);
+		Board board = new Board(tiles);
+		Bullpen bullpen = new Bullpen(pieces);
+		rl.setBoard(board);
+		rl.setBullpen(bullpen);
+		return rl;
+	}
+	
+	/**
+	 * Generates a LightningLevel with the given ID. The Board and bullpen of this lightning
+	 * level are populated with the pieces and tiles passed in.
+	 * @param id	- LevelID
+	 * @param pieces - ArrayList of all pieces to be put into the bullpen
+	 * @param tiles - ArrayList of all tiles to be added to the board.
+	 * @return ReleaseLevel
+	 */
+	LightningLevel GenerateSpecificLightning(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
+		System.out.println("	Generating Specific Lightning @"+id);
+		LightningLevel ll = new LightningLevel(id);
+		Board board = new Board(tiles);
+		Bullpen bullpen = new Bullpen(pieces);
+		ll.setBoard(board);
+		ll.setBullpen(bullpen);
+		return ll;
+	}
+	
+	/**
+	 * Generates a PuzzleLevel with the given ID. The Board and bullpen of this puzzle
+	 * level are populated with the pieces and tiles passed in.
+	 * @param id	- LevelID
+	 * @param pieces - ArrayList of all pieces to be put into the bullpen
+	 * @param tiles - ArrayList of all tiles to be added to the board.
+	 * @return ReleaseLevel
+	 */
+	PuzzleLevel GenerateSpecificPuzzle(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
+		System.out.println("	Generating Specific Puzzle @"+id);
+		PuzzleLevel pl = new PuzzleLevel(id);
+		Board board = new Board(tiles);
+		Bullpen bullpen = new Bullpen(pieces);
+		pl.setBoard(board);
+		pl.setBullpen(bullpen);
+		return pl;
 	}
 	
 	/**
