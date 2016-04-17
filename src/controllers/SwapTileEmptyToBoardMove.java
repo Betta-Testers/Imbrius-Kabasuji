@@ -11,8 +11,8 @@ public class SwapTileEmptyToBoardMove extends Move {
 	EmptyTile oldTile;
 	BoardTile newTile;
 	
-	public SwapTileEmptyToBoardMove (/*BuilderView bView,*/ EmptyTile old, AbstractLevelModel lm) {
-		if(/*(bView == null) ||*/ (old == null) || (lm == null)) { 
+	public SwapTileEmptyToBoardMove (BuilderView bView, EmptyTile old, AbstractLevelModel lm) {
+		if((bView == null) || (old == null) || (lm == null)) { 
 			throw new RuntimeException("SwapTileBoardToReleaseMove::failed to initialize constructor inputs");
 		}
 		this.board = lm.getBoard();

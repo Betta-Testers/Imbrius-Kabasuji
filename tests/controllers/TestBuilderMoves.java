@@ -3,15 +3,22 @@
  */
 package controllers;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import app.Builder;
+import app.LevelFactory;
+import app.StarMap;
 import junit.framework.TestCase;
+import model.AbstractLevelModel;
 import model.Board;
 import model.BoardTile;
 import model.Bullpen;
 import model.EmptyTile;
+import model.LightningLevel;
 import model.PieceGroup;
 import model.PuzzleLevel;
+import model.ReleaseLevel;
 
 /**
  * @author hejohnson
@@ -19,20 +26,24 @@ import model.PuzzleLevel;
  */
 public class TestBuilderMoves extends TestCase {
 
-	ArrayList<PieceGroup> playablePieces= new ArrayList<PieceGroup>();
 	PuzzleLevel pl;
-	Board b;
-	Bullpen bp;
+	AbstractLevelModel m;
+	Builder b;
 	
-	public void setUp() {
-		for (int i = 1; i<=35; i++) {
-			playablePieces.add(new PieceGroup(i, 0));
-		}
-		pl = new PuzzleLevel(1);
-		b = new Board();
-		bp = new Bullpen(playablePieces);
-		pl.setBoard(b);
-		pl.setBullpen(bp);
+	@Override
+	public void setUp(){
+		b = new Builder("./imbriusLevelTESTING/");
+		b.levelData = new StarMap("./imbriusLevelTESTING/");
+		
+		b.createLevel("Puzzle");
+		b.saveLevel();
+		pl = b.loadLevel(1);
+	}
+	
+	@Override
+	public void tearDown(){
+		File dir = new File("./imbriusLevelTESTING/");
+		for(File file: dir.listFiles()) file.delete();
 	}
 	
 	public void testSwapBoardAndEmpty() {
