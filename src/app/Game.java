@@ -24,7 +24,7 @@ public class Game extends LevelIO{
 	/**TODO May not need this: The current level being played**/	
 	AbstractLevelModel currentLevel;
 	
-	Game(String directory){
+	public Game(String directory){
 		super(directory);
 		this.initialize();
 	}
@@ -122,8 +122,4 @@ public class Game extends LevelIO{
 	public AbstractLevelModel getCurrentLevel(){
 		return currentLevel;
 	}
-
-	//========================== TODO: Questionable Methods to Implement ==========================//
-	void initializeLevelView(){}
-	void initializeLevelControllers(){}
 }

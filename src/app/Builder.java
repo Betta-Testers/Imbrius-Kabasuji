@@ -24,7 +24,7 @@ public class Builder extends LevelIO{
 	/**Current level being edited.**/
 	AbstractLevelModel currentLevel;
 
-	Builder(String directory){
+	public Builder(String directory){
 		super(directory);
 		this.initialize();
 	}
