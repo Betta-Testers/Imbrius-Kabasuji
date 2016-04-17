@@ -23,16 +23,36 @@ public class TestLevel extends TestCase {
 	
 	public void testLightningLevel(){
 		LightningLevel l = new LightningLevel(0);
+		assertEquals(l.getTotalTime(), 0);
+		
+		l.setTotalTime(10);
+		assertEquals(l.getTotalTime(), 10);
+		
+		assertEquals(l.getPiecesToGen(), 0);
+		assertEquals(l.toString(), "Lightning0100");
 		//l.decrementUnmarked(0);	
+		
+		//l.checkStatus();
 	}
 	
 	public void testPuzzleLevel(){
-		PuzzleLevel l = new PuzzleLevel(0);
+		PuzzleLevel p = new PuzzleLevel(0);
+		
+		//check initial conditions
+		assertEquals(p.movesMade, 0);
+		assertEquals(p.moveLimit, 0);
+		
+		p.incrementMovesMade();
+		assertEquals(p.movesMade, 1);
+		
+		
+		
 	}
 	
 	public void testReleaseLevel(){
 		ReleaseLevel l = new ReleaseLevel(0);
 	}
+	
 	
 	
 }
