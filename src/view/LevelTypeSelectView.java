@@ -1,16 +1,9 @@
 package view;
 
 import java.awt.Font;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-
-import java.util.TreeMap;
-
-import app.Builder;
-import app.StarMap;
-import controllers.CreateLevelBtnController;
-import controllers.ExistingLevelEditController;
-import controllers.NewLevelTypeController;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -20,26 +13,19 @@ import javax.swing.JSplitPane;
 
 
 public class LevelTypeSelectView extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	ViewAndEditLevels viewerAndEditor;
 	LevelTypesAndText levelTypesAndText;
 	JButton createLevelBtn;
 	JPanel createBtnPanel;
-	StarMap levelData;
-	Builder b;
 	
 	/**
 	 * Create the application.
 	 */
-	public LevelTypeSelectView(Builder b, StarMap levelData) {
+	public LevelTypeSelectView() {
 		super();
-		this.levelData = levelData;
-		this.b = b;
-		viewerAndEditor = new ViewAndEditLevels(levelData);
+		viewerAndEditor = new ViewAndEditLevels();
 		levelTypesAndText = new LevelTypesAndText();
 		createLevelBtn = new JButton("Create Level");
 		createBtnPanel = new JPanel();
@@ -82,6 +68,39 @@ public class LevelTypeSelectView extends JFrame {
 		this.getContentPane().add(levelViewerAndSelector);
 	}
 	
+	/**
+	 * This method adds a view of an EXISTING level, meaning under NO 
+	 * circumstances should it add information to a model. Period.
+	 * Rather the model gets updated, and then the view updates to 
+	 * reflect the model. 
+	 * @author Dylan.
+	 * @param levelType
+	 * @param levelNumber
+	 */
+	public void addExistingLevel(int id, String type){
+		viewerAndEditor.addLevel(type, id);
+	}
+	
+	void initializeControllers() {
+		levelTypesAndText.getLevelTypeButtons().addControllers(levelTypesAndText.getTextArea(), createLevelBtn);
+	}
+	
+	public ArrayList<ExistingLevelView> getExistingLevelButtons() {
+		return viewerAndEditor.getExistingLevelButtons();
+	}
+	public JTextArea getLevelDescriptionBox() {
+		return levelTypesAndText.getTextArea();
+	}
+	public ViewAndEditLevels getViewAndEditLevels(){
+		return viewerAndEditor;
+	}
+	public String getSelectedLevelType() {
+		return this.levelTypesAndText.getSelectedLevelType();
+	}
+	public JButton getCreateLevelBtn () {
+		return this.createLevelBtn;
+	}
+
 	void setupLayout() {
 		GroupLayout gl_createBtnPanel = new GroupLayout(createBtnPanel);
 		gl_createBtnPanel.setAutoCreateGaps(true);
@@ -101,33 +120,6 @@ public class LevelTypeSelectView extends JFrame {
 					.addGap(10))
 		);
 		createBtnPanel.setLayout(gl_createBtnPanel);
-	}
-	
-	void initializeControllers() {
-		createLevelBtn.addActionListener(new CreateLevelBtnController(b, this));
-		for (ExistingLevelView elv : viewerAndEditor.getExistingLevelButtons()) {
-			elv.addActionListener(new ExistingLevelEditController(b));
-		}
-		for (LevelTypeToggle ltt : levelTypesAndText.getLevelTypeButtons()) {
-			ltt.addActionListener(new NewLevelTypeController(this));
-		}
-	}
-	
-	public JTextArea getLevelDescriptionBox() {
-		return levelTypesAndText.getTextArea();
-	}
-	
-	public void addExistingLevel (String levelType, int levelNumber){
-		viewerAndEditor.addLevel(levelType, levelNumber);
-		levelData.put(levelNumber, levelType);
-	}
-	
-	public String getSelectedLevelType() {
-		return this.levelTypesAndText.getSelectedLevelType();
-	}
-	
-	public JButton getCreateLevelBtn () {
-		return this.createLevelBtn;
 	}
 }
 

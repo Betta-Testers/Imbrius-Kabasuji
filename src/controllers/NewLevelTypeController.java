@@ -2,7 +2,8 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 
-import view.LevelTypeSelectView;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
 import view.LevelTypeToggle;
 
 /**
@@ -14,14 +15,18 @@ import view.LevelTypeToggle;
 public class NewLevelTypeController implements java.awt.event.ActionListener {
 	String newLevelType;
 	LevelTypeToggle clickSource;
-	LevelTypeSelectView ltsv;
+	JButton createLevel;
+	JTextArea levelDescription;
+	
 	/**
 	 * Controller to change the text displayed in the level type description box
-	 * @param ltsv The view that holds the text box
-	 * @author hejohnson
+	 * @param levelDescription - JTextArea being updated
+	 * @param createLevel - CreateLevelButton being set enabled/disabled
+	 * @author dfontana
 	 */
-	public NewLevelTypeController (LevelTypeSelectView ltsv) {
-		this.ltsv = ltsv;
+	public NewLevelTypeController (JTextArea levelDescription, JButton createLevel) {
+		this.levelDescription = levelDescription;
+		this.createLevel = createLevel;
 	}
 	
 	/**
@@ -30,10 +35,8 @@ public class NewLevelTypeController implements java.awt.event.ActionListener {
 	 * @author hejohnson
 	 */
 	public void actionPerformed(ActionEvent ae) {
-		//do something
 		clickSource = (LevelTypeToggle) ae.getSource();
-		ltsv.getLevelDescriptionBox().setText(clickSource.getLevelType());
-		ltsv.getCreateLevelBtn().setEnabled(true);
-		//System.out.println("Button " + clickSource.getLevelType());
+		levelDescription.setText(clickSource.getLevelType());
+		createLevel.setEnabled(true);
 	}
 }

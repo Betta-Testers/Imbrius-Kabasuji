@@ -1,14 +1,10 @@
 package view;
 
 import java.awt.Font;
-import java.util.ArrayList;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 public class LevelTypesAndText extends JSplitPane {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	JTextArea txtAreaLevelTypeDescription;
 	LevelTypeButtons levelTypeButtons;
@@ -32,8 +28,8 @@ public class LevelTypesAndText extends JSplitPane {
 		return txtAreaLevelTypeDescription;
 	}
 	
-	public ArrayList<LevelTypeToggle> getLevelTypeButtons() {
-		return levelTypeButtons.getButtons();
+	public LevelTypeButtons getLevelTypeButtons() {
+		return levelTypeButtons;
 	}
 	
 	public String getSelectedLevelType() {

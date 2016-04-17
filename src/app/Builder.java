@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import view.BuilderView;
+import view.ExistingLevelView;
 import view.LevelTypeSelectView;
-
 import controllers.CloseBuilderDialog;
+import controllers.CreateLevelBtnController;
+import controllers.ExistingLevelEditController;
 import controllers.ShutdownController;
 import model.AbstractLevelModel;
 import model.LightningLevel;
@@ -21,7 +23,7 @@ public class Builder extends LevelIO{
 
 	/**The BuilderView, for displaying the level once the builder has choosen to edit/create a level**/
 	BuilderView bv;
-	
+
 	/**Current level being edited.**/
 	AbstractLevelModel currentLevel;
 
@@ -29,23 +31,35 @@ public class Builder extends LevelIO{
 		super(directory);
 		this.initialize();
 	}
-	
+
 	void initialize(){
 		this.levelData = loadStarMap();
 		System.out.println("Levels Loaded:"+levelData.toString());
-		
+
 		this.initializeView();
 		this.initializeControllers();
 	}
-	
+
 	void initializeView(){
 		bv = new BuilderView(this);
-		ltsv = new LevelTypeSelectView(this, levelData);
+		ltsv = new LevelTypeSelectView();
+		
+		for(int id: levelData.keySet()){
+			ltsv.addExistingLevel(id, levelData.get(id));
+		}
 	}
-	
+
 	void initializeControllers(){
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
 		ltsv.addWindowListener(new ShutdownController(this));
+
+		/**Add Controller to Create Button**/
+		ltsv.getCreateLevelBtn().addActionListener(new CreateLevelBtnController(this, ltsv));
+		
+		/**Add controllers to the existingLevels**/
+		for (ExistingLevelView elv : ltsv.getExistingLevelButtons()) {
+			elv.addActionListener(new ExistingLevelEditController(this));
+		}
 	}
 
 	/**
