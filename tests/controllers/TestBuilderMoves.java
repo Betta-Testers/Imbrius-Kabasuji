@@ -101,6 +101,18 @@ public class TestBuilderMoves extends TestCase {
 		rt = (ReleaseTile) b.getTileAt(0, 0);
 		assertEquals(3, rt.getNumber());
 		assertEquals(Color.YELLOW, rt.getColorSet());	
+		
+		m = new SwapTileReleaseToBoardMove(bv, (ReleaseTile)b.getTileAt(0, 0), rl);
+		assertTrue(m.doMove());
+		assertEquals(1, b.getNumBoardTiles());
+		assertTrue(m.undo());
+		rt = (ReleaseTile) b.getTileAt(0, 0);
+		assertEquals(0, b.getNumBoardTiles());
+		assertEquals(3, rt.getNumber());
+		assertEquals(Color.YELLOW, rt.getColorSet());
+		assertTrue(m.redo());
+		assertEquals(1, b.getNumBoardTiles());
+		
 	}
 
 }
