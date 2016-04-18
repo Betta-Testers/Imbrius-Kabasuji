@@ -76,7 +76,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	public String toString(){
-		return levelType+levelID+totalTime;
+		return levelType+levelID+totalTime+board.toString()+bullpen.toString();
 	}
 	
 	/**

@@ -196,6 +196,20 @@ public class Board implements Serializable{
 	}
 
 	/**
+	 * Returns all toString() of the tiles making this board
+	 * @return String representation of this board
+	 */
+	public String toString(){
+		StringBuilder s = new StringBuilder();
+		for(AbstractTile[] row: this.board){
+			for(AbstractTile t: row){
+				s.append(t.toString());		
+			}
+		}
+		return s.toString();
+	}
+	
+	/**
 	 * Custom serialization clears the boards of piece tiles and replaces those tiles with what they were covering
 	 * Allows system to not care if the board has pieces on it when saving
 	 * @param stream

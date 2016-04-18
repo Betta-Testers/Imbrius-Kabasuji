@@ -35,7 +35,6 @@ public abstract class LevelIO {
 			FileInputStream infile = new FileInputStream(location);
 			ois = new ObjectInputStream(infile);
 			m = (StarMap) ois.readObject();
-			ois.close();
 		}catch (FileNotFoundException e){
 			System.err.println("StarMap.storage DNE. Making new StarMap");
 			m = new StarMap(defaultDirectory);

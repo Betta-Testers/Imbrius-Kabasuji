@@ -90,7 +90,7 @@ public class TestStarMap extends TestCase {
 		try{
 			starMap.get(-1);
 			fail();
-		}catch(NullPointerException e){
+		}catch(Exception e){
 			assertTrue(true);
 		}
 		
@@ -98,14 +98,19 @@ public class TestStarMap extends TestCase {
 		try{
 			starMap.get(2);
 			fail();
-		}catch(NullPointerException e){
+		}catch(Exception e){
 			assertTrue(true);
 		}
 		
 		/**Try to get a valid ID**/
 		starMap.put(1, "Puzzle");
-		String validID = starMap.get(1);
-		assertEquals("Puzzle", validID);
+		try{
+			String validID = starMap.get(1);
+			assertEquals("Puzzle", validID);
+		}catch(Exception e){
+			fail();
+		}
+		
 	}
 	
 	public void testSetMaxStars(){

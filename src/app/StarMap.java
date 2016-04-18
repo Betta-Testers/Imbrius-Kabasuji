@@ -105,14 +105,13 @@ public class StarMap implements Serializable{
 	 * method. 
 	 * @param key
 	 * @return value associated with key - the level type
+	 * @throws exception if key is not in levelData
 	 */
-	public String get(Integer key) throws NullPointerException{
-		String retVal = levelData.get(key);
-		if(retVal == null){
-			throw new NullPointerException("Key does not exist in StarMap");
+	public String get(Integer key) throws Exception{
+		if(!levelData.containsKey(key)){
+			throw new Exception("Key does not exist in StarMap");
 		}
-		
-		return retVal;
+		return levelData.get(key);
 	}
 
 	//========================== MAX STAR METHODS =============================

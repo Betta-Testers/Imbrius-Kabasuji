@@ -40,7 +40,7 @@ public class Builder extends LevelIO{
 	void initializeView(){
 		bv = new BuilderView(this);
 		ltsv = new LevelTypeSelectView();
-		
+
 		for(int id: levelData.keySet()){
 			ltsv.addExistingLevel(levelData.get(id), id);
 		}
@@ -80,7 +80,7 @@ public class Builder extends LevelIO{
 		}
 
 		if(id > levelData.lastID()){
-				levelData.put(id, type);
+			levelData.put(id, type);
 		}
 	}
 
@@ -104,11 +104,11 @@ public class Builder extends LevelIO{
 		currentLevel = ll;
 		bv.prepLightning();
 	}
-	
+
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
-	 * TODO Don't pass a String fileName. Pass a File sourceFile instead
+	 * @param int levelID - level requested for editing. 
 	 */
 	public void editLevel(int levelID){
 		String levelType = levelData.get(levelID);
@@ -138,21 +138,10 @@ public class Builder extends LevelIO{
 	public LevelTypeSelectView getLevelTypeSelectView(){
 		return ltsv;
 	}
-	/**
-	 * Returns the highestLevelID of the loaded levelData. 
-	 * If there is no data inside of levelData, 0 is returned.
-	 * @return highestLevelID
-	 */
 	public int getHighestLevelID(){
-		if(levelData == null){ return 0;}
 		return levelData.lastID();
 	}
 	public AbstractLevelModel getCurrentLevel(){
 		return currentLevel;
 	}
-
-	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
-	void initializeLevelModel(int levelID){}
-	void initializeLevelView(){}
-	void initializeLevelControllers(){}
 }

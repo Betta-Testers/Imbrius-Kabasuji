@@ -10,10 +10,10 @@ import java.util.Random;
  */
 public class Bullpen implements Serializable{
 	private static final long serialVersionUID = 354746744366050487L;
-	
+
 	ArrayList<PieceGroup> playablePieces = new ArrayList<PieceGroup>();
 	transient Piece selectedPiece;
-	
+
 	/**
 	 * A blank constructor for a Bullpen, like for Board, generates a clean slate
 	 * for the builder to work with. In this case, a "clean slate" is all 35 pieces
@@ -25,7 +25,7 @@ public class Bullpen implements Serializable{
 			this.playablePieces.add(new PieceGroup(i, 0));
 		}
 	}
-	
+
 	/**
 	 * Create a Bullpen containing a specified group of pieces
 	 * @param pieces
@@ -34,7 +34,7 @@ public class Bullpen implements Serializable{
 		this.playablePieces.addAll(pieces);
 		sortBullpen();
 	}
-	
+
 	/**
 	 * Create a Bullpen containing a specified number of random pieces
 	 * @param sizeOfBullpen
@@ -48,7 +48,7 @@ public class Bullpen implements Serializable{
 		}
 		sortBullpen(); // sort the bullpen by ID
 	}
-	
+
 
 	/**
 	 * Add a specified number of random pieces to this bullpen
@@ -63,7 +63,7 @@ public class Bullpen implements Serializable{
 		}
 		sortBullpen(); // sort the bullpen by ID
 	}
-	
+
 	/**
 	 * remove a piece has the given ID from this bullpen's playable pieces
 	 * @param ID
@@ -77,7 +77,7 @@ public class Bullpen implements Serializable{
 		}
 		return false;
 	}
-	
+
 	/**
 	 * add the piece with the given piece ID to the collection of playable pieces 
 	 * @param ID
@@ -87,7 +87,7 @@ public class Bullpen implements Serializable{
 		this.playablePieces.add(newPieceGroup);
 		sortBullpen(); // sort the bullpen after adding a pieceGroup to keep ordering by ID
 	}
-	
+
 	/**
 	 * returns the number of pieces available in the bullpen
 	 * @return
@@ -99,7 +99,7 @@ public class Bullpen implements Serializable{
 		}
 		return count;
 	}
-	
+
 	/**
 	 * returns true if the bullpen is empty, false if it is not empty
 	 * @return
@@ -107,14 +107,14 @@ public class Bullpen implements Serializable{
 	public boolean isEmpty() {
 		return (this.playablePieces.size() == 0);
 	}
-	
+
 	/**
 	 * sorts the Bullpen pieceGroups in ascending order by ID
 	 */
 	public void sortBullpen() {
 		Collections.sort(this.playablePieces);
 	}
-	
+
 	/**
 	 * return this bullpen's playable pieces
 	 * @return
@@ -122,7 +122,7 @@ public class Bullpen implements Serializable{
 	public ArrayList<PieceGroup> getPlayablePieces() {
 		return this.playablePieces;
 	}
-	
+
 	/**
 	 * return this bullpen's selected piece
 	 * @return
@@ -145,18 +145,30 @@ public class Bullpen implements Serializable{
 		}
 		return false;
 	}
-	
+
 	/**
 	 * nulls the selectedPiece attribute
 	 */
 	public void clearSelectedPiece() {
 		this.selectedPiece = null;
 	}
-	
+
 	/**
 	 * decrements the number of pieces in the selected pieceGroup by 1
 	 */
 	public void decrementSelectedPiece() {
 		this.playablePieces.get(this.selectedPiece.getID()).decrementCount();
+	}
+
+	/**
+	 * Returns all toString() of the piecegroups making this bullpen
+	 * @return String representation of this bullpen
+	 */
+	public String toString(){
+		StringBuilder s = new StringBuilder();
+		for(PieceGroup pg: this.playablePieces){
+			s.append(pg.toString());		
+		}
+		return s.toString();
 	}
 }

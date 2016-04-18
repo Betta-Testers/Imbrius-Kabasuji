@@ -131,7 +131,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	public String toString(){
-		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(yellows);
+		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(yellows)+board.toString()+bullpen.toString();
 	}
 	
 	/**

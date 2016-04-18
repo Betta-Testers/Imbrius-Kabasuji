@@ -100,7 +100,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	public String toString(){
-		return levelType+levelID+moveLimit;
+		return levelType+levelID+moveLimit+board.toString()+bullpen.toString();
 	}
 	
 	/**
