@@ -233,11 +233,15 @@ public class TestStarMap extends TestCase {
 		/**Get the next open key from an Empty Star Map**/
 		assertEquals((Integer)1, starMap.nextOpenID());
 		
-		/**Get next open key from non-empty starMap**/
+		/**Get next open key from broken starMap**/
 		starMap.put(1, "Puzzle");
-		starMap.put(2, "Puzzle");
 		starMap.put(3, "Puzzle");
+		assertEquals((Integer)2, starMap.nextOpenID());
+		
+		/**Get next open key from full starMap**/
+		starMap.put(2, "Puzzle");
 		assertEquals((Integer)4, starMap.nextOpenID());
+		
 	}
 	
 	public void testIsEmpty(){

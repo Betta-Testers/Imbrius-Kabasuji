@@ -188,13 +188,21 @@ public class StarMap implements Serializable{
 	}
 
 	/**
-	 * Returns the next open ID for level generation. If the map is empty,
+	 * Returns the next open ID (null position in tree) for level generation. If the map is empty,
 	 * this method returns 1 since the first slot in the tree is burned (0)
 	 * @return levelID that is free
 	 */
 	public Integer nextOpenID(){
+		
 		try{
-			return levelData.lastKey()+1;
+			Iterator<Integer> keys = this.keySet().iterator();
+			int i=1;
+			for(;i<=levelData.lastKey(); i++){
+				if(keys.next() != (Integer)i){
+					return i;
+				}
+			}
+			return i;
 		}catch(NoSuchElementException e){
 			return 1;
 		}
