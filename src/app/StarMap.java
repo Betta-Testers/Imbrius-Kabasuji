@@ -186,8 +186,9 @@ public class StarMap implements Serializable{
 		try{
 			return levelData.lastKey();
 		}catch(NoSuchElementException e){
-			e.printStackTrace();
-			throw new RuntimeException("StarMap didn't intialize the first ID");
+			//e.printStackTrace();
+			return 0;
+			//throw new RuntimeException("StarMap didn't intialize the first ID");
 		}
 	}
 
@@ -199,8 +200,9 @@ public class StarMap implements Serializable{
 		try{
 			return levelData.lastKey()+1;
 		}catch(NoSuchElementException e){
-			e.printStackTrace();
-			throw new RuntimeException("Current Highest ID doesn't exist in StarMap");
+			//e.printStackTrace();
+			//throw new RuntimeException("Current Highest ID doesn't exist in StarMap");
+			return 1;
 		}
 	}
 	

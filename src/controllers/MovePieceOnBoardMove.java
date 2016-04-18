@@ -47,4 +47,10 @@ public class MovePieceOnBoardMove extends Move{
 		board.putPieceOnBoard(p, originalRow, originalCol);
 		return true;
 	}
+	
+	@Override
+	public boolean redo() {
+		doMove();
+		return true;
+	}
 }

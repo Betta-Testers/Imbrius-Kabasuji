@@ -40,6 +40,12 @@ public class SwapTileBoardToEmptyMove extends Move {
 	public boolean undo() {
 		// TODO Auto-generated method stub
 		board.swapTile(oldTile);
-		return false;
+		return true;
+	}
+	
+	@Override 
+	public boolean redo() {
+		board.swapTile(newTile);
+		return true;
 	}
 }
