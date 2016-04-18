@@ -144,6 +144,10 @@ public class Piece implements Serializable{
 		return prevTiles;
 	}
 	
+	public PieceTile[] getTiles() {
+		return tiles;
+	}
+	
 	/**
 	 * When serializing a Piece, the pieceTile information is not needed. Instead of serializing those,
 	 * the piece serializes it's ID. Then, when read it, it generates the tiles needed using the built

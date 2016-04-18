@@ -190,7 +190,11 @@ public class Board implements Serializable{
 			}
 		}
 	}
-	
+
+	public int getTileSize() {
+		return this.tileSize;
+	}
+
 	/**
 	 * Custom serialization clears the boards of piece tiles and replaces those tiles with what they were covering
 	 * Allows system to not care if the board has pieces on it when saving

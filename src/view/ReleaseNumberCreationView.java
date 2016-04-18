@@ -27,6 +27,7 @@ public class ReleaseNumberCreationView extends JPanel{
 	JLabel lblTitle;
 	JLabel lblColor;
 	JToggleButton numButtons[];
+	ButtonGroup creationGroup;
 	JComboBox<String> colorSelector;
 
 	public ReleaseNumberCreationView(){
@@ -35,7 +36,7 @@ public class ReleaseNumberCreationView extends JPanel{
 
 		lblTitle = new JLabel("Release Numbers");
 		lblColor = new JLabel("Color:");
-		ButtonGroup creationGroup = new ButtonGroup();
+		creationGroup = new ButtonGroup();
 		numButtons =  new JToggleButton[6];
 		for (int i = 0; i<6; i++) {
 			JToggleButton numBtn = new JToggleButton(""+(i+1));
@@ -152,6 +153,17 @@ public class ReleaseNumberCreationView extends JPanel{
 				return Integer.parseInt(numBtn.getText());
 			}
 		}
-		throw new RuntimeException("No number selected to add to tile");
+		return 0;
+	}
+	
+	//** For testing **//
+	public JComboBox<String> getColorSelector() {
+		return this.colorSelector;
+	}
+	
+	public void setSelected (int index) {
+		for (int i = 0; i<6; i++) {
+			numButtons[i].setSelected(i==index);
+		}
 	}
 }
