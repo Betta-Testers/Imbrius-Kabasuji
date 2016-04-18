@@ -73,8 +73,7 @@ public abstract class LevelIO {
 			m = (AbstractLevelModel) ois.readObject();
 			ois.close();
 		} catch (Exception e) { 
-			e.printStackTrace();
-			throw new Exception("Unable to load state from:" + location);
+			throw new Exception("Could not load levelID "+levelID+" from disk @ "+location+". Bad permissions or Level not on disk.");
 		}
 
 		if (ois != null) { 

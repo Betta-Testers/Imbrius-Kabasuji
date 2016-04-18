@@ -79,10 +79,20 @@ public class TestStarMap extends TestCase {
 		/**Try to add a non-existing ID**/
 		placed = starMap.put(1,  "Puzzle");
 		assertTrue(placed);
+		placed = starMap.put(2,  "Lightning");
+		assertTrue(placed);
+		placed = starMap.put(3,  "Release");
+		assertTrue(placed);
 		
 		/**Try to add to existing ID**/
 		placed = starMap.put(1,  "Release");
 		assertFalse(placed);
+		
+		
+		/**Try to add invalid type**/
+		placed = starMap.put(4, "MONKEYYYYY");
+		assertFalse(placed);
+				
 	}
 	
 	public void testGet(){
@@ -222,6 +232,7 @@ public class TestStarMap extends TestCase {
 	public void testNextOpenID(){
 		/**Get the next open key from an Empty Star Map**/
 		assertEquals((Integer)1, starMap.nextOpenID());
+		
 		/**Get next open key from non-empty starMap**/
 		starMap.put(1, "Puzzle");
 		starMap.put(2, "Puzzle");

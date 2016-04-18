@@ -31,8 +31,6 @@ public class Builder extends LevelIO{
 
 	void initialize(){
 		this.levelData = loadStarMap();
-		System.out.println("Levels Loaded:"+levelData.toString());
-
 		this.initializeView();
 		this.initializeControllers();
 	}
@@ -45,8 +43,7 @@ public class Builder extends LevelIO{
 			try {
 				ltsv.addExistingLevel(levelData.get(id), id);
 			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException("ID not found in levelData, LTSV couldn't be initialized");
+				throw new RuntimeException("ID not found in levelData, LTSV couldn't be initialized" + e.getMessage());
 			}
 		}
 	}
@@ -114,13 +111,14 @@ public class Builder extends LevelIO{
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
 	 * @param int levelID - level requested for editing. 
+	 * @return boolean - true if level could be edited
 	 */
-	public void editLevel(int levelID){
+	public boolean editLevel(int levelID){
 		String levelType;
 		try{
 			levelType = levelData.get(levelID);
 		}catch(Exception e){
-			throw new RuntimeException("Called editLevel on Builder with non-existant ID");
+			return false;
 		}
 		
 		switch(levelType){
@@ -131,8 +129,8 @@ public class Builder extends LevelIO{
 				currentLevel = pl;
 				bv.prepPuzzle();
 			} catch (Exception e) {
-				System.err.println("Could not load levelID "+levelID+" from disk.");
-				e.printStackTrace();
+				System.err.println(e.getMessage());
+				return false;
 			}
 			break;
 		case "Lightning":
@@ -142,8 +140,8 @@ public class Builder extends LevelIO{
 				currentLevel = ll;
 				bv.prepLightning();
 			} catch (Exception e) {
-				System.err.println("Could not load levelID "+levelID+" from disk.");
-				e.printStackTrace();
+				System.err.println(e.getMessage());
+				return false;
 			}
 			break;
 		case "Release":
@@ -153,11 +151,12 @@ public class Builder extends LevelIO{
 				currentLevel = rl;
 				bv.prepRelease();
 			} catch (Exception e) {
-				System.err.println("Could not load levelID "+levelID+" from disk.");
-				e.printStackTrace();
+				System.err.println(e.getMessage());
+				return false;
 			}
 			break;
 		}
+		return true;
 	}
 
 	//========================== Getters ==========================//

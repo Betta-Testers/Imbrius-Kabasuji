@@ -63,7 +63,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public ReleaseLevel GenerateSpecificRelease(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
-		System.out.println("	Generating NOTSAVED Specific Release @"+id);
 		ReleaseLevel rl = new ReleaseLevel(id);
 		Board board = new Board(tiles);
 		Bullpen bullpen = new Bullpen(pieces);
@@ -81,7 +80,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public LightningLevel GenerateSpecificLightning(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
-		System.out.println("	Generating NOTSAVED Specific Lightning @"+id);
 		LightningLevel ll = new LightningLevel(id);
 		Board board = new Board(tiles);
 		Bullpen bullpen = new Bullpen(pieces);
@@ -99,7 +97,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public PuzzleLevel GenerateSpecificPuzzle(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
-		System.out.println("	Generating NOTSAVED Specific Puzzle @"+id);
 		PuzzleLevel pl = new PuzzleLevel(id);
 		Board board = new Board(tiles);
 		Bullpen bullpen = new Bullpen(pieces);
@@ -117,7 +114,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public ReleaseLevel GenerateRelease(int id, int bullpenSize) {
-		System.out.println("	Generating NOTSAVED Release @"+id);
 		ReleaseLevel rl = new ReleaseLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen(bullpenSize);
@@ -135,7 +131,6 @@ public class LevelFactory{
 	 * @return LightningLevel
 	 */
 	public LightningLevel GenerateLightning(int id, int bullpenSize) {
-		System.out.println("	Generating NOTSAVED Lightning @"+id);
 		LightningLevel ll = new LightningLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen(bullpenSize);
@@ -154,7 +149,6 @@ public class LevelFactory{
 	 * @return PuzzleLevel
 	 */
 	public PuzzleLevel GeneratePuzzle(int id, int bullpenSize) {
-		System.out.println("	Generating NOTSAVED Puzzle @"+id);
 		PuzzleLevel pl = new PuzzleLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen(bullpenSize);
@@ -173,7 +167,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public ReleaseLevel GenerateBlankRelease(int id){
-		System.out.println("	Generating NOTSAVED Blank Release @"+id);
 		ReleaseLevel rl = new ReleaseLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen();
@@ -191,7 +184,6 @@ public class LevelFactory{
 	 * @return LightningLevel
 	 */
 	public LightningLevel GenerateBlankLightning(int id){
-		System.out.println("	Generating NOTSAVED Blank Lightning @"+id);
 		LightningLevel ll = new LightningLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen();
@@ -209,7 +201,6 @@ public class LevelFactory{
 	 * @return PuzzleLevel
 	 */
 	public PuzzleLevel GenerateBlankPuzzle(int id){
-		System.out.println("	Generating NOTSAVED Blank Puzzle @"+id);
 		PuzzleLevel pl = new PuzzleLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen();
@@ -228,7 +219,6 @@ public class LevelFactory{
 	public void addToData(AbstractLevelModel m, int starsEarned){
 		String type = m.getType();
 		int id = m.getID();
-		System.out.println("		LastKey:"+levels.lastID()+"Current:"+id);
 		if(!levels.containsKey(id)){
 			levels.put(id, type);
 			levels.setMaxStars(id, starsEarned);

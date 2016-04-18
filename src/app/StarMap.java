@@ -42,13 +42,11 @@ public class StarMap implements Serializable{
 	 * is populated with levelIDs found and their types.
 	 */
 	void populateFromDirectory(){
-		System.out.println("StarMap is Constructing in @"+directory);
-		
 		/**Creates the directory if it DNE. Return at this point, since
 		 * nothing would be in an empty directory
 		 */
 		if(new File(directory).mkdirs()){return;}
-		
+
 		File[] folder = (new File(directory)).listFiles();
 		String levelNum;
 		String levelType;
@@ -72,7 +70,7 @@ public class StarMap implements Serializable{
 			}
 		}
 	}
-	
+
 	//========================== LEVEL ID METHODS =============================
 	/**
 	 * Put method for adding levelData. Stores the Key, Value pair in a TreeMap
@@ -82,18 +80,17 @@ public class StarMap implements Serializable{
 	 * 
 	 * This will force the StarMap to save itself to disk if a new key is added
 	 * @param key - should be levelID, greater than 0 or else it can't be placed
-	 * @param value - should be levelType
+	 * @param value - should be levelType, if not can't be placed
 	 * @return boolean -true if the level was added, false if not
-	 * @throws Exception if level could be added but not saved to disk
 	 */
 	public boolean put(Integer key, String value){
-		if(!levelData.containsKey(key) && key > 0){
-			levelData.put(key, value);
-			stars.put(key, 0);
-			save();
-			return true;
-		}
-		return false;
+		if(levelData.containsKey(key) || key <= 0){ return false;}
+		if(!value.equals("Puzzle") && !value.equals("Release") && !value.equals("Lightning")){ return false;}
+		
+		levelData.put(key, value);
+		stars.put(key, 0);
+		save();
+		return true;	
 	}
 
 	/**
@@ -166,7 +163,7 @@ public class StarMap implements Serializable{
 	 * @return set of integers - levelIDs
 	 */
 	public ArrayList<Integer> unlockedLevels(){
-		
+
 		ArrayList<Integer> keyList = new ArrayList<Integer>(levelData.keySet()); 
 		Set<Integer> keys = levelData.keySet();
 		for(Integer key: keys){
@@ -202,7 +199,7 @@ public class StarMap implements Serializable{
 			return 1;
 		}
 	}
-	
+
 	/**
 	 * Tells whether the levelData is empty or not
 	 * @return true if levelData is empty
@@ -243,7 +240,7 @@ public class StarMap implements Serializable{
 			s.append("["+k+","+levelData.get(k)+","+stars.get(k)+"],");			
 		}
 		if(s.length() > 0){ s.deleteCharAt(s.length()-1);}
-		
+
 		return s.toString();
 	}
 
@@ -257,7 +254,7 @@ public class StarMap implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
-		
+
 		File[] folder = (new File(directory)).listFiles();
 		ArrayList<Integer> keys = new ArrayList<Integer>();
 		String levelNum;
@@ -275,14 +272,14 @@ public class StarMap implements Serializable{
 				continue;
 			}
 		}
-		
+
 		for(Iterator<Entry<Integer, String>> it = levelData.entrySet().iterator(); it.hasNext(); ) {
-		      Entry<Integer, String> entry = it.next();
-		      if(!keys.contains(entry.getKey())) {
-		        it.remove();
-		        stars.remove(entry.getKey());
-		      }
-		    }
+			Entry<Integer, String> entry = it.next();
+			if(!keys.contains(entry.getKey())) {
+				it.remove();
+				stars.remove(entry.getKey());
+			}
+		}
 	}
 
 	/**

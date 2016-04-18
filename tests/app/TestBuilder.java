@@ -14,6 +14,7 @@ public class TestBuilder extends TestCase {
 	
 	@Override
 	protected void setUp(){
+		new File("./imbriusLevelTESTING/").mkdirs();
 		b = new Builder("./imbriusLevelTESTING/");
 	}
 	
@@ -31,6 +32,8 @@ public class TestBuilder extends TestCase {
 	 */
 	public void testBuilder(){
 		/**Test builder opening empty directory**/
+		File dir = new File("./imbriusLevelTESTING/");
+		dir.delete();
 		b = new Builder("./imbriusLevelTESTING/");
 		String expected = "";
 		assertEquals(expected, b.levelData.toString());
@@ -52,21 +55,36 @@ public class TestBuilder extends TestCase {
 		b.createPuzzleLevel();
 		String expected = b.getCurrentLevel().toString();
 		b.saveLevel();
-		m = b.loadLevel(1);
+		try {
+			m = b.loadLevel(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
 		assertTrue(m instanceof PuzzleLevel);
 		assertEquals(expected, m.toString());
 		
 		b.createReleaseLevel();
 		expected = b.getCurrentLevel().toString();
 		b.saveLevel();
-		m = b.loadLevel(2);
+		try {
+			m = b.loadLevel(2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
 		assertTrue(m instanceof ReleaseLevel);
 		assertEquals(expected, m.toString());
 		
 		b.createLightningLevel();
 		expected = b.getCurrentLevel().toString();
 		b.saveLevel();
-		m = b.loadLevel(3);
+		try {
+			m = b.loadLevel(3);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
 		assertTrue(m instanceof LightningLevel);
 		assertEquals(expected, m.toString());	
 	}
@@ -77,12 +95,14 @@ public class TestBuilder extends TestCase {
 	 */
 	public void testCreateLevelCase2(){
 		b.createPuzzleLevel();
-		m = b.loadLevel(1);
-		assertEquals(null, m);
+		try {
+			m = b.loadLevel(1);
+			fail();
+		} catch (Exception e) {
+			assertTrue(true);	
+		}
 	}
 
-	
-	
 	/**
 	 * Case 1: Make a level, save it more than one time. Should not put
 	 * into levelData more than once!
@@ -96,4 +116,37 @@ public class TestBuilder extends TestCase {
 		assertEquals("[1]",b.getLevelData().keyToString());
 	}
 	
+	public void testEditLevel(){
+		/**Test editing ID that DNE**/
+		assertFalse(b.editLevel(1));
+		
+		/**Test editing existant ID**/
+		b.createPuzzleLevel();
+		b.saveLevel();
+		assertTrue(b.getLevelData().containsKey(1));
+		b.createReleaseLevel();
+		b.saveLevel();
+		assertTrue(b.getLevelData().containsKey(2));
+		b.createLightningLevel();
+		b.saveLevel();
+		assertTrue(b.getLevelData().containsKey(3));
+		assertTrue(b.editLevel(1));
+		assertTrue(b.editLevel(2));
+		assertTrue(b.editLevel(3));
+		
+		/**Try editing ID in levelData but couldn't load from disk.
+		 * In order for this case to happen, a level would have to have failed
+		 * saving, which can't happen. But in a redundancy check, if a level did
+		 * save but couldn't be read at another time an exception is thrown.
+		 *
+		 * To simulate this, I'm telling builder this ID should be on disk. 
+		 * It won't be.
+		 */
+		b.levelData.put(4, "Puzzle");
+		b.levelData.put(5, "Release"); 
+		b.levelData.put(6, "Lightning"); 
+		assertFalse(b.editLevel(4));
+		assertFalse(b.editLevel(5));
+		assertFalse(b.editLevel(6));
+	}
 }
