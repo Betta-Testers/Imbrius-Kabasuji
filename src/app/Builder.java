@@ -42,7 +42,12 @@ public class Builder extends LevelIO{
 		ltsv = new LevelTypeSelectView();
 
 		for(int id: levelData.keySet()){
-			ltsv.addExistingLevel(levelData.get(id), id);
+			try {
+				ltsv.addExistingLevel(levelData.get(id), id);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("ID not found in levelData, LTSV couldn't be initialized");
+			}
 		}
 	}
 
@@ -111,22 +116,46 @@ public class Builder extends LevelIO{
 	 * @param int levelID - level requested for editing. 
 	 */
 	public void editLevel(int levelID){
-		String levelType = levelData.get(levelID);
+		String levelType;
+		try{
+			levelType = levelData.get(levelID);
+		}catch(Exception e){
+			throw new RuntimeException("Called editLevel on Builder with non-existant ID");
+		}
+		
 		switch(levelType){
 		case "Puzzle":
-			PuzzleLevel pl = (PuzzleLevel) loadLevel(levelID);
-			currentLevel = pl;
-			bv.prepPuzzle();
+			PuzzleLevel pl;
+			try {
+				pl = (PuzzleLevel) loadLevel(levelID);
+				currentLevel = pl;
+				bv.prepPuzzle();
+			} catch (Exception e) {
+				System.err.println("Could not load levelID "+levelID+" from disk.");
+				e.printStackTrace();
+			}
 			break;
 		case "Lightning":
-			LightningLevel ll = (LightningLevel) loadLevel(levelID);
-			currentLevel = ll;
-			bv.prepLightning();
+			LightningLevel ll;
+			try {
+				ll = (LightningLevel) loadLevel(levelID);
+				currentLevel = ll;
+				bv.prepLightning();
+			} catch (Exception e) {
+				System.err.println("Could not load levelID "+levelID+" from disk.");
+				e.printStackTrace();
+			}
 			break;
 		case "Release":
-			ReleaseLevel rl = (ReleaseLevel) loadLevel(levelID);
-			currentLevel = rl;
-			bv.prepRelease();
+			ReleaseLevel rl;
+			try {
+				rl = (ReleaseLevel) loadLevel(levelID);
+				currentLevel = rl;
+				bv.prepRelease();
+			} catch (Exception e) {
+				System.err.println("Could not load levelID "+levelID+" from disk.");
+				e.printStackTrace();
+			}
 			break;
 		}
 	}

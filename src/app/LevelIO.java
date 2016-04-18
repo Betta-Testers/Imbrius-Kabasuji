@@ -56,13 +56,16 @@ public abstract class LevelIO {
 	 * to create, and returns that object.
 	 * @param levelID - ID of the level being opened
 	 */
-	public AbstractLevelModel loadLevel(int levelID){
+	public AbstractLevelModel loadLevel(int levelID) throws Exception{
 		ObjectInputStream ois = null;
 		AbstractLevelModel m = null;
 
-		if(!levelData.containsKey(levelID)){ return null;}
-
-		String type = levelData.get(levelID);
+		String type;
+		try{
+			type = levelData.get(levelID);
+		}catch(Exception e){
+			throw new Exception("LevelData doesn't have the ID: "+levelID);
+		}
 		String location = defaultDirectory+levelID+"_"+type+".storage";
 
 		try {
@@ -71,8 +74,7 @@ public abstract class LevelIO {
 			ois.close();
 		} catch (Exception e) { 
 			e.printStackTrace();
-			System.err.println("Unable to load state from:" + location);
-			m = null;
+			throw new Exception("Unable to load state from:" + location);
 		}
 
 		if (ois != null) { 
@@ -80,7 +82,7 @@ public abstract class LevelIO {
 		}
 		return m;
 	}
-	
+
 	/**
 	 * Updates the Maximum stars for a given LevelID and star count. 
 	 * If the count passed in is less than the value recorded in levelData,
@@ -89,18 +91,23 @@ public abstract class LevelIO {
 	 * @param starsEarned - the current number of stars earned on a level
 	 */
 	public void updateStars(int levelID, int starsEarned){
-		if(starsEarned > levelData.getMaxStars(levelID)){
-			levelData.setMaxStars(levelID, starsEarned);
+		try {
+			if(starsEarned > levelData.getMaxStars(levelID)){
+				levelData.setMaxStars(levelID, starsEarned);
+			}
+		} catch (Exception e) {
+			System.err.println("Call to UpdateStars: LevelID"+levelID+" Does not exist");
+			e.printStackTrace();
 		}
 	}
 
-	
-//================== TESTING METHODS (FOR NOW) ================== 
-	
+
+	//================== TESTING METHODS (FOR NOW) ================== 
+
 	public StarMap getLevelData(){
 		return levelData;
 	}
-	
+
 	public LevelIO getLevelIO(){
 		return this;
 	}

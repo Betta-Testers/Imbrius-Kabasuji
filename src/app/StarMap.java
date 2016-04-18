@@ -142,14 +142,11 @@ public class StarMap implements Serializable{
 	 * @param key
 	 * @return value associated with key - the maxStarsEarned or null if the levelID does not have a value associated with it
 	 */
-	public Integer getMaxStars(Integer key) throws NullPointerException{
-		int retVal;
-		try{
-			retVal = stars.get(key);
-		}catch(NullPointerException e){
-			throw new NullPointerException("Key does not exist in StarMap");
+	public Integer getMaxStars(Integer key) throws Exception{
+		if(!levelData.containsKey(key)){
+			throw new Exception("Key does not exist in StarMap");
 		}
-		return retVal;
+		return stars.get(key);
 	}
 
 	//========================== Iterator METHODS =============================

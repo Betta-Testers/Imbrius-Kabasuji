@@ -135,15 +135,21 @@ public class TestStarMap extends TestCase {
 		try{
 			starMap.getMaxStars(2);
 			fail();
-		}catch(NullPointerException e){
+		}catch(Exception e){
 			assertTrue(true);
 		}
 		
 		/**Try to get a valid ID**/
 		starMap.put(1, "Puzzle");
 		starMap.setMaxStars(1, 1);
-		int validID = starMap.getMaxStars(1);
-		assertEquals(1, validID);
+		
+		try {
+			int validID = starMap.getMaxStars(1);
+			assertEquals(1, validID);
+		} catch (Exception e) {
+			fail();
+		}
+		
 	}
 	
 	public void testKeySet(){

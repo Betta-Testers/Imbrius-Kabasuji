@@ -45,9 +45,14 @@ public class Game extends LevelIO{
 	 * @author Dylan
 	 * @param ID of the level requested to play
 	 */
-	public void displayLevel(int LevelID) {
+	public void displayLevel(int levelID) {
 		//Step 1)
-		currentLevel = loadLevel(LevelID);
+		try {
+			currentLevel = loadLevel(levelID);
+		} catch (Exception e) {
+			System.err.println("Call to displayLevel: LevelID"+levelID+" Does not exist");
+			e.printStackTrace();
+		}
 		System.out.println("Level Loaded"+currentLevel.getID());
 		levelView = currentLevel.initializeGame(this);
 		levelView.setVisible(true);
@@ -92,8 +97,12 @@ public class Game extends LevelIO{
 	 */
 	void initializeButtons(){
 		for(int id: levelData.unlockedLevels()){
-			System.out.println("unlocking:"+id);
-			selectLevel.unlockLevel(id, levelData.getMaxStars(id));
+			try {
+				selectLevel.unlockLevel(id, levelData.getMaxStars(id));
+			} catch (Exception e) {
+				System.err.println("Call to displayLevel: LevelID"+id+" Does not exist");
+				e.printStackTrace();
+			}
 			selectLevel.addListenerToButton(id, this);
 		}
 	}
