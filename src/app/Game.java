@@ -21,7 +21,7 @@ public class Game extends LevelIO{
 	/**The view displayed at the end of the level being played**/
 	GameExitScreen exitLevel;
 	
-	/**TODO May not need this: The current level being played**/	
+	/**Holds the current level being played**/	
 	AbstractLevelModel currentLevel;
 	
 	public Game(String directory){
@@ -44,17 +44,19 @@ public class Game extends LevelIO{
 	 * make that level prepare its view and controllers (Timer for lightning for example)
 	 * @author Dylan
 	 * @param ID of the level requested to play
+	 * @return boolean - true if the level could be displayed
 	 */
-	public void displayLevel(int levelID) {
+	public boolean displayLevel(int levelID) {
 		try {
 			currentLevel = loadLevel(levelID);
+			levelView = currentLevel.initializeGame(this);
+			levelView.setVisible(true);
+			return true;
 		} catch (Exception e) {
 			System.err.println("Call to displayLevel: LevelID"+levelID+" Does not exist");
 			e.printStackTrace();
-		}
-		System.out.println("Level Loaded"+currentLevel.getID());
-		levelView = currentLevel.initializeGame(this);
-		levelView.setVisible(true);
+		}	
+		return false;
 	}
 
 	void initializeView(){
@@ -93,7 +95,7 @@ public class Game extends LevelIO{
 	 * @author Dylan
 	 * @param levelID
 	 */
-	void unlockLevel(int levelID){
+	public boolean unlockNextLevel(){
 		selectLevel.unlockLevel(levelID, 0);
 		selectLevel.getButton(levelID).addActionListener(new PlayLevelButtonController(selectLevel, this, levelID));
 	}

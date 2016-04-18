@@ -244,6 +244,20 @@ public class TestStarMap extends TestCase {
 		
 	}
 	
+	public void testLowestNoStarLevel(){
+		/**Call on an empty map**/
+		assertEquals((Integer)1, starMap.lowestNoStarLevel());
+		
+		/**Call on starMap with 1 as lowest entry**/
+		starMap.put(1, "Puzzle");
+		starMap.put(2, "Puzzle");
+		assertEquals((Integer)1, starMap.lowestNoStarLevel());
+		
+		/**Call on starMap whose earlier level has stars**/
+		starMap.setMaxStars(1, 1);
+		assertEquals((Integer)2, starMap.lowestNoStarLevel());
+	}
+	
 	public void testIsEmpty(){
 		/**True for empty**/
 		assertTrue(starMap.isEmpty());

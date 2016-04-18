@@ -193,7 +193,6 @@ public class StarMap implements Serializable{
 	 * @return levelID that is free
 	 */
 	public Integer nextOpenID(){
-		
 		try{
 			Iterator<Integer> keys = this.keySet().iterator();
 			int i=1;
@@ -208,6 +207,21 @@ public class StarMap implements Serializable{
 		}
 	}
 
+	/**
+	 * Returns the lowest ID that does not have a non-zero star amount. If the map is empty,
+	 * this method returns 1.
+	 * @return levelID lowestID with no stars
+	 */
+	public Integer lowestNoStarLevel(){	
+		for(int i = 1; i<=stars.size(); i++){
+			if(stars.get(i) == 0){
+				return i;
+			}
+		}
+		return 1;
+	}
+
+	
 	/**
 	 * Tells whether the levelData is empty or not
 	 * @return true if levelData is empty
