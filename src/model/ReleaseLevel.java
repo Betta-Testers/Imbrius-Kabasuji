@@ -125,7 +125,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Release", new NumbersReleasedView());
+		LevelView view = new LevelView("Release", new NumbersReleasedView(), this);
 		view.addWindowListener(new ExitLevelButtonController(view, g));
 		return view;
 	}

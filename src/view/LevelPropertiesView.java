@@ -12,7 +12,6 @@ import javax.swing.SwingConstants;
 
 import controllers.SetNumberOfMovesSpinnerController;
 import model.AbstractLevelModel;
-import model.PuzzleLevel;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;

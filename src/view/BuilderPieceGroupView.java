@@ -1,21 +1,21 @@
 package view;
 
 import javax.swing.JSpinner;
+
+import model.PieceGroup;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 public class BuilderPieceGroupView extends AbstractPieceGroupView{	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JSpinner spinner;
 
-	//TODO Change Arguments: Needs a PieceGroup pg so it has a piece group to set
-	public BuilderPieceGroupView(int id){
-		super(id);
+	public BuilderPieceGroupView(PieceGroup pg){
+		super(pg);
 		spinner = new JSpinner();
+		spinner.setValue(pg.getNumPieces());
 		
 		setupLayout();
 	}

@@ -88,7 +88,6 @@ public class Builder extends LevelIO{
 		LevelFactory factory = new LevelFactory();
 		ReleaseLevel rl = factory.GenerateBlankRelease(levelData.nextOpenID());
 		currentLevel = rl;
-		bv.setModelLevel(rl);
 		bv.prepRelease();
 	}
 
@@ -96,7 +95,6 @@ public class Builder extends LevelIO{
 		LevelFactory factory = new LevelFactory();
 		PuzzleLevel pl = factory.GenerateBlankPuzzle(levelData.nextOpenID());
 		currentLevel = pl;
-		bv.setModelLevel(pl);
 		bv.prepPuzzle();
 	}
 
@@ -104,7 +102,6 @@ public class Builder extends LevelIO{
 		LevelFactory factory = new LevelFactory();
 		LightningLevel ll = factory.GenerateBlankLightning(levelData.nextOpenID());
 		currentLevel = ll;
-		bv.setModelLevel(ll);
 		bv.prepLightning();
 	}
 	
@@ -119,19 +116,16 @@ public class Builder extends LevelIO{
 		case "Puzzle":
 			PuzzleLevel pl = (PuzzleLevel) loadLevel(levelID);
 			currentLevel = pl;
-			bv.setModelLevel(pl);
 			bv.prepPuzzle();
 			break;
 		case "Lightning":
 			LightningLevel ll = (LightningLevel) loadLevel(levelID);
 			currentLevel = ll;
-			bv.setModelLevel(ll);
 			bv.prepLightning();
 			break;
 		case "Release":
 			ReleaseLevel rl = (ReleaseLevel) loadLevel(levelID);
 			currentLevel = rl;
-			bv.setModelLevel(rl);
 			bv.prepRelease();
 			break;
 		}

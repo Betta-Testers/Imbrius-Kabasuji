@@ -70,7 +70,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Lightning", new TimeRemainingView());
+		LevelView view = new LevelView("Lightning", new TimeRemainingView(), this);
 		view.addWindowListener(new ExitLevelButtonController(view, g));
 		return view;
 	}

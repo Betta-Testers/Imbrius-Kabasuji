@@ -5,15 +5,17 @@ package view;
 
 import javax.swing.JButton;
 
+import model.PieceGroup;
+
 /**
  * @author hejohnson
  *
  */
 public class SelectPieceButton extends JButton {
 	int pieceID;
-	SelectPieceButton(int id) {
+	SelectPieceButton(PieceGroup pieceGroup) {
 		super();
-		this.pieceID = id;
+		this.pieceID = pieceGroup.getPiece().getID();
 	}
 	
 	public int getPieceID() {

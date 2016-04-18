@@ -11,18 +11,21 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import model.AbstractLevelModel;
+
 public class LevelView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JPanel content;
 	
 	SelectedPieceView selectedPiece;
-	BullpenView availablePieces;
+	BullpenView bullpenView;
 	BoardView boardView;
 	LevelInfoView levelInfo;
+	AbstractLevelModel m;
 	
 	JPanel endConditionPanel;
 
-	public LevelView(String title, JPanel endConditionPanel) {
+	public LevelView(String title, JPanel endConditionPanel, AbstractLevelModel m) {
 		this.setPreferredSize(new Dimension(600, 665));
 		this.setBounds(100, 100, 600, 665);
 		this.content = new JPanel();
@@ -32,9 +35,11 @@ public class LevelView extends JFrame {
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
+		this.m = m;
 		this.endConditionPanel = endConditionPanel;
 		this.selectedPiece = new SelectedPieceView();
-		this.availablePieces = new BullpenView("playing");
+		this.bullpenView = new BullpenView();
+		bullpenView.prepPlayer(m.getBullpen());
 		this.boardView = new BoardView(); 
 		this.levelInfo = new LevelInfoView(1);
 		
@@ -67,7 +72,7 @@ public class LevelView extends JFrame {
 								.addComponent(levelInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_LevelView.createSequentialGroup()
 								.addGap(51)
-								.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 				);
 		gl_LevelView.setVerticalGroup(
 				gl_LevelView.createParallelGroup(Alignment.LEADING)
@@ -78,7 +83,7 @@ public class LevelView extends JFrame {
 						.addContainerGap()
 						.addComponent(levelInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGap(41)
-						.addComponent(availablePieces, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
 						.addGap(35)
 						.addComponent(endConditionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				);
