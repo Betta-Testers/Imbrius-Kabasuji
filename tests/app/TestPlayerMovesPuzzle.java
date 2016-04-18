@@ -1,4 +1,4 @@
-package controllers;
+package app;
 
 import java.io.File;
 
@@ -15,7 +15,7 @@ import junit.framework.TestCase;
  * @author awharrison
  *
  */
-public class TestPlayerMoves extends TestCase {
+public class TestPlayerMovesPuzzle extends TestCase {
 	Game game;
 	AbstractLevelModel alm;
 	Board b;
