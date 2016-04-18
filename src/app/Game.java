@@ -46,7 +46,6 @@ public class Game extends LevelIO{
 	 * @param ID of the level requested to play
 	 */
 	public void displayLevel(int levelID) {
-		//Step 1)
 		try {
 			currentLevel = loadLevel(levelID);
 		} catch (Exception e) {
@@ -56,25 +55,6 @@ public class Game extends LevelIO{
 		System.out.println("Level Loaded"+currentLevel.getID());
 		levelView = currentLevel.initializeGame(this);
 		levelView.setVisible(true);
-		
-		//Step 2)
-		//currentLevel.setLevelIO(this);
-		
-		//WHY not merge steps 2 and 3? Might be worth it!
-		/**TODO
-		 * 1) deserialize level, store in currentLevel
-		 * 2) set the levelIO object = this
-		 * 3) Call currentLevel.initialize() (Should return the view of the level)
-		 * 4) initialize() should call initializeControllers() which adds the window
-		 * 	  listener (passes the level's view and levelIO)
-		 */
-	//part 3 code: this.levelView = new LevelView("Puzzle");
-	//part 4 code:	levelView.addWindowListener(new ExitLevelButtonController(this.levelView, this));
-		//Put in lightning initializeControllers()
-		//Timer timer = new Timer(2000, new LightningTimerController(this.levelView, levelIO));
-		//timer.setRepeats(false);
-		//timer.start();
-
 	}
 
 	void initializeView(){

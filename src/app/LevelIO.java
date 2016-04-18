@@ -41,7 +41,7 @@ public abstract class LevelIO {
 			m.populateFromDirectory();
 		}catch (Exception e){
 			e.printStackTrace();
-			throw new RuntimeException("LevelIO couldn't load StarMap @"+location);
+			throw new RuntimeException("LevelIO couldn't load StarMap @"+location+". Check permissions");
 		}
 
 		if (ois != null) { 
@@ -88,26 +88,16 @@ public abstract class LevelIO {
 	 * the value is not recorded.
 	 * @param levelID
 	 * @param starsEarned - the current number of stars earned on a level
+	 * @return boolean - true if star count was updated for that level. False if not.
 	 */
-	public void updateStars(int levelID, int starsEarned){
+	public boolean updateStars(int levelID, int starsEarned){
 		try {
 			if(starsEarned > levelData.getMaxStars(levelID)){
-				levelData.setMaxStars(levelID, starsEarned);
+				return levelData.setMaxStars(levelID, starsEarned);
 			}
 		} catch (Exception e) {
-			System.err.println("Call to UpdateStars: LevelID"+levelID+" Does not exist");
-			e.printStackTrace();
+			System.err.println("Call to UpdateStars: LevelID "+levelID+" Does not exist");
 		}
-	}
-
-
-	//================== TESTING METHODS (FOR NOW) ================== 
-
-	public StarMap getLevelData(){
-		return levelData;
-	}
-
-	public LevelIO getLevelIO(){
-		return this;
+		return false;
 	}
 }

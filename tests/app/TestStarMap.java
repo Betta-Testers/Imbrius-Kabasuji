@@ -22,7 +22,7 @@ public class TestStarMap extends TestCase {
 	@Override
 	protected void tearDown(){
 		File dir = new File("./imbriusLevelTESTING/");
-		for(File file: dir.listFiles()) file.delete();
+		for(File file: dir.listFiles()) {file.delete();}
 		dir.delete();
 	}
 	

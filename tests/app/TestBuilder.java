@@ -21,7 +21,7 @@ public class TestBuilder extends TestCase {
 	@Override
 	protected void tearDown(){
 		File dir = new File("./imbriusLevelTESTING/");
-		for(File file: dir.listFiles()) file.delete();
+		for(File file: dir.listFiles()) {file.delete();}
 		dir.delete();
 	}
 	
@@ -109,11 +109,11 @@ public class TestBuilder extends TestCase {
 	 */
 	public void testSaveLevel(){
 		b.createPuzzleLevel();
-		assertFalse(b.getLevelData().containsKey(1));
+		assertFalse(b.levelData.containsKey(1));
 		b.saveLevel();
-		assertTrue(b.getLevelData().containsKey(1));
+		assertTrue(b.levelData.containsKey(1));
 		b.saveLevel();
-		assertEquals("[1]",b.getLevelData().keyToString());
+		assertEquals("[1]",b.levelData.keyToString());
 	}
 	
 	public void testEditLevel(){
@@ -123,13 +123,13 @@ public class TestBuilder extends TestCase {
 		/**Test editing existant ID**/
 		b.createPuzzleLevel();
 		b.saveLevel();
-		assertTrue(b.getLevelData().containsKey(1));
+		assertTrue(b.levelData.containsKey(1));
 		b.createReleaseLevel();
 		b.saveLevel();
-		assertTrue(b.getLevelData().containsKey(2));
+		assertTrue(b.levelData.containsKey(2));
 		b.createLightningLevel();
 		b.saveLevel();
-		assertTrue(b.getLevelData().containsKey(3));
+		assertTrue(b.levelData.containsKey(3));
 		assertTrue(b.editLevel(1));
 		assertTrue(b.editLevel(2));
 		assertTrue(b.editLevel(3));
