@@ -85,47 +85,29 @@ public class Builder extends LevelIO{
 	}
 
 	public void createReleaseLevel() {
-		// TODO Auto-generated method stub
-		
+		LevelFactory factory = new LevelFactory();
+		ReleaseLevel rl = factory.GenerateBlankRelease(levelData.nextOpenID());
+		currentLevel = rl;
+		bv.setModelLevel(rl);
+		bv.prepRelease();
 	}
 
 	public void createPuzzleLevel() {
-		// TODO Auto-generated method stub
-		
+		LevelFactory factory = new LevelFactory();
+		PuzzleLevel pl = factory.GenerateBlankPuzzle(levelData.nextOpenID());
+		currentLevel = pl;
+		bv.setModelLevel(pl);
+		bv.prepPuzzle();
 	}
 
 	public void createLightningLevel() {
-		// TODO Auto-generated method stub
-		
+		LevelFactory factory = new LevelFactory();
+		LightningLevel ll = factory.GenerateBlankLightning(levelData.nextOpenID());
+		currentLevel = ll;
+		bv.setModelLevel(ll);
+		bv.prepLightning();
 	}
 	
-	/**
-	 * For CREATING a level. This method is used by CreateLevelBtnController
-	 * to set the level being built. The level being built is stored in currentLevel
-	 */
-	public void createLevel(String type){
-		switch(type){
-		case "Puzzle":
-			PuzzleLevel pl = new PuzzleLevel(levelData.nextOpenID());
-			currentLevel = pl;
-			bv.setModelLevel(pl);
-			bv.prepPuzzle();
-			break;
-		case "Lightning":
-			LightningLevel ll = new LightningLevel(levelData.nextOpenID());
-			currentLevel = ll;
-			bv.setModelLevel(ll);
-			bv.prepLightning();
-			break;
-		case "Release":
-			ReleaseLevel rl = new ReleaseLevel(levelData.nextOpenID());
-			currentLevel = rl;
-			bv.setModelLevel(rl);
-			bv.prepRelease();
-			break;
-		}
-	}
-
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.

@@ -44,9 +44,10 @@ public class StarMap implements Serializable{
 	void populateFromDirectory(){
 		System.out.println("StarMap is Constructing in @"+directory);
 		
-		//Clear data initialized in constructor
-		levelData.remove(0);
-		stars.remove(0);
+		/**Creates the directory if it DNE. Return at this point, since
+		 * nothing would be in an empty directory
+		 */
+		if(new File(directory).mkdirs()){return;}
 		
 		File[] folder = (new File(directory)).listFiles();
 		String levelNum;
@@ -180,27 +181,28 @@ public class StarMap implements Serializable{
 	//========================== INFORMATION METHODS ==========================
 	/**
 	 * Returns the last key in the tree - the highest value key.
+	 * If the map is empty, this method returns 0, as the 0th slot
+	 * is burned
 	 * @return Highest valued Key
 	 */
 	public Integer lastID(){
 		try{
 			return levelData.lastKey();
 		}catch(NoSuchElementException e){
-			e.printStackTrace();
-			throw new RuntimeException("StarMap didn't intialize the first ID");
+			return 0;
 		}
 	}
 
 	/**
-	 * Returns the next open ID for level generation
+	 * Returns the next open ID for level generation. If the map is empty,
+	 * this method returns 1 since the first slot in the tree is burned (0)
 	 * @return levelID that is free
 	 */
 	public Integer nextOpenID(){
 		try{
 			return levelData.lastKey()+1;
 		}catch(NoSuchElementException e){
-			e.printStackTrace();
-			throw new RuntimeException("Current Highest ID doesn't exist in StarMap");
+			return 1;
 		}
 	}
 	

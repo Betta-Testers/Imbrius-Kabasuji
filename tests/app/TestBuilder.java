@@ -36,25 +36,25 @@ public class TestBuilder extends TestCase {
 	 * saved as.
 	 */
 	public void testCreateLevelCase1(){;
-		b.createLevel("Puzzle");
+		b.createPuzzleLevel();
 		b.saveLevel();
 		m = b.loadLevel(1);
 		assertEquals(pl.toString(), m.toString());
 		assertTrue(m instanceof PuzzleLevel);
 		
-		b.createLevel("Release");
+		b.createReleaseLevel();
 		b.saveLevel();
 		m = b.loadLevel(2);
 		assertEquals(rl.toString(), m.toString());
 		assertTrue(m instanceof ReleaseLevel);
 		
-		b.createLevel("Lightning");
+		b.createLightningLevel();
 		b.saveLevel();
 		m = b.loadLevel(3);
 		assertEquals(ll.toString(), m.toString());	
 		assertTrue(m instanceof LightningLevel);
 		
-		b.createLevel("Puzzle");
+		b.createPuzzleLevel();
 		((PuzzleLevel)b.getCurrentLevel()).setMoveLimit(2);
 		b.saveLevel();
 		m = b.loadLevel(4);
@@ -68,7 +68,7 @@ public class TestBuilder extends TestCase {
 	 * it.
 	 */
 	public void testCreateLevelCase2(){
-		b.createLevel("Puzzle");
+		b.createPuzzleLevel();
 		m = b.loadLevel(0);
 		assertEquals(null, m);
 		m = b.loadLevel(1);
@@ -90,7 +90,7 @@ public class TestBuilder extends TestCase {
 	 * into levelData more than once!
 	 */
 	public void testSaveLevel(){
-		b.createLevel("Puzzle");
+		b.createPuzzleLevel();
 		assertFalse(b.getLevelData().containsKey(1));
 		b.saveLevel();
 		assertTrue(b.getLevelData().containsKey(1));
