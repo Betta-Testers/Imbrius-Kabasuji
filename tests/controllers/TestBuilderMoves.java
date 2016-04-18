@@ -37,9 +37,8 @@ public class TestBuilderMoves extends TestCase {
 	@Override
 	public void setUp(){
 		build = new Builder("./imbriusLevelTESTING/");
-		build.createLevel("Release");
-		build.saveLevel();
-		rl = (ReleaseLevel) build.loadLevel(1);
+		build.createReleaseLevel();
+		rl = (ReleaseLevel)build.getCurrentLevel();
 		bv = build.getBuilderView();
 		rl.setBoard(new Board());
 		b = rl.getBoard();
