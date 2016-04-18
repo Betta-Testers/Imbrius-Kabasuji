@@ -253,20 +253,6 @@ public class TestStarMap extends TestCase {
 		assertEquals("[1,Puzzle,2],[2,Puzzle,3],[3,Puzzle,0]",starMap.toString());
 	}
 
-	public void testSave(){
-		/**Save is already tested, but the exceptions are not.This method will test those exceptions.*/
-
-		/**Delete the directory the starMap is set to save in. 
-		 * Should cause exception with trying to save to non-existent directory
-		 * and make the oos null
-		 */
-		File dir = new File("./imbriusLevelTESTING/");
-		dir.delete();
-		assertFalse(starMap.save());
-
-		/** Restore the directory to prevent tearDown faliure **/
-		new File("./imbriusLevelTESTING/").mkdirs();
-	}
 }
 
 //void testSaveAndLoad(){

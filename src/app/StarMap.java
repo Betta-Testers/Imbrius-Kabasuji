@@ -40,9 +40,8 @@ public class StarMap implements Serializable{
 	 * A new StarMap is made if the map can't be deserialized in an attempt to continue play. The only
 	 * information lost in such an event is the player's earned stars progress. The rest of the map
 	 * is populated with levelIDs found and their types.
-	 * @throws IOException if the starMap couldn't be saved to disk when populating
 	 */
-	void populateFromDirectory() throws IOException{
+	void populateFromDirectory(){
 		System.out.println("StarMap is Constructing in @"+directory);
 		
 		/**Creates the directory if it DNE. Return at this point, since
@@ -87,11 +86,12 @@ public class StarMap implements Serializable{
 	 * @return boolean -true if the level was added, false if not
 	 * @throws Exception if level could be added but not saved to disk
 	 */
-	public boolean put(Integer key, String value) throws IOException{
+	public boolean put(Integer key, String value){
 		if(!levelData.containsKey(key) && key > 0){
 			levelData.put(key, value);
 			stars.put(key, 0);
 			save();
+			return true;
 		}
 		return false;
 	}
@@ -127,10 +127,11 @@ public class StarMap implements Serializable{
 	 * @param starsEarned - should be maximum number of stars earned
 	 * @return true if the stars could be stored,false if level did not exist
 	 */
-	public boolean setMaxStars(Integer key, Integer starsEarned) throws IOException{
+	public boolean setMaxStars(Integer key, Integer starsEarned){
 		if(levelData.containsKey(key) && starsEarned >= 0 && starsEarned < 4){
 			stars.put(key, starsEarned);
 			save();
+			return true;
 		}	
 		return false;
 	}
@@ -294,7 +295,7 @@ public class StarMap implements Serializable{
 	 * does not need to be called outside of this class
 	 * @throws IOException if the file could not be saved
 	 */
-	void save() throws IOException{
+	void save(){
 		ObjectOutputStream oos = null;
 		String location = directory+"StarMap.storage";
 
@@ -302,7 +303,7 @@ public class StarMap implements Serializable{
 			oos = new ObjectOutputStream(new FileOutputStream(location));
 			oos.writeObject(this);
 		} catch (Exception e) {
-			throw new IOException("File could not be saved!");
+			throw new RuntimeException("StarMap could not be saved to disk. Check permissions @"+location+"\n"+e.getMessage());
 		}
 
 		if (oos != null) {

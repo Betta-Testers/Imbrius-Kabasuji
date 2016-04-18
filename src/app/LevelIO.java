@@ -19,9 +19,11 @@ public abstract class LevelIO {
 	}
 
 	/**
-	 * Returns a StarMap object read from disk. If the StarMap cannot be read
-	 * for any reason, a blank starmap is generated
+	 * Returns a StarMap object read from disk. 
+	 * If the StarMap does not EXIST for any reason, a blank starmap is generated
+	 * If the StarMap cannot be READ for any reason, a RuntimeException is thrown
 	 * @return StarMap
+	 * @throws RuntimeException if a StarMap couldn't be loaded from disk
 	 */
 	public StarMap loadStarMap(){
 		ObjectInputStream ois = null;

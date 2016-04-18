@@ -80,7 +80,7 @@ public class Builder extends LevelIO{
 		}
 
 		if(id > levelData.lastID()){
-			levelData.put(id, type);
+				levelData.put(id, type);
 		}
 	}
 
