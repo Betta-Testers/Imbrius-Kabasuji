@@ -40,8 +40,9 @@ public class StarMap implements Serializable{
 	 * A new StarMap is made if the map can't be deserialized in an attempt to continue play. The only
 	 * information lost in such an event is the player's earned stars progress. The rest of the map
 	 * is populated with levelIDs found and their types.
+	 * @throws IOException if the starMap couldn't be saved to disk when populating
 	 */
-	void populateFromDirectory(){
+	void populateFromDirectory() throws IOException{
 		System.out.println("StarMap is Constructing in @"+directory);
 		
 		/**Creates the directory if it DNE. Return at this point, since
@@ -54,20 +55,20 @@ public class StarMap implements Serializable{
 		String levelType;
 
 		for (File f: folder) {
-			//If the folder is empty, because no level files exist, dont populate anything
-			//in the star map
-			if(folder.length == 0){ break;}
 			if(f.getName().equals("StarMap.storage")){ continue;}
 
-			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
-			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
 			int levelID;
 			try{
+				levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
+				levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
 				levelID = Integer.parseInt(levelNum);
 				this.put(levelID, levelType);
 				this.setMaxStars(levelID, 0);
 			}catch(NumberFormatException e){
-				System.err.println("Could not parse in from file, skipping...");
+				System.err.println("Trash in directory, skipping...");
+				continue;
+			}catch(StringIndexOutOfBoundsException e1){
+				System.err.println("Trash in directory, skipping...");
 				continue;
 			}
 		}
@@ -83,14 +84,14 @@ public class StarMap implements Serializable{
 	 * This will force the StarMap to save itself to disk if a new key is added
 	 * @param key - should be levelID, greater than 0 or else it can't be placed
 	 * @param value - should be levelType
-	 * @return boolean - true if the level was added successfully
+	 * @return boolean -true if the level was added, false if not
+	 * @throws Exception if level could be added but not saved to disk
 	 */
-	public boolean put(Integer key, String value){
+	public boolean put(Integer key, String value) throws IOException{
 		if(!levelData.containsKey(key) && key > 0){
 			levelData.put(key, value);
 			stars.put(key, 0);
 			save();
-			return true;
 		}
 		return false;
 	}
@@ -124,13 +125,12 @@ public class StarMap implements Serializable{
 	 * already put() into the levelData.
 	 * @param key - should be LevelID
 	 * @param starsEarned - should be maximum number of stars earned
-	 * @return true if the stars could be stored, false if level did not exist
+	 * @return true if the stars could be stored,false if level did not exist
 	 */
-	public boolean setMaxStars(Integer key, Integer starsEarned){
+	public boolean setMaxStars(Integer key, Integer starsEarned) throws IOException{
 		if(levelData.containsKey(key) && starsEarned >= 0 && starsEarned < 4){
 			stars.put(key, starsEarned);
 			save();
-			return true;
 		}	
 		return false;
 	}
@@ -214,15 +214,32 @@ public class StarMap implements Serializable{
 		return levelData.isEmpty();
 	}
 
+	/**
+	 * Determines if the key is within the data structure.
+	 * Returns true if so. False if not.
+	 * @param key - ID being looked for
+	 * @return true if key is within LevelData
+	 */
 	public boolean containsKey(int key) {
 		return levelData.containsKey(key);
 	}
 
 	//========================== TO STRING METHODS ============================
+	/**
+	 * Returns the toString of just the LevelData keys
+	 * Allows ability to see what levels are within level data, without extra info
+	 * @return toString of ArrayList -> keySet().
+	 */
 	public String keyToString(){
 		return this.keySet().toString();
 	}
 
+	/**
+	 * Returns the to string of the StarMap
+	 * Format: [ID,Type,Stars],[ID,Type,Stars], ...
+	 * If starMap is empty, returns empty string ""
+	 * @return string representation of StarMap
+	 */
 	public String toString(){
 		StringBuilder s = new StringBuilder();
 		for(int k: this.keySet()){
@@ -273,20 +290,19 @@ public class StarMap implements Serializable{
 
 	/**
 	 * Stores a StarMap to disk. If the starmap cannot be saved, an error is
-	 * printed to the console. Becuase a starMap saves itself on change, this method
+	 * printed to the console. Because a starMap saves itself on change, this method
 	 * does not need to be called outside of this class
+	 * @throws IOException if the file could not be saved
 	 */
-	void save(){
+	void save() throws IOException{
 		ObjectOutputStream oos = null;
-
 		String location = directory+"StarMap.storage";
-		//System.out.println("Saving StarMap @:"+location);
 
 		try {
 			oos = new ObjectOutputStream(new FileOutputStream(location));
 			oos.writeObject(this);
 		} catch (Exception e) {
-			System.err.println("Unable to save the levelData:" + e.getMessage());
+			throw new IOException("File could not be saved!");
 		}
 
 		if (oos != null) {
