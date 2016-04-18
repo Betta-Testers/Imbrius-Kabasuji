@@ -262,13 +262,16 @@ public class StarMap implements Serializable{
 		for (File f: folder) {
 			if(f.getName().equals("StarMap.storage")){ continue;}
 
-			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
 			int levelID;
 			try{
+				levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
 				levelID = Integer.parseInt(levelNum);
 				keys.add(levelID);
+			}catch(StringIndexOutOfBoundsException e1){
+				System.err.println("Trash file in: "+directory);
+				continue;
 			}catch(NumberFormatException e){
-				System.err.println("Could not parse in from file, skipping...");
+				System.err.println("Trash file in: "+directory);
 				continue;
 			}
 		}
