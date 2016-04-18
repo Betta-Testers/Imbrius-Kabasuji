@@ -10,9 +10,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 
 public class SelectedPieceView extends JPanel{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JButton btnRotateLeft;
