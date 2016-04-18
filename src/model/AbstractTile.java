@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  * 
@@ -8,7 +9,9 @@ import java.awt.Color;
  *
  */
 
-public abstract class AbstractTile {
+public abstract class AbstractTile implements Serializable{
+	private static final long serialVersionUID = 6566817267314437128L;
+	
 	int rowOnBoard;
 	int colOnBoard;
 	String tileType;

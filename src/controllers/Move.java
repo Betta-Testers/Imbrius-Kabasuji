@@ -19,5 +19,5 @@ public abstract class Move {
 		
 		abstract public boolean undo();
 		
-		
+		abstract public boolean redo();
 }

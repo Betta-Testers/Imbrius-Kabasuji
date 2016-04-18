@@ -3,6 +3,11 @@ package model;
 import java.io.IOException;
 import java.io.Serializable;
 
+import app.Game;
+import controllers.ExitLevelButtonController;
+import view.LevelView;
+import view.TimeRemainingView;
+
 /** 
  * A LightningLevel handles the back end for a Lightning game mode, tracking the end conditions and progress of 
  * the game.
@@ -14,14 +19,10 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	
 	/**Total time the level has to be played, in seconds**/
 	int totalTime;
-	
-	/**Overall size of the bullpen for this level**/
-	int piecesToGen;
 
 	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
 		totalTime = 0;
-		piecesToGen = 0;
 	}
 	
 	/**
@@ -64,16 +65,18 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Returns the number of pieces to initialize the bullpen to.
-	 * @author Dylan
-	 * @return int - pieces to gen
+	 * Initializes the view to display correctly for a lightninglevel. 
+	 * @return LevelView - view of the initialized LevelView
 	 */
-	public int getPiecesToGen(){
-		return this.piecesToGen;
+	@Override
+	public LevelView initializeGame(Game g) {
+		LevelView view = new LevelView("Lightning", new TimeRemainingView(), this);
+		view.addWindowListener(new ExitLevelButtonController(view, g));
+		return view;
 	}
 	
 	public String toString(){
-		return levelType+levelID+totalTime+piecesToGen;
+		return levelType+levelID+totalTime;
 	}
 	
 	/**
@@ -83,4 +86,5 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
 	}
+
 }

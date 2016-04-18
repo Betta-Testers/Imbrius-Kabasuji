@@ -12,6 +12,7 @@ public class SwapTileBoardToEmptyMove extends Move {
 	EmptyTile newTile;
 	
 	public SwapTileBoardToEmptyMove (BuilderView bView, BoardTile old, AbstractLevelModel lm) {
+		// Commented builderView out for now, since it's not used for anything other than a null check
 		if((bView == null) || (old == null) || (lm == null)) { 
 			throw new RuntimeException("SwapTileBoardToReleaseMove::failed to initialize constructor inputs");
 		}
@@ -38,6 +39,13 @@ public class SwapTileBoardToEmptyMove extends Move {
 	@Override
 	public boolean undo() {
 		// TODO Auto-generated method stub
-		return false;
+		board.swapTile(oldTile);
+		return true;
+	}
+	
+	@Override 
+	public boolean redo() {
+		board.swapTile(newTile);
+		return true;
 	}
 }

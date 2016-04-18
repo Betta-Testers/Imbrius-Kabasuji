@@ -45,5 +45,11 @@ public class MovePieceOffBoardMove extends Move {
 		levelModel.getBoard().putPieceOnBoard(piece, piece.getOriginRow(), piece.getOriginCol());
 		return true;
 	}
+	
+	@Override
+	public boolean redo() {
+		doMove();
+		return true;
+	}
 
 }

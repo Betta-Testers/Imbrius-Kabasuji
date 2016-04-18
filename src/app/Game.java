@@ -8,6 +8,7 @@ import view.StarView;
 import controllers.PlayLevelButtonController;
 import controllers.QuitGameButtonController;
 import controllers.ShutdownController;
+import model.AbstractLevelModel;
 
 public class Game extends LevelIO{
 
@@ -19,23 +20,25 @@ public class Game extends LevelIO{
 
 	/**The view displayed at the end of the level being played**/
 	GameExitScreen exitLevel;
-
-	Game(String directory){
+	
+	/**TODO May not need this: The current level being played**/	
+	AbstractLevelModel currentLevel;
+	
+	public Game(String directory){
 		super(directory);
 		this.initialize();
 	}
 
 	void initialize(){
-		//TODO save the levelData in ShutdownController
 		this.levelData = loadStarMap();
-
-
+		System.out.println("Levels Loaded:"+levelData.toString());
+		
 		this.initializeView();
 		this.initializeControllers();
 		this.initializeButtons();
 	}
 
-	/**TODO implement
+	/**
 	 * DisplayLevel is called when the user has hit the button of the level they want to
 	 * play. With this information known, it is possible to load the level requested and 
 	 * make that level prepare its view and controllers (Timer for lightning for example)
@@ -45,6 +48,9 @@ public class Game extends LevelIO{
 	public void displayLevel(int LevelID) {
 		//Step 1)
 		currentLevel = loadLevel(LevelID);
+		System.out.println("Level Loaded"+currentLevel.getID());
+		levelView = currentLevel.initializeGame(this);
+		levelView.setVisible(true);
 		
 		//Step 2)
 		//currentLevel.setLevelIO(this);
@@ -78,7 +84,7 @@ public class Game extends LevelIO{
 
 	/**
 	 * Prepares all buttons of the levels available for play at launch of application.
-	 * After levelData has been read in, the the method iterates over all levelds that count as
+	 * After levelData has been read in, the the method iterates over all levelids that count as
 	 * unlocked (retrieved from a method call to StarMap). It unlocks the button in the view and then
 	 * adds a listener to that button in the view that "connects" the entity to the button.
 	 * This method assumes levelData has been read in.
@@ -86,6 +92,7 @@ public class Game extends LevelIO{
 	 */
 	void initializeButtons(){
 		for(int id: levelData.unlockedLevels()){
+			System.out.println("unlocking:"+id);
 			selectLevel.unlockLevel(id, levelData.getMaxStars(id));
 			selectLevel.addListenerToButton(id, this);
 		}
@@ -112,8 +119,7 @@ public class Game extends LevelIO{
 	public LevelView getLevelView() {
 		return this.levelView;
 	}
-
-	//========================== TODO: Questionable Methods to Implement ==========================//
-	void initializeLevelView(){}
-	void initializeLevelControllers(){}
+	public AbstractLevelModel getCurrentLevel(){
+		return currentLevel;
+	}
 }

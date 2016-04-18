@@ -44,4 +44,9 @@ public class SwapTileReleaseToBoardMove extends Move {
 		return false;
 	}
 
+	@Override 
+	public boolean redo() {
+		board.swapTile(newTile);
+		return true;
+	}
 }

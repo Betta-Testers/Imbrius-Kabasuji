@@ -62,7 +62,7 @@ public class LevelSelectionView extends JFrame {
 	 * @param g - game object, passed for the controller to access
 	 */
 	public void addListenerToButton(int levelID, Game g){
-		(this.levels[levelID-1].getPlayButton()).addActionListener(new PlayLevelButtonController(this, g, levelID));
+		this.levels[levelID-1].getPlayButton().addActionListener(new PlayLevelButtonController(this, g, levelID));
 	}
 	
 	/**

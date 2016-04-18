@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  * 
@@ -8,7 +9,9 @@ import java.awt.Color;
  *
  */
 
-public class BoardTile extends AbstractTile{
+public class BoardTile extends AbstractTile implements Serializable{
+	private static final long serialVersionUID = 3175118024513838593L;
+
 	/**
 	 * Create a BoardTile at the specified location on the board
 	 * @param row
