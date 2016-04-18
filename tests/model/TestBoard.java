@@ -31,14 +31,17 @@ public class TestBoard extends TestCase{
 		
 	}
 	
+	//test if the swap method works (run in setUp)
 	public void testSwapTile(){
 		assertEquals("board r:0 c:0", b.board[0][0].toString());
 	}
 	
+	//test the number of board tiles
 	public void testNumBoardTiles(){
 		assertEquals(b.getNumBoardTiles(), 6);
 	}
-		
+	
+	//test if the new tile type is a board tile, where the tile was swapped in
 	public void testType(){	
 		b.swapTile(bt);
 		
@@ -48,6 +51,8 @@ public class TestBoard extends TestCase{
 		assertEquals(str2, str1);
 		assertEquals(bt.rowOnBoard, 0);
 	}
+	
+	//test functions working with pieces
 	public void testPieceFunctions(){	
 		//add a piece
 		Piece p = new Piece(1);
