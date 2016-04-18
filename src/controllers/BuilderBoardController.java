@@ -28,6 +28,7 @@ public class BuilderBoardController implements MouseListener {
 	Bullpen bp;
 	BullpenView bpv;
 	ReleaseNumberCreationView rncv;
+	Piece draggedPiece;
 	
 	public BuilderBoardController(BuilderView bView, AbstractLevelModel lm) {
 		this.bView = bView;
@@ -90,8 +91,7 @@ public class BuilderBoardController implements MouseListener {
 		
 		// lift a piece off the board
 		if(selectedTile.getTileType().equals("piece")) {
-			Piece selectedPiece = ((PieceTile) selectedTile).getPiece();
-			// TODO set piece to the active drag source, not sure how to do this
+			draggedPiece = ((PieceTile) selectedTile).getPiece();
 		} 
 		// place a piece
 		else if(selectedTile.getTileType().equals("board")) {
@@ -123,12 +123,10 @@ public class BuilderBoardController implements MouseListener {
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		Piece pieceBeingDragged = new Piece(1); //TODO change this
-		// TODO get the piece being dragged
-		// return piece to the bullpen
-		if(pieceBeingDragged != null) {
-			Move m = new MovePieceOffBoardMove(lm, pieceBeingDragged);
+		if(draggedPiece != null) {
+			Move m = new MovePieceOffBoardMove(lm, draggedPiece);
 			m.doMove();
+			draggedPiece = null;
 		}
 	}
 
