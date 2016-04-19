@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 import app.Builder;
+import controllers.ExistingLevelDeleteController;
 import controllers.ExistingLevelEditController;
 import controllers.NewPuzzleLevelController;
 import javax.swing.BoxLayout;
@@ -85,6 +86,7 @@ public class LevelTypeSelectView extends JFrame {
 	public void initializeControllers(Builder b) {
 		for (ExistingLevelView elv : existingLevels.getExistingLevelButtons()) {
 			elv.addActionListenerToEditButton(new ExistingLevelEditController(b));
+			elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
 			//TODO ad controller for delete button
 		}
 		createPuzzle.addMouseListener(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
