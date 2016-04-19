@@ -24,6 +24,7 @@ public class Bullpen implements Serializable{
 		for(int i=1; i<=35; i++){
 			this.playablePieces.add(new PieceGroup(i, 0));
 		}
+		sortBullpen();
 	}
 	
 	/**

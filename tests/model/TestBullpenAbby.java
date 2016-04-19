@@ -22,8 +22,8 @@ public class TestBullpenAbby extends TestCase {
 		testPlayablePieces.add(new PieceGroup(4, 1));
 		testPlayablePieces.add(new PieceGroup(2, 1));
 		
-		// generate a Bullpen with 10 random pieces
-		testBP2 = new Bullpen(10);
+		// generate a Bullpen with all 35 pieces
+		testBP2 = new Bullpen();
 	}
 	
 	@Override 
@@ -33,12 +33,12 @@ public class TestBullpenAbby extends TestCase {
 	
 	public void testSort() {
 		// test that the ArrayList is unsorted
-		assertEquals(testPlayablePieces.get(0).getPiece().getID(), 5);
-		assertEquals(testPlayablePieces.get(1).getPiece().getID(), 3);
-		assertEquals(testPlayablePieces.get(2).getPiece().getID(), 1);
-		assertEquals(testPlayablePieces.get(3).getPiece().getID(), 4);
-		assertEquals(testPlayablePieces.get(4).getPiece().getID(), 2);
-		
+		assertEquals(5, testPlayablePieces.get(0).getPiece().getID());
+		assertEquals(3, testPlayablePieces.get(1).getPiece().getID());
+		assertEquals(1, testPlayablePieces.get(2).getPiece().getID());
+		assertEquals(4, testPlayablePieces.get(3).getPiece().getID());
+		assertEquals(2, testPlayablePieces.get(4).getPiece().getID());
+//		
 		// create a Bullpen with above ArrayList
 		testBP1 = new Bullpen(testPlayablePieces);
 		
@@ -52,15 +52,15 @@ public class TestBullpenAbby extends TestCase {
 	
 	public void testAddPieces() {
 		// test that the randomly generated Bullpen has 10 available pieces
-		assertEquals(testBP2.numAvailablePieces(), 10);
+		assertEquals(testBP2.numAvailablePieces(), 0);
 		
 		// add a single piece to the Bullpen, test that the number of pieces is 1 greater than before
 		testBP2.addSinglePiece(1);
-		assertEquals(testBP2.numAvailablePieces(), 11);
+		assertEquals(testBP2.numAvailablePieces(), 1);
 		
 		// add a 5 random pieces to the Bullpen, test that the number of pieces is 5 greater than before
 		testBP2.addRandomPieces(5);
-		assertEquals(testBP2.numAvailablePieces(), 16);
+		assertEquals(testBP2.numAvailablePieces(), 6);
 		
 		// ensure that the Bullpen is still sorted when random pieces are added
 		for(int i = 1; i < testBP2.numAvailablePieces(); i++) {
@@ -115,6 +115,11 @@ public class TestBullpenAbby extends TestCase {
 		testPiece = testBP1.getSelectedPiece();
 		assertEquals(testPiece.getID(), 4);
 		assertEquals(testBP1.setSelectedPiece(7), false);
+		
+		assertEquals(6, testBP1.numAvailablePieces());
+		testBP1.decrementSelectedPiece();
+		assertEquals(5, testBP1.numAvailablePieces());
+		
 	
 	}
 	
