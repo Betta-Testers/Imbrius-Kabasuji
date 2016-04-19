@@ -1,17 +1,19 @@
 package controllers;
 import java.io.File;
 
+import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
+import java.awt.event.MouseEvent;
 
 import app.Builder;
 import model.Board;
 import model.Bullpen;
 import model.PieceGroup;
 import model.PuzzleLevel;
-import model.ReleaseLevel;
 import view.BuilderPieceGroupView;
 import view.BuilderView;
 import view.BullpenView;
+import view.SplashScreen;
 
 /**
  * @author hejohnson
@@ -77,6 +79,7 @@ public class TestBuilderControllers extends MouseTesting {
 //		eventManager.mouseClicked(me);
 		
 //		assertTrue(build.getBuilderView().isVisible());
+	}
 
 	public void testBuilderPieceSpinnerController() {
 		PieceGroup pg = bp.getPlayablePieces().get(1);

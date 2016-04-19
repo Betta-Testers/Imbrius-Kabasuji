@@ -5,20 +5,11 @@ package controllers;
 
 import java.awt.Color;
 import java.io.File;
-import java.util.ArrayList;
-
 import app.Builder;
-import app.LevelFactory;
-import app.StarMap;
 import junit.framework.TestCase;
-import model.AbstractLevelModel;
 import model.Board;
 import model.BoardTile;
-import model.Bullpen;
 import model.EmptyTile;
-import model.LightningLevel;
-import model.PieceGroup;
-import model.PuzzleLevel;
 import model.ReleaseLevel;
 import model.ReleaseTile;
 import view.BuilderView;

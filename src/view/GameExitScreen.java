@@ -3,7 +3,6 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import controllers.QuitGameButtonController;
 import javax.swing.JButton;
 import java.awt.Font;
 
