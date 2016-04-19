@@ -16,11 +16,11 @@ public class TestBullpenAbby extends TestCase {
 	@Override
 	protected void setUp() {
 		// initialize an unosrted ArrayList to enter to a Bullpen constructor
-		testPlayablePieces.add(new PieceGroup(5, 1));
-		testPlayablePieces.add(new PieceGroup(3, 1));
-		testPlayablePieces.add(new PieceGroup(1, 2));
 		testPlayablePieces.add(new PieceGroup(4, 1));
 		testPlayablePieces.add(new PieceGroup(2, 1));
+		testPlayablePieces.add(new PieceGroup(5, 2));
+		testPlayablePieces.add(new PieceGroup(3, 1));
+		testPlayablePieces.add(new PieceGroup(1, 1));
 		
 		// generate a Bullpen with 10 random pieces
 		testBP2 = new Bullpen(10);
@@ -33,11 +33,11 @@ public class TestBullpenAbby extends TestCase {
 	
 	public void testSort() {
 		// test that the ArrayList is unsorted
-		assertEquals(testPlayablePieces.get(0).getPiece().getID(), 5);
-		assertEquals(testPlayablePieces.get(1).getPiece().getID(), 3);
-		assertEquals(testPlayablePieces.get(2).getPiece().getID(), 1);
-		assertEquals(testPlayablePieces.get(3).getPiece().getID(), 4);
-		assertEquals(testPlayablePieces.get(4).getPiece().getID(), 2);
+		assertEquals(testPlayablePieces.get(0).getPiece().getID(), 4);
+		assertEquals(testPlayablePieces.get(1).getPiece().getID(), 2);
+		assertEquals(testPlayablePieces.get(2).getPiece().getID(), 5);
+		assertEquals(testPlayablePieces.get(3).getPiece().getID(), 3);
+		assertEquals(testPlayablePieces.get(4).getPiece().getID(), 1);
 		
 		// create a Bullpen with above ArrayList
 		testBP1 = new Bullpen(testPlayablePieces);
@@ -79,7 +79,7 @@ public class TestBullpenAbby extends TestCase {
 	public void testRemovePiece() {
 		// test that a Bullpen created from the initialized ArrayList returns true when a pieceGroup that is in it is removed
 		testBP1 = new Bullpen(testPlayablePieces);
-		assertEquals(testBP1.removeSinglePiece(1), true);
+		assertEquals(testBP1.removeSinglePiece(5), true);
 		
 		// since 0 was removed, the total should decrement by 2 (6 -> 4)
 		assertEquals(testBP1.numAvailablePieces(), 4);
@@ -122,12 +122,14 @@ public class TestBullpenAbby extends TestCase {
 		// ensure that the exceptions are thrown in the correct instances
 		try {
 			testBP3 = new Bullpen(-2);
+			fail();
 		} catch (RuntimeException e) {
 			
 		}
 		
 		try {
 			testBP2.addRandomPieces(-3);
+			fail();
 		} catch (RuntimeException e) {
 			
 		}

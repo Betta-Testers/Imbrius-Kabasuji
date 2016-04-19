@@ -23,7 +23,11 @@ public class TestPlayerMovesPuzzle extends TestCase {
 	@Override
 	public void setUp(){
 		game = new Game("./imbriusPlayerTESTING/");
-		alm = game.loadLevel(1);
+		try {
+			alm = game.loadLevel(1);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 		b = alm.getBoard();
 	}
 	
