@@ -16,11 +16,11 @@ public class TestBullpenAbby extends TestCase {
 	@Override
 	protected void setUp() {
 		// initialize an unosrted ArrayList to enter to a Bullpen constructor
+		testPlayablePieces.add(new PieceGroup(5, 1));
+		testPlayablePieces.add(new PieceGroup(3, 1));
+		testPlayablePieces.add(new PieceGroup(1, 2));
 		testPlayablePieces.add(new PieceGroup(4, 1));
 		testPlayablePieces.add(new PieceGroup(2, 1));
-		testPlayablePieces.add(new PieceGroup(0, 2));
-		testPlayablePieces.add(new PieceGroup(3, 1));
-		testPlayablePieces.add(new PieceGroup(1, 1));
 		
 		// generate a Bullpen with 10 random pieces
 		testBP2 = new Bullpen(10);
@@ -33,21 +33,21 @@ public class TestBullpenAbby extends TestCase {
 	
 	public void testSort() {
 		// test that the ArrayList is unsorted
-		assertEquals(testPlayablePieces.get(0).getPiece().getID(), 4);
-		assertEquals(testPlayablePieces.get(1).getPiece().getID(), 2);
-		assertEquals(testPlayablePieces.get(2).getPiece().getID(), 0);
-		assertEquals(testPlayablePieces.get(3).getPiece().getID(), 3);
-		assertEquals(testPlayablePieces.get(4).getPiece().getID(), 1);
+		assertEquals(testPlayablePieces.get(0).getPiece().getID(), 5);
+		assertEquals(testPlayablePieces.get(1).getPiece().getID(), 3);
+		assertEquals(testPlayablePieces.get(2).getPiece().getID(), 1);
+		assertEquals(testPlayablePieces.get(3).getPiece().getID(), 4);
+		assertEquals(testPlayablePieces.get(4).getPiece().getID(), 2);
 		
 		// create a Bullpen with above ArrayList
 		testBP1 = new Bullpen(testPlayablePieces);
 		
 		// test that the ArrayList in the Bullpen is now sorted
-		assertEquals(testBP1.getPlayablePieces().get(0).getPiece().getID(), 0);
-		assertEquals(testBP1.getPlayablePieces().get(1).getPiece().getID(), 1);
-		assertEquals(testBP1.getPlayablePieces().get(2).getPiece().getID(), 2);
-		assertEquals(testBP1.getPlayablePieces().get(3).getPiece().getID(), 3);
-		assertEquals(testBP1.getPlayablePieces().get(4).getPiece().getID(), 4);	
+		assertEquals(testBP1.getPlayablePieces().get(0).getPiece().getID(), 1);
+		assertEquals(testBP1.getPlayablePieces().get(1).getPiece().getID(), 2);
+		assertEquals(testBP1.getPlayablePieces().get(2).getPiece().getID(), 3);
+		assertEquals(testBP1.getPlayablePieces().get(3).getPiece().getID(), 4);
+		assertEquals(testBP1.getPlayablePieces().get(4).getPiece().getID(), 5);	
 	}
 	
 	public void testAddPieces() {
@@ -79,7 +79,7 @@ public class TestBullpenAbby extends TestCase {
 	public void testRemovePiece() {
 		// test that a Bullpen created from the initialized ArrayList returns true when a pieceGroup that is in it is removed
 		testBP1 = new Bullpen(testPlayablePieces);
-		assertEquals(testBP1.removeSinglePiece(0), true);
+		assertEquals(testBP1.removeSinglePiece(1), true);
 		
 		// since 0 was removed, the total should decrement by 2 (6 -> 4)
 		assertEquals(testBP1.numAvailablePieces(), 4);
@@ -100,11 +100,11 @@ public class TestBullpenAbby extends TestCase {
 		// test that the getPlayablePieces method returns the ArrayList contained in the Bullpen
 		testGetPieces = testBP1.getPlayablePieces();
 		assertEquals(testGetPieces.size(), 5);
-		assertEquals(testGetPieces.get(0).getPiece().getID(), 0);
-		assertEquals(testGetPieces.get(1).getPiece().getID(), 1);
-		assertEquals(testGetPieces.get(2).getPiece().getID(), 2);
-		assertEquals(testGetPieces.get(3).getPiece().getID(), 3);
-		assertEquals(testGetPieces.get(4).getPiece().getID(), 4);
+		assertEquals(testGetPieces.get(0).getPiece().getID(), 1);
+		assertEquals(testGetPieces.get(1).getPiece().getID(), 2);
+		assertEquals(testGetPieces.get(2).getPiece().getID(), 3);
+		assertEquals(testGetPieces.get(3).getPiece().getID(), 4);
+		assertEquals(testGetPieces.get(4).getPiece().getID(), 5);
 		
 		// test that the getSelectedPiece method returns null when there is no assigned selectedPiece
 		Piece testPiece = testBP1.getSelectedPiece();

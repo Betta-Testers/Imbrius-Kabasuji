@@ -11,7 +11,7 @@ public class TestPieceGroupAbby extends TestCase {
 	@Override
 	protected void setUp() {
 		// create two test pieceGroups
-		testPG1 = new PieceGroup(0, 1);
+		testPG1 = new PieceGroup(1, 1);
 		testPG2 = new PieceGroup(15, 5);
 	}
 	
