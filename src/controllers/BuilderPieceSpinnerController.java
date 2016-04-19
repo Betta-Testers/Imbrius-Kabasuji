@@ -24,6 +24,7 @@ public class BuilderPieceSpinnerController implements ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		int oldVal = (int)((JSpinner)e.getSource()).getPreviousValue();
 		int newVal = (int)((JSpinner)e.getSource()).getValue();
+		System.out.println("Changing");
 		if(newVal > oldVal) {
 			model.incrementCount();
 		} else if (newVal < oldVal) {

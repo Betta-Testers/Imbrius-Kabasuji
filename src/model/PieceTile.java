@@ -1,14 +1,15 @@
 package model;
 
-import java.awt.Color;
-
 /**
- * 
+ *  While AbstractTile implements serializable, A piece tile will never be serialized. The 
+ *  Board removes all piece tiles before serialization.This is a limitation of the implementation
+ *  and can't be avoided.
  * @author hejohnson
  *
  */
-
-public class PieceTile extends AbstractTile {
+public class PieceTile extends AbstractTile{
+	private static final long serialVersionUID = 2549208174449293357L; 
+	
 	Piece piece;
 	int colInPiece;
 	int rowInPiece;

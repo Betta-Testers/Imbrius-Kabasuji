@@ -62,7 +62,7 @@ public class LevelSelectionView extends JFrame {
 	 * @param g - game object, passed for the controller to access
 	 */
 	public void addListenerToButton(int levelID, Game g){
-		(this.levels[levelID-1].getPlayButton()).addActionListener(new PlayLevelButtonController(this, g, levelID));
+		this.levels[levelID-1].getPlayButton().addActionListener(new PlayLevelButtonController(this, g, levelID));
 	}
 	
 	/**
@@ -95,7 +95,9 @@ public class LevelSelectionView extends JFrame {
 	public JButton getButton(int levelID) {
 		return this.levels[levelID-1].getPlayButton();
 	}
-	
+	/**
+	 * Method for setting up the layout for the LevelSelectionView
+	 */
 	void setupLayout() {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

@@ -1,73 +1,96 @@
 package view;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import controllers.BuilderPieceSpinnerController;
+import controllers.BullpenPieceSelectController;
+import model.Bullpen;
+import model.PieceGroup;
+
 public class BullpenView extends JScrollPane {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JPanel panelScrollContainer;
-	AbstractPieceGroupView piecesInBullpen[];
-	//TODO Add Attribute: modelBullpen
-	
-	//TODO Change Arguments: Buullpen bp, String pieceGroupType
-	public BullpenView(String pieceGroupType){
-		getVerticalScrollBar().setUnitIncrement(35);
-		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		panelScrollContainer = new JPanel();
-		panelScrollContainer.setBackground(Color.WHITE);
-		setViewportView(panelScrollContainer);
-		
-		if(pieceGroupType.equals("builder")){
-			//TODO: Read the bullpen model for the size of the PIECEGROUP array. Initialize this array to that.
-			piecesInBullpen = new AbstractPieceGroupView[35];
-			for(int i = 0; i<piecesInBullpen.length; i++){
-				//TODO: Change the constructor of BuilderPieceGroupView to take a PieceGroup
-				piecesInBullpen[i] = new BuilderPieceGroupView(i+1);
-			}
-			
-		}else if(pieceGroupType.equals("playing")){
-			//TODO: Read the bullpen model for the size of the PIECEGROUP array. Initialize this array to that.
-			piecesInBullpen = new AbstractPieceGroupView[35];
-			for(int i = 0; i<piecesInBullpen.length; i++){
-				//TODO: Change the constructor of PlayingPieceGroupView to take a PieceGroup
-				piecesInBullpen[i] = new PlayingPieceGroupView(i+1);
-			}
-			
-		}else{
-			//TODO: THROW ERROR
+	AbstractPieceGroupView pieceGroupViews[];
+	Bullpen bp;
+
+	public BullpenView(){
+		this.getVerticalScrollBar().setUnitIncrement(35);
+		this.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	}
+
+	public void prepBuilder(Bullpen bp){
+		this.bp = bp;
+		ArrayList<PieceGroup> pg = bp.getPlayablePieces();
+		pieceGroupViews = new AbstractPieceGroupView[pg.size()];
+		for(int i = 0; i<pieceGroupViews.length; i++){
+			pieceGroupViews[i] = new BuilderPieceGroupView(pg.get(i));
 		}
-		
+		setupLayout();
+	}
+
+	public void prepPlayer(Bullpen bp){
+		this.bp = bp;
+		ArrayList<PieceGroup> pg = bp.getPlayablePieces();
+		pieceGroupViews = new AbstractPieceGroupView[pg.size()];
+		for(int i = 0; i<pieceGroupViews.length; i++){
+			pieceGroupViews[i] = new PlayingPieceGroupView(pg.get(i));
+		}
 		setupLayout();
 	}
 	
+
+	/**
+	 * Method for setting up the layout for the BullpenView
+	 */
+	public void initializeControllers() {
+		for(int i = 0; i<pieceGroupViews.length; i++){
+			if (pieceGroupViews[i] instanceof BuilderPieceGroupView) {
+				BuilderPieceGroupView pgv = (BuilderPieceGroupView)pieceGroupViews[i];
+				pgv.addSpinnerChangeListener(new BuilderPieceSpinnerController((BuilderPieceGroupView)pgv, bp.getPlayablePieces().get(i)));
+			}
+			pieceGroupViews[i].addSelectButtonActionListener(new BullpenPieceSelectController(bp));
+		}
+	}
+
 	private void setupLayout(){
+		/**
+		 * NOTE DO NOT REMOVE PANEL LINES FROM SETUPLAYOUT.
+		 * Turns out the bullpen won't shrink inbetween different sizes (so if you select a level
+		 * with a large bullpen and then a small one). Why? I actually don't know... probably
+		 * something to do with how the bullpen handles the jPanel and adding components to it.
+		 */
+		this.panelScrollContainer = new JPanel();
+		this.panelScrollContainer.setBackground(Color.WHITE);
+		this.setViewportView(panelScrollContainer);
 		groupLayout = new GroupLayout(panelScrollContainer);
 		GroupLayout.ParallelGroup hGroup = groupLayout.createParallelGroup(GroupLayout.Alignment.TRAILING);
 		GroupLayout.ParallelGroup vGroup = groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
-		
+
 		GroupLayout.SequentialGroup sGroup = groupLayout.createSequentialGroup();
 		GroupLayout.SequentialGroup s2Group = groupLayout.createSequentialGroup();
-		
+
 		GroupLayout.ParallelGroup pGroup = groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false);
-		
-		
-		for(int i=0; i<piecesInBullpen.length; i++){
-			pGroup.addComponent(piecesInBullpen[i], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
-			s2Group.addComponent(piecesInBullpen[i], GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE);
+
+
+		for(int i=0; i<pieceGroupViews.length; i++){
+			pGroup.addComponent(pieceGroupViews[i], GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+			s2Group.addComponent(pieceGroupViews[i], GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE);
 		}
-		
+
 		groupLayout.setHorizontalGroup(hGroup.addGroup(sGroup.addGroup(pGroup)));
 		groupLayout.setVerticalGroup(vGroup.addGroup(s2Group));
 		panelScrollContainer.setLayout(groupLayout);	
 	}
-		
+
+	public AbstractPieceGroupView getPieceGroupView(int i) {
+		return pieceGroupViews[i];
+	}
 }

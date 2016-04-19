@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+import app.Game;
+import view.LevelView;
+
 /**
  * An AbstractLevelModel class determines what kind of information all three types of 
  * levels should store inside of them and the kinds of functionality they should have.
@@ -19,7 +22,7 @@ public abstract class AbstractLevelModel implements Serializable{
 	final String levelType;
 
 	/**The starsEarned for a level is an integer 0-3, tracking the progress thus far on an attempt at this level**/
-	int starsEarned;
+	transient int starsEarned;
 
 	/**CanMovePiece is a boolean value telling the level if pieces can be moved on the board or not**/
 	final boolean canMovePiece;
@@ -50,6 +53,12 @@ public abstract class AbstractLevelModel implements Serializable{
 	 */
 	public abstract boolean checkStatus();
 
+	/**
+	 * initializes views and controllers
+	 * Any other intializations occur here
+	 * @return LevelView
+	 */
+	public abstract LevelView initializeGame(Game g);
 
 	//============================== SETTERS ==================================
 	/**
@@ -57,7 +66,7 @@ public abstract class AbstractLevelModel implements Serializable{
 	 * @author Dylan
 	 * @param board
 	 */
-	public void setBoard(Board board){
+ 	public void setBoard(Board board){
 		this.board = board;
 	}
 	/**

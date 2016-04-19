@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import app.Builder;
-import model.AbstractLevelModel;
-import view.BuilderView;
 
 /**
  * @author hejohnson

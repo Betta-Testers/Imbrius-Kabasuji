@@ -3,7 +3,6 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import controllers.QuitGameButtonController;
 import javax.swing.JButton;
 import java.awt.Font;
 
@@ -33,7 +32,9 @@ public class GameExitScreen extends JFrame{
 	public JButton getExitButton() {
 		return this.btnReturnToLevel;
 	}
-
+	/**
+	 * Method for setting up the layout for the GameExitScreen
+	 */
 	void setupLayout(){
 		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -61,17 +62,26 @@ public class GameExitScreen extends JFrame{
 	}
 	
 	
-	//return "Return to Level Select" Button
+	/**
+	 * A method used by outside objects/classes to retrieve the button to return to a level
+	 * @return JButton the button used to return to a level
+	 */
 	JButton getBtnReturnToLevel(){
 		return btnReturnToLevel;
 	}
 	
-	//return StarView
+	/**
+	 * A method used by outside objects/classes to retrieve the StarView of a GameExitScreen
+	 * @return StarView the StarView associated with the level being exited
+	 */
 	StarView getStars(){
 		return stars;
 	}
 	
-	//set StarView
+	/**
+	 * A method used by outside objects/classes to set the number of stars associated with this GameExitScreen
+	 * @param stars the number of stars to set the GameExitScreens star parameter
+	 */
 	void setStars(StarView stars){
 		this.stars = stars;
 	}

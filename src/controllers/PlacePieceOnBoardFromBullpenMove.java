@@ -48,6 +48,12 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 		return true;
 	}
 	
+	@Override
+	public boolean redo() {
+		doMove();
+		return true;
+	}
+	
 	public Piece getPlacedPiece() {
 		return this.p;
 	}
