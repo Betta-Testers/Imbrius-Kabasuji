@@ -71,5 +71,21 @@ public class TestGame extends TestCase {
 		assertEquals(3, g.unlockNextLevel());
 	}
 	
+	public void testGetSelectView(){
+		assertEquals(g.selectLevel, g.getSelectView());
+	}
+	
+	public void testGetExitView(){
+		assertEquals(g.exitLevel, g.getExitView());
+	}
+	
+	public void testGetLevelView(){
+		assertEquals(g.levelView, g.getLevelView());
+	}
+	
+	public void testGetCurrentLevel(){
+		assertEquals(g.currentLevel, g.getCurrentLevel());
+	}
+	
 	
 }

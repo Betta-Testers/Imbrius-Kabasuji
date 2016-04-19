@@ -149,4 +149,12 @@ public class TestBuilder extends TestCase {
 		assertFalse(b.editLevel(5));
 		assertFalse(b.editLevel(6));
 	}
+	
+	public void testGetBuilderView(){
+		assertEquals(b.bv, b.getBuilderView());
+	}
+	
+	public void testGetLevelTypeSelectView(){
+		assertEquals(b.ltsv, b.getLevelTypeSelectView());
+	}
 }
