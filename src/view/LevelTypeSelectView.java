@@ -99,6 +99,10 @@ public class LevelTypeSelectView extends JFrame {
 	public void addExistingLevel (String levelType, int levelNumber){
 		existingLevels.addLevelView(levelType, levelNumber);
 	}
+	
+	public JButton getCreatePuzzleBtn() {
+		return this.createPuzzle;
+	}
 
 	void setupLayout() {
 		GroupLayout gl_createBtnPanel = new GroupLayout(container);
