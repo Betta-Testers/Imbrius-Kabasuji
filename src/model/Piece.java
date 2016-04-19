@@ -10,15 +10,10 @@ import java.util.ArrayList;
  * @author Evan
  */
 
-<<<<<<< HEAD
 public class Piece implements Serializable{
 	private static final long serialVersionUID = -5341675534216265771L;
 	
 	transient PieceTile[] tiles;
-=======
-public class Piece {
-	PieceTile[] tiles = new PieceTile[6];
->>>>>>> Testing
 	int ID;
 	Color color;
 	public Piece(int ID){
