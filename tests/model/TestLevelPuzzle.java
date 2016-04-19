@@ -1,12 +1,13 @@
 package model;
 
+import app.LevelFactory;
 import junit.framework.TestCase;
 
 public class TestLevelPuzzle extends TestCase {
 	PuzzleLevel p;
 	@Override
 	protected void setUp(){
-		p = new PuzzleLevel(0);
+		p = (new LevelFactory()).GenerateBlankPuzzle(0);
 	}
 	
 	@Override
@@ -30,7 +31,7 @@ public class TestLevelPuzzle extends TestCase {
 		assertEquals(p.movesMade, 1);	
 	}
 	public void testToString(){
-		assertEquals(p.toString(), "Puzzle00");	
+		assertEquals(p.toString(), "Puzzle00"+p.board.toString()+p.bullpen.toString());	
 	}
 	/**
 	 * TODO: Check status

@@ -28,6 +28,7 @@ public class TestBuilderMoves2 extends TestCase {
 	
 	@Override
 	public void setUp(){
+		new File("./imbriusLevelTESTING/").mkdirs();
 		build = new Builder("./imbriusLevelTESTING/");
 		build.createPuzzleLevel();
 		pl = (PuzzleLevel)build.getCurrentLevel();
@@ -40,6 +41,7 @@ public class TestBuilderMoves2 extends TestCase {
 	public void tearDown(){
 		File dir = new File("./imbriusLevelTESTING/");
 		for(File file: dir.listFiles()) file.delete();
+		dir.delete();
 	}
 	
 	public void testPlacePieceRemovePiece() {

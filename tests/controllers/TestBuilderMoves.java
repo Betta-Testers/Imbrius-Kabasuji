@@ -36,6 +36,7 @@ public class TestBuilderMoves extends TestCase {
 	
 	@Override
 	public void setUp(){
+		new File("./imbriusLevelTESTING/").mkdirs();
 		build = new Builder("./imbriusLevelTESTING/");
 		build.createReleaseLevel();
 		rl = (ReleaseLevel)build.getCurrentLevel();
@@ -48,6 +49,7 @@ public class TestBuilderMoves extends TestCase {
 	public void tearDown(){
 		File dir = new File("./imbriusLevelTESTING/");
 		for(File file: dir.listFiles()) file.delete();
+		dir.delete();
 	}
 	
 	public void testSwapBoardAndEmpty() {

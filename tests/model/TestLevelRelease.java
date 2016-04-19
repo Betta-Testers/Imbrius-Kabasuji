@@ -1,12 +1,13 @@
 package model;
 
+import app.LevelFactory;
 import junit.framework.TestCase;
 
 public class TestLevelRelease extends TestCase {
 	ReleaseLevel r;
 	@Override
 	protected void setUp(){
-		r = new ReleaseLevel(0);
+		r = (new LevelFactory()).GenerateBlankRelease(0);
 	}
 	
 	@Override
@@ -69,7 +70,7 @@ public class TestLevelRelease extends TestCase {
 	}
 	
 	public void testToString(){
-		assertEquals(r.toString(), "Release0falsefalsefalse");	
+		assertEquals(r.toString(), "Release0falsefalsefalse"+r.board.toString()+r.bullpen.toString());	
 	}
 	/**
 	 * TODO: Check status

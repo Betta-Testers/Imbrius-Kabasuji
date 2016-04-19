@@ -1,15 +1,13 @@
 package model;
 
-import java.io.File;
-import java.io.IOException;
-
+import app.LevelFactory;
 import junit.framework.TestCase;
 
 public class TestLevelLightning extends TestCase {
 	LightningLevel l;
 	@Override
 	protected void setUp(){
-		l = new LightningLevel(0);
+		l = (new LevelFactory()).GenerateBlankLightning(0);
 	}
 	
 	@Override
@@ -25,7 +23,7 @@ public class TestLevelLightning extends TestCase {
 		assertEquals(l.getTotalTime(), 10);
 	}
 	public void testToString(){
-		assertEquals(l.toString(), "Lightning000");	
+		assertEquals(l.toString(), "Lightning00"+l.board.toString()+l.bullpen.toString());	
 	}
 	/**
 	 * TODO: Check status

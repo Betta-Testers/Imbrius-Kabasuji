@@ -4,9 +4,6 @@ import java.io.File;
 
 import model.AbstractLevelModel;
 import model.Board;
-import model.LightningLevel;
-import model.PuzzleLevel;
-import model.ReleaseLevel;
 import app.Game;
 import junit.framework.TestCase;
 
@@ -22,6 +19,7 @@ public class TestPlayerMovesPuzzle extends TestCase {
 	
 	@Override
 	public void setUp(){
+		new File("./imbriusLevelTESTING/").mkdirs();
 		game = new Game("./imbriusPlayerTESTING/");
 		try {
 			alm = game.loadLevel(1);
@@ -35,5 +33,6 @@ public class TestPlayerMovesPuzzle extends TestCase {
 	public void tearDown(){
 		File dir = new File("./imbriusPlayerTESTING/");
 		for(File file: dir.listFiles()) file.delete();
+		dir.delete();
 	}
 }
