@@ -31,7 +31,10 @@ public class ExistingLevelView extends JButton {
 		this.setMinimumSize(levelPreviewSize);
 		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
-	
+	/**
+	 * A method used by outside objects/classes to retrieve the level number
+	 * @return int representing the level number
+	 */
 	public int getLevelNumber() {
 		return this.levelNumber;
 	}

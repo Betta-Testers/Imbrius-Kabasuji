@@ -27,7 +27,10 @@ public class LevelTypesAndText extends JSplitPane {
 		txtAreaLevelTypeDescription.setText("Information about each level type will go here when the corresponding toggle button is selected");
 		this.setRightComponent(txtAreaLevelTypeDescription);
 	}
-	
+	/**
+	 * 
+	 * @return JTextArea returns the description that goes into the 
+	 */
 	public JTextArea getTextArea() {
 		return txtAreaLevelTypeDescription;
 	}

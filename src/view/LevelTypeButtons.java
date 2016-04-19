@@ -36,6 +36,9 @@ public class LevelTypeButtons extends JPanel {
 		setupLayout();
 	}
 	
+	/**
+	 * Method for setting up the layout for the LevelTypeButton
+	 */
 	void setupLayout() {
 		GroupLayout gl_levelTypesPanel = new GroupLayout(this);
 		gl_levelTypesPanel.setAutoCreateGaps(true);
@@ -64,10 +67,18 @@ public class LevelTypeButtons extends JPanel {
 		this.setLayout(gl_levelTypesPanel);
 	}
 	
+	/**
+	 * A method used by outside classes/objects to get the levelTypeButtonsList
+	 * @return ArrayList<LevelTypeToggle> an array list of the list of level type buttons
+	 */
 	public ArrayList<LevelTypeToggle> getButtons() {
 		return levelTypeButtonsList;
 	}
 	
+	/**
+	 * A method used by outside classes/objects to get the currently selected level type
+	 * @return String representing the type of the currently selected level
+	 */
 	public String getSelectedLevelType() {
 		for (LevelTypeToggle ltt : levelTypeButtonsList) {
 			if (ltt.isSelected()) {
