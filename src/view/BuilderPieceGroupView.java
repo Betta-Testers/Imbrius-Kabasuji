@@ -19,7 +19,9 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 		
 		setupLayout();
 	}
-	
+	/**
+	 * Method for setting up the layout for the BuilderPieceGroupview
+	 */
 	void setupLayout(){
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

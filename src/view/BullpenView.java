@@ -43,7 +43,10 @@ public class BullpenView extends JScrollPane {
 		}
 		setupLayout();
 	}
-
+	
+	/**
+	 * Method for setting up the layout for the BullpenView
+	 */
 	private void setupLayout(){
 		/**
 		 * NOTE DO NOT REMOVE PANEL LINES FROM SETUPLAYOUT.

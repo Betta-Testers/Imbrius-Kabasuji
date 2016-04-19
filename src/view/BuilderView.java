@@ -97,7 +97,9 @@ public class BuilderView extends JFrame {
 		return this.bullpenView;
 	}
 	
-	
+	/*
+	 * Method for setting up the layout for the BuilderView
+	 */
 	void setupLayout(){
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
