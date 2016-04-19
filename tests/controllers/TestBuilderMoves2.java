@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import view.BuilderView;
 import model.AbstractTile;
@@ -9,6 +10,7 @@ import model.BoardTile;
 import model.Bullpen;
 import model.EmptyTile;
 import model.Piece;
+import model.PieceGroup;
 import model.PieceTile;
 import model.PuzzleLevel;
 import app.Builder;
@@ -177,14 +179,16 @@ public class TestBuilderMoves2 extends TestCase {
 	}
 	
 	public void testBullpen() {
-		Bullpen bp = new Bullpen();
-		bp.addSinglePiece(1);
-		bp.addSinglePiece(3);
-		bp.addSinglePiece(7);
-		bp.addSinglePiece(2);
+		ArrayList<PieceGroup> test = new ArrayList<PieceGroup>();
 		
-		assertEquals(4, bp.numAvailablePieces());
-		pl.setBullpen(bp);
+		test.add(new PieceGroup(1, 1));
+		test.add(new PieceGroup(3, 1));
+		test.add(new PieceGroup(7, 1));
+		test.add(new PieceGroup(2, 1));
+		
+		pl.setBullpen(new Bullpen(test));
+		
+		assertEquals(4, pl.getBullpen().numAvailablePieces());
 		assertTrue(pl.getBullpen().setSelectedPiece(2));
 		
 		// get the number of board tiles on the board
@@ -206,7 +210,7 @@ public class TestBuilderMoves2 extends TestCase {
 		// TODO selectedPiece not decrementing...
 		m = new PlacePieceOnBoardFromBullpenMove(pl, at);
 		assertTrue(m.doMove());
-		assertEquals(null, bp.getSelectedPiece());
-		assertEquals(3, bp.numAvailablePieces());
+		assertEquals(null, pl.getBullpen().getSelectedPiece());
+		assertEquals(3, pl.getBullpen().numAvailablePieces());
 	}
 }
