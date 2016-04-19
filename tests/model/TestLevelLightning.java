@@ -3,6 +3,11 @@ package model;
 import app.LevelFactory;
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author Evan
+ *
+ */
 public class TestLevelLightning extends TestCase {
 	LightningLevel l;
 	@Override

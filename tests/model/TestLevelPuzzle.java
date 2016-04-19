@@ -3,6 +3,11 @@ package model;
 import app.LevelFactory;
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author Evan
+ *
+ */
 public class TestLevelPuzzle extends TestCase {
 	PuzzleLevel p;
 	@Override

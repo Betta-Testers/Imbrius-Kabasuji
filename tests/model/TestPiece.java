@@ -7,7 +7,7 @@ import java.awt.Color;
 
 /**
  * 
- * @author ejbosia
+ * @author Evan
  *
  */
 
@@ -164,7 +164,6 @@ public class TestPiece extends TestCase{
 		jagged_piece.rotateLeft();
 		jagged_piece.rotateRight();
 		
-		System.out.println(jagged_piece + "\n" + temp);
 		assertEquals(jagged_piece.toString(), temp.toString());
 		
 		jagged_piece.flipH();
