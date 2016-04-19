@@ -90,14 +90,16 @@ public class Game extends LevelIO{
 	}
 
 	/**
-	 * Unlocks the specified level for play. Sets the button to enabled
+	 * Unlocks the next level with no stars for play. Sets the button to enabled
 	 * and initializes its controller
 	 * @author Dylan
-	 * @param levelID
+	 * @return int ID of level that was unlocked
 	 */
-	public boolean unlockNextLevel(){
-		selectLevel.unlockLevel(levelID, 0);
-		selectLevel.getButton(levelID).addActionListener(new PlayLevelButtonController(selectLevel, this, levelID));
+	public int unlockNextLevel(){
+		int id = levelData.lowestNoStarLevel();
+		selectLevel.unlockLevel(id, 0);
+		selectLevel.getButton(id).addActionListener(new PlayLevelButtonController(selectLevel, this, id));
+		return id;
 	}
 
 	//========================== Getters ==========================//

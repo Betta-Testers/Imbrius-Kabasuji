@@ -3,6 +3,7 @@ package app;
 import java.io.File;
 
 import junit.framework.TestCase;
+import model.LightningLevel;
 
 public class TestGame extends TestCase {
 	Game g;
@@ -51,6 +52,23 @@ public class TestGame extends TestCase {
 		
 		/**Try to display a level that does exist**/
 		assertFalse(g.displayLevel(16));
+	}
+	
+	public void testUnlockNextLevel(){
+		LevelFactory factory = new LevelFactory();
+		factory.setDirectory("./imbriusLevelTESTING/");
+		LightningLevel ll = factory.GenerateBlankLightning(1);
+		factory.saveLevel(ll);
+		ll = factory.GenerateBlankLightning(2);
+		factory.saveLevel(ll);
+		ll = factory.GenerateBlankLightning(3);
+		factory.saveLevel(ll);
+		
+		g = new Game("./imbriusLevelTESTING/");
+		g.levelData.setMaxStars(1, 2);
+		g.levelData.setMaxStars(2, 1);
+		
+		assertEquals(3, g.unlockNextLevel());
 	}
 	
 	
