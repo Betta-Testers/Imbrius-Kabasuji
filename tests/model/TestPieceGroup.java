@@ -4,7 +4,11 @@ import model.Piece;
 import model.PieceGroup;
 import junit.framework.TestCase;
 
-
+/**
+ * 
+ * @author awharrison
+ *
+ */
 public class TestPieceGroup extends TestCase {
 	PieceGroup testPG1, testPG2;
 	
@@ -55,5 +59,9 @@ public class TestPieceGroup extends TestCase {
 		Piece x = testPG1.getPiece();
 		assertEquals(testPG1.getPiece().equals(x), true);
 		assertEquals(testPG2.getPiece().equals(x), false);
+	}
+	
+	public void testToString(){
+		assertEquals(testPG1.toString(), "ID:1");
 	}
 }

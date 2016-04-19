@@ -5,6 +5,11 @@ import java.io.IOException;
 
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author Evan
+ *
+ */
 public class TestLevelLightning extends TestCase {
 	LightningLevel l;
 	@Override

@@ -2,6 +2,11 @@ package model;
 
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author Evan
+ *
+ */
 public class TestLevelRelease extends TestCase {
 	ReleaseLevel r;
 	@Override

@@ -7,6 +7,13 @@ import model.Bullpen;
 import model.Piece;
 import model.PieceGroup;
 
+/**
+ * 
+ * @author awharrison
+ *
+ */
+
+
 public class TestBullpen extends TestCase {
 
 	ArrayList<PieceGroup> testPlayablePieces= new ArrayList<PieceGroup>();
