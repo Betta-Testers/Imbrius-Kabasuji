@@ -17,13 +17,12 @@ public class MainBuilder {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					
 					SplashScreen splash = new SplashScreen();
-					Builder builder = new Builder();
+					Builder builder = new Builder("./imbriusLevelFiles/");
 					
 					Timer timer = new Timer(2000, new SplashTimerController(splash, builder));
 					timer.setRepeats(false);
 					timer.start();
 
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

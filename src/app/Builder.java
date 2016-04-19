@@ -5,12 +5,15 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import view.BuilderView;
-import controllers.CloseBuilderDialog;
-
-import model.LightningLevel;
-import model.PuzzleLevel;
-import model.ReleaseLevel;
 import view.LevelTypeSelectView;
+
+import controllers.CloseBuilderDialog;
+import controllers.ShutdownController;
+import view.BuilderView;
+import view.LevelTypeSelectView;
+import model.LightningLevel;
+import model.ReleaseLevel;
+import model.PuzzleLevel;
 
 public class Builder extends LevelIO{
 
@@ -20,9 +23,9 @@ public class Builder extends LevelIO{
 	/**The BuilderView, for displaying the level once the builder has choosen to edit/create a level**/
 	BuilderView bv;
 
-	Builder(){
-		super();
-		levelData = loadStarMap();
+	Builder(String directory){
+		super(directory);
+		this.levelData = loadStarMap();
 		bv = new BuilderView(this);
 		ltsv = new LevelTypeSelectView(this, levelData);
 
@@ -31,15 +34,16 @@ public class Builder extends LevelIO{
 
 	void initializeControllers(){
 		bv.addWindowListener(new CloseBuilderDialog(this, bv));
+		ltsv.addWindowListener(new ShutdownController(this));
 	}
 
 	/**
-	 *TODO THIS METHOD NEEDS TESTING. It stores the level as an abstract level model for now. If that is enough, I 
-	 *am not yet sure
 	 * Saves the level being edited to disk. If the level is not already in levelData, it is
 	 * then added to levelData. This method assumes the board/bullpen/any termination conditions have
 	 * already been reset to a default state (bullpen has all pieces restored to it if they were testing, board has all pieces
 	 * cleared from it, etc).
+	 * 
+	 * The file format is ID_TYPE.storage
 	 */
 	public void saveLevel(){
 		ObjectOutputStream oos = null;
@@ -68,7 +72,7 @@ public class Builder extends LevelIO{
 	 * For CREATING a level. This method is used by CreateLevelBtnController
 	 * to set the level being built. The level being built is stored in currentLevel
 	 */
-	public void setModelLevelCreation(String type){
+	public void createLevel(String type){
 		switch(type){
 		case "Puzzle":
 			PuzzleLevel pl = new PuzzleLevel(levelData.lastKey()+1);
@@ -94,12 +98,12 @@ public class Builder extends LevelIO{
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
+	 * TODO Don't pass a String fileName. Pass a File sourceFile instead
 	 */
-	public void setModelLevelEditing(int levelID){
+	public void editLevel(int levelID){
 		String levelType = levelData.get(levelID);
 		switch(levelType){
 		case "Puzzle":
-
 			PuzzleLevel pl = (PuzzleLevel) loadLevel(levelID);
 			currentLevel = pl;
 			bv.setModelLevel(pl);
@@ -121,23 +125,19 @@ public class Builder extends LevelIO{
 	}
 
 	/**
-	 * Method encapsulates the setVisible functionality of builderView,
-	 * to avoid the need of a getter/setter pair. If enabled is true, the
-	 * window is displayed. Else, it's set to be hidden.
+	 * Returns the BuilderView associated with this Builder
 	 * @param enabled True displays window
 	 */
-	public void setBuilderViewVisible(boolean enabled){
-		bv.setVisible(enabled);
+	public BuilderView getBuilderView(){
+		return bv;
 	}
 
 	/**
-	 * Method encapsulates the setVisible functionality of LevelTypeSelectView,
-	 * to avoid the need of a getter/setter pair. If enabled is true, the
-	 * window is displayed. Else, it's set to be hidden.
+	 * Returns the LevelTypeSelectView associated with this level
 	 * @param enabled True displays window
 	 */
-	public void setLevelTypeSelectViewVisible(boolean enabled){
-		ltsv.setVisible(enabled);
+	public LevelTypeSelectView getLevelTypeSelectView(){
+		return ltsv;
 	}
 
 	/**
@@ -149,7 +149,6 @@ public class Builder extends LevelIO{
 		if(levelData.lastKey() == null){ return 0;}
 		return levelData.lastKey();
 	}
-
 
 	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
 	void initialize(){}

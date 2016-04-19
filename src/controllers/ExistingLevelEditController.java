@@ -6,20 +6,9 @@ import view.ExistingLevelView;
 
 import app.Builder;
 
-/**
- * 
- * @author hejohnson
- *
- */
-
 public class ExistingLevelEditController implements java.awt.event.ActionListener {
 	Builder b;
 	
-	/**
-	 * Controller to open an existing level for editing
-	 * @param b The builder object that this is a part of
-	 * @author hejohnson
-	 */
 	public ExistingLevelEditController (Builder b) {
 		this.b = b;
 	}
@@ -29,14 +18,12 @@ public class ExistingLevelEditController implements java.awt.event.ActionListene
 	 * in the editor. Directs flow of information in the builder. When all is done
 	 * the level should be displayed in the editor and the type select hidden
 	 * from view.
-	 * @param ae The event that triggered this controller. Used to determine the level to open
-	 * @author hejohnson
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		ExistingLevelView sourceButton = (ExistingLevelView) ae.getSource();
 		int levelID = sourceButton.getLevelNumber();
-		b.setModelLevelEditing(levelID);
-		b.setBuilderViewVisible(true);
-		b.setLevelTypeSelectViewVisible(false);
+		b.editLevel(levelID);
+		b.getBuilderView().setVisible(true);
+		b.getLevelTypeSelectView().setVisible(false);
 	}
 }

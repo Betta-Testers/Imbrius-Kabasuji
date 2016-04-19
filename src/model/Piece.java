@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 
 /**
@@ -45,22 +46,57 @@ public class Piece {
 	/**
 	 * Method used to change orientation of the piece as if it was flipped vertically
 	 */
+
 	public void rotateLeft(){
-		
+		for (int i=1; i<6; i++) {
+			PieceTile pt = tiles[1];
+			int row = pt.getRowInPiece();
+			int col = pt.getColInPiece();
+			if (pt.getColInPiece() >= 0 && pt.getRowInPiece() >= 0) {
+				pt.updateRowInPiece(-1*col);
+				pt.updateColInPiece(row);
+			} else if (pt.getColInPiece() >= 0 && pt.getRowInPiece() <= 0) {
+				pt.updateRowInPiece(-1*col);
+				pt.updateColInPiece(-1*row);
+			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() <= 0) {
+				pt.updateRowInPiece(col);
+				pt.updateColInPiece(row);
+			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() >= 0) {
+				pt.updateRowInPiece(-1*col);
+				pt.updateColInPiece(row);	
+			}
+		}
 	}
 	
 	public void rotateRight(){
-		
+		for (int i=1; i<6; i++) {
+			PieceTile pt = tiles[1];
+			int row = pt.getRowInPiece();
+			int col = pt.getColInPiece();
+			if (pt.getColInPiece() >= 0 && pt.getRowInPiece() >= 0) {
+				pt.updateRowInPiece(col);
+				pt.updateColInPiece(-1*row);
+			} else if (pt.getColInPiece() >= 0 && pt.getRowInPiece() <= 0) {
+				pt.updateRowInPiece(col);
+				pt.updateColInPiece(-1*row);
+			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() <= 0) {
+				pt.updateRowInPiece(-1*col);
+				pt.updateColInPiece(-1*row);
+			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() >= 0) {
+				pt.updateRowInPiece(col);
+				pt.updateColInPiece(row);
+			}
+		}
 	}
 	
 	public void flipH(){
-		for (int i=1; i<=5; i++) {
+		for (int i=1; i<6; i++) {
 			tiles[i].updateColInPiece(-1*tiles[i].getColInPiece());
 		}
 	}
 	
 	public void flipV(){
-		for (int i=1; i<=5; i++) {
+		for (int i=1; i<6; i++) {
 			tiles[i].updateRowInPiece(-1*tiles[i].getRowInPiece());
 		}
 	}
@@ -72,14 +108,6 @@ public class Piece {
 	Color getColor(){
 		return color;
 	}
-	
-	/**
-	 * Method used to get the row location of the origin
-	 * @return int
-	 */
-	int getOriginRow1(){
-		return tiles[0].rowInPiece;
-	}
 
 	/** 
 	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
@@ -88,8 +116,8 @@ public class Piece {
 	 */
 	public void setLocation(int row, int col) {
 		this.tiles[0].setLocation(row, col);
-		for (PieceTile p : tiles) {
-			p.updateBoardPosition();
+		for (PieceTile pt : tiles) {
+			pt.updateBoardPosition();
 		}
 	}
 	
@@ -97,16 +125,24 @@ public class Piece {
 	 * Method used to get the column location of the origin
 	 * @return int
 	 */
-	int getOriginCol(){
-		return tiles[0].getColOnBoard();
+	public int getOriginCol(){
+		return tiles[0].getCol();
 	}
 	
-	int getOriginRow(){
-		return tiles[0].getColOnBoard();
+	public int getOriginRow(){
+		return tiles[0].getRow();
 	}
 	
 	public PieceTile getOriginTile() {
 		return tiles[0];
+	}
+	
+	public ArrayList<AbstractTile> getPreviousTiles() {
+		ArrayList<AbstractTile> prevTiles = new ArrayList<AbstractTile>();
+		for (PieceTile p : tiles) {
+			prevTiles.add(p.getPreviousTile());
+		}
+		return prevTiles;
 	}
 	
 	/**

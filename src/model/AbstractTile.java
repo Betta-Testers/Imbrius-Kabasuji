@@ -30,7 +30,7 @@ public abstract class AbstractTile {
 	 * @return The type of tile (lowercase)
 	 */
 	public String toString() {
-		return this.tileType;
+		return this.tileType + " r:" + this.rowOnBoard + " c:" + this.colOnBoard;
 	}
 	
 	public int getRow() {

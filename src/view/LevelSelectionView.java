@@ -3,8 +3,13 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import app.Game;
+import controllers.PlayLevelButtonController;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
@@ -12,18 +17,12 @@ import java.awt.Font;
 
 public class LevelSelectionView extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	JPanel contentPane;
 	JLabel lblTitle;
 	JScrollPane availableLevels;
 	AvailableLevelView levels[];
-	//Game game;
-	/**
-	 * Create the frame.
-	 */
+	
 	public LevelSelectionView() {
 		super();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,9 +54,46 @@ public class LevelSelectionView extends JFrame {
 		setupLayout();
 		
 	}
+
+	/**
+	 * Adds a PlayLevelButtonController to the button for the given ID
+	 * @author Dylan
+	 * @param levelID - ID of level adding listener to
+	 * @param g - game object, passed for the controller to access
+	 */
+	public void addListenerToButton(int levelID, Game g){
+		(this.levels[levelID-1].getPlayButton()).addActionListener(new PlayLevelButtonController(this, g, levelID));
+	}
 	
-	public AvailableLevelView getAvailableLevelView(int index) {
-		return this.levels[index];
+	/**
+	 * Updates the number of stars displayed for the given levelID
+	 * @author Dylan
+	 * @param levelID - level being updated
+	 * @param starsEarned - number of stars to display
+	 */
+	public void updateStarsForLevel(int levelID, int starsEarned){
+		this.levels[levelID-1].updateStars(starsEarned);
+	}
+	
+	/**
+	 * Unlocks the level specified and sets the stars earned to the
+	 * stars earned of given
+	 * @author Dylan
+	 * @param levelID - Level being unlocked
+	 * @param starsEarned - number of stars to display
+	 */
+	public void unlockLevel(int levelID, int starsEarned){
+		this.levels[levelID-1].unlockLevel(starsEarned);
+	}
+	
+	/**
+	 * Returns the button for the given levelID
+	 * @author Dylan
+	 * @param levelID - the levelID being accessed (values of 1+ only)
+	 * @return JButton
+	 */
+	public JButton getButton(int levelID) {
+		return this.levels[levelID-1].getPlayButton();
 	}
 	
 	void setupLayout() {

@@ -10,6 +10,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
+import controllers.SetNumberOfMovesSpinnerController;
 import model.AbstractLevelModel;
 import model.PuzzleLevel;
 
@@ -60,7 +61,7 @@ public class LevelPropertiesView extends JPanel{
 		lblSetTime.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		spinMoves.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		//spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController(this));
+		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController(this));
 		spinTime.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		
 		setupLayout();

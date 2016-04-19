@@ -23,8 +23,8 @@ public class SaveAndCloseLevelButtonController implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		builder.saveLevel();
-		builder.setBuilderViewVisible(false);
-		builder.setLevelTypeSelectViewVisible(true);
+		builder.getBuilderView().setVisible(false);
+		builder.getLevelTypeSelectView().setVisible(true);
 	}
 
 }

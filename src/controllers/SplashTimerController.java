@@ -16,6 +16,6 @@ public class SplashTimerController implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){		
 		view.dispose();
-		b.setLevelTypeSelectViewVisible(true);
+		b.getLevelTypeSelectView().setVisible(true);
 	}
 }

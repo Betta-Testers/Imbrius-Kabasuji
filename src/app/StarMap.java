@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -27,7 +28,12 @@ public class StarMap implements Serializable{
 	/**TreeMap stores levelID with levelType**/
 	TreeMap<Integer, String> levelData = new TreeMap<Integer, String>();
 
-	StarMap(){
+	/**Path to Directory assigned in the constructor to save the StarMap serialization**/
+	transient String directory;
+
+	StarMap(String directory){
+		this.directory = directory;
+		populateEmptyMap();
 	}
 
 	/**
@@ -39,8 +45,10 @@ public class StarMap implements Serializable{
 	 * @param value - should be levelType
 	 */
 	public void put(Integer key, String value){
-		levelData.put(key, value);
-		stars.put(key, null);
+		if(!levelData.containsKey(key)){
+			levelData.put(key, value);
+			stars.put(key, 0);
+		}
 	}
 
 	/**
@@ -88,11 +96,30 @@ public class StarMap implements Serializable{
 	}
 
 	/**
+	 * Unlocked Levels returns an iterator over the levelIDs that counts as unlocked
+	 * This fact is computed by checking the stars earned for a levelID inside the stars
+	 * treemap. If the levelID has a value associated with it that is greater than 0, it
+	 * counts as unlocked.
+	 * @return Iterator of integers - levelIDs
+	 */
+	public Set<Integer> unlockedLevels(){
+		Set<Integer> keys = levelData.keySet();
+		for(Integer key: keys){
+			if(stars.get(key) == 0){ keys.remove(key);}
+		}
+		return keys;
+	}
+
+	/**
 	 * Returns the last key in the tree - the highest value key.
 	 * @return Highest valued Key
 	 */
 	public Integer lastKey(){
-		return levelData.lastKey();
+		try{
+			return levelData.lastKey();
+		}catch(NoSuchElementException e){
+			return 0;
+		}
 	}
 
 	/**
@@ -101,6 +128,23 @@ public class StarMap implements Serializable{
 	 */
 	public boolean isEmpty(){
 		return levelData.isEmpty();
+	}
+
+	public boolean containsKey(int key) {
+		return levelData.containsKey(key);
+	}
+
+	public String keyToString(){
+		return this.keySet().toString();
+	}
+
+	public String toString(){
+		StringBuilder s = new StringBuilder();
+		for(int k: this.keySet()){
+			s.append("["+k+","+levelData.get(k)+","+stars.get(k)+"],");			
+		}
+		s.deleteCharAt(s.length()-1);
+		return s.toString();
 	}
 
 	/**
@@ -112,12 +156,14 @@ public class StarMap implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
-		
-		File[] folder = (new File("./imbriusLevelFiles/")).listFiles();
+
+		File[] folder = (new File(directory)).listFiles();
 		ArrayList<Integer> keys = new ArrayList<Integer>();
 		String levelNum;
 
 		for (File f: folder) {
+			if(f.getName().equals("StarMap.storage")){ continue;}
+
 			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
 			int levelID;
 			try{
@@ -128,7 +174,7 @@ public class StarMap implements Serializable{
 				continue;
 			}
 		}
-		
+
 		for(Integer k: this.keySet()){
 			if(!keys.contains(k)){
 				levelData.remove(k);
@@ -137,5 +183,34 @@ public class StarMap implements Serializable{
 		}
 	}
 
+	/**
+	 * A new StarMap is made if the map can't be deserialized in an attempt to continue play. The only
+	 * information lost in such an event is the player's earned stars progress. The rest of the map
+	 * is populated with levelIDs found and their types.
+	 */
+	void populateEmptyMap(){
+		System.out.println("Populating Empty Map @"+directory);
+		File[] folder = (new File(directory)).listFiles();
+		String levelNum;
+		String levelType;
 
+		for (File f: folder) {
+			//If the folder is empty, because no level files exist, dont populate anything
+			//in the star map
+			if(folder.length == 0){ break;}
+			if(f.getName().equals("StarMap.storage")){ continue;}
+
+			levelNum = f.getName().substring(0, f.getName().lastIndexOf("_"));
+			levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
+			int levelID;
+			try{
+				levelID = Integer.parseInt(levelNum);
+				this.put(levelID, levelType);
+				this.setMaxStars(levelID, 0);
+			}catch(NumberFormatException e){
+				System.err.println("Could not parse in from file, skipping...");
+				continue;
+			}
+		}
+	}
 }

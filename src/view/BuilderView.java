@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.Builder;
+import controllers.SetNumberOfMovesSpinnerController;
 import model.AbstractLevelModel;
 import model.PuzzleLevel;
 
