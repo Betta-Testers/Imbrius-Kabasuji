@@ -93,7 +93,6 @@ public class LevelPropertiesView extends JPanel{
 	
 	/**
 	 * Hides irrelevant information to a release level.
-	 * 
 	 */
 	public void release(){
 		lblSetPieceCt.setVisible(false);
@@ -104,10 +103,17 @@ public class LevelPropertiesView extends JPanel{
 		spinTime.setVisible(false);
 	}
 	
+	/**
+	 * A method used to set the level model of a LevelPropertiesView
+	 * @param levelModel the LevelModel being set by the method
+	 */
 	public void setLevelModel(AbstractLevelModel levelModel) {
 		this.levelModel = levelModel;
 	}
 	
+	/**
+	 * Method for setting up the layout for the LevelPropertiesView
+	 */
 	private void setupLayout(){
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

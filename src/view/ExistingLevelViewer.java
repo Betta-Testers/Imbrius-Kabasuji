@@ -21,13 +21,20 @@ public class ExistingLevelViewer extends JScrollPane {
 		existingLevels = new ArrayList<ExistingLevelView>();
 		this.setViewportView(levelsList);
 	}
-	
+	/**
+	 * add a level view to the list of existing levels
+	 * @param levelType the type of level being added
+	 * @param levelIndex the index of the level being added
+	 */
 	public void addLevelView(String levelType, Integer levelIndex) {
 		ExistingLevelView elv = new ExistingLevelView(levelType, levelIndex);
 		levelsList.add(elv);
 		existingLevels.add(elv);
 	}
-	
+	/**
+	 * A method used to get all of the currently available level buttons
+	 * @return ArrayList<ExistingLevelView> returns an array list containing all of the current existing level buttons
+	 */
 	public ArrayList<ExistingLevelView> getExistingLevelButtons() {
 		return existingLevels;
 	}

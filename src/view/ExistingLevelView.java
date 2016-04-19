@@ -60,7 +60,10 @@ public class ExistingLevelView extends JPanel {
 		);
 		this.setLayout(gl_ltsv);
 	}
-	
+	/**
+	 * A method used by outside objects/classes to retrieve the level number
+	 * @return int representing the level number
+	 */
 	public int getLevelNumber() {
 		return this.levelNumber;
 	}
