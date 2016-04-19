@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JSpinner;
+import javax.swing.event.ChangeListener;
 
 import model.PieceGroup;
 
@@ -37,5 +38,9 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 					.addComponent(button, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 		);
 		setLayout(groupLayout);
+	}
+	
+	public void addSpinnerChangeListener(ChangeListener cl) {
+		spinner.addChangeListener(cl);
 	}
 }

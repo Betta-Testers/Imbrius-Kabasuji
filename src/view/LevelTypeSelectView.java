@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 import app.Builder;
+import controllers.ExistingLevelDeleteController;
 import controllers.ExistingLevelEditController;
 import controllers.NewPuzzleLevelController;
 import javax.swing.BoxLayout;
@@ -69,9 +70,9 @@ public class LevelTypeSelectView extends JFrame {
 		
 		existingLevelMsg.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
-		existingLevels.setPreferredSize(new Dimension(536, 164));
-		existingLevels.setMaximumSize(new Dimension(536, 164));
-		existingLevels.setMinimumSize(new Dimension(536, 164));
+		existingLevels.setPreferredSize(new Dimension(536, 195));
+		existingLevels.setMaximumSize(new Dimension(536, 195));
+		existingLevels.setMinimumSize(new Dimension(536, 195));
 		
 		container.add(existingLevelMsg);
 		container.add(existingLevels);
@@ -84,7 +85,9 @@ public class LevelTypeSelectView extends JFrame {
 	
 	public void initializeControllers(Builder b) {
 		for (ExistingLevelView elv : existingLevels.getExistingLevelButtons()) {
-			elv.addActionListener(new ExistingLevelEditController(b));
+			elv.addActionListenerToEditButton(new ExistingLevelEditController(b));
+			elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
+			//TODO ad controller for delete button
 		}
 		createPuzzle.addMouseListener(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
 		createLightning.addMouseListener(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Lightning: Cover as many tiles as you can before time runs out!"));
@@ -101,14 +104,14 @@ public class LevelTypeSelectView extends JFrame {
 	}
 
 	void setupLayout() {
-		GroupLayout gl_createBtnPanel = new GroupLayout(container);
-		gl_createBtnPanel.setAutoCreateGaps(true);
-		gl_createBtnPanel.setAutoCreateContainerGaps(true);
-		gl_createBtnPanel.setHorizontalGroup(
-			gl_createBtnPanel.createParallelGroup(Alignment.CENTER)
+		GroupLayout gl_ltsv = new GroupLayout(container);
+		gl_ltsv.setAutoCreateGaps(true);
+		gl_ltsv.setAutoCreateContainerGaps(true);
+		gl_ltsv.setHorizontalGroup(
+			gl_ltsv.createParallelGroup(Alignment.CENTER)
 					.addComponent(existingLevelMsg)
 					.addComponent(existingLevels)
-					.addGroup(gl_createBtnPanel.createSequentialGroup()
+					.addGroup(gl_ltsv.createSequentialGroup()
 						.addGap(10)
 						.addComponent(createPuzzle)
 						.addContainerGap(10, Short.MAX_VALUE)
@@ -118,21 +121,21 @@ public class LevelTypeSelectView extends JFrame {
 						.addGap(10))
 					.addComponent(txtAreaLevelTypeDescription)
 		);
-		gl_createBtnPanel.setVerticalGroup(
-			gl_createBtnPanel.createSequentialGroup()
+		gl_ltsv.setVerticalGroup(
+			gl_ltsv.createSequentialGroup()
 				.addGap(10)
 				.addComponent(existingLevelMsg)
 				.addGap(10)
 				.addComponent(existingLevels)
 				.addGap(10)
-				.addGroup(gl_createBtnPanel.createParallelGroup()
+				.addGroup(gl_ltsv.createParallelGroup()
 						.addComponent(createPuzzle)
 						.addComponent(createLightning)
 						.addComponent(createRelease))
 				.addGap(10)
 				.addComponent(txtAreaLevelTypeDescription)
 		);
-		container.setLayout(gl_createBtnPanel);
+		container.setLayout(gl_ltsv);
 	}
 	
 }
