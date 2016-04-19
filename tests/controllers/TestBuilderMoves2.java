@@ -125,9 +125,9 @@ public class TestBuilderMoves2 extends TestCase {
 		assertEquals("piece", at.getTileType());
 		assertEquals(12, b.getNumBoardTiles());
 		pl.incrementMovesMade();
-		// Number of stars earned is 0
-		assertEquals(0, pl.getStarsEarned());
+		// Number of stars earned is 1
 		assertFalse(pl.checkStatus());
+		assertEquals(1, pl.getStarsEarned());
 		
 		// move 3
 		at = b.getTileAt(2*b.getTileSize(), 2*b.getTileSize());
@@ -138,9 +138,9 @@ public class TestBuilderMoves2 extends TestCase {
 		assertEquals("piece", at.getTileType());
 		assertEquals(6, b.getNumBoardTiles());
 		pl.incrementMovesMade();
-		// Number of stars earned is 1
-		assertEquals(1, pl.getStarsEarned());
+		// Number of stars earned is 2
 		assertFalse(pl.checkStatus());
+		assertEquals(2, pl.getStarsEarned());
 		
 		// move 4
 		at = b.getTileAt(3*b.getTileSize(), 2*b.getTileSize());
@@ -151,10 +151,9 @@ public class TestBuilderMoves2 extends TestCase {
 		assertEquals("piece", at.getTileType());
 		assertEquals(0, b.getNumBoardTiles());
 		pl.incrementMovesMade();
-		// TODO check in on getStarsEarned
-		// Number of stars earned is 2
-		assertEquals(2, pl.getStarsEarned());
+		// Number of stars earned is 3
 		assertTrue(pl.checkStatus());
+		assertEquals(3, pl.getStarsEarned());
 		
 		// test undo move
 		m.undo();
@@ -162,9 +161,9 @@ public class TestBuilderMoves2 extends TestCase {
 		assertEquals("board", at.getTileType());
 		assertEquals(6, b.getNumBoardTiles());
 		pl.incrementMovesMade();
-		// Number of stars earned is 3...?
-		assertEquals(3, pl.getStarsEarned());
+		// Number of stars earned is 2 again
 		assertFalse(pl.checkStatus());
+		assertEquals(2, pl.getStarsEarned());
 		
 		// test redo move
 		m.redo();
@@ -173,9 +172,9 @@ public class TestBuilderMoves2 extends TestCase {
 		assertEquals(0, b.getNumBoardTiles());
 		pl.incrementMovesMade();
 		// TODO check in on getStarsEarned
-		// Number of stars earned is 2
-		assertEquals(2, pl.getStarsEarned());
+		// Number of stars earned is 3
 		assertTrue(pl.checkStatus());
+		assertEquals(3, pl.getStarsEarned());
 	}
 	
 	public void testBullpen() {
@@ -207,7 +206,7 @@ public class TestBuilderMoves2 extends TestCase {
 		AbstractTile at = b.getTileAt(4*b.getTileSize(), 5*b.getTileSize());
 		assertEquals(144, b.getNumBoardTiles());
 		
-		// TODO selectedPiece not decrementing...
+		// verify that the number of pieces in the bullpen has been decremented by 1
 		m = new PlacePieceOnBoardFromBullpenMove(pl, at);
 		assertTrue(m.doMove());
 		assertEquals(null, pl.getBullpen().getSelectedPiece());
