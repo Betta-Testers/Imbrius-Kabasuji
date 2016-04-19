@@ -86,4 +86,7 @@ public class BullpenView extends JScrollPane {
 		panelScrollContainer.setLayout(groupLayout);	
 	}
 
+	public AbstractPieceGroupView getPieceGroupView(int i) {
+		return pieceGroupViews[i];
+	}
 }
