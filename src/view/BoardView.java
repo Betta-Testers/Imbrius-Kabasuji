@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 import model.AbstractTile;
 import model.Board;
-import model.Piece;
 
 /**
  * @author dfontana
@@ -23,7 +22,6 @@ public class BoardView extends JPanel{
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
 	Graphics offscreenGraphics;
-	Graphics canvasGraphics;
 	
 	public BoardView(Board b){
 		setPreferredSize(new Dimension(384, 384));
@@ -47,7 +45,7 @@ public class BoardView extends JPanel{
 		
 		/** Draw all shapes. Note selected shape is not part of the model. */
 		//I can assert that the board's graphics is empty at this point
-		TileView factory = new TileView();
+		TileViewFactory factory = new TileViewFactory();
 		for (int row = 0; row < 12; row++) {
 			for(int col = 0; col < 12; col++){
 				AbstractTile t = b.getTileAt(row, col);
@@ -67,7 +65,6 @@ public class BoardView extends JPanel{
 		if (offscreenImage == null) {  
 			offscreenImage = this.createImage(this.getWidth(), this.getHeight());
 			offscreenGraphics = offscreenImage.getGraphics();			
-			canvasGraphics = g;
 			
 			redraw();
 		}
