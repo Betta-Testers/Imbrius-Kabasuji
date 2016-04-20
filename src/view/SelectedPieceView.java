@@ -19,7 +19,7 @@ import model.PieceTile;
 public class SelectedPieceView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
-	piecePanel piecePanel;
+	PiecePanel piecePanel;
 	JButton btnRotateLeft;
 	JButton btnRotateRight;
 	JButton btnFlipX;
@@ -40,11 +40,11 @@ public class SelectedPieceView extends JPanel{
 		btnFlipY = new JButton("");
 		btnFlipY.setToolTipText("Flip Y");
 		
-		piecePanel = new piecePanel(bp);
+		piecePanel = new PiecePanel(bp);
 		setupLayout();
 	}
 	
-	public piecePanel getPiecePanel(){
+	public PiecePanel getPiecePanel(){
 		return this.piecePanel;
 	}
 

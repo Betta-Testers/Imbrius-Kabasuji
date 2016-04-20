@@ -17,12 +17,12 @@ import model.PieceTile;
  * @author hejohnson
  *
  */
-public class piecePanel extends JPanel{
+public class PiecePanel extends JPanel{
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
 	Graphics offscreenGraphics;
 	Bullpen bp;
-	public piecePanel(Bullpen bp){
+	public PiecePanel(Bullpen bp){
 		this.setPreferredSize(new Dimension(192,192));
 		this.bp = bp;
 	}
