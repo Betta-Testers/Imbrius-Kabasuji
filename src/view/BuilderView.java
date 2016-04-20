@@ -35,7 +35,7 @@ public class BuilderView extends JFrame {
 		releaseNumberView = new ReleaseNumberCreationView();
 		bullpenView = new BullpenView();	
 		levelPropertyView = new LevelPropertiesView();	
-		selectedPieceView = new SelectedPieceView();
+		selectedPieceView = new SelectedPieceView(b.getCurrentLevel().getBullpen());
 		
 		setupLayout();		
 	}

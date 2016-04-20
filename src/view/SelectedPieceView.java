@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 
+import model.Bullpen;
+
 public class SelectedPieceView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
@@ -16,12 +18,12 @@ public class SelectedPieceView extends JPanel{
 	JButton btnRotateRight;
 	JButton btnFlipX;
 	JButton btnFlipY;
-	//TODO Add Attribute: modelBullpen
+	Bullpen bp;
 	
-	//TODO Change Arguments: Bullpen bp
-	public SelectedPieceView(){
+
+	public SelectedPieceView(Bullpen bp){
 		setPreferredSize(new Dimension(384, 224));
-		
+		this.bp = bp;
 		btnRotateLeft = new JButton("");
 		btnRotateLeft.setToolTipText("Rotate Left");
 		btnRotateRight = new JButton("");

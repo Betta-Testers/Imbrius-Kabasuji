@@ -12,25 +12,23 @@ import model.AbstractTile;
 import model.Board;
 import model.Piece;
 
-
+/**
+ * @author dfontana
+ * @author Heineman
+ */
 public class BoardView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	Board b;
-	TileView tiles[];
 	
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
 	Graphics offscreenGraphics;
 	Graphics canvasGraphics;
 	
-
-	//TODO Change Arguments: Board b
 	public BoardView(Board b){
 		setPreferredSize(new Dimension(384, 384));
 		this.b = b;
-
-		
-
+		this.paint(); //Initial painting of board from file
 	}
 	
 	/**
@@ -56,10 +54,7 @@ public class BoardView extends JPanel{
 				factory.drawToBoard(offscreenGraphics, t);
 			}
 		//I can assert that the board's graphics is FULL of tiles at this point
-		}
-		
-					//paintShape(offscreenGraphics, s);
-		
+		}		
 	}
 	
 	/**
@@ -97,95 +92,7 @@ public class BoardView extends JPanel{
 		
 		ensureImageAvailable(g);
 		g.drawImage(offscreenImage, 0, 0, getWidth(), getHeight(), this);
-		
-		/**
-		 * TODO Try to draw the pieceOutline here. Call the helper method in the works
-		 * below. MouseDragged event probably wants to call paint(), NOT redraw since
-		 * the background image wouldn't change?
-		 */
-		// if(pieceImage != null){
-		// 	paint the piece
-		// }
-		// draw selected on top of offscreen image, since not part of the model.
-		// Shape selected = model.getSelected();
-		// if (selected != null) {
-		// 	paintShape(g, selected);
-		// }
 	}
-
-	// /** Paint the shape right to the screen */
-	// public void paintShape(Shape s) {
-	// 	paintShape(canvasGraphics, s);
-	// }
-	// 
-	// /** Paint the shape into the given graphics context using its drawer. */
-	// public void paintShape(Graphics g, Shape s) {
-	// 	if (g == null) { return; }
-	// 	
-	// 	ShapeDrawer sd = s.getDrawer();
-	// 	sd.drawShape(g, s);
-	// }
-	
-	/**
-	 * Method found inside ShapeDrawer. We should have either the model draw itself
-	 * or the factory do this. Basically pass the board around and let everyone draw 
-	 * themselves onto the graphics object
-	 */
-	/**
-	 * Draws shape of word.
-	 * 
-	 * Fill in background and draw outline on top. Finally, draw the text.
-	 * Subclass determines how to draw accordingly.
-	 *  
-	 * Strategy design pattern being applied here.
-	 * 
-	 * @param g
-	 * @param s
-	 */
-	// public void drawShape(Graphics g, Shape s) {
-	// 	fillBox(g, s);
-	// 	outlineBox(g, s);
-	// 	drawText(g, s);
-	// }
-	
-	/**
-	 * Need one more draw method that handles drawing a piece at a given mouse object
-	 * or x/y coordinate (which ever the controller wants to pass to this method when
-	 * it is attempting a drag or placement)
-	 *
-	 * It would need to consume the piece attempting to be drawn, to get an idea
-	 * of where each tile is relative to the ORIGIN tile (the origin tile would be 
-	 * drawn around the mouse. The rest of the tiles would be extrapolated from that)
-	 *
-	 * The tiles outlines would be red if the entire piece doesn't fit on the board,
-	 * green if they all do. So we would want a way to draw all tiles possible and then
-	 * return true if they all could fit, false if not. That way we know what color to
-	 * set.
-	 */
-		public void drawAtMouse(int x, int y, Piece p){
-			/**
-			 * TODO 
-			 * P is to get the shape. X/Y is to get the mouse position
-			 * 1) extrapolate the X/Y of the mouse to the topLeft corner of origin tile
-			 * 2) Convert top left into a row/Col. Ask the board if this piece would collide with an 
-			 * empty tile or another piece on the board. Set the color of outline based on boolean answer
-			 * 2) Prepare the graphics object offscreen (offscreenPiece)
-			 * 3) Knowing the top left of the origin tile, draw all 6 tiles to the graphics object w/ correct color
-			 * 4) Move the offscreen image onto the onscreenGraphics
-			 * 5) this.paint()
-			 * 6) reset the pieceImage to be null
-			 */
-		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	void setMouseMotionAdapter(MouseMotionAdapter ma){
 		//TODO Fill Stub - setMouseMotionAdapter

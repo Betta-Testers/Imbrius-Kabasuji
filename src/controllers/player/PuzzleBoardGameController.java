@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controllers.player;
 
 import java.awt.event.MouseEvent;
