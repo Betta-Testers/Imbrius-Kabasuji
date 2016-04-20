@@ -1,7 +1,8 @@
 package controllers;
 
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import view.BuilderView;
 import view.BullpenView;
@@ -20,7 +21,7 @@ import model.PieceTile;
  *
  */
 
-public class BuilderBoardController extends MouseAdapter {
+public class BuilderBoardController implements MouseListener, MouseMotionListener {
 	BuilderView bView;
 	AbstractLevelModel lm;
 	Board board;
@@ -100,7 +101,6 @@ public class BuilderBoardController extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// preview piece on the board
-		board.showPiecePreview(bp.getSelectedPiece(), e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
 	}
 
 	@Override
@@ -110,6 +110,18 @@ public class BuilderBoardController extends MouseAdapter {
 			m.doMove();
 			draggedPiece = null;
 		}
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		board.showPiecePreview(draggedPiece, e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		board.showPiecePreview(bp.getSelectedPiece(), e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
+		
 	}
 
 }
