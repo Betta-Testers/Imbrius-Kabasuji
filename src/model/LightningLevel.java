@@ -9,9 +9,9 @@ import view.LevelView;
 import view.TimeRemainingView;
 
 /** 
- * A LightningLevel handles the back end for a Lightning game mode, tracking the end conditions and progress of 
+ * A LightningLevel handles the back end for a Lightning game mode. Tracking the end conditions and progress of 
  * the game.
- * @author Dylan
+ * @author dfontana
  */
 public class LightningLevel extends AbstractLevelModel implements Serializable{
 	/**Serialized ID used for writing to disk**/
@@ -20,6 +20,10 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	/**Total time the level has to be played, in seconds**/
 	int totalTime;
 
+	/**
+	 * Makes a lightninglevel
+	 * @param levelID id of this level being made
+	 */
 	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
 		totalTime = 0;
@@ -32,7 +36,6 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 * the place another piece that marks all but 8 tiles. That would increment twice - not wanted).
 	 * 
 	 * CheckStatus then returns true if the level's termination conditions are met or not (all tiles marked).
-	 * @author Dylan
 	 * @return boolean - true if level is done
 	 */
 	@Override
@@ -48,7 +51,6 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	
 	/**
 	 * Sets the totalTime for the lightning level
-	 * @author Dylan
 	 * @param totalTime
 	 */
 	public void setTotalTime(int totalTime){
@@ -57,7 +59,6 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	
 	/**
 	 * Returns the totalTime this lightning level allows
-	 * @author Dylan
 	 * @return int - totalTime in seconds
 	 */
 	public int getTotalTime(){
@@ -66,6 +67,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	
 	/**
 	 * Initializes the view to display correctly for a lightninglevel. 
+	 * @param g - Game where the levelView is located
 	 * @return LevelView - view of the initialized LevelView
 	 */
 	@Override
@@ -75,8 +77,13 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 		return view;
 	}
 	
+	/**
+	 * Creates a toString of this level
+	 * @return string representation of this level
+	 */
+	@Override
 	public String toString(){
-		return levelType+levelID+totalTime;
+		return levelType+levelID+totalTime+board.toString()+bullpen.toString();
 	}
 	
 	/**

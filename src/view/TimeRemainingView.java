@@ -10,6 +10,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dimension;
 import java.awt.Font;
 
+/**
+ * Class for displaying the time remaining in a lightning level
+ * @author aharrison
+ * @author dfontana
+ */
 public class TimeRemainingView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	JTextPane textPaneTime;
@@ -30,7 +35,6 @@ public class TimeRemainingView extends JPanel {
 	 * Method for changing the text displayed to the remaining amount of time
 	 * Method converts secondsRemaining into a string to be displayed
 	 * Should be in a 3 digit format: 009, 090, or 900
-	 * @author Dylan
 	 * @param secondsRemaining
 	 */
 	void updateTimeLeft(int secondsRemaining){

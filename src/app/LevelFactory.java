@@ -15,18 +15,20 @@ import model.PuzzleLevel;
 import model.ReleaseLevel;
 
 /**
- * Class capable of creating levels for testing when created and saves them to disk
- * @author Dylan
+ * Class capable of creating levels easily. 
+ * 
+ * Has the ability to change the working directory of the factory, saving levels to
+ * that location, generating a quick set of levels and various variations of level
+ * generation.
+ * @author dfontana
  *
  */
 public class LevelFactory{
+	/** Working directory that this factory will save levels to**/
 	String directory;
+	
+	/** The optionally used starMap for this factory, mostly for testing**/
 	StarMap levels;
-
-	public static void main(String[] args){
-		LevelFactory factory = new LevelFactory();
-		factory.quick15("./imbriusLevelFiles/");
-	}
 	
 	public LevelFactory(){
 		System.out.println("Factory Started...");
@@ -63,7 +65,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public ReleaseLevel GenerateSpecificRelease(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
-		System.out.println("	Generating NOTSAVED Specific Release @"+id);
 		ReleaseLevel rl = new ReleaseLevel(id);
 		Board board = new Board(tiles);
 		Bullpen bullpen = new Bullpen(pieces);
@@ -81,7 +82,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public LightningLevel GenerateSpecificLightning(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
-		System.out.println("	Generating NOTSAVED Specific Lightning @"+id);
 		LightningLevel ll = new LightningLevel(id);
 		Board board = new Board(tiles);
 		Bullpen bullpen = new Bullpen(pieces);
@@ -99,7 +99,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public PuzzleLevel GenerateSpecificPuzzle(int id, ArrayList<PieceGroup> pieces, ArrayList<AbstractTile> tiles){
-		System.out.println("	Generating NOTSAVED Specific Puzzle @"+id);
 		PuzzleLevel pl = new PuzzleLevel(id);
 		Board board = new Board(tiles);
 		Bullpen bullpen = new Bullpen(pieces);
@@ -117,7 +116,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public ReleaseLevel GenerateRelease(int id, int bullpenSize) {
-		System.out.println("	Generating NOTSAVED Release @"+id);
 		ReleaseLevel rl = new ReleaseLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen(bullpenSize);
@@ -135,7 +133,6 @@ public class LevelFactory{
 	 * @return LightningLevel
 	 */
 	public LightningLevel GenerateLightning(int id, int bullpenSize) {
-		System.out.println("	Generating NOTSAVED Lightning @"+id);
 		LightningLevel ll = new LightningLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen(bullpenSize);
@@ -154,7 +151,6 @@ public class LevelFactory{
 	 * @return PuzzleLevel
 	 */
 	public PuzzleLevel GeneratePuzzle(int id, int bullpenSize) {
-		System.out.println("	Generating NOTSAVED Puzzle @"+id);
 		PuzzleLevel pl = new PuzzleLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen(bullpenSize);
@@ -173,7 +169,6 @@ public class LevelFactory{
 	 * @return ReleaseLevel
 	 */
 	public ReleaseLevel GenerateBlankRelease(int id){
-		System.out.println("	Generating NOTSAVED Blank Release @"+id);
 		ReleaseLevel rl = new ReleaseLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen();
@@ -191,7 +186,6 @@ public class LevelFactory{
 	 * @return LightningLevel
 	 */
 	public LightningLevel GenerateBlankLightning(int id){
-		System.out.println("	Generating NOTSAVED Blank Lightning @"+id);
 		LightningLevel ll = new LightningLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen();
@@ -209,7 +203,6 @@ public class LevelFactory{
 	 * @return PuzzleLevel
 	 */
 	public PuzzleLevel GenerateBlankPuzzle(int id){
-		System.out.println("	Generating NOTSAVED Blank Puzzle @"+id);
 		PuzzleLevel pl = new PuzzleLevel(id);
 		Board board = new Board();
 		Bullpen bullpen = new Bullpen();
@@ -224,23 +217,26 @@ public class LevelFactory{
 	 * this Factory.
 	 * @param m - AbstractLevelModel (Puzzle, Release, Lightning)
 	 * @param starsEarned - Max Stars you wish to assign to it
+	 * @return true if it was add, false otherwise
 	 */
-	public void addToData(AbstractLevelModel m, int starsEarned){
+	public boolean addToData(AbstractLevelModel m, int starsEarned){
 		String type = m.getType();
 		int id = m.getID();
-		System.out.println("		LastKey:"+levels.lastID()+"Current:"+id);
 		if(!levels.containsKey(id)){
 			levels.put(id, type);
 			levels.setMaxStars(id, starsEarned);
+			return true;
 		}
+		return false;
 	}
 	
 	/**
 	 * Saves the given level to the current directory assigned in this factory
 	 * @param level - Level you wish to save to disk
+	 * @return true if the level was saved, false if not
 	 */
-	public void saveLevel(AbstractLevelModel level){
-		if(directory == null){ throw new RuntimeException("Did not set Factory's Directory!");}
+	public boolean saveLevel(AbstractLevelModel level){
+		if(directory == null){ return false;}
 		
 		ObjectOutputStream oos = null;
 
@@ -253,11 +249,13 @@ public class LevelFactory{
 			oos.writeObject(level);
 		} catch (Exception e) {
 			System.err.println("Unable to save the level:" + e.getMessage());
+			return false;
 		}
 
 		if (oos != null) {
 			try { oos.close(); } catch (IOException ioe) { } 
 		}
+		return true;
 	}
 
 	/**

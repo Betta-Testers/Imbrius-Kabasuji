@@ -5,20 +5,11 @@ package controllers;
 
 import java.awt.Color;
 import java.io.File;
-import java.util.ArrayList;
-
 import app.Builder;
-import app.LevelFactory;
-import app.StarMap;
 import junit.framework.TestCase;
-import model.AbstractLevelModel;
 import model.Board;
 import model.BoardTile;
-import model.Bullpen;
 import model.EmptyTile;
-import model.LightningLevel;
-import model.PieceGroup;
-import model.PuzzleLevel;
 import model.ReleaseLevel;
 import model.ReleaseTile;
 import view.BuilderView;
@@ -36,6 +27,7 @@ public class TestBuilderMoves extends TestCase {
 	
 	@Override
 	public void setUp(){
+		new File("./imbriusLevelTESTING/").mkdirs();
 		build = new Builder("./imbriusLevelTESTING/");
 		build.createReleaseLevel();
 		rl = (ReleaseLevel)build.getCurrentLevel();
@@ -48,6 +40,7 @@ public class TestBuilderMoves extends TestCase {
 	public void tearDown(){
 		File dir = new File("./imbriusLevelTESTING/");
 		for(File file: dir.listFiles()) file.delete();
+		dir.delete();
 	}
 	
 	public void testSwapBoardAndEmpty() {
@@ -101,6 +94,18 @@ public class TestBuilderMoves extends TestCase {
 		rt = (ReleaseTile) b.getTileAt(0, 0);
 		assertEquals(3, rt.getNumber());
 		assertEquals(Color.YELLOW, rt.getColorSet());	
+		
+		m = new SwapTileReleaseToBoardMove(bv, (ReleaseTile)b.getTileAt(0, 0), rl);
+		assertTrue(m.doMove());
+		assertEquals(1, b.getNumBoardTiles());
+		assertTrue(m.undo());
+		rt = (ReleaseTile) b.getTileAt(0, 0);
+		assertEquals(0, b.getNumBoardTiles());
+		assertEquals(3, rt.getNumber());
+		assertEquals(Color.YELLOW, rt.getColorSet());
+		assertTrue(m.redo());
+		assertEquals(1, b.getNumBoardTiles());
+		
 	}
 
 }

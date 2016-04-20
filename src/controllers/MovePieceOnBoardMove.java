@@ -6,7 +6,6 @@ package controllers;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Board;
-import model.Bullpen;
 import model.Piece;
 
 /**

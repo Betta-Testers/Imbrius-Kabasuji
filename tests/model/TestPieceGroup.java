@@ -4,8 +4,12 @@ import model.Piece;
 import model.PieceGroup;
 import junit.framework.TestCase;
 
-
-public class TestPieceGroupAbby extends TestCase {
+/**
+ * 
+ * @author awharrison
+ *
+ */
+public class TestPieceGroup extends TestCase {
 	PieceGroup testPG1, testPG2;
 	
 	@Override

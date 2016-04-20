@@ -10,9 +10,9 @@ import view.LevelView;
 import view.NumberMovesLeftView;
 
 /** 
- * A PuzzleLevel handles the back end for a Puzzle game mode, tracking the end conditions and progress of 
+ * A PuzzleLevel handles the back end for a Puzzle game mode. Tracking the end conditions and progress of 
  * the game.
- * @author Dylan
+ * @author dfontana
  */
 public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	/**Serialized ID used for writing file to disk**/
@@ -24,6 +24,10 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	/**The movesMade is the number of moves a player has made on THIS level**/
 	transient int movesMade;
 	
+	/**
+	 * Generates a puzzle level
+	 * @param levelID - ID of this level being made
+	 */
 	public PuzzleLevel(int levelID) {
 		super(levelID, "Puzzle", true);
 		moveLimit = 0;
@@ -49,7 +53,6 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 * to prevent duplicate triggers of the same threshold (Since you can moves a piece off a board and back onto it).
 	 * 
 	 * CheckStatus then checks if the level is done. If so, it returns true. Otherwise, false.
-	 * @author Dylan
 	 * @return boolean - true if the level's end conditions are met
 	 */
 	@Override
@@ -74,7 +77,6 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * incrementMovesMade is called whenever a move is performed in a puzzle level. This includes bullpen to board,
 	 * board to board, or off the board. It always increments by 1.
-	 * @author Dylan
 	 */
 	public void incrementMovesMade(){
 		movesMade++;
@@ -90,6 +92,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	
 	/**
 	 * Initializes the view to display correctly for a puzzle level. 
+	 * @param g - game where levelView is located
 	 * @return LevelView - view of the initialized LevelView
 	 */
 	@Override
@@ -99,8 +102,13 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 		return view;
 	}
 	
+	/**
+	 * Creates a string representation of this level
+	 * @return String representation of this level
+	 */
+	@Override
 	public String toString(){
-		return levelType+levelID+moveLimit;
+		return levelType+levelID+moveLimit+board.toString()+bullpen.toString();
 	}
 	
 	/**

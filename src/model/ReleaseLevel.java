@@ -9,9 +9,9 @@ import view.LevelView;
 import view.NumbersReleasedView;
 
 /** 
- * A ReleaseLevel handles the back end for a Release game mode, tracking the end conditions and progress of 
+ * A ReleaseLevel handles the back end for a Release game mode. Tracking the end conditions and progress of 
  * the game.
- * @author Dylan
+ * @author dfontana
  */
 public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**Serialized ID used for writing to disk**/
@@ -24,6 +24,10 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	transient int yellows[];
 	transient int blues[];
 
+	/**
+	 * Generates a ReleaseLevel
+	 * @param levelID - Id of this level being made
+	 */
 	public ReleaseLevel(int levelID) {
 		super(levelID, "Release", false);
 		initializeVars();
@@ -37,7 +41,6 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * all this logic is done here.
 	 * 
 	 * Exploit this fact to initialize non-transient files in the constructor!
-	 * @author Dylan
 	 */
 	void initializeVars() {
 		reds = new int[6];
@@ -58,11 +61,9 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * 
 	 * After the StarsEarned is modified, checkStatus then returns the boolean as to whether or not the level is 
 	 * completed. It returns true if all sets are released OR the bullpen no longer has any pieces to be played.
-	 * @author Dylan
 	 * @return	boolean - true if level is complete
 	 */
 	@Override
-
 	public boolean checkStatus() {
 		boolean redSum = sumIsSix(reds);
 		boolean blueSum = sumIsSix(blues);
@@ -78,7 +79,6 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Helper method to update progress. Allows to check the array passed in sums to 6, indicating all
 	 * numbers in a set is released.
-	 * @author Dylan
 	 * @param array being summed
 	 * @return true if the array sums to 6
 	 */
@@ -92,7 +92,6 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the reds array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
-	 * @author Dylan
 	 * @param releasedNum Is the number that was released
 	 */
 	public void addToRedReleased(int releasedNum){
@@ -102,7 +101,6 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the blues array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
-	 * @author Dylan
 	 * @param releasedNum Is the number that was released
 	 */
 	public void addToBlueReleased(int releasedNum){
@@ -112,7 +110,6 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the yellows array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
-	 * @author Dylan
 	 * @param releasedNum Is the number that was released
 	 */
 	public void addToYellowReleased(int releasedNum){
@@ -121,6 +118,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 
 	/**
 	 * Initializes the view to display correctly for a lightninglevel. 
+	 * @param g - Game where levelView is located
 	 * @return LevelView - view of the initialized LevelView
 	 */
 	@Override
@@ -130,8 +128,13 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		return view;
 	}
 	
+	/**
+	 * Returns a string representation of this level
+	 * @return string of this level
+	 */
+	@Override
 	public String toString(){
-		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(yellows);
+		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(yellows)+board.toString()+bullpen.toString();
 	}
 	
 	/**

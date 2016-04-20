@@ -7,9 +7,7 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import model.AbstractLevelModel;
 import model.PuzzleLevel;
-import view.BuilderView;
 import view.LevelPropertiesView;
 
 /**
