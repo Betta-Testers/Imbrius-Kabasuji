@@ -213,8 +213,8 @@ public class Piece implements Serializable{
 		case 3:
 			color = new Color(240, 80, 0);
 			tiles[0] = new PieceTile(0, 0, this);
-			tiles[1] = new PieceTile(1, 0, this);
-			tiles[2] = new PieceTile(1, 1, this);
+			tiles[1] = new PieceTile(-1, 0, this);
+			tiles[2] = new PieceTile(-1, 1, this);
 			tiles[3] = new PieceTile(2, 0, this);
 			tiles[4] = new PieceTile(1, 0, this);
 			tiles[5] = new PieceTile(-2, 0, this);

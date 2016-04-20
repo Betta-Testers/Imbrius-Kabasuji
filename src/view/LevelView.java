@@ -46,6 +46,7 @@ public class LevelView extends JFrame {
 		this.levelInfo = new LevelInfoView(1);
 		
 		setupLayout();
+		initializeControllers();
 	}
 	
 	public void initializeControllers() {

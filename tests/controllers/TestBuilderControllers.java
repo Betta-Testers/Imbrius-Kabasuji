@@ -84,7 +84,7 @@ public class TestBuilderControllers extends MouseTesting {
 
 	public void testBuilderPieceSpinnerController() {
 		PieceGroup pg = bp.getPlayablePieces().get(1);
-		BuilderPieceGroupView bpgv = (BuilderPieceGroupView)bpv.getPieceGroupView(1);
+		BuilderPieceGroupView bpgv = (BuilderPieceGroupView)bpv.getPieceGroupViews()[1];
 		assertEquals(0, pg.getNumPieces());
 		ChangeEvent ce = new ChangeEvent(bpgv.getSpinner());
 		bpgv.getSpinner().setValue(2);

@@ -28,7 +28,7 @@ public class BullpenPieceSelectController implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		SelectPieceButton source  = (SelectPieceButton) ae.getSource();
 		bp.setSelectedPiece(source.getPieceID());
-		selectedPieceView.redraw();
-		selectedPieceView.repaint();
+		selectedPieceView.getPiecePanel().redraw();
+		selectedPieceView.getPiecePanel().repaint();
 	}
 }
