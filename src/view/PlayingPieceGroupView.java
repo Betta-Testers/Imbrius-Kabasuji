@@ -5,20 +5,17 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import model.PieceGroup;
+
 public class PlayingPieceGroupView extends AbstractPieceGroupView{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JLabel label;
 	
-	//TODO Change Arguments: PieceGroup pg
-	public PlayingPieceGroupView(int id){
-		super(id);
+	public PlayingPieceGroupView(PieceGroup pieceGroup){
+		super(pieceGroup);
 		
-		//TODO: Initialize JLabel text to piece group count.
-		label = new JLabel("0");
+		label = new JLabel(Integer.toString(pieceGroup.getNumPieces()));
 		
 		setupLayout();
 	}

@@ -15,7 +15,8 @@ public class UndoEditButtonController {
 	}
 	
 	public boolean undoRequested() {
-		// TODO discuss the handling moves, Solitaire uses enumerations
-		return.app.undoMove();
+		// TODO Implement move tracking in the Builder Class
+		// return.app.undoMove();
+		return false;
 	}
 }

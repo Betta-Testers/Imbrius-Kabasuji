@@ -38,7 +38,7 @@ public class AvailableLevelView extends JPanel {
 	
 	/**
 	 * Sets the number of stars displayed for this level to the specified number
-	 * @author Dylan
+	 * @author dfontana
 	 * @param starsEarned - number of stars to display. Any number other than 1-3 will not change stars
 	 */
 	void updateStars(int starsEarned){
@@ -61,6 +61,7 @@ public class AvailableLevelView extends JPanel {
 	 * By default a button has an icon set, is disabled, and text is not set.
 	 * Passing it an integer 1,2 or 3 will also display the correct number of stars for the
 	 * level!
+	 * Entering a 0 will unlock the level and set the stars to 0 by default
 	 * @param i
 	 */
 	void unlockLevel(int i){
@@ -85,6 +86,9 @@ public class AvailableLevelView extends JPanel {
 		return btnSelectLevel;
 	}
 	
+	/**
+	 * Method for setting up the layout for the AvailableLevelView
+	 */
 	void setupLayout(){
 		layout = new GroupLayout(this);
 		layout.setHorizontalGroup(

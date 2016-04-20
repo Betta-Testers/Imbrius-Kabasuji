@@ -15,8 +15,13 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+/**
+ * Class for displaying the Levels available for play.
+ * 
+ * @author Brendan
+ * @author dfontana
+ */
 public class LevelSelectionView extends JFrame {
-
 	private static final long serialVersionUID = 1L;
 	JPanel contentPane;
 	JLabel lblTitle;
@@ -57,17 +62,15 @@ public class LevelSelectionView extends JFrame {
 
 	/**
 	 * Adds a PlayLevelButtonController to the button for the given ID
-	 * @author Dylan
 	 * @param levelID - ID of level adding listener to
 	 * @param g - game object, passed for the controller to access
 	 */
 	public void addListenerToButton(int levelID, Game g){
-		(this.levels[levelID-1].getPlayButton()).addActionListener(new PlayLevelButtonController(this, g, levelID));
+		this.levels[levelID-1].getPlayButton().addActionListener(new PlayLevelButtonController(this, g, levelID));
 	}
 	
 	/**
 	 * Updates the number of stars displayed for the given levelID
-	 * @author Dylan
 	 * @param levelID - level being updated
 	 * @param starsEarned - number of stars to display
 	 */
@@ -78,7 +81,6 @@ public class LevelSelectionView extends JFrame {
 	/**
 	 * Unlocks the level specified and sets the stars earned to the
 	 * stars earned of given
-	 * @author Dylan
 	 * @param levelID - Level being unlocked
 	 * @param starsEarned - number of stars to display
 	 */
@@ -88,14 +90,15 @@ public class LevelSelectionView extends JFrame {
 	
 	/**
 	 * Returns the button for the given levelID
-	 * @author Dylan
 	 * @param levelID - the levelID being accessed (values of 1+ only)
 	 * @return JButton
 	 */
 	public JButton getButton(int levelID) {
 		return this.levels[levelID-1].getPlayButton();
 	}
-	
+	/**
+	 * Method for setting up the layout for the LevelSelectionView
+	 */
 	void setupLayout() {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

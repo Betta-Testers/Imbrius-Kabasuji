@@ -6,9 +6,7 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
-import model.AbstractLevelModel;
+import model.Bullpen;
 import view.SelectPieceButton;
 
 /**
@@ -18,14 +16,14 @@ import view.SelectPieceButton;
 
 //TODO Add view refresh stuff
 public class BullpenPieceSelectController implements ActionListener {
-	AbstractLevelModel levelModel;
-	BullpenPieceSelectController (AbstractLevelModel levelModel) {
-		this.levelModel = levelModel;
+	Bullpen bp;
+	public BullpenPieceSelectController (Bullpen bp) {
+		this.bp = bp;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		SelectPieceButton source  = (SelectPieceButton) ae.getSource();
-		levelModel.getBullpen().setSelectedPiece(source.getPieceID());
+		bp.setSelectedPiece(source.getPieceID());
 	}
 }
