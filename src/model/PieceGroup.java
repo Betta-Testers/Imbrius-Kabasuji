@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
 
-public class PieceGroup implements Comparable<PieceGroup> {
-
-	/**
-	 * @author awharrison
-	 */
+/**
+ * @author awharrison
+ */
+public class PieceGroup implements Comparable<PieceGroup>, Serializable{
+	private static final long serialVersionUID = 4819970575743912382L;
+	
 	Piece piece;
 	int numPieces;
 	
@@ -63,7 +65,11 @@ public class PieceGroup implements Comparable<PieceGroup> {
 		return this.numPieces;
 	}
 	
+	/**
+	 * Format: ID:Count
+	 * @return string representation of this piecegroup
+	 */
 	public String toString(){
-		return "ID:"+this.piece.getID();
+		return "ID:"+this.piece.getID()+"Count:"+this.numPieces;
 	}
 }

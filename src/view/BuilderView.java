@@ -5,18 +5,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.Builder;
-import controllers.SetNumberOfMovesSpinnerController;
-import model.AbstractLevelModel;
-import model.PuzzleLevel;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class BuilderView extends JFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	BoardView boardView;
@@ -25,7 +18,6 @@ public class BuilderView extends JFrame {
 	LevelPropertiesView levelPropertyView;
 	BullpenView bullpenView;
 	SelectedPieceView selectedPieceView;
-	AbstractLevelModel modelLevel; 
 	Builder builder;
 	
 	public BuilderView(Builder b) {
@@ -41,8 +33,8 @@ public class BuilderView extends JFrame {
 		boardView = new BoardView();
 		buttonGroupView = new ButtonGroupView(this);
 		releaseNumberView = new ReleaseNumberCreationView();
-		levelPropertyView = new LevelPropertiesView();
-		bullpenView = new BullpenView("builder");		
+		bullpenView = new BullpenView();	
+		levelPropertyView = new LevelPropertiesView();	
 		selectedPieceView = new SelectedPieceView();
 		
 		setupLayout();		
@@ -51,27 +43,7 @@ public class BuilderView extends JFrame {
 	public Builder getBuilder() {
 		return this.builder;
 	}
-	
-	/**
-	 * Sets the level model for this builder. This is critical to setup. After the
-	 * blank builderView has been passed around the type of level model it will be handling
-	 * is determined at runtime. This method is used to set the model level and prepare the 
-	 * view.
-	 * @param m
-	 */
-	/* TODO Implement additional instructions as needed to paint the board, prepare the bullpen,
-	 * etc.
-	 */
-	public void setModelLevel(AbstractLevelModel m){
-		modelLevel = m;
-		levelPropertyView.setLevelModel(m);
-	}
-	
-	public AbstractLevelModel getModelLevel() {
-		return this.modelLevel;
-	}
-	
-	
+
 	/**
 	 * Prepares the view of a puzzle level by disabling release
 	 * tile creation and showing only relevant information in
@@ -79,6 +51,8 @@ public class BuilderView extends JFrame {
 	 */
 	public void prepPuzzle(){
 		releaseNumberView.setVisible(false);
+		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
+		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.puzzle();	
 	}
 	
@@ -89,6 +63,8 @@ public class BuilderView extends JFrame {
 	 */
 	public void prepLightning(){
 		releaseNumberView.setVisible(false);
+		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
+		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.lightning();	
 	}
 	
@@ -99,10 +75,31 @@ public class BuilderView extends JFrame {
 	 */
 	public void prepRelease(){
 		releaseNumberView.setVisible(true);
+		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
+		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.release();
 	}
 	
+	/**
+	 * returns the ReleaseNumberView so the number selected
+	 * can be retrieved 
+	 * @return
+	 */
+	public ReleaseNumberCreationView getReleaseNumberView(){
+		return this.releaseNumberView;
+	}
 	
+	/**
+	 * returns the BullpenView
+	 * @return
+	 */
+	public BullpenView getBullpenView() {
+		return this.bullpenView;
+	}
+	
+	/*
+	 * Method for setting up the layout for the BuilderView
+	 */
 	void setupLayout(){
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
