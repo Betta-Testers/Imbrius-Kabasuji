@@ -16,10 +16,11 @@ import model.BoardTile;
 import model.Bullpen;
 import model.EmptyTile;
 import model.Piece;
-import model.ReleaseTile;
 import model.PieceTile;
 
 /**
+ * Controls all actions having to do with manipulating tiles on a Puzzle or Lightning board in builder mode 
+ * 
  * @author awharrison
  *
  */
@@ -41,8 +42,14 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	}
 	
 	@Override
+	/**
+	 * Swap individual tile types on the board
+	 * 
+	 * @param me MouseEvent
+	 */
+	
+	// TODO place piece if a piece is in the bullpen
 	public void mouseClicked(MouseEvent e) {
-		// TODO make everything one click, release tiles can be toggled off
 		// TODO make grab the selectedTile from a tileView
 		// tile swapping
 		AbstractTile selectedTile = (AbstractTile)e.getSource();
@@ -59,15 +66,15 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		else if (selectedTile.getTileType().equals("empty")) {				
 			Move m = new SwapTileEmptyToBoardMove(bView, (EmptyTile) selectedTile, lm);
 			m.doMove();
-		}
-		// single click on a release tile results in a swap to a board tile
-		else if (selectedTile.getTileType().equals("Release")) {
-			Move m = new SwapTileReleaseToBoardMove(bView, (ReleaseTile) selectedTile, lm);	
-			m.doMove();
 		}	
 	}
 
 	@Override
+	/**
+	 * Select a piece that is currently on the board
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mousePressed(MouseEvent e) {
 		AbstractTile selectedTile = (AbstractTile)e.getSource();
 		
@@ -88,6 +95,11 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	
 
 	@Override
+	/**
+	 * place a piece on the board from that was previously on the board
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mouseReleased(MouseEvent e) {
 		AbstractTile selectedTile = (AbstractTile)e.getSource();
 		if(selectedTile == null) {
@@ -107,6 +119,11 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	}
 
 	@Override
+	/**
+	 * If currently dragging a piece, remove the piece from the board and return it to the bullpen
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mouseExited(MouseEvent e) {
 		if(draggedPiece != null) {
 			Move m = new MovePieceOffBoardMove(lm, draggedPiece);
@@ -116,12 +133,22 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	}
 
 	@Override
+	/**
+	 * Show a preview of a piece on the board if a piece is in the bullpen
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mouseDragged(MouseEvent e) {
 		board.showPiecePreview(draggedPiece, e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
 		
 	}
 
 	@Override
+	/**
+	 * Redraw the piece being dragged where the mouse goes
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mouseMoved(MouseEvent e) {
 		board.showPiecePreview(bp.getSelectedPiece(), e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
 		

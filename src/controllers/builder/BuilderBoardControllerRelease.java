@@ -21,6 +21,8 @@ import model.ReleaseTile;
 import model.PieceTile;
 
 /**
+ * Controls all actions having to do with manipulating tiles on a Release board in builder mode 
+ * 
  * @author awharrison
  *
  */
@@ -44,6 +46,13 @@ public class BuilderBoardControllerRelease implements MouseListener, MouseMotion
 	}
 	
 	@Override
+	/**
+	 * Swap individual tile types on the board
+	 * 
+	 * @param me MouseEvent
+	 */
+	
+	// TODO place piece if a piece is in the bullpen
 	public void mouseClicked(MouseEvent e) {
 		// TODO make everything one click, release tiles can be toggled off
 		// TODO make grab the selectedTile from a tileView
@@ -86,6 +95,11 @@ public class BuilderBoardControllerRelease implements MouseListener, MouseMotion
 	}
 
 	@Override
+	/**
+	 * Select a piece that is currently on the board
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mousePressed(MouseEvent e) {
 		AbstractTile selectedTile = (AbstractTile)e.getSource();
 		
@@ -106,6 +120,11 @@ public class BuilderBoardControllerRelease implements MouseListener, MouseMotion
 	
 
 	@Override
+	/**
+	 * place a piece on the board from that was previously on the board
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mouseReleased(MouseEvent e) {
 		AbstractTile selectedTile = (AbstractTile)e.getSource();
 		if(selectedTile == null) {
@@ -122,10 +141,14 @@ public class BuilderBoardControllerRelease implements MouseListener, MouseMotion
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// preview piece on the board
-		board.showPiecePreview(bp.getSelectedPiece(), e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
 	}
 
 	@Override
+	/**
+	 * If currently dragging a piece, remove the piece from the board and return it to the bullpen
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mouseExited(MouseEvent e) {
 		if(draggedPiece != null) {
 			Move m = new MovePieceOffBoardMove(lm, draggedPiece);
@@ -135,12 +158,22 @@ public class BuilderBoardControllerRelease implements MouseListener, MouseMotion
 	}
 
 	@Override
+	/**
+	 * Show a preview of a piece on the board if a piece is in the bullpen
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mouseDragged(MouseEvent e) {
 		board.showPiecePreview(draggedPiece, e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
 		
 	}
 
 	@Override
+	/**
+	 * Redraw the piece being dragged where the mouse goes
+	 * 
+	 * @param me MouseEvent
+	 */
 	public void mouseMoved(MouseEvent e) {
 		board.showPiecePreview(bp.getSelectedPiece(), e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
 		
