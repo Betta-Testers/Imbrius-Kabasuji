@@ -8,6 +8,12 @@ import model.Board;
 import model.BoardTile;
 import model.ReleaseTile;
 
+/**
+ * Represents the swap between a board tile and a release tile
+ * 
+ * @author awharrison
+ *
+ */
 public class SwapTileBoardToReleaseMove extends Move {
 	Board board;
 	BoardTile oldTile;

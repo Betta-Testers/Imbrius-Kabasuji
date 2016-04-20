@@ -1,12 +1,11 @@
 package controllers.builder;
 
 import java.awt.event.ActionEvent;
-
+import java.awt.event.ActionListener;
 import view.ExistingLevelView;
-
 import app.Builder;
 
-public class ExistingLevelDeleteController implements java.awt.event.ActionListener {
+public class ExistingLevelDeleteController implements ActionListener {
 	Builder b;
 	
 	public ExistingLevelDeleteController (Builder b) {
