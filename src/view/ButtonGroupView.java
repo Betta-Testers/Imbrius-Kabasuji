@@ -9,10 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
-
-import controllers.SaveAndCloseLevelButtonController;
-
 import javax.swing.GroupLayout.Alignment;
+
+import controllers.builder.SaveAndCloseLevelButtonController;
 
 
 public class ButtonGroupView extends JPanel{

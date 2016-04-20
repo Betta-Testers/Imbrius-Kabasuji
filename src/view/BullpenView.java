@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import controllers.BuilderPieceSpinnerController;
-import controllers.BullpenPieceSelectController;
+import controllers.builder.BuilderPieceSpinnerController;
+import controllers.common.BullpenPieceSelectController;
 import model.Bullpen;
 import model.PieceGroup;
 

@@ -10,11 +10,12 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
-import controllers.SetNumberOfMovesSpinnerController;
 import model.AbstractLevelModel;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import controllers.builder.SetNumberOfMovesSpinnerController;
 
 public class LevelPropertiesView extends JPanel{
 	/**
