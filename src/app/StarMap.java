@@ -125,6 +125,7 @@ public class StarMap implements Serializable{
 		if((new File(location)).delete()){
 			levelData.remove(levelID);
 			stars.remove(levelID);
+			this.save();
 			return true;
 		}
 		return false;
