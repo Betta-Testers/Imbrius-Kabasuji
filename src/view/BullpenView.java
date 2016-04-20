@@ -56,7 +56,6 @@ public class BullpenView extends JScrollPane {
 				BuilderPieceGroupView pgv = (BuilderPieceGroupView)pieceGroupViews[i];
 				pgv.addSpinnerChangeListener(new BuilderPieceSpinnerController((BuilderPieceGroupView)pgv, bp.getPlayablePieces().get(i)));
 			}
-			pieceGroupViews[i].addSelectButtonActionListener(new BullpenPieceSelectController(bp));
 		}
 	}
 
@@ -90,7 +89,7 @@ public class BullpenView extends JScrollPane {
 		panelScrollContainer.setLayout(groupLayout);	
 	}
 
-	public AbstractPieceGroupView getPieceGroupView(int i) {
-		return pieceGroupViews[i];
+	public AbstractPieceGroupView[] getPieceGroupViews() {
+		return pieceGroupViews;
 	}
 }

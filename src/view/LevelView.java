@@ -11,7 +11,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
+import model.PieceGroup;
 
 public class LevelView extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -44,6 +46,12 @@ public class LevelView extends JFrame {
 		this.levelInfo = new LevelInfoView(1);
 		
 		setupLayout();
+	}
+	
+	public void initializeControllers() {
+		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
+			pgv.addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPiece));
+		}
 	}
 
 	/**
@@ -90,5 +98,7 @@ public class LevelView extends JFrame {
 		content.setLayout(gl_LevelView);
 	}
 
-
+	public BoardView getBoardView() {
+		return this.boardView;
+	}
 }
