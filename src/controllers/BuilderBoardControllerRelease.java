@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import view.BuilderView;
 import view.BullpenView;
+import view.ReleaseNumberCreationView;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Board;
@@ -20,20 +21,22 @@ import model.PieceTile;
  *
  */
 
-public class BuilderBoardController extends MouseAdapter {
+public class BuilderBoardControllerRelease extends MouseAdapter {
 	BuilderView bView;
 	AbstractLevelModel lm;
 	Board board;
 	Bullpen bp;
 	BullpenView bpv;
+	ReleaseNumberCreationView rncv;
 	Piece draggedPiece;
 	
-	public BuilderBoardController(BuilderView bView, AbstractLevelModel lm) {
+	public BuilderBoardControllerRelease(BuilderView bView, AbstractLevelModel lm) {
 		this.bView = bView;
 		this.lm = lm;
 		this.board = lm.getBoard();
 		this.bp = lm.getBullpen();
 		this.bpv = bView.getBullpenView();
+		rncv = bView.getReleaseNumberView();
 	}
 	
 	@Override
@@ -46,21 +49,36 @@ public class BuilderBoardController extends MouseAdapter {
 		if(selectedTile == null) {
 			throw new RuntimeException("BoardController::somehow selected a null tile");
 		} 
+		
+		if(rncv.getNumberSelected() == 0) {
 			// single click on a board tile results in a swap to an empty tile
-		if(selectedTile.getTileType().equals("board")){
-			Move m = new SwapTileBoardToEmptyMove(bView, (BoardTile) selectedTile, lm);
-			m.doMove();
-		} 
-		// single click on an empty tile results in a swap to a board tile
-		else if (selectedTile.getTileType().equals("empty")) {				
-			Move m = new SwapTileEmptyToBoardMove(bView, (EmptyTile) selectedTile, lm);
-			m.doMove();
+			if(selectedTile.getTileType().equals("board")){
+				Move m = new SwapTileBoardToEmptyMove(bView, (BoardTile) selectedTile, lm);
+				m.doMove();
+			} 
+			// single click on an empty tile results in a swap to a board tile
+			else if (selectedTile.getTileType().equals("empty")) {				
+				Move m = new SwapTileEmptyToBoardMove(bView, (EmptyTile) selectedTile, lm);
+				m.doMove();
+			}
+			// single click on a release tile results in a swap to a board tile
+			else if (selectedTile.getTileType().equals("Release")) {
+				Move m = new SwapTileReleaseToBoardMove(bView, (ReleaseTile) selectedTile, lm);	
+				m.doMove();
+			} 
+		} else {
+			// click on a board tile with a ReleaseNumber toggle button toggled results in a swap to a release tile
+			if(selectedTile.getTileType().equals("board")){
+				Move m = new SwapTileBoardToReleaseMove(bView, (BoardTile) selectedTile, lm);
+				m.doMove();
+			} 
+			// click on a release tile with a ReleaseNumber toggle button toggled results in a swap to a release tile
+			else if (selectedTile.getTileType().equals("Release")) {
+				Move m = new SwapTileReleaseToReleaseMove(bView, (ReleaseTile) selectedTile, lm);
+				m.doMove();
+			}
 		}
-		// single click on a release tile results in a swap to a board tile
-		else if (selectedTile.getTileType().equals("Release")) {
-			Move m = new SwapTileReleaseToBoardMove(bView, (ReleaseTile) selectedTile, lm);	
-			m.doMove();
-		}	
+			
 	}
 
 	@Override
