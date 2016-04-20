@@ -45,14 +45,6 @@ public abstract class AbstractTile implements Serializable{
 	}
 	
 	/**
-	 * Get the number assigned to be displayed on the tile
-	 * @return The number on the tile. -1 if no number;
-	 */
-	public int getNumber() {
-		return -1;
-	}
-	
-	/**
 	 * Changes the color of the tile if the tile's view is included in a piece flyby
 	 * @param isValidLocation Set the color to reflect to the user if it is a valid placement
 	 */
@@ -76,13 +68,5 @@ public abstract class AbstractTile implements Serializable{
 	 */
 	public String getTileType() {
 		return this.tileType;
-	}
-	
-	/**
-	 * Returns the current color of the tile
-	 * @return The color of the tile
-	 */
-	public Color getColor() {
-		return this.color;
 	}
 }

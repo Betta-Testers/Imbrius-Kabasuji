@@ -32,7 +32,6 @@ public class ReleaseTile extends BoardTile implements Serializable{
 	/**
 	 * @return The number assigned to this tile within it's color set
 	 */
-	@Override
 	public int getNumber() {
 		return this.value;
 	}
