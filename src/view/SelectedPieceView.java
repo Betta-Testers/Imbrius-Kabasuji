@@ -7,20 +7,19 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 
 import model.Bullpen;
 
 public class SelectedPieceView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
+	JPanel piecePanel;
 	JButton btnRotateLeft;
 	JButton btnRotateRight;
 	JButton btnFlipX;
 	JButton btnFlipY;
 	Bullpen bp;
 	
-
 	public SelectedPieceView(Bullpen bp){
 		setPreferredSize(new Dimension(384, 224));
 		this.bp = bp;
@@ -33,7 +32,7 @@ public class SelectedPieceView extends JPanel{
 		btnFlipY = new JButton("");
 		btnFlipY.setToolTipText("Flip Y");
 		
-		
+		piecePanel = new JPanel();
 		setupLayout();
 	}
 
@@ -44,17 +43,13 @@ public class SelectedPieceView extends JPanel{
 		btnFlipX.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipX.png")));
 		btnFlipY.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipY.png")));
 		
-		//TODO REMOVE THIS CODE FOR ACTUAL PIECE
-		JLabel lblSAMPLEpiecePlacement = new JLabel("");
-		lblSAMPLEpiecePlacement.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/board/selectedPieceArea.png")));
-		
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(87, Short.MAX_VALUE)
-					.addComponent(lblSAMPLEpiecePlacement)
-					.addGap(18)
+					.addContainerGap(96, Short.MAX_VALUE)
+					.addComponent(piecePanel, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
+					.addGap(14)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnFlipX, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
@@ -69,19 +64,31 @@ public class SelectedPieceView extends JPanel{
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblSAMPLEpiecePlacement, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnRotateLeft)
 								.addComponent(btnRotateRight))
-							.addPreferredGap(ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnFlipX)
-								.addComponent(btnFlipY))))
+								.addComponent(btnFlipY)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(16)
+							.addComponent(piecePanel, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
+		GroupLayout gl_piecePanel = new GroupLayout(piecePanel);
+		gl_piecePanel.setHorizontalGroup(
+			gl_piecePanel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 196, Short.MAX_VALUE)
+		);
+		gl_piecePanel.setVerticalGroup(
+			gl_piecePanel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 197, Short.MAX_VALUE)
+		);
+		piecePanel.setLayout(gl_piecePanel);
 		setLayout(groupLayout);
 	}
 }
