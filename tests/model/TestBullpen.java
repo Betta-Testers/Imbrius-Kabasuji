@@ -40,11 +40,11 @@ public class TestBullpen extends TestCase {
 	
 	public void testSort() {
 		// test that the ArrayList is unsorted
-		assertEquals(5, testPlayablePieces.get(0).getPiece().getID());
-		assertEquals(3, testPlayablePieces.get(1).getPiece().getID());
-		assertEquals(1, testPlayablePieces.get(2).getPiece().getID());
-		assertEquals(4, testPlayablePieces.get(3).getPiece().getID());
-		assertEquals(2, testPlayablePieces.get(4).getPiece().getID());
+		assertEquals(4, testPlayablePieces.get(0).getPiece().getID());
+		assertEquals(2, testPlayablePieces.get(1).getPiece().getID());
+		assertEquals(5, testPlayablePieces.get(2).getPiece().getID());
+		assertEquals(3, testPlayablePieces.get(3).getPiece().getID());
+		assertEquals(1, testPlayablePieces.get(4).getPiece().getID());
 //		
 		// create a Bullpen with above ArrayList
 		testBP1 = new Bullpen(testPlayablePieces);
