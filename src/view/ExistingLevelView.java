@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class ExistingLevelView extends JPanel {	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ImageIcon icon;
 	JButton editLevel;
 	JButton deleteLevel;

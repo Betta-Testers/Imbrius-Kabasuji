@@ -11,8 +11,10 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 public class BoardView extends JPanel{
+	private static final long serialVersionUID = 1L;
 	//TODO Add Attribute: TileView tiles[]
 	//TODO Add Attribute: Board modelBoard
+	
 
 	//TODO Change Arguments: Board b
 	public BoardView(){
