@@ -52,13 +52,11 @@ public class piecePanel extends JPanel{
 			for(PieceTile t: bp.getSelectedPiece().getTiles()){
 				int xCoord = (t.getCol()*32)+xCenter;
 				int yCoord = (t.getRow()*32)+yCenter;
-				System.out.println("Slpv x:"+xCoord+" y:"+yCoord);
 				
 				offscreenGraphics.setColor(t.getColor());
 				offscreenGraphics.fillRect(xCoord, yCoord, 32, 32);
 				offscreenGraphics.setColor(Color.BLACK);
 				offscreenGraphics.drawRect(xCoord, yCoord, 32, 32);
-				//factory.drawToBoard(offscreenGraphics, t);
 			}	
 			
 		}

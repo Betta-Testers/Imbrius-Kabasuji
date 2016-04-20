@@ -49,9 +49,7 @@ public class BoardView extends JPanel{
 		for (int row = 0; row < 12; row++) {
 			for(int col = 0; col < 12; col++){
 				AbstractTile t = b.getTileAt(row*32, col*32);
-				
 				factory.drawToBoard(offscreenGraphics, t);
-				System.out.println("Drew "+row+" ,"+col);
 			}
 		//I can assert that the board's graphics is FULL of tiles at this point
 		}		
