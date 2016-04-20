@@ -12,6 +12,10 @@ import model.PieceGroup;
  *
  */
 public class SelectPieceButton extends JButton {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int pieceID;
 	SelectPieceButton(PieceGroup pieceGroup) {
 		super();
