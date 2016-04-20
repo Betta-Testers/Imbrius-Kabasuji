@@ -13,11 +13,13 @@ import java.util.Set;
 import java.util.TreeMap;
 
 /**
+ * StarMap tracks what levels are available and their max stars earned.
+ * 
  * StarMap is the functionality of two TreeMaps merged into one, where one TreeMap holds a higher importance over the other.
  * One TreeMap associates a Key to a Value, while the other TreeMap associates the same set of Keys to different values.
  * The second TreeMap, however, cannot add a Key,Value pair unless the first map has the key.
  * 
- * @author Dylan
+ * @author dfontana
  */
 public class StarMap implements Serializable{
 	/**This class is saved to disk to store the max number of stars earned for a level**/
@@ -32,6 +34,10 @@ public class StarMap implements Serializable{
 	/**Path to Directory assigned in the constructor to save the StarMap serialization**/
 	final String directory;
 
+	/**
+	 * Generates a StarMap
+	 * @param directory this starMap is located in
+	 */
 	StarMap(String directory){
 		this.directory = directory;
 	}
@@ -42,7 +48,7 @@ public class StarMap implements Serializable{
 	 * is populated with levelIDs found and their types.
 	 */
 	void populateFromDirectory(){
-		/**Creates the directory if it DNE. Return at this point, since
+		/*Creates the directory if it DNE. Return at this point, since
 		 * nothing would be in an empty directory
 		 */
 		if(new File(directory).mkdirs()){return;}
@@ -242,7 +248,7 @@ public class StarMap implements Serializable{
 	}
 
 	/**
-	 * Tells whether the levelData is empty or not
+	 * Tells whether the levelData is empty or not.
 	 * @return true if levelData is empty
 	 */
 	public boolean isEmpty(){
@@ -261,7 +267,7 @@ public class StarMap implements Serializable{
 
 	//========================== TO STRING METHODS ============================
 	/**
-	 * Returns the toString of just the LevelData keys
+	 * Returns the toString of just the LevelData keys.
 	 * Allows ability to see what levels are within level data, without extra info
 	 * @return toString of ArrayList -> keySet().
 	 */
@@ -270,7 +276,7 @@ public class StarMap implements Serializable{
 	}
 
 	/**
-	 * Returns the to string of the StarMap
+	 * Returns the to string of the StarMap.
 	 * Format: [ID,Type,Stars],[ID,Type,Stars], ...
 	 * If starMap is empty, returns empty string ""
 	 * @return string representation of StarMap

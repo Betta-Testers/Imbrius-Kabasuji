@@ -12,8 +12,14 @@ import javax.swing.SwingConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 
+/**
+ * Class for displaying the numbers released in a Release GAME.
+ * 
+ * @author aharrison
+ * @author dfontana
+ */
 public class NumbersReleasedView extends JPanel {
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	JLabel lblColorRed;
 	JLabel lblColorBlue;
 	JLabel lblColorYellow;
@@ -52,7 +58,6 @@ private static final long serialVersionUID = 1L;
 	 * Changes the background of the red textpane corresponding to number
 	 * to be red. This denotes to the player that the number is released from
 	 * that set.
-	 * @author Dylan
 	 * @param number
 	 */
 	void setReleasedRed(int number){
@@ -63,7 +68,6 @@ private static final long serialVersionUID = 1L;
 	 * Changes the background of the blue textpane corresponding to number
 	 * to be blue. This denotes to the player that the number is released from
 	 * that set.
-	 * @author Dylan
 	 * @param number
 	 */
 	void setReleasedBlue(int number){
@@ -74,7 +78,6 @@ private static final long serialVersionUID = 1L;
 	 * Changes the background of the yellow textpane corresponding to number
 	 * to be yellow. This denotes to the player that the number is released from
 	 * that set.
-	 * @author Dylan
 	 * @param number
 	 */
 	void setReleasedYellow(int number){

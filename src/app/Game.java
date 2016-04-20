@@ -10,6 +10,15 @@ import controllers.QuitGameButtonController;
 import controllers.ShutdownController;
 import model.AbstractLevelModel;
 
+/**
+ * Class for handling playing the game.
+ * 
+ * The Game knows about the levels available to it from the star map, initializing 
+ * the level selection view and dictating which level needs to prepare its view
+ * next. 
+ * @author dfontana
+ *
+ */
 public class Game extends LevelIO{
 
 	/**The LevelSelectionView to view all levels**/
@@ -24,6 +33,10 @@ public class Game extends LevelIO{
 	/**Holds the current level being played**/	
 	AbstractLevelModel currentLevel;
 	
+	/**
+	 * Generates a Game
+	 * @param directory this game is located in
+	 */
 	public Game(String directory){
 		super(directory);
 		this.initialize();
@@ -42,7 +55,6 @@ public class Game extends LevelIO{
 	 * DisplayLevel is called when the user has hit the button of the level they want to
 	 * play. With this information known, it is possible to load the level requested and 
 	 * make that level prepare its view and controllers (Timer for lightning for example)
-	 * @author Dylan
 	 * @param ID of the level requested to play
 	 * @return boolean - true if the level could be displayed
 	 */
@@ -75,7 +87,6 @@ public class Game extends LevelIO{
 	 * unlocked (retrieved from a method call to StarMap). It unlocks the button in the view and then
 	 * adds a listener to that button in the view that "connects" the entity to the button.
 	 * This method assumes levelData has been read in.
-	 * @author Dylan
 	 */
 	void initializeButtons(){
 		for(int id: levelData.unlockedLevels()){
@@ -92,7 +103,6 @@ public class Game extends LevelIO{
 	/**
 	 * Unlocks the next level with no stars for play. Sets the button to enabled
 	 * and initializes its controller
-	 * @author Dylan
 	 * @return int ID of level that was unlocked
 	 */
 	public int unlockNextLevel(){
@@ -103,15 +113,31 @@ public class Game extends LevelIO{
 	}
 
 	//========================== Getters ==========================//
+	/**
+	 * Gets the level selection view of this game
+	 * @return LevelSelectionView
+	 */
 	public LevelSelectionView getSelectView() {
 		return this.selectLevel;
 	}
+	/**
+	 * Returns the ExitView of this game
+	 * @return ExitView
+	 */
 	public GameExitScreen getExitView() {
 		return this.exitLevel;
 	}
+	/**
+	 * Returns the LevelView currently being played
+	 * @return LevelView
+	 */
 	public LevelView getLevelView() {
 		return this.levelView;
 	}
+	/**
+	 * Returns the model of the current level being played
+	 * @return AbstractLevelModel 
+	 */
 	public AbstractLevelModel getCurrentLevel(){
 		return currentLevel;
 	}

@@ -15,12 +15,19 @@ import model.PuzzleLevel;
 import model.ReleaseLevel;
 
 /**
- * Class capable of creating levels for testing when created and saves them to disk
- * @author Dylan
+ * Class capable of creating levels easily. 
+ * 
+ * Has the ability to change the working directory of the factory, saving levels to
+ * that location, generating a quick set of levels and various variations of level
+ * generation.
+ * @author dfontana
  *
  */
 public class LevelFactory{
+	/** Working directory that this factory will save levels to**/
 	String directory;
+	
+	/** The optionally used starMap for this factory, mostly for testing**/
 	StarMap levels;
 	
 	public LevelFactory(){

@@ -38,7 +38,7 @@ public class AvailableLevelView extends JPanel {
 	
 	/**
 	 * Sets the number of stars displayed for this level to the specified number
-	 * @author Dylan
+	 * @author dfontana
 	 * @param starsEarned - number of stars to display. Any number other than 1-3 will not change stars
 	 */
 	void updateStars(int starsEarned){

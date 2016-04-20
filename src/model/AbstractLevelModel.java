@@ -6,9 +6,8 @@ import app.Game;
 import view.LevelView;
 
 /**
- * An AbstractLevelModel class determines what kind of information all three types of 
- * levels should store inside of them and the kinds of functionality they should have.
- * @author Dylan
+ * An AbstractLevelModel dictates what a level needs to have.
+ * @author dfontana
  */
 public abstract class AbstractLevelModel implements Serializable{
 
@@ -33,12 +32,15 @@ public abstract class AbstractLevelModel implements Serializable{
 	/**The Board that is associated with this level**/
 	Board board;
 
+
 	/**
 	 * You CANNOT instantiate an AbstractLevelModel. This constructor is here so you can super() set the 
 	 * final fields within the subclasses. Otherwise, these fields would have a hard time being set AND
 	 * being final!
-	 * @author Dylan
-	 **/
+	 * @param levelID - Id of level being made
+	 * @param levelType - type of level being made
+	 * @param canMovePiece - if the level can move pieces on its board
+	 */
 	AbstractLevelModel(int levelID, String levelType, boolean canMovePiece){
 		this.levelID = levelID;
 		this.levelType = levelType;
@@ -49,7 +51,6 @@ public abstract class AbstractLevelModel implements Serializable{
 	 * Check status occurs after every move is made. This updates the current state of play in the level, such as
 	 * the movesMade, how many tiles have been covered, etc. It returns a boolean indicating if the level is finished
 	 * (true) or false if the level has not hit the end of play
-	 * @author Dylan
 	 */
 	public abstract boolean checkStatus();
 
@@ -63,16 +64,14 @@ public abstract class AbstractLevelModel implements Serializable{
 	//============================== SETTERS ==================================
 	/**
 	 * sets the board associated with this level to the one passed in
-	 * @author Dylan
-	 * @param board
+	 * @param board to be set
 	 */
  	public void setBoard(Board board){
 		this.board = board;
 	}
 	/**
 	 * Sets the bullpen associated with this level to the one passed in
-	 * @author Dylan
-	 * @param bullpen
+	 * @param bullpen to be set
 	 */
 	public void setBullpen(Bullpen bullpen){
 		this.bullpen = bullpen;
@@ -81,7 +80,6 @@ public abstract class AbstractLevelModel implements Serializable{
 	//============================== GETTERS ==================================
 	/**
 	 * Returns the ID of the level
-	 * @author Dylan
 	 * @return levelID - Integer
 	 */
 	public int getID(){
@@ -89,7 +87,6 @@ public abstract class AbstractLevelModel implements Serializable{
 	}
 	/**
 	 * Returns the type of the level
-	 * @author Dylan
 	 * @return levelType - String version of level: Puzzle, Release, or Lightning
 	 */
 	public String getType(){
@@ -97,23 +94,20 @@ public abstract class AbstractLevelModel implements Serializable{
 	}
 	/**
 	 * Returns the Bullpen of this level
-	 * @author Dylan
-	 * @return Bullpen
+	 * @return Bullpen of this level
 	 */
 	public Bullpen getBullpen(){
 		return bullpen;
 	}
 	/**
 	 * Returns the Board of this level
-	 * @author Dylan
-	 * @return Board
+	 * @return Board of this level
 	 */
 	public Board getBoard(){
 		return board;
 	}
 	/**
 	 * Returns the number of stars currently earned on this playthrough
-	 * @author Dylan
 	 * @return int between 0-3
 	 */
 	public int getStarsEarned(){

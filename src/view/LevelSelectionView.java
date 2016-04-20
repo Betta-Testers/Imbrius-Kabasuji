@@ -15,8 +15,13 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+/**
+ * Class for displaying the Levels available for play.
+ * 
+ * @author Brendan
+ * @author dfontana
+ */
 public class LevelSelectionView extends JFrame {
-
 	private static final long serialVersionUID = 1L;
 	JPanel contentPane;
 	JLabel lblTitle;
@@ -57,7 +62,6 @@ public class LevelSelectionView extends JFrame {
 
 	/**
 	 * Adds a PlayLevelButtonController to the button for the given ID
-	 * @author Dylan
 	 * @param levelID - ID of level adding listener to
 	 * @param g - game object, passed for the controller to access
 	 */
@@ -67,7 +71,6 @@ public class LevelSelectionView extends JFrame {
 	
 	/**
 	 * Updates the number of stars displayed for the given levelID
-	 * @author Dylan
 	 * @param levelID - level being updated
 	 * @param starsEarned - number of stars to display
 	 */
@@ -78,7 +81,6 @@ public class LevelSelectionView extends JFrame {
 	/**
 	 * Unlocks the level specified and sets the stars earned to the
 	 * stars earned of given
-	 * @author Dylan
 	 * @param levelID - Level being unlocked
 	 * @param starsEarned - number of stars to display
 	 */
@@ -88,7 +90,6 @@ public class LevelSelectionView extends JFrame {
 	
 	/**
 	 * Returns the button for the given levelID
-	 * @author Dylan
 	 * @param levelID - the levelID being accessed (values of 1+ only)
 	 * @return JButton
 	 */

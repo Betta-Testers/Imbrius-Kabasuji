@@ -10,6 +10,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dimension;
 import java.awt.Font;
 
+/**
+ * Class for displaying the number of moves left in a puzzle GAME.
+ * 
+ * @author dfontana
+ * @author aharrison
+ */
 public class NumberMovesLeftView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
@@ -30,7 +36,6 @@ public class NumberMovesLeftView extends JPanel {
 	 * Method to set the text of the moves left textPane. 
 	 * Method converts integer argument into a string.
 	 * The passed argument should be two places. Ex: 10 or 09
-	 * @author Dylan
 	 * @param movesLeft - Number of remaining moves to be displayed
 	 */
 	void updateMovesLeft(int movesLeft){
