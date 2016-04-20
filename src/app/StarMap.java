@@ -111,6 +111,25 @@ public class StarMap implements Serializable{
 		return levelData.get(key);
 	}
 
+	/**
+	 * Deletes the given ID from disk (if it exists) and removes it from the starMap 
+	 * (if it exists). The starMap is then saved. NOTE if the file could not be deleted
+	 * then the level will remain in the starmap.
+	 * @param levelID - int value of the level you want to delete
+	 * @return boolean - true if the level was deleted successfully.
+	 */
+	public boolean deleteFromDisk(Integer levelID){
+		if(!levelData.containsKey(levelID)){return false;}
+		String filename = levelID+"_"+levelData.get(levelID)+".storage";
+		String location = directory+filename;
+		if((new File(location)).delete()){
+			levelData.remove(levelID);
+			stars.remove(levelID);
+			return true;
+		}
+		return false;
+		
+	}
 	//========================== MAX STAR METHODS =============================
 	/**
 	 * Sets the stars of the given Key, if that key is registered in the levelData map
@@ -221,7 +240,6 @@ public class StarMap implements Serializable{
 		return 1;
 	}
 
-	
 	/**
 	 * Tells whether the levelData is empty or not
 	 * @return true if levelData is empty

@@ -123,6 +123,29 @@ public class TestStarMap extends TestCase {
 		
 	}
 	
+	public void testDeleteFromDisk(){
+		/**Provide ID that DNE**/
+		LevelFactory factory = new LevelFactory();
+		factory.setDirectory("./imbriusLevelTESTING/");
+		factory.saveLevel(factory.GeneratePuzzle(1, 1));
+		factory.saveLevel(factory.GeneratePuzzle(2, 1));
+		StarMap testStarMap = new StarMap("./imbriusLevelTESTING/");
+		testStarMap.populateFromDirectory();
+		
+		File dir = new File("./imbriusLevelTESTING/");
+		File files[] = dir.listFiles();
+		assertEquals(3,files.length);   //Proven non-empty directory
+		assertFalse(testStarMap.deleteFromDisk(3));
+		files = dir.listFiles();
+		assertEquals(3,files.length);   //Directory not changed
+
+		/**Provide ID that Does exist**/
+		assertTrue(testStarMap.deleteFromDisk(2));
+		files = dir.listFiles();
+		assertEquals(2,files.length);   //Directory changed
+		assertEquals("[1,Puzzle,0]",testStarMap.toString());
+	}
+	
 	public void testSetMaxStars(){
 		/**Try to set stars of invalid ID**/
 		boolean invalidID = starMap.setMaxStars(-1, 3);
@@ -294,33 +317,3 @@ public class TestStarMap extends TestCase {
 	}
 
 }
-
-//void testSaveAndLoad(){
-////Store some levels in levelData
-//
-//try {
-//	for(int i=1; i <= 4; i++){
-//		b.levelData.put(i, "Puzzle");
-//		File file = new File("./imbriusLevelTESTING/"+i+"_Puzzle.Storage");
-//		file.createNewFile();
-//	}
-//} catch (IOException e) {
-//	System.err.println("Could not write test files to disk");
-//	e.printStackTrace();
-//}
-//
-//
-////Prove Data is inside levelData
-//assertEquals("[1,Puzzle,0],[2,Puzzle,0],[3,Puzzle,0],[4,Puzzle,0]", b.levelData.toString());
-//
-////Delete information in levelData
-//b.levelData = null;
-//
-////Prove levelData is empty
-//assertEquals(null, b.levelData);
-//
-////load the starMap
-//b.levelData = b.loadStarMap();
-//
-//assertEquals("[1,Puzzle,0],[2,Puzzle,0],[3,Puzzle,0],[4,Puzzle,0]", b.levelData.toString() );
-//}
