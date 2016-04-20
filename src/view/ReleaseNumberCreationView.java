@@ -9,11 +9,11 @@ import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import controllers.SetReleaseTileColorController;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import controllers.builder.SetReleaseTileColorController;
 
 public class ReleaseNumberCreationView extends JPanel{
 	/**

@@ -6,7 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 
-import controllers.builder.BuilderSplashTimerController;
+import controllers.SplashTimerController;
 import view.SplashScreen;
 
 public class MainBuilder {
@@ -19,7 +19,7 @@ public class MainBuilder {
 					SplashScreen splash = new SplashScreen();
 					Builder builder = new Builder("./imbriusLevelFiles/");
 					
-					Timer timer = new Timer(2000, new BuilderSplashTimerController(splash, builder));
+					Timer timer = new Timer(2000, new SplashTimerController(splash, builder));
 					timer.setRepeats(false);
 					timer.start();
 

@@ -5,10 +5,6 @@ package controllers;
 
 import java.util.ArrayList;
 
-import controllers.common.Move;
-import controllers.common.MovePieceOffBoardMove;
-import controllers.common.MovePieceOnBoardMove;
-import controllers.common.PlacePieceOnBoardFromBullpenMove;
 import junit.framework.TestCase;
 import model.Board;
 import model.BoardTile;

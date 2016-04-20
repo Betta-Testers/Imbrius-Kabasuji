@@ -6,7 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 
-import controllers.player.GameSplashTimerController;
+import controllers.GameSplashTimerController;
 import view.SplashScreen;
 
 public class MainGame {

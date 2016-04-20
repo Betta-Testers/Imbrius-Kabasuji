@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.Game;
-import controllers.player.PlayLevelButtonController;
+import controllers.PlayLevelButtonController;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

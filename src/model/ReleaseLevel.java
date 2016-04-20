@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import app.Game;
-import controllers.player.ExitLevelButtonController;
+import controllers.ExitLevelButtonController;
 import view.LevelView;
 import view.NumbersReleasedView;
 
