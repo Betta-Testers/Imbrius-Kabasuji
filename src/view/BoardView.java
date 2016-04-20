@@ -28,7 +28,7 @@ public class BoardView extends JPanel{
 	public BoardView(Board b){
 		setPreferredSize(new Dimension(384, 384));
 		this.b = b;
-		this.paint(); //Initial painting of board from file
+		repaint(); //Initial painting of board from file
 	}
 	
 	/**
