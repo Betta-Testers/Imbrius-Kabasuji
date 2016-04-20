@@ -13,6 +13,7 @@ import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Piece;
 import model.PieceTile;
+import view.BoardView;
 
 /**
  * @author hejohnson
@@ -28,9 +29,11 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 	Piece p;
 	Move m;
 	Game game;
+	BoardView boardView;
 	
 	PuzzleBoardGameController (Game game) {
 		this.game = game;
+		this.boardView = game.getLevelView().getBoardView();
 		this.levelModel = game.getCurrentLevel();
 	}
 
@@ -51,6 +54,8 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		} else { // currently dragging a piece
 			Move m = new MovePieceOffBoardMove(levelModel, draggedPiece);
 			m.doMove();
+			boardView.redraw();
+			boardView.repaint();
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
@@ -63,6 +68,8 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		if (source instanceof PieceTile) {
 			draggedPiece = ((PieceTile)source).getPiece();
 			levelModel.getBoard().removePiece(draggedPiece);		
+			boardView.redraw();
+			boardView.repaint();
 		}
 	}
 
@@ -81,11 +88,14 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
+
 		} else {
 			if (draggedPiece != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
 				levelModel.getBoard().putPieceOnBoard(p, p.getOriginRow(), p.getOriginCol());
 			}
 		} 
+		boardView.redraw();
+		boardView.repaint();
 		draggedPiece = null;
 	}
 
@@ -103,5 +113,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		Piece p = levelModel.getBullpen().getSelectedPiece();
 		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+		boardView.redraw();
+		boardView.repaint();
 	}
 }

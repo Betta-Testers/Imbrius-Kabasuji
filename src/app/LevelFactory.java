@@ -24,6 +24,11 @@ import model.ReleaseLevel;
  *
  */
 public class LevelFactory{
+	
+//	public static void main(String[] args) {
+//		LevelFactory lf = new LevelFactory();
+//		lf.quick15("./imbriusLevelFiles/");
+//	}
 	/** Working directory that this factory will save levels to**/
 	String directory;
 	

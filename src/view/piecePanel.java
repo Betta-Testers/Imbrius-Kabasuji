@@ -1,32 +1,30 @@
+/**
+ * 
+ */
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JPanel;
 
-import model.AbstractTile;
-import model.Board;
+import model.Bullpen;
+import model.PieceTile;
 
 /**
- * @author dfontana
- * @author Heineman
+ * @author hejohnson
+ *
  */
-public class BoardView extends JPanel{
-	private static final long serialVersionUID = 1L;
-	Board b;
-	
+public class piecePanel extends JPanel{
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
 	Graphics offscreenGraphics;
-	
-	public BoardView(Board b){
-		setPreferredSize(new Dimension(384, 384));
-		this.b = b;
-		repaint(); //Initial painting of board from file
+	Bullpen bp;
+	public piecePanel(Bullpen bp){
+		this.setPreferredSize(new Dimension(192,192));
+		this.bp = bp;
 	}
 	
 	/**
@@ -43,18 +41,27 @@ public class BoardView extends JPanel{
 		// clear the image.
 		offscreenGraphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		
-		/** Draw all shapes. Note selected shape is not part of the model. */
-		//I can assert that the board's graphics is empty at this point
+		/**
+		 * X and Y center of the jPanel, offset by half a tile width to make the tile
+		 * appear in the center, not the top left corner
+		 */
+		int xCenter = 96-16;
+		int yCenter = 96-16;
 		TileViewFactory factory = new TileViewFactory();
-		for (int row = 0; row < 12; row++) {
-			for(int col = 0; col < 12; col++){
-				AbstractTile t = b.getTileAt(row*32, col*32);
+		if (bp.getSelectedPiece()!=null) {
+			for(PieceTile t: bp.getSelectedPiece().getTiles()){
+				int xCoord = (t.getCol()*32)+xCenter;
+				int yCoord = (t.getRow()*32)+yCenter;
+				System.out.println("Slpv x:"+xCoord+" y:"+yCoord);
 				
-				factory.drawToBoard(offscreenGraphics, t);
-				System.out.println("Drew "+row+" ,"+col);
-			}
-		//I can assert that the board's graphics is FULL of tiles at this point
-		}		
+				offscreenGraphics.setColor(t.getColor());
+				offscreenGraphics.fillRect(xCoord, yCoord, 32, 32);
+				offscreenGraphics.setColor(Color.BLACK);
+				offscreenGraphics.drawRect(xCoord, yCoord, 32, 32);
+				//factory.drawToBoard(offscreenGraphics, t);
+			}	
+			
+		}
 	}
 	
 	/**
@@ -63,11 +70,10 @@ public class BoardView extends JPanel{
 	 * method
 	 */
 	void ensureImageAvailable(Graphics g) {
-		
 		if (offscreenImage == null) {  
 			offscreenImage = this.createImage(this.getWidth(), this.getHeight());
 			offscreenGraphics = offscreenImage.getGraphics();			
-			
+	
 			redraw();
 		}
 	}
@@ -92,13 +98,4 @@ public class BoardView extends JPanel{
 		ensureImageAvailable(g);
 		g.drawImage(offscreenImage, 0, 0, getWidth(), getHeight(), this);
 	}
-	
-	void setMouseMotionAdapter(MouseMotionAdapter ma){
-		//TODO Fill Stub - setMouseMotionAdapter
-	}
-	
-	void setMouseAdapter(MouseAdapter ma){
-		//TODO Fill Stub - setMouseAdapter
-	}
-	
 }
