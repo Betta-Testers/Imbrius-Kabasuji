@@ -2,21 +2,15 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
 import model.AbstractTile;
 import model.Board;
 
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 
 public class BoardView extends JPanel{
 	private static final long serialVersionUID = 1L;

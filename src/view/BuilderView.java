@@ -30,7 +30,7 @@ public class BuilderView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		boardView = new BoardView();
+		boardView = new BoardView(b.getCurrentLevel().getBoard());
 		buttonGroupView = new ButtonGroupView(this);
 		releaseNumberView = new ReleaseNumberCreationView();
 		bullpenView = new BullpenView();	
