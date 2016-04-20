@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  * 
@@ -8,7 +9,9 @@ import java.awt.Color;
  *
  */
 
-public class ReleaseTile extends BoardTile {
+public class ReleaseTile extends BoardTile implements Serializable{
+	private static final long serialVersionUID = 2811431284595128127L;
+	
 	int value;
 	Color colorSet;
 	

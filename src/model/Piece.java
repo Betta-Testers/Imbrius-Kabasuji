@@ -1,32 +1,33 @@
 package model;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 /**
- * @author ejbosia
+ * @author Evan
  */
 
-public class Piece {
+public class Piece implements Serializable{
+	private static final long serialVersionUID = -5341675534216265771L;
 	
-	/*
-	 * TO DO
-	 * add methods that takes in string and returns object with those values
-	 */
-
-	PieceTile[] tiles = new PieceTile[6];
+	transient PieceTile[] tiles;
 	int ID;
 	Color color;
 	public Piece(int ID){
 		this.ID = ID;
+		this.tiles = new PieceTile[6];
 		generatePiece(ID);
 	}
 	
 	
 	/**
-	 * Method used to break down Piece into a for saving
+	 * Method used to break down Piece into a for saving.
 	 * @return String
+	 * 
+	 * @author Evan
 	 */
 	public String toString(){
 		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
@@ -35,8 +36,10 @@ public class Piece {
 	}
 
 	/**
-	 * Method used to return ID of piece
+	 * Method used to return ID of piece.
 	 * @return int
+	 * 
+	 * @author Evan
 	 */
 	
 	public int getID(){
@@ -44,57 +47,50 @@ public class Piece {
 	}
 	
 	/**
-	 * Method used to change orientation of the piece as if it was flipped vertically
+	 * Method used to change orientation of the piece as if it was rotated counter-clockwise.
+	 * 
+	 * @author Evan
 	 */
 
 	public void rotateLeft(){
 		for (int i=1; i<6; i++) {
-			PieceTile pt = tiles[1];
-			int row = pt.getRowInPiece();
-			int col = pt.getColInPiece();
-			if (pt.getColInPiece() >= 0 && pt.getRowInPiece() >= 0) {
-				pt.updateRowInPiece(-1*col);
-				pt.updateColInPiece(row);
-			} else if (pt.getColInPiece() >= 0 && pt.getRowInPiece() <= 0) {
-				pt.updateRowInPiece(-1*col);
-				pt.updateColInPiece(-1*row);
-			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() <= 0) {
-				pt.updateRowInPiece(col);
-				pt.updateColInPiece(row);
-			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() >= 0) {
-				pt.updateRowInPiece(-1*col);
-				pt.updateColInPiece(row);	
-			}
+			int row = tiles[i].getRowInPiece();
+			int col = tiles[i].getColInPiece();
+			tiles[i].updateRowInPiece(col);
+			tiles[i].updateColInPiece(-row);
 		}
 	}
 	
+	/**
+	 * Method used to change orientation of the piece as if it was rotated clockwise.
+	 * 
+	 * @author Evan
+	 */
 	public void rotateRight(){
 		for (int i=1; i<6; i++) {
-			PieceTile pt = tiles[1];
-			int row = pt.getRowInPiece();
-			int col = pt.getColInPiece();
-			if (pt.getColInPiece() >= 0 && pt.getRowInPiece() >= 0) {
-				pt.updateRowInPiece(col);
-				pt.updateColInPiece(-1*row);
-			} else if (pt.getColInPiece() >= 0 && pt.getRowInPiece() <= 0) {
-				pt.updateRowInPiece(col);
-				pt.updateColInPiece(-1*row);
-			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() <= 0) {
-				pt.updateRowInPiece(-1*col);
-				pt.updateColInPiece(-1*row);
-			} else if (pt.getColInPiece() <= 0 && pt.getRowInPiece() >= 0) {
-				pt.updateRowInPiece(col);
-				pt.updateColInPiece(row);
-			}
+			int row = tiles[i].getRowInPiece();
+			int col = tiles[i].getColInPiece();
+			tiles[i].updateRowInPiece(-col);
+			tiles[i].updateColInPiece(row);
 		}
 	}
 	
+	/**
+	 * Method used to change orientation of the piece as if it was flipped horizontally.
+	 * 
+	 * @author Hans
+	 */
 	public void flipH(){
 		for (int i=1; i<6; i++) {
 			tiles[i].updateColInPiece(-1*tiles[i].getColInPiece());
 		}
 	}
 	
+	/**
+	 * Method used to change orientation of the piece as if it was flipped horizontally.
+	 * 
+	 * @author Hans
+	 */
 	public void flipV(){
 		for (int i=1; i<6; i++) {
 			tiles[i].updateRowInPiece(-1*tiles[i].getRowInPiece());
@@ -102,8 +98,10 @@ public class Piece {
 	}
 	
 	/**
-	 * Method used to return color of piece
+	 * Method used to return color of piece.
 	 * @return Color
+	 * 
+	 * @author Evan
 	 */
 	Color getColor(){
 		return color;
@@ -113,6 +111,8 @@ public class Piece {
 	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
 	 * @param row
 	 * @param col
+	 * 
+	 * @author Hans
 	 */
 	public void setLocation(int row, int col) {
 		this.tiles[0].setLocation(row, col);
@@ -122,21 +122,41 @@ public class Piece {
 	}
 	
 	/**
-	 * Method used to get the column location of the origin
+	 * Method used to get the column location of the origin.
 	 * @return int
+	 * 
+	 * @author Evan
 	 */
 	public int getOriginCol(){
 		return tiles[0].getCol();
 	}
 	
+	/**
+	 * Method used to get the row location of the origin.
+	 * @return int
+	 * 
+	 * @author Evan
+	 */
 	public int getOriginRow(){
 		return tiles[0].getRow();
 	}
 	
+	/**
+	 * Method used to get the origin tile.
+	 * @return PieceTile
+	 * 
+	 * @author Evan
+	 */
 	public PieceTile getOriginTile() {
 		return tiles[0];
 	}
 	
+	/**
+	 * Method used for generating the correct tile placement of the piece given its ID.
+	 * @returns ArrayList<AbstractTile>
+	 * 
+	 * @author Hans
+	 */
 	public ArrayList<AbstractTile> getPreviousTiles() {
 		ArrayList<AbstractTile> prevTiles = new ArrayList<AbstractTile>();
 		for (PieceTile p : tiles) {
@@ -145,10 +165,30 @@ public class Piece {
 		return prevTiles;
 	}
 	
+	public PieceTile[] getTiles() {
+		return tiles;
+	}
+	
+	/**
+	 * When serializing a Piece, the pieceTile information is not needed. Instead of serializing those,
+	 * the piece serializes it's ID. Then, when read it, it generates the tiles needed using the built
+	 * in generatePiece() method.
+	 * @param in
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
+		in.defaultReadObject();
+		this.tiles = new PieceTile[6];
+		generatePiece(this.ID);
+	}
+	
 	/**
 	 * Method used for generating the correct tile placement of the piece given its ID
 	 * @param int
 	 * @throws RuntimeException
+	 * 
+	 * @author Evan
 	 */
 	protected void generatePiece(int ID) throws RuntimeException{
 		switch(ID){

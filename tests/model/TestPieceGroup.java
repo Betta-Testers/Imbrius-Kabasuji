@@ -4,14 +4,18 @@ import model.Piece;
 import model.PieceGroup;
 import junit.framework.TestCase;
 
-
-public class TestPieceGroupAbby extends TestCase {
+/**
+ * 
+ * @author awharrison
+ *
+ */
+public class TestPieceGroup extends TestCase {
 	PieceGroup testPG1, testPG2;
 	
 	@Override
 	protected void setUp() {
 		// create two test pieceGroups
-		testPG1 = new PieceGroup(0, 1);
+		testPG1 = new PieceGroup(1, 1);
 		testPG2 = new PieceGroup(15, 5);
 	}
 	
@@ -55,5 +59,9 @@ public class TestPieceGroupAbby extends TestCase {
 		Piece x = testPG1.getPiece();
 		assertEquals(testPG1.getPiece().equals(x), true);
 		assertEquals(testPG2.getPiece().equals(x), false);
+	}
+	
+	public void testToString() {
+		assertEquals("ID:"+testPG2.piece.getID()+"Count:"+testPG2.numPieces, testPG2.toString());
 	}
 }

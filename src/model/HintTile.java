@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  * 
@@ -8,7 +9,8 @@ import java.awt.Color;
  *
  */
 
-public class HintTile extends AbstractTile {
+public class HintTile extends AbstractTile implements Serializable{
+	private static final long serialVersionUID = -8764265154615476615L;
 
 	public HintTile(int row, int col) {
 		super(row, col);
