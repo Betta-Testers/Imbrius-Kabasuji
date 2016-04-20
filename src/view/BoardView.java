@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import model.AbstractTile;
 import model.Board;
+import model.Piece;
 
 
 public class BoardView extends JPanel{
@@ -97,6 +98,14 @@ public class BoardView extends JPanel{
 		ensureImageAvailable(g);
 		g.drawImage(offscreenImage, 0, 0, getWidth(), getHeight(), this);
 		
+		/**
+		 * TODO Try to draw the pieceOutline here. Call the helper method in the works
+		 * below. MouseDragged event probably wants to call paint(), NOT redraw since
+		 * the background image wouldn't change?
+		 */
+		// if(pieceImage != null){
+		// 	paint the piece
+		// }
 		// draw selected on top of offscreen image, since not part of the model.
 		// Shape selected = model.getSelected();
 		// if (selected != null) {
@@ -153,6 +162,20 @@ public class BoardView extends JPanel{
 	 * return true if they all could fit, false if not. That way we know what color to
 	 * set.
 	 */
+		public void drawAtMouse(int x, int y, Piece p){
+			/**
+			 * TODO 
+			 * P is to get the shape. X/Y is to get the mouse position
+			 * 1) extrapolate the X/Y of the mouse to the topLeft corner of origin tile
+			 * 2) Convert top left into a row/Col. Ask the board if this piece would collide with an 
+			 * empty tile or another piece on the board. Set the color of outline based on boolean answer
+			 * 2) Prepare the graphics object offscreen (offscreenPiece)
+			 * 3) Knowing the top left of the origin tile, draw all 6 tiles to the graphics object w/ correct color
+			 * 4) Move the offscreen image onto the onscreenGraphics
+			 * 5) this.paint()
+			 * 6) reset the pieceImage to be null
+			 */
+		}
 	
 	
 	
