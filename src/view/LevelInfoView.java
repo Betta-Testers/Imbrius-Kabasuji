@@ -24,6 +24,9 @@ public class LevelInfoView extends JPanel {
 		setupLayout();
 	}
 	
+	/**
+	 * Method for setting up the layout for the LevelInfoView
+	 */
 	private void setupLayout() {
 		
 		lblLevelNumber.setHorizontalAlignment(SwingConstants.CENTER);

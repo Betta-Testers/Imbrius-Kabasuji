@@ -19,9 +19,11 @@ public abstract class LevelIO {
 	}
 
 	/**
-	 * Returns a StarMap object read from disk. If the StarMap cannot be read
-	 * for any reason, a blank starmap is generated
+	 * Returns a StarMap object read from disk. 
+	 * If the StarMap does not EXIST for any reason, a blank starmap is generated
+	 * If the StarMap cannot be READ for any reason, a RuntimeException is thrown
 	 * @return StarMap
+	 * @throws RuntimeException if a StarMap couldn't be loaded from disk
 	 */
 	public StarMap loadStarMap(){
 		ObjectInputStream ois = null;
@@ -33,14 +35,13 @@ public abstract class LevelIO {
 			FileInputStream infile = new FileInputStream(location);
 			ois = new ObjectInputStream(infile);
 			m = (StarMap) ois.readObject();
-			ois.close();
 		}catch (FileNotFoundException e){
 			System.err.println("StarMap.storage DNE. Making new StarMap");
 			m = new StarMap(defaultDirectory);
 			m.populateFromDirectory();
 		}catch (Exception e){
 			e.printStackTrace();
-			throw new RuntimeException("LevelIO couldn't load StarMap @"+location);
+			throw new RuntimeException("LevelIO couldn't load StarMap @"+location+". Check permissions");
 		}
 
 		if (ois != null) { 
@@ -55,13 +56,16 @@ public abstract class LevelIO {
 	 * to create, and returns that object.
 	 * @param levelID - ID of the level being opened
 	 */
-	public AbstractLevelModel loadLevel(int levelID){
+	public AbstractLevelModel loadLevel(int levelID) throws Exception{
 		ObjectInputStream ois = null;
 		AbstractLevelModel m = null;
 
-		if(!levelData.containsKey(levelID)){ return null;}
-
-		String type = levelData.get(levelID);
+		String type;
+		try{
+			type = levelData.get(levelID);
+		}catch(Exception e){
+			throw new Exception("LevelData doesn't have the ID: "+levelID);
+		}
 		String location = defaultDirectory+levelID+"_"+type+".storage";
 
 		try {
@@ -69,9 +73,7 @@ public abstract class LevelIO {
 			m = (AbstractLevelModel) ois.readObject();
 			ois.close();
 		} catch (Exception e) { 
-			e.printStackTrace();
-			System.err.println("Unable to load state from:" + location);
-			m = null;
+			throw new Exception("Could not load levelID "+levelID+" from disk @ "+location+". Bad permissions or Level not on disk.");
 		}
 
 		if (ois != null) { 
@@ -79,28 +81,23 @@ public abstract class LevelIO {
 		}
 		return m;
 	}
-	
+
 	/**
 	 * Updates the Maximum stars for a given LevelID and star count. 
 	 * If the count passed in is less than the value recorded in levelData,
 	 * the value is not recorded.
 	 * @param levelID
 	 * @param starsEarned - the current number of stars earned on a level
+	 * @return boolean - true if star count was updated for that level. False if not.
 	 */
-	public void updateStars(int levelID, int starsEarned){
-		if(starsEarned > levelData.getMaxStars(levelID)){
-			levelData.setMaxStars(levelID, starsEarned);
+	public boolean updateStars(int levelID, int starsEarned){
+		try {
+			if(starsEarned > levelData.getMaxStars(levelID)){
+				return levelData.setMaxStars(levelID, starsEarned);
+			}
+		} catch (Exception e) {
+			System.err.println("Call to UpdateStars: LevelID "+levelID+" Does not exist");
 		}
-	}
-
-	
-//================== TESTING METHODS (FOR NOW) ================== 
-	
-	public StarMap getLevelData(){
-		return levelData;
-	}
-	
-	public LevelIO getLevelIO(){
-		return this;
+		return false;
 	}
 }

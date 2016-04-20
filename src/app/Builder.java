@@ -31,8 +31,6 @@ public class Builder extends LevelIO{
 
 	void initialize(){
 		this.levelData = loadStarMap();
-		System.out.println("Levels Loaded:"+levelData.toString());
-
 		this.initializeView();
 		this.initializeControllers();
 	}
@@ -40,9 +38,13 @@ public class Builder extends LevelIO{
 	void initializeView(){
 		bv = new BuilderView(this);
 		ltsv = new LevelTypeSelectView();
-		
+
 		for(int id: levelData.keySet()){
-			ltsv.addExistingLevel(levelData.get(id), id);
+			try {
+				ltsv.addExistingLevel(levelData.get(id), id);
+			} catch (Exception e) {
+				throw new RuntimeException("ID not found in levelData, LTSV couldn't be initialized" + e.getMessage());
+			}
 		}
 	}
 
@@ -104,31 +106,57 @@ public class Builder extends LevelIO{
 		currentLevel = ll;
 		bv.prepLightning();
 	}
-	
+
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
-	 * TODO Don't pass a String fileName. Pass a File sourceFile instead
+	 * @param int levelID - level requested for editing. 
+	 * @return boolean - true if level could be edited
 	 */
-	public void editLevel(int levelID){
-		String levelType = levelData.get(levelID);
+	public boolean editLevel(int levelID){
+		String levelType;
+		try{
+			levelType = levelData.get(levelID);
+		}catch(Exception e){
+			return false;
+		}
+		
 		switch(levelType){
 		case "Puzzle":
-			PuzzleLevel pl = (PuzzleLevel) loadLevel(levelID);
-			currentLevel = pl;
-			bv.prepPuzzle();
+			PuzzleLevel pl;
+			try {
+				pl = (PuzzleLevel) loadLevel(levelID);
+				currentLevel = pl;
+				bv.prepPuzzle();
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+				return false;
+			}
 			break;
 		case "Lightning":
-			LightningLevel ll = (LightningLevel) loadLevel(levelID);
-			currentLevel = ll;
-			bv.prepLightning();
+			LightningLevel ll;
+			try {
+				ll = (LightningLevel) loadLevel(levelID);
+				currentLevel = ll;
+				bv.prepLightning();
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+				return false;
+			}
 			break;
 		case "Release":
-			ReleaseLevel rl = (ReleaseLevel) loadLevel(levelID);
-			currentLevel = rl;
-			bv.prepRelease();
+			ReleaseLevel rl;
+			try {
+				rl = (ReleaseLevel) loadLevel(levelID);
+				currentLevel = rl;
+				bv.prepRelease();
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+				return false;
+			}
 			break;
 		}
+		return true;
 	}
 
 	//========================== Getters ==========================//
@@ -138,21 +166,10 @@ public class Builder extends LevelIO{
 	public LevelTypeSelectView getLevelTypeSelectView(){
 		return ltsv;
 	}
-	/**
-	 * Returns the highestLevelID of the loaded levelData. 
-	 * If there is no data inside of levelData, 0 is returned.
-	 * @return highestLevelID
-	 */
 	public int getHighestLevelID(){
-		if(levelData == null){ return 0;}
 		return levelData.lastID();
 	}
 	public AbstractLevelModel getCurrentLevel(){
 		return currentLevel;
 	}
-
-	//======================== TODO: ADDRESS THE FOLLOWING UNUSED METHODS ========================// 
-	void initializeLevelModel(int levelID){}
-	void initializeLevelView(){}
-	void initializeLevelControllers(){}
 }

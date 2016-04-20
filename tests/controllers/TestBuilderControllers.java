@@ -1,26 +1,42 @@
 package controllers;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 
 import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import java.awt.event.MouseEvent;
 
-import view.BuilderView;
-import view.SplashScreen;
 import app.Builder;
-import junit.framework.TestCase;
+import model.Board;
+import model.Bullpen;
+import model.PieceGroup;
+import model.PuzzleLevel;
+import view.BuilderPieceGroupView;
+import view.BuilderView;
+import view.BullpenView;
+import view.SplashScreen;
 
-public class TestBuilderControllers extends TestCase {
-	
+/**
+ * @author hejohnson
+ *
+ */
+public class TestBuilderControllers extends MouseTesting {
+	PuzzleLevel pl;
 	Builder build;
 	BuilderView bv;
+	Board b;
+	Bullpen bp;
+	BullpenView bpv;
 	
 	@Override
 	public void setUp(){
 		build = new Builder("./imbriusLevelTESTING/");
+		build.createPuzzleLevel();
+		pl = (PuzzleLevel)build.getCurrentLevel();
 		bv = build.getBuilderView();
+		pl.setBoard(new Board());
+		b = pl.getBoard();
+		bp = pl.getBullpen();
+		bpv = bv.getBullpenView();
 	}
 	
 	@Override
@@ -64,5 +80,15 @@ public class TestBuilderControllers extends TestCase {
 		
 //		assertTrue(build.getBuilderView().isVisible());
 	}
-	
+
+	public void testBuilderPieceSpinnerController() {
+		PieceGroup pg = bp.getPlayablePieces().get(1);
+		BuilderPieceGroupView bpgv = (BuilderPieceGroupView)bpv.getPieceGroupView(1);
+		assertEquals(0, pg.getNumPieces());
+		ChangeEvent ce = new ChangeEvent(bpgv.getSpinner());
+		bpgv.getSpinner().setValue(2);
+		assertEquals(0, pg.getNumPieces());
+		bpgv.getSpinner().getChangeListeners()[0].stateChanged(ce);
+		assertEquals(2, pg.getNumPieces());
+	}
 }

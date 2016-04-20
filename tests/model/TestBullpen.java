@@ -7,7 +7,14 @@ import model.Bullpen;
 import model.Piece;
 import model.PieceGroup;
 
-public class TestBullpenAbby extends TestCase {
+/**
+ * 
+ * @author awharrison
+ *
+ */
+
+
+public class TestBullpen extends TestCase {
 
 	ArrayList<PieceGroup> testPlayablePieces= new ArrayList<PieceGroup>();
 	ArrayList<PieceGroup> testGetPieces = new ArrayList<PieceGroup>();
@@ -16,11 +23,11 @@ public class TestBullpenAbby extends TestCase {
 	@Override
 	protected void setUp() {
 		// initialize an unosrted ArrayList to enter to a Bullpen constructor
-		testPlayablePieces.add(new PieceGroup(5, 1));
-		testPlayablePieces.add(new PieceGroup(3, 1));
-		testPlayablePieces.add(new PieceGroup(1, 2));
 		testPlayablePieces.add(new PieceGroup(4, 1));
 		testPlayablePieces.add(new PieceGroup(2, 1));
+		testPlayablePieces.add(new PieceGroup(5, 2));
+		testPlayablePieces.add(new PieceGroup(3, 1));
+		testPlayablePieces.add(new PieceGroup(1, 1));
 		
 		// generate a Bullpen with all 35 pieces
 		testBP2 = new Bullpen();
@@ -79,7 +86,7 @@ public class TestBullpenAbby extends TestCase {
 	public void testRemovePiece() {
 		// test that a Bullpen created from the initialized ArrayList returns true when a pieceGroup that is in it is removed
 		testBP1 = new Bullpen(testPlayablePieces);
-		assertEquals(testBP1.removeSinglePiece(1), true);
+		assertEquals(testBP1.removeSinglePiece(5), true);
 		
 		// since 0 was removed, the total should decrement by 2 (6 -> 4)
 		assertEquals(testBP1.numAvailablePieces(), 4);
@@ -127,12 +134,14 @@ public class TestBullpenAbby extends TestCase {
 		// ensure that the exceptions are thrown in the correct instances
 		try {
 			testBP3 = new Bullpen(-2);
+			fail();
 		} catch (RuntimeException e) {
 			
 		}
 		
 		try {
 			testBP2.addRandomPieces(-3);
+			fail();
 		} catch (RuntimeException e) {
 			
 		}

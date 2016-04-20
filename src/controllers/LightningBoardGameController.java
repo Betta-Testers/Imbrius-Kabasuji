@@ -13,7 +13,6 @@ import model.AbstractTile;
 import model.LightningTile;
 import model.Piece;
 import model.PieceTile;
-import view.BullpenView;
 
 /**
  * @author hejohnson

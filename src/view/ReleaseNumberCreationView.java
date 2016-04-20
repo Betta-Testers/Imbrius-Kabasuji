@@ -8,10 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JToggleButton;
-import javax.swing.SpinnerListModel;
-
 import controllers.SetReleaseTileColorController;
 
 import javax.swing.GroupLayout.Alignment;
