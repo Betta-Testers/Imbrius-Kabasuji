@@ -14,6 +14,11 @@ import model.PieceGroup;
 import model.PieceTile;
 import model.PuzzleLevel;
 import app.Builder;
+import controllers.builder.SwapTileEmptyToBoardMove;
+import controllers.common.Move;
+import controllers.common.MovePieceOffBoardMove;
+import controllers.common.MovePieceOnBoardMove;
+import controllers.common.PlacePieceOnBoardFromBullpenMove;
 import junit.framework.TestCase;
 
 /**

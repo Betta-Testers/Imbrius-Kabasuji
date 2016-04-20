@@ -8,9 +8,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 import app.Builder;
-import controllers.ExistingLevelDeleteController;
-import controllers.ExistingLevelEditController;
-import controllers.NewPuzzleLevelController;
+import controllers.builder.ExistingLevelDeleteController;
+import controllers.builder.ExistingLevelEditController;
+import controllers.builder.NewPuzzleLevelController;
+
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;

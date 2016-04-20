@@ -6,6 +6,7 @@ import javax.swing.event.ChangeEvent;
 import java.awt.event.MouseEvent;
 
 import app.Builder;
+import controllers.builder.BuilderSplashTimerController;
 import model.Board;
 import model.Bullpen;
 import model.PieceGroup;
@@ -47,7 +48,7 @@ public class TestBuilderControllers extends MouseTesting {
 	
 	public void testSplashScreen() {
 		SplashScreen splash = new SplashScreen();
-		Timer timer = new Timer(2000, new SplashTimerController(splash, build));
+		Timer timer = new Timer(2000, new BuilderSplashTimerController(splash, build));
 		timer.setRepeats(false);
 		timer.start();
 		

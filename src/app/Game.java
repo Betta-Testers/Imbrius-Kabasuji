@@ -4,10 +4,9 @@ import view.GameExitScreen;
 import view.LevelView;
 import view.LevelSelectionView;
 import view.StarView;
-
-import controllers.PlayLevelButtonController;
-import controllers.QuitGameButtonController;
-import controllers.ShutdownController;
+import controllers.common.ShutdownController;
+import controllers.player.PlayLevelButtonController;
+import controllers.player.QuitGameButtonController;
 import model.AbstractLevelModel;
 
 /**
