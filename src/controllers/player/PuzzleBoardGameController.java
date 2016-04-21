@@ -100,7 +100,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 
 		} else {
 			if (draggedPiece != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
-				levelModel.getBoard().putPieceOnBoard(p, p.getOriginRow(), p.getOriginCol());
+				levelModel.getBoard().putPieceOnBoard(draggedPiece, draggedPiece.getOriginRow(), draggedPiece.getOriginCol());
 			}
 		} 
 		boardView.redraw();

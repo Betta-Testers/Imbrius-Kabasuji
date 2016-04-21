@@ -155,16 +155,18 @@ public class Board implements Serializable{
 	 * @return the tile that was replaced.
 	 */
 	public void showPiecePreview(Piece p, int row, int col){
-		for(int i = 0; i<6; i++){
-			if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
-					|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
-				//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
-			}else{
-				if(board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("empty")
-						|| board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("piece")){
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+		if(willFit(p,row,col)){
+			for(int i = 0; i<6; i++){
+				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+			}
+		}else{
+			for(int i = 0; i<6; i++){
+				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
+						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+row > 11){
+					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 				}else{
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+
 				}
 			}
 		}
