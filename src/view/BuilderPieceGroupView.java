@@ -52,6 +52,10 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 		spinner.addChangeListener(cl);
 	}
 	
+	public ChangeListener getSpinnerChangeListener() {
+		return this.pieceCountHandler;
+	}
+	
 	public JSpinner getSpinner() {
 		return this.spinner;
 	}

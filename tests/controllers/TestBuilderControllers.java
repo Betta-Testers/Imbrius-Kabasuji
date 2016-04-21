@@ -5,9 +5,11 @@ import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import app.Builder;
+import controllers.builder.BuilderPieceSpinnerController;
 import controllers.builder.BuilderSplashTimerController;
 import controllers.builder.CloseBuilderDialog;
 import model.Board;
@@ -82,20 +84,23 @@ public class TestBuilderControllers extends MouseTesting {
 				build.getLevelTypeSelectView().getY(), 1, false);
 		assertEquals(2, build.getLevelTypeSelectView().getCreatePuzzleBtn().getMouseListeners().length);
 		
-//		MouseAdapter eventManagers = build.getLevelTypeSelectView().getCreatePuzzleBtn().getMouseListeners();
-//		eventManager.mouseClicked(me);
-		
-//		assertTrue(build.getBuilderView().isVisible());
+		build.getLevelTypeSelectView().getPuzzleBtnHandler().mouseClicked(me);
+		assertTrue(build.getBuilderView().isVisible()); 
+		build.getBuilderView().getExitWindowListener().windowClosing(new WindowEvent(bv, WindowEvent.WINDOW_CLOSING));;
 	}
 
 	public void testBuilderPieceSpinnerController() {
 		PieceGroup pg = bp.getPlayablePieces().get(1);
 		BuilderPieceGroupView bpgv = (BuilderPieceGroupView)bpv.getPieceGroupView(1);
+		bpgv.addSpinnerChangeListener(new BuilderPieceSpinnerController(bpgv, pg));
 		assertEquals(0, pg.getNumPieces());
 		ChangeEvent ce = new ChangeEvent(bpgv.getSpinner());
+		bpgv.getSpinner().setValue(1);
+		assertEquals(1, pg.getNumPieces());
+//		bpgv.getSpinnerChangeListener().stateChanged(ce);
 		bpgv.getSpinner().setValue(2);
-		assertEquals(0, pg.getNumPieces());
-		bpgv.getSpinner().getChangeListeners()[0].stateChanged(ce);
 		assertEquals(2, pg.getNumPieces());
+//		bpgv.getSpinner().setValue(-1);
+//		assertEquals(1, pg.getNumPieces());
 	}
 }

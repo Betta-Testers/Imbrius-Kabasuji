@@ -113,6 +113,10 @@ public class BuilderView extends JFrame {
 		this.addWindowListener(we);
 	}
 	
+	public WindowListener getExitWindowListener() {
+		return this.exitWindowHandler;
+	}
+	
 	/*
 	 * Method for setting up the layout for the BuilderView
 	 */
