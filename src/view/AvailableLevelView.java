@@ -68,18 +68,7 @@ public class AvailableLevelView extends JPanel {
 		btnSelectLevel.setText(lvlname);
 		btnSelectLevel.setIcon(null);
 		btnSelectLevel.setEnabled(true);
-		if(i==1){
-			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-		}
-		if(i==2){
-			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-		}
-		if(i==3){
-			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			starView.lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-		}
+		starView.setNumStars(i);
 	}
 	
 	public JButton getPlayButton(){

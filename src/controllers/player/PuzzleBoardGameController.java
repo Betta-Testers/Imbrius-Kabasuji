@@ -69,6 +69,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
+			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
 		boardView.redraw();
 		boardView.repaint();
@@ -102,6 +103,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
+			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 
 		} else {
 			if (draggedPiece != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
