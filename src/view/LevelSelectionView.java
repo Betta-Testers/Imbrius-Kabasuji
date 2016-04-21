@@ -14,12 +14,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+import java.awt.event.WindowListener;
 
 /**
  * Class for displaying the Levels available for play.
  * 
  * @author Brendan
  * @author dfontana
+ * @author awharrison
  */
 public class LevelSelectionView extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -27,6 +29,7 @@ public class LevelSelectionView extends JFrame {
 	JLabel lblTitle;
 	JScrollPane availableLevels;
 	AvailableLevelView levels[];
+	WindowListener shutdownHandler;
 	
 	public LevelSelectionView() {
 		super();
@@ -96,6 +99,24 @@ public class LevelSelectionView extends JFrame {
 	public JButton getButton(int levelID) {
 		return this.levels[levelID-1].getPlayButton();
 	}
+	
+	/**
+	 * set the controller handling window closes
+	 * @return MouseListener
+	 */
+	public void setShutdownController(WindowListener we) {
+		this.shutdownHandler = we;
+		this.addWindowListener(we);
+	}
+	
+	/**
+	 * get the controller handling window closes
+	 * @return MouseListener
+	 */
+	public WindowListener getShutdownController() {
+		return this.shutdownHandler;
+	}
+	
 	/**
 	 * Method for setting up the layout for the LevelSelectionView
 	 */

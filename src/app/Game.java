@@ -43,8 +43,7 @@ public class Game extends LevelIO{
 
 	void initialize(){
 		this.levelData = loadStarMap();
-		System.out.println("Levels Loaded:"+levelData.toString());
-		
+
 		this.initializeView();
 		this.initializeControllers();
 		this.initializeButtons();
@@ -61,6 +60,7 @@ public class Game extends LevelIO{
 		try {
 			currentLevel = loadLevel(levelID);
 			levelView = currentLevel.initializeGame(this);
+			
 			levelView.setVisible(true);
 			return true;
 		} catch (Exception e) {
@@ -77,7 +77,7 @@ public class Game extends LevelIO{
 
 	void initializeControllers(){
 		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
-		selectLevel.addWindowListener(new ShutdownController(this));
+		selectLevel.setShutdownController(new ShutdownController(this));
 	}
 
 	/**

@@ -13,11 +13,11 @@ import java.util.ArrayList;
 public class Board implements Serializable{
 	/**ID for serialization**/
 	private static final long serialVersionUID = -5485493680104033292L;
-	
+
 	AbstractTile board[][] = new AbstractTile[12][12];
 	/**Constant Tile Size**/
 	final int tileSize = 32;
-	
+
 	//Standard row/column of matrix [row][column][0][0] is top left one below it is [1][0]
 	transient ArrayList<Piece> pieces = new ArrayList<Piece>();
 
@@ -27,9 +27,9 @@ public class Board implements Serializable{
 				board[i][j] = new EmptyTile(i,j);
 			}
 		}
-		
+
 	}
-	
+
 	public Board(ArrayList<AbstractTile> tiles){
 		for(int i = 0;i<12;i++){
 			for(int j = 0;j<12;j++){
@@ -42,7 +42,7 @@ public class Board implements Serializable{
 			temp.remove(0);
 		}
 	}
-	
+
 	/**
 	 * Places a piece onto the board: Adding it to the list of pieces, and swapping in its tiles
 	 * @param p the piece being put onto the board
@@ -62,7 +62,7 @@ public class Board implements Serializable{
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Resets the board, removing every piece from the board and replacing them 
 	 * with the tiles that used to be in their locations
@@ -75,7 +75,7 @@ public class Board implements Serializable{
 		}
 		return piecesTemp;
 	}
-	
+
 	/**
 	 * Says if a piece will fit on the board with the anchor square in the row column position given
 	 * @param p the piece being put onto the board
@@ -97,7 +97,7 @@ public class Board implements Serializable{
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Remove a given piece from the board, the piece must already exist on the board
 	 * @param p the piece being removed from the board
@@ -114,13 +114,13 @@ public class Board implements Serializable{
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Swaps a tile on the board with a new tile
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-	
+
 	public AbstractTile swapTile(AbstractTile at){
 		int row = at.getRow();
 		int col = at.getCol();
@@ -130,7 +130,7 @@ public class Board implements Serializable{
 		board[row][col] = at;
 		return temp;
 	}
-	
+
 	/**
 	 * returns the AbstractTile that is located at an x,y co ordinate 
 	 * @param bt the tile being put onto the board
@@ -139,30 +139,39 @@ public class Board implements Serializable{
 	public AbstractTile getTileAt(int x, int y){
 		int row = y/tileSize;
 		int column = x/tileSize;
+		if(row > 11){
+			row = 11;
+		}
+
+		if(column > 11){
+			column = 11;
+		}
 		return board[row][column];
 	}
-	
+
 	/**
 	 * changes color of tiles that may be placed, green if
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
 	public void showPiecePreview(Piece p, int row, int col){
-		for(int i = 0; i<6; i++){
-			if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
-					|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+row > 11){
-				//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
-			}else{
-				if(board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("empty")
-						|| board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("piece")){
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+		if(willFit(p,row,col)){
+			for(int i = 0; i<6; i++){
+				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+			}
+		}else{
+			for(int i = 0; i<6; i++){
+				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
+						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+row > 11){
+					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 				}else{
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns the total number of board tiles still remaining on the board
 	 * @return the total number of board tiles still remaining on the board
@@ -178,7 +187,7 @@ public class Board implements Serializable{
 		}
 		return count;
 	}
-	
+
 	/**
 	 * Will clear all piece previewing from the board, setting all tiles back to their original colors.
 	 * @return void
@@ -205,18 +214,28 @@ public class Board implements Serializable{
 			for(AbstractTile t: row){
 				s.append(t.toString());		
 			}
+			s.append("\n");
 		}
 		return s.toString();
 	}
-	
+
 	/**
 	 * Custom serialization clears the boards of piece tiles and replaces those tiles with what they were covering
 	 * Allows system to not care if the board has pieces on it when saving
 	 * @param stream
 	 * @throws IOException
 	 */
-	 private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
-		 resetBoard();
-		 stream.defaultWriteObject();
-	 }
+	private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
+		resetBoard();
+		stream.defaultWriteObject();
+	}
+
+	/**
+	 * When deserializing this, the transient fields needs to be initialized.
+	 * This method does just that, by calling the initialize method.
+	 */
+	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
+		in.defaultReadObject();
+		pieces = new ArrayList<Piece>();
+	}
 }

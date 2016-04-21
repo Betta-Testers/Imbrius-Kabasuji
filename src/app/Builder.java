@@ -49,8 +49,8 @@ public class Builder extends LevelIO{
 	}
 
 	void initializeControllers(){
-		bv.addWindowListener(new CloseBuilderDialog(this, bv));
-		ltsv.addWindowListener(new ShutdownController(this));
+		bv.setExitWindowListener(new CloseBuilderDialog(this, bv));
+		ltsv.setShutdownController(new ShutdownController(this));
 
 		ltsv.initializeControllers(this);
 	}

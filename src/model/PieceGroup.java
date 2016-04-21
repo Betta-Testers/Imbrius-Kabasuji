@@ -7,10 +7,10 @@ import java.io.Serializable;
  */
 public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	private static final long serialVersionUID = 4819970575743912382L;
-	
+
 	Piece piece;
 	int numPieces;
-	
+
 	/**
 	 * create a PieceGroup consisting of a piece with the given ID and the quantity of those pieces available
 	 * @param ID
@@ -20,7 +20,7 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 		this.piece = new Piece(ID);
 		this.numPieces = count;
 	}
-	
+
 	/**
 	 * increase the number of pieces by 1
 	 * @return
@@ -41,22 +41,22 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 			return true;
 		}
 	}
-	
+
 	/**
 	 * allows collections of PieceGroup to be easily sorted
 	 */
 	public int compareTo(PieceGroup other) {
 		return Integer.compare(this.getPiece().ID, other.getPiece().ID);
 	}
-	
+
 	/**
 	 * returns the piece type of this group
 	 * @return
 	 */
 	public Piece getPiece() {
-		return this.piece;
+		return this.piece.makeCopy();
 	}
-	
+
 	/**
 	 * returns the number of pieces available
 	 * @return
@@ -64,7 +64,18 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	public int getNumPieces() {
 		return this.numPieces;
 	}
-	
+
+	@Override
+	public boolean equals(Object o){
+		if(o == null){ return false;}
+		if(o instanceof PieceGroup){
+			if(this.piece.getID() == ((PieceGroup) o).getPiece().getID()){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * Format: ID:Count
 	 * @return string representation of this piecegroup

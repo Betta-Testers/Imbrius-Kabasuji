@@ -8,6 +8,7 @@ import model.LightningLevel;
 import view.BuilderView;
 
 /**
+ * Handles setting the time limit for a lightning level in builder mode
  * 
  * @author awharrison
  *

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import model.Bullpen;
 import model.Piece;
+import view.SelectedPieceView;
 
 /**
  * @author hejohnson
@@ -15,9 +16,11 @@ import model.Piece;
  */
 public class FlipPieceHorizontalController implements ActionListener {
 	Bullpen bullpen;
+	SelectedPieceView selectedPieceView;
 	Piece p;
-	FlipPieceHorizontalController(Bullpen bp) {
+	public FlipPieceHorizontalController(Bullpen bp, SelectedPieceView spv) {
 		this.bullpen = bp;
+		this.selectedPieceView = spv;
 	}
 	
 	//TODO add redraw stuff
@@ -25,6 +28,9 @@ public class FlipPieceHorizontalController implements ActionListener {
 		p = bullpen.getSelectedPiece();
 		if (p != null) {
 			p.flipV();
+			selectedPieceView.getPiecePanel().redraw();
+			selectedPieceView.getPiecePanel().repaint();
 		}
+		
 	}
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controllers.player;
 
 import java.awt.event.MouseEvent;
@@ -14,27 +11,29 @@ import model.AbstractTile;
 import model.LightningTile;
 import model.Piece;
 import model.PieceTile;
+import view.BoardView;
 
 /**
  * @author hejohnson
- *
  */
 
 //TODO add view update stuff
 
 public class LightningBoardGameController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
+	BoardView boardView;
 	Game game;
 	
 	LightningBoardGameController (Game game) {
 		this.game = game;
 		this.levelModel = game.getCurrentLevel();
+		this.boardView = game.getLevelView().getBoardView();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView());
 		
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
@@ -42,6 +41,8 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 			for (PieceTile pt : p.getTiles()) {
 				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
 			}
+			boardView.redraw();
+			boardView.repaint();
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
@@ -79,5 +80,7 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		Piece p = levelModel.getBullpen().getSelectedPiece();
 		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+		boardView.redraw();
+		boardView.repaint();
 	}
 }

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import model.Bullpen;
 import model.Piece;
+import view.SelectedPieceView;
 
 /**
  * @author hejohnson
@@ -16,8 +17,10 @@ import model.Piece;
 public class RotatePieceLeftController implements ActionListener {
 	Bullpen bullpen;
 	Piece p;
-	RotatePieceLeftController(Bullpen bp) {
+	SelectedPieceView selectedPieceView;
+	public RotatePieceLeftController(Bullpen bp, SelectedPieceView spv) {
 		this.bullpen = bp;
+		this.selectedPieceView = spv;
 	}
 	
 	//TODO add redraw stuff
@@ -25,6 +28,8 @@ public class RotatePieceLeftController implements ActionListener {
 		p = bullpen.getSelectedPiece();
 		if (p != null) {
 			p.rotateLeft();
+			selectedPieceView.getPiecePanel().redraw();
+			selectedPieceView.getPiecePanel().repaint();
 		}
 	}
 }

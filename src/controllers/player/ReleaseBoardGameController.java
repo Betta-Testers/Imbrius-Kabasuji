@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controllers.player;
 
 import java.awt.Color;
@@ -15,6 +12,7 @@ import model.AbstractTile;
 import model.Piece;
 import model.ReleaseLevel;
 import model.ReleaseTile;
+import view.BoardView;
 
 /**
  * @author hejohnson
@@ -26,21 +24,24 @@ import model.ReleaseTile;
 public class ReleaseBoardGameController implements MouseListener, MouseMotionListener{
 	ReleaseLevel levelModel;
 	Game game;
+	BoardView boardView;
 	
 	ReleaseBoardGameController (Game game) {
 		this.game = game;
 		this.levelModel = (ReleaseLevel)game.getCurrentLevel();
+		this.boardView = game.getLevelView().getBoardView();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, game.getLevelView().getBullpenView());
 		
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
 			updateReleasedNumbers(p);
-			
+			boardView.redraw();
+			boardView.repaint();
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
@@ -52,6 +53,8 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		Piece p = levelModel.getBullpen().getSelectedPiece();
 		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+		boardView.redraw();
+		boardView.repaint();
 	}
 	
 	void updateReleasedNumbers(Piece p) {

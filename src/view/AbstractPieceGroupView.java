@@ -18,6 +18,7 @@ public abstract class AbstractPieceGroupView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	SelectPieceButton button;
 	PieceGroup pieceGroup;
+	ActionListener selectPieceHandler;
 	
 	
 	//TODO: Change AbstractPieceGroupView contructor to take in a piece group. Get the Piece ID from the piece in the PieceGroup
@@ -35,7 +36,13 @@ public abstract class AbstractPieceGroupView extends JPanel{
 	 * @param al The action listener to add to this button
 	 */
 	public void addSelectButtonActionListener (ActionListener al) {
+		this.selectPieceHandler = al;
 		this.button.addActionListener(al);
 	}
+	
+	public PieceGroup getPieceGroup(){
+		return this.pieceGroup;
+	}
 
+	 abstract void updateCount();
 }

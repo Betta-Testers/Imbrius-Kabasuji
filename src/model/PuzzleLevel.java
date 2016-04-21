@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import app.Game;
 import controllers.player.ExitLevelButtonController;
+import controllers.player.PuzzleBoardGameController;
 import view.LevelView;
 import view.NumberMovesLeftView;
 
@@ -99,6 +100,8 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	public LevelView initializeGame(Game g) {
 		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView(), this);
 		view.addWindowListener(new ExitLevelButtonController(view, g));
+		view.getBoardView().addMouseListener(new PuzzleBoardGameController(g, view));
+		view.getBoardView().addMouseMotionListener(new PuzzleBoardGameController(g, view));
 		return view;
 	}
 	

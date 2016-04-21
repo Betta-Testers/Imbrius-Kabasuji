@@ -20,6 +20,11 @@ public class PlayingPieceGroupView extends AbstractPieceGroupView{
 		setupLayout();
 	}
 	
+	@Override
+	void updateCount() {
+		label.setText(Integer.toString(pieceGroup.getNumPieces()));
+	}
+	
 	void setupLayout(){
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		groupLayout = new GroupLayout(this);
@@ -38,4 +43,6 @@ public class PlayingPieceGroupView extends AbstractPieceGroupView{
 
 		setLayout(groupLayout);
 	}
+
+
 }

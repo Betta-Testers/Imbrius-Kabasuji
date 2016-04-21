@@ -9,8 +9,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import controllers.builder.BuilderPieceSpinnerController;
-import controllers.common.BullpenPieceSelectController;
 import model.Bullpen;
+import model.Piece;
 import model.PieceGroup;
 
 public class BullpenView extends JScrollPane {
@@ -46,7 +46,14 @@ public class BullpenView extends JScrollPane {
 		setupLayout();
 	}
 	
-
+	public void updatePieceGroup(Piece p){
+		for(AbstractPieceGroupView pgv :pieceGroupViews){
+			if(pgv.getPieceGroup().getPiece().equals(p)){
+				pgv.updateCount();
+			}
+		}
+	}
+	
 	/**
 	 * Method for setting up the layout for the BullpenView
 	 */
@@ -56,7 +63,6 @@ public class BullpenView extends JScrollPane {
 				BuilderPieceGroupView pgv = (BuilderPieceGroupView)pieceGroupViews[i];
 				pgv.addSpinnerChangeListener(new BuilderPieceSpinnerController((BuilderPieceGroupView)pgv, bp.getPlayablePieces().get(i)));
 			}
-			pieceGroupViews[i].addSelectButtonActionListener(new BullpenPieceSelectController(bp));
 		}
 	}
 
@@ -90,7 +96,7 @@ public class BullpenView extends JScrollPane {
 		panelScrollContainer.setLayout(groupLayout);	
 	}
 
-	public AbstractPieceGroupView getPieceGroupView(int i) {
-		return pieceGroupViews[i];
+	public AbstractPieceGroupView[] getPieceGroupViews() {
+		return pieceGroupViews;
 	}
 }

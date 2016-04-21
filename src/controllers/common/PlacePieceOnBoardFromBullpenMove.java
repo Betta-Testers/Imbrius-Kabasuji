@@ -8,6 +8,7 @@ import model.AbstractTile;
 import model.Board;
 import model.Bullpen;
 import model.Piece;
+import view.BullpenView;
 
 /**
  * @author hejohnson
@@ -19,8 +20,10 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 	Board board;
 	Piece p;
 	AbstractTile sourceTile;
+	BullpenView bpv;
 	
-	public PlacePieceOnBoardFromBullpenMove (AbstractLevelModel lm, AbstractTile tile) {
+	public PlacePieceOnBoardFromBullpenMove (AbstractLevelModel lm, AbstractTile tile, BullpenView bpv) {
+		this.bpv = bpv;
 		this.levelModel = lm;
 		this.bullpen = levelModel.getBullpen();
 		this.board = levelModel.getBoard();
@@ -32,6 +35,7 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 		if (isValid()) {
 			board.putPieceOnBoard(p, sourceTile.getRow(), sourceTile.getCol());
 			bullpen.decrementSelectedPiece();
+			bpv.updatePieceGroup(p);
 			bullpen.clearSelectedPiece();
 			return true;
 		}

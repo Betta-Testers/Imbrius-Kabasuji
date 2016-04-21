@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +21,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-
+/**
+ * 
+ * @author Dylan
+ * @author awharrison
+ *
+ */
 public class LevelTypeSelectView extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +37,10 @@ public class LevelTypeSelectView extends JFrame {
 	JButton createRelease;
 	JPanel container;
 	JLabel existingLevelMsg;
+	WindowListener shutdownHandler;
+	MouseListener puzzleBtnHandler;
+	MouseListener lightningBtnHandler;
+	MouseListener releaseBtnHandler;
 	
 	/**
 	 * Create the application.
@@ -90,9 +101,9 @@ public class LevelTypeSelectView extends JFrame {
 			elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
 			//TODO ad controller for delete button
 		}
-		createPuzzle.addMouseListener(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
-		createLightning.addMouseListener(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Lightning: Cover as many tiles as you can before time runs out!"));
-		createRelease.addMouseListener(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Release: Cover tiles to release number/color sequences and win!"));
+		setPuzzleBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
+		setLightningBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Lightning: Cover as many tiles as you can before time runs out!"));
+		setReleaseBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Release: Cover tiles to release number/color sequences and win!"));
 		// add JButton mouse listeners
 	}
 	
@@ -104,10 +115,98 @@ public class LevelTypeSelectView extends JFrame {
 		existingLevels.addLevelView(levelType, levelNumber);
 	}
 	
+	/**
+	 * retrieve the button that tells the Builder to create a puzzle level
+	 * @return Jbutton
+	 */
 	public JButton getCreatePuzzleBtn() {
 		return this.createPuzzle;
 	}
-
+	
+	/**
+	 * retrieve the button that tells the Builder to create a Lightning level
+	 * @return Jbutton
+	 */
+	public JButton getCreateLightningBtn() {
+		return this.createLightning;
+	}
+	
+	/**
+	 * retrieve the button that tells the Builder to create a Release level
+	 * @return Jbutton
+	 */
+	public JButton getCreateReleaseBtn() {
+		return this.createRelease;
+	}
+	
+	/**
+	 * set the controller handling window closes
+	 * @return MouseListener
+	 */
+	public void setShutdownController(WindowListener we) {
+		this.shutdownHandler = we;
+		this.addWindowListener(we);
+	}
+	
+	/**
+	 * get the controller handling window closes
+	 * @return MouseListener
+	 */
+	public WindowListener getShutdownController() {
+		return this.shutdownHandler;
+	}
+	
+	/**
+	 * set the controller for the button that tells the Builder to create a puzzle level
+	 * @return 
+	 */
+	public void setPuzzleBtnHandler(MouseListener me) {
+		this.puzzleBtnHandler = me;
+		createPuzzle.addMouseListener(me);
+	}
+	
+	/**
+	 * set the controller for the button that tells the Builder to create a Lightning level
+	 * @return 
+	 */
+	public void setLightningBtnHandler(MouseListener me) {
+		this.lightningBtnHandler = me;
+		createLightning.addMouseListener(me);
+	}
+	
+	/**
+	 * set the controller for the button that tells the Builder to create a Release level
+	 * @return 
+	 */
+	public void setReleaseBtnHandler(MouseListener me) {
+		this.releaseBtnHandler = me;
+		createRelease.addMouseListener(me);
+	}
+	
+	/**
+	 * get the controller for the button that tells the Builder to create a puzzle level
+	 * @return MouseListener
+	 */
+	public MouseListener getPuzzleBtnHandler() {
+		return this.puzzleBtnHandler;
+	}
+	
+	/**
+	 * get the controller for the button that tells the Builder to create a Lightning level
+	 * @return MouseListener
+	 */
+	public MouseListener getLightningBtnHandler() {
+		return this.lightningBtnHandler;
+	}
+	
+	/**
+	 * get the controller for the button that tells the Builder to create a Release level
+	 * @return MouseListener
+	 */
+	public MouseListener getReleaseBtnHandler() {
+		return this.releaseBtnHandler;
+	}
+	
 	void setupLayout() {
 		GroupLayout gl_ltsv = new GroupLayout(container);
 		gl_ltsv.setAutoCreateGaps(true);

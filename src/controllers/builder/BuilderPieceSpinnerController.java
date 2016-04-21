@@ -7,6 +7,7 @@ import view.BuilderPieceGroupView;
 import model.PieceGroup;
 
 /**
+ * Controls the actions performed on a PieceGroup spinner in builder mode that increments and decrements its number of pieces 
  * 
  * @author awharrison
  *
@@ -21,6 +22,11 @@ public class BuilderPieceSpinnerController implements ChangeListener {
 	}
 
 	@Override
+	/**
+	 * Handles increments and decrements to the PieceGroup
+	 * 
+	 * @param e ChangeEvent
+	 */
 	public void stateChanged(ChangeEvent e) {
 		int oldVal = (int)((JSpinner)e.getSource()).getPreviousValue();
 		int newVal = (int)((JSpinner)e.getSource()).getValue();
