@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.Builder;
+import controllers.builder.CloseBuilderDialog;
+import controllers.player.ExitLevelButtonController;
+import controllers.player.PuzzleBoardGameController;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -50,10 +53,6 @@ public class BuilderView extends JFrame {
 		
 		setupLayout();		
 	}
-	
-	public Builder getBuilder() {
-		return this.builder;
-	}
 
 	/**
 	 * Prepares the view of a puzzle level by disabling release
@@ -65,6 +64,11 @@ public class BuilderView extends JFrame {
 		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
 		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.puzzle();	
+		
+		this.addWindowListener(new ExitLevelButtonController(view, g));
+		this.getBoardView().addMouseListener(new PuzzleBoardGameController(g, view));
+		this.getBoardView().addMouseMotionListener(new PuzzleBoardGameController(g, view));
+		this.setExitWindowListener(new CloseBuilderDialog(this, bv));
 	}
 	
 	/**
@@ -108,15 +112,31 @@ public class BuilderView extends JFrame {
 		return this.bullpenView;
 	}
 	
+	/**
+	 * Sets the windows listener of the BuilderView and adds it 
+	 * @param we - WindowListener being added
+	 */
 	public void setExitWindowListener(WindowListener we) {
 		this.exitWindowHandler = we;
 		this.addWindowListener(we);
 	}
 	
+	/**
+	 * Returns the window listener of the exit window
+	 * @return Window Listener
+	 */
 	public WindowListener getExitWindowListener() {
 		return this.exitWindowHandler;
 	}
 	
+	/**
+	 * Returns the builder object associated with this view
+	 * @return Builder
+	 */
+	public Builder getBuilder() {
+		return this.builder;
+	}
+
 	/*
 	 * Method for setting up the layout for the BuilderView
 	 */

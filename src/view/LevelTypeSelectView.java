@@ -99,7 +99,6 @@ public class LevelTypeSelectView extends JFrame {
 		for (ExistingLevelView elv : existingLevels.getExistingLevelButtons()) {
 			elv.addActionListenerToEditButton(new ExistingLevelEditController(b));
 			elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
-			//TODO ad controller for delete button
 		}
 		setPuzzleBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
 		setLightningBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Lightning: Cover as many tiles as you can before time runs out!"));
