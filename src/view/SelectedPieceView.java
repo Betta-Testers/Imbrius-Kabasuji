@@ -12,6 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import controllers.common.FlipPieceHorizontalController;
+import controllers.common.FlipPieceVerticalController;
+import controllers.common.RotatePieceLeftController;
+import controllers.common.RotatePieceRightController;
 import model.AbstractTile;
 import model.Bullpen;
 import model.PieceTile;
@@ -22,8 +26,8 @@ public class SelectedPieceView extends JPanel{
 	PiecePanel piecePanel;
 	JButton btnRotateLeft;
 	JButton btnRotateRight;
-	JButton btnFlipX;
-	JButton btnFlipY;
+	JButton btnFlipV;
+	JButton btnFlipH;
 	Bullpen bp;
 	
 	
@@ -35,27 +39,33 @@ public class SelectedPieceView extends JPanel{
 		btnRotateLeft.setToolTipText("Rotate Left");
 		btnRotateRight = new JButton("");
 		btnRotateRight.setToolTipText("Rotate Right");
-		btnFlipX = new JButton("");
-		btnFlipX.setToolTipText("Flip X");
-		btnFlipY = new JButton("");
-		btnFlipY.setToolTipText("Flip Y");
+		btnFlipV = new JButton("");
+		btnFlipV.setToolTipText("Flip X");
+		btnFlipH = new JButton("");
+		btnFlipH.setToolTipText("Flip Y");
 		
 		piecePanel = new PiecePanel(bp);
 		setupLayout();
+		initializeControllers();
 	}
 	
 	public PiecePanel getPiecePanel(){
 		return this.piecePanel;
 	}
 
-	
+	public void initializeControllers() {
+		btnFlipV.addActionListener(new FlipPieceVerticalController(bp, this));
+		btnFlipH.addActionListener(new FlipPieceHorizontalController(bp, this));
+		btnRotateRight.addActionListener(new RotatePieceRightController(bp, this));
+		btnRotateLeft.addActionListener(new RotatePieceLeftController(bp, this));
+	}
 	
 	private void setupLayout(){
 		
 		btnRotateLeft.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/RotateLeft.png")));
 		btnRotateRight.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/RotateRight.png")));
-		btnFlipX.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipX.png")));
-		btnFlipY.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipY.png")));
+		btnFlipV.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipX.png")));
+		btnFlipH.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipY.png")));
 		
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -66,9 +76,9 @@ public class SelectedPieceView extends JPanel{
 					.addGap(14)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnFlipX, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnFlipV, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(btnFlipY, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+							.addComponent(btnFlipH, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnRotateLeft, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -86,8 +96,8 @@ public class SelectedPieceView extends JPanel{
 								.addComponent(btnRotateRight))
 							.addPreferredGap(ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnFlipX)
-								.addComponent(btnFlipY)))
+								.addComponent(btnFlipV)
+								.addComponent(btnFlipH)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(16)
 							.addComponent(piecePanel, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)))

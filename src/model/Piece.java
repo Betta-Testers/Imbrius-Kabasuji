@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * @author Evan
+ * @author Hans
  */
 
 public class Piece implements Serializable{
@@ -56,8 +57,8 @@ public class Piece implements Serializable{
 		for (int i=1; i<6; i++) {
 			int row = tiles[i].getRowInPiece();
 			int col = tiles[i].getColInPiece();
-			tiles[i].updateRowInPiece(col);
-			tiles[i].updateColInPiece(-row);
+			tiles[i].updateRowInPiece(-col);
+			tiles[i].updateColInPiece(row);
 		}
 	}
 	
@@ -70,8 +71,8 @@ public class Piece implements Serializable{
 		for (int i=1; i<6; i++) {
 			int row = tiles[i].getRowInPiece();
 			int col = tiles[i].getColInPiece();
-			tiles[i].updateRowInPiece(-col);
-			tiles[i].updateColInPiece(row);
+			tiles[i].updateRowInPiece(col);
+			tiles[i].updateColInPiece(-row);
 		}
 	}
 	
