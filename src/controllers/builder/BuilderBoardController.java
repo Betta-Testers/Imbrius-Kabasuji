@@ -115,7 +115,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		//TODO
 		// preview piece on the board
+		// if the button is enabled and piece is in the piecePreview
 	}
 
 	@Override
@@ -139,8 +141,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	 * @param me MouseEvent
 	 */
 	public void mouseDragged(MouseEvent e) {
-		board.showPiecePreview(draggedPiece, e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
-		
+		//TODO implement after pieceMove button added
+		//board.showPiecePreview(draggedPiece, e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
 	}
 
 	@Override
@@ -150,7 +152,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	 * @param me MouseEvent
 	 */
 	public void mouseMoved(MouseEvent e) {
-		board.showPiecePreview(bp.getSelectedPiece(), e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
+		if(bp.getSelectedPiece() != null){
+			board.showPiecePreview(bp.getSelectedPiece(), e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
+		}
 		
 	}
 

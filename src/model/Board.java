@@ -162,7 +162,7 @@ public class Board implements Serializable{
 		}else{
 			for(int i = 0; i<6; i++){
 				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
-						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+row > 11){
+						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
 					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 				}else{
 					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);

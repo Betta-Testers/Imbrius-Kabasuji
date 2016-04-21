@@ -2,6 +2,8 @@ package controllers.builder;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JButton;
+
 import view.ExistingLevelView;
 
 import app.Builder;
@@ -20,8 +22,9 @@ public class ExistingLevelEditController implements java.awt.event.ActionListene
 	 * from view.
 	 */
 	public void actionPerformed(ActionEvent ae) {
-		ExistingLevelView sourceButton = (ExistingLevelView) ae.getSource();
-		int levelID = sourceButton.getLevelNumber();
+		JButton sourceButton = (JButton) ae.getSource();
+		ExistingLevelView elv = (ExistingLevelView) sourceButton.getParent();
+		int levelID = elv.getLevelNumber();
 		b.editLevel(levelID);
 		b.getBuilderView().setVisible(true);
 		b.getLevelTypeSelectView().setVisible(false);

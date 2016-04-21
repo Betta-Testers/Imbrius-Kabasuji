@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.Builder;
+import controllers.builder.BuilderBoardController;
 import controllers.builder.CloseBuilderDialog;
 import controllers.player.ExitLevelButtonController;
 import controllers.player.PuzzleBoardGameController;
@@ -65,10 +66,9 @@ public class BuilderView extends JFrame {
 		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.puzzle();	
 		
-		this.addWindowListener(new ExitLevelButtonController(view, g));
-		this.getBoardView().addMouseListener(new PuzzleBoardGameController(g, view));
-		this.getBoardView().addMouseMotionListener(new PuzzleBoardGameController(g, view));
-		this.setExitWindowListener(new CloseBuilderDialog(this, bv));
+		boardView.addMouseListener(new BuilderBoardController(this, builder.getCurrentLevel()));
+		boardView.addMouseMotionListener(new BuilderBoardController(this, builder.getCurrentLevel()));
+		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
 	}
 	
 	/**
