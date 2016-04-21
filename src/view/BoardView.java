@@ -24,7 +24,7 @@ public class BoardView extends JPanel{
 	Graphics offscreenGraphics;
 	
 	public BoardView(Board b){
-		setPreferredSize(new Dimension(384, 384));
+		setPreferredSize(new Dimension(385, 385));
 		this.b = b;
 		repaint(); //Initial painting of board from file
 	}
