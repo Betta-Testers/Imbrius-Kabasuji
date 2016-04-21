@@ -13,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 
 import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
-import model.PieceGroup;
 
 public class LevelView extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -66,6 +65,18 @@ public class LevelView extends JFrame {
 		return endConditionPanel;
 	}
 	
+	public BoardView getBoardView() {
+		return this.boardView;
+	}
+
+	public BullpenView getBullpenView() {
+		return this.bullpenView;
+	}
+	
+	public SelectedPieceView getSelectedPieceView(){
+		return this.selectedPiece;
+	}
+	
 	private void setupLayout() {
 		GroupLayout gl_LevelView = new GroupLayout(this.getContentPane());
 		gl_LevelView.setHorizontalGroup(
@@ -100,7 +111,5 @@ public class LevelView extends JFrame {
 		content.setLayout(gl_LevelView);
 	}
 
-	public BoardView getBoardView() {
-		return this.boardView;
-	}
+
 }

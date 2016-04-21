@@ -60,7 +60,9 @@ public class Game extends LevelIO{
 	public boolean displayLevel(int levelID) {
 		try {
 			currentLevel = loadLevel(levelID);
+			System.out.println(currentLevel.getBoard().toString());
 			levelView = currentLevel.initializeGame(this);
+			
 			levelView.setVisible(true);
 			return true;
 		} catch (Exception e) {

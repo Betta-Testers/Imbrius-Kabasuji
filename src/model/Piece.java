@@ -108,6 +108,10 @@ public class Piece implements Serializable{
 		return color;
 	}
 
+	public Piece makeCopy(){
+		return new Piece(ID);
+	}
+	
 	/** 
 	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
 	 * @param row
@@ -115,7 +119,7 @@ public class Piece implements Serializable{
 	 * 
 	 * @author Hans
 	 */
-	public void setLocation(int row, int col) {
+ 	public void setLocation(int row, int col) {
 		this.tiles[0].setLocation(row, col);
 		for (PieceTile pt : tiles) {
 			pt.updateBoardPosition();
@@ -169,6 +173,18 @@ public class Piece implements Serializable{
 	public PieceTile[] getTiles() {
 		return tiles;
 	}
+	
+	@Override
+	public boolean equals(Object o){
+		if(o == null){ return false;}
+		if(o instanceof Piece){
+			if(this.ID == ((Piece) o).getID()){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	
 	/**
 	 * When serializing a Piece, the pieceTile information is not needed. Instead of serializing those,

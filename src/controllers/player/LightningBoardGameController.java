@@ -12,7 +12,6 @@ import model.LightningTile;
 import model.Piece;
 import model.PieceTile;
 import view.BoardView;
-import view.LevelView;
 
 /**
  * @author hejohnson
@@ -35,7 +34,7 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	@Override
 	public void mouseClicked(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source);
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView());
 		
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();

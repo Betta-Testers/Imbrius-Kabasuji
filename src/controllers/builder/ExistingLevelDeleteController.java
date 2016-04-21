@@ -22,6 +22,6 @@ public class ExistingLevelDeleteController implements java.awt.event.ActionListe
 	public void actionPerformed(ActionEvent ae) {
 		ExistingLevelView sourceButton = (ExistingLevelView) ae.getSource();
 		int levelID = sourceButton.getLevelNumber();
-		//TODO Delete level from starmap
+		b.deleteLevel(levelID);
 	}
 }

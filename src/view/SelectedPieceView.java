@@ -1,10 +1,6 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -16,9 +12,7 @@ import controllers.common.FlipPieceHorizontalController;
 import controllers.common.FlipPieceVerticalController;
 import controllers.common.RotatePieceLeftController;
 import controllers.common.RotatePieceRightController;
-import model.AbstractTile;
 import model.Bullpen;
-import model.PieceTile;
 
 public class SelectedPieceView extends JPanel{
 	private static final long serialVersionUID = 1L;

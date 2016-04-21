@@ -18,6 +18,7 @@ import model.PieceTile;
  *
  */
 public class PiecePanel extends JPanel{
+	private static final long serialVersionUID = 1L;
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
 	Graphics offscreenGraphics;
@@ -47,7 +48,6 @@ public class PiecePanel extends JPanel{
 		 */
 		int xCenter = 96-16;
 		int yCenter = 96-16;
-		TileViewFactory factory = new TileViewFactory();
 		if (bp.getSelectedPiece()!=null) {
 			for(PieceTile t: bp.getSelectedPiece().getTiles()){
 				int xCoord = (t.getCol()*32)+xCenter;

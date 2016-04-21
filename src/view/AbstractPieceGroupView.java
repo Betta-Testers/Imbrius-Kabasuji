@@ -37,5 +37,10 @@ public abstract class AbstractPieceGroupView extends JPanel{
 	public void addSelectButtonActionListener (ActionListener al) {
 		this.button.addActionListener(al);
 	}
+	
+	public PieceGroup getPieceGroup(){
+		return this.pieceGroup;
+	}
 
+	 abstract void updateCount();
 }

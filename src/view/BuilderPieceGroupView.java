@@ -20,6 +20,12 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 		
 		setupLayout();
 	}
+	
+	@Override
+	void updateCount() {
+		spinner.setValue(pieceGroup.getNumPieces());
+	}
+	
 	/**
 	 * Method for setting up the layout for the BuilderPieceGroupview
 	 */

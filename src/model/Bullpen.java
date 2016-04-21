@@ -154,7 +154,7 @@ public class Bullpen implements Serializable{
 	 */
 	public boolean setSelectedPiece(int ID) {
 		for(int i = 0; i < this.playablePieces.size(); i++) {
-			if(this.playablePieces.get(i).getPiece().ID == ID) {
+			if(this.playablePieces.get(i).getPiece().ID == ID && this.playablePieces.get(i).getNumPieces() > 0) {
 				this.selectedPiece = this.playablePieces.get(i).getPiece();
 				return true; // do not need to sort as removing a single piece from a sorted list still remains sorted
 			}
@@ -173,7 +173,12 @@ public class Bullpen implements Serializable{
 	 * decrements the number of pieces in the selected pieceGroup by 1
 	 */
 	public void decrementSelectedPiece() {
-		this.playablePieces.get(this.selectedPiece.getID()).decrementCount();
+		for(PieceGroup pg: playablePieces){
+			if(pg.getPiece().getID() == this.selectedPiece.getID()){
+				pg.decrementCount();
+			}
+		}
+		
 	}
 
 	/**

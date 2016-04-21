@@ -99,7 +99,7 @@ public class BuilderBoardControllerRelease implements MouseListener, MouseMotion
 		} 
 		// place a piece
 		else if(selectedTile.getTileType().equals("board")) {
-				Move m = new PlacePieceOnBoardFromBullpenMove(lm, selectedTile);
+				Move m = new PlacePieceOnBoardFromBullpenMove(lm, selectedTile, bpv);
 				m.doMove();
 		}
 	}
@@ -114,7 +114,7 @@ public class BuilderBoardControllerRelease implements MouseListener, MouseMotion
 		
 		// place a piece
 		else if(selectedTile.getTileType().equals("board")) {
-			Move m = new PlacePieceOnBoardFromBullpenMove(lm, selectedTile);
+			Move m = new PlacePieceOnBoardFromBullpenMove(lm, selectedTile, bpv);
 			m.doMove();
 		}
 	}

@@ -9,8 +9,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import controllers.builder.BuilderPieceSpinnerController;
-import controllers.common.BullpenPieceSelectController;
 import model.Bullpen;
+import model.Piece;
 import model.PieceGroup;
 
 public class BullpenView extends JScrollPane {
@@ -46,7 +46,14 @@ public class BullpenView extends JScrollPane {
 		setupLayout();
 	}
 	
-
+	public void updatePieceGroup(Piece p){
+		for(AbstractPieceGroupView pgv :pieceGroupViews){
+			if(pgv.getPieceGroup().getPiece().equals(p)){
+				pgv.updateCount();
+			}
+		}
+	}
+	
 	/**
 	 * Method for setting up the layout for the BullpenView
 	 */

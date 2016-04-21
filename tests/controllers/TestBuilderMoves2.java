@@ -214,7 +214,7 @@ public class TestBuilderMoves2 extends TestCase {
 		assertEquals(144, b.getNumBoardTiles());
 		
 		// verify that the number of pieces in the bullpen has been decremented by 1
-		m = new PlacePieceOnBoardFromBullpenMove(pl, at);
+		m = new PlacePieceOnBoardFromBullpenMove(pl, at, bv.getBullpenView());
 		assertTrue(m.doMove());
 		assertEquals(null, pl.getBullpen().getSelectedPiece());
 		assertEquals(3, pl.getBullpen().numAvailablePieces());

@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Board;
+import model.BoardTile;
 import model.Bullpen;
+import model.EmptyTile;
 import model.LightningLevel;
 import model.PieceGroup;
 import model.PuzzleLevel;
@@ -24,25 +26,37 @@ import model.ReleaseLevel;
  *
  */
 public class LevelFactory{
-	
+
 	public static void main(String[] args) {
+		ArrayList<PieceGroup> pieces = new ArrayList<PieceGroup>();
+		ArrayList<AbstractTile> tiles = new ArrayList<AbstractTile>();
+		for(int j = 0; j < 6; j++){
+			pieces.add(new PieceGroup(j+1, 4));
+			
+			for(int i = 0; i<12; i++){
+				tiles.add(new EmptyTile(j, i));
+				tiles.add(new BoardTile(j+6, i));
+			}
+		}
+
 		LevelFactory lf = new LevelFactory();
 		lf.setDirectory("./imbriusLevelFiles/");
-		lf.addToData(lf.GenerateBlankPuzzle(1), 2);
-		lf.saveLevel(lf.GenerateBlankPuzzle(1));
-		
+		PuzzleLevel pl = lf.GenerateSpecificPuzzle(1, pieces, tiles);
+		lf.addToData(pl, 2);
+		lf.saveLevel(pl);
+
 		//lf.quick15("./imbriusLevelFiles/");
 	}
 	/** Working directory that this factory will save levels to**/
 	String directory;
-	
+
 	/** The optionally used starMap for this factory, mostly for testing**/
 	StarMap levels;
-	
+
 	public LevelFactory(){
 		System.out.println("Factory Started...");
 	}
-	
+
 	/**
 	 * Generates 15 levels, 5 of each type going Puzzle, Release, Lightning, Puzzle..
 	 * Saves each to disk and stores each one into the StarMap.
@@ -64,7 +78,7 @@ public class LevelFactory{
 			addToData(rl, 1);
 		}
 	}
-	
+
 	/**
 	 * Generates a ReleaseLevel with the given ID. The Board and bullpen of this release
 	 * level are populated with the pieces and tiles passed in.
@@ -81,7 +95,7 @@ public class LevelFactory{
 		rl.setBullpen(bullpen);
 		return rl;
 	}
-	
+
 	/**
 	 * Generates a LightningLevel with the given ID. The Board and bullpen of this lightning
 	 * level are populated with the pieces and tiles passed in.
@@ -98,7 +112,7 @@ public class LevelFactory{
 		ll.setBullpen(bullpen);
 		return ll;
 	}
-	
+
 	/**
 	 * Generates a PuzzleLevel with the given ID. The Board and bullpen of this puzzle
 	 * level are populated with the pieces and tiles passed in.
@@ -115,7 +129,7 @@ public class LevelFactory{
 		pl.setBullpen(bullpen);
 		return pl;
 	}
-	
+
 	/**
 	 * Generates a ReleaseLevel with the given ID and bullpen size
 	 * Note the bullpen is random in this case. If you want to specify
@@ -168,7 +182,7 @@ public class LevelFactory{
 		pl.setMoveLimit(20);
 		return pl;
 	}
-	
+
 	/**
 	 * Generates a ReleaseLevel with the given ID and bullpen size
 	 * Note the bullpen is random in this case. If you want to specify
@@ -219,7 +233,7 @@ public class LevelFactory{
 		pl.setBullpen(bullpen);
 		return pl;
 	}
-	
+
 	/**
 	 * Adds a given model and the stars assigned to it into the StarMap. This will cause the
 	 * StarMap to save itself. Can only add a model whose ID is not already in the starMap of 
@@ -238,7 +252,7 @@ public class LevelFactory{
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Saves the given level to the current directory assigned in this factory
 	 * @param level - Level you wish to save to disk
@@ -246,7 +260,7 @@ public class LevelFactory{
 	 */
 	public boolean saveLevel(AbstractLevelModel level){
 		if(directory == null){ return false;}
-		
+
 		ObjectOutputStream oos = null;
 
 		int id = level.getID();
