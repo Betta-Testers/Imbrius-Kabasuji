@@ -43,8 +43,7 @@ public class Game extends LevelIO{
 
 	void initialize(){
 		this.levelData = loadStarMap();
-		System.out.println("Levels Loaded:"+levelData.toString());
-		
+
 		this.initializeView();
 		this.initializeControllers();
 		this.initializeButtons();
