@@ -7,6 +7,12 @@ import model.BoardTile;
 import model.EmptyTile;
 import view.BuilderView;
 
+/**
+ * Represents the swap between an empty tile and a board tile
+ * 
+ * @author awharrison
+ *
+ */
 public class SwapTileEmptyToBoardMove extends Move {
 	Board board;
 	EmptyTile oldTile;

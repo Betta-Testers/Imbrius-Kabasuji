@@ -21,6 +21,9 @@ public class ExistingLevelView extends JPanel {
 	JButton editLevel;
 	JButton deleteLevel;
 	int levelNumber;
+	ActionListener editLevelHandler;
+	ActionListener deleteLevelHandler;
+	
 	ExistingLevelView(String levelType, Integer levelNumber) {
 		super();
 		this.levelNumber = levelNumber;
@@ -73,10 +76,12 @@ public class ExistingLevelView extends JPanel {
 	}
 	
 	public void addActionListenerToEditButton(ActionListener al) {
+		this.editLevelHandler = al;
 		editLevel.addActionListener(al);
 	}
 	
 	public void addActionListenerToDeleteButton(ActionListener al) {
+		this.editLevelHandler = al;
 		deleteLevel.addActionListener(al);
 	}
 }

@@ -20,6 +20,7 @@ import view.SelectedPieceView;
 
 /**
  * @author hejohnson
+ * @author awharrison
  *
  */
 
@@ -42,6 +43,10 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		this.levelModel = game.getCurrentLevel();
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();
+	}
+	
+	public Piece getDraggedPiece() {
+		return this.draggedPiece;
 	}
 
 	@Override

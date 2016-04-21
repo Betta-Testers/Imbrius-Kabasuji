@@ -79,7 +79,7 @@ public class Game extends LevelIO{
 
 	void initializeControllers(){
 		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
-		selectLevel.addWindowListener(new ShutdownController(this));
+		selectLevel.setShutdownController(new ShutdownController(this));
 	}
 
 	/**

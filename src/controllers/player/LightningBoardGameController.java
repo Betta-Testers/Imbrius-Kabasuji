@@ -15,7 +15,6 @@ import view.BoardView;
 
 /**
  * @author hejohnson
- *
  */
 
 //TODO add view update stuff

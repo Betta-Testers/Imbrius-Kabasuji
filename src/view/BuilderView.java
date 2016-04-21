@@ -1,13 +1,23 @@
 package view;
 
+import java.awt.event.WindowListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.Builder;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+/**
+ * 
+ * @author Dylan
+ * @author awharrison
+ *
+ */
 
 public class BuilderView extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -19,6 +29,7 @@ public class BuilderView extends JFrame {
 	BullpenView bullpenView;
 	SelectedPieceView selectedPieceView;
 	Builder builder;
+	WindowListener exitWindowHandler;
 	
 	public BuilderView(Builder b) {
 		this.builder = b;
@@ -95,6 +106,15 @@ public class BuilderView extends JFrame {
 	 */
 	public BullpenView getBullpenView() {
 		return this.bullpenView;
+	}
+	
+	public void setExitWindowListener(WindowListener we) {
+		this.exitWindowHandler = we;
+		this.addWindowListener(we);
+	}
+	
+	public WindowListener getExitWindowListener() {
+		return this.exitWindowHandler;
 	}
 	
 	/*

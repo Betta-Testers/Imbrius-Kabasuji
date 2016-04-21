@@ -19,6 +19,7 @@ public class BuilderSplashTimerController implements ActionListener{
 		this.b = b;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e){		
 		view.dispose();
 		b.getLevelTypeSelectView().setVisible(true);
