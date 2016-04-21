@@ -8,10 +8,17 @@ import model.PieceGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
+/**
+ * 
+ * @author Dylan
+ * @author awharrison
+ *
+ */
 public class BuilderPieceGroupView extends AbstractPieceGroupView{	
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JSpinner spinner;
+	ChangeListener pieceCountHandler;
 
 	public BuilderPieceGroupView(PieceGroup pg){
 		super(pg);
@@ -41,6 +48,7 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 	}
 	
 	public void addSpinnerChangeListener(ChangeListener cl) {
+		this.pieceCountHandler = cl;
 		spinner.addChangeListener(cl);
 	}
 	

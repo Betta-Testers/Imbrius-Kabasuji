@@ -84,6 +84,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		
 		// lift a piece off the board
 		if(selectedTile.getTileType().equals("piece")) {
+			board.removePiece(((PieceTile) selectedTile).getPiece());
 			draggedPiece = ((PieceTile) selectedTile).getPiece();
 		} 
 		// place a piece
@@ -92,7 +93,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				m.doMove();
 		}
 	}
-	
 
 	@Override
 	/**

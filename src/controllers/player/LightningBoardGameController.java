@@ -17,7 +17,6 @@ import model.PieceTile;
 
 /**
  * @author hejohnson
- *
  */
 
 //TODO add view update stuff

@@ -19,6 +19,7 @@ import model.PieceTile;
 
 /**
  * @author hejohnson
+ * @author awharrison
  *
  */
 
@@ -35,6 +36,10 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 	PuzzleBoardGameController (Game game) {
 		this.game = game;
 		this.levelModel = game.getCurrentLevel();
+	}
+	
+	public Piece getDraggedPiece() {
+		return this.draggedPiece;
 	}
 
 	@Override

@@ -3,10 +3,13 @@ import java.io.File;
 
 import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
+
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowListener;
 
 import app.Builder;
 import controllers.builder.BuilderSplashTimerController;
+import controllers.builder.CloseBuilderDialog;
 import model.Board;
 import model.Bullpen;
 import model.PieceGroup;
@@ -18,6 +21,7 @@ import view.SplashScreen;
 
 /**
  * @author hejohnson
+ * @author awharrison
  *
  */
 public class TestBuilderControllers extends MouseTesting {
@@ -68,6 +72,7 @@ public class TestBuilderControllers extends MouseTesting {
 	
 	public void testBuilderView() {
 		assertFalse(build.getBuilderView().isVisible());
+		assertEquals(1, bv.getWindowListeners().length);
 		
 		// TODO how to handle created mouse events
 		MouseEvent me = new MouseEvent(build.getLevelTypeSelectView(), 
@@ -75,6 +80,7 @@ public class TestBuilderControllers extends MouseTesting {
 				System.currentTimeMillis(), 0, 
 				build.getLevelTypeSelectView().getX(), 
 				build.getLevelTypeSelectView().getY(), 1, false);
+		assertEquals(2, build.getLevelTypeSelectView().getCreatePuzzleBtn().getMouseListeners().length);
 		
 //		MouseAdapter eventManagers = build.getLevelTypeSelectView().getCreatePuzzleBtn().getMouseListeners();
 //		eventManager.mouseClicked(me);

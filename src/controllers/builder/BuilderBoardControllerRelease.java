@@ -109,6 +109,7 @@ public class BuilderBoardControllerRelease implements MouseListener, MouseMotion
 		
 		// lift a piece off the board
 		if(selectedTile.getTileType().equals("piece")) {
+			board.removePiece(((PieceTile) selectedTile).getPiece());
 			draggedPiece = ((PieceTile) selectedTile).getPiece();
 		} 
 		// place a piece
