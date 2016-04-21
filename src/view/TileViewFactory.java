@@ -20,7 +20,6 @@ public class TileViewFactory {
 	public void drawToBoard(Graphics g, AbstractTile at) {
 		int xCoord = at.getCol()*32;
 		int yCoord = at.getRow()*32;
-		System.out.println("Tile coord: "+xCoord+" ,"+yCoord);
 		g.setColor(at.getColor());
 		g.fillRect(xCoord, yCoord, 32, 32);
 		g.setColor(Color.BLACK);

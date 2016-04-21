@@ -28,8 +28,8 @@ public class LevelView extends JFrame {
 	JPanel endConditionPanel;
 
 	public LevelView(String title, JPanel endConditionPanel, AbstractLevelModel m) {
-		this.setPreferredSize(new Dimension(600, 665));
-		this.setBounds(100, 100, 600, 665);
+		this.setPreferredSize(new Dimension(600, 660));
+		this.setBounds(100, 100, 600, 660);
 		this.content = new JPanel();
 		this.content.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setContentPane(content);
@@ -45,8 +45,9 @@ public class LevelView extends JFrame {
 		this.boardView = new BoardView(m.getBoard()); 
 		this.levelInfo = new LevelInfoView(1);
 		
-		setupLayout();
+		
 		initializeControllers();
+		setupLayout();
 	}
 	
 	public void initializeControllers() {
@@ -87,7 +88,7 @@ public class LevelView extends JFrame {
 				gl_LevelView.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_LevelView.createSequentialGroup()
 						.addComponent(selectedPiece, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
+						.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_LevelView.createSequentialGroup()
 						.addContainerGap()
 						.addComponent(levelInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)

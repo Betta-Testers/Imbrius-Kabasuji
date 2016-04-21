@@ -343,6 +343,7 @@ public class StarMap implements Serializable{
 		String location = directory+"StarMap.storage";
 
 		try {
+			new File(directory).mkdirs();
 			oos = new ObjectOutputStream(new FileOutputStream(location));
 			oos.writeObject(this);
 		} catch (Exception e) {
