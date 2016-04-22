@@ -42,6 +42,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	SelectedPieceView spv;
 	ReleaseNumberCreationView rncv;
 	boolean mouseOn;
+	int rOffset;
+	int cOffset;
 	
 	public BuilderBoardController(BuilderView bView, AbstractLevelModel lm) {
 		this.bView = bView;
@@ -65,6 +67,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
 			if (source instanceof PieceTile) {
 				board.setDraggedPiece(((PieceTile)source).getPiece());
+				rOffset = -((PieceTile)source).getRowInPiece();
+				cOffset = -((PieceTile)source).getColInPiece();
 				board.removePiece(board.getDraggedPiece());	
 				boardView.redraw();
 				boardView.repaint();
@@ -90,7 +94,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 						move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
 					}
 				} else {
-					move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece());
+					move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
 				}
 				
 				if (move != null && move.doMove()) {
@@ -177,7 +181,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				p = board.getDraggedPiece();
 			}
 			board.clearPiecePreview();
-			board.showPiecePreview(p, source.getRow(), source.getCol());
+			board.showPiecePreview(p, source.getRow()+rOffset, source.getCol()+cOffset);
 			boardView.redraw();
 			boardView.repaint();
 		}
