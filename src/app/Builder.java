@@ -12,6 +12,12 @@ import model.LightningLevel;
 import model.ReleaseLevel;
 import model.PuzzleLevel;
 
+/**
+ * Application class tracking the Builder. Prepares the views and controllers for LevelTypeSelectView and
+ * manages the returning and leaving between the builderView and the LevelTypeSelectionView.
+ * @author Dylan
+ *
+ */
 public class Builder extends LevelIO{
 
 	/**The LevelTypeSelectionView to select the type of level the builder wants to make**/
@@ -82,6 +88,12 @@ public class Builder extends LevelIO{
 		}
 	}
 
+	/**
+	 * Deletes a level from disk, which upon success will remove it from the view and the currentLevel
+	 * fields. 
+	 * @param id - ID of level being deleted
+	 * @return true if the level could be deleted successfully
+	 */
 	public boolean deleteLevel(int id){
 		if(levelData.deleteFromDisk(id)){
 			ltsv.removeExistingLevel(id);
