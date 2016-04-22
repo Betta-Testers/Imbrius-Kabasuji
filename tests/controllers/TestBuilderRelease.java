@@ -4,22 +4,13 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
-
-import javax.swing.Timer;
-
-import controllers.builder.BuilderSplashTimerController;
 import model.Board;
-import model.Bullpen;
-import model.PuzzleLevel;
 import model.ReleaseLevel;
 import model.ReleaseTile;
 import view.BoardView;
 import view.BuilderView;
 import view.BullpenView;
-import view.ButtonGroupView;
-import view.LevelPropertiesView;
 import view.ReleaseNumberCreationView;
-import view.SplashScreen;
 import app.Builder;
 import junit.framework.TestCase;
 
