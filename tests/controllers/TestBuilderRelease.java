@@ -32,11 +32,23 @@ import junit.framework.TestCase;
 public class TestBuilderRelease extends TestCase {
 	Builder build;
 	BuilderView buildView;
+	ReleaseLevel lvl;
+	Board releaseBoard;
+	BoardView boardView;
+	BullpenView bpView;
+	ReleaseNumberCreationView rncv;
 	
 	@Override
 	public void setUp(){
 		new File("./imbriusLevelTESTING/").mkdirs();
 		build = new Builder("./imbriusLevelTESTING/");
+		build.createReleaseLevel();
+		buildView = build.getBuilderView();
+		lvl = (ReleaseLevel)build.getCurrentLevel();
+		releaseBoard = lvl.getBoard();
+		boardView = buildView.getBoardView();
+		bpView = buildView.getBullpenView();
+		rncv = buildView.getReleaseNumberView();
 	}
 	
 	@Override
@@ -45,136 +57,13 @@ public class TestBuilderRelease extends TestCase {
 		for(File file: dir.listFiles()) file.delete();
 		dir.delete();
 	}
-	
-	public void testPuzzleLightningBoard() {
-		/*
-		 * list variables needed for this test 
-		 */
-		PuzzleLevel lvl;
-		Board puzzleBoard;
-		BoardView boardView;
-		Bullpen bp;
-		BullpenView bpView;
-		LevelPropertiesView lvlPropView;
-		ButtonGroupView buttonGroupView;
-		
-		//====================== Start Up ======================//
-		
-		/*
-		 * start splash screen and timer
-		 */
-		SplashScreen splash = new SplashScreen();
-		Timer timer = new Timer(100, new BuilderSplashTimerController(splash, build));
-		timer.setRepeats(false);
-		timer.start();
-		
-		/*
-		 * wait until the expected time is up
-		 */
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		//====================== Select Level Type ======================//
-		
-		/*
-		 * create a mouse event to select build puzzle level
-		 */
-		MouseEvent me = new MouseEvent(build.getLevelTypeSelectView(), 
-				MouseEvent.MOUSE_CLICKED, 
-				System.currentTimeMillis(), 0, 
-				build.getLevelTypeSelectView().getX(), 
-				build.getLevelTypeSelectView().getY(), 1, false);
-		
-		/*
-		 * handle the mouse event 
-		 */
-		build.getLevelTypeSelectView().getPuzzleBtnHandler().mouseClicked(me);
-		
-		/*
-		 * verify that level created was a Puzzle level
-		 */
-		lvl = (PuzzleLevel)build.getCurrentLevel();
-		assertEquals("Puzzle", lvl.getType());
-		
-		//====================== Manipulate Bullpen/Hover Mouse on Board ======================//
-		//====================== Rotate Pieces ======================//
-		//====================== Place and Remove Pieces ======================//
-		//====================== Set Moves (and timer?) ======================//
-		//====================== Convert to Hint ======================//
-		//====================== Undo/Redo ======================//
-		//====================== Save Level? ======================//
-		
-	}
-	
-	public void testReleaseBoard() {
-		/*
-		 * list variables needed for this test 
-		 */
-		ReleaseLevel lvl;
-		Board releaseBoard;
-		BoardView boardView;
-		Bullpen bp;
-		BullpenView bpView;
-		LevelPropertiesView lvlPropView;
-		ButtonGroupView buttonGroupView;
-		ReleaseNumberCreationView rncv;
-		MouseEvent me;
-		ActionEvent ae;
-		
-		//====================== Start Up ======================//
-		
-		/*
-		 * start splash screen and timer
-		 */
-		SplashScreen splash = new SplashScreen();
-		Timer timer = new Timer(100, new BuilderSplashTimerController(splash, build));
-		timer.setRepeats(false);
-		timer.start();
-		
-		/*
-		 * wait until the expected time is up
-		 */
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		//====================== Select Level Type ======================//
-		
-		/*
-		 * create a mouse event to select build puzzle level
-		 */
-		me = new MouseEvent(build.getLevelTypeSelectView(), 
-				MouseEvent.MOUSE_CLICKED, 
-				System.currentTimeMillis(), 0, 
-				build.getLevelTypeSelectView().getX(), 
-				build.getLevelTypeSelectView().getY(), 1, false);
-		
-		/*
-		 * handle the mouse event 
-		 */
-		build.getLevelTypeSelectView().getReleaseBtnHandler().mouseClicked(me);
-		
-		/*
-		 * verify that level created is a release level
-		 */
-		lvl = (ReleaseLevel)build.getCurrentLevel();
-		assertEquals("Release", lvl.getType());
-		
-		/*
-		 * set necessary variables
-		 */
 
-		buildView = build.getBuilderView();
-		releaseBoard = lvl.getBoard();
-		bpView = buildView.getBullpenView();
-		boardView = buildView.getBoardView();
-		
-		//====================== Empty to Board to Empty Tile Swapping ======================//
+	//====================== Empty to Board to Empty Tile Swapping ======================//
+	public void testBoardEmptyTileSwap() {
+		/*
+		 * list variables needed for this test 
+		 */
+		MouseEvent me;
 		
 		/*
 		 * verify that the starting board has no tiles
@@ -209,8 +98,22 @@ public class TestBuilderRelease extends TestCase {
 		boardView.getMouseActionController().mouseReleased(me);
 		assertEquals("empty", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
 		assertEquals(0, releaseBoard.getNumBoardTiles());
+	}
+	
+	//====================== Board to Release to Board Tile Swapping ======================//
+	public void testBoardReleaseTileSwap() {
+		/*
+		 * list variables needed for this test 
+		 */
+		MouseEvent me;
+		ActionEvent ae;
 		
-		//====================== Board to Release to Board Tile Swapping ======================//
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_RELEASED, 
+				System.currentTimeMillis(), 0, 
+				boardView.getX()+releaseBoard.getTileSize()*2, 
+				boardView.getY()+releaseBoard.getTileSize()*2, 0, false);
+		rncv = buildView.getReleaseNumberView();
 		
 		/*
 		 * trigger the tile again to board
@@ -258,5 +161,7 @@ public class TestBuilderRelease extends TestCase {
 		assertEquals("board", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
 		assertEquals(1, releaseBoard.getNumBoardTiles());
 	}
+	
+	
 
 }
