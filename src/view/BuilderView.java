@@ -64,7 +64,7 @@ public class BuilderView extends JFrame {
 		bullpenView = new BullpenView();	
 		levelPropertyView = new LevelPropertiesView();	
 		selectedPieceView = new SelectedPieceView(b.getCurrentLevel().getBullpen());
-		tglbtnPlacePieces = new JToggleButton("Test Pieces On Board");
+		tglbtnPlacePieces = new JToggleButton("Put Pieces On Board");
 		btnConvertHint = new JButton("Convert Pieces To Hint");
 		
 		setupLayout();		
@@ -181,7 +181,7 @@ public class BuilderView extends JFrame {
 	 * Method for setting up the layout for the BuilderView
 	 */
 	void setupLayout(){
-		tglbtnPlacePieces.setToolTipText("When toggled, you can place pieces on the board to test it!");
+		tglbtnPlacePieces.setToolTipText("When toggled, you can place pieces on the board");
 		btnConvertHint.setToolTipText("Any pieces on the board are turned into hints!");
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
