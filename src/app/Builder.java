@@ -36,8 +36,6 @@ public class Builder extends LevelIO{
 
 	void initialize(){
 		this.levelData = loadStarMap();
-		System.out.println(levelData.lastID());
-		System.out.println(levelData.nextOpenID());
 		this.initializeView();
 		this.initializeControllers();
 	}
