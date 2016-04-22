@@ -26,6 +26,7 @@ public class BullpenPieceSelectController implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		System.out.println("SO TRIGGERED");
 		SelectPieceButton source  = (SelectPieceButton) ae.getSource();
 		bp.setSelectedPiece(source.getPieceID());
 		selectedPieceView.getPiecePanel().redraw();

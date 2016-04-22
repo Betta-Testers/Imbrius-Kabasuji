@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import app.Builder;
 import controllers.builder.BuilderBoardController;
+import controllers.builder.BuilderPieceSpinnerController;
 import controllers.builder.CloseBuilderDialog;
 import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
@@ -118,7 +119,8 @@ public class BuilderView extends JFrame {
 		boardView.addMouseListener(builderBoardControl);
 		boardView.addMouseMotionListener(builderBoardControl);
 		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
-			pgv.addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
+			((BuilderPieceGroupView) pgv).addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
+			((BuilderPieceGroupView) pgv).addSpinnerChangeListener(new BuilderPieceSpinnerController((BuilderPieceGroupView) pgv, pgv.getPieceGroup()));
 		}
 	}
 	
