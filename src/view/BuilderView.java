@@ -97,7 +97,6 @@ public class BuilderView extends JFrame {
 		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.lightning();
 		
-		
 		initializeControllers();
 	}
 	
@@ -112,13 +111,13 @@ public class BuilderView extends JFrame {
 		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.release();
 		
-		
 		initializeControllers();
 	}
 	
 	void initializeControllers(){
 		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
-		boardView.setMouseActionController(new BuilderBoardController(this, builder.getCurrentLevel()));
+		BuilderBoardController builderBoardControl = new BuilderBoardController(this, builder.getCurrentLevel());
+		boardView.setMouseActionController(builderBoardControl);
 		boardView.setMouseMotionController(new BuilderBoardController(this, builder.getCurrentLevel()));
 		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
 			pgv.addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
@@ -132,6 +131,10 @@ public class BuilderView extends JFrame {
 	 */
 	public ReleaseNumberCreationView getReleaseNumberView(){
 		return this.releaseNumberView;
+	}
+	
+	public SelectedPieceView getSelectedPieceView() {
+		return selectedPieceView;
 	}
 	
 	/**

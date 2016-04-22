@@ -14,7 +14,6 @@ import javax.swing.JToggleButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import controllers.builder.SetReleaseTileColorController;
