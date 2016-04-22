@@ -114,8 +114,9 @@ public class BuilderView extends JFrame {
 	
 	void initializeControllers(){
 		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
-		boardView.addMouseListener(new BuilderBoardController(this, builder.getCurrentLevel()));
-		boardView.addMouseMotionListener(new BuilderBoardController(this, builder.getCurrentLevel()));
+		BuilderBoardController builderBoardControl = new BuilderBoardController(this, builder.getCurrentLevel());
+		boardView.addMouseListener(builderBoardControl);
+		boardView.addMouseMotionListener(builderBoardControl);
 		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
 			pgv.addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
 		}
