@@ -46,10 +46,6 @@ public class ButtonGroupView extends JPanel{
 		setupLayout();
 	}
 	
-//	public boolean getHintSelected() {
-//		return btnConvertHint.isSelected();
-//	}
-	
 	
 	/**
 	 * Method for setting up the layout for the available level view

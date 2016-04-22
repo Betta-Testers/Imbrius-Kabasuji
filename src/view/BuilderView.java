@@ -142,6 +142,16 @@ public class BuilderView extends JFrame {
 	public BoardView getBoardView() {
 		return this.boardView;
 	}
+	
+	/**
+	 * Returns whether the toggle button for piece placement is 
+	 * turned on (true) or not (false)
+	 * @return boolean about state
+	 */
+	public boolean getStateOfPlacement() {
+		return tglbtnPlacePieces.isSelected();
+	}
+	
 	/**
 	 * Sets the windows listener of the BuilderView and adds it 
 	 * @param we - WindowListener being added

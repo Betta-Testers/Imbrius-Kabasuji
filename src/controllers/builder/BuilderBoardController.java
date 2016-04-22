@@ -43,16 +43,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		this.bpv = bView.getBullpenView();
 		this.boardView = bView.getBoardView();
 	}
-	
-	
-	/**
-	 * Swap individual tile types on the board
-	 * @param me MouseEvent
-	 */
-	@Override
-	public void mouseClicked(MouseEvent me) {
-		
-	}
 
 	
 	/**
@@ -78,7 +68,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 //				move.doMove();
 //		}
 	}
-
 	
 	/**
 	 * Convert tile on board into opposite form: Board Vs Empty. Using a released action allows
@@ -88,6 +77,21 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	 */
 	@Override
 	public void mouseReleased(MouseEvent me) {
+		if(bView.getStateOfPlacement()){
+			
+		}else{
+			AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
+
+			if(source.getTileType().equals("board")){
+				Move move = new SwapTileBoardToEmptyMove(bView, (BoardTile) source, m);
+				move.doMove();
+			} else if (source.getTileType().equals("empty")) {	
+				Move move = new SwapTileEmptyToBoardMove(bView, (EmptyTile) source, m);
+				move.doMove();
+			}
+			boardView.redraw();
+			boardView.repaint();
+		}
 //		AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
 //		if(source == null) {
 //			throw new RuntimeException("BoardController::somehow selected a null tile");
@@ -98,24 +102,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 //			Move move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
 //			move.doMove();
 //		}
-		AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
-
-		if(source.getTileType().equals("board")){
-			Move move = new SwapTileBoardToEmptyMove(bView, (BoardTile) source, m);
-			move.doMove();
-		} else if (source.getTileType().equals("empty")) {	
-			Move move = new SwapTileEmptyToBoardMove(bView, (EmptyTile) source, m);
-			move.doMove();
-		}
-		boardView.redraw();
-		boardView.repaint();
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		//TODO
-		// preview piece on the board
-		// if the button is enabled and piece is in the piecePreview
 	}
 
 	@Override
@@ -156,4 +142,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		
 	}
 
+	//====================== UNUSED BUT REQUIRED ======================//
+	@Override
+	public void mouseClicked(MouseEvent me) {}
+	@Override
+	public void mouseEntered(MouseEvent e) {}
 }
