@@ -96,7 +96,9 @@ public class BuilderView extends JFrame {
 		releaseNumberView.setVisible(false);
 		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
 		levelPropertyView.setLevelModel(builder.getCurrentLevel());
-		levelPropertyView.lightning();	
+		levelPropertyView.lightning();
+		
+		initializeGenericControllers();
 	}
 	
 	/**
@@ -109,6 +111,8 @@ public class BuilderView extends JFrame {
 		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
 		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.release();
+		
+		initializeGenericControllers();
 	}
 	
 	void initializeGenericControllers(){
