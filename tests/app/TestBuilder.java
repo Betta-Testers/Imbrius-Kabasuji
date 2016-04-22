@@ -42,7 +42,7 @@ public class TestBuilder extends TestCase {
 		/**Test builder opening a non-empty directory**/
 		(new LevelFactory()).quick15("./imbriusLevelTESTING/");
 		b = new Builder("./imbriusLevelTESTING/");
-		expected = "[1,Puzzle,2],[2,Lightning,3],[3,Release,1],[4,Puzzle,2],[5,Lightning,3],[6,Release,1],[7,Puzzle,2],[8,Lightning,3],[9,Release,1],[10,Puzzle,2],[11,Lightning,3],[12,Release,1],[13,Puzzle,2],[14,Lightning,3],[15,Release,1]";
+		expected = "[1,Puzzle,0],[2,Lightning,0],[3,Release,0],[4,Puzzle,0],[5,Lightning,0],[6,Release,0],[7,Puzzle,0],[8,Lightning,0],[9,Release,0],[10,Puzzle,0],[11,Lightning,0],[12,Release,0],[13,Puzzle,0],[14,Lightning,0],[15,Release,0]";
 		assertEquals(expected, b.levelData.toString());
 		assertEquals(15,b.getHighestLevelID());
 	}
