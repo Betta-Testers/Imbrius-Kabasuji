@@ -4,7 +4,15 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
+
+import controllers.builder.SwapTileBoardToReleaseMove;
+import controllers.builder.SwapTileEmptyToBoardMove;
+import controllers.builder.SwapTileReleaseToBoardMove;
+import controllers.builder.SwapTileReleaseToReleaseMove;
+import controllers.common.Move;
 import model.Board;
+import model.BoardTile;
+import model.EmptyTile;
 import model.ReleaseLevel;
 import model.ReleaseTile;
 import view.BoardView;
@@ -153,6 +161,64 @@ public class TestBuilderRelease extends TestCase {
 		assertEquals(1, releaseBoard.getNumBoardTiles());
 	}
 	
-	
+	public void testTileBoardToReleaseSwapMove() {
+		Move m;
+		/*
+		 * first convert an empty tile to a board tile
+		 */
+		m = new SwapTileEmptyToBoardMove(buildView, (EmptyTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl);
+		assertTrue(m.doMove());
+		assertEquals(1, releaseBoard.getNumBoardTiles());
+		
+		/*
+		 * then convert the board tile to a release tile, undo, redo
+		 */
+		rncv.toggleButton(2);
+		assertEquals("Blue", rncv.getColorSelector().getSelectedItem());
+		m = new SwapTileBoardToReleaseMove(buildView, (BoardTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl);
+		assertTrue(m.doMove());
+		assertEquals(0, releaseBoard.getNumBoardTiles());
+		assertEquals(3, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getNumber());
+		m.undo();
+		assertEquals("board", releaseBoard.getTileAt(boardView.getX(), boardView.getY()).getTileType());
+		m.redo();
+		assertEquals("release", releaseBoard.getTileAt(boardView.getX(), boardView.getY()).getTileType());
+//		assertEquals(Color.BLUE, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getColor());
+		
+		/*
+		 * untoggle button
+		 */
+		rncv.toggleButton(2);
+		assertEquals(-1, rncv.getNumberSelected());
+		
+		/*
+		 * swap tile with a new release tile selection, undo, redo
+		 */
+		rncv.toggleButton(4);
+		m = new SwapTileReleaseToReleaseMove(buildView, (ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl);
+		assertTrue(m.doMove());
+		assertEquals(5, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getNumber());
+		m.undo();
+		assertEquals(3, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getNumber());
+		m.redo();
+		assertEquals(5, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getNumber());
+		
+		/*
+		 * untoggle button
+		 */
+		rncv.toggleButton(4);
+		assertEquals(-1, rncv.getNumberSelected());
+		
+		/*
+		 * convert back to board tile, undo, redo
+		 */
+		m = new SwapTileReleaseToBoardMove(buildView, (ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl);
+		assertTrue(m.doMove());
+		assertEquals("board", releaseBoard.getTileAt(boardView.getX(), boardView.getY()).getTileType());
+		m.undo();
+		assertEquals("release", releaseBoard.getTileAt(boardView.getX(), boardView.getY()).getTileType());
+		m.redo();
+		assertEquals("board", releaseBoard.getTileAt(boardView.getX(), boardView.getY()).getTileType());
+	}
 
 }

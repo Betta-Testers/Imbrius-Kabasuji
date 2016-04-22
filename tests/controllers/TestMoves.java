@@ -20,6 +20,7 @@ import model.PuzzleLevel;
 
 /**
  * @author hejohnson
+ * @author awharrison
  *
  */
 public class TestMoves extends TestCase {
