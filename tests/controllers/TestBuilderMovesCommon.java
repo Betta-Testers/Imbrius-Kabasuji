@@ -26,8 +26,7 @@ import junit.framework.TestCase;
  * @author awharrison
  *
  */
-public class TestBuilderMoves2 extends TestCase {
-	
+public class TestBuilderMovesCommon extends TestCase {
 	PuzzleLevel pl;
 	Builder build;
 	BuilderView bv;

@@ -24,7 +24,7 @@ import view.BuilderView;
  * @author hejohnson
  *
  */
-public class TestBuilderMoves extends TestCase {
+public class TestBuilderMovesRelease extends TestCase {
 
 	ReleaseLevel rl;
 	Builder build;

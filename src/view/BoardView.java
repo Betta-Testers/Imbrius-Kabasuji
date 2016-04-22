@@ -3,9 +3,7 @@ package view;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
@@ -16,6 +14,7 @@ import model.Board;
 /**
  * @author dfontana
  * @author Heineman
+ * @author awharrison
  */
 public class BoardView extends JPanel{
 	private static final long serialVersionUID = 1L;
