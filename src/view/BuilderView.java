@@ -132,6 +132,10 @@ public class BuilderView extends JFrame {
 		return this.releaseNumberView;
 	}
 	
+	public SelectedPieceView getSelectedPieceView() {
+		return selectedPieceView;
+	}
+	
 	/**
 	 * returns the BullpenView
 	 * @return

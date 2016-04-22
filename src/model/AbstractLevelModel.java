@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 
 import app.Game;
+import view.BuilderView;
 import view.LevelView;
 
 /**
@@ -112,7 +113,8 @@ public abstract class AbstractLevelModel implements Serializable{
 	 */
 	public int getStarsEarned(){
 		return this.starsEarned;
-	}	
+	}
+
 }
 
 
