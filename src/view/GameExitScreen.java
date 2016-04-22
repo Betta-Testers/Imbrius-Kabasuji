@@ -82,7 +82,7 @@ public class GameExitScreen extends JFrame{
 	 * A method used by outside objects/classes to set the number of stars associated with this GameExitScreen
 	 * @param stars the number of stars to set the GameExitScreens star parameter
 	 */
-	void setStars(StarView stars){
-		this.stars = stars;
+	public void setStars(int starNum){
+		stars.setNumStars(starNum);
 	}
 }

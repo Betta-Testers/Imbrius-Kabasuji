@@ -19,6 +19,7 @@ public class ExitLevelButtonController extends WindowAdapter{
 	
 	@Override
 	public void windowClosing(WindowEvent e) {
+		game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
 		game.getExitView().setVisible(true);
 		view.dispose();
 		

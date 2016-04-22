@@ -77,6 +77,10 @@ public class LevelView extends JFrame {
 		return this.selectedPiece;
 	}
 	
+	public LevelInfoView getLevelInfoView() {
+		return this.levelInfo;
+	}
+	
 	private void setupLayout() {
 		GroupLayout gl_LevelView = new GroupLayout(this.getContentPane());
 		gl_LevelView.setHorizontalGroup(

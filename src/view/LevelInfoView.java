@@ -53,5 +53,9 @@ public class LevelInfoView extends JPanel {
 		);
 		setLayout(groupLayout);
 	}
+	
+	public void setStars(int numStars) {
+		starView.setNumStars(numStars);
+	}
 
 }

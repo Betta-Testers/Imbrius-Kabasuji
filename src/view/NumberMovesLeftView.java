@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.JToggleButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -21,6 +22,7 @@ public class NumberMovesLeftView extends JPanel {
 	
 	JTextPane numberMoves;
 	JLabel lblTitle;
+	JToggleButton movePieceButton;
 
 	public NumberMovesLeftView() {
 		this.setPreferredSize(new Dimension(180, 90));
@@ -28,6 +30,7 @@ public class NumberMovesLeftView extends JPanel {
 		numberMoves.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		numberMoves.setText("00");
 		lblTitle = new JLabel("Moves Remaining");
+		movePieceButton  = new JToggleButton("Move Pieces");
 		
 		setupLayout();
 	}
@@ -42,24 +45,30 @@ public class NumberMovesLeftView extends JPanel {
 		numberMoves.setText(Integer.toString(movesLeft));
 	}
 	
+	public boolean movePieces() {
+		return movePieceButton.isSelected();
+	}
+	
 	private void setupLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(16)
+							.addComponent(movePieceButton))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(49)
 							.addComponent(lblTitle))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(74)
 							.addComponent(numberMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(48, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(18)
+					.addComponent(movePieceButton)
+					//.addGap(18)
 					.addComponent(lblTitle)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(numberMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
