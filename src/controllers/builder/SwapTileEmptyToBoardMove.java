@@ -38,8 +38,10 @@ public class SwapTileEmptyToBoardMove extends Move {
 
 	@Override
 	public boolean isValid() {
-		// TODO is there anything that would make this invalid?
-		return true;
+		if(this.oldTile.getTileType().equals("empty"))
+			return true;
+		else
+			return false;
 	}
 
 	@Override
