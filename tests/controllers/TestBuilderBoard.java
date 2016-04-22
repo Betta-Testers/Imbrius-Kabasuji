@@ -1,5 +1,7 @@
 package controllers;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
@@ -50,6 +52,8 @@ public class TestBuilderBoard extends TestCase {
 		LevelPropertiesView lvlPropView;
 		ButtonGroupView buttonGroupView;
 		
+		//====================== Start Up ======================//
+		
 		/*
 		 * start splash screen and timer
 		 */
@@ -66,6 +70,8 @@ public class TestBuilderBoard extends TestCase {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		//====================== Select Level Type ======================//
 		
 		/*
 		 * create a mouse event to select build puzzle level
@@ -87,6 +93,12 @@ public class TestBuilderBoard extends TestCase {
 		lvl = (PuzzleLevel)build.getCurrentLevel();
 		assertEquals("Puzzle", lvl.getType());
 		
+		//====================== Manipulate Bullpen ======================//
+		//====================== Rotate Pieces ======================//
+		//====================== Place and Remove Pieces ======================//
+		//====================== Set Moves (and timer?) ======================//
+		//====================== Empty to Board to Empty Tile Swapping ======================//
+		
 	}
 	
 	public void testReleaseBoard() {
@@ -102,6 +114,7 @@ public class TestBuilderBoard extends TestCase {
 		ButtonGroupView buttonGroupView;
 		ReleaseNumberCreationView rncv;
 		MouseEvent me;
+		ActionEvent ae;
 		
 		//====================== Start Up ======================//
 		
@@ -199,14 +212,40 @@ public class TestBuilderBoard extends TestCase {
 		assertEquals(1, releaseBoard.getNumBoardTiles());
 		
 		/*
-		 * toggle release number 1
+		 * toggle release number 1, color blue
 		 */
 		rncv.toggleButton(0);
 		assertEquals(1, rncv.getNumberSelected());
+		rncv.getColorSelector().setSelectedItem("Blue");
+		assertEquals("Blue", rncv.getColorSelector().getSelectedItem());
+		assertEquals(Color.BLUE, rncv.getColorSelected());
+		
+		/*
+		 * toggle release number 2, color red
+		 */
+		rncv.toggleButton(0);
+		rncv.toggleButton(1);
+		assertEquals(2, rncv.getNumberSelected());
+		rncv.getColorSelector().setSelectedItem("Red");
+		ae = new ActionEvent(rncv.getColorSelector(), ActionEvent.ACTION_PERFORMED, "stuff");
+		rncv.getSetColorController().actionPerformed(ae);
+		assertEquals("Red", rncv.getColorSelector().getSelectedItem());
+		assertEquals(Color.RED, rncv.getColorSelected());
+		
 		boardView.getMouseActionController().mouseReleased(me);
 		assertEquals("release", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
 		assertEquals(0, releaseBoard.getNumBoardTiles());
-		assertEquals(1, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2)).getNumber());
+		assertEquals(2, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2)).getNumber());
+		// TODO figure out why this is returning the color r=255, g=255, b=255
+//		assertEquals(Color.RED, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2)).getColor());
+		
+		/*
+		 * untoggle all buttons, swap tile back to board
+		 */
+		rncv.toggleButton(1);
+		boardView.getMouseActionController().mouseReleased(me);
+		assertEquals("board", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
+		assertEquals(1, releaseBoard.getNumBoardTiles());
 	}
 
 }

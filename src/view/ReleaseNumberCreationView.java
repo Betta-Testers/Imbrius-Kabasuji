@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
@@ -18,6 +19,10 @@ import javax.swing.border.LineBorder;
 
 import controllers.builder.SetReleaseTileColorController;
 
+/**
+ * @author Dylan
+ * @author awharrison
+ */
 public class ReleaseNumberCreationView extends JPanel{
 	/**
 	 * 
@@ -29,6 +34,7 @@ public class ReleaseNumberCreationView extends JPanel{
 	JToggleButton numButtons[];
 	ButtonGroup creationGroup;
 	JComboBox<String> colorSelector;
+	ActionListener setColorHandler;
 
 	public ReleaseNumberCreationView(){
 		setPreferredSize(new Dimension(105, 135));
@@ -57,7 +63,7 @@ public class ReleaseNumberCreationView extends JPanel{
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		colorSelector = new JComboBox<String>(new String[] {"Blue", "Green", "Red"});
-		colorSelector.addActionListener(new SetReleaseTileColorController(this));
+		addSetColorController(new SetReleaseTileColorController(this));
 
 		setupLayout();
 	}
@@ -178,5 +184,14 @@ public class ReleaseNumberCreationView extends JPanel{
 			if(i == index)
 				numButtons[i].doClick();
 		}
+	}
+	
+	public void addSetColorController(ActionListener al) {
+		this.setColorHandler = al;
+		this.colorSelector.addActionListener(al);
+	}
+	
+	public ActionListener getSetColorController() {
+		return this.setColorHandler;
 	}
 }
