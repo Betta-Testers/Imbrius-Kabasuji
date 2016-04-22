@@ -21,7 +21,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * Only numbers 1-6 exist, and only 1 set of each color exists. So when a number is released
 	 * it is populated into the index = value-1**/
 	transient int reds[];
-	transient int yellows[];
+	transient int greens[];
 	transient int blues[];
 
 	/**
@@ -44,12 +44,12 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	void initializeVars() {
 		reds = new int[6];
-		yellows = new int[6];
+		greens = new int[6];
 		blues = new int[6];
 		
 		for(int i=0; i<6; i++){
 			reds[i] = -1;
-			yellows[i] = -1;
+			greens[i] = -1;
 			blues[i] = -1;
 		}
 	}
@@ -67,13 +67,13 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	public boolean checkStatus() {
 		boolean redSum = sumIsSix(reds);
 		boolean blueSum = sumIsSix(blues);
-		boolean yellowSum = sumIsSix(yellows);
+		boolean greenSum = sumIsSix(greens);
 		
 		if(redSum){  	starsEarned++;}
 		if(blueSum){ 	starsEarned++;}
-		if(yellowSum){	starsEarned++;}
+		if(greenSum){	starsEarned++;}
 		
-		return (redSum&&blueSum&&yellowSum) || bullpen.isEmpty();
+		return (redSum&&blueSum&&greenSum) || bullpen.isEmpty();
 	}
 	
 	/**
@@ -108,12 +108,12 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Fills the index of the yellows array with a marker, indicating the corresponding number was released.
+	 * Fills the index of the greens array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
 	 * @param releasedNum Is the number that was released
 	 */
-	public void addToYellowReleased(int releasedNum){
-		if(yellows[releasedNum-1] != 1) { yellows[releasedNum-1] = 1; }
+	public void addToGreenReleased(int releasedNum){
+		if(greens[releasedNum-1] != 1) { greens[releasedNum-1] = 1; }
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public String toString(){
-		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(yellows)+board.toString()+bullpen.toString();
+		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(greens)+board.toString()+bullpen.toString();
 	}
 	
 	/**

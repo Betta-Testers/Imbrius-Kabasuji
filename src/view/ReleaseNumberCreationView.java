@@ -56,7 +56,7 @@ public class ReleaseNumberCreationView extends JPanel{
 
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		colorSelector = new JComboBox<String>(new String[] {"Blue", "Yellow", "Red"});
+		colorSelector = new JComboBox<String>(new String[] {"Blue", "Green", "Red"});
 		colorSelector.addActionListener(new SetReleaseTileColorController(this));
 
 		setupLayout();
@@ -88,8 +88,8 @@ public class ReleaseNumberCreationView extends JPanel{
 	public Color getColorSelected() {
 		if (this.colorSelector.getSelectedItem() == "Red") {
 			return Color.RED;
-		} else if (this.colorSelector.getSelectedItem() == "Yellow") {
-			return Color.YELLOW;
+		} else if (this.colorSelector.getSelectedItem() == "Green") {
+			return Color.GREEN;
 		} else {
 			return Color.BLUE;
 		}

@@ -85,25 +85,23 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			
 		}else if(rncv.getNumberSelected() < 0){
 			AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
-			System.out.println(source.toString());
 			if(source.getTileType().equals("board")){
 				Move move = new SwapTileBoardToEmptyMove(bView, (BoardTile) source, m);
 				move.doMove();
 			} else if (source.getTileType().equals("empty")) {	
 				Move move = new SwapTileEmptyToBoardMove(bView, (EmptyTile) source, m);
 				move.doMove();
-			} else if(source.getTileType().equals("Release")){
+			} else if(source.getTileType().equals("release")){
 				Move move = new SwapTileReleaseToBoardMove(bView, (ReleaseTile) source, m);	
 				move.doMove();
 			}
 		}else{
 			AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
-			System.out.println(source.toString());
 			if(source.getTileType().equals("board")){
 				Move move = new SwapTileBoardToReleaseMove(bView, (BoardTile) source, m);
 				move.doMove();
 			} 
-			else if (source.getTileType().equals("Release")) {
+			else if (source.getTileType().equals("release")) {
 				Move move = new SwapTileReleaseToReleaseMove(bView, (ReleaseTile) source, m);
 				move.doMove();
 			}
