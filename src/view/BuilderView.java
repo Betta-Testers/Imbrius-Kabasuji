@@ -9,8 +9,8 @@ import javax.swing.border.EmptyBorder;
 import app.Builder;
 import controllers.builder.BuilderBoardController;
 import controllers.builder.CloseBuilderDialog;
-import controllers.player.ExitLevelButtonController;
-import controllers.player.PuzzleBoardGameController;
+import controllers.common.BullpenPieceSelectController;
+import model.AbstractLevelModel;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -26,17 +26,23 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class BuilderView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
+	Builder builder;
+	AbstractLevelModel m;
+	SelectedPieceView selectedPieceView;
 	BoardView boardView;
+	BullpenView bullpenView;
+	
 	ButtonGroupView buttonGroupView;
 	ReleaseNumberCreationView releaseNumberView;
 	LevelPropertiesView levelPropertyView;
-	BullpenView bullpenView;
-	SelectedPieceView selectedPieceView;
-	Builder builder;
+	
 	WindowListener exitWindowHandler;
 	
 	public BuilderView(Builder b) {
 		this.builder = b;
+		this.m = b.getCurrentLevel();
+		
 		setResizable(false);
 		setVisible(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -68,7 +74,8 @@ public class BuilderView extends JFrame {
 		
 		boardView.addMouseListener(new BuilderBoardController(this, builder.getCurrentLevel()));
 		boardView.addMouseMotionListener(new BuilderBoardController(this, builder.getCurrentLevel()));
-		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
+		
+		initializeGenericControllers();
 	}
 	
 	/**
@@ -95,6 +102,13 @@ public class BuilderView extends JFrame {
 		levelPropertyView.release();
 	}
 	
+	void initializeGenericControllers(){
+		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
+		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
+			pgv.addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
+		}
+	}
+	
 	/**
 	 * returns the ReleaseNumberView so the number selected
 	 * can be retrieved 
@@ -112,6 +126,13 @@ public class BuilderView extends JFrame {
 		return this.bullpenView;
 	}
 	
+	/**
+	 * returns the boardView associated with this builder view
+	 * @return BoardView
+	 */
+	public BoardView getBoardView() {
+		return this.boardView;
+	}
 	/**
 	 * Sets the windows listener of the BuilderView and adds it 
 	 * @param we - WindowListener being added
@@ -147,7 +168,7 @@ public class BuilderView extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
-						.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
+						.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 							.addComponent(levelPropertyView, GroupLayout.PREFERRED_SIZE, 111, Short.MAX_VALUE)
@@ -168,9 +189,11 @@ public class BuilderView extends JFrame {
 							.addComponent(buttonGroupView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
-							.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+
+
 }

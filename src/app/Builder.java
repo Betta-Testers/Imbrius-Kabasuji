@@ -6,7 +6,6 @@ import java.io.ObjectOutputStream;
 
 import view.BuilderView;
 import view.LevelTypeSelectView;
-import controllers.builder.CloseBuilderDialog;
 import controllers.common.ShutdownController;
 import model.AbstractLevelModel;
 import model.LightningLevel;
