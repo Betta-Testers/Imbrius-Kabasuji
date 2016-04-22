@@ -82,6 +82,14 @@ public class Builder extends LevelIO{
 		}
 	}
 
+	public boolean deleteLevel(int id){
+		if(levelData.deleteFromDisk(id)){
+			ltsv.removeExistingLevel(id);
+			return true;
+		}
+		return false;
+	}
+	
 	public void createReleaseLevel() {
 		LevelFactory factory = new LevelFactory();
 		ReleaseLevel rl = factory.GenerateBlankRelease(levelData.nextOpenID());

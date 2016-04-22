@@ -50,9 +50,6 @@ public abstract class LevelIO {
 		return m;
 	}
 
-	public boolean deleteLevel(int id){
-		return levelData.deleteFromDisk(id);
-	}
 	/**
 	 * Given a levelID, the method looks up the associated levelType from the LevelData tree.
 	 * Using this information it generates the path to the file, determines the correct type of level
