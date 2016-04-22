@@ -19,8 +19,6 @@ import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Component;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -68,10 +66,6 @@ public class BuilderView extends JFrame {
 		selectedPieceView = new SelectedPieceView(b.getCurrentLevel().getBullpen());
 		tglbtnPlacePieces = new JToggleButton("Test Pieces On Board");
 		btnConvertHint = new JButton("Convert Pieces To Hint");
-		btnConvertHint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		setupLayout();		
 	}
