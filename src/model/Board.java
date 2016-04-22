@@ -20,6 +20,7 @@ public class Board implements Serializable{
 
 	//Standard row/column of matrix [row][column][0][0] is top left one below it is [1][0]
 	transient ArrayList<Piece> pieces = new ArrayList<Piece>();
+	transient Piece draggedPiece;
 
 	public Board(){
 		for(int i = 0;i<12;i++){
@@ -41,6 +42,14 @@ public class Board implements Serializable{
 			this.swapTile(temp.get(0));
 			temp.remove(0);
 		}
+	}
+	
+	public Piece getDraggedPiece() {
+		return draggedPiece;
+	}
+	
+	public void setDraggedPiece(Piece dp) {
+		draggedPiece = dp;
 	}
 
 	/**
