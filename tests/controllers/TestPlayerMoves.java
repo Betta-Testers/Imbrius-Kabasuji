@@ -1,5 +1,7 @@
 package controllers;
 
-public class TestPlayerMoves {
+import junit.framework.TestCase;
+
+public class TestPlayerMoves extends TestCase {
 
 }

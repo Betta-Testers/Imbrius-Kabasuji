@@ -1,5 +1,7 @@
 package controllers;
 
-public class TestPlayerControllers {
+import junit.framework.TestCase;
+
+public class TestPlayerControllers extends TestCase {
 
 }
