@@ -85,6 +85,7 @@ public class Builder extends LevelIO{
 	public boolean deleteLevel(int id){
 		if(levelData.deleteFromDisk(id)){
 			ltsv.removeExistingLevel(id);
+			this.currentLevel = null;
 			return true;
 		}
 		return false;
