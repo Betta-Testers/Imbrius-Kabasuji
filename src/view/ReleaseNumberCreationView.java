@@ -13,6 +13,8 @@ import javax.swing.JToggleButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 import controllers.builder.SetReleaseTileColorController;
 
@@ -45,7 +47,7 @@ public class ReleaseNumberCreationView extends JPanel{
 		numButtons =  new JToggleButton[6];
 		for (int i = 0; i<6; i++) {
 			JToggleButton numBtn = new JToggleButton(""+(i+1));
-			numBtn.setForeground(Color.BLUE);
+			numBtn.setBorder(new LineBorder(Color.BLUE));
 			numBtn.setOpaque(true);
 			numBtn.setBackground(Color.DARK_GRAY);
 			creationGroup.add(numBtn);
@@ -59,7 +61,6 @@ public class ReleaseNumberCreationView extends JPanel{
 
 		setupLayout();
 	}
-
 
 	/**
 	 * Makes all components inside this JPanel invisible or visible based
@@ -80,7 +81,7 @@ public class ReleaseNumberCreationView extends JPanel{
 
 	public void updateNumberColors() {
 		for (JToggleButton numBtn : numButtons) {
-			numBtn.setForeground(getColorSelected());
+			numBtn.setBorder(new LineBorder(getColorSelected()));
 		}
 	}
 
@@ -94,6 +95,11 @@ public class ReleaseNumberCreationView extends JPanel{
 		}
 	}
 
+	/**
+	 * Returns the number of the jToggleButton selected.
+	 * If no toggleButton is selected, then -1 is returned
+	 * @return int 1-6, or -1 if no button is selected
+	 */
 	public int getNumberSelected() {
 		for (JToggleButton numBtn : numButtons) {
 			if (numBtn.isSelected()) {
@@ -102,8 +108,9 @@ public class ReleaseNumberCreationView extends JPanel{
 		}
 		return 0;
 	}
+	//.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 
-	private void setupLayout(){
+	void setupLayout(){
 		groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -114,17 +121,17 @@ public class ReleaseNumberCreationView extends JPanel{
 										.addGap(8)
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(numButtons[4])
+														.addComponent(numButtons[4], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(numButtons[5]))
+														.addComponent(numButtons[5], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(numButtons[2])
+														.addComponent(numButtons[2], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(numButtons[3]))
+														.addComponent(numButtons[3], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(numButtons[0])
+														.addComponent(numButtons[0], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(numButtons[1]))))
+														.addComponent(numButtons[1], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
 								.addGroup(groupLayout.createSequentialGroup()
 										.addGap(8)
 										.addComponent(lblColor)
@@ -140,18 +147,18 @@ public class ReleaseNumberCreationView extends JPanel{
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(numButtons[0]))
+										.addComponent(numButtons[0], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 										.addGap(6)
-										.addComponent(numButtons[1])))
+										.addComponent(numButtons[1], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(numButtons[2])
-								.addComponent(numButtons[3]))
+								.addComponent(numButtons[2], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+								.addComponent(numButtons[3], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(numButtons[4])
-								.addComponent(numButtons[5]))
+								.addComponent(numButtons[4], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+								.addComponent(numButtons[5], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblColor)

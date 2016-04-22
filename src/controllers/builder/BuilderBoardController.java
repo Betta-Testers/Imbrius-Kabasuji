@@ -10,6 +10,7 @@ import controllers.common.PlacePieceOnBoardFromBullpenMove;
 import view.BoardView;
 import view.BuilderView;
 import view.BullpenView;
+import view.ReleaseNumberCreationView;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Board;
@@ -18,6 +19,7 @@ import model.Bullpen;
 import model.EmptyTile;
 import model.Piece;
 import model.PieceTile;
+import model.ReleaseTile;
 
 /**
  * Controls all actions having to do with manipulating tiles on a Puzzle or Lightning board in builder mode 
@@ -34,6 +36,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	BullpenView bpv;
 	Piece draggedPiece;
 	BoardView boardView;
+	ReleaseNumberCreationView rncv;
 	
 	public BuilderBoardController(BuilderView bView, AbstractLevelModel lm) {
 		this.bView = bView;
@@ -42,6 +45,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		this.bp = lm.getBullpen();
 		this.bpv = bView.getBullpenView();
 		this.boardView = bView.getBoardView();
+		this.rncv = bView.getReleaseNumberView();
 	}
 
 	
@@ -79,7 +83,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	public void mouseReleased(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
 			
-		}else{
+		}else if(rncv.getNumberSelected() < -1){
 			AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
 
 			if(source.getTileType().equals("board")){
@@ -88,9 +92,22 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			} else if (source.getTileType().equals("empty")) {	
 				Move move = new SwapTileEmptyToBoardMove(bView, (EmptyTile) source, m);
 				move.doMove();
+			} else if(source.getTileType().equals("Release")){
+				Move move = new SwapTileReleaseToBoardMove(bView, (ReleaseTile) source, m);	
+				move.doMove();
 			}
 			boardView.redraw();
 			boardView.repaint();
+		}else{
+			AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
+			if(source.getTileType().equals("board")){
+				Move move = new SwapTileBoardToReleaseMove(bView, (BoardTile) source, m);
+				move.doMove();
+			} 
+			else if (source.getTileType().equals("Release")) {
+				Move move = new SwapTileReleaseToReleaseMove(bView, (ReleaseTile) source, m);
+				move.doMove();
+			}
 		}
 //		AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
 //		if(source == null) {
