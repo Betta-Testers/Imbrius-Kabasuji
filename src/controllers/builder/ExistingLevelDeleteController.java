@@ -2,6 +2,9 @@ package controllers.builder;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
 import view.ExistingLevelView;
 import app.Builder;
 
@@ -19,8 +22,9 @@ public class ExistingLevelDeleteController implements ActionListener {
 	 * from view.
 	 */
 	public void actionPerformed(ActionEvent ae) {
-		ExistingLevelView sourceButton = (ExistingLevelView) ae.getSource();
-		int levelID = sourceButton.getLevelNumber();
+		JButton sourceButton = (JButton) ae.getSource();
+		ExistingLevelView elv = (ExistingLevelView) sourceButton.getParent();
+		int levelID = elv.getLevelNumber();
 		b.deleteLevel(levelID);
 	}
 }

@@ -36,7 +36,6 @@ public class Builder extends LevelIO{
 	}
 
 	void initializeView(){
-		bv = new BuilderView(this);
 		ltsv = new LevelTypeSelectView();
 
 		for(int id: levelData.keySet()){
@@ -49,9 +48,7 @@ public class Builder extends LevelIO{
 	}
 
 	void initializeControllers(){
-		bv.setExitWindowListener(new CloseBuilderDialog(this, bv));
 		ltsv.setShutdownController(new ShutdownController(this));
-
 		ltsv.initializeControllers(this);
 	}
 
@@ -90,6 +87,7 @@ public class Builder extends LevelIO{
 		LevelFactory factory = new LevelFactory();
 		ReleaseLevel rl = factory.GenerateBlankRelease(levelData.nextOpenID());
 		currentLevel = rl;
+		bv = new BuilderView(this);
 		bv.prepRelease();
 	}
 
@@ -97,6 +95,7 @@ public class Builder extends LevelIO{
 		LevelFactory factory = new LevelFactory();
 		PuzzleLevel pl = factory.GenerateBlankPuzzle(levelData.nextOpenID());
 		currentLevel = pl;
+		bv = new BuilderView(this);
 		bv.prepPuzzle();
 	}
 
@@ -104,6 +103,7 @@ public class Builder extends LevelIO{
 		LevelFactory factory = new LevelFactory();
 		LightningLevel ll = factory.GenerateBlankLightning(levelData.nextOpenID());
 		currentLevel = ll;
+		bv = new BuilderView(this);
 		bv.prepLightning();
 	}
 
@@ -127,6 +127,7 @@ public class Builder extends LevelIO{
 			try {
 				pl = (PuzzleLevel) loadLevel(levelID);
 				currentLevel = pl;
+				bv = new BuilderView(this);
 				bv.prepPuzzle();
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
@@ -138,6 +139,7 @@ public class Builder extends LevelIO{
 			try {
 				ll = (LightningLevel) loadLevel(levelID);
 				currentLevel = ll;
+				bv = new BuilderView(this);
 				bv.prepLightning();
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
@@ -149,6 +151,7 @@ public class Builder extends LevelIO{
 			try {
 				rl = (ReleaseLevel) loadLevel(levelID);
 				currentLevel = rl;
+				bv = new BuilderView(this);
 				bv.prepRelease();
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
