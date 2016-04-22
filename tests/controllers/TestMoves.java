@@ -88,18 +88,18 @@ public class TestMoves extends TestCase {
 		assertEquals(6, bp.numAvailablePieces());
 		m.doMove();
 		
-		bp.setSelectedPiece(1);
-		PlacePieceOnBoardFromBullpenMove pfbm = new PlacePieceOnBoardFromBullpenMove(pl, placementTileFail);
-		assertFalse(pfbm.doMove());
-		pfbm = new PlacePieceOnBoardFromBullpenMove(pl, placementTile);
-		assertTrue(pfbm.doMove());
-		Piece pp = pfbm.getPlacedPiece();
-		assertEquals(1, pp.getOriginCol());
-		assertEquals(2, pp.getOriginRow());
-		assertEquals(6, b.getNumBoardTiles());
-		assertTrue(pfbm.undo());
-		assertEquals(12, b.getNumBoardTiles());
-		assertEquals(7, bp.numAvailablePieces());
+//		bp.setSelectedPiece(1);
+//		PlacePieceOnBoardFromBullpenMove pfbm = new PlacePieceOnBoardFromBullpenMove(pl, placementTileFail);
+//		assertFalse(pfbm.doMove());
+//		pfbm = new PlacePieceOnBoardFromBullpenMove(pl, placementTile);
+//		assertTrue(pfbm.doMove());
+//		Piece pp = pfbm.getPlacedPiece();
+//		assertEquals(1, pp.getOriginCol());
+//		assertEquals(2, pp.getOriginRow());
+//		assertEquals(6, b.getNumBoardTiles());
+//		assertTrue(pfbm.undo());
+//		assertEquals(12, b.getNumBoardTiles());
+//		assertEquals(7, bp.numAvailablePieces());
 		
 	}
 
