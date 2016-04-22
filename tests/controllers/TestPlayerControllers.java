@@ -13,7 +13,15 @@ public class TestPlayerControllers extends TestCase {
 	public void tearDown() {
 	}
 	
-	public void test () {
+	public void testPuzzle () {
+		
+	}
+	
+	public void testLightning () {
+		
+	}
+	
+	public void testRelease () {
 		
 	}
 }

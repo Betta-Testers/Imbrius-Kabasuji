@@ -23,6 +23,12 @@ import view.SplashScreen;
 import app.Builder;
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author awharrison
+ *
+ */
+
 public class TestBuilderBoard extends TestCase {
 	Builder build;
 	BuilderView buildView;
@@ -93,11 +99,13 @@ public class TestBuilderBoard extends TestCase {
 		lvl = (PuzzleLevel)build.getCurrentLevel();
 		assertEquals("Puzzle", lvl.getType());
 		
-		//====================== Manipulate Bullpen ======================//
+		//====================== Manipulate Bullpen/Hover Mouse on Board ======================//
 		//====================== Rotate Pieces ======================//
 		//====================== Place and Remove Pieces ======================//
 		//====================== Set Moves (and timer?) ======================//
-		//====================== Empty to Board to Empty Tile Swapping ======================//
+		//====================== Convert to Hint ======================//
+		//====================== Undo/Redo ======================//
+		//====================== Save Level? ======================//
 		
 	}
 	
@@ -232,6 +240,9 @@ public class TestBuilderBoard extends TestCase {
 		assertEquals("Red", rncv.getColorSelector().getSelectedItem());
 		assertEquals(Color.RED, rncv.getColorSelected());
 		
+		/*
+		 * convert a board tile to a release tile, verify release tile creation
+		 */
 		boardView.getMouseActionController().mouseReleased(me);
 		assertEquals("release", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
 		assertEquals(0, releaseBoard.getNumBoardTiles());
