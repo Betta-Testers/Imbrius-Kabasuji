@@ -83,9 +83,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	public void mouseReleased(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
 			
-		}else if(rncv.getNumberSelected() < -1){
+		}else if(rncv.getNumberSelected() < 0){
 			AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
-
+			System.out.println(source.toString());
 			if(source.getTileType().equals("board")){
 				Move move = new SwapTileBoardToEmptyMove(bView, (BoardTile) source, m);
 				move.doMove();
@@ -96,10 +96,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				Move move = new SwapTileReleaseToBoardMove(bView, (ReleaseTile) source, m);	
 				move.doMove();
 			}
-			boardView.redraw();
-			boardView.repaint();
 		}else{
 			AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
+			System.out.println(source.toString());
 			if(source.getTileType().equals("board")){
 				Move move = new SwapTileBoardToReleaseMove(bView, (BoardTile) source, m);
 				move.doMove();
@@ -109,6 +108,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				move.doMove();
 			}
 		}
+		boardView.redraw();
+		boardView.repaint();
 //		AbstractTile source = m.getBoard().getTileAt(me.getX(), me.getY());
 //		if(source == null) {
 //			throw new RuntimeException("BoardController::somehow selected a null tile");

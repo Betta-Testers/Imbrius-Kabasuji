@@ -106,7 +106,7 @@ public class ReleaseNumberCreationView extends JPanel{
 				return Integer.parseInt(numBtn.getText());
 			}
 		}
-		return 0;
+		return -1;
 	}
 	//.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 
