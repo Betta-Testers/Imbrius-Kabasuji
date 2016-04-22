@@ -18,17 +18,17 @@ import model.Board;
 public class BoardView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	Board b;
-	
+
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
 	Graphics offscreenGraphics;
-	
+
 	public BoardView(Board b){
 		setPreferredSize(new Dimension(385, 385));
 		this.b = b;
 		repaint(); //Initial painting of board from file
 	}
-	
+
 	/**
 	 * Redraw recreates everything offscreen. Notice how there is an offscreen image and graphics.
 	 * It even paints all shapes to the offscreen graphics supplied to the paintShape object
@@ -39,37 +39,39 @@ public class BoardView extends JPanel{
 		// nothing to draw into? Must stop here.
 		if (offscreenImage == null) return;
 		if (offscreenGraphics == null) return;    // detected during testing
-		
+
 		// clear the image.
 		offscreenGraphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		
+
 		/** Draw all shapes. Note selected shape is not part of the model. */
 		//I can assert that the board's graphics is empty at this point
-		TileViewFactory factory = new TileViewFactory();
-		for (int row = 0; row < 12; row++) {
-			for(int col = 0; col < 12; col++){
-				AbstractTile t = b.getTileAt(row*32, col*32);
-				factory.drawToBoard(offscreenGraphics, t);
-			}
-		//I can assert that the board's graphics is FULL of tiles at this point
-		}		
+		if(b != null){
+			TileViewFactory factory = new TileViewFactory();
+			for (int row = 0; row < 12; row++) {
+				for(int col = 0; col < 12; col++){
+					AbstractTile t = b.getTileAt(row*32, col*32);
+					factory.drawToBoard(offscreenGraphics, t);
+				}
+				//I can assert that the board's graphics is FULL of tiles at this point
+			}		
+		}
 	}
-	
+
 	/**
 	 * Ensure image available prepares the offscreen image for painting if it is currently missing from
 	 * the object (null). It gets called only INSIDE this class and is called in the paintComponent()
 	 * method
 	 */
 	void ensureImageAvailable(Graphics g) {
-		
+
 		if (offscreenImage == null) {  
 			offscreenImage = this.createImage(this.getWidth(), this.getHeight());
 			offscreenGraphics = offscreenImage.getGraphics();			
-			
+
 			redraw();
 		}
 	}
-	
+
 	/** 
 	 * This is the method called by .paint(). It supers the constructor and then called ensureImageAvailable
 	 * to make sure there is an offscreen image to bring onto the board. THAT'S why redraw() is called before
@@ -86,17 +88,17 @@ public class BoardView extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
+
 		ensureImageAvailable(g);
 		g.drawImage(offscreenImage, 0, 0, getWidth(), getHeight(), this);
 	}
-	
+
 	void setMouseMotionAdapter(MouseMotionAdapter ma){
 		//TODO Fill Stub - setMouseMotionAdapter
 	}
-	
+
 	void setMouseAdapter(MouseAdapter ma){
 		//TODO Fill Stub - setMouseAdapter
 	}
-	
+
 }
