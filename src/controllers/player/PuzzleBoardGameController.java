@@ -37,6 +37,8 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 	SelectedPieceView spv;
 	LevelView levelView;
 	boolean mouseOn;
+	int rOffset;
+	int cOffset;
 
 	public PuzzleBoardGameController (Game game, LevelView levelView) {
 		this.game = game;
@@ -83,6 +85,8 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		if (source instanceof PieceTile && ((NumberMovesLeftView)levelView.getEndConditionPanel()).movePieces()) {
 			levelModel.getBoard().setDraggedPiece(((PieceTile)source).getPiece());
+			rOffset = -((PieceTile)source).getRowInPiece();
+			cOffset = -((PieceTile)source).getColInPiece();
 			levelModel.getBoard().removePiece(levelModel.getBoard().getDraggedPiece());	
 			boardView.redraw();
 			boardView.repaint();
@@ -99,7 +103,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 					m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, game.getLevelView().getBullpenView());
 				}
 			} else {
-				m = new MovePieceOnBoardMove(levelModel, source, levelModel.getBoard().getDraggedPiece());
+				m = new MovePieceOnBoardMove(levelModel, source, levelModel.getBoard().getDraggedPiece(), rOffset, cOffset);
 			}
 			
 			if (m.doMove()) {
@@ -135,7 +139,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			p = levelModel.getBoard().getDraggedPiece();
 		}
 		levelModel.getBoard().clearPiecePreview();
-		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+		levelModel.getBoard().showPiecePreview(p, source.getRow()+rOffset, source.getCol()+cOffset);
 		boardView.redraw();
 		boardView.repaint();
 	}
