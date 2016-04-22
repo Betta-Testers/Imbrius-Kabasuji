@@ -114,6 +114,10 @@ public class LevelTypeSelectView extends JFrame {
 		existingLevels.addLevelView(levelType, levelNumber);
 	}
 	
+	public void removeExistingLevel(int levelNumber){
+		existingLevels.removeLevelView(levelNumber);
+	}
+	
 	/**
 	 * retrieve the button that tells the Builder to create a puzzle level
 	 * @return Jbutton
