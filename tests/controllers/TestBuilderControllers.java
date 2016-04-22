@@ -6,12 +6,9 @@ import javax.swing.event.ChangeEvent;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-
 import app.Builder;
 import controllers.builder.BuilderPieceSpinnerController;
 import controllers.builder.BuilderSplashTimerController;
-import controllers.builder.CloseBuilderDialog;
 import model.Board;
 import model.Bullpen;
 import model.PieceGroup;

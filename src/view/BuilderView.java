@@ -95,7 +95,6 @@ public class BuilderView extends JFrame {
 		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.lightning();
 		
-		
 		initializeControllers();
 	}
 	
@@ -109,7 +108,6 @@ public class BuilderView extends JFrame {
 		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
 		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.release();
-		
 		
 		initializeControllers();
 	}
