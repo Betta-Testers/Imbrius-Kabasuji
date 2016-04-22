@@ -41,7 +41,7 @@ public class LevelFactory{
 
 		LevelFactory lf = new LevelFactory();
 		lf.setDirectory("./imbriusLevelFiles/");
-		PuzzleLevel pl = lf.GenerateSpecificPuzzle(1, pieces, tiles);
+		ReleaseLevel pl = lf.GenerateSpecificRelease(2, pieces, tiles);
 		lf.addToData(pl, 2);
 		lf.saveLevel(pl);
 
@@ -245,6 +245,7 @@ public class LevelFactory{
 	public boolean addToData(AbstractLevelModel m, int starsEarned){
 		String type = m.getType();
 		int id = m.getID();
+		levels.populateFromDirectory();
 		if(!levels.containsKey(id)){
 			levels.put(id, type);
 			levels.setMaxStars(id, starsEarned);

@@ -48,7 +48,7 @@ public class PiecePanel extends JPanel{
 		 */
 		int xCenter = 96-16;
 		int yCenter = 96-16;
-		if (bp.getSelectedPiece()!=null) {
+		if (bp != null && bp.getSelectedPiece()!=null) {
 			for(PieceTile t: bp.getSelectedPiece().getTiles()){
 				int xCoord = (t.getCol()*32)+xCenter;
 				int yCoord = (t.getRow()*32)+yCenter;

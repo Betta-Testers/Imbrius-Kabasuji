@@ -67,8 +67,8 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 					levelModel.addToRedReleased(number);
 				} else if (color == Color.BLUE) {
 					levelModel.addToBlueReleased(number);
-				} else if (color == Color.YELLOW) {
-					levelModel.addToYellowReleased(number);
+				} else if (color == Color.GREEN) {
+					levelModel.addToGreenReleased(number);
 				} else {
 					throw new RuntimeException("Unknown color");
 				}

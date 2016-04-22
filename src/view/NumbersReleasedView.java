@@ -22,17 +22,17 @@ public class NumbersReleasedView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	JLabel lblColorRed;
 	JLabel lblColorBlue;
-	JLabel lblColorYellow;
+	JLabel lblColorGreen;
 	
 	JTextField redNums[] = new JTextField[7];
 	JTextField blueNums[] = new JTextField[7];
-	JTextField yellowNums[] = new JTextField[7];
+	JTextField greenNums[] = new JTextField[7];
 	
 	public NumbersReleasedView() {
 		this.setPreferredSize(new Dimension(180, 90));
 		lblColorRed = new JLabel("Red:");
 		lblColorBlue = new JLabel("Blue:");
-		lblColorYellow = new JLabel("Yellow:");
+		lblColorGreen = new JLabel("Green:");
 		
 		for(int i=1; i<=6; i++){
 			redNums[i] = new JTextField();
@@ -45,10 +45,10 @@ public class NumbersReleasedView extends JPanel {
 			blueNums[i].setText(Integer.toString(i));
 			blueNums[i].setColumns(10);
 			
-			yellowNums[i] = new JTextField();
-			yellowNums[i].setHorizontalAlignment(SwingConstants.CENTER);
-			yellowNums[i].setText(Integer.toString(i));
-			yellowNums[i].setColumns(10);
+			greenNums[i] = new JTextField();
+			greenNums[i].setHorizontalAlignment(SwingConstants.CENTER);
+			greenNums[i].setText(Integer.toString(i));
+			greenNums[i].setColumns(10);
 		}
 	
 		setupLayout();
@@ -81,7 +81,7 @@ public class NumbersReleasedView extends JPanel {
 	 * @param number
 	 */
 	void setReleasedYellow(int number){
-		yellowNums[number].setBackground(Color.yellow);
+		greenNums[number].setBackground(Color.yellow);
 	}
 	
 	private void setupLayout() {
@@ -92,21 +92,21 @@ public class NumbersReleasedView extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblColorRed)
 						.addComponent(lblColorBlue, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblColorYellow))
+						.addComponent(lblColorGreen))
 					.addGap(7)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(yellowNums[1], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[1], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[2], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[2], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[3], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[3], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[4], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[4], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[5], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[5], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[6], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+							.addComponent(greenNums[6], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(blueNums[1], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
@@ -155,13 +155,13 @@ public class NumbersReleasedView extends JPanel {
 						.addComponent(blueNums[6], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblColorYellow)
-						.addComponent(yellowNums[1], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[2], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[3], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[4], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[5], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[6], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblColorGreen)
+						.addComponent(greenNums[1], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[2], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[3], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[4], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[5], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[6], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
