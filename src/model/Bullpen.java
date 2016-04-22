@@ -180,6 +180,16 @@ public class Bullpen implements Serializable{
 		}
 		
 	}
+	
+	public boolean incrementPiece(int id) {
+		for(int i = 0; i < this.playablePieces.size(); i++) {
+			if(this.playablePieces.get(i).getPiece().ID == id){
+				this.playablePieces.get(i).incrementCount();
+				return true; // do not need to sort as removing a single piece from a sorted list still remains sorted
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Returns all toString() of the piecegroups making this bullpen

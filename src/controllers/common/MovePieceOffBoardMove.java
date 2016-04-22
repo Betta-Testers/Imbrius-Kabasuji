@@ -5,6 +5,7 @@ package controllers.common;
 
 import model.AbstractLevelModel;
 import model.Piece;
+import view.BullpenView;
 
 /**
  * @author hejohnson
@@ -13,17 +14,20 @@ import model.Piece;
 public class MovePieceOffBoardMove extends Move {
 	AbstractLevelModel levelModel;
 	Piece piece;
-	public MovePieceOffBoardMove (AbstractLevelModel lm, Piece p) {
+	BullpenView bpv;
+	public MovePieceOffBoardMove (AbstractLevelModel lm, BullpenView bpv) {
+		this.bpv = bpv;
 		this.levelModel = lm;
-		this.piece = p;
+		this.piece = levelModel.getBoard().getDraggedPiece();
 	}
 	/* (non-Javadoc)
 	 * @see controllers.Move#doMove()
 	 */
 	@Override
 	public boolean doMove() {
-		levelModel.getBullpen().addSinglePiece(piece.getID());
+		levelModel.getBullpen().incrementPiece(piece.getID());
 		levelModel.getBoard().removePiece(piece);
+		bpv.updatePieceGroup(piece);
 		return true;
 	}
 
@@ -43,6 +47,7 @@ public class MovePieceOffBoardMove extends Move {
 	public boolean undo() {
 		levelModel.getBullpen().removeSinglePiece(piece.getID());
 		levelModel.getBoard().putPieceOnBoard(piece, piece.getOriginRow(), piece.getOriginCol());
+		bpv.updatePieceGroup(piece);
 		return true;
 	}
 	
