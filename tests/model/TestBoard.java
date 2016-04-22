@@ -75,7 +75,7 @@ public class TestBoard extends TestCase{
 		Piece p2 = new Piece(1);
 		b.showPiecePreview(p2, 2, 1);
 		
-		assertEquals(Color.GREEN, b.board[1][1].color);
+		assertEquals(Color.RED, b.board[1][1].color);
 		
 		Piece p3 = new Piece(1);
 		
@@ -95,6 +95,8 @@ public class TestBoard extends TestCase{
 		ArrayList<Piece> pieces2 = b.resetBoard();
 		
 		assertEquals(pieces, pieces2);
+		
+		// TODO add a willfit option
 		
 	}
 
