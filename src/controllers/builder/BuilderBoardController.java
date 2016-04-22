@@ -11,7 +11,6 @@ import controllers.common.PlacePieceOnBoardFromBullpenMove;
 import view.BoardView;
 import view.BuilderView;
 import view.BullpenView;
-import view.NumberMovesLeftView;
 import view.ReleaseNumberCreationView;
 import view.SelectedPieceView;
 import model.AbstractLevelModel;
@@ -29,6 +28,7 @@ import model.ReleaseTile;
  * 
  * @author awharrison
  * @author Dylan
+ * @author hejohnson
  */
 
 public class BuilderBoardController implements MouseListener, MouseMotionListener {

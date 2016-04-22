@@ -150,10 +150,14 @@ public class Board implements Serializable{
 		int column = x/tileSize;
 		if(row > 11){
 			row = 11;
+		}else if(row < 0){
+			row = 0;
 		}
 
 		if(column > 11){
 			column = 11;
+		}else if(column < 0){
+			column = 0;
 		}
 		return board[row][column];
 	}
