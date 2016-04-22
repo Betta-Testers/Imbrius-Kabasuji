@@ -221,9 +221,9 @@ public class StarMap implements Serializable{
 	public Integer nextOpenID(){
 		try{
 			Iterator<Integer> keys = this.keySet().iterator();
-			int i=1;
-			for(;i<=levelData.lastKey(); i++){
-				if(keys.next() != (Integer)i){
+			int i;
+			for(i = 1;i<=levelData.lastKey(); i++){
+				if(!keys.next().equals(i)){
 					return i;
 				}
 			}
