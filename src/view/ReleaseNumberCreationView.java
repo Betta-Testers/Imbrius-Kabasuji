@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,7 +34,14 @@ public class ReleaseNumberCreationView extends JPanel{
 
 		lblTitle = new JLabel("Release Numbers");
 		lblColor = new JLabel("Color:");
-		creationGroup = new ButtonGroup();
+		creationGroup = new ButtonGroup(){
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void setSelected(ButtonModel model, boolean selected) {
+				if(selected){super.setSelected(model, selected);
+				}else{clearSelection();}
+			}
+		};
 		numButtons =  new JToggleButton[6];
 		for (int i = 0; i<6; i++) {
 			JToggleButton numBtn = new JToggleButton(""+(i+1));
@@ -50,6 +58,49 @@ public class ReleaseNumberCreationView extends JPanel{
 		colorSelector.addActionListener(new SetReleaseTileColorController(this));
 
 		setupLayout();
+	}
+
+
+	/**
+	 * Makes all components inside this JPanel invisible or visible based
+	 * on the value given. Overrides JPanel, as this is the intended 
+	 * behavior when making the "panel" invisible
+	 * @param visible True makes everything visible
+	 */
+	@Override
+	public void setVisible(boolean visible){
+		lblTitle.setVisible(visible);
+		colorSelector.setVisible(visible);
+
+		for (JToggleButton numBtn : numButtons) {
+			numBtn.setVisible(visible);
+		}
+		lblColor.setVisible(visible);
+	}
+
+	public void updateNumberColors() {
+		for (JToggleButton numBtn : numButtons) {
+			numBtn.setForeground(getColorSelected());
+		}
+	}
+
+	public Color getColorSelected() {
+		if (this.colorSelector.getSelectedItem() == "Red") {
+			return Color.RED;
+		} else if (this.colorSelector.getSelectedItem() == "Yellow") {
+			return Color.YELLOW;
+		} else {
+			return Color.BLUE;
+		}
+	}
+
+	public int getNumberSelected() {
+		for (JToggleButton numBtn : numButtons) {
+			if (numBtn.isSelected()) {
+				return Integer.parseInt(numBtn.getText());
+			}
+		}
+		return 0;
 	}
 
 	private void setupLayout(){
@@ -110,54 +161,11 @@ public class ReleaseNumberCreationView extends JPanel{
 		this.setLayout(groupLayout);
 	}
 
-	
-	/**
-	 * Makes all components inside this JPanel invisible or visible based
-	 * on the value given. Overrides JPanel, as this is the intended 
-	 * behavior when making the "panel" invisible
-	 * @param visible True makes everything visible
-	 */
-	@Override
-	public void setVisible(boolean visible){
-		lblTitle.setVisible(visible);
-		colorSelector.setVisible(visible);
-		
-		for (JToggleButton numBtn : numButtons) {
-			numBtn.setVisible(visible);
-		}
-		lblColor.setVisible(visible);
-	}
-	
-	public void updateNumberColors() {
-		for (JToggleButton numBtn : numButtons) {
-			numBtn.setForeground(getColorSelected());
-		}
-	}
-	
-	public Color getColorSelected() {
-		if (this.colorSelector.getSelectedItem() == "Red") {
-			return Color.RED;
-		} else if (this.colorSelector.getSelectedItem() == "Yellow") {
-			return Color.YELLOW;
-		} else {
-			return Color.BLUE;
-		}
-	}
-	
-	public int getNumberSelected() {
-		for (JToggleButton numBtn : numButtons) {
-			if (numBtn.isSelected()) {
-				return Integer.parseInt(numBtn.getText());
-			}
-		}
-		return 0;
-	}
-	
 	//** For testing **//
 	public JComboBox<String> getColorSelector() {
 		return this.colorSelector;
 	}
-	
+
 	public void setSelected (int index) {
 		for (int i = 0; i<6; i++) {
 			numButtons[i].setSelected(i==index);

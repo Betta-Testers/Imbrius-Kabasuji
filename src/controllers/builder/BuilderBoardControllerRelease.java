@@ -152,8 +152,8 @@ public class BuilderBoardControllerRelease implements MouseListener, MouseMotion
 	 */
 	public void mouseExited(MouseEvent e) {
 		if(draggedPiece != null) {
-			Move m = new MovePieceOffBoardMove(lm, draggedPiece);
-			m.doMove();
+//			Move m = new MovePieceOffBoardMove(lm, draggedPiece);
+//			m.doMove();
 			draggedPiece = null;
 		}
 	}
