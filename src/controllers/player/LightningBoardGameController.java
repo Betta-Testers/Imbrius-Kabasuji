@@ -12,6 +12,9 @@ import model.LightningTile;
 import model.Piece;
 import model.PieceTile;
 import view.BoardView;
+import view.BullpenView;
+import view.LevelView;
+import view.SelectedPieceView;
 
 /**
  * @author hejohnson
@@ -21,32 +24,25 @@ import view.BoardView;
 
 public class LightningBoardGameController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
-	BoardView boardView;
 	Game game;
+	BoardView boardView;
+	BullpenView bpv;
+	SelectedPieceView spv;
+	LevelView levelView;
 	
-	LightningBoardGameController (Game game) {
+	public LightningBoardGameController (Game game, LevelView levelView) {
 		this.game = game;
 		this.levelModel = game.getCurrentLevel();
 		this.boardView = game.getLevelView().getBoardView();
+		this.levelView = levelView;
+		this.boardView = levelView.getBoardView();
+		this.bpv = levelView.getBullpenView();
+		this.spv = levelView.getSelectedPieceView();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
-		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView());
 		
-		if (m.doMove()) {
-			Piece p = m.getPlacedPiece();
-			levelModel.getBoard().removePiece(p);
-			for (PieceTile pt : p.getTiles()) {
-				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
-			}
-			boardView.redraw();
-			boardView.repaint();
-			if (levelModel.checkStatus()) {
-				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
-			}
-		}
 	}
 
 	@Override
@@ -65,8 +61,24 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		 
+	public void mouseReleased(MouseEvent me) {
+		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView());
+		
+		if (m.doMove()) {
+			Piece p = m.getPlacedPiece();
+			spv.getPiecePanel().redraw();
+			spv.getPiecePanel().repaint();
+			levelModel.getBoard().removePiece(p);
+			for (PieceTile pt : p.getTiles()) {
+				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
+			}
+			boardView.redraw();
+			boardView.repaint();
+			if (levelModel.checkStatus()) {
+				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
+			}
+		}
 	}
 
 	@Override

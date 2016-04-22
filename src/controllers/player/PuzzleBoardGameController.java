@@ -42,9 +42,9 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 
 	public PuzzleBoardGameController (Game game, LevelView levelView) {
 		this.game = game;
+		this.levelModel = game.getCurrentLevel();
 		this.levelView = levelView;
 		this.boardView = levelView.getBoardView();
-		this.levelModel = game.getCurrentLevel();
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();
 	}
@@ -83,7 +83,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 	@Override
 	public void mousePressed(MouseEvent me) {
 		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		if (source instanceof PieceTile && ((NumberMovesLeftView)levelView.getEndConditionPanel()).movePieces()) {
+		if (source instanceof PieceTile && (((NumberMovesLeftView)levelView.getEndConditionPanel()).movePieces()||levelModel.getBullpen().getSelectedPiece()==null)) {
 			levelModel.getBoard().setDraggedPiece(((PieceTile)source).getPiece());
 			rOffset = -((PieceTile)source).getRowInPiece();
 			cOffset = -((PieceTile)source).getColInPiece();
