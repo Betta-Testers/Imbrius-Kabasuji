@@ -29,7 +29,7 @@ import junit.framework.TestCase;
  *
  */
 
-public class TestBuilderBoard extends TestCase {
+public class TestBuilderRelease extends TestCase {
 	Builder build;
 	BuilderView buildView;
 	
