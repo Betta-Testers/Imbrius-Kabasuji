@@ -84,7 +84,7 @@ public class TestBuilderMovesRelease extends TestCase {
 		assertEquals(0, b.getNumBoardTiles());
 		
 		bv.getReleaseNumberView().getColorSelector().setSelectedIndex(1);
-		bv.getReleaseNumberView().setSelected(2);
+		bv.getReleaseNumberView().toggleButton(2);
 		System.out.println("Number selected: "+bv.getReleaseNumberView().getNumberSelected());
 		m = new SwapTileReleaseToReleaseMove(bv, (ReleaseTile)b.getTileAt(0, 0), rl);
 		assertTrue(m.doMove());

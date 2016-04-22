@@ -173,9 +173,10 @@ public class ReleaseNumberCreationView extends JPanel{
 		return this.colorSelector;
 	}
 
-	public void setSelected (int index) {
+	public void toggleButton (int index) {
 		for (int i = 0; i<6; i++) {
-			numButtons[i].setSelected(i==index);
+			if(i == index)
+				numButtons[i].doClick();
 		}
 	}
 }

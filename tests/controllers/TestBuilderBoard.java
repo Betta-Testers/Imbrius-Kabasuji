@@ -9,25 +9,26 @@ import controllers.builder.BuilderSplashTimerController;
 import model.Board;
 import model.Bullpen;
 import model.PuzzleLevel;
+import model.ReleaseLevel;
+import model.ReleaseTile;
 import view.BoardView;
 import view.BuilderView;
 import view.BullpenView;
 import view.ButtonGroupView;
 import view.LevelPropertiesView;
+import view.ReleaseNumberCreationView;
 import view.SplashScreen;
 import app.Builder;
 import junit.framework.TestCase;
 
 public class TestBuilderBoard extends TestCase {
 	Builder build;
-	BuilderView bView;
-	Board b;
+	BuilderView buildView;
 	
 	@Override
 	public void setUp(){
 		new File("./imbriusLevelTESTING/").mkdirs();
 		build = new Builder("./imbriusLevelTESTING/");
-		bView = build.getBuilderView();
 	}
 	
 	@Override
@@ -86,14 +87,126 @@ public class TestBuilderBoard extends TestCase {
 		lvl = (PuzzleLevel)build.getCurrentLevel();
 		assertEquals("Puzzle", lvl.getType());
 		
-		puzzleBoard = lvl.getBoard();
-		bp = lvl.getBullpen();
-		bpView = bView.getBullpenView();
-		
 	}
 	
 	public void testReleaseBoard() {
+		/*
+		 * list variables needed for this test 
+		 */
+		ReleaseLevel lvl;
+		Board releaseBoard;
+		BoardView boardView;
+		Bullpen bp;
+		BullpenView bpView;
+		LevelPropertiesView lvlPropView;
+		ButtonGroupView buttonGroupView;
+		ReleaseNumberCreationView rncv;
+		MouseEvent me;
+		
+		//====================== Start Up ======================//
+		
+		/*
+		 * start splash screen and timer
+		 */
+		SplashScreen splash = new SplashScreen();
+		Timer timer = new Timer(100, new BuilderSplashTimerController(splash, build));
+		timer.setRepeats(false);
+		timer.start();
+		
+		/*
+		 * wait until the expected time is up
+		 */
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		//====================== Select Level Type ======================//
+		
+		/*
+		 * create a mouse event to select build puzzle level
+		 */
+		me = new MouseEvent(build.getLevelTypeSelectView(), 
+				MouseEvent.MOUSE_CLICKED, 
+				System.currentTimeMillis(), 0, 
+				build.getLevelTypeSelectView().getX(), 
+				build.getLevelTypeSelectView().getY(), 1, false);
+		
+		/*
+		 * handle the mouse event 
+		 */
+		build.getLevelTypeSelectView().getReleaseBtnHandler().mouseClicked(me);
+		
+		/*
+		 * verify that level created is a release level
+		 */
+		lvl = (ReleaseLevel)build.getCurrentLevel();
+		assertEquals("Release", lvl.getType());
+		
+		/*
+		 * set necessary variables
+		 */
 
+		buildView = build.getBuilderView();
+		releaseBoard = lvl.getBoard();
+		bpView = buildView.getBullpenView();
+		boardView = buildView.getBoardView();
+		
+		//====================== Empty to Board to Empty Tile Swapping ======================//
+		
+		/*
+		 * verify that the starting board has no tiles
+		 */
+		assertEquals(0, releaseBoard.getNumBoardTiles());
+		assertEquals(1, boardView.getMouseListeners().length);
+		assertEquals(1, boardView.getMouseMotionListeners().length);
+		
+		/*
+		 * create mouse event that will trigger a tile swap from empty to board
+		 */
+		assertEquals("empty", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_RELEASED, 
+				System.currentTimeMillis(), 0, 
+				boardView.getX()+releaseBoard.getTileSize()*2, 
+				boardView.getY()+releaseBoard.getTileSize()*2, 0, false);
+		rncv = buildView.getReleaseNumberView();
+		assertEquals(-1, rncv.getNumberSelected());
+		boardView.getMouseActionController().mouseReleased(me);
+		
+		/*
+		 * verify change in tile type and boardTile count
+		 */
+		assertEquals(1, releaseBoard.getNumBoardTiles());
+		assertEquals("board", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
+		
+		
+		/*
+		 * trigger the tile back to empty
+		 */
+		boardView.getMouseActionController().mouseReleased(me);
+		assertEquals("empty", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
+		assertEquals(0, releaseBoard.getNumBoardTiles());
+		
+		//====================== Board to Release to Board Tile Swapping ======================//
+		
+		/*
+		 * trigger the tile again to board
+		 */
+		boardView.getMouseActionController().mouseReleased(me);
+		assertEquals("board", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
+		assertEquals(1, releaseBoard.getNumBoardTiles());
+		
+		/*
+		 * toggle release number 1
+		 */
+		rncv.toggleButton(0);
+		assertEquals(1, rncv.getNumberSelected());
+		boardView.getMouseActionController().mouseReleased(me);
+		assertEquals("release", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
+		assertEquals(0, releaseBoard.getNumBoardTiles());
+		assertEquals(1, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2)).getNumber());
 	}
 
 }
