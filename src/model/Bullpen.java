@@ -66,6 +66,25 @@ public class Bullpen implements Serializable{
 	}
 	
 	/**
+	 * Adds a single random piece to the bullpen.
+	 * Increments the count if that piece group exists
+	 * Adds the new piece group if it doesn't.
+	 * @return Piece - piece that was added
+	 */
+	public Piece addRandomPiece(){
+		int randID = (new Random().nextInt(35))+1;
+		PieceGroup result = getPieceGroupWithID(randID);
+		if (result != null) {
+			result.incrementCount();
+			return result.getPiece();
+		} else {
+			PieceGroup added = new PieceGroup(randID, 1);
+			this.playablePieces.add(added);
+			return added.getPiece();
+		}
+	}
+	
+	/**
 	 * Increments the count of the piece ID provided. If the piece exists,
 	 * true is returned. If the piece could not be found, false is returned.
 	 * @param id - the piece ID whose count is being incremented

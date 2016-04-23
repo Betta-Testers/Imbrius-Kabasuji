@@ -69,6 +69,8 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 			spv.getPiecePanel().redraw();
 			spv.getPiecePanel().repaint();
 			levelModel.getBoard().removePiece(p);
+			Piece addedP = levelModel.getBullpen().addRandomPiece();
+			game.getLevelView().getBullpenView().updatePieceGroup(addedP);
 			for (PieceTile pt : p.getTiles()) {
 				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
 			}

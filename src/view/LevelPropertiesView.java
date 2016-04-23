@@ -71,12 +71,6 @@ public class LevelPropertiesView extends JPanel{
 		setupLayout();
 	}
 	
-	void initializeControllers() {
-		
-		
-		
-	}
-	
 	/**
 	 * Hides irrelevant information to a lightning level.
 	 * Prepares the controllers relevant to a lightning level.
