@@ -23,9 +23,6 @@ import controllers.builder.SetReleaseTileColorController;
  * @author awharrison
  */
 public class ReleaseNumberCreationView extends JPanel{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JLabel lblTitle;
