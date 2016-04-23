@@ -151,15 +151,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	public void mouseExited(MouseEvent e) {
 		if(bView.getStateOfPlacement()){
 			mouseOn = false;
-			if (board.getDraggedPiece() == null) {
-				board.clearPiecePreview();
-			} else { // currently dragging a piece
-				Move move = new MovePieceOffBoardMove(m, bpv);
-				move.doMove();
-				
-				board.setDraggedPiece(null);
-				board.clearPiecePreview();
-			}
+			Move move = new MovePieceOffBoardMove(m, bpv);
+			move.doMove();
+			board.clearPiecePreview();
 			boardView.redraw();
 			boardView.repaint();
 		}

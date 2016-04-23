@@ -1,10 +1,6 @@
-/**
- * 
- */
 package controllers.builder;
 
 import java.util.ArrayList;
-
 import controllers.common.Move;
 import model.Board;
 import model.Bullpen;
@@ -12,6 +8,8 @@ import model.Piece;
 import view.BullpenView;
 
 /**
+ * Removes all piece from the board in Builder. When the button is pressed this move is executed, 
+ * storing the pieces that were removed to later undo the move or redo as needed.
  * @author dfontana
  */
 public class RemoveAllPiecesMove extends Move {
