@@ -60,7 +60,7 @@ public class BuilderView extends JFrame {
 		setContentPane(contentPane);
 		
 		boardView = new BoardView(b.getCurrentLevel().getBoard());
-		buttonGroupView = new ButtonGroupView(this);
+		buttonGroupView = new ButtonGroupView();
 		releaseNumberView = new ReleaseNumberCreationView();
 		bullpenView = new BullpenView();	
 		levelPropertyView = new LevelPropertiesView();	
@@ -122,6 +122,8 @@ public class BuilderView extends JFrame {
 			((BuilderPieceGroupView) pgv).addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
 			((BuilderPieceGroupView) pgv).addSpinnerChangeListener(new BuilderPieceSpinnerController((BuilderPieceGroupView) pgv, pgv.getPieceGroup()));
 		}
+		
+		buttonGroupView.initializeControllers(builder);
 	}
 	
 	/**

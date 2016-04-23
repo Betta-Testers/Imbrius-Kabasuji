@@ -133,8 +133,6 @@ public class Board implements Serializable{
 	public AbstractTile swapTile(AbstractTile at){
 		int row = at.getRow();
 		int col = at.getCol();
-		//System.out.println(row);
-		//System.out.println(col);
 		AbstractTile temp = board[row][col];
 		board[row][col] = at;
 		return temp;
