@@ -21,7 +21,6 @@ public abstract class AbstractPieceGroupView extends JPanel{
 	ActionListener selectPieceHandler;
 	
 	
-	//TODO: Change AbstractPieceGroupView contructor to take in a piece group. Get the Piece ID from the piece in the PieceGroup
 	public AbstractPieceGroupView(PieceGroup pieceGroup){
 		setPreferredSize(new Dimension(72, 35));
 		this.pieceGroup = pieceGroup;

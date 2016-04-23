@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import app.Builder;
 import controllers.builder.BuilderBoardController;
-import controllers.builder.BullpenPieceGroupSpinnerController;
+import controllers.builder.PieceGroupSpinnerController;
 import controllers.builder.CloseBuilderDialog;
 import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
@@ -115,12 +115,12 @@ public class BuilderView extends JFrame {
 	
 	void initializeControllers(){
 		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
-		BuilderBoardController builderBoardControl = new BuilderBoardController(this, builder.getCurrentLevel());
+		BuilderBoardController builderBoardControl = new BuilderBoardController(this, m);
 		boardView.setMouseActionController(builderBoardControl);
-		boardView.setMouseMotionController(new BuilderBoardController(this, builder.getCurrentLevel()));
+		boardView.setMouseMotionController(new BuilderBoardController(this, m));
 		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
 			((BuilderPieceGroupView) pgv).addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
-			((BuilderPieceGroupView) pgv).addSpinnerChangeListener(new BullpenPieceGroupSpinnerController((BuilderPieceGroupView) pgv, pgv.getPieceGroup()));
+			((BuilderPieceGroupView) pgv).addSpinnerChangeListener(new PieceGroupSpinnerController(((BuilderPieceGroupView) pgv).getSpinner(), pgv.getPieceGroup(), m.getBullpen(), selectedPieceView.getPiecePanel()));
 		}
 		
 		buttonGroupView.initializeControllers(builder);

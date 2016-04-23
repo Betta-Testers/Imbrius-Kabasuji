@@ -90,10 +90,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				if(!move.doMove()){
 					move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
 					move.doMove();
-				}else{
-					board.putPieceOnBoard(board.getDraggedPiece(), board.getDraggedPiece().getOriginRow(), board.getDraggedPiece().getOriginCol());
-					board.setDraggedPiece(null);
-					board.clearPiecePreview();
 				}
 				spv.getPiecePanel().redraw();
 				spv.getPiecePanel().repaint();

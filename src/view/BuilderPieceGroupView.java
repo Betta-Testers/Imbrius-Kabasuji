@@ -35,6 +35,19 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 		spinner.setValue(pieceGroup.getNumPieces());
 	}
 	
+	public void addSpinnerChangeListener(ChangeListener cl) {
+		this.pieceCountHandler = cl;
+		spinner.addChangeListener(cl);
+	}
+	
+	public ChangeListener getSpinnerChangeListener() {
+		return this.pieceCountHandler;
+	}
+	
+	public JSpinner getSpinner() {
+		return this.spinner;
+	}
+	
 	/**
 	 * Method for setting up the layout for the BuilderPieceGroupview
 	 */
@@ -53,18 +66,5 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 					.addComponent(button, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
 		);
 		setLayout(groupLayout);
-	}
-	
-	public void addSpinnerChangeListener(ChangeListener cl) {
-		this.pieceCountHandler = cl;
-		spinner.addChangeListener(cl);
-	}
-	
-	public ChangeListener getSpinnerChangeListener() {
-		return this.pieceCountHandler;
-	}
-	
-	public JSpinner getSpinner() {
-		return this.spinner;
 	}
 }
