@@ -83,4 +83,8 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	public String toString(){
 		return "ID:"+this.piece.getID()+"Count:"+this.numPieces;
 	}
+
+	public void setCount(int val) {
+		this.numPieces = val;
+	}
 }

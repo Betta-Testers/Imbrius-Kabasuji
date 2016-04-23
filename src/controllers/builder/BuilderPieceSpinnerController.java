@@ -10,6 +10,7 @@ import model.PieceGroup;
  * Controls the actions performed on a PieceGroup spinner in builder mode that increments and decrements its number of pieces 
  * 
  * @author awharrison
+ * @author Dylan
  *
  */
 public class BuilderPieceSpinnerController implements ChangeListener {
@@ -28,19 +29,21 @@ public class BuilderPieceSpinnerController implements ChangeListener {
 	 * @param e ChangeEvent
 	 */
 	public void stateChanged(ChangeEvent e) {
-		int oldVal;
-		Object o = ((JSpinner)e.getSource()).getPreviousValue();
-		if( o != null){
-			oldVal = (int)o;
-			int newVal = (int)((JSpinner)e.getSource()).getValue();
-			System.out.println("Changing");
-			if(newVal > oldVal) {
-				model.incrementCount();
-			} else if (newVal < oldVal) {
-				model.decrementCount();
-			} else 
-				throw new RuntimeException("BuilderPieceSpinnerController::Changing a builder piece group spinner caused no value change");
-		}
+		int val = (int) app.getSpinner().getValue();
+		model.setCount(val);
+//		int oldVal;
+//		Object o = ((JSpinner)e.getSource()).getPreviousValue();
+//		if( o != null){
+//			oldVal = (int)o;
+//			int newVal = (int)((JSpinner)e.getSource()).getValue();
+//			System.out.println("State Changed in spinner");
+//			if(newVal > oldVal) {
+//				model.incrementCount();
+//			} else if (newVal < oldVal) {
+//				model.decrementCount();
+//			} else 
+//				throw new RuntimeException("BuilderPieceSpinnerController::Changing a builder piece group spinner caused no value change");
+//		}
 	}
 	
 	

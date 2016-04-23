@@ -25,6 +25,7 @@ public class MovePieceOffBoardMove extends Move {
 	 */
 	@Override
 	public boolean doMove() {
+		System.out.println("About to increment in dragged off borad move");
 		levelModel.getBullpen().incrementPiece(piece.getID());
 		//levelModel.getBoard().removePiece(piece);
 		levelModel.getBoard().setDraggedPiece(null);
