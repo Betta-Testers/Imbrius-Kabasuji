@@ -6,15 +6,19 @@ import model.Board;
 import model.EmptyTile;
 
 /**
- * Represents the swap between a board tile and an empty tile
+ * Move class for swapping a Board Tile to an Empty Tile.
  * 
  * @author awharrison
- * @author Dylan
- *
+ * @author dfontana
  */
 public class SwapTileBoardToEmptyMove extends Move {
+	/** Board in which the move is taking place **/
 	Board board;
+	
+	/** The tile passed into the constructor. Should be a board tile (this is checked) **/
 	AbstractTile oldTile;
+	
+	/** The tile that is created to replace the oldTile **/
 	EmptyTile newTile;
 	
 	public SwapTileBoardToEmptyMove (AbstractTile old, Board b) {
@@ -22,6 +26,11 @@ public class SwapTileBoardToEmptyMove extends Move {
 		this.oldTile = old;
 	}
 	
+	/**
+	 * The move creates a new empty tile with same location as the old tile.
+	 * It then swaps the old and new Tiles. 
+	 * @return boolean - true if the move was successful
+	 */
 	@Override
 	public boolean doMove() {
 		if(isValid()) {
@@ -32,6 +41,10 @@ public class SwapTileBoardToEmptyMove extends Move {
 		return false;
 	}
 
+	/**
+	 * Checks if the tile passed in is a board tile.
+	 * @return boolean - true if the move can be made
+	 */
 	@Override
 	public boolean isValid() {
 		if(oldTile.getTileType().equals("board")){return true;}
@@ -40,7 +53,6 @@ public class SwapTileBoardToEmptyMove extends Move {
 
 	@Override
 	public boolean undo() {
-		// TODO Auto-generated method stub
 		board.swapTile(oldTile);
 		return true;
 	}

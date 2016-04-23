@@ -16,12 +16,9 @@ import view.SelectedPieceView;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Board;
-import model.BoardTile;
 import model.Bullpen;
-import model.EmptyTile;
 import model.Piece;
 import model.PieceTile;
-import model.ReleaseTile;
 
 /**
  * Controls all actions having to do with manipulating tiles on a Puzzle or Lightning board in builder mode 
@@ -108,7 +105,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			if(!move.doMove()){
 				move = new SwapTileEmptyToBoardMove(source, board);
 				if(!move.doMove()){
-					move = new SwapTileReleaseToBoardMove(rncv, source, board);	
+					move = new SwapTileReleaseToBoardMove(source, board);	
 					move.doMove();
 				}
 			}

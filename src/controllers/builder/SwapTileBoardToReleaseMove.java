@@ -7,16 +7,24 @@ import model.Board;
 import model.ReleaseTile;
 
 /**
- * Represents the swap between a board tile and a release tile
+ * Move class for swapping a Board Tile to Release Tile.
  * 
  * @author awharrison
- * @author Dylan
+ * @author dfontana
  */
 public class SwapTileBoardToReleaseMove extends Move {
+	/** Board in which the move is taking place **/
 	Board board;
-	AbstractTile oldTile;
-	ReleaseTile newTile;
+	
+	/** Used to find the color and number selected when making a new release tile**/
 	ReleaseNumberCreationView rncv;
+	
+	/** The tile passed into the constructor. Should be a board tile (this is checked) **/
+	AbstractTile oldTile;
+	
+	/** The tile that is created to replace the oldTile **/
+	ReleaseTile newTile;
+
 	
 	public  SwapTileBoardToReleaseMove (ReleaseNumberCreationView rncv, AbstractTile old, Board b) {
 		this.board = b;
@@ -24,6 +32,11 @@ public class SwapTileBoardToReleaseMove extends Move {
 		this.oldTile = old;
 	}
 	
+	/**
+	 * The move creates a new Release tile with same location as the old tile and the current selected number/color.
+	 * It then swaps the old and new Tiles. 
+	 * @return boolean - true if the move was successful
+	 */
 	@Override
 	public boolean doMove() {
 		if(isValid()) {
@@ -34,6 +47,10 @@ public class SwapTileBoardToReleaseMove extends Move {
 		return false;
 	}
 
+	/**
+	 * Checks if the tile passed in is a board tile.
+	 * @return boolean - true if the move can be made
+	 */
 	@Override
 	public boolean isValid() {
 		if(oldTile.getTileType().equals("board")){return true;}
