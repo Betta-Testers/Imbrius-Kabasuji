@@ -28,8 +28,6 @@ public class MovePieceOnBoardMove extends Move{
 		this.board = levelModel.getBoard();
 		this.sourceTile = tile;
 		this.p = p;
-//		this.originalRow = p.getOriginRow();
-//		this.originalCol = p.getOriginCol();
 		this.rOffset = rOffset;
 		this.cOffset = cOffset;
 	}
@@ -44,6 +42,12 @@ public class MovePieceOnBoardMove extends Move{
 		return false;
 	}
 	
+	/**
+	 * Checks to see if the piece passed in is not null (hence being dragged from the board). If so,
+	 * it checks if the piece will fit where it is trying to go. If both
+	 * check out, the move is valid.
+	 * @return boolean - true if the move can be made
+	 */
 	public boolean isValid() {
 		if(this.p != null){
 			if(board.willFit(p, sourceTile.getRow()+rOffset, sourceTile.getCol()+cOffset)){
