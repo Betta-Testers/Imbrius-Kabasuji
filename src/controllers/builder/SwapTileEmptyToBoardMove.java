@@ -16,12 +16,12 @@ public class SwapTileEmptyToBoardMove extends Move {
 	Board board;
 	AbstractTile oldTile;
 	BoardTile newTile;
-	
+
 	public SwapTileEmptyToBoardMove (AbstractTile old, Board b) {
 		this.board = b;
 		this.oldTile = old;
 	}
-	
+
 	@Override
 	public boolean doMove() {
 		if(isValid()) {
@@ -34,10 +34,8 @@ public class SwapTileEmptyToBoardMove extends Move {
 
 	@Override
 	public boolean isValid() {
-		if(this.oldTile.getTileType().equals("empty"))
-			return true;
-		else
-			return false;
+		if(this.oldTile.getTileType().equals("empty")){return true;}
+		return false;
 	}
 
 	@Override
@@ -46,7 +44,7 @@ public class SwapTileEmptyToBoardMove extends Move {
 		board.swapTile(oldTile);
 		return true;
 	}
-	
+
 	@Override 
 	public boolean redo() {
 		board.swapTile(newTile);

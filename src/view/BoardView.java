@@ -25,6 +25,7 @@ public class BoardView extends JPanel{
 	Graphics offscreenGraphics;
 	MouseListener mouseActionHandler;
 	MouseMotionListener mouseMotionHandler;
+	
 	public BoardView(Board b){
 		setPreferredSize(new Dimension(385, 385));
 		this.b = b;
