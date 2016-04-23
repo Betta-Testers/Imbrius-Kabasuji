@@ -2,7 +2,6 @@ package controllers.builder;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.JSpinner;
 import view.BuilderPieceGroupView;
 import model.PieceGroup;
 
@@ -31,19 +30,6 @@ public class BuilderPieceSpinnerController implements ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		int val = (int) app.getSpinner().getValue();
 		model.setCount(val);
-//		int oldVal;
-//		Object o = ((JSpinner)e.getSource()).getPreviousValue();
-//		if( o != null){
-//			oldVal = (int)o;
-//			int newVal = (int)((JSpinner)e.getSource()).getValue();
-//			System.out.println("State Changed in spinner");
-//			if(newVal > oldVal) {
-//				model.incrementCount();
-//			} else if (newVal < oldVal) {
-//				model.decrementCount();
-//			} else 
-//				throw new RuntimeException("BuilderPieceSpinnerController::Changing a builder piece group spinner caused no value change");
-//		}
 	}
 	
 	
