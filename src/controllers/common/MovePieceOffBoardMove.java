@@ -46,7 +46,7 @@ public class MovePieceOffBoardMove extends Move {
 	 */
 	@Override
 	public boolean undo() {
-		levelModel.getBullpen().removeSinglePiece(piece.getID());
+		levelModel.getBullpen().decrementPiece(piece.getID());
 		levelModel.getBoard().putPieceOnBoard(piece, piece.getOriginRow(), piece.getOriginCol());
 		bpv.updatePieceGroup(piece);
 		return true;
