@@ -31,7 +31,6 @@ public class TestBuilderPuzzleLightning extends TestCase {
 	PuzzleLevel lvl;
 	Board puzzleBoard;
 	BoardView boardView;
-	Bullpen bullpen;
 	BullpenView bpView;
 	
 	@Override
@@ -43,6 +42,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		lvl = (PuzzleLevel)build.getCurrentLevel();
 		puzzleBoard = lvl.getBoard();
 		boardView = buildView.getBoardView();
+		bpView = buildView.getBullpenView();
 	}
 	
 	public void testPuzzleLightningBoard() {
@@ -80,37 +80,85 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		ArrayList<PieceGroup> pieces = new ArrayList<PieceGroup>();
 		pieces.add(new PieceGroup(1,4));
 		lvl.setBullpen(new Bullpen(pieces));
+		lvl.getBullpen().setSelectedPiece(1);
+		assertEquals(4, lvl.getBullpen().numAvailablePieces());
 		
 		/*
 		 * swap tiles to be able to place pieces
 		 */
-		puzzleBoard.swapTile(new BoardTile(0, 0));
-		puzzleBoard.swapTile(new BoardTile(1, 0));
-		puzzleBoard.swapTile(new BoardTile(2, 0));
-		assertEquals(3, puzzleBoard.getNumBoardTiles());
-		/*
-		 * try to place piece (test willfit)
-		 */
-		m = new PlacePieceOnBoardFromBullpenMove(lvl, puzzleBoard.getTileAt(2*puzzleBoard.getTileSize(), 0), bpView);
+		puzzleBoard.swapTile(new BoardTile(0,0));
+		puzzleBoard.swapTile(new BoardTile(1,0));
+		puzzleBoard.swapTile(new BoardTile(2,0));
+		puzzleBoard.swapTile(new BoardTile(3,0));
+		puzzleBoard.swapTile(new BoardTile(4,0));
+		puzzleBoard.swapTile(new BoardTile(5,0));
 		
-		// TODO figure out why willFit is returning a nullPointerException
-		puzzleBoard.willFit(lvl.getBullpen().getSelectedPiece(), 2, 0);
+		puzzleBoard.swapTile(new BoardTile(0,1));
+		BoardTile placementTileFail = new BoardTile(1, 1);
+		puzzleBoard.swapTile(placementTileFail);
+		BoardTile placementTile = new BoardTile(2, 1);
+		puzzleBoard.swapTile(placementTile);
+		puzzleBoard.swapTile(new BoardTile(3,1));
+		puzzleBoard.swapTile(new BoardTile(4,1));
+		puzzleBoard.swapTile(new BoardTile(5,1));
+		assertEquals(12, puzzleBoard.getNumBoardTiles());
+		
+		/*
+		 * try to place piece that should fail
+		 */
+		m = new PlacePieceOnBoardFromBullpenMove(lvl, placementTileFail, bpView);
 		assertFalse(m.doMove());
 		
 		/*
-		 * complete space for piece
+		 *  try to place piece that should complete
 		 */
-		puzzleBoard.swapTile(new BoardTile(3, 0));
-		puzzleBoard.swapTile(new BoardTile(4, 0));
-		puzzleBoard.swapTile(new BoardTile(5, 0));
+		assertEquals("board", puzzleBoard.getTileAt(0,0).getTileType());
+		m = new PlacePieceOnBoardFromBullpenMove(lvl, placementTile, bpView);
 		assertTrue(m.doMove());
-		assertEquals(6, puzzleBoard.getNumBoardTiles());
 		
+		/*
+		 * verify number of board tiles has changed, the bullpen has been updated, and the board contains piece tiles
+		 */
+		assertEquals(6, puzzleBoard.getNumBoardTiles());
+		assertEquals(3, lvl.getBullpen().numAvailablePieces());
+		assertEquals("piece", puzzleBoard.getTileAt(puzzleBoard.getTileSize(), puzzleBoard.getTileSize()).getTileType());
+		m.undo();
+		assertEquals("board", puzzleBoard.getTileAt(puzzleBoard.getTileSize(), puzzleBoard.getTileSize()).getTileType());
+		m.redo();
+		assertEquals("piece", puzzleBoard.getTileAt(puzzleBoard.getTileSize(), puzzleBoard.getTileSize()).getTileType());
 	}
 	
 	//====================== Move Piece Board to Board Move ======================//
 	public void testMovePiecesOnBoard() {
 		Move m;
+		
+		/*
+		 * initialize bullpen
+		 */
+		ArrayList<PieceGroup> pieces = new ArrayList<PieceGroup>();
+		pieces.add(new PieceGroup(1,4));
+		lvl.setBullpen(new Bullpen(pieces));
+		lvl.getBullpen().setSelectedPiece(1);
+		assertEquals(4, lvl.getBullpen().numAvailablePieces());
+		
+		/*
+		 * swap tiles to be able to place pieces
+		 */
+		puzzleBoard.swapTile(new BoardTile(0,0));
+		puzzleBoard.swapTile(new BoardTile(1,0));
+		puzzleBoard.swapTile(new BoardTile(2,0));
+		puzzleBoard.swapTile(new BoardTile(3,0));
+		puzzleBoard.swapTile(new BoardTile(4,0));
+		puzzleBoard.swapTile(new BoardTile(5,0));
+		
+		puzzleBoard.swapTile(new BoardTile(0,1));
+		puzzleBoard.swapTile(new BoardTile(1,1));
+		BoardTile placementTile = new BoardTile(2, 1);
+		puzzleBoard.swapTile(placementTile);
+		puzzleBoard.swapTile(new BoardTile(3,1));
+		puzzleBoard.swapTile(new BoardTile(4,1));
+		puzzleBoard.swapTile(new BoardTile(5,1));
+		assertEquals(12, puzzleBoard.getNumBoardTiles());
 	}
 	
 	//====================== Move Piece Off Board Move ======================//
