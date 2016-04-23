@@ -42,7 +42,7 @@ public class LevelView extends JFrame {
 		this.bullpenView = new BullpenView();
 		bullpenView.prepPlayer(m.getBullpen());
 		this.boardView = new BoardView(m.getBoard()); 
-		this.levelInfo = new LevelInfoView(1);
+		this.levelInfo = new LevelInfoView(m.getID());
 		
 		
 		initializeControllers();

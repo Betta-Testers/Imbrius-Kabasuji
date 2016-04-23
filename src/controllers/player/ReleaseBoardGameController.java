@@ -112,6 +112,7 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
+			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
 	}
 

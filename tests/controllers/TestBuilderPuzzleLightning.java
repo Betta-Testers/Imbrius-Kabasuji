@@ -57,7 +57,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 	//====================== Empty to Board Tile to Empty Swapping ======================//
 	public void testTileEmptyToBoardSwapMove() {
 		Move m;
-		m = new SwapTileEmptyToBoardMove(buildView, (EmptyTile)puzzleBoard.getTileAt(boardView.getX(), boardView.getX()), lvl);
+		m = new SwapTileEmptyToBoardMove((EmptyTile)puzzleBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
 		assertTrue(m.doMove());
 		assertEquals(1, puzzleBoard.getNumBoardTiles());
 		m.undo();
@@ -65,7 +65,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		m.redo();
 		assertEquals(1, puzzleBoard.getNumBoardTiles());
 		
-		m = new SwapTileBoardToEmptyMove(buildView, (BoardTile)puzzleBoard.getTileAt(boardView.getX(), boardView.getX()), lvl);
+		m = new SwapTileBoardToEmptyMove((BoardTile)puzzleBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
 		assertTrue(m.doMove());
 		assertEquals(0, puzzleBoard.getNumBoardTiles());
 		m.undo();

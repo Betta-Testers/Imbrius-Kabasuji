@@ -7,8 +7,11 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import model.LightningLevel;
+
 import java.awt.Dimension;
 import java.awt.Font;
+import java.text.DecimalFormat;
 
 /**
  * Class for displaying the time remaining in a lightning level
@@ -20,11 +23,11 @@ public class TimeRemainingView extends JPanel {
 	JTextPane textPaneTime;
 	JLabel lblTitle;
 	
-	public TimeRemainingView() {
+	public TimeRemainingView(LightningLevel level) {
 		this.setPreferredSize(new Dimension(180, 90));
 		textPaneTime = new JTextPane();
 		textPaneTime.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		textPaneTime.setText("000");
+		textPaneTime.setText(""+level.getTotalTime());
 		
 		lblTitle = new JLabel("Seconds Remaining");
 		
@@ -33,12 +36,11 @@ public class TimeRemainingView extends JPanel {
 	
 	/**
 	 * Method for changing the text displayed to the remaining amount of time
-	 * Method converts secondsRemaining into a string to be displayed
-	 * Should be in a 3 digit format: 009, 090, or 900
+	 * Method takes formatted string
 	 * @param secondsRemaining
 	 */
-	void updateTimeLeft(int secondsRemaining){
-		textPaneTime.setText(Integer.toString(secondsRemaining));
+	public void updateTimeLeft(String secondsRemaining){
+		textPaneTime.setText(secondsRemaining);
 	}
 	
 	private void setupLayout() {

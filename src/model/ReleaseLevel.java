@@ -13,6 +13,7 @@ import view.NumbersReleasedView;
  * A ReleaseLevel handles the back end for a Release game mode. Tracking the end conditions and progress of 
  * the game.
  * @author dfontana
+ * @author hejohnson
  */
 public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**Serialized ID used for writing to disk**/
@@ -69,7 +70,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		boolean redSum = sumIsSix(reds);
 		boolean blueSum = sumIsSix(blues);
 		boolean greenSum = sumIsSix(greens);
-		
+		starsEarned = 0;
 		if(redSum){  	starsEarned++;}
 		if(blueSum){ 	starsEarned++;}
 		if(greenSum){	starsEarned++;}
