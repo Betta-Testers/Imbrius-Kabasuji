@@ -16,12 +16,9 @@ import view.SelectedPieceView;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Board;
-import model.BoardTile;
 import model.Bullpen;
-import model.EmptyTile;
 import model.Piece;
 import model.PieceTile;
-import model.ReleaseTile;
 
 /**
  * Controls all actions having to do with manipulating tiles on a Puzzle or Lightning board in builder mode 
@@ -44,7 +41,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	boolean mouseOn;
 	int rOffset;
 	int cOffset;
-	
+
 	public BuilderBoardController(BuilderView bView, AbstractLevelModel lm) {
 		this.bView = bView;
 		this.m = lm;
@@ -78,8 +75,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	}
 
 	/**
-	 * Convert tile on board into opposite form: Board Vs Empty. Using a released action allows
-	 * the user to click as quick as they want, preventing accidental behavior not related to a click
+	 * Convert tile on board into opposite form: Release <-> Release <-> Board <-> Empty.
+	 * Using a released action allows the user to click as quick as they want, preventing accidental behavior not related to a click
 	 * (like a press, move, release instead of just a click).
 	 * @param me MouseEvent
 	 */
@@ -89,7 +86,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			Move move = null;
 			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
 			if (mouseOn) {
-				move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset); //ADDED
+				move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
 				if(!move.doMove()){
 					move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
 					move.doMove();
@@ -103,24 +100,21 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			}
 		}else if(rncv.getNumberSelected() < 0){
 			AbstractTile source = board.getTileAt(me.getX(), me.getY());
-			if(source.getTileType().equals("board")){
-				Move move = new SwapTileBoardToEmptyMove(bView, (BoardTile) source, m);
-				move.doMove();
-			} else if (source.getTileType().equals("empty")) {	
-				Move move = new SwapTileEmptyToBoardMove(bView, (EmptyTile) source, m);
-				move.doMove();
-			} else if(source.getTileType().equals("release")){
-				Move move = new SwapTileReleaseToBoardMove(bView, (ReleaseTile) source, m);	
-				move.doMove();
+			Move move;
+			move = new SwapTileBoardToEmptyMove(source, board);
+			if(!move.doMove()){
+				move = new SwapTileEmptyToBoardMove(source, board);
+				if(!move.doMove()){
+					move = new SwapTileReleaseToBoardMove(source, board);	
+					move.doMove();
+				}
 			}
 		}else{
 			AbstractTile source = board.getTileAt(me.getX(), me.getY());
-			if(source.getTileType().equals("board")){
-				Move move = new SwapTileBoardToReleaseMove(bView, (BoardTile) source, m);
-				move.doMove();
-			} 
-			else if (source.getTileType().equals("release")) {
-				Move move = new SwapTileReleaseToReleaseMove(bView, (ReleaseTile) source, m);
+			Move move;
+			move = new SwapTileBoardToReleaseMove(rncv, source, board);
+			if(!move.doMove()){
+				move = new SwapTileReleaseToReleaseMove(rncv, source, board);
 				move.doMove();
 			}
 		}
@@ -128,11 +122,13 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		boardView.repaint();
 	}
 
+
+
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		mouseOn = true;
 	}
-	
+
 	/**
 	 * If currently dragging a piece, remove the piece from the board and return it to the bullpen
 	 * 
@@ -183,7 +179,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			Piece p;
 			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
 			p = bp.getSelectedPiece();
-			
+
 			if(p != null){
 				board.clearPiecePreview();
 				board.showPiecePreview(p, source.getRow(), source.getCol());

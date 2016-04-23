@@ -11,6 +11,7 @@ import model.Piece;
 /**
  * @author hejohnson
  * @author Dylan
+ * @author awharrison
  */
 public class MovePieceOnBoardMove extends Move{
 	AbstractLevelModel levelModel;

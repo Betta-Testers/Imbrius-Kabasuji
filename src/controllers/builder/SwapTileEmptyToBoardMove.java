@@ -1,28 +1,24 @@
 package controllers.builder;
 
 import controllers.common.Move;
-import model.AbstractLevelModel;
+import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
-import model.EmptyTile;
-import view.BuilderView;
 
 /**
  * Represents the swap between an empty tile and a board tile
  * 
  * @author awharrison
+ * @author Dylan
  *
  */
 public class SwapTileEmptyToBoardMove extends Move {
 	Board board;
-	EmptyTile oldTile;
+	AbstractTile oldTile;
 	BoardTile newTile;
 	
-	public SwapTileEmptyToBoardMove (BuilderView bView, EmptyTile old, AbstractLevelModel lm) {
-		if((bView == null) || (old == null) || (lm == null)) { 
-			throw new RuntimeException("SwapTileBoardToReleaseMove::failed to initialize constructor inputs");
-		}
-		this.board = lm.getBoard();
+	public SwapTileEmptyToBoardMove (AbstractTile old, Board b) {
+		this.board = b;
 		this.oldTile = old;
 	}
 	
@@ -38,10 +34,8 @@ public class SwapTileEmptyToBoardMove extends Move {
 
 	@Override
 	public boolean isValid() {
-		if(this.oldTile.getTileType().equals("empty"))
-			return true;
-		else
-			return false;
+		if(oldTile.getTileType().equals("empty")){return true;}
+		return false;
 	}
 
 	@Override
