@@ -11,8 +11,10 @@ import model.PuzzleLevel;
 import view.LevelPropertiesView;
 
 /**
+ * Handles setting the number of moves in a Puzzle level
+ * 
  * @author hejohnson
- *
+ * @author dfontana
  */
 public class SetNumberOfMovesSpinnerController implements ChangeListener {
 	LevelPropertiesView levelPropView;

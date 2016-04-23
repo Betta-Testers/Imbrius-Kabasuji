@@ -16,6 +16,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controllers.builder.SetNumberOfMovesSpinnerController;
+import controllers.builder.SetBullpenSizeSpinnerController;
 import controllers.builder.TimeLimitSpinnerController;
 import model.PuzzleLevel;
 import model.LightningLevel;
@@ -31,10 +32,10 @@ public class LevelPropertiesView extends JPanel{
 	JLabel lblTileCountVar;
 	JLabel lblSetMoves;
 	JLabel lblSetTime;
-	JLabel lblSetPieceCt;
+	JLabel lblBullpenSize;
 	JSpinner spinMoves;
 	JSpinner spinTime;
-	JSpinner spinPieceCt;
+	JSpinner spinBullpenSize;
 	AbstractLevelModel levelModel;
 	
 	public LevelPropertiesView(){
@@ -44,18 +45,18 @@ public class LevelPropertiesView extends JPanel{
 		lblTileCountVar = new JLabel("0");
 		lblSetMoves = new JLabel("Set Moves:");
 		lblSetTime = new JLabel("Set Time:");
-		lblSetPieceCt = new JLabel("Set Piece Ct:");
+		lblBullpenSize = new JLabel("Bullpen Size:");
 		
 		spinMoves = new JSpinner();
 		spinTime = new JSpinner();
-		spinPieceCt = new JSpinner();
+		spinBullpenSize = new JSpinner();
 		
 		spinMoves.setEnabled(true);
-		spinPieceCt.setEnabled(true);
+		spinBullpenSize.setEnabled(true);
 		spinTime.setEnabled(true);
 		
 		lblSetMoves.setEnabled(true);
-		lblSetPieceCt.setEnabled(true);
+		lblBullpenSize.setEnabled(true);
 		lblSetTime.setEnabled(true);
 		
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -64,50 +65,57 @@ public class LevelPropertiesView extends JPanel{
 		lblSetTime.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		spinMoves.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		
-		spinTime.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spinTime.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinBullpenSize.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		
 		setupLayout();
-		initializeControllers();
 	}
 	
 	void initializeControllers() {
-		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController(this));
-		spinTime.addChangeListener(new TimeLimitSpinnerController(this));
+		
+		
+		
 	}
 	
 	/**
 	 * Hides irrelevant information to a lightning level.
+	 * Prepares the controllers relevant to a lightning level.
 	 */
 	public void lightning(){
 		lblSetMoves.setVisible(false);
 		spinMoves.setVisible(false);
-		lblSetPieceCt.setVisible(true);
-		spinPieceCt.setVisible(true);
+		lblBullpenSize.setVisible(true);
+		spinBullpenSize.setVisible(true);
 		lblSetTime.setVisible(true);
 		spinTime.setVisible(true);
 		spinTime.setValue(((LightningLevel)levelModel).getTotalTime());
+		
+		spinTime.addChangeListener(new TimeLimitSpinnerController(this));
+		spinBullpenSize.addChangeListener(new SetBullpenSizeSpinnerController(this));
 	}
 	
 	/**
 	 * Hides irrelevant information to a puzzle level.
+	 * Prepares the controllers relevant to a puzzle level.
 	 */
 	public void puzzle(){
 		lblSetMoves.setVisible(true);
-		spinMoves.setVisible(true);
-		spinMoves.setValue(((PuzzleLevel)levelModel).getMoveLimit());
-		lblSetPieceCt.setVisible(false);
-		spinPieceCt.setVisible(false);
+		lblBullpenSize.setVisible(false);
+		spinBullpenSize.setVisible(false);
 		lblSetTime.setVisible(false);
 		spinTime.setVisible(false);
+		spinMoves.setVisible(true);
+		spinMoves.setValue(((PuzzleLevel)levelModel).getMoveLimit());
+		
+		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController(this));
 	}
 	
 	/**
 	 * Hides irrelevant information to a release level.
 	 */
 	public void release(){
-		lblSetPieceCt.setVisible(false);
-		spinPieceCt.setVisible(false);
+		lblBullpenSize.setVisible(false);
+		spinBullpenSize.setVisible(false);
 		lblSetMoves.setVisible(false);
 		spinMoves.setVisible(false);
 		lblSetTime.setVisible(false);
@@ -136,13 +144,13 @@ public class LevelPropertiesView extends JPanel{
 								.addComponent(lblTileCount)
 								.addComponent(lblSetTime)
 								.addComponent(lblSetMoves)
-								.addComponent(lblSetPieceCt))
+								.addComponent(lblBullpenSize))
 							.addGap(11)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblTileCountVar, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
 								.addComponent(spinTime, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
 								.addComponent(spinMoves, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-								.addComponent(spinPieceCt, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)))
+								.addComponent(spinBullpenSize, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)))
 						.addComponent(lblTitle)))
 		);
 		groupLayout.setVerticalGroup(
@@ -163,8 +171,8 @@ public class LevelPropertiesView extends JPanel{
 						.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblSetPieceCt)
-						.addComponent(spinPieceCt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lblBullpenSize)
+						.addComponent(spinBullpenSize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 		);
 		this.setLayout(groupLayout);
 	}

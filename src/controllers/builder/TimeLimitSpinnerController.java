@@ -5,8 +5,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import controllers.common.Move;
-import model.LightningLevel;
-import view.BuilderView;
 import view.LevelPropertiesView;
 
 /**
@@ -17,7 +15,6 @@ import view.LevelPropertiesView;
  */
 public class TimeLimitSpinnerController implements ChangeListener {
 	LevelPropertiesView lpv;
-	LightningLevel model;
 	
 	public TimeLimitSpinnerController(LevelPropertiesView lpv) {
 		this.lpv = lpv;
