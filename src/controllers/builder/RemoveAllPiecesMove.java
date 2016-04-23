@@ -73,11 +73,11 @@ public class RemoveAllPiecesMove extends Move {
 	/**
 	 * Redoes the undone move. Only valid if no NEW moves have been done that 
 	 * would break the undo order. Redoes the move by calling doMove();
+	 * @return boolean, if the move could be completed
 	 */
 	@Override
 	public boolean redo() {
-		doMove();
-		return true;
+		return doMove();
 	}
 
 }
