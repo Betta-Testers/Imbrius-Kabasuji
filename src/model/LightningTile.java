@@ -14,7 +14,7 @@ public class LightningTile extends AbstractTile implements Serializable{
 
 	public LightningTile(int row, int col) {
 		super(row, col);
-		this.color = Color.GREEN;
+		this.color = Color.BLUE;
 		this.defaultColor = color;
 		this.tileType = "lightning";
 	}

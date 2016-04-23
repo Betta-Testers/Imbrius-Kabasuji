@@ -15,6 +15,7 @@ import model.ReleaseTile;
 import view.BoardView;
 import view.BullpenView;
 import view.LevelView;
+import view.NumbersReleasedView;
 import view.SelectedPieceView;
 
 /**
@@ -48,11 +49,16 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 
 	@Override
 	public void mouseMoved(MouseEvent me) {
+		Piece p;
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		Piece p = levelModel.getBullpen().getSelectedPiece();
-		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
-		boardView.redraw();
-		boardView.repaint();
+		p = levelModel.getBullpen().getSelectedPiece();
+		
+		if(p != null){
+			levelModel.getBoard().clearPiecePreview();
+			levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+			boardView.redraw();
+			boardView.repaint();
+		}
 	}
 	
 	void updateReleasedNumbers(Piece p) {
@@ -60,13 +66,20 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		for (AbstractTile at : coveredTiles) {
 			if (at instanceof ReleaseTile) {
 				Color color  = ((ReleaseTile) at).getColorSet();
+				System.out.println(Color.RED);
+				System.out.println(Color.BLUE);
+				System.out.println(Color.GREEN);
+				System.out.println("actual: "+color);
 				int number = ((ReleaseTile) at).getNumber();
-				if(color == Color.RED){
+				if(color.equals(Color.RED)){
 					levelModel.addToRedReleased(number);
-				} else if (color == Color.BLUE) {
+					((NumbersReleasedView)levelView.getEndConditionPanel()).setReleasedRed(number);
+				} else if (color.equals(Color.BLUE)) {
 					levelModel.addToBlueReleased(number);
-				} else if (color == Color.GREEN) {
+					((NumbersReleasedView)levelView.getEndConditionPanel()).setReleasedBlue(number);
+				} else if (color.equals(Color.GREEN)) {
 					levelModel.addToGreenReleased(number);
+					((NumbersReleasedView)levelView.getEndConditionPanel()).setReleasedGreen(number);
 				} else {
 					throw new RuntimeException("Unknown color");
 				}

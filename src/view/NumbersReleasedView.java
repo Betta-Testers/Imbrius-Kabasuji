@@ -60,7 +60,7 @@ public class NumbersReleasedView extends JPanel {
 	 * that set.
 	 * @param number
 	 */
-	void setReleasedRed(int number){
+	public void setReleasedRed(int number){
 		redNums[number].setBackground(Color.red);
 	}
 	
@@ -70,7 +70,7 @@ public class NumbersReleasedView extends JPanel {
 	 * that set.
 	 * @param number
 	 */
-	void setReleasedBlue(int number){
+	public void setReleasedBlue(int number){
 		blueNums[number].setBackground(Color.blue);
 	}
 	
@@ -80,8 +80,8 @@ public class NumbersReleasedView extends JPanel {
 	 * that set.
 	 * @param number
 	 */
-	void setReleasedYellow(int number){
-		greenNums[number].setBackground(Color.yellow);
+	public void setReleasedGreen(int number){
+		greenNums[number].setBackground(Color.green);
 	}
 	
 	private void setupLayout() {

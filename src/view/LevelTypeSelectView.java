@@ -12,7 +12,9 @@ import javax.swing.JTextArea;
 import app.Builder;
 import controllers.builder.ExistingLevelDeleteController;
 import controllers.builder.ExistingLevelEditController;
+import controllers.builder.NewLightningLevelController;
 import controllers.builder.NewPuzzleLevelController;
+import controllers.builder.NewReleaseLevelController;
 
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
@@ -101,8 +103,8 @@ public class LevelTypeSelectView extends JFrame {
 			elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
 		}
 		setPuzzleBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
-		setLightningBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Lightning: Cover as many tiles as you can before time runs out!"));
-		setReleaseBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Release: Cover tiles to release number/color sequences and win!"));
+		setLightningBtnHandler(new NewLightningLevelController(b, txtAreaLevelTypeDescription, "Lightning: Cover as many tiles as you can before time runs out!"));
+		setReleaseBtnHandler(new NewReleaseLevelController(b, txtAreaLevelTypeDescription, "Release: Cover tiles to release number/color sequences and win!"));
 		// add JButton mouse listeners
 	}
 	
@@ -112,6 +114,10 @@ public class LevelTypeSelectView extends JFrame {
 	
 	public void addExistingLevel (String levelType, int levelNumber){
 		existingLevels.addLevelView(levelType, levelNumber);
+	}
+	
+	public void removeExistingLevel(int levelNumber){
+		existingLevels.removeLevelView(levelNumber);
 	}
 	
 	/**

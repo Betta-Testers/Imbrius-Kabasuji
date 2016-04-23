@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 
 /**
  * Class for displaying the Levels available for play.
@@ -22,14 +23,16 @@ import java.awt.event.WindowListener;
  * @author Brendan
  * @author dfontana
  * @author awharrison
+ * @author hejohnson
  */
 public class LevelSelectionView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JPanel contentPane;
 	JLabel lblTitle;
 	JScrollPane availableLevels;
-	AvailableLevelView levels[];
+	ArrayList<AvailableLevelView> levels;
 	WindowListener shutdownHandler;
+	JPanel scrollablePanel;
 	
 	public LevelSelectionView() {
 		super();
@@ -47,19 +50,32 @@ public class LevelSelectionView extends JFrame {
 		availableLevels.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		availableLevels.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
-		JPanel scrollablePanel = new JPanel();
+		scrollablePanel = new JPanel();
 		availableLevels.setViewportView(scrollablePanel);
 		
-		levels = new AvailableLevelView[15];
+		levels = new ArrayList<AvailableLevelView>();
 		
-		for(int i = 0; i < 15; i++){
-			levels[i] = new AvailableLevelView("Level "+(i+1));
-			scrollablePanel.add(levels[i]);
-		}
-		
-		levels[0].unlockLevel(0);
+//		for(int i = 0; i < 15; i++){
+//			levels[i] = new AvailableLevelView("Level "+(i+1));
+//			scrollablePanel.add(levels[i]);
+//		}
+//		
+//		levels[0].unlockLevel(0);
 		
 		setupLayout();
+		
+	}
+	
+	public void addAvailableLevel(int i, int numStars, Game g) {
+		AvailableLevelView av = new AvailableLevelView(i);
+		
+		if (numStars != -1) {
+			System.out.println(numStars);
+			av.unlockLevel(numStars);
+			addListenerToButton(i, g);
+		}
+		levels.add(av);
+		scrollablePanel.add(av);
 		
 	}
 
@@ -69,7 +85,11 @@ public class LevelSelectionView extends JFrame {
 	 * @param g - game object, passed for the controller to access
 	 */
 	public void addListenerToButton(int levelID, Game g){
-		this.levels[levelID-1].getPlayButton().addActionListener(new PlayLevelButtonController(this, g, levelID));
+		for (AvailableLevelView av : levels) {
+			if (av.getLevelID() == levelID) {
+				av.getPlayButton().addActionListener(new PlayLevelButtonController(this, g, levelID));
+			}
+		}
 	}
 	
 	/**
@@ -78,7 +98,11 @@ public class LevelSelectionView extends JFrame {
 	 * @param starsEarned - number of stars to display
 	 */
 	public void updateStarsForLevel(int levelID, int starsEarned){
-		this.levels[levelID-1].updateStars(starsEarned);
+		for (AvailableLevelView av : levels) {
+			if (av.getLevelID() == levelID) {
+				av.updateStars(starsEarned);;
+			}
+		}
 	}
 	
 	/**
@@ -88,7 +112,11 @@ public class LevelSelectionView extends JFrame {
 	 * @param starsEarned - number of stars to display
 	 */
 	public void unlockLevel(int levelID, int starsEarned){
-		this.levels[levelID-1].unlockLevel(starsEarned);
+		for (AvailableLevelView av : levels) {
+			if (av.getLevelID() == levelID) {
+				av.unlockLevel(starsEarned);
+			}
+		}
 	}
 	
 	/**
@@ -97,7 +125,12 @@ public class LevelSelectionView extends JFrame {
 	 * @return JButton
 	 */
 	public JButton getButton(int levelID) {
-		return this.levels[levelID-1].getPlayButton();
+		for (AvailableLevelView av : levels) {
+			if (av.getLevelID() == levelID) {
+				return av.getPlayButton();
+			}
+		}
+		return null;
 	}
 	
 	/**

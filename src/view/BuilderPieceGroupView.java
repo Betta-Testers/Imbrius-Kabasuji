@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeListener;
 
 import model.PieceGroup;
@@ -22,7 +23,8 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 
 	public BuilderPieceGroupView(PieceGroup pg){
 		super(pg);
-		spinner = new JSpinner();
+		SpinnerNumberModel model = new SpinnerNumberModel(0, 0, 99, 1);  
+		spinner = new JSpinner(model);
 		spinner.setValue(pg.getNumPieces());
 		
 		setupLayout();

@@ -19,23 +19,27 @@ public class AvailableLevelView extends JPanel {
 	GroupLayout layout;
 	StarView starView;
 	JButton btnSelectLevel;
+	int levelID;
 	String lvlname;
 	
 
-	public AvailableLevelView(String s) {
+	public AvailableLevelView(int levelID) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setPreferredSize(new Dimension(148, 100));
 		btnSelectLevel = new JButton("");
 		btnSelectLevel.setEnabled(false);
 		btnSelectLevel.setIcon(new ImageIcon(AvailableLevelView.class.getResource("/icons/LockIcon.png")));
 		btnSelectLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		lvlname = s;
+		lvlname = "Level "+levelID;
 		starView = new StarView();
+		this.levelID = levelID;
 		
 		setupLayout();
 	}
 	
-	
+	public int getLevelID() {
+		return this.levelID;
+	}
 	/**
 	 * Sets the number of stars displayed for this level to the specified number
 	 * @author dfontana

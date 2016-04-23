@@ -70,7 +70,7 @@ public class TestBuilderMoves2 extends TestCase {
 		assertEquals(144, b.getNumBoardTiles());
 		
 		// create and perform place piece move
-		m = new MovePieceOnBoardMove(pl, (BoardTile)b.getTileAt(144, 144), new Piece(2));
+		m = new MovePieceOnBoardMove(pl, (BoardTile)b.getTileAt(144, 144), new Piece(2), 0, 0);
 		m.doMove();
 		// verify that the tile is now a piece tile
 		at = b.getTileAt(144, 144);
@@ -80,7 +80,8 @@ public class TestBuilderMoves2 extends TestCase {
 		assertEquals(138, b.getNumBoardTiles());
 		
 		// remove the piece from the board
-		m = new MovePieceOffBoardMove(pl, ((PieceTile)b.getTileAt(144, 144)).getPiece());
+		b.setDraggedPiece(((PieceTile)b.getTileAt(144, 144)).getPiece());
+		m = new MovePieceOffBoardMove(pl, bv.getBullpenView());
 		m.doMove();
 		// verify that the tile is now a piece tile
 		at = b.getTileAt(144, 144);
@@ -112,7 +113,7 @@ public class TestBuilderMoves2 extends TestCase {
 		
 		// move 1
 		AbstractTile at = b.getTileAt(0, 2*b.getTileSize());
-		m = new MovePieceOnBoardMove(pl, (BoardTile)at, new Piece(1));
+		m = new MovePieceOnBoardMove(pl, (BoardTile)at, new Piece(1), 0, 0);
 		m.doMove();
 		// verify that the tile is now a piece tile
 		at = b.getTileAt(0, 2*b.getTileSize());
@@ -125,7 +126,7 @@ public class TestBuilderMoves2 extends TestCase {
 		
 		// move 2
 		at = b.getTileAt(b.getTileSize(), 2*b.getTileSize());
-		m = new MovePieceOnBoardMove(pl, (BoardTile)at, new Piece(1));
+		m = new MovePieceOnBoardMove(pl, (BoardTile)at, new Piece(1), 0, 0);
 		m.doMove();
 		// verify that the tile is now a piece tile
 		at = b.getTileAt(b.getTileSize(), 2*b.getTileSize());
@@ -138,7 +139,7 @@ public class TestBuilderMoves2 extends TestCase {
 		
 		// move 3
 		at = b.getTileAt(2*b.getTileSize(), 2*b.getTileSize());
-		m = new MovePieceOnBoardMove(pl, (BoardTile)at, new Piece(1));
+		m = new MovePieceOnBoardMove(pl, (BoardTile)at, new Piece(1), 0, 0);
 		m.doMove();
 		// verify that the tile is now a piece tile
 		at = b.getTileAt(2*b.getTileSize(), 2*b.getTileSize());
@@ -151,7 +152,7 @@ public class TestBuilderMoves2 extends TestCase {
 		
 		// move 4
 		at = b.getTileAt(3*b.getTileSize(), 2*b.getTileSize());
-		m = new MovePieceOnBoardMove(pl, (BoardTile)at, new Piece(1));
+		m = new MovePieceOnBoardMove(pl, (BoardTile)at, new Piece(1), 0, 0);
 		m.doMove();
 		// verify that the tile is now a piece tile
 		at = b.getTileAt(3*b.getTileSize(), 2*b.getTileSize());

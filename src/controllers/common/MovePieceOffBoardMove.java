@@ -9,7 +9,7 @@ import view.BullpenView;
 
 /**
  * @author hejohnson
- *
+ * @author dfontana
  */
 public class MovePieceOffBoardMove extends Move {
 	AbstractLevelModel levelModel;
@@ -26,7 +26,8 @@ public class MovePieceOffBoardMove extends Move {
 	@Override
 	public boolean doMove() {
 		levelModel.getBullpen().incrementPiece(piece.getID());
-		levelModel.getBoard().removePiece(piece);
+		//levelModel.getBoard().removePiece(piece);
+		levelModel.getBoard().setDraggedPiece(null);
 		bpv.updatePieceGroup(piece);
 		return true;
 	}

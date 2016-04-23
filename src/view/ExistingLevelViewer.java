@@ -31,6 +31,19 @@ public class ExistingLevelViewer extends JScrollPane {
 		levelsList.add(elv);
 		existingLevels.add(elv);
 	}
+	
+	public void removeLevelView(int levelNumber) {
+		for(ExistingLevelView elv : existingLevels){
+			if (elv.getLevelNumber() == levelNumber){
+				existingLevels.remove(elv);
+				levelsList.remove(elv);
+				this.revalidate();
+				this.repaint();
+				break;
+			}
+		}
+	}
+	
 	/**
 	 * A method used to get all of the currently available level buttons
 	 * @return ArrayList<ExistingLevelView> returns an array list containing all of the current existing level buttons
@@ -38,4 +51,5 @@ public class ExistingLevelViewer extends JScrollPane {
 	public ArrayList<ExistingLevelView> getExistingLevelButtons() {
 		return existingLevels;
 	}
+
 }

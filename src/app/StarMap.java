@@ -94,7 +94,7 @@ public class StarMap implements Serializable{
 		if(!value.equals("Puzzle") && !value.equals("Release") && !value.equals("Lightning")){ return false;}
 		
 		levelData.put(key, value);
-		stars.put(key, 0);
+		stars.put(key, -1);
 		save();
 		return true;	
 	}
@@ -193,7 +193,7 @@ public class StarMap implements Serializable{
 		ArrayList<Integer> keyList = new ArrayList<Integer>(levelData.keySet()); 
 		Set<Integer> keys = levelData.keySet();
 		for(Integer key: keys){
-			if(key != 1 && stars.get(key) == 0){ keyList.remove(key);}
+			if(key != 1 && stars.get(key) == -1){ keyList.remove(key);}
 		}
 		return keyList;
 	}
@@ -221,9 +221,9 @@ public class StarMap implements Serializable{
 	public Integer nextOpenID(){
 		try{
 			Iterator<Integer> keys = this.keySet().iterator();
-			int i=1;
-			for(;i<=levelData.lastKey(); i++){
-				if(keys.next() != (Integer)i){
+			int i;
+			for(i = 1;i<=levelData.lastKey(); i++){
+				if(!keys.next().equals(i)){
 					return i;
 				}
 			}
@@ -240,7 +240,7 @@ public class StarMap implements Serializable{
 	 */
 	public Integer lowestNoStarLevel(){	
 		for(int i = 1; i<=stars.size(); i++){
-			if(stars.get(i) == 0){
+			if(stars.get(i) == -1){
 				return i;
 			}
 		}
