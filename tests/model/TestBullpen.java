@@ -124,7 +124,7 @@ public class TestBullpen extends TestCase {
 		assertEquals(testBP1.setSelectedPiece(7), false);
 		
 		assertEquals(6, testBP1.numAvailablePieces());
-		testBP1.decrementSelectedPiece();
+		testBP1.decrementPiece(testPiece.getID());
 		assertEquals(5, testBP1.numAvailablePieces());
 		
 	
@@ -134,13 +134,6 @@ public class TestBullpen extends TestCase {
 		// ensure that the exceptions are thrown in the correct instances
 		try {
 			testBP3 = new Bullpen(-2);
-			fail();
-		} catch (RuntimeException e) {
-			
-		}
-		
-		try {
-			testBP2.addRandomPieces(-3);
 			fail();
 		} catch (RuntimeException e) {
 			
