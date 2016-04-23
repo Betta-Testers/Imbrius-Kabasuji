@@ -36,6 +36,7 @@ public class Builder extends LevelIO{
 
 	void initialize(){
 		this.levelData = loadStarMap();
+		System.out.println(levelData.toString());
 		this.initializeView();
 		this.initializeControllers();
 	}
@@ -45,7 +46,7 @@ public class Builder extends LevelIO{
 
 		for(int id: levelData.keySet()){
 			try {
-				ltsv.addExistingLevel(levelData.get(id), id);
+				ltsv.addExistingLevel(levelData.get(id), id, this);
 			} catch (Exception e) {
 				throw new RuntimeException("ID not found in levelData, LTSV couldn't be initialized" + e.getMessage());
 			}
@@ -83,7 +84,7 @@ public class Builder extends LevelIO{
 			try { oos.close(); } catch (IOException ioe) { } 
 		}
 
-		if(id > levelData.lastID()){
+		if(!levelData.containsKey(id)){
 			levelData.put(id, type);
 		}
 	}
@@ -195,7 +196,7 @@ public class Builder extends LevelIO{
 	public AbstractLevelModel getCurrentLevel(){
 		return currentLevel;
 	}
-	public boolean isNewLevel() {
-		return !levelData.containsKey(currentLevel.getID());
-	}
+//	public boolean isNewLevel() {
+//		return !levelData.containsKey(currentLevel.getID());
+//	}
 }

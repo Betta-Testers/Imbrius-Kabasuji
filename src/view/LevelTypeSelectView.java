@@ -112,8 +112,10 @@ public class LevelTypeSelectView extends JFrame {
 		return txtAreaLevelTypeDescription;
 	}
 	
-	public void addExistingLevel (String levelType, int levelNumber){
-		existingLevels.addLevelView(levelType, levelNumber);
+	public void addExistingLevel (String levelType, int levelNumber, Builder b){
+		ExistingLevelView elv = existingLevels.addLevelView(levelType, levelNumber);
+		elv.addActionListenerToEditButton(new ExistingLevelEditController(b));
+		elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
 	}
 	
 	public void removeExistingLevel(int levelNumber){

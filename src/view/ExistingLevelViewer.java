@@ -26,12 +26,13 @@ public class ExistingLevelViewer extends JScrollPane {
 	 * @param levelType the type of level being added
 	 * @param levelIndex the index of the level being added
 	 */
-	public void addLevelView(String levelType, Integer levelIndex) {
+	public ExistingLevelView addLevelView(String levelType, Integer levelIndex) {
 		ExistingLevelView elv = new ExistingLevelView(levelType, levelIndex);
 		levelsList.add(elv);
 		existingLevels.add(elv);
 		this.revalidate();
 		this.repaint();
+		return elv;
 	}
 	
 	public void removeLevelView(int levelNumber) {
