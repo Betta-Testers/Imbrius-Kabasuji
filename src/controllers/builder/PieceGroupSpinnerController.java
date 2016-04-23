@@ -29,15 +29,11 @@ public class PieceGroupSpinnerController implements ChangeListener {
 	/**Used to clear the selectedPiece when the piece group's count drops to 0 of the piece in the panel**/
 	Bullpen bp;
 
-	/** Prevents multiple pushes to the undo stack when the move for this controller is undone **/
-	boolean doUpdate;
-
 	public PieceGroupSpinnerController(JSpinner spinner, PieceGroup model, Bullpen bp, PiecePanel piecePanel) {
 		this.spinner = spinner;
 		this.model = model;
 		this.piecePanel = piecePanel;
 		this.bp = bp;
-		this.doUpdate = true;
 	}
 
 	/**

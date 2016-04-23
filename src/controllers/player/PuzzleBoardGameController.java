@@ -16,7 +16,6 @@ import model.PieceTile;
 import view.BoardView;
 import view.BullpenView;
 import view.LevelView;
-import view.NumberMovesLeftView;
 import view.SelectedPieceView;
 
 /**

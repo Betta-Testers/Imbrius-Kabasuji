@@ -6,7 +6,6 @@ import java.io.Serializable;
 import app.Game;
 import controllers.player.ExitLevelButtonController;
 import controllers.player.LightningBoardGameController;
-import controllers.player.PuzzleBoardGameController;
 import view.LevelView;
 import view.TimeRemainingView;
 

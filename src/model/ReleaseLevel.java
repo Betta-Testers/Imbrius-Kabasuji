@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 import app.Game;
 import controllers.player.ExitLevelButtonController;
-import controllers.player.PuzzleBoardGameController;
 import controllers.player.ReleaseBoardGameController;
 import view.LevelView;
 import view.NumbersReleasedView;
