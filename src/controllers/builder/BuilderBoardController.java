@@ -78,8 +78,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	}
 
 	/**
-	 * Convert tile on board into opposite form: Board Vs Empty. Using a released action allows
-	 * the user to click as quick as they want, preventing accidental behavior not related to a click
+	 * Convert tile on board into opposite form: Release <-> Release <-> Board <-> Empty.
+	 * Using a released action allows the user to click as quick as they want, preventing accidental behavior not related to a click
 	 * (like a press, move, release instead of just a click).
 	 * @param me MouseEvent
 	 */
@@ -89,7 +89,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			Move move = null;
 			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
 			if (mouseOn) {
-				move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset); //ADDED
+				move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
 				if(!move.doMove()){
 					move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
 					move.doMove();
