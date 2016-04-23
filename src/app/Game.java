@@ -98,6 +98,10 @@ public class Game extends LevelIO{
 			selectLevel.addListenerToButton(id, this);
 		}
 	}
+	
+	public int highestUnlockedID() {
+		return levelData.lowestNoStarLevel()-1;
+	}
 
 	/**
 	 * Unlocks the next level with no stars for play. Sets the button to enabled
@@ -108,6 +112,7 @@ public class Game extends LevelIO{
 		int id = levelData.lowestNoStarLevel();
 		selectLevel.unlockLevel(id, 0);
 		selectLevel.getButton(id).addActionListener(new PlayLevelButtonController(selectLevel, this, id));
+		updateStars(id, 0);
 		return id;
 	}
 
