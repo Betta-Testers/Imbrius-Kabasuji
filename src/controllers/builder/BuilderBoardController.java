@@ -89,26 +89,17 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			Move move = null;
 			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
 			if (mouseOn) {
-				if (board.getDraggedPiece() == null) {
-					if (m.getBullpen().getSelectedPiece() != null) {
-						move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
-					}
-				} else {
-					move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
-				}
-				
-				if (move != null && move.doMove()) {
-					//levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
+				move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset); //ADDED
+				if(!move.doMove()){
+					move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
+					move.doMove();
+				}else{
+					board.putPieceOnBoard(board.getDraggedPiece(), board.getDraggedPiece().getOriginRow(), board.getDraggedPiece().getOriginCol());
 					board.setDraggedPiece(null);
-					spv.getPiecePanel().redraw();
-					spv.getPiecePanel().repaint();
-				} else {
-					if (board.getDraggedPiece() != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
-						board.putPieceOnBoard(board.getDraggedPiece(), board.getDraggedPiece().getOriginRow(), board.getDraggedPiece().getOriginCol());
-						board.setDraggedPiece(null);
-						board.clearPiecePreview();
-					}
-				} 
+					board.clearPiecePreview();
+				}
+				spv.getPiecePanel().redraw();
+				spv.getPiecePanel().repaint();
 			}
 		}else if(rncv.getNumberSelected() < 0){
 			AbstractTile source = board.getTileAt(me.getX(), me.getY());
