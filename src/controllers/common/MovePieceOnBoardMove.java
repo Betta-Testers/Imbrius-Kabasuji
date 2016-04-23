@@ -35,10 +35,12 @@ public class MovePieceOnBoardMove extends Move{
 	
 	public boolean doMove() {
 		if (isValid()) {
+			board.clearPiecePreview();
 			this.originalRow = p.getOriginRow();
 			this.originalCol = p.getOriginCol();
 			board.removePiece(p);
 			board.putPieceOnBoard(p, sourceTile.getRow()+rOffset, sourceTile.getCol()+cOffset);
+			board.setDraggedPiece(null);
 			return true;
 		}
 		return false;

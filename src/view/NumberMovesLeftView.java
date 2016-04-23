@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
-import javax.swing.JToggleButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;

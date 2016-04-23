@@ -35,6 +35,7 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 	
 	public boolean doMove() {
 		if (isValid()) {
+			board.clearPiecePreview();
 			board.putPieceOnBoard(p, sourceTile.getRow(), sourceTile.getCol());
 			bullpen.decrementSelectedPiece();
 			bpv.updatePieceGroup(p);

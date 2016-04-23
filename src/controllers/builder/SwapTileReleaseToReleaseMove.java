@@ -52,10 +52,8 @@ public class SwapTileReleaseToReleaseMove extends Move {
 	 */
 	@Override
 	public boolean isValid() {
-		if(this.oldTile.getTileType().equals("release"))
-			return true;
-		else
-			return false;
+		if(this.oldTile.getTileType().equals("release")){return true;}
+		return false;
 	}
 
 	@Override
