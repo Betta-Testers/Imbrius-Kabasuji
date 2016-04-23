@@ -72,6 +72,13 @@ public class Game extends LevelIO{
 
 	void initializeView(){
 		this.selectLevel = new LevelSelectionView();
+		for(int id: levelData.keySet()){
+			try {
+				selectLevel.addAvailableLevel(id, levelData.getMaxStars(id), this);
+			} catch (Exception e) {
+				throw new RuntimeException("ID not found in levelData, LSV couldn't be initialized" + e.getMessage());
+			}
+		}
 		this.exitLevel = new GameExitScreen(new StarView());
 	}
 
