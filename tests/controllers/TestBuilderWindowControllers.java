@@ -77,7 +77,7 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		 * create a mouse event to select build puzzle level
 		 */
 		MouseEvent me = new MouseEvent(build.getLevelTypeSelectView(), 
-				MouseEvent.MOUSE_CLICKED, 
+				MouseEvent.MOUSE_PRESSED, 
 				System.currentTimeMillis(), 0, 
 				build.getLevelTypeSelectView().getX(), 
 				build.getLevelTypeSelectView().getY(), 1, false);
@@ -125,7 +125,7 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		 * create a mouse event to select build lightning level
 		 */
 		MouseEvent me = new MouseEvent(build.getLevelTypeSelectView(), 
-				MouseEvent.MOUSE_CLICKED, 
+				MouseEvent.MOUSE_PRESSED, 
 				System.currentTimeMillis(), 0, 
 				build.getLevelTypeSelectView().getX(), 
 				build.getLevelTypeSelectView().getY(), 1, false);
@@ -173,7 +173,7 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		 * create a mouse event to select build release level
 		 */
 		MouseEvent me = new MouseEvent(build.getLevelTypeSelectView(), 
-				MouseEvent.MOUSE_CLICKED, 
+				MouseEvent.MOUSE_PRESSED, 
 				System.currentTimeMillis(), 0, 
 				build.getLevelTypeSelectView().getX(), 
 				build.getLevelTypeSelectView().getY(), 1, false);
