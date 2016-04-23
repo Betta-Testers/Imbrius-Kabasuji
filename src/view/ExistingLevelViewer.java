@@ -30,6 +30,8 @@ public class ExistingLevelViewer extends JScrollPane {
 		ExistingLevelView elv = new ExistingLevelView(levelType, levelIndex);
 		levelsList.add(elv);
 		existingLevels.add(elv);
+		this.revalidate();
+		this.repaint();
 	}
 	
 	public void removeLevelView(int levelNumber) {

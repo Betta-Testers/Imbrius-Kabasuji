@@ -195,4 +195,7 @@ public class Builder extends LevelIO{
 	public AbstractLevelModel getCurrentLevel(){
 		return currentLevel;
 	}
+	public boolean isNewLevel() {
+		return !levelData.containsKey(currentLevel.getID());
+	}
 }
