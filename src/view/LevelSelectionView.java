@@ -68,7 +68,9 @@ public class LevelSelectionView extends JFrame {
 	
 	public void addAvailableLevel(int i, int numStars, Game g) {
 		AvailableLevelView av = new AvailableLevelView(i);
-		if (numStars > 0) {
+		
+		if (numStars != -1) {
+			System.out.println(numStars);
 			av.unlockLevel(numStars);
 			addListenerToButton(i, g);
 		}

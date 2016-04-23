@@ -19,6 +19,7 @@ public class ExitLevelButtonController extends WindowAdapter{
 	
 	@Override
 	public void windowClosing(WindowEvent e) {
+		System.out.println(game.highestUnlockedID());
 		if (game.highestUnlockedID() == game.getCurrentLevel().getID()) {
 			game.unlockNextLevel();
 		}
