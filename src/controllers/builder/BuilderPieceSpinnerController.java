@@ -28,15 +28,19 @@ public class BuilderPieceSpinnerController implements ChangeListener {
 	 * @param e ChangeEvent
 	 */
 	public void stateChanged(ChangeEvent e) {
-		int oldVal = (int)((JSpinner)e.getSource()).getPreviousValue();
-		int newVal = (int)((JSpinner)e.getSource()).getValue();
-		System.out.println("Changing");
-		if(newVal > oldVal) {
-			model.incrementCount();
-		} else if (newVal < oldVal) {
-			model.decrementCount();
-		} else 
-			throw new RuntimeException("BuilderPieceSpinnerController::Changing a builder piece group spinner caused no value change");
+		int oldVal;
+		Object o = ((JSpinner)e.getSource()).getPreviousValue();
+		if( o != null){
+			oldVal = (int)o;
+			int newVal = (int)((JSpinner)e.getSource()).getValue();
+			System.out.println("Changing");
+			if(newVal > oldVal) {
+				model.incrementCount();
+			} else if (newVal < oldVal) {
+				model.decrementCount();
+			} else 
+				throw new RuntimeException("BuilderPieceSpinnerController::Changing a builder piece group spinner caused no value change");
+		}
 	}
 	
 	
