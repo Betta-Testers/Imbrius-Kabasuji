@@ -9,7 +9,6 @@ import javax.swing.event.ChangeListener;
 
 import controllers.common.Move;
 import model.PuzzleLevel;
-import view.LevelPropertiesView;
 
 /**
  * Handles setting the number of moves in a Puzzle level

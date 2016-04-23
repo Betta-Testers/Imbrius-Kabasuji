@@ -16,15 +16,11 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controllers.builder.SetNumberOfMovesSpinnerController;
-import controllers.builder.SetBullpenSizeSpinnerController;
 import controllers.builder.TimeLimitSpinnerController;
 import model.PuzzleLevel;
 import model.LightningLevel;
 
 public class LevelPropertiesView extends JPanel{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
 	JLabel lblTitle;
@@ -85,7 +81,6 @@ public class LevelPropertiesView extends JPanel{
 		spinTime.setValue(((LightningLevel)levelModel).getTotalTime());
 		
 		spinTime.addChangeListener(new TimeLimitSpinnerController((LightningLevel) levelModel));
-		spinBullpenSize.addChangeListener(new SetBullpenSizeSpinnerController(this));
 	}
 	
 	/**
