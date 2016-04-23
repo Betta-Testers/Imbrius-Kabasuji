@@ -18,23 +18,23 @@ import view.SplashScreen;
  *
  */
 public class TestBuilderWindowControllers extends MouseTesting {
-	PuzzleLevel pl;
+//	PuzzleLevel pl;
 	Builder build;
-	BuilderView bv;
-	Board b;
-	Bullpen bp;
-	BullpenView bpv;
+//	BuilderView bv;
+//	Board b;
+//	Bullpen bp;
+//	BullpenView bpv;
 	
 	@Override
 	public void setUp(){
 		build = new Builder("./imbriusLevelTESTING/");
-		build.createPuzzleLevel();
-		pl = (PuzzleLevel)build.getCurrentLevel();
-		bv = build.getBuilderView();
-		pl.setBoard(new Board());
-		b = pl.getBoard();
-		bp = pl.getBullpen();
-		bpv = bv.getBullpenView();
+//		build.createPuzzleLevel();
+//		pl = (PuzzleLevel)build.getCurrentLevel();
+//		bv = build.getBuilderView();
+//		pl.setBoard(new Board());
+//		b = pl.getBoard();
+//		bp = pl.getBullpen();
+//		bpv = bv.getBullpenView();
 	}
 	
 	@Override
@@ -86,8 +86,8 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		 * handle the mouse event, verify that the level type select view is no longer visible and the builder view is now visible
 		 */
 		build.getLevelTypeSelectView().getPuzzleBtnHandler().mouseClicked(me);
-		assertTrue(build.getBuilderView().isVisible()); 
 		assertFalse(build.getLevelTypeSelectView().isVisible());
+		assertTrue(build.getBuilderView().isVisible()); 
 		
 	}
 	
