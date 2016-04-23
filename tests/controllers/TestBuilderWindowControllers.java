@@ -91,7 +91,7 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		
 	}
 	
-	public void testCreateLigthning() {
+	public void testCreateLightning() {
 		/*
 		 * start splash screen and timer
 		 */

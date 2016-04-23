@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import controllers.builder.SwapTileBoardToEmptyMove;
 import controllers.builder.SwapTileEmptyToBoardMove;
 import controllers.common.Move;
+import controllers.common.MovePieceOffBoardMove;
 import controllers.common.MovePieceOnBoardMove;
 import controllers.common.PlacePieceOnBoardFromBullpenMove;
 import model.AbstractLevelModel;
@@ -170,12 +171,59 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		m = new MovePieceOnBoardMove(lvl, placementTile, testPiece, 0, 1);
 		assertTrue(m.doMove());
 		assertEquals(6, puzzleBoard.getNumBoardTiles());
+		assertEquals("board", puzzleBoard.getTileAt(0*puzzleBoard.getTileSize(), 0).getTileType());
+		assertEquals("piece", puzzleBoard.getTileAt(1*puzzleBoard.getTileSize(), 1).getTileType());
+		
+		/*
+		 * test undo and redo
+		 */
+		m.undo();
+		assertEquals(6, puzzleBoard.getNumBoardTiles());
 		assertEquals("piece", puzzleBoard.getTileAt(0*puzzleBoard.getTileSize(), 0).getTileType());
+		assertEquals("board", puzzleBoard.getTileAt(1*puzzleBoard.getTileSize(), 1).getTileType());
+		m.redo();
+		assertEquals(6, puzzleBoard.getNumBoardTiles());
+		assertEquals("board", puzzleBoard.getTileAt(0*puzzleBoard.getTileSize(), 0).getTileType());
 		assertEquals("piece", puzzleBoard.getTileAt(1*puzzleBoard.getTileSize(), 1).getTileType());
 	}
 	
 	//====================== Move Piece Off Board Move ======================//
 	public void testMovePiecesOffBoard() {
 		Move m;
+		/*
+		 * swap tiles to be able to place pieces
+		 */
+		puzzleBoard.swapTile(new BoardTile(0,0));
+		puzzleBoard.swapTile(new BoardTile(1,0));
+		BoardTile placementTile = new BoardTile(2, 0);
+		puzzleBoard.swapTile(placementTile);
+		puzzleBoard.swapTile(new BoardTile(3,0));
+		puzzleBoard.swapTile(new BoardTile(4,0));
+		puzzleBoard.swapTile(new BoardTile(5,0));
+		assertEquals(6, puzzleBoard.getNumBoardTiles());
+		
+		/*
+		 * create piece and place to be tested
+		 */
+		Piece testPiece = new Piece(1);
+		assertTrue(puzzleBoard.putPieceOnBoard(testPiece, 2, 0));
+		assertEquals(0, puzzleBoard.getNumBoardTiles());
+		assertEquals("piece", puzzleBoard.getTileAt(0*puzzleBoard.getTileSize(), 0).getTileType());
+		
+		/*
+		 * set piece being dragged and create move
+		 */
+		puzzleBoard.setDraggedPiece(testPiece);
+		m = new MovePieceOffBoardMove(lvl, bpView);
+		assertTrue(m.doMove());
+		assertEquals("board", puzzleBoard.getTileAt(0*puzzleBoard.getTileSize(), 0).getTileType());
+		
+		/*
+		 * test undo and redo
+		 */
+		m.undo();
+		assertEquals("piece", puzzleBoard.getTileAt(0*puzzleBoard.getTileSize(), 0).getTileType());
+		m.redo();
+		assertEquals("board", puzzleBoard.getTileAt(0*puzzleBoard.getTileSize(), 0).getTileType());
 	}
 }

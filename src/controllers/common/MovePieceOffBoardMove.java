@@ -34,6 +34,7 @@ public class MovePieceOffBoardMove extends Move {
 	@Override
 	public boolean doMove() {
 		if(!isValid()){ return false;}
+		levelModel.getBoard().removePiece(piece);
 		levelModel.getBullpen().incrementPiece(piece.getID());
 		levelModel.getBoard().setDraggedPiece(null);
 		bpv.updatePieceGroup(piece);
