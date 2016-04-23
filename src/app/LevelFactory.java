@@ -26,27 +26,6 @@ import model.ReleaseLevel;
  *
  */
 public class LevelFactory{
-
-	public static void main(String[] args) {
-		ArrayList<PieceGroup> pieces = new ArrayList<PieceGroup>();
-		ArrayList<AbstractTile> tiles = new ArrayList<AbstractTile>();
-		for(int j = 0; j < 6; j++){
-			pieces.add(new PieceGroup(j+1, 4));
-			
-			for(int i = 0; i<12; i++){
-				tiles.add(new EmptyTile(j, i));
-				tiles.add(new BoardTile(j+6, i));
-			}
-		}
-
-		LevelFactory lf = new LevelFactory();
-		lf.setDirectory("./imbriusLevelFiles/");
-		ReleaseLevel pl = lf.GenerateSpecificRelease(2, pieces, tiles);
-		lf.addToData(pl, 2);
-		lf.saveLevel(pl);
-
-		//lf.quick15("./imbriusLevelFiles/");
-	}
 	/** Working directory that this factory will save levels to**/
 	String directory;
 

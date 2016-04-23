@@ -67,8 +67,6 @@ public class TestGame extends TestCase {
 		g = new Game("./imbriusLevelTESTING/");
 		g.levelData.setMaxStars(1, 2);
 		g.levelData.setMaxStars(2, 1);
-		System.out.println(g.levelData.toString());
-		System.out.println(g.levelData.lowestNoStarLevel());
 		assertEquals(3, g.unlockNextLevel());
 	}
 	
