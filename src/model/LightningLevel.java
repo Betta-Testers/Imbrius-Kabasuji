@@ -6,6 +6,7 @@ import java.io.Serializable;
 import app.Game;
 import controllers.player.ExitLevelButtonController;
 import controllers.player.LightningBoardGameController;
+import controllers.player.LightningTimerController;
 import controllers.player.PuzzleBoardGameController;
 import view.LevelView;
 import view.TimeRemainingView;
@@ -74,11 +75,12 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Lightning", new TimeRemainingView(), this);
+		LevelView view = new LevelView("Lightning", new TimeRemainingView(this), this);
 		view.addWindowListener(new ExitLevelButtonController(view, g));
 		LightningBoardGameController lbgc = new LightningBoardGameController(g, view);
 		view.getBoardView().addMouseListener(lbgc);
 		view.getBoardView().addMouseMotionListener(lbgc);
+		LightningTimerController ltc = new LightningTimerController(view, g);
 		return view;
 	}
 	

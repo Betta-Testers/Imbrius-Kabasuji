@@ -91,6 +91,10 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 		moveLimit = moves;
 	}
 	
+	public int getMoveLimit() {
+		return moveLimit;
+	}
+	
 	/**
 	 * Initializes the view to display correctly for a puzzle level. 
 	 * @param g - game where levelView is located

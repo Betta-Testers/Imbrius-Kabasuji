@@ -16,6 +16,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controllers.builder.SetNumberOfMovesSpinnerController;
+import controllers.builder.TimeLimitSpinnerController;
+import model.PuzzleLevel;
+import model.LightningLevel;
 
 public class LevelPropertiesView extends JPanel{
 	/**
@@ -61,12 +64,17 @@ public class LevelPropertiesView extends JPanel{
 		lblSetTime.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		spinMoves.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController(this));
+		
 		spinTime.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		
 		setupLayout();
+		initializeControllers();
 	}
 	
+	void initializeControllers() {
+		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController(this));
+		spinTime.addChangeListener(new TimeLimitSpinnerController(this));
+	}
 	
 	/**
 	 * Hides irrelevant information to a lightning level.
@@ -78,6 +86,7 @@ public class LevelPropertiesView extends JPanel{
 		spinPieceCt.setVisible(true);
 		lblSetTime.setVisible(true);
 		spinTime.setVisible(true);
+		spinTime.setValue(((LightningLevel)levelModel).getTotalTime());
 	}
 	
 	/**
@@ -86,6 +95,7 @@ public class LevelPropertiesView extends JPanel{
 	public void puzzle(){
 		lblSetMoves.setVisible(true);
 		spinMoves.setVisible(true);
+		spinMoves.setValue(((PuzzleLevel)levelModel).getMoveLimit());
 		lblSetPieceCt.setVisible(false);
 		spinPieceCt.setVisible(false);
 		lblSetTime.setVisible(false);
