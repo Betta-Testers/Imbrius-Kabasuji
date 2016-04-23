@@ -8,6 +8,11 @@ import view.ExistingLevelView;
 
 import app.Builder;
 
+/**
+ * Opens an existing level to edit in the Builder
+ * @author hejohnson
+ *
+ */
 public class ExistingLevelEditController implements java.awt.event.ActionListener {
 	Builder b;
 	

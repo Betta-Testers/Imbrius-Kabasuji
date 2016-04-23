@@ -8,6 +8,11 @@ import javax.swing.JButton;
 import view.ExistingLevelView;
 import app.Builder;
 
+/**
+ * Deletes an existing level in the Builder application
+ * @author hejohnson
+ *
+ */
 public class ExistingLevelDeleteController implements ActionListener {
 	Builder b;
 	
@@ -16,10 +21,7 @@ public class ExistingLevelDeleteController implements ActionListener {
 	}
 
 	/**
-	 * Reads the source button for the level to be read into file and launched
-	 * in the editor. Directs flow of information in the builder. When all is done
-	 * the level should be displayed in the editor and the type select hidden
-	 * from view.
+	 * Reads the source button for the level ID to be deleted, and tells the builder to remove it
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		JButton sourceButton = (JButton) ae.getSource();
