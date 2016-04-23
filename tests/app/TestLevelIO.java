@@ -43,7 +43,7 @@ public class TestLevelIO extends TestCase {
 		b = new Builder("./imbriusLevelTESTING/");	 //Builder calls loadStarMap on initialize
 		assertFalse(b.levelData.isEmpty());			 //LevelData is NOT empty
 		assertEquals(2, b.levelData.keySet().size());//LevelData has 2 elements
-		assertEquals("[1,Puzzle,0],[2,Lightning,0]", b.levelData.toString());
+		assertEquals("[1,Puzzle,-1],[2,Lightning,-1]", b.levelData.toString());
 		
 		/**Now delete the level on disk, and add trash to the directory**/
 		/**Should have only level 1 in it when all is done**/
@@ -68,7 +68,7 @@ public class TestLevelIO extends TestCase {
 		b = new Builder("./imbriusLevelTESTING/");	 //Builder calls loadStarMap on initialize
 		assertFalse(b.levelData.isEmpty());			 //LevelData is NOT empty
 		assertEquals(1, b.levelData.keySet().size());//LevelData has 1 element
-		assertEquals("[2,Lightning,0]", b.levelData.toString());		
+		assertEquals("[2,Lightning,-1]", b.levelData.toString());		
 	}
 	
 	public void testUpdateStars(){

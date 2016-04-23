@@ -28,7 +28,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
-		totalTime = 0;
+		totalTime = 1;
 	}
 	
 	/**

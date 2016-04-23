@@ -38,26 +38,6 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent me) {
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent me) {
-	
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent me) {
-		
-	}
-
-	@Override
 	public void mouseReleased(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView());
@@ -82,9 +62,6 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {}
-
-	@Override
 	public void mouseMoved(MouseEvent me) {
 		Piece p;
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
@@ -97,4 +74,15 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 			boardView.repaint();
 		}
 	}
+	
+	@Override
+	public void mouseClicked(MouseEvent me) {}
+	@Override
+	public void mouseEntered(MouseEvent me) {}
+	@Override
+	public void mouseExited(MouseEvent arg0) {}
+	@Override
+	public void mousePressed(MouseEvent me) {}
+	@Override
+	public void mouseDragged(MouseEvent arg0) {}
 }
