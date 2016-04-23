@@ -34,8 +34,10 @@ public class SwapTileEmptyToBoardMove extends Move {
 
 	@Override
 	public boolean isValid() {
-		if(oldTile.getTileType().equals("empty")){return true;}
-		return false;
+		if(this.oldTile.getTileType().equals("empty"))
+			return true;
+		else
+			return false;
 	}
 
 	@Override

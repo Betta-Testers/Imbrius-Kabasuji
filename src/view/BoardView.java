@@ -3,8 +3,8 @@ package view;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
@@ -14,6 +14,7 @@ import model.Board;
 /**
  * @author dfontana
  * @author Heineman
+ * @author awharrison
  */
 public class BoardView extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -22,7 +23,8 @@ public class BoardView extends JPanel{
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
 	Graphics offscreenGraphics;
-
+	MouseListener mouseActionHandler;
+	MouseMotionListener mouseMotionHandler;
 	public BoardView(Board b){
 		setPreferredSize(new Dimension(385, 385));
 		this.b = b;
@@ -92,13 +94,22 @@ public class BoardView extends JPanel{
 		ensureImageAvailable(g);
 		g.drawImage(offscreenImage, 0, 0, getWidth(), getHeight(), this);
 	}
-
-	void setMouseMotionAdapter(MouseMotionAdapter ma){
-		//TODO Fill Stub - setMouseMotionAdapter
+	
+	public void setMouseActionController (MouseListener ml){
+		this.mouseActionHandler = ml;
+		this.addMouseListener(ml);
 	}
-
-	void setMouseAdapter(MouseAdapter ma){
-		//TODO Fill Stub - setMouseAdapter
+	
+	public void setMouseMotionController (MouseMotionListener mml){
+		this.mouseMotionHandler = mml;
+		this.addMouseMotionListener(mml);
 	}
-
+	
+	public MouseListener getMouseActionController() {
+		return this.mouseActionHandler;
+	}
+	
+	public MouseMotionListener getMouseMotionController() {
+		return this.mouseMotionHandler;
+	}
 }

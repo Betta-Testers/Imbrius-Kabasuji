@@ -103,8 +103,8 @@ public class TestPiece extends TestCase{
 		jagged_piece.rotateRight();
 
 		for(int i = 0; i < 6; i++){
-			assertEquals(jagged_piece.tiles[i].rowInPiece, -temp.tiles[i].colInPiece);
-			assertEquals(jagged_piece.tiles[i].colInPiece, temp.tiles[i].rowInPiece);
+			assertEquals(jagged_piece.tiles[i].rowInPiece, temp.tiles[i].colInPiece);
+			assertEquals(jagged_piece.tiles[i].colInPiece, -temp.tiles[i].rowInPiece);
 		}
 		
 		
@@ -118,8 +118,8 @@ public class TestPiece extends TestCase{
 		jagged_piece.rotateRight();
 		
 		for(int i = 0; i < 6; i++){
-			assertEquals(jagged_piece.tiles[i].rowInPiece, temp.tiles[i].colInPiece);
-			assertEquals(jagged_piece.tiles[i].colInPiece, -temp.tiles[i].rowInPiece);
+			assertEquals(jagged_piece.tiles[i].rowInPiece, -temp.tiles[i].colInPiece);
+			assertEquals(jagged_piece.tiles[i].colInPiece, temp.tiles[i].rowInPiece);
 		}
 		
 		jagged_piece.rotateRight();
@@ -134,8 +134,8 @@ public class TestPiece extends TestCase{
 		jagged_piece.rotateLeft();
 		
 		for(int i = 0; i < 6; i++){
-			assertEquals(jagged_piece.tiles[i].rowInPiece, temp.tiles[i].colInPiece);
-			assertEquals(jagged_piece.tiles[i].colInPiece, -temp.tiles[i].rowInPiece);
+			assertEquals(jagged_piece.tiles[i].rowInPiece, -temp.tiles[i].colInPiece);
+			assertEquals(jagged_piece.tiles[i].colInPiece, temp.tiles[i].rowInPiece);
 		}
 		
 		jagged_piece.rotateLeft();
@@ -148,8 +148,8 @@ public class TestPiece extends TestCase{
 		jagged_piece.rotateLeft();
 
 		for(int i = 0; i < 6; i++){
-			assertEquals(jagged_piece.tiles[i].rowInPiece, -temp.tiles[i].colInPiece);
-			assertEquals(jagged_piece.tiles[i].colInPiece, temp.tiles[i].rowInPiece);
+			assertEquals(jagged_piece.tiles[i].rowInPiece, temp.tiles[i].colInPiece);
+			assertEquals(jagged_piece.tiles[i].colInPiece, -temp.tiles[i].rowInPiece);
 		}
 		
 		jagged_piece.rotateLeft();

@@ -81,7 +81,9 @@ public class BuilderView extends JFrame {
 		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
 		levelPropertyView.setLevelModel(builder.getCurrentLevel());
 		levelPropertyView.puzzle();	
-		
+		boardView.setMouseActionController(new BuilderBoardController(this, builder.getCurrentLevel()));
+		boardView.setMouseMotionController(new BuilderBoardController(this, builder.getCurrentLevel()));
+		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
 		initializeControllers();
 	}
 	
@@ -116,8 +118,8 @@ public class BuilderView extends JFrame {
 	void initializeControllers(){
 		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
 		BuilderBoardController builderBoardControl = new BuilderBoardController(this, builder.getCurrentLevel());
-		boardView.addMouseListener(builderBoardControl);
-		boardView.addMouseMotionListener(builderBoardControl);
+		boardView.setMouseActionController(builderBoardControl);
+		boardView.setMouseMotionController(new BuilderBoardController(this, builder.getCurrentLevel()));
 		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
 			((BuilderPieceGroupView) pgv).addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
 			((BuilderPieceGroupView) pgv).addSpinnerChangeListener(new BuilderPieceSpinnerController((BuilderPieceGroupView) pgv, pgv.getPieceGroup()));

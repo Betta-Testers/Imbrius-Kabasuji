@@ -84,4 +84,12 @@ public class ExistingLevelView extends JPanel {
 		this.editLevelHandler = al;
 		deleteLevel.addActionListener(al);
 	}
+	
+	public ActionListener getEditHandler() {
+		return this.editLevelHandler;
+	}
+	
+	public ActionListener getDeleteHandler() {
+		return this.deleteLevelHandler;
+	}
 }

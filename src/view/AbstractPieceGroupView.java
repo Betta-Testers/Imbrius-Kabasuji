@@ -40,6 +40,10 @@ public abstract class AbstractPieceGroupView extends JPanel{
 		this.button.addActionListener(al);
 	}
 	
+	public ActionListener getPieceSelectHandler () {
+		return this.selectPieceHandler;
+	}
+	
 	public PieceGroup getPieceGroup(){
 		return this.pieceGroup;
 	}
