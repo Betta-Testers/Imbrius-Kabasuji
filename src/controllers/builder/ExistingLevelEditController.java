@@ -12,6 +12,7 @@ public class ExistingLevelEditController implements java.awt.event.ActionListene
 	Builder b;
 	
 	public ExistingLevelEditController (Builder b) {
+		System.out.println("Controller was add. Should be the same as # of levels");
 		this.b = b;
 	}
 
