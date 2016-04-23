@@ -98,22 +98,19 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	public void initializeControllers(Builder b) {
-		for (ExistingLevelView elv : existingLevels.getExistingLevelButtons()) {
-			elv.addActionListenerToEditButton(new ExistingLevelEditController(b));
-			elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
-		}
 		setPuzzleBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
 		setLightningBtnHandler(new NewLightningLevelController(b, txtAreaLevelTypeDescription, "Lightning: Cover as many tiles as you can before time runs out!"));
 		setReleaseBtnHandler(new NewReleaseLevelController(b, txtAreaLevelTypeDescription, "Release: Cover tiles to release number/color sequences and win!"));
-		// add JButton mouse listeners
 	}
 	
 	public JTextArea getLevelDescriptionBox() {
 		return txtAreaLevelTypeDescription;
 	}
 	
-	public void addExistingLevel (String levelType, int levelNumber){
-		existingLevels.addLevelView(levelType, levelNumber);
+	public void addExistingLevel (String levelType, int levelNumber, Builder b){
+		ExistingLevelView elv = existingLevels.addLevelView(levelType, levelNumber);
+		elv.addActionListenerToEditButton(new ExistingLevelEditController(b));
+		elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
 	}
 	
 	public void removeExistingLevel(int levelNumber){

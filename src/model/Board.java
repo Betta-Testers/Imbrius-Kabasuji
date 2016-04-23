@@ -80,7 +80,9 @@ public class Board implements Serializable{
 	public ArrayList<Piece> resetBoard(){
 		ArrayList<Piece> piecesTemp = new ArrayList<Piece>();
 		while(!pieces.isEmpty()){
-			removePiece(pieces.get(0));
+			Piece p = pieces.get(0);
+			piecesTemp.add(p);
+			removePiece(p);
 		}
 		return piecesTemp;
 	}
@@ -129,7 +131,6 @@ public class Board implements Serializable{
 	 * @param bt the tile being put onto the board
 	 * @return the tile that was replaced.
 	 */
-
 	public AbstractTile swapTile(AbstractTile at){
 		int row = at.getRow();
 		int col = at.getCol();
@@ -211,6 +212,15 @@ public class Board implements Serializable{
 		}
 	}
 
+	/**
+	 * Returns the number of pieces on the board. Used to validate a RemoveAllPiecesMove.
+	 * @return int - number of pieces in the pieces array
+	 */
+	public int getPieceCount(){
+		return this.pieces.size();
+	}
+	
+	
 	public int getTileSize() {
 		return this.tileSize;
 	}

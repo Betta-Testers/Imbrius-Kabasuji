@@ -45,7 +45,7 @@ public class Builder extends LevelIO{
 
 		for(int id: levelData.keySet()){
 			try {
-				ltsv.addExistingLevel(levelData.get(id), id);
+				ltsv.addExistingLevel(levelData.get(id), id, this);
 			} catch (Exception e) {
 				throw new RuntimeException("ID not found in levelData, LTSV couldn't be initialized" + e.getMessage());
 			}
@@ -59,7 +59,7 @@ public class Builder extends LevelIO{
 
 	/**
 	 * Saves the level being edited to disk. If the level is not already in levelData, it is
-	 * then added to levelData. This method assumes the board/bullpen/any termination conditions have
+	 * then added to levelData and the LTSV. This method assumes the board/bullpen/any termination conditions have
 	 * already been reset to a default state (bullpen has all pieces restored to it if they were testing, board has all pieces
 	 * cleared from it, etc).
 	 * 
@@ -83,8 +83,9 @@ public class Builder extends LevelIO{
 			try { oos.close(); } catch (IOException ioe) { } 
 		}
 
-		if(id > levelData.lastID()){
+		if(!levelData.containsKey(id)){
 			levelData.put(id, type);
+			ltsv.addExistingLevel(type, id, this);
 		}
 	}
 

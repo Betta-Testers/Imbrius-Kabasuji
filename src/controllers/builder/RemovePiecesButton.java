@@ -3,8 +3,11 @@ package controllers.builder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import controllers.common.Move;
 import model.Board;
+import model.Bullpen;
 import view.BoardView;
+import view.BullpenView;
 
 /**
  * 
@@ -16,16 +19,21 @@ import view.BoardView;
 public class RemovePiecesButton implements ActionListener{
 	Board b;
 	BoardView bv;
+	Bullpen bp;
+	BullpenView bpv;
 	
-	public RemovePiecesButton (Board b, BoardView bv) {
+	public RemovePiecesButton(Board b, BoardView bv, Bullpen bp, BullpenView bpv) {
 		this.b = b;
 		this.bv = bv;
+		this.bp = bp;
+		this.bpv = bpv;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("Triggered");
-		b.resetBoard();
-		bv.redraw();
-		bv.repaint();
+		Move m = new RemoveAllPiecesMove(b, bp, bpv);
+		if(m.doMove()){
+			bv.redraw();
+			bv.repaint();
+		}
 	}
 }
