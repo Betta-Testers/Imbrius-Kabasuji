@@ -313,7 +313,7 @@ public class TestStarMap extends TestCase {
 		starMap.put(3, "Puzzle");
 		starMap.setMaxStars(1, 2);
 		starMap.setMaxStars(2, 3);
-		assertEquals("[1,Puzzle,2],[2,Puzzle,3],[3,Puzzle,0]",starMap.toString());
+		assertEquals("[1,Puzzle,2],[2,Puzzle,3],[3,Puzzle,-1]",starMap.toString());
 	}
 
 }

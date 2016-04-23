@@ -49,8 +49,10 @@ public class SwapTileReleaseToBoardMove extends Move {
 	 */
 	@Override
 	public boolean isValid() {
-		if(oldTile.getTileType().equals("release")){ return true;}
-		return false;
+		if(this.oldTile.getTileType().equals("release"))
+			return true;
+		else
+			return false;
 	}
 
 	@Override
