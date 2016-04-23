@@ -1,9 +1,8 @@
 package controllers.builder;
 
-import view.BuilderView;
 import view.ReleaseNumberCreationView;
 import controllers.common.Move;
-import model.AbstractLevelModel;
+import model.AbstractTile;
 import model.Board;
 import model.ReleaseTile;
 
@@ -11,20 +10,18 @@ import model.ReleaseTile;
  * Represents the swap between one release tile another release tile
  * 
  * @author awharrison
+ * @author Dylan
  *
  */
 public class SwapTileReleaseToReleaseMove extends Move {
 	Board board;
-	ReleaseTile oldTile;
+	AbstractTile oldTile;
 	ReleaseTile newTile;
 	ReleaseNumberCreationView rncv;
 	
-	public  SwapTileReleaseToReleaseMove (BuilderView bView, ReleaseTile old, AbstractLevelModel lm) {
-		if((bView == null) || (old == null) || (lm == null)) { 
-			throw new RuntimeException("SwapTileBoardToReleaseMove::failed to initialize constructor inputs");
-		}
-		this.board = lm.getBoard();
-		this.rncv = bView.getReleaseNumberView();
+	public  SwapTileReleaseToReleaseMove (ReleaseNumberCreationView rncv, AbstractTile old, Board b) {
+		this.board = b;
+		this.rncv = rncv;
 		this.oldTile = old;
 	}
 	
@@ -40,7 +37,7 @@ public class SwapTileReleaseToReleaseMove extends Move {
 
 	@Override
 	public boolean isValid() {
-		// TODO is there anything that would make this invalid?
+		if(oldTile.getTileType().equals("release")){return true;}
 		return true;
 	}
 

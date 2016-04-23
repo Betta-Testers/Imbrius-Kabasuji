@@ -11,6 +11,7 @@ import model.Piece;
 /**
  * @author hejohnson
  * @author Dylan
+ * @author awharrison
  */
 public class MovePieceOnBoardMove extends Move{
 	AbstractLevelModel levelModel;
@@ -36,6 +37,7 @@ public class MovePieceOnBoardMove extends Move{
 		if (isValid()) {
 			this.originalRow = p.getOriginRow();
 			this.originalCol = p.getOriginCol();
+			board.removePiece(p);
 			board.putPieceOnBoard(p, sourceTile.getRow()+rOffset, sourceTile.getCol()+cOffset);
 			return true;
 		}
