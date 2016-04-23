@@ -84,7 +84,7 @@ public class LevelPropertiesView extends JPanel{
 		spinTime.setVisible(true);
 		spinTime.setValue(((LightningLevel)levelModel).getTotalTime());
 		
-		spinTime.addChangeListener(new TimeLimitSpinnerController(this));
+		spinTime.addChangeListener(new TimeLimitSpinnerController((LightningLevel) levelModel));
 		spinBullpenSize.addChangeListener(new SetBullpenSizeSpinnerController(this));
 	}
 	
@@ -101,7 +101,7 @@ public class LevelPropertiesView extends JPanel{
 		spinMoves.setVisible(true);
 		spinMoves.setValue(((PuzzleLevel)levelModel).getMoveLimit());
 		
-		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController(this));
+		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel)levelModel));
 	}
 	
 	/**
