@@ -65,7 +65,6 @@ public class Bullpen implements Serializable{
 		return null;
 	}
 
-
 	/**
 	 * Add a specified number of random pieces to this bullpen
 	 * @param numPieces
@@ -181,11 +180,34 @@ public class Bullpen implements Serializable{
 		
 	}
 	
+	/**
+	 * Increments the count of the piece ID provided. If the piece exists,
+	 * true is returned. If the piece could not be found, false is returned.
+	 * @param id - the piece ID whose count is being incremented
+	 * @return boolean - true if the piece could be found
+	 */
 	public boolean incrementPiece(int id) {
 		for(int i = 0; i < this.playablePieces.size(); i++) {
 			if(this.playablePieces.get(i).getPiece().ID == id){
 				this.playablePieces.get(i).incrementCount();
-				return true; // do not need to sort as removing a single piece from a sorted list still remains sorted
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Decrements the count of the piece ID provided. If the piece exists,
+	 * true is returned. If the piece could not be found, false is returned.
+	 * This is used for undoing a RemoveAllPieces move.
+	 * @param id - the piece ID whose count is being decremented
+	 * @return boolean - true if the piece could be found
+	 */
+	public boolean decrementPiece(int id) {
+		for(int i = 0; i < this.playablePieces.size(); i++) {
+			if(this.playablePieces.get(i).getPiece().ID == id){
+				this.playablePieces.get(i).decrementCount();
+				return true;
 			}
 		}
 		return false;
