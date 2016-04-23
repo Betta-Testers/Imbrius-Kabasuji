@@ -21,7 +21,9 @@ import model.Piece;
 import model.PieceTile;
 
 /**
- * Controls all actions having to do with manipulating tiles on a Puzzle or Lightning board in builder mode 
+ * Controls all actions having to do with the board in the Builder application
+ * Handles showing piece placement previews, placing pieces, dragging pieces around, and removing them from the board
+ * Also handles swapping types of tiles, empty <-> board <-> release tiles (including changing number/color)
  * 
  * @author awharrison
  * @author Dylan
@@ -42,6 +44,11 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	int rOffset;
 	int cOffset;
 
+	/** 
+	 * 
+	 * @param builderView The BuilderView that this controller updates the state of
+	 * @param levelModel The level entity that is being built
+	 */
 	public BuilderBoardController(BuilderView bView, AbstractLevelModel lm) {
 		this.bView = bView;
 		this.m = lm;
@@ -55,7 +62,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 
 
 	/**
-	 * Select a piece that is currently on the board
+	 * Select a piece that is currently on the board, if the tile that was clicked is part of a piece. 
+	 * Removes piece from the board, and sets it as the dragged piece in the board entity
 	 * @param me MouseEvent
 	 */
 	@Override
@@ -75,7 +83,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	}
 
 	/**
-	 * Convert tile on board into opposite form: Release <-> Release <-> Board <-> Empty.
+	 * Convert tile on board into another form: Release <-> Release <-> Board <-> Empty.
 	 * Using a released action allows the user to click as quick as they want, preventing accidental behavior not related to a click
 	 * (like a press, move, release instead of just a click).
 	 * @param me MouseEvent
@@ -119,9 +127,12 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	}
 
 
-
+	/**
+	 * Tracks if mouse is over the board
+	 * @param me MouseEvent
+	 */
 	@Override
-	public void mouseEntered(MouseEvent e) {
+	public void mouseEntered(MouseEvent me) {
 		mouseOn = true;
 	}
 
@@ -131,7 +142,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	 * @param me MouseEvent
 	 */
 	@Override
-	public void mouseExited(MouseEvent e) {
+	public void mouseExited(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
 			mouseOn = false;
 			Move move = new MovePieceOffBoardMove(m, bpv);
@@ -142,12 +153,13 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
-	@Override
+	
 	/**
-	 * Show a preview of a piece on the board if a piece is in the bullpen
+	 * Shows a preview of the piece being dragged (if there is one)
 	 * 
 	 * @param me MouseEvent
 	 */
+	@Override
 	public void mouseDragged(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
 			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
@@ -164,12 +176,13 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
-	@Override
+	
 	/**
-	 * Redraw the piece being dragged where the mouse goes
+	 * Show a preview of the piece that is selected to be placed (if it exists)
 	 * 
 	 * @param me MouseEvent
 	 */
+	@Override
 	public void mouseMoved(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
 			Piece p;

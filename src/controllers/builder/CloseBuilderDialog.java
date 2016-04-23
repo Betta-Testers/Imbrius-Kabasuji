@@ -6,6 +6,12 @@ import javax.swing.JOptionPane;
 import app.Builder;
 import view.BuilderView;
 
+/**
+ * 
+ * @author Dylan
+ *
+ */
+
 public class CloseBuilderDialog extends WindowAdapter{
 	Builder b;
 	BuilderView bv;
