@@ -24,6 +24,7 @@ public class PlayLevelButtonController implements java.awt.event.ActionListener 
 	 * associated controllers.
 	 */
 	public void actionPerformed(ActionEvent ae) {
+		model.getExitView().setStars(0);
 		this.selectLevel.setVisible(false);
 		model.displayLevel(levelID);
 		//model.getLevelView().setVisible(true);

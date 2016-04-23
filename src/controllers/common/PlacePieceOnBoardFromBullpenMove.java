@@ -12,12 +12,14 @@ import view.BullpenView;
 
 /**
  * @author hejohnson
- *
+ * @author dylan
  */
 public class PlacePieceOnBoardFromBullpenMove extends Move{
 	AbstractLevelModel levelModel;
 	Bullpen bullpen;
 	Board board;
+	
+	/** Piece selected in the bullpen **/
 	Piece p;
 	AbstractTile sourceTile;
 	BullpenView bpv;
@@ -42,8 +44,19 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 		return false;
 	}
 	
+	/**
+	 * Checks to see if a piece has been selected from the bullpen. If so,
+	 * it checks if the piece will fit where it is trying to go. If both
+	 * check out, the move is valid.
+	 * @return boolean - true if the move can be made
+	 */
 	public boolean isValid() {
-		return board.willFit(p, sourceTile.getRow(), sourceTile.getCol());
+		if(this.p != null){
+			if(board.willFit(p, sourceTile.getRow(), sourceTile.getCol())){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean undo() {

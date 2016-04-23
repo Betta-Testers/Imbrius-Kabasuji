@@ -34,9 +34,7 @@ public class NewReleaseLevelController implements MouseListener{
 	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		b.createReleaseLevel();
-		b.getLevelTypeSelectView().setVisible(false);
-		b.getBuilderView().setVisible(true);
+		
 	}
 
 	/**
@@ -54,7 +52,11 @@ public class NewReleaseLevelController implements MouseListener{
 		textArea.setText("Mouse over a level to see its description");
 	}
 	@Override
-	public void mousePressed(MouseEvent arg0){}
+	public void mousePressed(MouseEvent arg0){
+		b.createReleaseLevel();
+		b.getLevelTypeSelectView().setVisible(false);
+		b.getBuilderView().setVisible(true);
+	}
 	@Override
 	public void mouseReleased(MouseEvent arg0){}
 }

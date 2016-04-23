@@ -2,7 +2,6 @@ package controllers.builder;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.JSpinner;
 import view.BuilderPieceGroupView;
 import model.PieceGroup;
 
@@ -10,6 +9,7 @@ import model.PieceGroup;
  * Controls the actions performed on a PieceGroup spinner in builder mode that increments and decrements its number of pieces 
  * 
  * @author awharrison
+ * @author Dylan
  *
  */
 public class BuilderPieceSpinnerController implements ChangeListener {
@@ -28,15 +28,8 @@ public class BuilderPieceSpinnerController implements ChangeListener {
 	 * @param e ChangeEvent
 	 */
 	public void stateChanged(ChangeEvent e) {
-		int oldVal = (int)((JSpinner)e.getSource()).getPreviousValue();
-		int newVal = (int)((JSpinner)e.getSource()).getValue();
-		System.out.println("Changing");
-		if(newVal > oldVal) {
-			model.incrementCount();
-		} else if (newVal < oldVal) {
-			model.decrementCount();
-		} else 
-			throw new RuntimeException("BuilderPieceSpinnerController::Changing a builder piece group spinner caused no value change");
+		int val = (int) app.getSpinner().getValue();
+		model.setCount(val);
 	}
 	
 	

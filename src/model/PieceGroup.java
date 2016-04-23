@@ -83,4 +83,13 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	public String toString(){
 		return "ID:"+this.piece.getID()+"Count:"+this.numPieces;
 	}
+
+	/**
+	 * Method used for ChangeListener inside the JSpinner's Controller on the Builder side.
+	 * Updates the model to properly reflect what the JSpinner is currently set to.
+	 * @param numPieces - The number of pieces in that pieceGroup
+	 */
+	public void setCount(int numPieces) {
+		this.numPieces = numPieces;
+	}
 }

@@ -33,7 +33,6 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	public LightningBoardGameController (Game game, LevelView levelView) {
 		this.game = game;
 		this.levelModel = game.getCurrentLevel();
-		this.boardView = game.getLevelView().getBoardView();
 		this.levelView = levelView;
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
@@ -78,6 +77,7 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 			}
+			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
 	}
 
@@ -89,10 +89,15 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 
 	@Override
 	public void mouseMoved(MouseEvent me) {
+		Piece p;
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		Piece p = levelModel.getBullpen().getSelectedPiece();
-		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
-		boardView.redraw();
-		boardView.repaint();
+		p = levelModel.getBullpen().getSelectedPiece();
+		
+		if(p != null){
+			levelModel.getBoard().clearPiecePreview();
+			levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+			boardView.redraw();
+			boardView.repaint();
+		}
 	}
 }

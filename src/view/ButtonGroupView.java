@@ -8,8 +8,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import app.Builder;
+
 import javax.swing.GroupLayout.Alignment;
 
+import controllers.builder.RemovePiecesButton;
 import controllers.builder.SaveAndCloseLevelButtonController;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -26,7 +30,7 @@ public class ButtonGroupView extends JPanel{
 	JButton btnRemovePieces;
 	JButton btnConvertPiecesToLevel;
 	
-	public ButtonGroupView(BuilderView bv){
+	public ButtonGroupView(){
 		setPreferredSize(new Dimension(105, 115));
 		btnUndo = new JButton("");
 		btnRedo = new JButton("");
@@ -37,7 +41,6 @@ public class ButtonGroupView extends JPanel{
 		btnRemovePieces.setToolTipText("Remove all pieces on the board");
 		btnConvertPiecesToLevel.setToolTipText("Pieces placed on the board region get turned into a board");
 		btnSave.setToolTipText("Save the level to disk and close the builder.");
-		btnSave.addActionListener(new SaveAndCloseLevelButtonController(bv.getBuilder()));
 		btnUndo.setToolTipText("Undo");
 		btnRedo.setToolTipText("Redo");
 		btnUndo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Undo.png")));
@@ -46,7 +49,10 @@ public class ButtonGroupView extends JPanel{
 		setupLayout();
 	}
 	
-	
+	public void initializeControllers(Builder b){
+		btnSave.addActionListener(new SaveAndCloseLevelButtonController(b));
+		btnRemovePieces.addActionListener(new RemovePiecesButton(b.getCurrentLevel().getBoard(), b.getBuilderView().getBoardView(), b.getCurrentLevel().getBullpen(), b.getBuilderView().getBullpenView()));
+	}
 	/**
 	 * Method for setting up the layout for the available level view
 	 */
@@ -77,29 +83,29 @@ public class ButtonGroupView extends JPanel{
 		this.setLayout(groupLayout);
 	}
 	
-	/**
-	 * CONSTRUCTOR USED FOR WINDOW BUILDER
-	 * Window builder doesn't like the idea of passing the "this" you are 
-	 * currently editing, so it throws an exception. To resolve this, this is a constructor that
-	 * doesn't require "this". 
-	 * DO NOT INSTANTIATE THIS!!!!
-	 */
-	public ButtonGroupView(){
-		setPreferredSize(new Dimension(160, 115));
-		btnUndo = new JButton("");
-		btnRedo = new JButton("");
-		btnRemovePieces = new JButton("Remove Pieces");
-		btnConvertPiecesToLevel = new JButton("Convert Pieces To Board");
-		btnSave = new JButton("Save");
-		
-		btnRemovePieces.setToolTipText("Remove all pieces on the board");
-		btnConvertPiecesToLevel.setToolTipText("Pieces placed on the board region get turned into a board");
-		btnSave.setToolTipText("Save the level to disk and close the builder.");
-		btnUndo.setToolTipText("Undo");
-		btnRedo.setToolTipText("Redo");
-		btnUndo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Undo.png")));
-		btnRedo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Redo.png")));
-		
-		setupLayout();
-	}
+//	/**
+//	 * CONSTRUCTOR USED FOR WINDOW BUILDER
+//	 * Window builder doesn't like the idea of passing the "this" you are 
+//	 * currently editing, so it throws an exception. To resolve this, this is a constructor that
+//	 * doesn't require "this". 
+//	 * DO NOT INSTANTIATE THIS!!!!
+//	 */
+//	public ButtonGroupView(){
+//		setPreferredSize(new Dimension(160, 115));
+//		btnUndo = new JButton("");
+//		btnRedo = new JButton("");
+//		btnRemovePieces = new JButton("Remove Pieces");
+//		btnConvertPiecesToLevel = new JButton("Convert Pieces To Board");
+//		btnSave = new JButton("Save");
+//		
+//		btnRemovePieces.setToolTipText("Remove all pieces on the board");
+//		btnConvertPiecesToLevel.setToolTipText("Pieces placed on the board region get turned into a board");
+//		btnSave.setToolTipText("Save the level to disk and close the builder.");
+//		btnUndo.setToolTipText("Undo");
+//		btnRedo.setToolTipText("Redo");
+//		btnUndo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Undo.png")));
+//		btnRedo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Redo.png")));
+//		
+//		setupLayout();
+//	}
 }

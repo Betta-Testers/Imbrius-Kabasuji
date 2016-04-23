@@ -56,6 +56,11 @@ public class StarView extends JPanel {
 	}
 	
 	void setNumStars(int stars) {
+		if(stars==0) {
+			lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/outline_star.png")));
+			lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/outline_star.png")));
+			lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/outline_star.png")));
+		}
 		if(stars==1){
 			lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
 		}
