@@ -33,7 +33,6 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	public LightningBoardGameController (Game game, LevelView levelView) {
 		this.game = game;
 		this.levelModel = game.getCurrentLevel();
-		this.boardView = game.getLevelView().getBoardView();
 		this.levelView = levelView;
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
