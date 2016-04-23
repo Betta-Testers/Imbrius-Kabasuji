@@ -43,7 +43,7 @@ public class PieceGroupSpinnerController implements ChangeListener {
 	 */
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		if((int)spinner.getValue() == 0){
+		if((int)spinner.getValue() == 0 && bp.getSelectedPiece() != null){
 			if(bp.getSelectedPiece().equals(model.getPiece())){
 				bp.clearSelectedPiece();
 				piecePanel.redraw();
