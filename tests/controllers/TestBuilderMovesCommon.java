@@ -58,7 +58,7 @@ public class TestBuilderMovesCommon extends TestCase {
 		Move m;
 		for(int i = 0; i < 12; i++){
 			for(int j = 0; j < 12; j++){
-				m = new SwapTileEmptyToBoardMove(bv, (EmptyTile)b.getTileAt(i*32, j*32), pl);
+				m = new SwapTileEmptyToBoardMove((EmptyTile)b.getTileAt(i*32, j*32), pl.getBoard());
 				m.doMove();
 			}
 		}
@@ -104,7 +104,7 @@ public class TestBuilderMovesCommon extends TestCase {
 		Move m;
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 6; j++){
-				m = new SwapTileEmptyToBoardMove(bv, (EmptyTile)b.getTileAt(i*b.getTileSize(), j*b.getTileSize()), pl);
+				m = new SwapTileEmptyToBoardMove((EmptyTile)b.getTileAt(i*b.getTileSize(), j*b.getTileSize()), pl.getBoard());
 				m.doMove();
 			}
 		}
@@ -204,7 +204,7 @@ public class TestBuilderMovesCommon extends TestCase {
 		Move m;
 		for(int i = 0; i < 12; i++){
 			for(int j = 0; j < 12; j++){
-				m = new SwapTileEmptyToBoardMove(bv, (EmptyTile)b.getTileAt(i*b.getTileSize(), j*b.getTileSize()), pl);
+				m = new SwapTileEmptyToBoardMove((EmptyTile)b.getTileAt(i*b.getTileSize(), j*b.getTileSize()), pl.getBoard());
 				m.doMove();
 			}
 		}
