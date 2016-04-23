@@ -149,8 +149,7 @@ public class TestBuilderRelease extends TestCase {
 		assertEquals("release", releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2).getTileType());
 		assertEquals(0, releaseBoard.getNumBoardTiles());
 		assertEquals(2, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2)).getNumber());
-		// TODO figure out why this is returning the color r=255, g=255, b=255
-//		assertEquals(Color.RED, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2)).getColor());
+		assertEquals(Color.RED, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX()+releaseBoard.getTileSize()*2, boardView.getY()+releaseBoard.getTileSize()*2)).getColorSet());
 		
 		/*
 		 * untoggle all buttons, swap tile back to board
@@ -183,7 +182,7 @@ public class TestBuilderRelease extends TestCase {
 		assertEquals("board", releaseBoard.getTileAt(boardView.getX(), boardView.getY()).getTileType());
 		m.redo();
 		assertEquals("release", releaseBoard.getTileAt(boardView.getX(), boardView.getY()).getTileType());
-//		assertEquals(Color.BLUE, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getColor());
+		assertEquals(Color.BLUE, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getColorSet());
 		
 		/*
 		 * untoggle button
@@ -195,7 +194,7 @@ public class TestBuilderRelease extends TestCase {
 		 * swap tile with a new release tile selection, undo, redo
 		 */
 		rncv.toggleButton(4);
-		m = new SwapTileReleaseToReleaseMove(rncv, (ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
+		m = new SwapTileReleaseToReleaseMove(rncv, releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
 		assertTrue(m.doMove());
 		assertEquals(5, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getNumber());
 		m.undo();
@@ -212,7 +211,7 @@ public class TestBuilderRelease extends TestCase {
 		/*
 		 * convert back to board tile, undo, redo
 		 */
-		m = new SwapTileReleaseToBoardMove((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
+		m = new SwapTileReleaseToBoardMove(releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
 		assertTrue(m.doMove());
 		assertEquals("board", releaseBoard.getTileAt(boardView.getX(), boardView.getY()).getTileType());
 		m.undo();

@@ -240,7 +240,7 @@ public class StarMap implements Serializable{
 	 */
 	public Integer lowestNoStarLevel(){	
 		for(int i = 1; i<=stars.size(); i++){
-			if(stars.get(i) == -1){
+			if(stars.get(i) <= (Integer)0){
 				return i;
 			}
 		}

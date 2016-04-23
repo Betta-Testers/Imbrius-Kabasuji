@@ -94,7 +94,7 @@ public class TestBoard extends TestCase{
 		ArrayList<Piece> pieces = b.pieces;
 		ArrayList<Piece> pieces2 = b.resetBoard();
 		
-		assertEquals(pieces, pieces2);
+		assertTrue(pieces.equals(pieces2));
 		
 		// TODO add a willfit option
 		

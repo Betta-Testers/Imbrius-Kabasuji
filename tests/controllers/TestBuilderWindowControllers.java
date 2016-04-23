@@ -85,7 +85,7 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		/*
 		 * handle the mouse event, verify that the level type select view is no longer visible and the builder view is now visible
 		 */
-		build.getLevelTypeSelectView().getPuzzleBtnHandler().mouseClicked(me);
+		build.getLevelTypeSelectView().getPuzzleBtnHandler().mousePressed(me);
 		assertFalse(build.getLevelTypeSelectView().isVisible());
 		assertTrue(build.getBuilderView().isVisible()); 
 		
@@ -133,7 +133,7 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		/*
 		 * handle the mouse event, verify that the level type select view is no longer visible and the builder view is now visible
 		 */
-		build.getLevelTypeSelectView().getLightningBtnHandler().mouseClicked(me);
+		build.getLevelTypeSelectView().getLightningBtnHandler().mousePressed(me);
 		assertTrue(build.getBuilderView().isVisible()); 
 		assertFalse(build.getLevelTypeSelectView().isVisible());
 		
@@ -181,25 +181,9 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		/*
 		 * handle the mouse event, verify that the level type select view is no longer visible and the builder view is now visible
 		 */
-		build.getLevelTypeSelectView().getReleaseBtnHandler().mouseClicked(me);
+		build.getLevelTypeSelectView().getReleaseBtnHandler().mousePressed(me);
 		assertTrue(build.getBuilderView().isVisible()); 
 		assertFalse(build.getLevelTypeSelectView().isVisible());
 		
 	}	
-	
-
-	public void testBuilderPieceSpinnerController() {
-//		PieceGroup pg = bp.getPlayablePieces().get(1);
-//		BuilderPieceGroupView bpgv = (BuilderPieceGroupView)bpv.getPieceGroupViews()[1];
-//		bpgv.addSpinnerChangeListener(new BuilderPieceSpinnerController(bpgv, pg));
-//		assertEquals(0, pg.getNumPieces());
-//		ChangeEvent ce = new ChangeEvent(bpgv.getSpinner());
-//		bpgv.getSpinner().setValue(1);
-//		assertEquals(1, pg.getNumPieces());
-//		bpgv.getSpinnerChangeListener().stateChanged(ce);
-//		bpgv.getSpinner().setValue(2);
-//		assertEquals(2, pg.getNumPieces());
-//		bpgv.getSpinner().setValue(-1);
-//		assertEquals(1, pg.getNumPieces());
-	}
 }

@@ -115,63 +115,6 @@ public class ReleaseNumberCreationView extends JPanel{
 	}
 	//.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 
-	void setupLayout(){
-		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblTitle))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addGap(8)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(numButtons[4], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(numButtons[5], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(numButtons[2], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(numButtons[3], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(numButtons[0], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(numButtons[1], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addGap(8)
-										.addComponent(lblColor)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(colorSelector, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
-		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(5)
-						.addComponent(lblTitle)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(numButtons[0], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addGap(6)
-										.addComponent(numButtons[1], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(numButtons[2], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-								.addComponent(numButtons[3], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(numButtons[4], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-								.addComponent(numButtons[5], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblColor)
-								.addComponent(colorSelector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
-		this.setLayout(groupLayout);
-	}
 
 	//** For testing **//
 	public JComboBox<String> getColorSelector() {
@@ -184,13 +127,72 @@ public class ReleaseNumberCreationView extends JPanel{
 				numButtons[i].doClick();
 		}
 	}
-	
+
 	public void addSetColorController(ActionListener al) {
 		this.setColorHandler = al;
 		this.colorSelector.addActionListener(al);
 	}
-	
+
 	public ActionListener getSetColorController() {
 		return this.setColorHandler;
+	}
+
+
+	void setupLayout(){
+		groupLayout.setHorizontalGroup(
+				groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(lblTitle))
+										.addGroup(groupLayout.createSequentialGroup()
+												.addGap(8)
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+														.addGroup(groupLayout.createSequentialGroup()
+																.addComponent(numButtons[4], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(ComponentPlacement.RELATED)
+																.addComponent(numButtons[5], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+																.addGroup(groupLayout.createSequentialGroup()
+																		.addComponent(numButtons[2], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+																		.addPreferredGap(ComponentPlacement.RELATED)
+																		.addComponent(numButtons[3], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+																		.addGroup(groupLayout.createSequentialGroup()
+																				.addComponent(numButtons[0], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+																				.addPreferredGap(ComponentPlacement.RELATED)
+																				.addComponent(numButtons[1], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
+																				.addGroup(groupLayout.createSequentialGroup()
+																						.addGap(8)
+																						.addComponent(lblColor)
+																						.addPreferredGap(ComponentPlacement.RELATED)
+																						.addComponent(colorSelector, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
+																						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				);
+		groupLayout.setVerticalGroup(
+				groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+						.addGap(5)
+						.addComponent(lblTitle)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(numButtons[0], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createSequentialGroup()
+												.addGap(6)
+												.addComponent(numButtons[1], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+														.addComponent(numButtons[2], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+														.addComponent(numButtons[3], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+														.addPreferredGap(ComponentPlacement.RELATED)
+														.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+																.addComponent(numButtons[4], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+																.addComponent(numButtons[5], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+																.addPreferredGap(ComponentPlacement.RELATED)
+																.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+																		.addComponent(lblColor)
+																		.addComponent(colorSelector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+																		.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				);
+		this.setLayout(groupLayout);
 	}
 }
