@@ -49,6 +49,7 @@ public class PlacePieceOnBoardFromBullpenMove extends Move{
 	public boolean undo() {
 		board.removePiece(p);
 		bullpen.addSinglePiece(p.getID());
+		bullpen.setSelectedPiece(p.getID());
 		return true;
 	}
 	
