@@ -24,8 +24,6 @@ import view.SelectedPieceView;
  *
  */
 
-//TODO add view update stuff
-
 public class PuzzleBoardGameController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
 	AbstractTile source;

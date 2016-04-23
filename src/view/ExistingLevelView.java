@@ -12,10 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * 
+ * @author hejohnson
+ *
+ */
 public class ExistingLevelView extends JPanel {	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	ImageIcon icon;
 	JButton editLevel;
@@ -36,7 +38,7 @@ public class ExistingLevelView extends JPanel {
 		} else if (levelType.equals("Puzzle")) {
 			icon = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/PuzzleSm.png"));
 		} else {
-			//#TODO: some kind of behavior here
+			throw new RuntimeException("ExistingLevelView was given an invalid levelType: "+levelType);
 		}
 		editLevel.setIcon(icon);
 		editLevel.setHorizontalAlignment(SwingConstants.CENTER);

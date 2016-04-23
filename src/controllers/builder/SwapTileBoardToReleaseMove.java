@@ -59,7 +59,6 @@ public class SwapTileBoardToReleaseMove extends Move {
 
 	@Override
 	public boolean undo() {
-		// TODO Auto-generated method stub
 		board.swapTile(oldTile);
 		return true;
 	}

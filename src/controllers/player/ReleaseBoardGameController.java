@@ -23,8 +23,6 @@ import view.SelectedPieceView;
  *
  */
 
-//TODO add view update stuff
-
 public class ReleaseBoardGameController implements MouseListener, MouseMotionListener{
 	ReleaseLevel levelModel;
 	Game game;
@@ -88,14 +86,10 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	}
 	
 	@Override
-	public void mouseEntered(MouseEvent me) {
-	
-	}
+	public void mouseEntered(MouseEvent me) {}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
-		
-	}
+	public void mouseExited(MouseEvent arg0) {}
 
 	@Override
 	public void mousePressed(MouseEvent me) {
@@ -117,13 +111,8 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		 
-	}
+	public void mouseReleased(MouseEvent arg0) {}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseDragged(MouseEvent arg0) {}
 }

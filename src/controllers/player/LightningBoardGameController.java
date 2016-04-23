@@ -20,8 +20,6 @@ import view.SelectedPieceView;
  * @author hejohnson
  */
 
-//TODO add view update stuff
-
 public class LightningBoardGameController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
 	Game game;
@@ -84,10 +82,7 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseDragged(MouseEvent arg0) {}
 
 	@Override
 	public void mouseMoved(MouseEvent me) {

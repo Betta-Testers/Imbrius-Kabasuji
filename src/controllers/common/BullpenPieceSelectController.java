@@ -15,7 +15,6 @@ import view.SelectedPieceView;
  *
  */
 
-//TODO Add view refresh stuff
 public class BullpenPieceSelectController implements ActionListener {
 	Bullpen bp;
 	SelectedPieceView selectedPieceView;
