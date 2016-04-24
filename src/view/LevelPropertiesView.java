@@ -128,12 +128,14 @@ public class LevelPropertiesView extends JPanel{
 	
 	/**
 	 * A method used to set the level model of a LevelPropertiesView.
-	 * This initializes information reguarding the number of board tiles as well.
+	 * This initializes information regarding the number of board tiles as well.
+	 * Sets the label's text to reflect this amount
 	 * @param levelModel the LevelModel being set by the method
 	 */
 	public void setLevelModel(AbstractLevelModel levelModel) {
 		this.levelModel = levelModel;
 		tileCount = levelModel.getBoard().getNumBoardTiles();
+		lblTileCountVar.setText(Integer.toString(tileCount));
 	}
 	
 	/**
