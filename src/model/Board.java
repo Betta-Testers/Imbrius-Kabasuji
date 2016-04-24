@@ -95,20 +95,59 @@ public class Board implements Serializable{
 	 * @return boolean of whether or not the piece can be placed at that location or not
 	 */
 	public boolean willFit(Piece p, int row, int col) {
+		int r, c;
+		if(!onBoard(p, row, col)){
+			return false;
+		}
 		for (int i = 0; i < 6; i++) {
-			if (row + p.tiles[i].rowInPiece < 0 || row + p.tiles[i].rowInPiece > 11 || col + p.tiles[i].colInPiece < 0
-					|| col + p.tiles[i].colInPiece > 11) {
+			r = row + p.tiles[i].rowInPiece;
+			c = col + p.tiles[i].colInPiece;
+			if(board[r][c].tileType.equals("empty") || board[r][c].tileType.equals("piece")){
 				return false;
-			} else {
-				if (board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("empty")
-						|| board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].tileType.equals("piece")) {
-					return false;
-				}
 			}
 		}
 		return true;
 	}
+	
+	/**
+	 * Says if a piece will be contained on the board given its position
+	 * @param p the piece being put onto the board
+	 * @param row The row that the anchor tile should be placed on
+	 * @param col The column that the anchor tile should be placed on
+	 * @return boolean of whether or not the piece will be ont the board at its location
+	 */
+	public boolean onBoard(Piece p, int row, int col){
+		int r, c;
+		for (int i = 0; i < 6; i++) {
+			r = row + p.tiles[i].rowInPiece;
+			c = col + p.tiles[i].colInPiece;
+			if(r < 0 || r > 11 || c < 0 || c > 11) {return false;}
+		}
+		return true;
+	}
+	
+	/**
+	 * Checks if tiles where a piece is to be placed (as a boardtile conversion) are all empty tiles
+	 * @param p the piece being put onto the board
+	 * @param row The row that the anchor tile should be placed on
+	 * @param col The column that the anchor tile should be placed on
+	 * @return boolean of whether or not the piece will be ont the board at its location
+	 */
+	public boolean isValidConvert(Piece p, int row, int col){
+		int r, c;
+		if(!onBoard(p, row, col)){return false;}
+		for (int i = 0; i < 6; i++) {
+			r = row + p.tiles[i].rowInPiece;
+			c = col + p.tiles[i].colInPiece;
+			if(!board[r][c].tileType.equals("empty")){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 
+	
 	/**
 	 * Remove a given piece from the board, the piece must already exist on the board
 	 * @param p the piece being removed from the board
@@ -219,7 +258,6 @@ public class Board implements Serializable{
 	public int getPieceCount(){
 		return this.pieces.size();
 	}
-	
 	
 	public int getTileSize() {
 		return this.tileSize;

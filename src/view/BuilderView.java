@@ -187,6 +187,14 @@ public class BuilderView extends JFrame {
 		return tglbtnPlacePieces.isSelected();
 	}
 	
+	public boolean getStateOfBoardConvert(){
+		
+	}
+	
+	public boolean getStateOfHintConvert(){
+		
+	}
+	
 	/**
 	 * Sets the windows listener of the BuilderView and adds it 
 	 * @param we - WindowListener being added
