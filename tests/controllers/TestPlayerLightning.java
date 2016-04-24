@@ -156,5 +156,5 @@ public class TestPlayerLightning extends TestCase {
 		assertEquals(3, level.getStarsEarned());
 
 	}
-	
+
 }
