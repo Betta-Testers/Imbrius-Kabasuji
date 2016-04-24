@@ -22,13 +22,13 @@ public class NumberMovesLeftView extends JPanel {
 	JTextPane numberMoves;
 	JLabel lblTitle;
 
-	public NumberMovesLeftView() {
+	public NumberMovesLeftView(int initialMoves) {
 		this.setPreferredSize(new Dimension(180, 90));
 		numberMoves = new JTextPane();
 		numberMoves.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		numberMoves.setText("00");
 		lblTitle = new JLabel("Moves Remaining");
-		
+		numberMoves.setText(Integer.toString(initialMoves));
 		setupLayout();
 	}
 	
@@ -38,7 +38,7 @@ public class NumberMovesLeftView extends JPanel {
 	 * The passed argument should be two places. Ex: 10 or 09
 	 * @param movesLeft - Number of remaining moves to be displayed
 	 */
-	void updateMovesLeft(int movesLeft){
+	public void updateMovesLeft(int movesLeft){
 		numberMoves.setText(Integer.toString(movesLeft));
 	}
 	
