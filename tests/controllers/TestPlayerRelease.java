@@ -66,7 +66,7 @@ public class TestPlayerRelease extends TestCase {
 	}
 	
 	//====================== Tile Placements ======================//
-	public void testPlacePiece () {
+	public void testPlacePieceAndStars() {
 		MouseEvent me;
 		/*
 		 * initialize board with 18 release tiles and 18 board tiles and verify
@@ -98,7 +98,11 @@ public class TestPlayerRelease extends TestCase {
 		 * initialize bullpen
 		 */
 		bullpen.incrementPiece(1);
+		bullpen.incrementPiece(1);
+		bullpen.incrementPiece(1);
+		bullpen.incrementPiece(1);
 		bullpen.setSelectedPiece(1);
+		
 		
 		/*
 		 * create mouse moved to show preview
@@ -106,24 +110,48 @@ public class TestPlayerRelease extends TestCase {
 		me = new MouseEvent(boardView, 
 				MouseEvent.MOUSE_MOVED, 
 				System.currentTimeMillis(), 0, 
-				2*board.getTileSize(), 
-				6*board.getTileSize(), 0, false);
-
-	}
-	
-	
-	//====================== Test Stars Earned ======================//
-	public void testStarsEarned() {
+				3*board.getTileSize(), 
+				2*board.getTileSize(), 0, false);
+		level.getBoardController().mouseMoved(me);
+		assertEquals(Color.GREEN, board.getTileAt(3*board.getTileSize(), 2*board.getTileSize()).getColor());
+		assertEquals("release", board.getTileAt(3*board.getTileSize(), 2*board.getTileSize()).getTileType());
+		
 		/*
-		 * initialize board with 18 board tiles and verify
+		 * release Blues
 		 */
-		for(int i = 0; i < 6; i++) {
-			for(int j = 0; j < 3; j++) {
-				board.swapTile(new BoardTile(i, j));
-			}
-		}
-		assertEquals(18, board.getNumBoardTiles());
-
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_PRESSED, 
+				System.currentTimeMillis(), 0, 
+				3*board.getTileSize(), 
+				2*board.getTileSize(), 0, false);
+		level.getBoardController().mousePressed(me);
+		assertFalse(level.checkStatus());
+		assertEquals(1, level.getStarsEarned());
+		
+		/*
+		 * release Reds
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_PRESSED, 
+				System.currentTimeMillis(), 0, 
+				4*board.getTileSize(), 
+				2*board.getTileSize(), 0, false);
+		bullpen.setSelectedPiece(1);
+		level.getBoardController().mousePressed(me);
+		assertFalse(level.checkStatus());
+		assertEquals(2, level.getStarsEarned());
+		
+		/*
+		 * release Greens
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_PRESSED, 
+				System.currentTimeMillis(), 0, 
+				5*board.getTileSize(), 
+				2*board.getTileSize(), 0, false);
+		bullpen.setSelectedPiece(1);
+		level.getBoardController().mousePressed(me);
+		assertTrue(level.checkStatus());
+		assertEquals(3, level.getStarsEarned());
 	}
-
 }
