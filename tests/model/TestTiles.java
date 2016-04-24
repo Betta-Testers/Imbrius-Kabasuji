@@ -45,9 +45,6 @@ public class TestTiles extends TestCase {
 		assertEquals(Color.BLUE, lt.color);
 		assertEquals("lightning r:1 c:1", lt.toString());
 		
-		HintTile ht = new HintTile(1,1);
-		assertEquals(Color.DARK_GRAY, ht.color);
-		assertEquals("hint r:1 c:1", ht.toString());
 	}
 	
 	public void testPieceTile() {
