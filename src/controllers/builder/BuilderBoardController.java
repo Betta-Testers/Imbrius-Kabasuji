@@ -110,7 +110,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		if(bView.getStateOfPlacement()){
 			if(bView.getStateOfBoardConvert()){
 				if (mouseOn) {
-					move = new PieceToNewBoardTilesMove(bp, board, source, bpv);
+					move = new PieceToNewBoardTilesMove(bp, board, source, bView.getLevelPropertiesView());
 					if(move.doMove()){
 						
 					}	
@@ -132,9 +132,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			spv.getPiecePanel().redraw();
 			spv.getPiecePanel().repaint();
 		}else if(rncv.getNumberSelected() < 0){
-			move = new SwapTileBoardToEmptyMove(source, board);
+			move = new SwapTileBoardToEmptyMove(source, board, bView.getLevelPropertiesView());
 			if(!move.doMove()){
-				move = new SwapTileEmptyToBoardMove(source, board);
+				move = new SwapTileEmptyToBoardMove(source, board, bView.getLevelPropertiesView());
 				if(!move.doMove()){
 					move = new SwapTileReleaseToBoardMove(source, board);	
 					move.doMove();
