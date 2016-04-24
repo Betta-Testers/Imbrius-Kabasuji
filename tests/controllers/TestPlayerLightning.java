@@ -38,6 +38,7 @@ public class TestPlayerLightning extends TestCase {
 		factory = new LevelFactory();
 		factory.setDirectory("./imbriusLevelTESTING/");
 		LightningLevel tempLevel = factory.GenerateBlankLightning(1);
+		tempLevel.setTotalTime(50);
 		factory.saveLevel(tempLevel);
 		factory.addToData(tempLevel, 1);
 		
@@ -70,6 +71,66 @@ public class TestPlayerLightning extends TestCase {
 	public void testPlacePiece () {
 		MouseEvent me;
 		/*
+		 * initialize board with 36 board tiles and verify
+		 */
+		for(int i = 0; i < 12; i++) {
+			for(int j = 0; j < 3; j++) {
+				board.swapTile(new BoardTile(i, j));
+			}
+		}
+		assertEquals(36, board.getNumBoardTiles());
+		/*
+		 * initialize bullpen
+		 */
+		bullpen.incrementPiece(1);
+		bullpen.setSelectedPiece(1);
+		assertEquals(1, bullpen.numAvailablePieces());
+		
+		/*
+		 * create mouse moved to verify piece preview
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_MOVED, 
+				System.currentTimeMillis(), 0, 
+				1*board.getTileSize(), 
+				4*board.getTileSize(), 0, false);
+		level.getBoardController().mouseMoved(me);
+		assertEquals(Color.GREEN, board.getTileAt(1*board.getTileSize(), 4*board.getTileSize()).getColor());
+		assertEquals("board", board.getTileAt(1*board.getTileSize(), 4*board.getTileSize()).getTileType());
+		
+		/*
+		 * create mouse press to place piece
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_RELEASED, 
+				System.currentTimeMillis(), 0, 
+				1*board.getTileSize(), 
+				4*board.getTileSize(), 0, false);
+		level.getBoardController().mouseReleased(me);
+		assertEquals(Color.BLUE, board.getTileAt(1*board.getTileSize(), 4*board.getTileSize()).getColor());
+		assertEquals("lightning", board.getTileAt(1*board.getTileSize(), 4*board.getTileSize()).getTileType());
+		assertFalse(level.checkStatus());
+		
+		/*
+		 * place different piece that overlaps 5/6 previous tiles, verify that the number of 
+		 * lightning tiles on the board only increases by 1
+		 */
+		bullpen.incrementPiece(1);
+		bullpen.setSelectedPiece(1);
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_RELEASED, 
+				System.currentTimeMillis(), 0, 
+				1*board.getTileSize(), 
+				5*board.getTileSize(), 0, false);
+		level.getBoardController().mouseReleased(me);
+		assertEquals(29, board.getNumBoardTiles() );
+		assertFalse(level.checkStatus());
+	}
+	
+	
+	//====================== Test Stars Earned ======================//
+	public void testStarsEarned() {
+		/*
 		 * initialize board with 18 board tiles and verify
 		 */
 		for(int i = 0; i < 6; i++) {
@@ -78,72 +139,21 @@ public class TestPlayerLightning extends TestCase {
 			}
 		}
 		assertEquals(18, board.getNumBoardTiles());
-		/*
-		 * initialize bullpen and timer
-		 */
-		bullpen.incrementPiece(1);
-		bullpen.setSelectedPiece(1);
-		assertEquals(1, bullpen.numAvailablePieces());
-		level.setTotalTime(20000);
 		
 		/*
-		 * create mouse moved to verify piece preview
+		 * timer
 		 */
-		me = new MouseEvent(boardView, 
-				MouseEvent.MOUSE_MOVED, 
-				System.currentTimeMillis(), 0, 
-				2*board.getTileSize(), 
-				2*board.getTileSize(), 0, false);
-		level.getBoardController().mouseMoved(me);
-		assertEquals(Color.GREEN, board.getTileAt(2*board.getTileSize(), 2*board.getTileSize()).getColor());
-		assertEquals("board", board.getTileAt(2*board.getTileSize(), 2*board.getTileSize()).getTileType());
+		board.putPieceOnBoard(new Piece(1), 2, 0);
+		assertFalse(level.checkStatus()); 
+		assertEquals(1, level.getStarsEarned());
 		
-		/*
-		 * create mouse press to place piece
-		 */
-		me = new MouseEvent(boardView, 
-				MouseEvent.MOUSE_RELEASED, 
-				System.currentTimeMillis(), 0, 
-				2*board.getTileSize(), 
-				2*board.getTileSize(), 0, false);
-		level.getBoardController().mouseReleased(me);
-		assertEquals(Color.BLUE, board.getTileAt(2*board.getTileSize(), 2*board.getTileSize()).getColor());
-		assertEquals("lightning", board.getTileAt(2*board.getTileSize(), 2*board.getTileSize()).getTileType());
+		board.putPieceOnBoard(new Piece(1), 2, 1);
+		assertFalse(level.checkStatus()); 
+		assertEquals(2, level.getStarsEarned());
 		
-		/*
-		 * place different piece at the same spot, verify that the number of 
-		 * lightning tiles on the board does not have to be a multiple of 6
-		 */
-		bullpen.incrementPiece(6);
-		bullpen.setSelectedPiece(6);
-		me = new MouseEvent(boardView, 
-				MouseEvent.MOUSE_RELEASED, 
-				System.currentTimeMillis(), 0, 
-				2*board.getTileSize(), 
-				2*board.getTileSize(), 0, false);
-		level.getBoardController().mouseReleased(me);
-		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		assertEquals(12, board.getNumBoardTiles() );
-	}
-	
-	
-	//====================== Test Stars Earned ======================//
-	public void testStarsEarned() {
-		MouseEvent me;
-		/*
-		 * initialize board with 18 board tiles and verify
-		 */
-		for(int i = 0; i < 6; i++) {
-			for(int j = 0; j < 3; j++) {
-				board.swapTile(new BoardTile(i, j));
-			}
-		}
+		board.putPieceOnBoard(new Piece(1), 2, 2);
+		assertTrue(level.checkStatus()); // level is over since all tiles have been marked
+		assertEquals(3, level.getStarsEarned());
 
 	}
 	
