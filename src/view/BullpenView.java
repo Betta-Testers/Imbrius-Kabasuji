@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
@@ -66,6 +67,7 @@ public class BullpenView extends JScrollPane {
 		 */
 		this.panelScrollContainer = new JPanel();
 		this.panelScrollContainer.setBackground(Color.WHITE);
+		panelScrollContainer.setMinimumSize(new Dimension(72,223));
 		this.setViewportView(panelScrollContainer);
 		groupLayout = new GroupLayout(panelScrollContainer);
 		GroupLayout.ParallelGroup hGroup = groupLayout.createParallelGroup(GroupLayout.Alignment.TRAILING);
