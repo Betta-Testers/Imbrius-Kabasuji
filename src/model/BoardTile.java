@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class BoardTile extends AbstractTile implements Serializable{
 	private static final long serialVersionUID = 3175118024513838593L;
 
+	boolean isHint = false;
 	/**
 	 * Create a BoardTile at the specified location on the board
 	 * @param row
@@ -22,6 +23,19 @@ public class BoardTile extends AbstractTile implements Serializable{
 		this.color = Color.WHITE;
 		this.defaultColor = color;
 		this.tileType = "board";
+	}
+	
+	public void setHint(boolean isHint) {
+		this.isHint = isHint;
+		if (isHint) {
+			this.defaultColor = Color.YELLOW;
+		} else {
+			this.defaultColor = Color.WHITE;
+		}
+	}
+	
+	public boolean isHint() {
+		return this.isHint;
 	}
 
 }

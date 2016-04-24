@@ -13,7 +13,7 @@ import app.Builder;
 
 import javax.swing.GroupLayout.Alignment;
 
-import controllers.builder.RemovePiecesButton;
+import controllers.builder.RemovePiecesButtonController;
 import controllers.builder.SaveAndCloseLevelButtonController;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -48,7 +48,7 @@ public class ButtonGroupView extends JPanel{
 	
 	public void initializeControllers(Builder b){
 		btnSave.addActionListener(new SaveAndCloseLevelButtonController(b));
-		btnRemovePieces.addActionListener(new RemovePiecesButton(b.getCurrentLevel().getBoard(), b.getBuilderView().getBoardView(), b.getCurrentLevel().getBullpen(), b.getBuilderView().getBullpenView()));
+		btnRemovePieces.addActionListener(new RemovePiecesButtonController(b.getCurrentLevel().getBoard(), b.getBuilderView().getBoardView(), b.getCurrentLevel().getBullpen(), b.getBuilderView().getBullpenView()));
 	}
 	/**
 	 * Method for setting up the layout for the available level view

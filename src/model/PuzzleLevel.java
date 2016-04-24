@@ -82,8 +82,9 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 * incrementMovesMade is called whenever a move is performed in a puzzle level. This includes bullpen to board,
 	 * board to board, or off the board. It always increments by 1.
 	 */
-	public void incrementMovesMade(){
+	public int incrementMovesMade(){
 		movesMade++;
+		return movesMade;
 	}
 	
 	/**
@@ -105,7 +106,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView(), this);
+		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView(this.moveLimit), this);
 		view.addWindowListener(new ExitLevelButtonController(view, g));
 		pbgc = new PuzzleBoardGameController(g, view);
 		view.getBoardView().addMouseListener(pbgc);

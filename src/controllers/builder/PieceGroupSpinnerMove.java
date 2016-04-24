@@ -14,7 +14,7 @@ public class PieceGroupSpinnerMove extends Move {
 	/**PieceGroup whose value is being changed**/
 	PieceGroup model;
 	
-	/**Spinner being modified. Needed to update it's view on an undo**/
+	/**Spinner being modified. Needed to update its view on an undo**/
 	JSpinner spinner;
 	/**Value the spinner/model previously had **/
 	int oldValue;
@@ -43,12 +43,11 @@ public class PieceGroupSpinnerMove extends Move {
 	/**
 	 * Determines if this move can be done.
 	 * This move is invalid if the old value is the same as the new value, or the new value is negative
-	 * @return boolean - true if there are pieces on the board
+	 * @return boolean Whether the value has changed and is non-negative
 	 */
 	@Override
 	public boolean isValid() {
-		if(oldValue != newValue && newValue >= 0){ return true;}
-		return false;
+		return (oldValue != newValue && newValue >= 0);
 	}
 
 	/**
@@ -65,7 +64,7 @@ public class PieceGroupSpinnerMove extends Move {
 	
 	/**
 	 * Redoes the undone move. Only valid if no NEW moves have been done that 
-	 * would break the undo order. Redoes the move by calling doMove();
+	 * would break the undo order. Sets the spinner back to the value it was set to by the user in the original move
 	 * @return true - the redo can always be done
 	 */
 	@Override

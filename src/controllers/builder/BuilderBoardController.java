@@ -31,17 +31,27 @@ import model.PieceTile;
  */
 
 public class BuilderBoardController implements MouseListener, MouseMotionListener {
+	/** Top level view for the level editor/creator **/
 	BuilderView bView;
+	/** Entity that is currently being edited **/
 	AbstractLevelModel m;
+	/** Board model that this controller acts on **/
 	Board board;
+	/** Bullpen model in the current level **/
 	Bullpen bp;
+	/** View of the current bullpen **/
 	BullpenView bpv;
-	Piece draggedPiece;
+	/** View for the current board **/
 	BoardView boardView;
+	/** View of the piece that is selected to be placed from the bullpen **/
 	SelectedPieceView spv;
+	/** Panel on the side that holds the toggle buttons for setting the tile number **/
 	ReleaseNumberCreationView rncv;
+	/** Tracks if the mouse is on the board **/
 	boolean mouseOn;
+	/** Row offset between the origin tile and the tile that was clicked on within the piece **/
 	int rOffset;
+	/** Column offset between the origin tile and the tile that was clicked on within the piece **/
 	int cOffset;
 
 	/** 
@@ -59,7 +69,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		this.rncv = bView.getReleaseNumberView();
 		this.spv = bView.getSelectedPieceView();
 	}
-
 
 	/**
 	 * Select a piece that is currently on the board, if the tile that was clicked is part of a piece. 
@@ -91,16 +100,36 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
-			Move move = null;
-			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
-			if (mouseOn) {
-				move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
-				if(!move.doMove()){
-					move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
+			if(bView.getStateOfBoardConvert()){
+				Move move = null;
+				AbstractTile source = board.getTileAt(me.getX(), me.getY());
+				if (mouseOn) {
+					move = new PieceToNewBoardTilesMove(bp, board, source, bpv);
 					move.doMove();
+					spv.getPiecePanel().redraw();
+					spv.getPiecePanel().repaint();
 				}
-				spv.getPiecePanel().redraw();
-				spv.getPiecePanel().repaint();
+			}else if(bView.getStateOfHintConvert()){
+				Move move = null;
+				AbstractTile source = board.getTileAt(me.getX(), me.getY());
+				if (mouseOn) {
+					move = new PieceToHintMove(bp, board, source, bpv);
+					move.doMove();
+					spv.getPiecePanel().redraw();
+					spv.getPiecePanel().repaint();
+				}
+			}else{
+				Move move = null;
+				AbstractTile source = board.getTileAt(me.getX(), me.getY());
+				if (mouseOn) {
+					move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
+					if(!move.doMove()){
+						move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
+						move.doMove();
+					}
+					spv.getPiecePanel().redraw();
+					spv.getPiecePanel().repaint();
+				}
 			}
 		}else if(rncv.getNumberSelected() < 0){
 			AbstractTile source = board.getTileAt(me.getX(), me.getY());
@@ -125,7 +154,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		boardView.redraw();
 		boardView.repaint();
 	}
-
 
 	/**
 	 * Tracks if mouse is over the board
@@ -153,7 +181,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
-	
+
 	/**
 	 * Shows a preview of the piece being dragged (if there is one)
 	 * 
@@ -176,7 +204,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
-	
+
 	/**
 	 * Show a preview of the piece that is selected to be placed (if it exists)
 	 * 
@@ -191,7 +219,11 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 
 			if(p != null){
 				board.clearPiecePreview();
-				board.showPiecePreview(p, source.getRow(), source.getCol());
+				if(bView.getStateOfBoardConvert()){
+					board.showConversionPreview(p, source.getRow(), source.getCol());
+				}else{
+					board.showPiecePreview(p, source.getRow(), source.getCol());
+				}
 				boardView.redraw();
 				boardView.repaint();
 			}

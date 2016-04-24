@@ -13,8 +13,11 @@ import app.Builder;
  * @author hejohnson
  */
 public class NewPuzzleLevelController implements MouseListener{
+	/** The builder object that holds everything **/
 	Builder b;
+	/** The text area in the Level Type Select View that displays a description of each type of level **/
 	JTextArea textArea;
+	/** Level type specific text that gets displayed in the text area **/
 	String descriptionText;
 	
 	/**

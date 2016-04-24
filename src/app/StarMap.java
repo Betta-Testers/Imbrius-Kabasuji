@@ -66,7 +66,7 @@ public class StarMap implements Serializable{
 				levelType = f.getName().substring(f.getName().lastIndexOf("_")+1, f.getName().lastIndexOf("."));
 				levelID = Integer.parseInt(levelNum);
 				this.put(levelID, levelType);
-				this.setMaxStars(levelID, 0);
+				this.setMaxStars(levelID, -1);
 			}catch(NumberFormatException e){
 				System.err.println("Trash in directory, skipping...");
 				continue;

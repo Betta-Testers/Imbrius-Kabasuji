@@ -20,8 +20,8 @@ public class PieceGroupSpinnerController implements ChangeListener {
 	/**Spinner being operated on in the move**/
 	JSpinner spinner;
 
-	/**Model being operated on in the move**/
-	PieceGroup model;
+	/**pieceGroup being operated on in the move**/
+	PieceGroup pieceGroup;
 
 	/**Redraws when the piece group's count drops to 0 of the piece in the panel**/
 	PiecePanel piecePanel;
@@ -29,9 +29,9 @@ public class PieceGroupSpinnerController implements ChangeListener {
 	/**Used to clear the selectedPiece when the piece group's count drops to 0 of the piece in the panel**/
 	Bullpen bp;
 
-	public PieceGroupSpinnerController(JSpinner spinner, PieceGroup model, Bullpen bp, PiecePanel piecePanel) {
+	public PieceGroupSpinnerController(JSpinner spinner, PieceGroup pieceGroup, Bullpen bp, PiecePanel piecePanel) {
 		this.spinner = spinner;
-		this.model = model;
+		this.pieceGroup = pieceGroup;
 		this.piecePanel = piecePanel;
 		this.bp = bp;
 	}
@@ -44,13 +44,13 @@ public class PieceGroupSpinnerController implements ChangeListener {
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		if((int)spinner.getValue() == 0 && bp.getSelectedPiece() != null){
-			if(bp.getSelectedPiece().equals(model.getPiece())){
+			if(bp.getSelectedPiece().equals(pieceGroup.getPiece())){
 				bp.clearSelectedPiece();
 				piecePanel.redraw();
 				piecePanel.repaint();
 			}
 		}
-		Move move = new PieceGroupSpinnerMove(model, spinner);
+		Move move = new PieceGroupSpinnerMove(pieceGroup, spinner);
 		move.doMove();
 	}
 
