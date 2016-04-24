@@ -261,7 +261,9 @@ public class Board implements Serializable{
 	}
 
 	/**
-	 * Returns the total number of tiles that can be interacted with
+	 * Returns the total number of tiles that can be interacted with on a board.
+	 * Used in the builder to track the count of tiles that contribute to the 6n 
+	 * total.
 	 * @return int - Number of release and board tiles on the board
 	 */
 	public int interactableTileCount(){
