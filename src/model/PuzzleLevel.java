@@ -103,7 +103,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView(), this);
+		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView(this.moveLimit), this);
 		view.addWindowListener(new ExitLevelButtonController(view, g));
 		PuzzleBoardGameController pbgc = new PuzzleBoardGameController(g, view);
 		view.getBoardView().addMouseListener(pbgc);

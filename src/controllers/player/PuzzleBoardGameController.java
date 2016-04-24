@@ -116,6 +116,9 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 				levelModel.getBoard().setDraggedPiece(null);
 				spv.getPiecePanel().redraw();
 				spv.getPiecePanel().repaint();
+				
+				((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
+				
 				if (levelModel.checkStatus()) {
 					game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
 				}

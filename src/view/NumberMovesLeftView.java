@@ -22,13 +22,13 @@ public class NumberMovesLeftView extends JPanel {
 	JTextPane numberMoves;
 	JLabel lblTitle;
 
-	public NumberMovesLeftView() {
+	public NumberMovesLeftView(int initialMoves) {
 		this.setPreferredSize(new Dimension(180, 90));
 		numberMoves = new JTextPane();
 		numberMoves.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		numberMoves.setText("00");
 		lblTitle = new JLabel("Moves Remaining");
-		
+		numberMoves.setText(Integer.toString(initialMoves));
 		setupLayout();
 	}
 	
