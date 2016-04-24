@@ -324,7 +324,6 @@ public class TestPlayerPuzzle extends TestCase {
 	
 	//====================== Test Stars Earned ======================//
 	public void testStarsEarned() {
-		MouseEvent me;
 		/*
 		 * initialize board with 18 board tiles and 4 moves and verify
 		 */
