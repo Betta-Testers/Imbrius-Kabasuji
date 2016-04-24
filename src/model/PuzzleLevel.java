@@ -131,6 +131,10 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 		initializeVars();
 	}
 	
+	/**
+	 * Getter for this level's board controller
+	 * @return board controller associated with this board
+	 */
 	public PuzzleBoardGameController getBoardController() {
 		return this.pbgc;
 	}

@@ -57,7 +57,7 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		 * wait until the expected time is up
 		 */
 		try {
-			Thread.sleep(200);
+			Thread.sleep(300);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -105,7 +105,7 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		 * wait until the expected time is up
 		 */
 		try {
-			Thread.sleep(200);
+			Thread.sleep(300);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -153,7 +153,7 @@ public class TestBuilderWindowControllers extends MouseTesting {
 		 * wait until the expected time is up
 		 */
 		try {
-			Thread.sleep(200);
+			Thread.sleep(300);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
