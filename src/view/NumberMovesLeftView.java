@@ -38,7 +38,7 @@ public class NumberMovesLeftView extends JPanel {
 	 * The passed argument should be two places. Ex: 10 or 09
 	 * @param movesLeft - Number of remaining moves to be displayed
 	 */
-	void updateMovesLeft(int movesLeft){
+	public void updateMovesLeft(int movesLeft){
 		numberMoves.setText(Integer.toString(movesLeft));
 	}
 	

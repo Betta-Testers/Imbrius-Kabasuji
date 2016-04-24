@@ -13,10 +13,12 @@ import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Piece;
 import model.PieceTile;
+import model.PuzzleLevel;
 import view.BoardView;
 import view.BullpenView;
 import view.LevelView;
 import view.SelectedPieceView;
+import view.NumberMovesLeftView;
 
 /**
  * @author hejohnson
@@ -25,7 +27,7 @@ import view.SelectedPieceView;
  */
 
 public class PuzzleBoardGameController implements MouseListener, MouseMotionListener{
-	AbstractLevelModel levelModel;
+	PuzzleLevel levelModel;
 	AbstractTile source;
 	Move m;
 	Game game;
@@ -39,7 +41,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 
 	public PuzzleBoardGameController (Game game, LevelView levelView) {
 		this.game = game;
-		this.levelModel = game.getCurrentLevel();
+		this.levelModel = (PuzzleLevel)game.getCurrentLevel();
 		this.levelView = levelView;
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
@@ -64,9 +66,10 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		} else { // currently dragging a piece
 			Move m = new MovePieceOffBoardMove(levelModel, game.getLevelView().getBullpenView());
 			m.doMove();
-			
 			levelModel.getBoard().setDraggedPiece(null);
 			levelModel.getBoard().clearPiecePreview();
+			
+			((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
 			
 			if (levelModel.checkStatus()) {
 				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
