@@ -146,8 +146,6 @@ public class Board implements Serializable{
 		return true;
 	}
 	
-
-	
 	/**
 	 * Remove a given piece from the board, the piece must already exist on the board
 	 * @param p the piece being removed from the board
