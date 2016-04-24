@@ -3,7 +3,6 @@ package model;
 import junit.framework.TestCase;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 
 /**
@@ -90,13 +89,6 @@ public class TestBoard extends TestCase{
 		
 		assertEquals(Color.WHITE,b.board[1][1].color);
 		assertEquals(Color.LIGHT_GRAY,b.board[0][3].color);
-		
-		ArrayList<Piece> pieces = b.pieces;
-		ArrayList<Piece> pieces2 = b.resetBoard();
-		
-		assertEquals(pieces, pieces2);
-		
-		// TODO add a willfit option
 		
 	}
 

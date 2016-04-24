@@ -24,8 +24,6 @@ import view.SelectedPieceView;
  *
  */
 
-//TODO add view update stuff
-
 public class PuzzleBoardGameController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
 	AbstractTile source;
@@ -87,7 +85,6 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			boardView.redraw();
 			boardView.repaint();
 			if (source instanceof PieceTile) {
-				System.out.println("Yo");
 				levelModel.getBoard().setDraggedPiece(((PieceTile)source).getPiece());
 				rOffset = -((PieceTile)source).getRowInPiece();
 				cOffset = -((PieceTile)source).getColInPiece();

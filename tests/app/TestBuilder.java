@@ -47,6 +47,36 @@ public class TestBuilder extends TestCase {
 		assertEquals(15,b.getHighestLevelID());
 	}
 	
+	public void testDeleteLevel(){
+		/**Generate a few levels to disk/starmap**/
+		b.createPuzzleLevel();
+		b.saveLevel();
+		b.createReleaseLevel();
+		b.saveLevel();
+		b.createLightningLevel();
+		b.saveLevel();
+		
+		
+		/**Check they are all in the StarMap**/
+		String expected = "[1,Puzzle,-1],[2,Release,-1],[3,Lightning,-1]";
+		assertEquals(expected,b.levelData.toString());
+		
+		/**Delete non existant one**/
+		assertFalse(b.deleteLevel(4));
+		
+		/**Verify Level Data is still correct**/
+		expected = "[1,Puzzle,-1],[2,Release,-1],[3,Lightning,-1]";
+		assertEquals(expected,b.levelData.toString());
+		
+		/**Delete non-existant one**/
+		assertTrue(b.deleteLevel(2));
+		
+		/**Verify LevelData is correct**/
+		expected = "[1,Puzzle,-1],[3,Lightning,-1]";
+		assertEquals(expected,b.levelData.toString());
+		
+	}
+	
 	/**
 	 * Case 1: Try to make multiple different types of levels in a row
 	 * Load each one in. They should load in the exact way they were saved

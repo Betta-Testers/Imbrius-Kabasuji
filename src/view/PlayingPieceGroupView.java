@@ -15,14 +15,21 @@ public class PlayingPieceGroupView extends AbstractPieceGroupView{
 	public PlayingPieceGroupView(PieceGroup pieceGroup){
 		super(pieceGroup);
 		
-		label = new JLabel(Integer.toString(pieceGroup.getNumPieces()));
+		label = new JLabel();
+		updateCount();
 		
 		setupLayout();
 	}
 	
 	@Override
 	void updateCount() {
-		label.setText(Integer.toString(pieceGroup.getNumPieces()));
+		int count = pieceGroup.getNumPieces();
+		label.setText(Integer.toString(count));
+		if(count < 1){
+			this.setVisible(false);
+		}else{
+			this.setVisible(true);
+		}
 	}
 	
 	void setupLayout(){

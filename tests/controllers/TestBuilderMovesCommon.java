@@ -6,18 +6,12 @@ import java.util.ArrayList;
 import view.BuilderView;
 import model.AbstractTile;
 import model.Board;
-import model.BoardTile;
 import model.Bullpen;
-import model.EmptyTile;
-import model.Piece;
 import model.PieceGroup;
-import model.PieceTile;
 import model.PuzzleLevel;
 import app.Builder;
 import controllers.builder.SwapTileEmptyToBoardMove;
 import controllers.common.Move;
-import controllers.common.MovePieceOffBoardMove;
-import controllers.common.MovePieceOnBoardMove;
 import controllers.common.PlacePieceOnBoardFromBullpenMove;
 import junit.framework.TestCase;
 
@@ -58,7 +52,7 @@ public class TestBuilderMovesCommon extends TestCase {
 		Move m;
 		for(int i = 0; i < 12; i++){
 			for(int j = 0; j < 12; j++){
-				m = new SwapTileEmptyToBoardMove((EmptyTile)b.getTileAt(i*32, j*32), pl.getBoard());
+				m = new SwapTileEmptyToBoardMove(b.getTileAt(i*32, j*32), pl.getBoard());
 				m.doMove();
 			}
 		}
@@ -104,7 +98,7 @@ public class TestBuilderMovesCommon extends TestCase {
 		Move m;
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 6; j++){
-				m = new SwapTileEmptyToBoardMove((EmptyTile)b.getTileAt(i*b.getTileSize(), j*b.getTileSize()), pl.getBoard());
+				m = new SwapTileEmptyToBoardMove(b.getTileAt(i*b.getTileSize(), j*b.getTileSize()), pl.getBoard());
 				m.doMove();
 			}
 		}
@@ -204,7 +198,7 @@ public class TestBuilderMovesCommon extends TestCase {
 		Move m;
 		for(int i = 0; i < 12; i++){
 			for(int j = 0; j < 12; j++){
-				m = new SwapTileEmptyToBoardMove((EmptyTile)b.getTileAt(i*b.getTileSize(), j*b.getTileSize()), pl.getBoard());
+				m = new SwapTileEmptyToBoardMove(b.getTileAt(i*b.getTileSize(), j*b.getTileSize()), pl.getBoard());
 				m.doMove();
 			}
 		}

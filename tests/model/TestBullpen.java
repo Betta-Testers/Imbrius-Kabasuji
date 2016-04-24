@@ -60,13 +60,16 @@ public class TestBullpen extends TestCase {
 	public void testAddPieces() {
 		// test that the randomly generated Bullpen has 10 available pieces
 		assertEquals(testBP2.numAvailablePieces(), 0);
-		
 		// add a single piece to the Bullpen, test that the number of pieces is 1 greater than before
-		testBP2.addSinglePiece(1);
+		testBP2.incrementPiece(1);
 		assertEquals(testBP2.numAvailablePieces(), 1);
 		
 		// add a 5 random pieces to the Bullpen, test that the number of pieces is 5 greater than before
-		testBP2.addRandomPieces(5);
+		testBP2.incrementPiece(1);
+		testBP2.incrementPiece(2);
+		testBP2.incrementPiece(10);
+		testBP2.incrementPiece(33);
+		testBP2.incrementPiece(21);
 		assertEquals(testBP2.numAvailablePieces(), 6);
 		
 		// ensure that the Bullpen is still sorted when random pieces are added
@@ -86,14 +89,19 @@ public class TestBullpen extends TestCase {
 	public void testRemovePiece() {
 		// test that a Bullpen created from the initialized ArrayList returns true when a pieceGroup that is in it is removed
 		testBP1 = new Bullpen(testPlayablePieces);
-		assertEquals(testBP1.removeSinglePiece(5), true);
+		assertEquals(testBP1.decrementPiece(5), true);
 		
-		// since 0 was removed, the total should decrement by 2 (6 -> 4)
-		assertEquals(testBP1.numAvailablePieces(), 4);
+		// since 5 was decremented, the total should decrement by 1
+		assertEquals(testBP1.numAvailablePieces(), 5);
 		
 		// test that the Bullpen returns false when a pieceGroup that is not in it is removed
-		assertEquals(testBP1.removeSinglePiece(9), false);
-		assertEquals(testBP1.numAvailablePieces(), 4);
+		try {
+			testBP1.decrementPiece(9);
+			fail();
+		} catch (RuntimeException e) {
+			
+		}
+		assertEquals(testBP1.numAvailablePieces(), 5);
 		
 		// test that a Bullpen that is created from an empty Arraylist is empty and that a Bullpen created from a non-empty ArrayList is not empty
 		testBP3 = new Bullpen(new ArrayList<PieceGroup>());
@@ -124,7 +132,7 @@ public class TestBullpen extends TestCase {
 		assertEquals(testBP1.setSelectedPiece(7), false);
 		
 		assertEquals(6, testBP1.numAvailablePieces());
-		testBP1.decrementSelectedPiece();
+		testBP1.decrementPiece(testPiece.getID());
 		assertEquals(5, testBP1.numAvailablePieces());
 		
 	
@@ -134,13 +142,6 @@ public class TestBullpen extends TestCase {
 		// ensure that the exceptions are thrown in the correct instances
 		try {
 			testBP3 = new Bullpen(-2);
-			fail();
-		} catch (RuntimeException e) {
-			
-		}
-		
-		try {
-			testBP2.addRandomPieces(-3);
 			fail();
 		} catch (RuntimeException e) {
 			

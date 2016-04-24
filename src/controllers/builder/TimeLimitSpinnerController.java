@@ -6,8 +6,6 @@ import javax.swing.event.ChangeListener;
 
 import controllers.common.Move;
 import model.LightningLevel;
-import view.BuilderView;
-import view.LevelPropertiesView;
 
 /**
  * Handles setting the time limit for a lightning level in builder mode
@@ -16,17 +14,16 @@ import view.LevelPropertiesView;
  * @author hejohnson
  */
 public class TimeLimitSpinnerController implements ChangeListener {
-	LevelPropertiesView lpv;
-	LightningLevel model;
+	LightningLevel ll;
 	
-	public TimeLimitSpinnerController(LevelPropertiesView lpv) {
-		this.lpv = lpv;
+	public TimeLimitSpinnerController(LightningLevel ll) {
+		this.ll = ll;
 	}
 	
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		JSpinner timeSpin = (JSpinner)e.getSource();
-		Move m = new SetLightningTimeMove(lpv, timeSpin);
+		Move m = new SetLightningTimeMove(ll, timeSpin);
 		if (m.doMove()) {
 			//push onto stack
 		}

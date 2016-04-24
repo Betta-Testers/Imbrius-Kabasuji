@@ -7,8 +7,6 @@ import app.Game;
 import view.LevelView;
 
 public class ExitLevelButtonController extends WindowAdapter{
-	
-	// TODO AbstractLevelModel m;
 	Game game;
 	LevelView view;
 	
@@ -27,6 +25,5 @@ public class ExitLevelButtonController extends WindowAdapter{
 		game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
 		game.getExitView().setVisible(true);
 		view.dispose();
-		
 	}
 }

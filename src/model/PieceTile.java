@@ -16,7 +16,7 @@ public class PieceTile extends AbstractTile{
 	AbstractTile previousTile;
 
 	
-	//TODO update when piece entity exists, including comments. Do we need to store the position within the piece?
+	//TODO Finish JavaDocs
 	
 	/**
 	 * Create a piece tile, which is a part of a specified piece (once that is implemented)
@@ -58,8 +58,6 @@ public class PieceTile extends AbstractTile{
 	public void updateRowInPiece(int newRow) {
 		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
-			
-			//return; --> shouldn't need this with run time exception
 		}
 		this.rowInPiece = newRow;
 		updateBoardPosition();
@@ -68,8 +66,6 @@ public class PieceTile extends AbstractTile{
 	public void updateColInPiece(int newCol) {
 		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
-			
-			//return; --> shouldn't need this with run time exception
 		}
 		this.colInPiece = newCol;
 		updateBoardPosition();

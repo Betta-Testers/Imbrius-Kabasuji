@@ -61,7 +61,7 @@ public class TestLevelFactory extends TestCase {
 		LightningLevel ll = factory.GenerateSpecificLightning(1, pieces, tiles);
 		String expectedBullpen = "ID:1Count:1ID:2Count:2ID:3Count:3ID:4Count:4ID:5Count:5ID:6Count:6ID:7Count:7ID:8Count:8ID:9Count:9ID:10Count:10ID:11Count:11ID:12Count:12";;
 		String expectedBoard = (new Board()).toString();
-		String expectedlevel = "Lightning10"+expectedBoard+expectedBullpen;
+		String expectedlevel = "Lightning11"+expectedBoard+expectedBullpen;
 		assertEquals(expectedBullpen, ll.getBullpen().toString());
 		assertEquals(expectedBoard, ll.getBoard().toString());
 		assertEquals(expectedlevel, ll.toString());

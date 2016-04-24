@@ -34,13 +34,12 @@ public class SwapTileEmptyToBoardMove extends Move {
 
 	@Override
 	public boolean isValid() {
-		if(this.oldTile.getTileType().equals("empty")){return true;}
+		if(oldTile.getTileType().equals("empty")){return true;}
 		return false;
 	}
 
 	@Override
 	public boolean undo() {
-		// TODO Auto-generated method stub
 		board.swapTile(oldTile);
 		return true;
 	}

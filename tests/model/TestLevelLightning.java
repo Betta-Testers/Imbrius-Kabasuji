@@ -21,14 +21,14 @@ public class TestLevelLightning extends TestCase {
 	}
 	
 	public void testInitialization(){
-		assertEquals(l.getTotalTime(), 0);
+		assertEquals(l.getTotalTime(), 1);
 	}
 	public void testEndConditions(){
 		l.setTotalTime(10);
 		assertEquals(l.getTotalTime(), 10);
 	}
 	public void testToString(){
-		assertEquals(l.toString(), "Lightning00"+l.board.toString()+l.bullpen.toString());	
+		assertEquals(l.toString(), "Lightning01"+l.board.toString()+l.bullpen.toString());	
 	}
 	/**
 	 * TODO: Check status

@@ -7,32 +7,29 @@ import javax.swing.JSpinner;
 
 import controllers.common.Move;
 import model.LightningLevel;
-import view.LevelPropertiesView;
 
 /**
  * @author hejohnson
+ * @author dfontana
  *
  */
 public class SetLightningTimeMove extends Move {
-	LightningLevel level;
-	LevelPropertiesView lpv;
+	LightningLevel ll;
 	JSpinner timeSpin;
 	int time;
 	int previousTime;
 	
-	public SetLightningTimeMove (LevelPropertiesView lpv, JSpinner timeSpin) {
-		this.lpv = lpv;
+	public SetLightningTimeMove (LightningLevel ll, JSpinner timeSpin) {
 		this.timeSpin = timeSpin;
-		this.level = (LightningLevel)lpv.getLevelModel();
+		this.ll = ll;
 		this.time = (int)timeSpin.getValue();
-		this.previousTime = level.getTotalTime();
+		this.previousTime = ll.getTotalTime();
 	}
 
 	@Override
 	public boolean doMove() {
 		if (isValid()) {
-			level.setTotalTime(time);
-			System.out.println(time);
+			ll.setTotalTime(time);
 			return true;
 		}
 		return false;
@@ -45,14 +42,14 @@ public class SetLightningTimeMove extends Move {
 
 	@Override
 	public boolean undo() {
-		level.setTotalTime(previousTime);
+		ll.setTotalTime(previousTime);
 		timeSpin.setValue(previousTime);
 		return false;
 	}
 
 	@Override
 	public boolean redo() {
-		level.setTotalTime(time);
+		ll.setTotalTime(time);
 		timeSpin.setValue(previousTime);
 		return false;
 	}

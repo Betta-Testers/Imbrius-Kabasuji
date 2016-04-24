@@ -28,7 +28,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
-		totalTime = 0;
+		totalTime = 1;
 	}
 	
 	/**
@@ -81,7 +81,6 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 		LightningBoardGameController lbgc = new LightningBoardGameController(g, view);
 		view.getBoardView().addMouseListener(lbgc);
 		view.getBoardView().addMouseMotionListener(lbgc);
-		
 		return view;
 	}
 	

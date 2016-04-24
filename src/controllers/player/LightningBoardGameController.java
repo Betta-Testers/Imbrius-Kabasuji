@@ -20,8 +20,6 @@ import view.SelectedPieceView;
  * @author hejohnson
  */
 
-//TODO add view update stuff
-
 public class LightningBoardGameController implements MouseListener, MouseMotionListener{
 	AbstractLevelModel levelModel;
 	Game game;
@@ -40,26 +38,6 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent me) {
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent me) {
-	
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent me) {
-		
-	}
-
-	@Override
 	public void mouseReleased(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView());
@@ -69,6 +47,8 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 			spv.getPiecePanel().redraw();
 			spv.getPiecePanel().repaint();
 			levelModel.getBoard().removePiece(p);
+			Piece addedP = levelModel.getBullpen().addRandomPiece();
+			game.getLevelView().getBullpenView().updatePieceGroup(addedP);
 			for (PieceTile pt : p.getTiles()) {
 				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
 			}
@@ -79,12 +59,6 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 			}
 			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -100,4 +74,15 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 			boardView.repaint();
 		}
 	}
+	
+	@Override
+	public void mouseClicked(MouseEvent me) {}
+	@Override
+	public void mouseEntered(MouseEvent me) {}
+	@Override
+	public void mouseExited(MouseEvent arg0) {}
+	@Override
+	public void mousePressed(MouseEvent me) {}
+	@Override
+	public void mouseDragged(MouseEvent arg0) {}
 }

@@ -15,8 +15,7 @@ public class UndoEditButtonController {
 	}
 	
 	public boolean undoRequested() {
-		// TODO Implement move tracking in the Builder Class
-		// return.app.undoMove();
+		// TODO Implement Singleton Undo manager. Call undo method.
 		return false;
 	}
 }

@@ -11,7 +11,6 @@ import model.LightningLevel;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.text.DecimalFormat;
 
 /**
  * Class for displaying the time remaining in a lightning level
