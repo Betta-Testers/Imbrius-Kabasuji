@@ -1,7 +1,6 @@
 package controllers.builder;
 
 import controllers.common.Move;
-import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
@@ -18,18 +17,16 @@ import view.BullpenView;
  */
 
 public class PieceToNewBoardTilesMove extends Move{
-	AbstractLevelModel levelModel;
 	Bullpen bullpen;
 	Board board;
 	Piece p;
 	AbstractTile sourceTile;
 	BullpenView bpv;
 	
-	public PieceToNewBoardTilesMove (AbstractLevelModel lm, AbstractTile tile, BullpenView bpv) {
+	public PieceToNewBoardTilesMove (Bullpen bullpen, Board board, AbstractTile tile, BullpenView bpv) {
 		this.bpv = bpv;
-		this.levelModel = lm;
-		this.bullpen = levelModel.getBullpen();
-		this.board = levelModel.getBoard();
+		this.bullpen = bullpen;
+		this.board = board;
 		this.sourceTile = tile;
 		this.p = bullpen.getSelectedPiece();
 		

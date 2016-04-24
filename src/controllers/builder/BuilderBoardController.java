@@ -104,13 +104,20 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				Move move = null;
 				AbstractTile source = board.getTileAt(me.getX(), me.getY());
 				if (mouseOn) {
-					move = new PieceToNewBoardTilesMove(m, source, bpv);
+					move = new PieceToNewBoardTilesMove(bp, board, source, bpv);
 					move.doMove();
 					spv.getPiecePanel().redraw();
 					spv.getPiecePanel().repaint();
 				}
 			}else if(bView.getStateOfHintConvert()){
-
+				Move move = null;
+				AbstractTile source = board.getTileAt(me.getX(), me.getY());
+				if (mouseOn) {
+					move = new PieceToHintMove(bp, board, source, bpv);
+					move.doMove();
+					spv.getPiecePanel().redraw();
+					spv.getPiecePanel().repaint();
+				}
 			}else{
 				Move move = null;
 				AbstractTile source = board.getTileAt(me.getX(), me.getY());
@@ -206,28 +213,19 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	@Override
 	public void mouseMoved(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
-			if(bView.getStateOfBoardConvert()){
-				Piece p;
-				AbstractTile source  = board.getTileAt(me.getX(), me.getY());
-				p = bp.getSelectedPiece();
+			Piece p;
+			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
+			p = bp.getSelectedPiece();
 
-				if(p != null){
-					board.clearPiecePreview();
+			if(p != null){
+				board.clearPiecePreview();
+				if(bView.getStateOfBoardConvert()){
 					board.showConversionPreview(p, source.getRow(), source.getCol());
-					boardView.redraw();
-					boardView.repaint();
-				}
-			}else{
-				Piece p;
-				AbstractTile source  = board.getTileAt(me.getX(), me.getY());
-				p = bp.getSelectedPiece();
-
-				if(p != null){
-					board.clearPiecePreview();
+				}else{
 					board.showPiecePreview(p, source.getRow(), source.getCol());
-					boardView.redraw();
-					boardView.repaint();
 				}
+				boardView.redraw();
+				boardView.repaint();
 			}
 		}
 	}
