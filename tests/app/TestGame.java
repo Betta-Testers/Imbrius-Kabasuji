@@ -41,6 +41,27 @@ public class TestGame extends TestCase {
 //		assertEquals(expected, g.levelData.toString());
 //	}
 	
+	public void testHighestUnlockedID(){
+		/**Generate 3 IDS**/
+		LevelFactory factory = new LevelFactory();
+		factory.setDirectory("./imbriusLevelTESTING/");
+		LightningLevel ll = factory.GenerateBlankLightning(1);
+		factory.saveLevel(ll);
+		ll = factory.GenerateBlankLightning(2);
+		factory.saveLevel(ll);
+		ll = factory.GenerateBlankLightning(3);
+		factory.saveLevel(ll);
+		
+		g = new Game("./imbriusLevelTESTING/");
+		assertEquals(0, g.highestUnlockedID());
+		
+		g.levelData.setMaxStars(1, 2);
+		assertEquals(1, g.highestUnlockedID());
+		
+		g.levelData.setMaxStars(2, 1);
+		assertEquals(2, g.highestUnlockedID());
+	}
+	
 	public void testDisplayLevel(){
 		(new LevelFactory()).quick15("./imbriusLevelTESTING/");
 		g = new Game("./imbriusLevelTESTING/");

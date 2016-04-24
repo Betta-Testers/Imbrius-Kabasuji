@@ -64,10 +64,6 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		for (AbstractTile at : coveredTiles) {
 			if (at instanceof ReleaseTile) {
 				Color color  = ((ReleaseTile) at).getColorSet();
-				System.out.println(Color.RED);
-				System.out.println(Color.BLUE);
-				System.out.println(Color.GREEN);
-				System.out.println("actual: "+color);
 				int number = ((ReleaseTile) at).getNumber();
 				if(color.equals(Color.RED)){
 					levelModel.addToRedReleased(number);
