@@ -98,7 +98,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	}
 
 	/**
-	 * Convert tile on board into another form: Release <-> Release <-> Board <-> Empty.
+	 * Convert tile on board into another form: Release <-> Release <-> Board <-> Empty 
+	 * OR
+	 * Place a piece on the board for: Previewing, Generating the Board, Making hints.
 	 * Using a released action allows the user to click as quick as they want, preventing accidental behavior not related to a click
 	 * (like a press, move, release instead of just a click).
 	 * @param me MouseEvent
@@ -116,7 +118,10 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			}else if(bView.getStateOfHintConvert()){
 				if (mouseOn) {
 					move = new PieceToHintMove(bp, board, source);
-					move.doMove();
+					if(move.doMove()){
+						//If the move can be done, add it the list of known hints on the board
+						hintPieces.add(((PieceToHintMove) move).modelPiece());
+					}
 				}
 			}else{
 				if (mouseOn) {

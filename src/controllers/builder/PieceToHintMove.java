@@ -88,4 +88,13 @@ public class PieceToHintMove extends Move{
 		doMove();
 		return true;
 	}
+	
+	/**
+	 * Returns the piece that was used to make the hint. 
+	 * Necessary for the ability to remove a hint via a click 
+	 * @return The model piece used to make the hint
+	 */
+	public Piece modelPiece(){
+	 return p;
+	}
 }
