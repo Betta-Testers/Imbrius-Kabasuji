@@ -48,10 +48,10 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	SelectedPieceView spv;
 	/** Panel on the side that holds the toggle buttons for setting the tile number **/
 	ReleaseNumberCreationView rncv;
-	
+
 	/**Tracks all the pieces that governed a hint placement**/
 	ArrayList<Piece> hintPieces;
-	
+
 	/** Tracks if the mouse is on the board **/
 	boolean mouseOn;
 	/** Row offset between the origin tile and the tile that was clicked on within the piece **/
@@ -111,9 +111,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			if(bView.getStateOfBoardConvert()){
 				if (mouseOn) {
 					move = new PieceToNewBoardTilesMove(bp, board, source, bView.getLevelPropertiesView());
-					if(move.doMove()){
-						
-					}	
+					move.doMove();	
 				}
 			}else if(bView.getStateOfHintConvert()){
 				if (mouseOn) {
@@ -138,11 +136,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				if(!move.doMove()){
 					move = new SwapTileReleaseToBoardMove(source, board);	
 					move.doMove();
-				}else{
-					bView.getLevelPropertiesView().adjustTileCount(1);
 				}
-			}else{
-				bView.getLevelPropertiesView().adjustTileCount(-1);
 			}
 		}else{
 			move = new SwapTileBoardToReleaseMove(rncv, source, board);
