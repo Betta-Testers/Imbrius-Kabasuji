@@ -25,6 +25,9 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	/**The movesMade is the number of moves a player has made on THIS level**/
 	transient int movesMade;
 	
+	/** The pbgc is the controller that handles mouse actions associated with THIS level's board**/
+	PuzzleBoardGameController pbgc;
+	
 	/**
 	 * Generates a puzzle level
 	 * @param levelID - ID of this level being made
@@ -104,7 +107,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	public LevelView initializeGame(Game g) {
 		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView(), this);
 		view.addWindowListener(new ExitLevelButtonController(view, g));
-		PuzzleBoardGameController pbgc = new PuzzleBoardGameController(g, view);
+		pbgc = new PuzzleBoardGameController(g, view);
 		view.getBoardView().addMouseListener(pbgc);
 		view.getBoardView().addMouseMotionListener(pbgc);
 		return view;
@@ -126,5 +129,9 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
 		initializeVars();
+	}
+	
+	public PuzzleBoardGameController getBoardController() {
+		return this.pbgc;
 	}
 }

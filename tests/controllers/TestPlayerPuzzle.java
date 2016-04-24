@@ -1,6 +1,7 @@
 package controllers;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 import controllers.common.Move;
@@ -87,7 +88,7 @@ public class TestPlayerPuzzle extends TestCase {
 	}
 	
 	public void testPlacePiece () {
-		Move m;
+		MouseEvent me;
 		/*
 		 * initialize board with 144 board tiles and verify
 		 */
@@ -105,7 +106,11 @@ public class TestPlayerPuzzle extends TestCase {
 		bullpen.setSelectedPiece(1);
 		assertEquals(1, bullpen.numAvailablePieces());
 		
-//		m = new MouseEvent()
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_MOVED, 
+				System.currentTimeMillis(), 0, 
+				boardView.getX(), 
+				boardView.getY(), 0, false);
 	}
 	
 }
