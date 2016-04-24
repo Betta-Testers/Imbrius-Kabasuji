@@ -10,19 +10,25 @@ import view.BoardView;
 import view.BullpenView;
 
 /**
- * 
+ * Controller to remove all pieces from the board. Executes the RemoveAllPiecesMove
  * @author awharrison
  * @author Dylan
  *
  */
 
-public class RemovePiecesButton implements ActionListener{
+public class RemovePiecesButtonController implements ActionListener{
 	Board b;
 	BoardView bv;
 	Bullpen bp;
 	BullpenView bpv;
 	
-	public RemovePiecesButton(Board b, BoardView bv, Bullpen bp, BullpenView bpv) {
+	/**
+	 * @param b Current Board
+	 * @param bv View of the current board
+	 * @param bp 
+	 * @param bpv
+	 */
+	public RemovePiecesButtonController(Board b, BoardView bv, Bullpen bp, BullpenView bpv) {
 		this.b = b;
 		this.bv = bv;
 		this.bp = bp;
