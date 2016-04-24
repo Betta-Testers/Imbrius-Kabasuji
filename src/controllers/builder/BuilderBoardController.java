@@ -115,7 +115,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				}
 			}else if(bView.getStateOfHintConvert()){
 				if (mouseOn) {
-					move = new PieceToHintMove(bp, board, source, bpv);
+					move = new PieceToHintMove(bp, board, source);
 					move.doMove();
 				}
 			}else{
@@ -175,7 +175,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
-
 	/**
 	 * Shows a preview of the piece being dragged (if there is one)
 	 * 
@@ -197,7 +196,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			boardView.repaint();
 		}
 	}
-
 
 	/**
 	 * Show a preview of the piece that is selected to be placed (if it exists)
