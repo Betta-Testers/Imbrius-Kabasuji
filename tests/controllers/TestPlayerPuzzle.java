@@ -3,6 +3,7 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
+import controllers.common.Move;
 import view.BoardView;
 import view.BullpenView;
 import view.LevelView;
@@ -34,9 +35,9 @@ public class TestPlayerPuzzle extends TestCase {
 		new File("./imbriusLevelTESTING/").mkdirs();
 		factory = new LevelFactory();
 		factory.setDirectory("./imbriusLevelTESTING/");
-		level = factory.GenerateBlankPuzzle(1);
-		factory.saveLevel(level);
-		factory.addToData(level, 1);
+		PuzzleLevel tempLevel = factory.GenerateBlankPuzzle(1);
+		factory.saveLevel(tempLevel);
+		factory.addToData(tempLevel, 1);
 		
 		/*
 		 * load and display the level in a game
@@ -47,6 +48,7 @@ public class TestPlayerPuzzle extends TestCase {
 		/*
 		 * set attributes for this test class
 		 */
+		level = (PuzzleLevel) game.getCurrentLevel();
 		levelView = game.getLevelView();
 		board = level.getBoard();
 		bullpen = level.getBullpen();
@@ -70,20 +72,22 @@ public class TestPlayerPuzzle extends TestCase {
 		assertEquals(1, bullpen.numAvailablePieces());
 		assertEquals(null, bullpen.getSelectedPiece());
 		
+		
 		/*
 		 * create action event to select the piece group view, handle mouse event
 		 */
 		ActionEvent ae = new ActionEvent(bullpenView.getPieceGroupViews()[0].getSelectPieceButton(), ActionEvent.ACTION_PERFORMED, "stuff");
 		bullpenView.getPieceGroupViews()[0].getPieceSelectHandler().actionPerformed(ae);
+		
 
 		/*
 		 * verify that the correct piece was selected
 		 */
-//		bullpen.setSelectedPiece(1);
 		assertEquals(bullpen.getPlayablePieces().get(0).getPiece(), bullpen.getSelectedPiece());
 	}
 	
 	public void testPlacePiece () {
+		Move m;
 		/*
 		 * initialize board with 144 board tiles and verify
 		 */
@@ -100,6 +104,8 @@ public class TestPlayerPuzzle extends TestCase {
 		bullpen.incrementPiece(1);
 		bullpen.setSelectedPiece(1);
 		assertEquals(1, bullpen.numAvailablePieces());
+		
+//		m = new MouseEvent()
 	}
 	
 }
