@@ -134,7 +134,7 @@ public class LevelPropertiesView extends JPanel{
 	 */
 	public void setLevelModel(AbstractLevelModel levelModel) {
 		this.levelModel = levelModel;
-		tileCount = levelModel.getBoard().getNumBoardTiles();
+		tileCount = levelModel.getBoard().interactableTileCount();
 		lblTileCountVar.setText(Integer.toString(tileCount));
 	}
 	

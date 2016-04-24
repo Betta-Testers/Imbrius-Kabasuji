@@ -112,7 +112,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				if (mouseOn) {
 					move = new PieceToNewBoardTilesMove(bp, board, source, bpv);
 					if(move.doMove()){
-						bView.getLevelPropertiesView().adjustTileCount(6);
+						
 					}	
 				}
 			}else if(bView.getStateOfHintConvert()){
