@@ -70,7 +70,6 @@ public class LevelSelectionView extends JFrame {
 		AvailableLevelView av = new AvailableLevelView(i);
 		
 		if (numStars != -1) {
-			System.out.println(numStars);
 			av.unlockLevel(numStars);
 			addListenerToButton(i, g);
 		}

@@ -50,6 +50,5 @@ public class LightningTimerController extends WindowAdapter implements ActionLis
 	
 	public void windowClosing(WindowEvent we) {
 		timer.stop();
-		System.out.println("Timer stopped");
 	}
 }
