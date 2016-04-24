@@ -3,6 +3,7 @@ package controllers.builder;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import controllers.common.Move;
 import controllers.common.MovePieceOffBoardMove;
@@ -47,6 +48,10 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	SelectedPieceView spv;
 	/** Panel on the side that holds the toggle buttons for setting the tile number **/
 	ReleaseNumberCreationView rncv;
+	
+	/**Tracks all the pieces that governed a hint placement**/
+	ArrayList<Piece> hintPieces;
+	
 	/** Tracks if the mouse is on the board **/
 	boolean mouseOn;
 	/** Row offset between the origin tile and the tile that was clicked on within the piece **/
@@ -68,6 +73,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		this.boardView = bView.getBoardView();
 		this.rncv = bView.getReleaseNumberView();
 		this.spv = bView.getSelectedPieceView();
+		this.hintPieces = new ArrayList<Piece>();
 	}
 
 	/**
@@ -99,41 +105,31 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	 */
 	@Override
 	public void mouseReleased(MouseEvent me) {
+		Move move = null;
+		AbstractTile source = board.getTileAt(me.getX(), me.getY());
 		if(bView.getStateOfPlacement()){
 			if(bView.getStateOfBoardConvert()){
-				Move move = null;
-				AbstractTile source = board.getTileAt(me.getX(), me.getY());
 				if (mouseOn) {
 					move = new PieceToNewBoardTilesMove(bp, board, source, bpv);
 					move.doMove();
-					spv.getPiecePanel().redraw();
-					spv.getPiecePanel().repaint();
 				}
 			}else if(bView.getStateOfHintConvert()){
-				Move move = null;
-				AbstractTile source = board.getTileAt(me.getX(), me.getY());
 				if (mouseOn) {
 					move = new PieceToHintMove(bp, board, source, bpv);
 					move.doMove();
-					spv.getPiecePanel().redraw();
-					spv.getPiecePanel().repaint();
 				}
 			}else{
-				Move move = null;
-				AbstractTile source = board.getTileAt(me.getX(), me.getY());
 				if (mouseOn) {
 					move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
 					if(!move.doMove()){
 						move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
 						move.doMove();
 					}
-					spv.getPiecePanel().redraw();
-					spv.getPiecePanel().repaint();
 				}
 			}
+			spv.getPiecePanel().redraw();
+			spv.getPiecePanel().repaint();
 		}else if(rncv.getNumberSelected() < 0){
-			AbstractTile source = board.getTileAt(me.getX(), me.getY());
-			Move move;
 			move = new SwapTileBoardToEmptyMove(source, board);
 			if(!move.doMove()){
 				move = new SwapTileEmptyToBoardMove(source, board);
@@ -143,8 +139,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				}
 			}
 		}else{
-			AbstractTile source = board.getTileAt(me.getX(), me.getY());
-			Move move;
 			move = new SwapTileBoardToReleaseMove(rncv, source, board);
 			if(!move.doMove()){
 				move = new SwapTileReleaseToReleaseMove(rncv, source, board);
