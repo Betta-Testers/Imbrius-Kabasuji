@@ -2,6 +2,9 @@ package controllers.player;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.text.DecimalFormat;
 
 import javax.swing.Timer;
@@ -11,7 +14,7 @@ import model.LightningLevel;
 import view.LevelView;
 import view.TimeRemainingView;
 
-public class LightningTimerController implements ActionListener{
+public class LightningTimerController extends WindowAdapter implements ActionListener{
 	LevelView view;
 	Game game;
 	Timer timer;
@@ -43,5 +46,9 @@ public class LightningTimerController implements ActionListener{
 			game.getExitView().setVisible(true);
 			view.dispose();
 		}
+	}
+	
+	public void windowClosing(WindowEvent we) {
+		timer.stop();
 	}
 }
