@@ -3,7 +3,6 @@ package model;
 import junit.framework.TestCase;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 
 /**

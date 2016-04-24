@@ -7,7 +7,6 @@ import view.BuilderView;
 import model.AbstractTile;
 import model.Board;
 import model.Bullpen;
-import model.EmptyTile;
 import model.PieceGroup;
 import model.PuzzleLevel;
 import app.Builder;

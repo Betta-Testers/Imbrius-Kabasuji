@@ -5,11 +5,6 @@ import javax.swing.Timer;
 import java.awt.event.MouseEvent;
 import app.Builder;
 import controllers.builder.BuilderSplashTimerController;
-import model.Board;
-import model.Bullpen;
-import model.PuzzleLevel;
-import view.BuilderView;
-import view.BullpenView;
 import view.SplashScreen;
 
 /**

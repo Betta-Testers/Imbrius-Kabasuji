@@ -12,7 +12,6 @@ import controllers.common.PlacePieceOnBoardFromBullpenMove;
 import model.Board;
 import model.BoardTile;
 import model.Bullpen;
-import model.EmptyTile;
 import model.Piece;
 import model.PieceGroup;
 import model.PuzzleLevel;
