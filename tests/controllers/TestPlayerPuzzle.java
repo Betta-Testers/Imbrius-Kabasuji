@@ -4,14 +4,13 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
-
-import controllers.common.Move;
 import view.BoardView;
 import view.BullpenView;
 import view.LevelView;
 import model.Board;
 import model.BoardTile;
 import model.Bullpen;
+import model.Piece;
 import model.PuzzleLevel;
 import app.Game;
 import app.LevelFactory;
@@ -211,8 +210,115 @@ public class TestPlayerPuzzle extends TestCase {
 	}
 	
 	//====================== Test Moving a Piece from Board to Board ======================//
-	public void testMovePiece() {
+	public void testMovePieceOnBoard() {
+		MouseEvent me;
+		/*
+		 * initialize board with 144 board tiles and verify
+		 */
+		for(int i = 0; i < 12; i++) {
+			for(int j = 0; j < 12; j++) {
+				board.swapTile(new BoardTile(i, j));
+			}
+		}
+		assertEquals(144, board.getNumBoardTiles());
 		
+		board.putPieceOnBoard(new Piece(1), 3, 3);
+		assertEquals(138, board.getNumBoardTiles());
+		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 3*board.getTileSize()).getTileType());
+		
+		/*
+		 * created mouse entered event
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_ENTERED, 
+				System.currentTimeMillis(), 0, 
+				boardView.getX(), 
+				boardView.getY(), 0, false);
+		level.getBoardController().mouseEntered(me);
+		
+		/*
+		 * select piece
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_PRESSED, 
+				System.currentTimeMillis(), 0, 
+				3*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		level.getBoardController().mousePressed(me);
+		
+		/*
+		 * drag piece to new spot, verify that it will fit
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_DRAGGED, 
+				System.currentTimeMillis(), 0, 
+				5*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		level.getBoardController().mouseDragged(me);
+		assertEquals(Color.GREEN, board.getTileAt(5*board.getTileSize(), 3*board.getTileSize()).getColor());
+		assertEquals("board", board.getTileAt(boardView.getX(), boardView.getY()).getTileType());
+		
+		/*
+		 * place elsewhere, verify new placement
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_RELEASED, 
+				System.currentTimeMillis(), 0, 
+				5*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		level.getBoardController().mouseReleased(me);
+		assertEquals("board", board.getTileAt(3*board.getTileSize(), 3*board.getTileSize()).getTileType());
+		assertEquals("piece", board.getTileAt(5*board.getTileSize(), 3*board.getTileSize()).getTileType());
+	}
+	
+	//====================== Test Removing a Piece from the Board ======================//
+	public void testRemovePieceFromBoard() {
+		MouseEvent me;
+		/*
+		 * initialize board with 144 board tiles and verify
+		 */
+		for(int i = 0; i < 12; i++) {
+			for(int j = 0; j < 12; j++) {
+				board.swapTile(new BoardTile(i, j));
+			}
+		}
+		assertEquals(144, board.getNumBoardTiles());
+		
+		board.putPieceOnBoard(new Piece(1), 3, 3);
+		assertEquals(138, board.getNumBoardTiles());
+		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 3*board.getTileSize()).getTileType());
+		
+		/*
+		 * created mouse entered event
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_ENTERED, 
+				System.currentTimeMillis(), 0, 
+				boardView.getX(), 
+				boardView.getY(), 0, false);
+		level.getBoardController().mouseEntered(me);
+		
+		/*
+		 * select piece
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_PRESSED, 
+				System.currentTimeMillis(), 0, 
+				3*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		level.getBoardController().mousePressed(me);
+		
+		/*
+		 * exit board, verify that the board is made up of board tiles entirely
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_EXITED, 
+				System.currentTimeMillis(), 0, 
+				boardView.getX(), 
+				boardView.getX(), 0, false);
+		level.getBoardController().mouseExited(me);
+		
+		assertEquals(144, board.getNumBoardTiles());
 	}
 	
 }
