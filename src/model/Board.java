@@ -222,6 +222,29 @@ public class Board implements Serializable{
 			}
 		}
 	}
+	
+	/**
+	 * changes color of tiles that may be placed, green if
+	 * @param bt the tile being put onto the board
+	 * @return the tile that was replaced.
+	 */
+	public void showConversionPreview(Piece p, int row, int col){
+		if(isValidConvert(p, row, col)){
+			for(int i = 0; i<6; i++){
+				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+			}
+		}else{
+			for(int i = 0; i<6; i++){
+				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
+						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
+					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
+				}else{
+					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+
+				}
+			}
+		}
+	}
 
 	/**
 	 * Returns the total number of board tiles still remaining on the board

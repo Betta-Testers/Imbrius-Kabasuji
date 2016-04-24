@@ -187,12 +187,22 @@ public class BuilderView extends JFrame {
 		return tglbtnPlacePieces.isSelected();
 	}
 	
+	/**
+	 * Returns whether the toggle button for piece to board conversion is 
+	 * turned on (true) or not (false)
+	 * @return boolean about state
+	 */
 	public boolean getStateOfBoardConvert(){
-		
+		return tglbtnPlaceBoard.isSelected();
 	}
 	
+	/**
+	 * Returns whether the toggle button for piece to hint conversion is 
+	 * turned on (true) or not (false)
+	 * @return boolean about state
+	 */
 	public boolean getStateOfHintConvert(){
-		
+		return tglbtnPlaceHints.isSelected();
 	}
 	
 	/**

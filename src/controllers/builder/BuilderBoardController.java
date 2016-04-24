@@ -60,7 +60,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		this.spv = bView.getSelectedPieceView();
 	}
 
-
 	/**
 	 * Select a piece that is currently on the board, if the tile that was clicked is part of a piece. 
 	 * Removes piece from the board, and sets it as the dragged piece in the board entity
@@ -91,16 +90,29 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
-			Move move = null;
-			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
-			if (mouseOn) {
-				move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
-				if(!move.doMove()){
-					move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
+			if(bView.getStateOfBoardConvert()){
+				Move move = null;
+				AbstractTile source = board.getTileAt(me.getX(), me.getY());
+				if (mouseOn) {
+					move = new PieceToNewBoardTilesMove(m, source, bpv);
 					move.doMove();
+					spv.getPiecePanel().redraw();
+					spv.getPiecePanel().repaint();
 				}
-				spv.getPiecePanel().redraw();
-				spv.getPiecePanel().repaint();
+			}else if(bView.getStateOfHintConvert()){
+
+			}else{
+				Move move = null;
+				AbstractTile source = board.getTileAt(me.getX(), me.getY());
+				if (mouseOn) {
+					move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
+					if(!move.doMove()){
+						move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
+						move.doMove();
+					}
+					spv.getPiecePanel().redraw();
+					spv.getPiecePanel().repaint();
+				}
 			}
 		}else if(rncv.getNumberSelected() < 0){
 			AbstractTile source = board.getTileAt(me.getX(), me.getY());
@@ -125,7 +137,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		boardView.redraw();
 		boardView.repaint();
 	}
-
 
 	/**
 	 * Tracks if mouse is over the board
@@ -153,7 +164,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
-	
+
 	/**
 	 * Shows a preview of the piece being dragged (if there is one)
 	 * 
@@ -176,7 +187,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
-	
+
 	/**
 	 * Show a preview of the piece that is selected to be placed (if it exists)
 	 * 
@@ -185,15 +196,28 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	@Override
 	public void mouseMoved(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
-			Piece p;
-			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
-			p = bp.getSelectedPiece();
+			if(bView.getStateOfBoardConvert()){
+				Piece p;
+				AbstractTile source  = board.getTileAt(me.getX(), me.getY());
+				p = bp.getSelectedPiece();
 
-			if(p != null){
-				board.clearPiecePreview();
-				board.showPiecePreview(p, source.getRow(), source.getCol());
-				boardView.redraw();
-				boardView.repaint();
+				if(p != null){
+					board.clearPiecePreview();
+					board.showConversionPreview(p, source.getRow(), source.getCol());
+					boardView.redraw();
+					boardView.repaint();
+				}
+			}else{
+				Piece p;
+				AbstractTile source  = board.getTileAt(me.getX(), me.getY());
+				p = bp.getSelectedPiece();
+
+				if(p != null){
+					board.clearPiecePreview();
+					board.showPiecePreview(p, source.getRow(), source.getCol());
+					boardView.redraw();
+					boardView.repaint();
+				}
 			}
 		}
 	}

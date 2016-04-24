@@ -33,15 +33,13 @@ public class PieceToNewBoardTilesMove extends Move{
 		this.sourceTile = tile;
 		this.p = bullpen.getSelectedPiece();
 		
-		p.setLocation(tile.getRow(), tile.getCol());
 	}
 	
 	public boolean doMove() {
 		if (isValid()) {
+			p.setLocation(sourceTile.getRow(), sourceTile.getCol());
 			for(int i = 0; i < 6; i++){
-				System.out.println(p.getTiles()[i].getRow() +"," + p.getTiles()[i].getCol());
-				board.swapTile(new BoardTile(p.getTiles()[i].getRow(), 
-											 p.getTiles()[i].getCol()));
+				board.swapTile(new BoardTile(p.getTiles()[i].getRow(), p.getTiles()[i].getCol()));
 			}
 			bullpen.clearSelectedPiece();
 			return true;
@@ -50,7 +48,12 @@ public class PieceToNewBoardTilesMove extends Move{
 	}
 	
 	public boolean isValid() {		
-		return board.isValidConvert(p, sourceTile.getRow(), sourceTile.getCol());
+		if(bullpen.getSelectedPiece() != null){
+			if(board.isValidConvert(p, sourceTile.getRow(), sourceTile.getCol())){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean undo() {
