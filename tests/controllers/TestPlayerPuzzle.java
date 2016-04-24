@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
+
 import view.BoardView;
 import view.BullpenView;
 import view.LevelView;
@@ -319,6 +320,58 @@ public class TestPlayerPuzzle extends TestCase {
 		level.getBoardController().mouseExited(me);
 		
 		assertEquals(144, board.getNumBoardTiles());
+	}
+	
+	//====================== Test Stars Earned ======================//
+	public void testStarsEarned() {
+		MouseEvent me;
+		/*
+		 * initialize board with 18 board tiles and 4 moves and verify
+		 */
+		for(int i = 0; i < 6; i++) {
+			for(int j = 0; j < 3; j++) {
+				board.swapTile(new BoardTile(i, j));
+			}
+		}
+		level.setMoveLimit(0);
+		/*
+		 * verify initial state
+		 */
+		assertEquals(18, board.getNumBoardTiles());
+		assertTrue(level.checkStatus()); // no moves left, thus level is complete
+		assertEquals(0, level.getStarsEarned());
+		
+		/*
+		 * increment number of moves to be able to update stars
+		 */
+		level.setMoveLimit(4);
+		assertEquals(18, board.getNumBoardTiles());
+		assertFalse(level.checkStatus()); 
+		assertEquals(0, level.getStarsEarned());
+		
+		/*
+		 * add piece and verify changes
+		 */
+		assertTrue(board.putPieceOnBoard(new Piece(1), 2, 0));
+		assertEquals(12, board.getNumBoardTiles());
+		assertFalse(level.checkStatus());
+		assertEquals(1, level.getStarsEarned());
+		
+		/*
+		 * add piece and verify changes
+		 */
+		assertTrue(board.putPieceOnBoard(new Piece(1), 2, 1));
+		assertEquals(6, board.getNumBoardTiles());
+		assertFalse(level.checkStatus());
+		assertEquals(2, level.getStarsEarned());
+		
+		/*
+		 * add piece and verify changes
+		 */
+		assertTrue(board.putPieceOnBoard(new Piece(1), 2, 2));
+		assertEquals(0, board.getNumBoardTiles());
+		assertTrue(level.checkStatus()); // level is complete
+		assertEquals(3, level.getStarsEarned());
 	}
 	
 }

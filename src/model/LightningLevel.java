@@ -7,6 +7,7 @@ import app.Game;
 import controllers.player.ExitLevelButtonController;
 import controllers.player.LightningBoardGameController;
 import controllers.player.LightningTimerController;
+import controllers.player.PuzzleBoardGameController;
 import view.LevelView;
 import view.TimeRemainingView;
 
@@ -21,6 +22,9 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	
 	/**Total time the level has to be played, in seconds**/
 	int totalTime;
+	
+	/** The lbgc is the controller that handles mouse actions associated with THIS level's board**/
+	LightningBoardGameController lbgc;
 
 	/**
 	 * Makes a lightninglevel
@@ -76,7 +80,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	public LevelView initializeGame(Game g) {
 		LevelView view = new LevelView("Lightning", new TimeRemainingView(this), this);
 		view.addWindowListener(new ExitLevelButtonController(view, g));
-		LightningBoardGameController lbgc = new LightningBoardGameController(g, view);
+		lbgc = new LightningBoardGameController(g, view);
 		view.getBoardView().addMouseListener(lbgc);
 		view.getBoardView().addMouseMotionListener(lbgc);
 		@SuppressWarnings("unused")
@@ -99,6 +103,10 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
+	}
+	
+	public LightningBoardGameController getBoardController() {
+		return this.lbgc;
 	}
 
 }
