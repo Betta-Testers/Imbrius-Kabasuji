@@ -31,17 +31,27 @@ import model.PieceTile;
  */
 
 public class BuilderBoardController implements MouseListener, MouseMotionListener {
+	/** Top level view for the level editor/creator **/
 	BuilderView bView;
+	/** Entity that is currently being edited **/
 	AbstractLevelModel m;
+	/** Board model that this controller acts on **/
 	Board board;
+	/** Bullpen model in the current level **/
 	Bullpen bp;
+	/** View of the current bullpen **/
 	BullpenView bpv;
-	Piece draggedPiece;
+	/** View for the current board **/
 	BoardView boardView;
+	/** View of the piece that is selected to be placed from the bullpen **/
 	SelectedPieceView spv;
+	/** Panel on the side that holds the toggle buttons for setting the tile number **/
 	ReleaseNumberCreationView rncv;
+	/** Tracks if the mouse is on the board **/
 	boolean mouseOn;
+	/** Row offset between the origin tile and the tile that was clicked on within the piece **/
 	int rOffset;
+	/** Column offset between the origin tile and the tile that was clicked on within the piece **/
 	int cOffset;
 
 	/** 

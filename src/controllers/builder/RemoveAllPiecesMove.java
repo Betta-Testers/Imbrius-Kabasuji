@@ -18,6 +18,11 @@ public class RemoveAllPiecesMove extends Move {
 	Board b;
 	ArrayList<Piece> piecesRemoved;
 	
+	/**
+	 * @param b Board in the builder
+	 * @param bp Bullpen in the builder
+	 * @param bpv View of the bullpen
+	 */
 	public RemoveAllPiecesMove (Board b, Bullpen bp, BullpenView bpv) {
 		this.bpv = bpv;
 		this.bp = bp;
@@ -56,7 +61,7 @@ public class RemoveAllPiecesMove extends Move {
 	/**
 	 * Undoes the removal of all pieces on a board. Does so by iterating over the pieces that were removed
 	 * and adds them back to the board. Decrements count in the bullpen as well and updates the view.
-	 * @return boolean. False if there are pieces on the board.
+	 * @return boolean False if there are pieces on the board.
 	 */
 	@Override
 	public boolean undo() {
@@ -71,7 +76,7 @@ public class RemoveAllPiecesMove extends Move {
 	/**
 	 * Redoes the undone move. Only valid if no NEW moves have been done that 
 	 * would break the undo order. Redoes the move by calling doMove();
-	 * @return boolean, if the move could be completed
+	 * @return boolean if the move could be completed
 	 */
 	@Override
 	public boolean redo() {
