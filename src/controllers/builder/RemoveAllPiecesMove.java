@@ -15,18 +15,18 @@ import view.BullpenView;
 public class RemoveAllPiecesMove extends Move {
 	BullpenView bpv;
 	Bullpen bp;
-	Board b;
+	Board board;
 	ArrayList<Piece> piecesRemoved;
 	
 	/**
-	 * @param b Board in the builder
+	 * @param board Board in the builder
 	 * @param bp Bullpen in the builder
 	 * @param bpv View of the bullpen
 	 */
-	public RemoveAllPiecesMove (Board b, Bullpen bp, BullpenView bpv) {
+	public RemoveAllPiecesMove (Board board, Bullpen bp, BullpenView bpv) {
 		this.bpv = bpv;
 		this.bp = bp;
-		this.b = b;
+		this.board = board;
 		this.piecesRemoved = new ArrayList<Piece>();
 	}
 	
@@ -39,7 +39,7 @@ public class RemoveAllPiecesMove extends Move {
 	@Override
 	public boolean doMove() {
 		if(!isValid()){ return false;}
-		piecesRemoved = b.resetBoard();
+		piecesRemoved = board.resetBoard();
 		for(Piece p: piecesRemoved){
 			bp.incrementPiece(p.getID());
 			bpv.updatePieceGroup(p);
@@ -54,7 +54,7 @@ public class RemoveAllPiecesMove extends Move {
 	 */
 	@Override
 	public boolean isValid() {
-		if(b.getPieceCount() > 0){return true;}
+		if(board.getPieceCount() > 0){return true;}
 		return false;
 	}
 

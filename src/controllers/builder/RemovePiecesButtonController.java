@@ -17,7 +17,7 @@ import view.BullpenView;
  */
 
 public class RemovePiecesButtonController implements ActionListener{
-	Board b;
+	Board board;
 	BoardView bv;
 	Bullpen bp;
 	BullpenView bpv;
@@ -28,15 +28,15 @@ public class RemovePiecesButtonController implements ActionListener{
 	 * @param bp 
 	 * @param bpv
 	 */
-	public RemovePiecesButtonController(Board b, BoardView bv, Bullpen bp, BullpenView bpv) {
-		this.b = b;
+	public RemovePiecesButtonController(Board board, BoardView bv, Bullpen bp, BullpenView bpv) {
+		this.board = board;
 		this.bv = bv;
 		this.bp = bp;
 		this.bpv = bpv;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		Move m = new RemoveAllPiecesMove(b, bp, bpv);
+		Move m = new RemoveAllPiecesMove(board, bp, bpv);
 		if(m.doMove()){
 			bv.redraw();
 			bv.repaint();
