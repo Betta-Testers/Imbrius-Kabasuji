@@ -134,30 +134,12 @@ public class RemoveHintMove extends Move {
 	 */
 	void removeFromList(Piece p) {
 		for(int i = 0; i < hintPieces.size(); i++){
-			if(specialEquals(hintPieces.get(i), p)){
+			if(hintPieces.get(i).occupiesSameCoorindates(p)){
 				hintPieces.remove(i);
 				break;
 			}
 		}
 	}
 
-	/**
-	 * Checks if two pieces are equals based on the coordinates of their tiles,
-	 * not the actual tiles themselves.
-	 * @param piece - piece being compared to
-	 * @param p2 - comparison piece
-	 * @return true if the two have matching coordinates
-	 */
-	boolean specialEquals(Piece piece, Piece p2) {
-		for(PieceTile o: piece.getTiles()){
-			for(int i = 0; i < p2.getTiles().length; i++){
-				if(o.getRow() == p2.getTiles()[i].getRow() && o.getCol() == p2.getTiles()[i].getCol()){
-					break;
-				}else if(i ==  p2.getTiles().length-1){ //Entire second piece couldnt find tile with those coordinates
-					return false;
-				}
-			}
-		}
-		return true;
-	}
+	
 }
