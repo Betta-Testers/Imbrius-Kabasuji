@@ -9,10 +9,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+/**
+ *
+ * @author bwoconnor
+ * 
+ */
 public class SplashScreen extends JFrame {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	JLabel lblGameName;

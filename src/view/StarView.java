@@ -11,7 +11,9 @@ import javax.swing.ImageIcon;
 public class StarView extends JPanel {
 
 	/**
-	 * 
+	 * @author awharrison
+	 * @author bwoconnor
+	 * @author hejohnson
 	 */
 	private static final long serialVersionUID = 1L;
 	/**

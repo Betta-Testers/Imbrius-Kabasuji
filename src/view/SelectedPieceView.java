@@ -14,6 +14,11 @@ import controllers.common.RotatePieceLeftController;
 import controllers.common.RotatePieceRightController;
 import model.Bullpen;
 
+/**
+ * 
+ * @author dfontana
+ *
+ */
 public class SelectedPieceView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
