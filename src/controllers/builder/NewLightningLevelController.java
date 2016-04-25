@@ -32,13 +32,9 @@ public class NewLightningLevelController implements MouseListener{
 		this.descriptionText = descriptionText;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		
-	}
-
 	/**
 	 * Sets the textArea's description to level-specific message when entering button
+	 * @param mouseEvent when entered
 	 */
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
@@ -46,6 +42,7 @@ public class NewLightningLevelController implements MouseListener{
 	}
 	/**
 	 * Sets the textArea's description back to default message when leaving button
+	 * @param mouseEvent when exited
 	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
@@ -54,6 +51,7 @@ public class NewLightningLevelController implements MouseListener{
 	
 	/**
 	 * Creates a new builder, and sets up the windows to show the level and hide the level type select view
+	 * @param mouseEvent when pressed
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0){
@@ -61,6 +59,9 @@ public class NewLightningLevelController implements MouseListener{
 		b.getLevelTypeSelectView().setVisible(false);
 		b.getBuilderView().setVisible(true);
 	}
+	
+	@Override
+	public void mouseClicked(MouseEvent arg0) {}
 	@Override
 	public void mouseReleased(MouseEvent arg0){}
 }

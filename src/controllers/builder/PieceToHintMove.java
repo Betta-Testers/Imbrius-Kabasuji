@@ -11,7 +11,6 @@ import model.Piece;
 
 /**
  * Move class for converting a piece into a hint on the board
- * 
  * @author Evan
  * @author Dylan
  */
@@ -29,7 +28,7 @@ public class PieceToHintMove extends Move{
 	
 	/**
 	 * Constructs a Piece to Hint Move
-	 * @param hintPieces 
+	 * @param hintPieces - pieces known to be hints on the board
 	 * @param bp - Bullpen being modified
 	 * @param b - Board having a hint placed on it
 	 * @param source - Tile that was clicked
@@ -93,21 +92,12 @@ public class PieceToHintMove extends Move{
 	}
 	
 	/** 
-	 * The move is redone by executing the mvoe again.
+	 * The move is redone by executing the move again.
 	 * @return true
 	 */
 	public boolean redo() {
 		doMove();
 		return true;
-	}
-	
-	/**
-	 * Returns the piece that was used to make the hint. 
-	 * Necessary for the ability to remove a hint via a click 
-	 * @return The model piece used to make the hint
-	 */
-	public Piece modelPiece(){
-	 return p;
 	}
 	
 	/**

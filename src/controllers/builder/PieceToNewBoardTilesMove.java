@@ -39,7 +39,6 @@ public class PieceToNewBoardTilesMove extends Move{
 		this.sourceTile = tile;
 		this.p = bullpen.getSelectedPiece();
 		this.lpv = lpv;
-		
 	}
 	
 	/**

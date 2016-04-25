@@ -61,7 +61,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	int cOffset;
 
 	/** 
-	 * 
+	 * Creates the builder board's controller
 	 * @param builderView The BuilderView that this controller updates the state of
 	 * @param levelModel The level entity that is being built
 	 */

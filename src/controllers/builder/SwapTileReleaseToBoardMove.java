@@ -22,7 +22,11 @@ public class SwapTileReleaseToBoardMove extends Move {
 	/** The tile that is created to replace the oldTile **/
 	BoardTile newTile;
 	
-	
+	/**
+	 * Creates the move
+	 * @param old - tile that was clicked
+	 * @param b - board whose tiles are being swapped
+	 */
 	public  SwapTileReleaseToBoardMove(AbstractTile old, Board b) {
 		this.board = b;
 		this.oldTile = old;
@@ -53,12 +57,20 @@ public class SwapTileReleaseToBoardMove extends Move {
 		return false;
 	}
 
+	/**
+	 * Undoes the move by swapping the tiles
+	 * @return true - the move can always be undone
+	 */
 	@Override
 	public boolean undo() {
 		board.swapTile(oldTile);
 		return true;
 	}
 
+	/**
+	 * Redoes the move by swapping the tiles again
+	 * @return true - the move can always be redone
+	 */
 	@Override 
 	public boolean redo() {
 		board.swapTile(newTile);

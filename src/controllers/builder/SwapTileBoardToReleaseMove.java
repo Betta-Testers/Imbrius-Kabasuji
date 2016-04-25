@@ -25,8 +25,13 @@ public class SwapTileBoardToReleaseMove extends Move {
 	/** The tile that is created to replace the oldTile **/
 	ReleaseTile newTile;
 
-
-	public  SwapTileBoardToReleaseMove (ReleaseNumberCreationView rncv, AbstractTile old, Board b) {
+	/**
+	 * Creates the move
+	 * @param rncv - view of the release creation
+	 * @param old - tile that was clicked
+	 * @param b - board whose tiles are being swapped
+	 */
+	public SwapTileBoardToReleaseMove (ReleaseNumberCreationView rncv, AbstractTile old, Board b) {
 		this.board = b;
 		this.rncv = rncv;
 		this.oldTile = old;
@@ -57,12 +62,20 @@ public class SwapTileBoardToReleaseMove extends Move {
 		return false;
 	}
 
+	/**
+	 * Undoes the move by swapping the tiles.
+	 * @return true - the move can always be undone.
+	 */
 	@Override
 	public boolean undo() {
 		board.swapTile(oldTile);
 		return true;
 	}
 
+	/**
+	 * Redoes the move by swapping the tiles again.
+	 * @return true - the move can always be redone.
+	 */
 	@Override 
 	public boolean redo() {
 		board.swapTile(newTile);

@@ -15,9 +15,17 @@ import model.Piece;
  * @author Dylan
  */
 public class SaveAndCloseLevelButtonController implements ActionListener {
+	/**The builder whose level is being saved**/
 	Builder builder;
+	/**The board of the level being saved**/
 	Board board;
+	/**The bullpen of the level being saved**/
 	Bullpen bullpen;
+	
+	/**
+	 * Creates the controller
+	 * @param b - Builder whose level is being saved and closed
+	 */
 	public SaveAndCloseLevelButtonController (Builder b) {
 		this.builder = b;
 		this.board = builder.getCurrentLevel().getBoard();
@@ -26,8 +34,9 @@ public class SaveAndCloseLevelButtonController implements ActionListener {
 
 	/**
 	 * When the level save button is triggered, the board is cleared of all pieces
-	 * first and puts them back in the bullpen. Then, the level is saved to disk, the builder view is hidden, and the 
-	 * LTSV is redisplayed.
+	 * first and puts them back in the bullpen. Then, the level is saved to disk, 
+	 * the builder view is hidden, and the levelTypeSelectView is redisplayed.
+	 * @param ActionEvent of button click
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		if(board.getPieceCount() > 0){

@@ -5,23 +5,26 @@ import javax.swing.JSpinner;
 import controllers.common.Move;
 import model.PieceGroup;
 
-
 /**
- * 
+ * Move handling the incrementing and decrementing of a piece group's count 
+ * spinner in the builder view.
  * @author dfontana
  */
 public class PieceGroupSpinnerMove extends Move {
 	/**PieceGroup whose value is being changed**/
 	PieceGroup model;
-	
 	/**Spinner being modified. Needed to update its view on an undo**/
 	JSpinner spinner;
 	/**Value the spinner/model previously had **/
 	int oldValue;
-	
 	/**Value the spinner is giving to the model **/
 	int newValue;
 	
+	/**
+	 * Constructs the PieceGroupSpinnerMove
+	 * @param model - pieceGroup whose count is being manipulated
+	 * @param spinner - spinner that is modifying the count
+	 */
 	public PieceGroupSpinnerMove(PieceGroup model, JSpinner spinner) {
 		this.model = model;
 		this.spinner = spinner;
@@ -30,7 +33,7 @@ public class PieceGroupSpinnerMove extends Move {
 	}
 
 	/**
-	 * 
+	 * Does the move by setting the value of the model from the value of the spinner
 	 * @return boolean - true if move is valid and successful
 	 */
 	@Override
@@ -63,8 +66,8 @@ public class PieceGroupSpinnerMove extends Move {
 	}
 	
 	/**
-	 * Redoes the undone move. Only valid if no NEW moves have been done that 
-	 * would break the undo order. Sets the spinner back to the value it was set to by the user in the original move
+	 * Redoes the undone move.
+	 * Sets the spinner back to the value it was set to by the user in the original move
 	 * @return true - the redo can always be done
 	 */
 	@Override
