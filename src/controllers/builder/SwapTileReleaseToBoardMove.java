@@ -1,6 +1,6 @@
 package controllers.builder;
 
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
@@ -12,7 +12,7 @@ import model.BoardTile;
  * @author awharrison
  * @author dfontana
  */
-public class SwapTileReleaseToBoardMove extends Move {
+public class SwapTileReleaseToBoardMove implements IMove {
 	/** Board in which the move is taking place **/
 	Board board;
 	

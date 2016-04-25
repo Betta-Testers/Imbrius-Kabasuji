@@ -10,7 +10,7 @@ import model.Piece;
  * @author hejohnson
  *
  */
-public class FlipVerticalMove extends Move {
+public class FlipVerticalMove implements IMove {
 	/** The piece to be flipped **/
 	Piece p;
 	/** The bullpen that contains the piece **/

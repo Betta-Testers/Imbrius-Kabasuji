@@ -1,7 +1,7 @@
 package controllers.builder;
 
 import java.util.ArrayList;
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.Board;
 import model.Bullpen;
 import model.Piece;
@@ -12,7 +12,7 @@ import view.BullpenView;
  * storing the pieces that were removed to later undo the move or redo as needed.
  * @author dfontana
  */
-public class RemoveAllPiecesMove extends Move {
+public class RemoveAllPiecesMove implements IMove {
 	/**Bullpen View that is being updated when all the pieces are added back**/
 	BullpenView bpv;
 	/**Bullpen whose pieces are returned to**/

@@ -3,7 +3,7 @@
  */
 package controllers.common;
 
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.Bullpen;
 import view.SelectPieceButton;
 
@@ -11,7 +11,7 @@ import view.SelectPieceButton;
  * @author hejohnson
  *
  */
-public class SelectPieceFromBullpenMove extends Move {
+public class SelectPieceFromBullpenMove implements IMove {
 	/** ID of the piece that is desired to be selected **/
 	int ID;
 	/** The bullpen that contains the piece and will hold the selected piece **/

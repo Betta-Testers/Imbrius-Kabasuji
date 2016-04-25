@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controllers.common;
 
 import java.awt.event.ActionEvent;
@@ -41,7 +38,7 @@ public class BullpenPieceSelectController implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		//TODO Make into move
 		SelectPieceButton source  = (SelectPieceButton) ae.getSource();
-		Move m = new SelectPieceFromBullpenMove(source, bp);
+		IMove m = new SelectPieceFromBullpenMove(source, bp);
 		if (m.doMove()) {
 			UndoManager.getInstance().pushMove(m);
 		}

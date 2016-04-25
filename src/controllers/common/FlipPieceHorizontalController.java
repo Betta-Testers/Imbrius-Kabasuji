@@ -41,7 +41,7 @@ public class FlipPieceHorizontalController implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		p = bullpen.getSelectedPiece();
 		if (p != null) {
-			Move m = new FlipHorizontalMove(p, bullpen);
+			IMove m = new FlipHorizontalMove(p, bullpen);
 			if (m.doMove()) {
 				UndoManager.getInstance().pushMove(m);
 			}

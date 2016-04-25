@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controllers.common;
 
 import java.awt.event.ActionEvent;
@@ -42,7 +39,7 @@ public class FlipPieceVerticalController implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		p = bullpen.getSelectedPiece();
 		if (p != null) {
-			Move m = new FlipVerticalMove(p, bullpen);
+			IMove m = new FlipVerticalMove(p, bullpen);
 			if (m.doMove()) {
 				UndoManager.getInstance().pushMove(m);
 			}

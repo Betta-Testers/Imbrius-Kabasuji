@@ -2,7 +2,7 @@ package controllers.builder;
 
 import javax.swing.JSpinner;
 
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.PieceGroup;
 
 /**
@@ -10,7 +10,7 @@ import model.PieceGroup;
  * spinner in the builder view.
  * @author dfontana
  */
-public class PieceGroupSpinnerMove extends Move {
+public class PieceGroupSpinnerMove implements IMove {
 	/**PieceGroup whose value is being changed**/
 
 	PieceGroup pieceGroup;

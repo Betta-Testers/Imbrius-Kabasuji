@@ -9,7 +9,7 @@ import java.awt.Color;
 
 import controllers.builder.SwapTileBoardToEmptyMove;
 import controllers.builder.SwapTileEmptyToBoardMove;
-import controllers.common.Move;
+import controllers.common.IMove;
 import controllers.common.MovePieceOffBoardMove;
 import controllers.common.MovePieceOnBoardMove;
 import controllers.common.PlacePieceOnBoardFromBullpenMove;
@@ -217,7 +217,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 	
 	//====================== Empty to Board Tile to Empty Swapping ======================//
 	public void testTileEmptyToBoardSwapMove() {
-		Move m;
+		IMove m;
 		m = new SwapTileEmptyToBoardMove(board.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), buildView.getLevelPropertiesView());
 		assertTrue(m.doMove());
 		assertEquals(1, board.getNumBoardTiles());
@@ -238,7 +238,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 	
 	//====================== Place Piece on Board from Bullpen Move ======================//
 	public void testMovePiecesOnBoardFromBullpen() {
-		Move m;
+		IMove m;
 		
 		/*
 		 * initialize bullpen
@@ -296,7 +296,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 	
 	//====================== Move Piece Board to Board Move ======================//
 	public void testMovePiecesOnBoard() {
-		Move m;
+		IMove m;
 		
 		/*
 		 * swap tiles to be able to place pieces
@@ -350,7 +350,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 	
 	//====================== Move Piece Off Board Move ======================//
 	public void testMovePiecesOffBoard() {
-		Move m;
+		IMove m;
 		/*
 		 * swap tiles to be able to place pieces
 		 */

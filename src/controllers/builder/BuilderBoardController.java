@@ -6,7 +6,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import app.UndoManager;
-import controllers.common.Move;
+import controllers.common.IMove;
 import controllers.common.MovePieceOffBoardMove;
 import controllers.common.MovePieceOnBoardMove;
 import controllers.common.PlacePieceOnBoardFromBullpenMove;
@@ -108,7 +108,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	 */
 	@Override
 	public void mouseReleased(MouseEvent me) {
-		Move move = null;
+		IMove move = null;
 		AbstractTile source = board.getTileAt(me.getX(), me.getY());
 		
 		if(bView.getStateOfPlacement()){
@@ -201,7 +201,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	public void mouseExited(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
 			mouseOn = false;
-			Move move = new MovePieceOffBoardMove(lm, bpv);
+			IMove move = new MovePieceOffBoardMove(lm, bpv);
 			if(move.doMove()){
 				UndoManager.getInstance().pushMove(move);
 			}

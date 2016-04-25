@@ -13,7 +13,7 @@ import model.Piece;
  * @author Dylan
  * @author awharrison
  */
-public class MovePieceOnBoardMove extends Move{
+public class MovePieceOnBoardMove implements IMove{
 	AbstractLevelModel levelModel;
 	Board board;
 	/** Piece being dragged in the board **/

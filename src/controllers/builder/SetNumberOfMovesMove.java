@@ -1,18 +1,15 @@
-/**
- * 
- */
 package controllers.builder;
 
 import javax.swing.JSpinner;
 
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.PuzzleLevel;
 
 /**
  * Move for adjusting the total number of moves in the puzzle level editor
  * @author dfontana
  */
-public class SetNumberOfMovesMove extends Move {
+public class SetNumberOfMovesMove implements IMove {
 	/**PuzzleLevel whose move limit is being set**/
 	PuzzleLevel pl;
 	/**Spinner affecting the move limit**/

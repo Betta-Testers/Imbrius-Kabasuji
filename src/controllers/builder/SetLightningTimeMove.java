@@ -2,7 +2,7 @@ package controllers.builder;
 
 import javax.swing.JSpinner;
 
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.LightningLevel;
 
 /**
@@ -10,7 +10,7 @@ import model.LightningLevel;
  * @author hejohnson
  * @author dfontana
  */
-public class SetLightningTimeMove extends Move {
+public class SetLightningTimeMove implements IMove {
 	/**Lightning level whose time is being set**/
 	LightningLevel ll;
 	/**Spinner that is manipulating the time**/

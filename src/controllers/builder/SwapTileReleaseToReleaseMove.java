@@ -1,7 +1,7 @@
 package controllers.builder;
 
 import view.ReleaseNumberCreationView;
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.AbstractTile;
 import model.Board;
 import model.ReleaseTile;
@@ -12,7 +12,7 @@ import model.ReleaseTile;
  * @author awharrison
  * @author dfontana
  */
-public class SwapTileReleaseToReleaseMove extends Move {
+public class SwapTileReleaseToReleaseMove implements IMove {
 	/** Board in which the move is taking place **/
 	Board board;
 	

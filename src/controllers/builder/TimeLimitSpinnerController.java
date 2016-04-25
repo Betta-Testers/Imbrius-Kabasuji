@@ -5,7 +5,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import app.UndoManager;
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.LightningLevel;
 
 /**
@@ -34,7 +34,7 @@ public class TimeLimitSpinnerController implements ChangeListener {
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		JSpinner timeSpin = (JSpinner)e.getSource();
-		Move m = new SetLightningTimeMove(ll, timeSpin);
+		IMove m = new SetLightningTimeMove(ll, timeSpin);
 		if (m.doMove()) {
 			UndoManager.getInstance().pushMove(m);
 		}

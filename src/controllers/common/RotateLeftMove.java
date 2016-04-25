@@ -10,7 +10,7 @@ import model.Piece;
  * @author hejohnson
  *
  */
-public class RotateLeftMove extends Move {
+public class RotateLeftMove implements IMove {
 	/** The piece to be rotated **/
 	Piece p;
 	/** The bullpen that contains the piece **/

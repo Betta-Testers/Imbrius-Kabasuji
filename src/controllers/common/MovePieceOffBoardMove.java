@@ -10,7 +10,7 @@ import view.BullpenView;
  * @author hejohnson
  * @author dfontana
  */
-public class MovePieceOffBoardMove extends Move {
+public class MovePieceOffBoardMove implements IMove {
 	/** The level associated with this move.**/
 	AbstractLevelModel levelModel;
 	

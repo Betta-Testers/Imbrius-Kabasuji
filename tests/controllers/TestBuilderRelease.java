@@ -9,7 +9,7 @@ import controllers.builder.SwapTileBoardToReleaseMove;
 import controllers.builder.SwapTileEmptyToBoardMove;
 import controllers.builder.SwapTileReleaseToBoardMove;
 import controllers.builder.SwapTileReleaseToReleaseMove;
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.Board;
 import model.BoardTile;
 import model.EmptyTile;
@@ -161,7 +161,7 @@ public class TestBuilderRelease extends TestCase {
 	}
 	
 	public void testTileBoardToReleaseSwapMove() {
-		Move m;
+		IMove m;
 		/*
 		 * first convert an empty tile to a board tile
 		 */

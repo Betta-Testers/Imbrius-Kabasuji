@@ -1,6 +1,6 @@
 package controllers.builder;
 
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
@@ -14,7 +14,7 @@ import view.LevelPropertiesView;
  * @author Evan
  * @author Dylan
  */
-public class PieceToNewBoardTilesMove extends Move{
+public class PieceToNewBoardTilesMove implements IMove{
 	/**Bullpen whose piece is being used to make board tiles**/
 	Bullpen bullpen;
 	/**Board who is having tiles placed onto it**/

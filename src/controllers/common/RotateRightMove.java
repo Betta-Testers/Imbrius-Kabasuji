@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controllers.common;
 
 import model.Bullpen;
@@ -10,7 +7,7 @@ import model.Piece;
  * @author hejohnson
  *
  */
-public class RotateRightMove extends Move {
+public class RotateRightMove implements IMove {
 	/** The piece to be rotated **/
 	Piece p;
 	/** The bullpen that contains the piece **/

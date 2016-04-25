@@ -2,7 +2,7 @@ package controllers.builder;
 
 import java.util.ArrayList;
 
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
@@ -14,7 +14,7 @@ import model.Piece;
  * @author Evan
  * @author Dylan
  */
-public class PieceToHintMove extends Move{
+public class PieceToHintMove implements IMove{
 	/**Bullpen whose piece is being used to make the hint**/
 	Bullpen bp;
 	/**Board that is having a hint placed on it**/

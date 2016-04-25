@@ -1,6 +1,6 @@
 package controllers.builder;
 
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
@@ -12,7 +12,7 @@ import view.LevelPropertiesView;
  * @author awharrison
  * @author Dylan
  */
-public class SwapTileEmptyToBoardMove extends Move {
+public class SwapTileEmptyToBoardMove implements IMove {
 	/**Board whose tiles are being swapped in the move**/
 	Board board;
 	/**The tile who was clicked on to be swapped**/

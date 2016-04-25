@@ -14,7 +14,7 @@ import view.BullpenView;
  * @author hejohnson
  * @author dylan
  */
-public class PlacePieceOnBoardFromBullpenMove extends Move{
+public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	AbstractLevelModel levelModel;
 	Bullpen bullpen;
 	Board board;

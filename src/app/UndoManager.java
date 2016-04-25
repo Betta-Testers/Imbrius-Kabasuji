@@ -1,7 +1,8 @@
 package app;
 
 import java.util.Stack;
-import controllers.common.Move;
+
+import controllers.common.IMove;
 import view.ButtonGroupView;
 
 /**
@@ -12,9 +13,9 @@ public class UndoManager{
 	/**Holds the only instance if the undoManager that can be reached.**/
 	private static UndoManager instance = new UndoManager();
 	/**Stack for tracking moves to be undone**/
-	static Stack<Move> undoStack;
+	static Stack<IMove> undoStack;
 	/**Stack for tracking moves to be redone**/
-	static Stack<Move> redoStack;
+	static Stack<IMove> redoStack;
 	
 	/**Breaks singleton standard to micro manage the undo/redo buttons for the current view.
 	 * This value is set in the constructor of ButtonGroupView, essentially telling the 
@@ -27,11 +28,11 @@ public class UndoManager{
 	/**Private constructor prevents further instantiations**/
 	private UndoManager(){
 		if(instance != null){throw new IllegalStateException("Alredy Instantiated");}
-		undoStack = new Stack<Move>();
-		redoStack = new Stack<Move>();
+		undoStack = new Stack<IMove>();
+		redoStack = new Stack<IMove>();
 	}
 
-	public void pushMove(Move m){
+	public void pushMove(IMove m){
 		if(bgv != null){
 			bgv.setUndoEnabled(true); //TODO set undo button enabled
 		}
@@ -50,7 +51,7 @@ public class UndoManager{
 	public boolean undo(){
 		if(UndoManager.undoStack.empty()){return false;}
 		bgv.setRedoEnabled(true);//TODO enable the redo button
-		Move m = UndoManager.undoStack.pop();
+		IMove m = UndoManager.undoStack.pop();
 		m.undo();
 		UndoManager.redoStack.push(m);
 		if(UndoManager.undoStack.empty()){bgv.setUndoEnabled(false);}//TODO IF emptied, disable
@@ -68,7 +69,7 @@ public class UndoManager{
 	public boolean redo(){
 		if(UndoManager.redoStack.empty()){ return false;}
 		bgv.setUndoEnabled(true);//TODO enable the undo button
-		Move m = UndoManager.redoStack.pop();
+		IMove m = UndoManager.redoStack.pop();
 		m.redo();
 		UndoManager.undoStack.push(m);
 		if(UndoManager.redoStack.empty()){bgv.setRedoEnabled(false);}//TODO if emptied, disable

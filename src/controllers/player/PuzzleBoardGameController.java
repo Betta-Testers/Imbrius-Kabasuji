@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import app.Game;
-import controllers.common.Move;
+import controllers.common.IMove;
 import controllers.common.MovePieceOffBoardMove;
 import controllers.common.MovePieceOnBoardMove;
 import controllers.common.PlacePieceOnBoardFromBullpenMove;
@@ -28,7 +28,7 @@ import view.NumberMovesLeftView;
 public class PuzzleBoardGameController implements MouseListener, MouseMotionListener{
 	PuzzleLevel levelModel;
 	AbstractTile source;
-	Move m;
+	IMove m;
 	Game game;
 	BoardView boardView;
 	BullpenView bpv;
@@ -63,7 +63,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		if (levelModel.getBoard().getDraggedPiece() == null) {
 			levelModel.getBoard().clearPiecePreview();
 		} else { // currently dragging a piece
-			Move m = new MovePieceOffBoardMove(levelModel, game.getLevelView().getBullpenView());
+			IMove m = new MovePieceOffBoardMove(levelModel, game.getLevelView().getBullpenView());
 			m.doMove();
 			levelModel.getBoard().setDraggedPiece(null);
 			levelModel.getBoard().clearPiecePreview();

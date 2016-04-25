@@ -2,7 +2,7 @@ package controllers.builder;
 
 import java.util.ArrayList;
 
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
@@ -13,7 +13,7 @@ import model.PieceTile;
  * Move class for removing a hint on the board.
  * @author dfontana
  */
-public class RemoveHintMove extends Move {
+public class RemoveHintMove implements IMove {
 	/**Board in which the move is taking place **/
 	Board b;
 	/**The tile that was clicked. Expected to be a hint tile. **/

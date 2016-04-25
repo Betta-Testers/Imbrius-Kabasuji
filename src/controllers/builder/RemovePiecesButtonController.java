@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import app.UndoManager;
-import controllers.common.Move;
+import controllers.common.IMove;
 import model.Board;
 import model.Bullpen;
 import view.BoardView;
@@ -46,7 +46,7 @@ public class RemovePiecesButtonController implements ActionListener{
 	 * @param ActionEvent button click
 	 */
 	public void actionPerformed(ActionEvent arg0) {
-		Move m = new RemoveAllPiecesMove(board, bp, bpv);
+		IMove m = new RemoveAllPiecesMove(board, bp, bpv);
 		if(m.doMove()){
 			UndoManager.getInstance().pushMove(m);
 			bv.redraw();
