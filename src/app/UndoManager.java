@@ -2,6 +2,7 @@ package app;
 
 import java.util.Stack;
 import controllers.common.Move;
+import view.ButtonGroupView;
 
 /**
  * Singleton for handling undo and redo.
@@ -14,6 +15,14 @@ public class UndoManager{
 	static Stack<Move> undoStack;
 	/**Stack for tracking moves to be redone**/
 	static Stack<Move> redoStack;
+	
+	/**Breaks singleton standard to micro manage the undo/redo buttons for the current view.
+	 * This value is set in the constructor of ButtonGroupView, essentially telling the 
+	 * Undo Manager that the button group view will be using this set of buttons for the given
+	 * view instantiation.
+	 */
+	ButtonGroupView bgv;
+	
 
 	/**Private constructor prevents further instantiations**/
 	private UndoManager(){
@@ -23,6 +32,7 @@ public class UndoManager{
 	}
 
 	public void pushMove(Move m){
+		bgv.setUndoEnabled(true); //TODO set undo button enabled
 		UndoManager.undoStack.push(m);
 		UndoManager.redoStack.clear();
 	}
@@ -36,10 +46,12 @@ public class UndoManager{
 	 * @return true if the undo could be done
 	 */
 	public boolean undo(){
-		if(UndoManager.undoStack.empty()){ return false;}
+		if(UndoManager.undoStack.empty()){return false;}
+		bgv.setRedoEnabled(true);//TODO enable the redo button
 		Move m = UndoManager.undoStack.pop();
 		m.undo();
 		UndoManager.redoStack.push(m);
+		if(UndoManager.undoStack.empty()){bgv.setUndoEnabled(false);}//TODO IF emptied, disable
 		return true;
 	}
 	
@@ -53,10 +65,21 @@ public class UndoManager{
 	 */
 	public boolean redo(){
 		if(UndoManager.redoStack.empty()){ return false;}
+		bgv.setUndoEnabled(true);//TODO enable the undo button
 		Move m = UndoManager.redoStack.pop();
 		m.redo();
 		UndoManager.undoStack.push(m);
+		if(UndoManager.undoStack.empty()){bgv.setRedoEnabled(false);}//TODO if emptied, disable
 		return true;
+	}
+	
+	/**
+	 * Gives the singleton a button group to be modified. This value is a changing value,
+	 * given when a button group view is instantiated/
+	 * @param bgv - the button group being manipulated
+	 */
+	public void giveButtonGroup(ButtonGroupView bgv){
+		this.bgv = bgv;
 	}
 	
 	/**
