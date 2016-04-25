@@ -9,7 +9,7 @@ import view.SelectPieceButton;
 import view.SelectedPieceView;
 
 /**
- * Controller for seleting a piece from the bullpen and placing it into the selected piece preview.
+ * Controller for selecting a piece from the bullpen and placing it into the selected piece preview.
  * @author hejohnson
  */
 
@@ -36,7 +36,6 @@ public class BullpenPieceSelectController implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		//TODO Make into move
 		SelectPieceButton source  = (SelectPieceButton) ae.getSource();
 		IMove m = new SelectPieceFromBullpenMove(source, bp);
 		if (m.doMove()) {

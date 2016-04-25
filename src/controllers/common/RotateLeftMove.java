@@ -7,8 +7,8 @@ import model.Bullpen;
 import model.Piece;
 
 /**
+ * The move class handling rotation of a piece to the left.
  * @author hejohnson
- *
  */
 public class RotateLeftMove implements IMove {
 	/** The piece to be rotated **/
@@ -40,6 +40,8 @@ public class RotateLeftMove implements IMove {
 	}
 
 	/**
+	 * The move is valid if the selected piece in the bullpen is equal to the piece
+	 * being rotated.
 	 * @return True if the piece is the selected piece
 	 */
 	@Override

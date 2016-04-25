@@ -4,8 +4,8 @@ import model.Bullpen;
 import model.Piece;
 
 /**
+ * Move class for rotating a piece to the right
  * @author hejohnson
- *
  */
 public class RotateRightMove implements IMove {
 	/** The piece to be rotated **/
@@ -37,6 +37,8 @@ public class RotateRightMove implements IMove {
 	}
 
 	/**
+	 * Checks if the selected piece in the bullpen is the same as the one
+	 * being manipulated.
 	 * @return True if the piece is the selected piece
 	 */
 	@Override
