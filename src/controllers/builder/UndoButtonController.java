@@ -6,9 +6,7 @@ import java.awt.event.ActionListener;
 import app.Builder;
 import app.UndoManager;
 import model.Board;
-import view.BoardView;
 import view.BuilderView;
-import view.PiecePanel;
 import view.SelectedPieceView;
 
 /**
