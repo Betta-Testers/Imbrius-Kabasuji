@@ -32,7 +32,9 @@ public class UndoManager{
 	}
 
 	public void pushMove(Move m){
-		bgv.setUndoEnabled(true); //TODO set undo button enabled
+		if (bgv != null) {
+			bgv.setUndoEnabled(true); //TODO set undo button enabled
+		}
 		UndoManager.undoStack.push(m);
 		UndoManager.redoStack.clear();
 	}
