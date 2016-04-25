@@ -158,7 +158,14 @@ public class Piece implements Serializable{
 		}
 		return prevTiles;
 	}
-
+	
+	/**
+	 * Returns the array of tiles that makes up the piece.
+	 * @return tiles - PieceTile[]
+	 */
+	public PieceTile[] getTiles() {
+		return tiles;
+	}
 	/**
 	 * Checks if two pieces are equals based on the coordinates of their tiles,
 	 * not the actual tiles themselves.
@@ -178,18 +185,6 @@ public class Piece implements Serializable{
 		return true;
 	}
 	
-	/**
-	 * Returns the array of tiles that makes up the piece.
-	 * @return tiles - PieceTile[]
-	 */
-	public PieceTile[] getTiles() {
-		return tiles;
-	}
-	
-	/**
-	 * Checks if the Piece has the same ID as the inputed Object (casted to Piece).
-	 * @return if the IDs are the same - boolean
-	 */
 	@Override
 	public boolean equals(Object o){
 		if(o == null){ return false;}
