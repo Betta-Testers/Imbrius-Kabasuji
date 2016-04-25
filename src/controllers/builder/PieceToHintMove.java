@@ -48,6 +48,7 @@ public class PieceToHintMove extends Move{
 			for(int i = 0; i < 6; i++){
 				((BoardTile) b.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(true);
 			}
+			b.clearPiecePreview();
 			bp.clearSelectedPiece();
 			return true;
 		}
