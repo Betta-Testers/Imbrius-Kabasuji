@@ -116,6 +116,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		 * reset board, untoggle ConverPieceToBoard button, toggle place hint button, place hint and verify
 		 * note: hints are yellow tiles
 		 */
+		lvl.getBullpen().setSelectedPiece(1);
 		buildView.getConvertPieceToBoardBtn().doClick();
 		assertFalse(buildView.getConvertPieceToBoardBtn().isSelected());
 		buildView.getPlaceHintBtn().doClick();
@@ -140,6 +141,78 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		assertEquals(Color.YELLOW, board.getTileAt(3*board.getTileSize(), 4*board.getTileSize()).getColor());
 		assertEquals(Color.YELLOW, board.getTileAt(3*board.getTileSize(), 5*board.getTileSize()).getColor());
 		assertEquals(Color.YELLOW, board.getTileAt(3*board.getTileSize(), 6*board.getTileSize()).getColor());
+		
+		/*
+		 * toggle place hint off, move piece over hint
+		 * place a piece over hint, verify
+		 */
+		lvl.getBullpen().setSelectedPiece(1);
+		buildView.getPlaceHintBtn().doClick();
+		assertFalse(buildView.getPlaceHintBtn().isSelected());
+		
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_MOVED, 
+				System.currentTimeMillis(), 0, 
+				3*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		buildView.getBuilderBoardControl().mouseMoved(me);
+		assertEquals(Color.GREEN, board.getTileAt(3*board.getTileSize(), 1*board.getTileSize()).getColor());
+		assertEquals(Color.GREEN, board.getTileAt(3*board.getTileSize(), 2*board.getTileSize()).getColor());
+		assertEquals(Color.GREEN, board.getTileAt(3*board.getTileSize(), 3*board.getTileSize()).getColor());
+		assertEquals(Color.GREEN, board.getTileAt(3*board.getTileSize(), 4*board.getTileSize()).getColor());
+		assertEquals(Color.GREEN, board.getTileAt(3*board.getTileSize(), 5*board.getTileSize()).getColor());
+		assertEquals(Color.GREEN, board.getTileAt(3*board.getTileSize(), 6*board.getTileSize()).getColor());
+		
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_RELEASED, 
+				System.currentTimeMillis(), 0, 
+				3*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		buildView.getBuilderBoardControl().mouseReleased(me);
+		
+		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 1*board.getTileSize()).getTileType());
+		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 2*board.getTileSize()).getTileType());
+		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 3*board.getTileSize()).getTileType());
+		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 4*board.getTileSize()).getTileType());
+		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 5*board.getTileSize()).getTileType());
+		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 6*board.getTileSize()).getTileType());
+		
+		/*
+		 * drag, then remove the piece from the board, verify
+		 */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_PRESSED, 
+				System.currentTimeMillis(), 0, 
+				3*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		buildView.getBuilderBoardControl().mousePressed(me);
+		
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_DRAGGED, 
+				System.currentTimeMillis(), 0, 
+				4*board.getTileSize(), 
+				4*board.getTileSize(), 0, false);
+		buildView.getBuilderBoardControl().mouseDragged(me);
+		
+		assertEquals(Color.RED, board.getTileAt(4*board.getTileSize(), 2*board.getTileSize()).getColor());
+		assertEquals(Color.RED, board.getTileAt(4*board.getTileSize(), 3*board.getTileSize()).getColor());
+		assertEquals(Color.RED, board.getTileAt(4*board.getTileSize(), 4*board.getTileSize()).getColor());
+		assertEquals(Color.RED, board.getTileAt(4*board.getTileSize(), 5*board.getTileSize()).getColor());
+		assertEquals(Color.RED, board.getTileAt(4*board.getTileSize(), 6*board.getTileSize()).getColor());
+		assertEquals(Color.RED, board.getTileAt(4*board.getTileSize(), 7*board.getTileSize()).getColor());
+		
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_EXITED, 
+				System.currentTimeMillis(), 0, 
+				3*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		buildView.getBuilderBoardControl().mouseExited(me);
+		assertEquals("board", board.getTileAt(3*board.getTileSize(), 1*board.getTileSize()).getTileType());
+		assertEquals("board", board.getTileAt(3*board.getTileSize(), 2*board.getTileSize()).getTileType());
+		assertEquals("board", board.getTileAt(3*board.getTileSize(), 3*board.getTileSize()).getTileType());
+		assertEquals("board", board.getTileAt(3*board.getTileSize(), 4*board.getTileSize()).getTileType());
+		assertEquals("board", board.getTileAt(3*board.getTileSize(), 5*board.getTileSize()).getTileType());
+		assertEquals("board", board.getTileAt(3*board.getTileSize(), 6*board.getTileSize()).getTileType());
 	}
 	
 	//====================== Empty to Board Tile to Empty Swapping ======================//
