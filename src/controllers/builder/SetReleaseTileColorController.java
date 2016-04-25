@@ -19,7 +19,6 @@ public class SetReleaseTileColorController implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent ce) {
-		//TODO Move class?
 		rncv.updateNumberColors();
 	}
 }
