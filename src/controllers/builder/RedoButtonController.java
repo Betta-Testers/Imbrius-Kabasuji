@@ -24,6 +24,11 @@ public class RedoButtonController implements ActionListener{
 	/**Piece preview that would need to be redrawn after undo**/
 	SelectedPieceView spv;
 	
+	/**
+	 * Makes the RedoButtonController
+	 * @param builder - the builder object holding all needed information
+	 * for repainting
+	 */
 	public RedoButtonController(Builder builder) {
 		this.builderView = builder.getBuilderView();
 		this.board = builder.getCurrentLevel().getBoard();
@@ -32,6 +37,11 @@ public class RedoButtonController implements ActionListener{
 		manager = UndoManager.getInstance();
 	}
 	
+	/**
+	 * Call redo on the undoManager when the listener is triggered.
+	 * If there is a move to be redone, it repaints the board and selected
+	 * piece preview. If there wasn't, it does nothing
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(manager.redo()){
@@ -43,6 +53,7 @@ public class RedoButtonController implements ActionListener{
 		}else{
 			//No more moves to redo
 			//TODO Gray out button. How do you get the button to be reenabled, then?
+			// And do you really want it to gray out here?
 		}
 	}
 }
