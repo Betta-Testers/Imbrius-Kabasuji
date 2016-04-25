@@ -3,6 +3,7 @@ package controllers.builder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import app.UndoManager;
 import controllers.common.Move;
 import model.Board;
 import model.Bullpen;
@@ -38,6 +39,7 @@ public class RemovePiecesButtonController implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		Move m = new RemoveAllPiecesMove(b, bp, bpv);
 		if(m.doMove()){
+			UndoManager.getInstance().pushMove(m);
 			bv.redraw();
 			bv.repaint();
 		}
