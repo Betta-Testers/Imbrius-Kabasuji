@@ -100,7 +100,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	/**
 	 * Convert tile on board into another form: Release <-> Release <-> Board <-> Empty 
 	 * OR
-	 * Place a piece on the board for: Previewing, Generating the Board, Making hints.
+	 * Place a piece on the board for: Previewing, Generating the Board, Making/removing hints.
 	 * Using a released action allows the user to click as quick as they want, preventing accidental behavior not related to a click
 	 * (like a press, move, release instead of just a click).
 	 * @param me MouseEvent
@@ -135,14 +135,17 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			spv.getPiecePanel().redraw();
 			spv.getPiecePanel().repaint();
 		}else if(rncv.getNumberSelected() < 0){
-			move = new SwapTileBoardToEmptyMove(source, board, bView.getLevelPropertiesView());
-			if(!move.doMove()){
-				move = new SwapTileEmptyToBoardMove(source, board, bView.getLevelPropertiesView());
+			//move = new RemoveHintMove();
+			//if(!move.doMove()){
+				move = new SwapTileBoardToEmptyMove(source, board, bView.getLevelPropertiesView());
 				if(!move.doMove()){
-					move = new SwapTileReleaseToBoardMove(source, board);	
-					move.doMove();
+					move = new SwapTileEmptyToBoardMove(source, board, bView.getLevelPropertiesView());
+					if(!move.doMove()){
+						move = new SwapTileReleaseToBoardMove(source, board);	
+						move.doMove();
+					}
 				}
-			}
+			//}
 		}else{
 			move = new SwapTileBoardToReleaseMove(rncv, source, board);
 			if(!move.doMove()){
