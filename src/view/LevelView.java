@@ -13,7 +13,11 @@ import javax.swing.border.EmptyBorder;
 
 import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
-
+/**
+ * The Game window, showing the bullpen, board, selected piece view, and buttons.
+ * @author ?
+ *
+ */
 public class LevelView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JPanel content;
@@ -81,6 +85,9 @@ public class LevelView extends JFrame {
 		return this.levelInfo;
 	}
 	
+	/**
+	 * Sets up the layout of the LevelView.
+	 */
 	private void setupLayout() {
 		GroupLayout gl_LevelView = new GroupLayout(this.getContentPane());
 		gl_LevelView.setHorizontalGroup(
