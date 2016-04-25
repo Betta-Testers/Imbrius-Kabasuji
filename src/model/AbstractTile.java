@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.io.Serializable;
 
 /**
- * Abstract class governing tile creation. A tile is a single unit of a board and piece.
+ * AbstractTile is the parent class for all variations of tiles.
  * @author hejohnson
  *
  */
@@ -12,21 +12,25 @@ import java.io.Serializable;
 public abstract class AbstractTile implements Serializable{
 	private static final long serialVersionUID = 6566817267314437128L;
 	
-	/**The row that the tile is located at on the board (0 based indexing)**/
+	/**The rowOnBoard of a tile is its row location on the board, with higher values farther down the board.**/
 	int rowOnBoard;
-	/**The row that the tile is located at on the board (0 based indexing)**/
+	
+	/**The colOnBoard of a tile is its column location on the board, with higher values farther to the right of the board.**/
 	int colOnBoard;
-	/**The type of the tile. This value can be: 'board' 'empty' 'release' 'puzzle' 'lightning'**/
+	
+	/**The tileType of a tile is determined by the subclasses of AbstractTile.**/
 	String tileType;
-	/**The color of the tile in its current state.**/
+	
+	/**The color of a tile is determined by changes on the board.**/
 	Color color;
-	/**The color of the tile as it wants to be by default.**/
+	
+	/**The default color of a tile is determined by the subclasses of AbstractTile.**/
 	Color defaultColor;
 
 	/**
-	 * Abstract constructor for all types of tiles to use. Creates a tile at the specified location
-	 * @param row Row on the board
-	 * @param col Column on the board
+	 * Abstract constructor for all types of tiles to use. Creates a tile at the specified location.
+	 * @param row (row on the board) - int
+	 * @param col (column on the board) - int
 	 */
 	public AbstractTile (int row, int col) {
 		this.rowOnBoard = row;
@@ -41,40 +45,60 @@ public abstract class AbstractTile implements Serializable{
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Returns the row this tile is located at on the board
 	 * @return int >= 0 and < 12
+=======
+	 * Return the row location of the tile.
+	 * @return rowOnBoard - int
+>>>>>>> origin/JavaDocV2.0
 	 */
 	public int getRow() {
 		return this.rowOnBoard;
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Returns the col this tile is located at on the board
 	 * @return int >= 0 and < 12
+=======
+	 * Return the column location of the tile.
+	 * @return colOnBoard - int
+>>>>>>> origin/JavaDocV2.0
 	 */
 	public int getCol() {
 		return this.colOnBoard;
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Returns the current color of this tile
 	 * @return Color object, of current state
+=======
+	 * Return the column location of the tile. Note that this is determined by the subclasses of abstractTile.
+	 * @return color - Color
+>>>>>>> origin/JavaDocV2.0
 	 */
 	public Color getColor() {
 		return this.color;
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Returns the number displayed on this tile
 	 * @return int representation of a tile. -1 if not a ReleaseTile
+=======
+	 * Returns the number displayed on this tile. Because an abstractTile is not a releaseTile, -1 is returned.
+	 * @return -1 - int
+>>>>>>> origin/JavaDocV2.0
 	 */
 	public int getNumber() {
 		return -1;
 	}
 	
 	/**
-	 * Changes the color of the tile if the tile's view is included in a piece flyby
-	 * @param isValidLocation Set the color to reflect to the user if it is a valid placement
+	 * Changes the color of the tile if the tile's view is included in a piece flyby. The parameter isValidLocation determines what color the tile will be.
+	 * @param isValidLocation - boolean
 	 */
 	public void setMouseOverColor(boolean isValidLocation) {
 		if (isValidLocation) {
@@ -85,14 +109,15 @@ public abstract class AbstractTile implements Serializable{
 	}
 	
 	/**
-	 * Resets the tile's color if it was mousedOver
+	 * Resets the pieces color if it was mousedOver.
 	 */
 	public void resetColor() {
 		this.color = this.defaultColor;
 	}
 	
 	/**
-	 * @return the type of the tile
+	 * Returns the type of the tile. Note that this is determined by the subclasses of abstractTile.
+	 * @return tileType - String
 	 */
 	public String getTileType() {
 		return this.tileType;

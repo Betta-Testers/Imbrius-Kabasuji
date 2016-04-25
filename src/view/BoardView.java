@@ -12,20 +12,31 @@ import model.AbstractTile;
 import model.Board;
 
 /**
+ * Handles the board graphics for both the game and builder.
  * @author dfontana
  * @author Heineman
  * @author awharrison
  */
 public class BoardView extends JPanel{
 	private static final long serialVersionUID = 1L;
+	
+	/**Stores the entity of the board.**/
 	Board b;
 
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
 	Graphics offscreenGraphics;
+	
+	/**Handles mouse action events.**/
 	MouseListener mouseActionHandler;
+	
+	/**Handles mouse motion events.**/
 	MouseMotionListener mouseMotionHandler;
 	
+	/**
+	 * Creates a new board view with an inputed board.
+	 * @param b - Board
+	 */
 	public BoardView(Board b){
 		setPreferredSize(new Dimension(385, 385));
 		this.b = b;
@@ -34,7 +45,7 @@ public class BoardView extends JPanel{
 
 	/**
 	 * Redraw recreates everything offscreen. Notice how there is an offscreen image and graphics.
-	 * It even paints all shapes to the offscreen graphics supplied to the paintShape object
+	 * It even paints all shapes to the offscreen graphics supplied to the paintShape object.
 	 * 		-> It is believed that the offscreenGraphics is an object stored within the offscreenImage
 	 * 		-> This is the method called BEFORE calling .paint() on this panel
 	 */
@@ -63,7 +74,7 @@ public class BoardView extends JPanel{
 	/**
 	 * Ensure image available prepares the offscreen image for painting if it is currently missing from
 	 * the object (null). It gets called only INSIDE this class and is called in the paintComponent()
-	 * method
+	 * method.
 	 */
 	void ensureImageAvailable(Graphics g) {
 
@@ -96,20 +107,36 @@ public class BoardView extends JPanel{
 		g.drawImage(offscreenImage, 0, 0, getWidth(), getHeight(), this);
 	}
 	
+	/**
+	 * Sets the mouse action listener.
+	 * @param ml - MouseListener
+	 */
 	public void setMouseActionController (MouseListener ml){
 		this.mouseActionHandler = ml;
 		this.addMouseListener(ml);
 	}
 	
+	/**
+	 * Sets the mouse motion listener.
+	 * @param ml - MouseMotionListener
+	 */
 	public void setMouseMotionController (MouseMotionListener mml){
 		this.mouseMotionHandler = mml;
 		this.addMouseMotionListener(mml);
 	}
 	
+	/**
+	 * Returns the mouse action listener.
+	 * @return mouseActionHandler - MouseListener
+	 */
 	public MouseListener getMouseActionController() {
 		return this.mouseActionHandler;
 	}
 	
+	/**
+	 * Returns the mouse motion listener.
+	 * @return mouseMotionHandler - MouseMotionListener
+	 */
 	public MouseMotionListener getMouseMotionController() {
 		return this.mouseMotionHandler;
 	}

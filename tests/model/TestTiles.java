@@ -74,7 +74,7 @@ public class TestTiles extends TestCase {
 		}
 		
 		assertEquals("piece r:-1 c:-1", tile.toString());
-		assertEquals(new Color(240, 0, 0), tile.color);
+		assertEquals(new Color(150, 100, 50), tile.color);
 		
 		origin.setLocation(5, 7);
 		assertEquals(origin.colOnBoard, 7);
