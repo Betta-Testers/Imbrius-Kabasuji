@@ -13,6 +13,11 @@ import model.Bullpen;
 import model.Piece;
 import model.PieceGroup;
 
+/**
+ * 
+ * @author dfontana
+ *
+ */
 public class BullpenView extends JScrollPane {
 	private static final long serialVersionUID = 1L;
 	

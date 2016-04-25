@@ -6,15 +6,24 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import java.awt.Font;
 
+/**
+ * 
+ * @author ejbosia
+ *
+ */
 public class GameExitScreen extends JFrame{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**Button to return to level selection screen.**/
 	JButton btnReturnToLevel;
+	
+	/**StarView associated with the game exit screen.**/
 	StarView stars;
 
+	/**
+	 * Creates a new game exit screen with a given StarView.
+	 * @param stars - StarView
+	 */
 	public GameExitScreen(StarView stars) {
 		this.stars = stars;
 		this.setTitle("GAME OVER");
@@ -29,11 +38,15 @@ public class GameExitScreen extends JFrame{
 		//btnReturnToLevel.addActionListener(new QuitGameButtonController(this));
 	}
 	
+	/**
+	 * Returns the button used to exit the game exit screen and return to the level selection screen.
+	 * @return btnReturnToLevel - JButton
+	 */
 	public JButton getExitButton() {
 		return this.btnReturnToLevel;
 	}
 	/**
-	 * Method for setting up the layout for the GameExitScreen
+	 * Sets up the layout for the GameExitScreen.
 	 */
 	void setupLayout(){
 		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
@@ -63,7 +76,7 @@ public class GameExitScreen extends JFrame{
 	
 	
 	/**
-	 * A method used by outside objects/classes to retrieve the button to return to a level
+	 * A method used by outside objects/classes to retrieve the button to return to a level.
 	 * @return JButton the button used to return to a level
 	 */
 	JButton getBtnReturnToLevel(){
@@ -71,7 +84,7 @@ public class GameExitScreen extends JFrame{
 	}
 	
 	/**
-	 * A method used by outside objects/classes to retrieve the StarView of a GameExitScreen
+	 * A method used by outside objects/classes to retrieve the StarView of a GameExitScreen.
 	 * @return StarView the StarView associated with the level being exited
 	 */
 	StarView getStars(){
@@ -79,7 +92,7 @@ public class GameExitScreen extends JFrame{
 	}
 	
 	/**
-	 * A method used by outside objects/classes to set the number of stars associated with this GameExitScreen
+	 * A method used by outside objects/classes to set the number of stars associated with this GameExitScreen.
 	 * @param stars the number of stars to set the GameExitScreens star parameter
 	 */
 	public void setStars(int starNum){

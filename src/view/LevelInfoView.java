@@ -10,6 +10,11 @@ import java.awt.Font;
 
 import javax.swing.SwingConstants;
 
+/**
+ * 
+ * @author ?
+ *
+ */
 public class LevelInfoView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
