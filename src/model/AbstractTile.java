@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.io.Serializable;
 
 /**
- * 
+ * Abstract class governing tile creation. A tile is a single unit of a board and piece.
  * @author hejohnson
  *
  */
@@ -12,13 +12,17 @@ import java.io.Serializable;
 public abstract class AbstractTile implements Serializable{
 	private static final long serialVersionUID = 6566817267314437128L;
 	
+	/**The row that the tile is located at on the board (0 based indexing)**/
 	int rowOnBoard;
+	/**The row that the tile is located at on the board (0 based indexing)**/
 	int colOnBoard;
+	/**The type of the tile. This value can be: 'board' 'empty' 'release' 'puzzle' 'lightning'**/
 	String tileType;
+	/**The color of the tile in its current state.**/
 	Color color;
+	/**The color of the tile as it wants to be by default.**/
 	Color defaultColor;
 
-	
 	/**
 	 * Abstract constructor for all types of tiles to use. Creates a tile at the specified location
 	 * @param row Row on the board
@@ -30,22 +34,31 @@ public abstract class AbstractTile implements Serializable{
 	}
 	
 	/**
-	 * @return The type of tile (lowercase)
+	 * @return The type of tile (lowercase) followed by its row location followed by column location
 	 */
 	public String toString() {
 		return this.tileType + " r:" + this.rowOnBoard + " c:" + this.colOnBoard;
 	}
 	
+	/**
+	 * Returns the row this tile is located at on the board
+	 * @return int >= 0 and < 12
+	 */
 	public int getRow() {
 		return this.rowOnBoard;
 	}
 	
+	/**
+	 * Returns the col this tile is located at on the board
+	 * @return int >= 0 and < 12
+	 */
 	public int getCol() {
 		return this.colOnBoard;
 	}
 	
 	/**
-	 * @return The current color of this tile
+	 * Returns the current color of this tile
+	 * @return Color object, of current state
 	 */
 	public Color getColor() {
 		return this.color;
@@ -53,7 +66,7 @@ public abstract class AbstractTile implements Serializable{
 	
 	/**
 	 * Returns the number displayed on this tile
-	 * @return Number of the tile. -1 if not a ReleaseTile
+	 * @return int representation of a tile. -1 if not a ReleaseTile
 	 */
 	public int getNumber() {
 		return -1;
@@ -72,7 +85,7 @@ public abstract class AbstractTile implements Serializable{
 	}
 	
 	/**
-	 * Resets the pieces color if it was mousedOver
+	 * Resets the tile's color if it was mousedOver
 	 */
 	public void resetColor() {
 		this.color = this.defaultColor;

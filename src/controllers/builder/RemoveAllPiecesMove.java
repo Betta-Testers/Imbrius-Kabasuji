@@ -13,12 +13,17 @@ import view.BullpenView;
  * @author dfontana
  */
 public class RemoveAllPiecesMove extends Move {
+	/**Bullpen View that is being updated when all the pieces are added back**/
 	BullpenView bpv;
+	/**Bullpen whose pieces are returned to**/
 	Bullpen bp;
+	/**Board whose peices are being taken from**/
 	Board board;
+	/**List of all pieces that were removed from the board**/
 	ArrayList<Piece> piecesRemoved;
 	
 	/**
+	 * Constructs a Remove All Pieces Move
 	 * @param board Board in the builder
 	 * @param bp Bullpen in the builder
 	 * @param bpv View of the bullpen

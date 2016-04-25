@@ -165,7 +165,7 @@ public class TestBuilderRelease extends TestCase {
 		/*
 		 * first convert an empty tile to a board tile
 		 */
-		m = new SwapTileEmptyToBoardMove((EmptyTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
+		m = new SwapTileEmptyToBoardMove((EmptyTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), buildView.getLevelPropertiesView());
 		assertTrue(m.doMove());
 		assertEquals(1, releaseBoard.getNumBoardTiles());
 		

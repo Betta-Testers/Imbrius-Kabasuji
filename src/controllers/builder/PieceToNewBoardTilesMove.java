@@ -7,46 +7,47 @@ import model.BoardTile;
 import model.Bullpen;
 import model.EmptyTile;
 import model.Piece;
-import view.BullpenView;
+import view.LevelPropertiesView;
 
 /**
- * Represents using a placed piece to make new boardTiles in builder
- * 
+ * Move class for using a piece to place board tiles onto a board.
  * @author Evan
- *
+ * @author Dylan
  */
-
 public class PieceToNewBoardTilesMove extends Move{
-	/** Bullpen model in the level**/
+	/**Bullpen whose piece is being used to make board tiles**/
 	Bullpen bullpen;
-	/** Board model in the level **/
+	/**Board who is having tiles placed onto it**/
 	Board board;
-	/** Piece that the hint is made from **/
+	/**Piece being used to place the tiles**/
 	Piece p;
-	/** Tile that was clicked to make the hint on, origin of piece centered here **/
+	/**The tile that was the source of the click**/
 	AbstractTile sourceTile;
-	/** View of the bullpen, has the selected piece view **/
-	BullpenView bpv;
+	/** LevelPropertiesView whose tile count is affected by the move**/
+	LevelPropertiesView lpv;
 	
 	/**
-	 * 
-	 * @param bullpen Bullpen containing the piece to make the hint from
-	 * @param board Board to place the hint on
-	 * @param tile The tile that was clicked on, the location to place the origin tile of the piece at
-	 * @param bpv View of the bullpen, containing the selected piece view, to update
+	 * Constructor for a PieceToNewBoardTilesMove
+	 * @param bullpen being modified
+	 * @param board being modified
+	 * @param tile origin of click
+	 * @param lpv LevelPropertiesView whose tile count is being updated
 	 */
-	public PieceToNewBoardTilesMove (Bullpen bullpen, Board board, AbstractTile tile, BullpenView bpv) {
-		this.bpv = bpv;
+	public PieceToNewBoardTilesMove (Bullpen bullpen, Board board, AbstractTile tile, LevelPropertiesView lpv) {
 		this.bullpen = bullpen;
 		this.board = board;
 		this.sourceTile = tile;
 		this.p = bullpen.getSelectedPiece();
+		this.lpv = lpv;
 		
 	}
 	
-	/** 
-	 * If move is valid, swaps out all tiles that the piece would have occupied with board tiles
-	 * @return boolean True if move executed properly
+	/**
+	 * The move sets the location of the model piece to be where the user clicks on the board.
+	 * It then swaps all tiles on the board with where that piece is with a BoardTile
+	 * The bullpen clears the piece used (the selected piece)
+	 * The LevelPropertiesView updates the change in Tile Count after move finishes.
+	 * @return true if the move is done
 	 */
 	public boolean doMove() {
 		if (isValid()) {
@@ -55,6 +56,7 @@ public class PieceToNewBoardTilesMove extends Move{
 				board.swapTile(new BoardTile(p.getTiles()[i].getRow(), p.getTiles()[i].getCol()));
 			}
 			bullpen.clearSelectedPiece();
+			lpv.adjustTileCount(6);
 			return true;
 		}
 		return false;
@@ -75,22 +77,26 @@ public class PieceToNewBoardTilesMove extends Move{
 	}
 	
 	/**
-	 * 
+	 * The move is undone by swapping the tiles that were modified on the board back to empty tiles.
+	 * The selected piece is reset to the piece that was used to make the board tiles.
+	 * The LevelPropertiesView then adjusts the tile count of the board.
+	 * @return true
 	 */
 	public boolean undo() {
 		for(int i = 0; i < 6; i++){
 			board.swapTile(new EmptyTile(p.getTiles()[i].getRow(), p.getTiles()[i].getCol()));
 		}
 		bullpen.setSelectedPiece(p.getID());
+		lpv.adjustTileCount(-6);
 		return true;
 	}
 	
+	/**
+	 * The move is redone by executing the doMove again, returning true on completion
+	 * @return true
+	 */
 	public boolean redo() {
 		doMove();
 		return true;
-	}
-	
-	public Piece getPlacedPiece() {
-		return this.p;
 	}
 }

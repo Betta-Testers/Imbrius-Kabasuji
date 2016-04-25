@@ -46,6 +46,10 @@ public abstract class AbstractPieceGroupView extends JPanel{
 	public PieceGroup getPieceGroup(){
 		return this.pieceGroup;
 	}
+	
+	public SelectPieceButton getSelectPieceButton() {
+		return this.button;
+	}
 
 	 abstract void updateCount();
 }

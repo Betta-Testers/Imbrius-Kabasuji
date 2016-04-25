@@ -146,8 +146,6 @@ public class Board implements Serializable{
 		return true;
 	}
 	
-
-	
 	/**
 	 * Remove a given piece from the board, the piece must already exist on the board
 	 * @param p the piece being removed from the board
@@ -248,7 +246,7 @@ public class Board implements Serializable{
 
 	/**
 	 * Returns the total number of board tiles still remaining on the board
-	 * @return the total number of board tiles still remaining on the board
+	 * @return  int - the number of board tiles on the board
 	 */
 	public int getNumBoardTiles(){
 		int count = 0;
@@ -262,6 +260,24 @@ public class Board implements Serializable{
 		return count;
 	}
 
+	/**
+	 * Returns the total number of tiles that can be interacted with on a board.
+	 * Used in the builder to track the count of tiles that contribute to the 6n 
+	 * total.
+	 * @return int - Number of release and board tiles on the board
+	 */
+	public int interactableTileCount(){
+		int count = 0;
+		for(int i = 0; i <12;i++){
+			for(int j = 0; j<12;j++){
+				if(board[i][j].tileType.equals("board") || board[i][j].tileType.equals("release")){
+					count++;
+				}
+			}
+		}
+		return count;
+	}
+	
 	/**
 	 * Will clear all piece previewing from the board, setting all tiles back to their original colors.
 	 * @return void
