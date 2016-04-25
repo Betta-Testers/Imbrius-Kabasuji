@@ -13,6 +13,12 @@ import javax.swing.border.LineBorder;
 
 import java.awt.Color;
 
+/**
+ * Shows the amount of stars, the level name, and a button to allow the user to play a level. This is used on the level selection screen in game.
+ * @author dfontana
+ *
+ */
+
 public class AvailableLevelView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -23,6 +29,10 @@ public class AvailableLevelView extends JPanel {
 	String lvlname;
 	
 
+	/**
+	 * Creates a new AvailableLevelView with a given levelID.
+	 * @param levelID - int
+	 */
 	public AvailableLevelView(int levelID) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setPreferredSize(new Dimension(148, 100));
@@ -37,12 +47,16 @@ public class AvailableLevelView extends JPanel {
 		setupLayout();
 	}
 	
+	/**
+	 * Returns the levelID associated to the AvailableLevelView.
+	 * @return levelID - int
+	 */
 	public int getLevelID() {
 		return this.levelID;
 	}
+	
 	/**
 	 * Sets the number of stars displayed for this level to the specified number
-	 * @author dfontana
 	 * @param starsEarned - number of stars to display. Any number other than 1-3 will not change stars
 	 */
 	void updateStars(int starsEarned){
@@ -66,7 +80,7 @@ public class AvailableLevelView extends JPanel {
 	 * Passing it an integer 1,2 or 3 will also display the correct number of stars for the
 	 * level!
 	 * Entering a 0 will unlock the level and set the stars to 0 by default
-	 * @param i
+	 * @param i - int
 	 */
 	void unlockLevel(int i){
 		btnSelectLevel.setText(lvlname);
@@ -75,12 +89,16 @@ public class AvailableLevelView extends JPanel {
 		starView.setNumStars(i);
 	}
 	
+	/**
+	 * Returns the select level button.
+	 * @return btnSelectLevel - JButton
+	 */
 	public JButton getPlayButton(){
 		return btnSelectLevel;
 	}
 	
 	/**
-	 * Method for setting up the layout for the AvailableLevelView
+	 * Method for setting up the layout for the AvailableLevelView.
 	 */
 	void setupLayout(){
 		layout = new GroupLayout(this);
