@@ -1,5 +1,7 @@
 package controllers.builder;
 
+import java.util.ArrayList;
+
 import controllers.common.Move;
 import model.AbstractTile;
 import model.Board;
@@ -22,23 +24,28 @@ public class PieceToHintMove extends Move{
 	Piece p;
 	/**Tile that was clicked**/
 	AbstractTile source;
+	/**Known hints to be on the board**/
+	ArrayList<Piece> hintPieces;
 	
 	/**
 	 * Constructs a Piece to Hint Move
+	 * @param hintPieces 
 	 * @param bp - Bullpen being modified
 	 * @param b - Board having a hint placed on it
 	 * @param source - Tile that was clicked
 	 */
-	public PieceToHintMove(Bullpen bp, Board b, AbstractTile source) {
+	public PieceToHintMove(ArrayList<Piece> hintPieces, Bullpen bp, Board b, AbstractTile source) {
 		this.bp = bp;
-		this.board = board;
+		this.board = b;
 		this.source = source;
 		this.p = bp.getSelectedPiece();	
+		this.hintPieces = hintPieces;
 	}
 	
 	/**
 	 * To do the move the location of the piece is set to where the tile clicked was
-	 * Then the tiles of the piece occupies are set to be hint tiles
+	 * Then the tiles of the piece occupies are set to be hint tiles and the piece is
+	 * added to the known hints on the board.
 	 * Finally the selected piece of the bullpen is cleared
 	 * @return true if the move could be done
 	 */
@@ -48,6 +55,7 @@ public class PieceToHintMove extends Move{
 			for(int i = 0; i < 6; i++){
 				((BoardTile) board.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(true);
 			}
+			hintPieces.add(p);
 			board.clearPiecePreview();
 			bp.clearSelectedPiece();
 			return true;
@@ -56,7 +64,8 @@ public class PieceToHintMove extends Move{
 	}
 	
 	/**
-	 * The move is valid if the selected piece is not null and the piece can git on the board
+	 * The move is valid if the selected piece is not null, the piece can fit on the board,
+	 * and there are no hints already within its bounds.
 	 * @return true if the move can be done
 	 */
 	public boolean isValid() {
@@ -67,9 +76,10 @@ public class PieceToHintMove extends Move{
 		}
 		return false;
 	}
-	
+
 	/**
 	 * The move is undone by marking all the tiles that the piece occupied as not hints.
+	 * The piece is then removed from the hints that are on the board.
 	 * The selected piece of the bullpen is then restored to be the piece.
 	 * @return true
 	 */
@@ -77,6 +87,7 @@ public class PieceToHintMove extends Move{
 		for(int i = 0; i < 6; i++){
 			((BoardTile) board.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(false);
 		}
+		removeFromList(p);
 		bp.setSelectedPiece(p.getID());
 		return true;
 	}
@@ -97,5 +108,19 @@ public class PieceToHintMove extends Move{
 	 */
 	public Piece modelPiece(){
 	 return p;
+	}
+	
+	/**
+	 * Removes a Piece from the hintPieces arrayList based on if two piece's tile's coordinates 
+	 * are the same. Uses a helper method to determine if two pieces are the same.
+	 * @param p - Piece to be removed
+	 */
+	void removeFromList(Piece p) {
+		for(int i = 0; i < hintPieces.size(); i++){
+			if(hintPieces.get(i).occupiesSameCoorindates(p)){
+				hintPieces.remove(i);
+				break;
+			}
+		}
 	}
 }

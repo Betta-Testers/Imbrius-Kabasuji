@@ -119,11 +119,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				}
 			}else if(bView.getStateOfHintConvert()){
 				if (mouseOn) {
-					move = new PieceToHintMove(bp, board, source);
-					if(move.doMove()){
-						//If the move can be done, add it the list of known hints on the board
-						hintPieces.add(((PieceToHintMove) move).modelPiece());
-					}
+					move = new PieceToHintMove(hintPieces, bp, board, source);
+					move.doMove();
 				}
 			}else{
 				if (mouseOn) {
@@ -137,8 +134,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			spv.getPiecePanel().redraw();
 			spv.getPiecePanel().repaint();
 		}else if(rncv.getNumberSelected() < 0){
-			//move = new RemoveHintMove();
-			//if(!move.doMove()){
+			move = new RemoveHintMove(hintPieces, source, board);
+			if(!move.doMove()){
 				move = new SwapTileBoardToEmptyMove(source, board, bView.getLevelPropertiesView());
 				if(!move.doMove()){
 					move = new SwapTileEmptyToBoardMove(source, board, bView.getLevelPropertiesView());
@@ -147,7 +144,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 						move.doMove();
 					}
 				}
-			//}
+			}
 		}else{
 			move = new SwapTileBoardToReleaseMove(rncv, source, board);
 			if(!move.doMove()){
@@ -225,6 +222,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				board.clearPiecePreview();
 				if(bView.getStateOfBoardConvert()){
 					board.showConversionPreview(p, source.getRow(), source.getCol());
+				}else if(bView.getStateOfHintConvert()){
+					board.showHintPreview(p, source.getRow(), source.getCol());
 				}else{
 					board.showPiecePreview(p, source.getRow(), source.getCol());
 				}
