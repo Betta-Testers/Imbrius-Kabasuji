@@ -12,23 +12,21 @@ import model.PieceGroup;
  */
 public class PieceGroupSpinnerMove extends Move {
 	/**PieceGroup whose value is being changed**/
-	PieceGroup model;
+
+	PieceGroup pieceGroup;
+	
 	/**Spinner being modified. Needed to update its view on an undo**/
 	JSpinner spinner;
-	/**Value the spinner/model previously had **/
+	/**Value the spinner/pieceGroup previously had **/
 	int oldValue;
-	/**Value the spinner is giving to the model **/
+	
+	/**Value the spinner is giving to the pieceGroup **/
 	int newValue;
 	
-	/**
-	 * Constructs the PieceGroupSpinnerMove
-	 * @param model - pieceGroup whose count is being manipulated
-	 * @param spinner - spinner that is modifying the count
-	 */
-	public PieceGroupSpinnerMove(PieceGroup model, JSpinner spinner) {
-		this.model = model;
+	public PieceGroupSpinnerMove(PieceGroup pieceGroup, JSpinner spinner) {
+		this.pieceGroup = pieceGroup;
 		this.spinner = spinner;
-		this.oldValue = model.getNumPieces();
+		this.oldValue = pieceGroup.getNumPieces();
 		this.newValue = (int)spinner.getValue();
 	}
 
@@ -39,7 +37,7 @@ public class PieceGroupSpinnerMove extends Move {
 	@Override
 	public boolean doMove() {
 		if(!isValid()){ return false;}
-		model.setCount(newValue);
+		pieceGroup.setCount(newValue);
 		return true;
 	}
 
@@ -54,13 +52,13 @@ public class PieceGroupSpinnerMove extends Move {
 	}
 
 	/**
-	 * Undoes the move by setting the model and the spinner back to the old
+	 * Undoes the move by setting the pieceGroup and the spinner back to the old
 	 * value.
 	 * @return true - the undo can always be done
 	 */
 	@Override
 	public boolean undo() {
-		model.setCount(oldValue);
+		pieceGroup.setCount(oldValue);
 		spinner.setValue(oldValue);
 		return true;
 	}
@@ -72,7 +70,7 @@ public class PieceGroupSpinnerMove extends Move {
 	 */
 	@Override
 	public boolean redo() {
-		model.setCount(newValue);
+		pieceGroup.setCount(newValue);
 		spinner.setValue(newValue);
 		return true;
 	}

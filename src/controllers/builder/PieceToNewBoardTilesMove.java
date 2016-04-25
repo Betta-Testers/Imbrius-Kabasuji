@@ -62,9 +62,9 @@ public class PieceToNewBoardTilesMove extends Move{
 	}
 	
 	/**
-	 * The move is valid if the selected piece is not null and the piece being converted can fit
-	 * ontop of strictly empty tiles in full.
-	 * @return true if the move can be done
+	 * Determines if the move is valid, by asking the board if the piece can be placed at the location of the source tile
+	 * @see model.board#isValidConvert()
+	 * @return True if the move is valid, will return false if there is no piece selected in the bullpen
 	 */
 	public boolean isValid() {		
 		if(bullpen.getSelectedPiece() != null){

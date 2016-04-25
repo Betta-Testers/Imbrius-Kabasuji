@@ -10,7 +10,7 @@ import view.SplashScreen;
  * @author Dylan
  */
 public class BuilderSplashTimerController implements ActionListener{
-	SplashScreen view;
+	SplashScreen splash;
 	Builder b;
 	
 	/**
@@ -18,8 +18,8 @@ public class BuilderSplashTimerController implements ActionListener{
 	 * @param view The splash screen
 	 * @param b The builder to show
 	 */
-	public BuilderSplashTimerController(SplashScreen view, Builder b){
-		this.view = view;
+	public BuilderSplashTimerController(SplashScreen splash, Builder b){
+		this.splash = splash;
 		this.b = b;
 	}
 	
@@ -28,7 +28,7 @@ public class BuilderSplashTimerController implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e){		
-		view.dispose();
+		splash.dispose();
 		b.getLevelTypeSelectView().setVisible(true);
 	}
 }

@@ -18,7 +18,7 @@ public class PieceToHintMove extends Move{
 	/**Bullpen whose piece is being used to make the hint**/
 	Bullpen bp;
 	/**Board that is having a hint placed on it**/
-	Board b;
+	Board board;
 	/**Piece being used to make the hint**/
 	Piece p;
 	/**Tile that was clicked**/
@@ -35,7 +35,7 @@ public class PieceToHintMove extends Move{
 	 */
 	public PieceToHintMove(ArrayList<Piece> hintPieces, Bullpen bp, Board b, AbstractTile source) {
 		this.bp = bp;
-		this.b = b;
+		this.board = b;
 		this.source = source;
 		this.p = bp.getSelectedPiece();	
 		this.hintPieces = hintPieces;
@@ -52,10 +52,10 @@ public class PieceToHintMove extends Move{
 		if (isValid()) {
 			p.setLocation(source.getRow(), source.getCol());
 			for(int i = 0; i < 6; i++){
-				((BoardTile) b.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(true);
+				((BoardTile) board.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(true);
 			}
 			hintPieces.add(p);
-			b.clearPiecePreview();
+			board.clearPiecePreview();
 			bp.clearSelectedPiece();
 			return true;
 		}
@@ -69,7 +69,7 @@ public class PieceToHintMove extends Move{
 	 */
 	public boolean isValid() {
 		if(bp.getSelectedPiece() != null){
-			if(b.willFitHint(p, source.getRow(), source.getCol())){
+			if(board.willFit(p, source.getRow(), source.getCol())){
 				return true;
 			}
 		}
@@ -84,7 +84,7 @@ public class PieceToHintMove extends Move{
 	 */
 	public boolean undo() {
 		for(int i = 0; i < 6; i++){
-			((BoardTile) b.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(false);
+			((BoardTile) board.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(false);
 		}
 		removeFromList(p);
 		bp.setSelectedPiece(p.getID());

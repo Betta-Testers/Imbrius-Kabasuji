@@ -36,7 +36,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	/** Top level view for the level editor/creator **/
 	BuilderView bView;
 	/** Entity that is currently being edited **/
-	AbstractLevelModel m;
+	AbstractLevelModel lm;
 	/** Board model that this controller acts on **/
 	Board board;
 	/** Bullpen model in the current level **/
@@ -67,7 +67,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	 */
 	public BuilderBoardController(BuilderView bView, AbstractLevelModel lm) {
 		this.bView = bView;
-		this.m = lm;
+		this.lm = lm;
 		this.board = lm.getBoard();
 		this.bp = lm.getBullpen();
 		this.bpv = bView.getBullpenView();
@@ -128,14 +128,14 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				}
 			}else{
 				if (mouseOn) {
-					move = new MovePieceOnBoardMove(m, source, board.getDraggedPiece(), rOffset, cOffset);
+					move = new MovePieceOnBoardMove(lm, source, board.getDraggedPiece(), rOffset, cOffset);
 					if(!move.doMove()){
 						if(board.getDraggedPiece() != null){ // Move failed, put the piece back
 							board.putPieceOnBoard(board.getDraggedPiece(), board.getDraggedPiece().getOriginRow(), board.getDraggedPiece().getOriginCol());
 							board.setDraggedPiece(null);
 							board.clearPiecePreview();
 						}
-						move = new PlacePieceOnBoardFromBullpenMove(m, source, bpv);
+						move = new PlacePieceOnBoardFromBullpenMove(lm, source, bpv);
 						if(move.doMove()){
 							UndoManager.getInstance().pushMove(move);
 						}
@@ -201,7 +201,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	public void mouseExited(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
 			mouseOn = false;
-			Move move = new MovePieceOffBoardMove(m, bpv);
+			Move move = new MovePieceOffBoardMove(lm, bpv);
 			if(move.doMove()){
 				UndoManager.getInstance().pushMove(move);
 			}

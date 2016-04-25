@@ -18,7 +18,7 @@ import view.BullpenView;
 
 public class RemovePiecesButtonController implements ActionListener{
 	/**Board whose pieces are being removed**/
-	Board b;
+	Board board;
 	/**View of the board that is being updated**/
 	BoardView bv;
 	/**Bullpen that is having pieces returned to it**/
@@ -33,8 +33,8 @@ public class RemovePiecesButtonController implements ActionListener{
 	 * @param bp Bullpen being updated
 	 * @param bpv View of bullpen being updated
 	 */
-	public RemovePiecesButtonController(Board b, BoardView bv, Bullpen bp, BullpenView bpv) {
-		this.b = b;
+	public RemovePiecesButtonController(Board board, BoardView bv, Bullpen bp, BullpenView bpv) {
+		this.board = board;
 		this.bv = bv;
 		this.bp = bp;
 		this.bpv = bpv;
@@ -46,7 +46,7 @@ public class RemovePiecesButtonController implements ActionListener{
 	 * @param ActionEvent button click
 	 */
 	public void actionPerformed(ActionEvent arg0) {
-		Move m = new RemoveAllPiecesMove(b, bp, bpv);
+		Move m = new RemoveAllPiecesMove(board, bp, bpv);
 		if(m.doMove()){
 			UndoManager.getInstance().pushMove(m);
 			bv.redraw();
