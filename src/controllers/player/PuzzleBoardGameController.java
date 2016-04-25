@@ -71,7 +71,14 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
 			
 			if (levelModel.checkStatus()) {
-				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
+				if (game.highestUnlockedID() == game.getCurrentLevel().getID()) {
+					game.unlockNextLevel();
+				}
+				game.updateStars(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
+				game.getSelectView().updateStarsForLevel(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
+				game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
+				game.getExitView().setVisible(true);
+				game.getLevelView().dispose();
 			}
 			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
@@ -119,7 +126,14 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 				((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
 				
 				if (levelModel.checkStatus()) {
-					game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
+					if (game.highestUnlockedID() == game.getCurrentLevel().getID()) {
+						game.unlockNextLevel();
+					}
+					game.updateStars(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
+					game.getSelectView().updateStarsForLevel(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
+					game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
+					game.getExitView().setVisible(true);
+					game.getLevelView().dispose();
 				}
 				game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 	
