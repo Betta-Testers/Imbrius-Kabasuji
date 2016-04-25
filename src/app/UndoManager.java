@@ -32,8 +32,15 @@ public class UndoManager{
 		redoStack = new Stack<IMove>();
 	}
 
+    /**
+     * Push move consumes an Imove and pushes it to the undo stack. When the stack is
+     * modified, the redostack is cleared. If the ButtonGroupView is null, the set undo enabled is
+     * skipped (for game side functionality).
+     * @param m Move being pushed to stack
+     */
 	public void pushMove(IMove m){
 		if(bgv != null){
+
 			bgv.setUndoEnabled(true); //TODO set undo button enabled
 		}
 		UndoManager.undoStack.push(m);
