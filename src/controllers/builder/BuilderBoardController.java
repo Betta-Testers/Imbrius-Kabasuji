@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
+import app.UndoManager;
 import controllers.common.Move;
 import controllers.common.MovePieceOffBoardMove;
 import controllers.common.MovePieceOnBoardMove;
@@ -115,19 +116,32 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			if(bView.getStateOfBoardConvert()){
 				if (mouseOn) {
 					move = new PieceToNewBoardTilesMove(bp, board, source, bView.getLevelPropertiesView());
-					move.doMove();	
+					if(move.doMove()){
+						UndoManager.getInstance().pushMove(move);
+					}
 				}
 			}else if(bView.getStateOfHintConvert()){
 				if (mouseOn) {
 					move = new PieceToHintMove(hintPieces, bp, board, source);
-					move.doMove();
+					if(move.doMove()){
+						UndoManager.getInstance().pushMove(move);
+					}
 				}
 			}else{
 				if (mouseOn) {
 					move = new MovePieceOnBoardMove(lm, source, board.getDraggedPiece(), rOffset, cOffset);
 					if(!move.doMove()){
+						if(board.getDraggedPiece() != null){ // Move failed, put the piece back
+							board.putPieceOnBoard(board.getDraggedPiece(), board.getDraggedPiece().getOriginRow(), board.getDraggedPiece().getOriginCol());
+							board.setDraggedPiece(null);
+							board.clearPiecePreview();
+						}
 						move = new PlacePieceOnBoardFromBullpenMove(lm, source, bpv);
-						move.doMove();
+						if(move.doMove()){
+							UndoManager.getInstance().pushMove(move);
+						}
+					}else{
+						UndoManager.getInstance().pushMove(move);
 					}
 				}
 			}
@@ -141,15 +155,27 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 					move = new SwapTileEmptyToBoardMove(source, board, bView.getLevelPropertiesView());
 					if(!move.doMove()){
 						move = new SwapTileReleaseToBoardMove(source, board);	
-						move.doMove();
+						if(move.doMove()){
+							UndoManager.getInstance().pushMove(move);
+						}
+					}else{
+						UndoManager.getInstance().pushMove(move);
 					}
+				}else{
+					UndoManager.getInstance().pushMove(move);
 				}
+			}else{
+				UndoManager.getInstance().pushMove(move);
 			}
 		}else{
 			move = new SwapTileBoardToReleaseMove(rncv, source, board);
 			if(!move.doMove()){
 				move = new SwapTileReleaseToReleaseMove(rncv, source, board);
-				move.doMove();
+				if(move.doMove()){
+					UndoManager.getInstance().pushMove(move);
+				}
+			}else{
+				UndoManager.getInstance().pushMove(move);
 			}
 		}
 		
@@ -177,7 +203,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		if(bView.getStateOfPlacement()){
 			mouseOn = false;
 			Move move = new MovePieceOffBoardMove(lm, bpv);
-			move.doMove();
+			if(move.doMove()){
+				UndoManager.getInstance().pushMove(move);
+			}
 			board.clearPiecePreview();
 			boardView.redraw();
 			boardView.repaint();

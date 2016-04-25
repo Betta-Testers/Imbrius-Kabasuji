@@ -7,6 +7,7 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import app.UndoManager;
 import controllers.common.Move;
 import model.PuzzleLevel;
 
@@ -27,7 +28,7 @@ public class SetNumberOfMovesSpinnerController implements ChangeListener {
 		JSpinner spinMoves = (JSpinner)ce.getSource();
 		Move m = new SetNumberOfMovesMove(pl, spinMoves);
 		if (m.doMove()) {
-			//push onto stack
+			UndoManager.getInstance().pushMove(m);
 		}
 	}
 }

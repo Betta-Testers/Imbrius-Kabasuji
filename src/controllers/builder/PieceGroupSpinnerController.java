@@ -4,6 +4,7 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import app.UndoManager;
 import controllers.common.Move;
 import model.Bullpen;
 import model.PieceGroup;
@@ -51,7 +52,9 @@ public class PieceGroupSpinnerController implements ChangeListener {
 			}
 		}
 		Move move = new PieceGroupSpinnerMove(pieceGroup, spinner);
-		move.doMove();
+		if(move.doMove()){
+			UndoManager.getInstance().pushMove(move);
+		}
 	}
 
 
