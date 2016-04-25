@@ -11,9 +11,9 @@ public class UndoManager{
 	/**Holds the only instance if the undoManager that can be reached.**/
 	private static UndoManager instance = new UndoManager();
 	/**Stack for tracking moves to be undone**/
-	Stack<Move> undoStack = new Stack<Move>();
+	static Stack<Move> undoStack;
 	/**Stack for tracking moves to be redone**/
-	Stack<Move> redoStack = new Stack<Move>();
+	static Stack<Move> redoStack;
 
 	/**Private constructor prevents further instantiations**/
 	private UndoManager(){
@@ -23,9 +23,8 @@ public class UndoManager{
 	}
 
 	public void pushMove(Move m){
-		this.undoStack.push(m);
-		this.redoStack.clear();
-		System.out.println("The stack is Empty! "+redoStack.empty());
+		UndoManager.undoStack.push(m);
+		UndoManager.redoStack.clear();
 	}
 	
 	/**
@@ -37,11 +36,11 @@ public class UndoManager{
 	 * @return true if the undo could be done
 	 */
 	public boolean undo(){
-		if(this.undoStack.empty()){ return false;}
-		Move m = this.undoStack.pop();
+		if(UndoManager.undoStack.empty()){ return false;}
+		Move m = UndoManager.undoStack.pop();
 		m.undo();
-		this.redoStack.push(m);
-		return this.undoStack.empty();
+		UndoManager.redoStack.push(m);
+		return true;
 	}
 	
 	/**
@@ -53,11 +52,20 @@ public class UndoManager{
 	 * @return true if the redo could be done
 	 */
 	public boolean redo(){
-		if(this.redoStack.empty()){ return false;}
-		Move m = this.redoStack.pop();
+		if(UndoManager.redoStack.empty()){ return false;}
+		Move m = UndoManager.redoStack.pop();
 		m.redo();
-		this.undoStack.push(m);
+		UndoManager.undoStack.push(m);
 		return true;
+	}
+	
+	/**
+	 * Clears the stacks of all undos and redos. This is for the
+	 * sake of operating between builder view instances.
+	 */
+	public void flush(){
+		UndoManager.redoStack.clear();
+		UndoManager.undoStack.clear();
 	}
 	
 	/**
