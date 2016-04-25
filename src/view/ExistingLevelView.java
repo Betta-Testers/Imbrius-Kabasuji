@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
  * @author hejohnson
  *
  */
-public class ExistingLevelView extends JPanel {	
+public class ExistingLevelView extends JPanel implements Comparable<ExistingLevelView>{	
 	private static final long serialVersionUID = 1L;
 	/**Stores Icon associated with the level.**/
 	ImageIcon icon;
@@ -128,5 +128,15 @@ public class ExistingLevelView extends JPanel {
 	 */
 	public ActionListener getDeleteHandler() {
 		return this.deleteLevelHandler;
+	}
+
+	/**
+	 * For sorting the list of existing levels
+	 * @param The level to compare it to
+	 * @return < 0 if the parameter is a higher numbered level
+	 */
+	@Override
+	public int compareTo(ExistingLevelView elv) {
+		return this.getLevelNumber()-elv.getLevelNumber();
 	}
 }

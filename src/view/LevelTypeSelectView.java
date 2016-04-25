@@ -134,6 +134,13 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	/**
+	 * Refreshes the displayed list of levels
+	 */
+	public void refreshExistingLevels() {
+		existingLevels.refreshLevels();
+	}
+	
+	/**
 	 * Adds an existing level to the ExistingLevelViewer.
 	 * @param levelType - String
 	 * @param levelNumber - int

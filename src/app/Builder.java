@@ -49,6 +49,8 @@ public class Builder extends LevelIO{
 				throw new RuntimeException("ID not found in levelData, LTSV couldn't be initialized" + e.getMessage());
 			}
 		}
+		
+		ltsv.refreshExistingLevels();
 	}
 
 	void initializeControllers(){
@@ -84,6 +86,7 @@ public class Builder extends LevelIO{
 		if(!levelData.containsKey(id)){
 			levelData.put(id, type);
 			ltsv.addExistingLevel(type, id, this);
+			ltsv.refreshExistingLevels();
 		}
 	}
 
