@@ -47,16 +47,10 @@ public class RemoveHintMove extends Move {
 	public boolean doMove() {
 		if(isValid()) {
 			findHintModel();
-			if(p == null){ 
-				System.out.println("Remove Hint Failed!");
-				System.out.println("Array: "+hintPieces.toString());
-				return false;
-			}
 			for(PieceTile t: p.getTiles()){
 				((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(false);
 			}
-			hintPieces.remove(p);
-			System.out.println("	Removed: "+p.toString());
+			removeFromList(p);
 			b.clearPiecePreview();
 			return true;
 		}
@@ -85,11 +79,6 @@ public class RemoveHintMove extends Move {
 	 * is found the loop breaks.
 	 */
 	void findHintModel(){
-		System.out.println("New Move!");
-		System.out.println("Available Pieces: ");
-		for(Piece pt: hintPieces){
-			System.out.println("	"+pt.toString());
-		}
 		for(Piece p: hintPieces){
 			if(searchPiece(p)){ break;}
 		}
@@ -103,8 +92,6 @@ public class RemoveHintMove extends Move {
 	 * @return true if the piece is found
 	 */
 	boolean searchPiece(Piece p){
-		System.out.println("Looking for: "+source.toString());
-		System.out.println("Checking Against: "+p.toString());
 		for(PieceTile t: p.getTiles()){
 			if(t.getRow() == source.getRow() && t.getCol() == source.getCol()){
 				this.p = p;
@@ -136,7 +123,41 @@ public class RemoveHintMove extends Move {
 		for(PieceTile t: p.getTiles()){
 			((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(false);
 		}
-		hintPieces.remove(p);
+		removeFromList(p);
+		return true;
+	}
+	
+	/**
+	 * Removes a Piece from the hintPieces arrayList based on if two piece's tile's coordinates 
+	 * are the same. Uses a helper method to determine if two pieces are the same.
+	 * @param p - Piece to be removed
+	 */
+	void removeFromList(Piece p) {
+		for(int i = 0; i < hintPieces.size(); i++){
+			if(specialEquals(hintPieces.get(i), p)){
+				hintPieces.remove(i);
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Checks if two pieces are equals based on the coordinates of their tiles,
+	 * not the actual tiles themselves.
+	 * @param piece - piece being compared to
+	 * @param p2 - comparison piece
+	 * @return true if the two have matching coordinates
+	 */
+	boolean specialEquals(Piece piece, Piece p2) {
+		for(PieceTile o: piece.getTiles()){
+			for(int i = 0; i < p2.getTiles().length; i++){
+				if(o.getRow() == p2.getTiles()[i].getRow() && o.getCol() == p2.getTiles()[i].getCol()){
+					break;
+				}else if(i ==  p2.getTiles().length-1){ //Entire second piece couldnt find tile with those coordinates
+					return false;
+				}
+			}
+		}
 		return true;
 	}
 }
