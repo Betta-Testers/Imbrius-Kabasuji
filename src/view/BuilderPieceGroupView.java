@@ -10,17 +10,27 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 /**
- * 
+ * Represents the view with a spinner and a piece in the builder.
  * @author dfontana
  * @author awharrison
  *
  */
 public class BuilderPieceGroupView extends AbstractPieceGroupView{	
 	private static final long serialVersionUID = 1L;
+	
+	/**Stores the layout of the BuilderPieceGroupView.**/
 	GroupLayout groupLayout;
+	
+	/**Spinner attached to the BuilderPieceGroupView. Allows the user to increment and decrement the amount of one piece.**/
 	JSpinner spinner;
+	
+	/**Handles changes with the spinner.**/
 	ChangeListener pieceCountHandler;
 
+	/**
+	 * Creates a new BuilderPieceGroupView with a given PieceGroup.
+	 * @param pg - PieceGroup
+	 */
 	public BuilderPieceGroupView(PieceGroup pg){
 		super(pg);
 		SpinnerNumberModel model = new SpinnerNumberModel(0, 0, 99, 1);  
@@ -30,26 +40,41 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 		setupLayout();
 	}
 	
+	/**
+	 * Updates count of spinner.
+	 */
 	@Override
 	void updateCount() {
 		spinner.setValue(pieceGroup.getNumPieces());
 	}
 	
+	/**
+	 * Sets spinner change listener.
+	 * @param cl - ChangeListener
+	 */
 	public void addSpinnerChangeListener(ChangeListener cl) {
 		this.pieceCountHandler = cl;
 		spinner.addChangeListener(cl);
 	}
 	
+	/**
+	 * Returns spinner change listener.
+	 * @return pieceCountHandler - ChangeListener
+	 */
 	public ChangeListener getSpinnerChangeListener() {
 		return this.pieceCountHandler;
 	}
 	
+	/**
+	 * Returns the spinner associated with the BuilderPieceGroupview.
+	 * @return spinner - JSpinner
+	 */
 	public JSpinner getSpinner() {
 		return this.spinner;
 	}
 	
 	/**
-	 * Method for setting up the layout for the BuilderPieceGroupview
+	 * Sets up the layout for the BuilderPieceGroupview.
 	 */
 	void setupLayout(){
 		groupLayout = new GroupLayout(this);

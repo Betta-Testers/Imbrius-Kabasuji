@@ -29,8 +29,8 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	PuzzleBoardGameController pbgc;
 	
 	/**
-	 * Generates a puzzle level
-	 * @param levelID - ID of this level being made
+	 * Generates a puzzle level using a given levelID.
+	 * @param levelID - int
 	 */
 	public PuzzleLevel(int levelID) {
 		super(levelID, "Puzzle", true);
@@ -57,7 +57,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 * to prevent duplicate triggers of the same threshold (Since you can moves a piece off a board and back onto it).
 	 * 
 	 * CheckStatus then checks if the level is done. If so, it returns true. Otherwise, false.
-	 * @return boolean - true if the level's end conditions are met
+	 * @return if the level's end conditions are met - boolean
 	 */
 	@Override
 	public boolean checkStatus() {
@@ -81,6 +81,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * incrementMovesMade is called whenever a move is performed in a puzzle level. This includes bullpen to board,
 	 * board to board, or off the board. It always increments by 1.
+	 * @return movesMade - int
 	 */
 	public int incrementMovesMade(){
 		movesMade++;
@@ -88,13 +89,17 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Allows the setting of the move
-	 * @param moves
+	 * Sets the number of moves a player can make in the puzzle level.
+	 * @param moves - int
 	 */
 	public void setMoveLimit(int moves){
 		moveLimit = moves;
 	}
 	
+	/**
+	 * Returns the number of moves a player can make in the puzzle level.
+	 * @return moves - int
+	 */
 	public int getMoveLimit() {
 		return moveLimit;
 	}
@@ -115,8 +120,8 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Creates a string representation of this level
-	 * @return String representation of this level
+	 * Creates a string representation of this level.
+	 * @return String representation of this level - String
 	 */
 	@Override
 	public String toString(){

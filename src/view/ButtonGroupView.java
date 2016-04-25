@@ -22,17 +22,26 @@ import controllers.builder.UndoButtonController;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 
+/**
+ * @author dfontana
+ */
 public class ButtonGroupView extends JPanel{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**Stores the layout of the ButtonGroupView.**/
 	GroupLayout groupLayout;
+	/**The undo button of the ButtonGroupView.**/
 	JButton btnUndo;
+	/**The redo button of the ButtonGroupView.**/
 	JButton btnRedo;
+	/**The save button of the ButtonGroupView.**/
 	JButton btnSave;
+	/**The remove-pieces button of the ButtonGroupView.**/
 	JButton btnRemovePieces;
 	
+	/**
+	 * Creates a new ButtonGroupView.
+	 */
 	public ButtonGroupView(){
 		setPreferredSize(new Dimension(120, 85));
 		btnUndo = new JButton("");
@@ -55,6 +64,10 @@ public class ButtonGroupView extends JPanel{
 		setupLayout();
 	}
 	
+	/**
+	 * Initialize the controllers associated with the ButtonGroupView.
+	 * @param b - Builder
+	 */
 	public void initializeControllers(Builder b){
 		btnSave.addActionListener(new SaveAndCloseLevelButtonController(b));
 		btnRemovePieces.addActionListener(new RemovePiecesButtonController(b.getCurrentLevel().getBoard(), b.getBuilderView().getBoardView(), b.getCurrentLevel().getBullpen(), b.getBuilderView().getBullpenView()));
@@ -63,23 +76,23 @@ public class ButtonGroupView extends JPanel{
 	}
 	
 	/**
-	 * Sets the redo button enabled by the given boolean
-	 * @param enabled state of the button
+	 * Sets the redo button enabled by the given boolean.
+	 * @param enabled - boolean
 	 */
 	public void setRedoEnabled(boolean enabled){
 		btnRedo.setEnabled(enabled);
 	}
 	
 	/**
-	 * Sets the undo button enabled by the given boolean
-	 * @param enabled state of the button
+	 * Sets the undo button enabled by the given boolean.
+	 * @param enabled - boolean
 	 */
 	public void setUndoEnabled(boolean enabled){
 		btnUndo.setEnabled(enabled);
 	}
 	
 	/**
-	 * Method for setting up the layout for the available level view
+	 * Sets up the layout for the ButtonGroupView.
 	 */
 	private void setupLayout(){
 		groupLayout = new GroupLayout(this);

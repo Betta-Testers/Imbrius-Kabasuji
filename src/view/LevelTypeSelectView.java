@@ -24,28 +24,46 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * 
+ * Window to show what levels are available to edit, as well as to show the types of levels a user can create. Used for the Builder application.
  * @author dfontana
  * @author awharrison
+ * @author hejohnson
  *
  */
 public class LevelTypeSelectView extends JFrame {
 	private static final long serialVersionUID = 1L;
 
+	/**Shows existing levels.**/
 	ExistingLevelViewer existingLevels;
+	
+	/**Shows description of each level type.**/
 	JTextArea txtAreaLevelTypeDescription;
+	
+	/**Button to create a new puzzle level.**/
 	JButton createPuzzle;
+	/**Button to create a new lightning level.**/
 	JButton createLightning;
+	/**Button to create a new release level.**/
 	JButton createRelease;
+	/**Contains the buttons and existing levels.**/
 	JPanel container;
+	/**Title for the ExistingLevelViewer.**/
 	JLabel existingLevelMsg;
+	
+	/**Handles when the window is closed.**/
 	WindowListener shutdownHandler;
+	
+	/**Handles create puzzle button mouse events.**/
 	MouseListener puzzleBtnHandler;
+	
+	/**Handles create lightning button mouse events.**/
 	MouseListener lightningBtnHandler;
+	
+	/**Handles create release button mouse events.**/
 	MouseListener releaseBtnHandler;
 	
 	/**
-	 * Create the application.
+	 * Creates a LevelTypeSelectView.
 	 */
 	public LevelTypeSelectView() {
 		super();
@@ -97,53 +115,71 @@ public class LevelTypeSelectView extends JFrame {
 		this.getContentPane().add(container);
 	}
 	
+	/**
+	 * Initialize level creation button controllers.
+	 * @param b - Builder
+	 */
 	public void initializeControllers(Builder b) {
 		setPuzzleBtnHandler(new NewPuzzleLevelController(b, txtAreaLevelTypeDescription, "Puzzle: Fill the board with hexominoes before you run out of moves!"));
 		setLightningBtnHandler(new NewLightningLevelController(b, txtAreaLevelTypeDescription, "Lightning: Cover as many tiles as you can before time runs out!"));
 		setReleaseBtnHandler(new NewReleaseLevelController(b, txtAreaLevelTypeDescription, "Release: Cover tiles to release number/color sequences and win!"));
 	}
 	
+	/**
+	 * Returns the text area used to display the description of each level type.
+	 * @return txtAreaLevelTypeDescription - JTextArea
+	 */
 	public JTextArea getLevelDescriptionBox() {
 		return txtAreaLevelTypeDescription;
 	}
 	
+	/**
+	 * Adds an existing level to the ExistingLevelViewer.
+	 * @param levelType - String
+	 * @param levelNumber - int
+	 * @param b - Builder
+	 */
 	public void addExistingLevel (String levelType, int levelNumber, Builder b){
 		ExistingLevelView elv = existingLevels.addLevelView(levelType, levelNumber);
 		elv.addActionListenerToEditButton(new ExistingLevelEditController(b));
 		elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
 	}
 	
+	/**
+	 * Removes an existing level to the ExistingLevelViewer.
+	 * @param levelNumber - int
+	 */
 	public void removeExistingLevel(int levelNumber){
 		existingLevels.removeLevelView(levelNumber);
 	}
 	
 	/**
-	 * retrieve the button that tells the Builder to create a puzzle level
-	 * @return Jbutton
+	 * Returns the button that tells the Builder to create a puzzle level.
+	 * @return createPuzzle - Jbutton
 	 */
 	public JButton getCreatePuzzleBtn() {
 		return this.createPuzzle;
 	}
 	
 	/**
-	 * retrieve the button that tells the Builder to create a Lightning level
-	 * @return Jbutton
+	 * Returns the button that tells the Builder to create a lightning level.
+	 * @return createLightning - Jbutton
 	 */
 	public JButton getCreateLightningBtn() {
 		return this.createLightning;
 	}
 	
 	/**
-	 * retrieve the button that tells the Builder to create a Release level
-	 * @return Jbutton
+	 * Returns the button that tells the Builder to create a release level.
+	 * @return createRelease - Jbutton
 	 */
 	public JButton getCreateReleaseBtn() {
 		return this.createRelease;
 	}
 	
 	/**
-	 * set the controller handling window closes
-	 * @return MouseListener
+	 * Set the controller handling window closes.
+	 * @param we - WindowListener
 	 */
 	public void setShutdownController(WindowListener we) {
 		this.shutdownHandler = we;
@@ -151,16 +187,16 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	/**
-	 * get the controller handling window closes
-	 * @return MouseListener
+	 * Returns the controller handling window closes.
+	 * @return shutdownHandler - WindowListener
 	 */
 	public WindowListener getShutdownController() {
 		return this.shutdownHandler;
 	}
 	
 	/**
-	 * set the controller for the button that tells the Builder to create a puzzle level
-	 * @return 
+	 * Set the controller for the button that tells the Builder to create a puzzle level.
+	 * @param me - MouseListener 
 	 */
 	public void setPuzzleBtnHandler(MouseListener me) {
 		this.puzzleBtnHandler = me;
@@ -168,8 +204,8 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	/**
-	 * set the controller for the button that tells the Builder to create a Lightning level
-	 * @return 
+	 * Set the controller for the button that tells the Builder to create a lightning level.
+	 * @param me - MouseListener 
 	 */
 	public void setLightningBtnHandler(MouseListener me) {
 		this.lightningBtnHandler = me;
@@ -177,8 +213,8 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	/**
-	 * set the controller for the button that tells the Builder to create a Release level
-	 * @return 
+	 * Set the controller for the button that tells the Builder to create a release level.
+	 * @param me - MouseListener 
 	 */
 	public void setReleaseBtnHandler(MouseListener me) {
 		this.releaseBtnHandler = me;
@@ -186,29 +222,32 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	/**
-	 * get the controller for the button that tells the Builder to create a puzzle level
-	 * @return MouseListener
+	 * Returns the controller for the button that tells the Builder to create a puzzle level.
+	 * @return puzzleBtnHandler - MouseListener
 	 */
 	public MouseListener getPuzzleBtnHandler() {
 		return this.puzzleBtnHandler;
 	}
 	
 	/**
-	 * get the controller for the button that tells the Builder to create a Lightning level
-	 * @return MouseListener
+	 * Returns the controller for the button that tells the Builder to create a lightning level.
+	 * @return lightningBtnHandler - MouseListener
 	 */
 	public MouseListener getLightningBtnHandler() {
 		return this.lightningBtnHandler;
 	}
 	
 	/**
-	 * get the controller for the button that tells the Builder to create a Release level
-	 * @return MouseListener
+	 * Returns the controller for the button that tells the Builder to create a release level.
+	 * @return releaseBtnHandler - MouseListener
 	 */
 	public MouseListener getReleaseBtnHandler() {
 		return this.releaseBtnHandler;
 	}
 	
+	/**
+	 * Sets up the layout of the LevelTypeSelectView.
+	 */
 	void setupLayout() {
 		GroupLayout gl_ltsv = new GroupLayout(container);
 		gl_ltsv.setAutoCreateGaps(true);

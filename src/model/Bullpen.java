@@ -6,13 +6,17 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
+ * Represents the collection of PieceGroups the user can access.
  * @author awharrison
  * @author dfontana
  */
 public class Bullpen implements Serializable{
 	private static final long serialVersionUID = 354746744366050487L;
 
+	/** playablePieces stores the piece groups that can be used in the game.**/
 	ArrayList<PieceGroup> playablePieces = new ArrayList<PieceGroup>();
+	
+	/** selectedPiece stores what piece has been selected from the bullpen. **/
 	transient Piece selectedPiece;
 
 	/**
@@ -28,8 +32,8 @@ public class Bullpen implements Serializable{
 	}
 
 	/**
-	 * Create a Bullpen containing a specified group of pieces
-	 * @param pieces
+	 * Create a Bullpen containing a specified group of pieces.
+	 * @param pieces - ArrayList<PieceGroup>
 	 */
 	public Bullpen(ArrayList<PieceGroup> pieces) {
 		this.playablePieces.addAll(pieces);
@@ -37,8 +41,8 @@ public class Bullpen implements Serializable{
 	}
 
 	/**
-	 * Create a Bullpen containing a specified number of random pieces
-	 * @param sizeOfBullpen
+	 * Create a Bullpen containing a specified number of random pieces.
+	 * @param sizeOfBullpen - int
 	 */
 	public Bullpen(int sizeOfBullpen) {
 		if (sizeOfBullpen < 0) {
@@ -56,6 +60,11 @@ public class Bullpen implements Serializable{
 		sortBullpen(); // sort the bullpen by ID
 	}
 	
+	/**
+	 * Returns the piece group with the given ID. Returns null if PieceGroup is not found.
+	 * @param ID - int
+	 * @return pg (piece group linked to ID) - PieceGroup
+	 */
 	PieceGroup getPieceGroupWithID(int id) {
 		for (PieceGroup pg : playablePieces) {
 			if (pg.getPiece().getID() == id) {
@@ -67,9 +76,9 @@ public class Bullpen implements Serializable{
 	
 	/**
 	 * Adds a single random piece to the bullpen.
-	 * Increments the count if that piece group exists
+	 * Increments the count if that piece group exists.
 	 * Adds the new piece group if it doesn't.
-	 * @return Piece - piece that was added
+	 * @return the piece that was added - Piece
 	 */
 	public Piece addRandomPiece(){
 		int randID = (new Random().nextInt(35))+1;
@@ -87,8 +96,8 @@ public class Bullpen implements Serializable{
 	/**
 	 * Increments the count of the piece ID provided. If the piece exists,
 	 * true is returned. If the piece could not be found, false is returned.
-	 * @param id - the piece ID whose count is being incremented
-	 * @return boolean - true if the piece could be incremented
+	 * @param id (the piece ID whose count is being incremented) - int
+	 * @return if the PieceGroup could be incremented - boolean
 	 */
 	public boolean incrementPiece(int id) {
 		PieceGroup pg = getPieceGroupWithID(id);
@@ -104,8 +113,8 @@ public class Bullpen implements Serializable{
 	 * Decrements the count of the piece ID provided. If the piece exists,
 	 * true is returned. If the piece could not be found, false is returned.
 	 * This is used for undoing a RemoveAllPieces move.
-	 * @param id - the piece ID whose count is being decremented
-	 * @return boolean - true if the piece could be decremented
+	 * @param id (the piece ID whose count is being decremented) - int
+	 * @return if the PieceGroup could be decremented - boolean
 	 */
 	public boolean decrementPiece(int id) {
 		PieceGroup pg = getPieceGroupWithID(id);
@@ -118,16 +127,16 @@ public class Bullpen implements Serializable{
 	}
 	
 	/**
-	 * return this bullpen's playable pieces
-	 * @return
+	 * Return this bullpen's playable pieces.
+	 * @return playablePieces - ArrayList<PieceGroup>
 	 */
 	public ArrayList<PieceGroup> getPlayablePieces() {
 		return this.playablePieces;
 	}
 
 	/**
-	 * return this bullpen's selected piece
-	 * @return
+	 * Return this bullpen's selected piece.
+	 * @return selectedPiece - Piece.
 	 */
 	public Piece getSelectedPiece() {
 		return this.selectedPiece;
@@ -147,9 +156,8 @@ public class Bullpen implements Serializable{
 	}
 
 	/**
-	 * sets the selected piece from the bullpen using a given ID
-	 * returns true if the piece is available, false if not
-	 * @return
+	 * Sets the selected piece from the bullpen using a given ID. Returns true if the piece is available, false if not.
+	 * @return if piece was available - boolean
 	 */
 	public boolean setSelectedPiece(int ID) {
 		for(int i = 0; i < this.playablePieces.size(); i++) {
@@ -162,15 +170,15 @@ public class Bullpen implements Serializable{
 	}
 
 	/**
-	 * nulls the selectedPiece attribute
+	 * Clears the selectedPiece attribute.
 	 */
 	public void clearSelectedPiece() {
 		this.selectedPiece = null;
 	}
 
 	/**
-	 * returns the number of pieces available in the bullpen
-	 * @return
+	 * Returns the number of pieces available in the bullpen.
+	 * @return count - int
 	 */
 	public int numAvailablePieces() {
 		int count = 0;
@@ -181,23 +189,23 @@ public class Bullpen implements Serializable{
 	}
 
 	/**
-	 * returns true if the bullpen is empty, false if it is not empty
-	 * @return
+	 * Returns true if the bullpen is empty, false if it is not empty.
+	 * @return if bullpen is empty - boolean
 	 */
 	public boolean isEmpty() {
 		return (this.playablePieces.size() == 0);
 	}
 
 	/**
-	 * sorts the Bullpen pieceGroups in ascending order by ID
+	 * Sorts the Bullpen pieceGroups in ascending order by ID.
 	 */
 	public void sortBullpen() {
 		Collections.sort(this.playablePieces);
 	}
 	
 	/**
-	 * Returns all toString() of the piecegroups making this bullpen
-	 * @return String representation of this bullpen
+	 * Returns all toString() of the piecegroups that make up this bullpen.
+	 * @return String representation of this bullpen - String
 	 */
 	public String toString(){
 		StringBuilder s = new StringBuilder();
