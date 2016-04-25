@@ -7,7 +7,7 @@ import view.SplashScreen;
 
 /**
  * Splash Timer attached to builder. Closes the splash screen and shows the Level Type Selection screen
- * @author Dylan
+ * @author dfontana
  */
 public class BuilderSplashTimerController implements ActionListener{
 	SplashScreen splash;

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 
 /**
- * @author Evan
- * @author Hans
- * @author Dylan
+ * @author ejbosia
+ * @author hejohnson
+ * @author dfontana
  */
 public class Piece implements Serializable{
 	private static final long serialVersionUID = -5341675534216265771L;
@@ -28,7 +28,7 @@ public class Piece implements Serializable{
 	 * Method used to break down Piece into a for saving.
 	 * @return String
 	 * 
-	 * @author Evan
+	 * @author ejbosia
 	 */
 	public String toString(){
 		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
@@ -40,7 +40,7 @@ public class Piece implements Serializable{
 	 * Method used to return ID of piece.
 	 * @return int
 	 * 
-	 * @author Evan
+	 * @author ejbosia
 	 */
 	public int getID(){
 		return ID;
@@ -49,7 +49,7 @@ public class Piece implements Serializable{
 	/**
 	 * Method used to change orientation of the piece as if it was rotated counter-clockwise.
 	 * 
-	 * @author Evan
+	 * @author ejbosia
 	 */
 	public void rotateLeft(){
 		for (int i=1; i<6; i++) {
@@ -63,7 +63,7 @@ public class Piece implements Serializable{
 	/**
 	 * Method used to change orientation of the piece as if it was rotated clockwise.
 	 * 
-	 * @author Evan
+	 * @author ejbosia
 	 */
 	public void rotateRight(){
 		for (int i=1; i<6; i++) {
@@ -77,7 +77,7 @@ public class Piece implements Serializable{
 	/**
 	 * Method used to change orientation of the piece as if it was flipped horizontally.
 	 * 
-	 * @author Hans
+	 * @author hejohnson
 	 */
 	public void flipH(){
 		for (int i=1; i<6; i++) {
@@ -88,7 +88,7 @@ public class Piece implements Serializable{
 	/**
 	 * Method used to change orientation of the piece as if it was flipped horizontally.
 	 * 
-	 * @author Hans
+	 * @author hejohnson
 	 */
 	public void flipV(){
 		for (int i=1; i<6; i++) {
@@ -100,7 +100,7 @@ public class Piece implements Serializable{
 	 * Method used to return color of piece.
 	 * @return Color
 	 * 
-	 * @author Evan
+	 * @author ejbosia
 	 */
 	Color getColor(){
 		return color;
@@ -115,7 +115,7 @@ public class Piece implements Serializable{
 	 * @param row
 	 * @param col
 	 * 
-	 * @author Hans
+	 * @author hejohnson
 	 */
 	public void setLocation(int row, int col) {
 		this.tiles[0].setLocation(row, col);
@@ -128,7 +128,7 @@ public class Piece implements Serializable{
 	 * Method used to get the column location of the origin.
 	 * @return int
 	 * 
-	 * @author Evan
+	 * @author ejbosia
 	 */
 	public int getOriginCol(){
 		return tiles[0].getCol();
@@ -138,7 +138,7 @@ public class Piece implements Serializable{
 	 * Method used to get the row location of the origin.
 	 * @return int
 	 * 
-	 * @author Evan
+	 * @author ejbosia
 	 */
 	public int getOriginRow(){
 		return tiles[0].getRow();
@@ -148,7 +148,7 @@ public class Piece implements Serializable{
 	 * Method used to get the origin tile.
 	 * @return PieceTile
 	 * 
-	 * @author Evan
+	 * @author ejbosia
 	 */
 	public PieceTile getOriginTile() {
 		return tiles[0];
@@ -158,7 +158,7 @@ public class Piece implements Serializable{
 	 * Method used for generating the correct tile placement of the piece given its ID.
 	 * @returns ArrayList<AbstractTile>
 	 * 
-	 * @author Hans
+	 * @author hejohnson
 	 */
 	public ArrayList<AbstractTile> getPreviousTiles() {
 		ArrayList<AbstractTile> prevTiles = new ArrayList<AbstractTile>();
@@ -221,7 +221,7 @@ public class Piece implements Serializable{
 	 * @param int
 	 * @throws RuntimeException
 	 * 
-	 * @author Evan
+	 * @author ejbosia
 	 */
 	protected void generatePiece(int ID) throws RuntimeException{
 		switch(ID){

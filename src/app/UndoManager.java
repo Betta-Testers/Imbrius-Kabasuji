@@ -7,7 +7,7 @@ import view.ButtonGroupView;
 
 /**
  * Singleton for handling undo and redo.
- * @author Dylan
+ * @author dfontana
  */
 public class UndoManager{
 	/**Holds the only instance if the undoManager that can be reached.**/

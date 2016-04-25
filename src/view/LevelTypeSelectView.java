@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 
 /**
  * 
- * @author Dylan
+ * @author dfontana
  * @author awharrison
  *
  */

@@ -12,7 +12,7 @@ import view.BullpenView;
 
 /**
  * @author hejohnson
- * @author dylan
+ * @author dfontana
  */
 public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	AbstractLevelModel levelModel;

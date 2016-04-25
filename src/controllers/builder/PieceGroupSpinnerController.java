@@ -14,7 +14,7 @@ import view.PiecePanel;
  * Controls the actions performed on a PieceGroup spinner in builder mode that 
  * increments and decrements its number of pieces 
  * @author awharrison
- * @author Dylan
+ * @author dfontana
  */
 public class PieceGroupSpinnerController implements ChangeListener {
 	/**Spinner being operated on in the move**/

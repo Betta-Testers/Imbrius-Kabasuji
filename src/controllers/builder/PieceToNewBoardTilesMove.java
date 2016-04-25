@@ -11,8 +11,8 @@ import view.LevelPropertiesView;
 
 /**
  * Move class for using a piece to place board tiles onto a board.
- * @author Evan
- * @author Dylan
+ * @author ejbosia
+ * @author dfontana
  */
 public class PieceToNewBoardTilesMove implements IMove{
 	/**Bullpen whose piece is being used to make board tiles**/

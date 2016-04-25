@@ -10,7 +10,7 @@ import javax.swing.JToggleButton;
  * ActionListener for the PlacePieces Toggle button. Sets the two other buttons that manipulates
  * piece placement enabled or disabled depending on the state of this button. Additionally,
  * it clears the selection whenever toggled, to prevent accidental placements
- * @author Dylan
+ * @author dfontana
  */
 public class PlacePieceToggleListener implements ActionListener {
 	/**Toggle button for placing boardTiles, gets set enabled/disabled**/

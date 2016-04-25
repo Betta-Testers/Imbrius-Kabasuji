@@ -13,7 +13,7 @@ import view.BullpenView;
 /**
  * Controller to remove all pieces from the board. Executes the RemoveAllPiecesMove
  * @author awharrison
- * @author Dylan
+ * @author dfontana
  */
 
 public class RemovePiecesButtonController implements ActionListener{

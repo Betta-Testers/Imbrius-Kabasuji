@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 
 /**
- * @author Dylan
+ * @author dfontana
  * @author awharrison
  */
 

@@ -28,7 +28,7 @@ import model.PieceTile;
  * Also handles swapping types of tiles, empty <-> board <-> release tiles (including changing number/color)
  * 
  * @author awharrison
- * @author Dylan
+ * @author dfontana
  * @author hejohnson
  */
 

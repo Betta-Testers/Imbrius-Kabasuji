@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 
 /**
  * 
- * @author Evan
+ * @author ejbosia
  *
  */
 public class TestLevelLightning extends TestCase {

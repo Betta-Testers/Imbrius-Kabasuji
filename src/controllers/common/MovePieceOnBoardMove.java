@@ -10,7 +10,7 @@ import model.Piece;
 
 /**
  * @author hejohnson
- * @author Dylan
+ * @author dfontana
  * @author awharrison
  */
 public class MovePieceOnBoardMove implements IMove{

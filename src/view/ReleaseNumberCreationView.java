@@ -19,7 +19,7 @@ import javax.swing.border.LineBorder;
 import controllers.builder.SetReleaseTileColorController;
 
 /**
- * @author Dylan
+ * @author dfontana
  * @author awharrison
  */
 public class ReleaseNumberCreationView extends JPanel{

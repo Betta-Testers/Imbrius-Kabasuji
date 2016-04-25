@@ -11,8 +11,8 @@ import model.Piece;
 
 /**
  * Move class for converting a piece into a hint on the board
- * @author Evan
- * @author Dylan
+ * @author ejbosia
+ * @author dfontana
  */
 public class PieceToHintMove implements IMove{
 	/**Bullpen whose piece is being used to make the hint**/

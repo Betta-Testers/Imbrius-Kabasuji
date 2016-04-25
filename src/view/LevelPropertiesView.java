@@ -20,7 +20,7 @@ import model.LightningLevel;
  * JPanel for displaying the properties of a given level.
  * Configurable to display information relevant only to the current
  * level type being edited.
- * @author Dylan
+ * @author dfontana
  */
 public class LevelPropertiesView extends JPanel{
 	private static final long serialVersionUID = 1L;

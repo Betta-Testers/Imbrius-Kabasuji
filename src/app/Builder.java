@@ -14,7 +14,7 @@ import model.PuzzleLevel;
 /**
  * Application class tracking the Builder. Prepares the views and controllers for LevelTypeSelectView and
  * manages the returning and leaving between the builderView and the LevelTypeSelectionView.
- * @author Dylan
+ * @author dfontana
  *
  */
 public class Builder extends LevelIO{

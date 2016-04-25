@@ -9,7 +9,7 @@ import view.BuilderView;
 
 /**
  * Class for creating the dialog when the builder is closed.
- * @author Dylan
+ * @author dfontana
  */
 
 public class CloseBuilderDialog extends WindowAdapter{

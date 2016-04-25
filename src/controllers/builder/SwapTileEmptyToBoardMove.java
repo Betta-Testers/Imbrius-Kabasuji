@@ -10,7 +10,7 @@ import view.LevelPropertiesView;
  * Move class for the swapping of an empty tile to a board tile on the board.
  * 
  * @author awharrison
- * @author Dylan
+ * @author dfontana
  */
 public class SwapTileEmptyToBoardMove implements IMove {
 	/**Board whose tiles are being swapped in the move**/

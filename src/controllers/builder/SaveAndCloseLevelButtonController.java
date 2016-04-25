@@ -12,7 +12,7 @@ import model.Piece;
  * Controller listening for a Save Button action. On save the builder is told to save
  * the level, the BuilderView is hidden and the LTSV is displayed
  * @author hejohnson
- * @author Dylan
+ * @author dfontana
  */
 public class SaveAndCloseLevelButtonController implements ActionListener {
 	/**The builder whose level is being saved**/
