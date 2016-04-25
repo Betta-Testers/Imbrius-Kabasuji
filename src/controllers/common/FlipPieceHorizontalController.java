@@ -25,7 +25,6 @@ public class FlipPieceHorizontalController implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent ae) {
-		//TODO Make into move
 		p = bullpen.getSelectedPiece();
 		if (p != null) {
 			Move m = new FlipHorizontalMove(p, bullpen);

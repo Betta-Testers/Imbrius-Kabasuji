@@ -141,6 +141,19 @@ public class Bullpen implements Serializable{
 	public Piece getSelectedPiece() {
 		return this.selectedPiece;
 	}
+	
+	/** 
+	 * Tells the caller if a piece with the provided ID is available to be selected
+	 * @return True if piece is in the bullpen and has a count of at least one
+	 */
+	public boolean isSelectable(int ID) {
+		for(int i = 0; i < this.playablePieces.size(); i++) {
+			if(this.playablePieces.get(i).getPiece().ID == ID && this.playablePieces.get(i).getNumPieces() > 0) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Sets the selected piece from the bullpen using a given ID. Returns true if the piece is available, false if not.
