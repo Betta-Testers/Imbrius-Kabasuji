@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 
 /**
+ * Handles the graphics of the main builder application window.
  * @author dfontana
  * @author awharrison
  */
@@ -30,40 +31,41 @@ public class BuilderView extends JFrame {
 	
 	/**The Jpanel holding all other Jpanels in this frame.**/
 	JPanel contentPane;
-	/**Builder object that holds all level information**/
+	/**Builder object that holds all level information.**/
 	Builder builder;
-	/**The level being displayed in the current builderView**/
+	/**The level being displayed in the current builderView.**/
 	AbstractLevelModel m;
-	/**The view that displays the selected piece in the bullpen**/
+	/**The view that displays the selected piece in the bullpen.**/
 	SelectedPieceView selectedPieceView;
-	/**The view of the level's board**/
+	/**The view of the level's board.**/
 	BoardView boardView;
-	/**The view of the level's bullpen**/
+	/**The view of the level's bullpen.**/
 	BullpenView bullpenView;
-	/**A button group that regulates the toggling of Placing hints and boardTiles from pieces**/
+	/**A button group that regulates the toggling of Placing hints and boardTiles from pieces.**/
 	ButtonGroup placementGroup;
-	/**Toggle button for placing pieces**/
+	/**Toggle button for placing pieces.**/
 	JToggleButton tglbtnPlacePieces;
-	/**Toggle button for placing board tiles from pieces**/
+	/**Toggle button for placing board tiles from pieces.**/
 	JToggleButton tglbtnPlaceBoard;
-	/**Toggle button for placing hints from pieces**/
+	/**Toggle button for placing hints from pieces.**/
 	JToggleButton tglbtnPlaceHints;
-	/**The view that displays relevant buttons: save, undo, redo, remove pieces, etc**/
+	/**The view that displays relevant buttons: save, undo, redo, remove pieces, etc.**/
 	ButtonGroupView buttonGroupView;
-	/**The view for creating release numbers in the builder on release levels**/
+	/**The view for creating release numbers in the builder on release levels.**/
 	ReleaseNumberCreationView releaseNumberView;
-	/**The view that displays all relevant properties of the editing level**/
+	/**The view that displays all relevant properties of the editing level.**/
 	LevelPropertiesView levelPropertyView;
-	/**The listener connected to the exiting of the BuilderView JFrame**/
+	/**The listener connected to the exiting of the BuilderView JFrame.**/
 	WindowListener exitWindowHandler;
-	
+	/**Handles if the place piece button is toggled on.**/
 	PlacePieceToggleListener placePieceButtonHandler;
+	/**Handles the controls of the board for the Builder**/
 	BuilderBoardController builderBoardControl;
 	
 
 	/**
-	 * Constructs a BuilderView
-	 * @param b - Builder application storing relevant information of the overall game
+	 * Constructs a BuilderView with a given Builder.
+	 * @param b - Builder
 	 */
 	public BuilderView(Builder b) {
 		this.builder = b;
@@ -92,6 +94,9 @@ public class BuilderView extends JFrame {
 		setupLayout();		
 	}
 
+	/**
+	 * Adds the toggle buttons to the builder window.
+	 */
 	void prepareToggleButtons() {
 		placementGroup = new ButtonGroup(){
 			private static final long serialVersionUID = 1L;
@@ -114,7 +119,7 @@ public class BuilderView extends JFrame {
 	 * tile creation and showing only relevant information in
 	 * property view for a puzzle level.
 	 * 
-	 * Then calls the controller initialization
+	 * Then calls the controller initialization.
 	 */
 	public void prepPuzzle(){
 		releaseNumberView.setVisible(false);
@@ -130,7 +135,7 @@ public class BuilderView extends JFrame {
 	 * tile creation and showing only relevant information in
 	 * property view for a lightning level.
 	 * 
-	 * Then calls the controller initialization
+	 * Then calls the controller initialization.
 	 */
 	public void prepLightning(){
 		releaseNumberView.setVisible(false);
@@ -144,9 +149,9 @@ public class BuilderView extends JFrame {
 	/**
 	 * Prepares the view of a release level by showing only 
 	 * relevant information in the property view for a release
-	 * level (I.E. nothing)
+	 * level (I.E. nothing).
 	 * 
-	 * Then calls the controller initialization
+	 * Then calls the controller initialization.
 	 */
 	public void prepRelease(){
 		releaseNumberView.setVisible(true);
@@ -175,16 +180,16 @@ public class BuilderView extends JFrame {
 	}
 	
 	/**
-	 * Returns the ReleaseNumberView of this BuilderView
-	 * @return ReleaseNumberCreationView
+	 * Returns the ReleaseNumberView of this BuilderView.
+	 * @return releaseNumberView - ReleaseNumberCreationView
 	 */
 	public ReleaseNumberCreationView getReleaseNumberView(){
 		return this.releaseNumberView;
 	}
 	
 	/**
-	 * Returns the SelectedPieceView of this BuilderView
-	 * @return SelectedPieceView
+	 * Returns the SelectedPieceView of this BuilderView.
+	 * @return selectedPieceView - SelectedPieceView
 	 */
 	public SelectedPieceView getSelectedPieceView() {
 		return selectedPieceView;
@@ -192,7 +197,7 @@ public class BuilderView extends JFrame {
 	
 	/**
 	 * Returns the levelPropertiesView of this BuilderView.
-	 * @return LevelPropertiesView
+	 * @return levelPropertyView - LevelPropertiesView
 	 */
 	public LevelPropertiesView getLevelPropertiesView(){
 		return levelPropertyView;
@@ -200,7 +205,7 @@ public class BuilderView extends JFrame {
 	
 	/**
 	 * Returns the BullpenView of this BuilderView
-	 * @return BullpenView
+	 * @return bullpenView - BullpenView
 	 */
 	public BullpenView getBullpenView() {
 		return this.bullpenView;
@@ -208,42 +213,39 @@ public class BuilderView extends JFrame {
 	
 	/**
 	 * Returns the boardView of this BuilderView
-	 * @return BoardView
+	 * @return boardView - BoardView
 	 */
 	public BoardView getBoardView() {
 		return this.boardView;
 	}
 	
 	/**
-	 * Returns whether the toggle button for piece placement is 
-	 * turned on (true) or not (false)
-	 * @return boolean about state
+	 * Returns whether the toggle button for piece placement is turned on (true) or not (false).
+	 * @return if place pieces is toggled on - boolean
 	 */
 	public boolean getStateOfPlacement() {
 		return tglbtnPlacePieces.isSelected();
 	}
 	
 	/**
-	 * Returns whether the toggle button for piece to board conversion is 
-	 * turned on (true) or not (false)
-	 * @return boolean about state
+	 * Returns whether the toggle button for piece to board conversion is turned on (true) or not (false).
+	 * @return if piece to board conversion is toggled on - boolean
 	 */
 	public boolean getStateOfBoardConvert(){
 		return tglbtnPlaceBoard.isSelected();
 	}
 	
 	/**
-	 * Returns whether the toggle button for piece to hint conversion is 
-	 * turned on (true) or not (false)
-	 * @return boolean about state
+	 * Returns whether the toggle button for piece to hint conversion is turned on (true) or not (false).
+	 * @return if hint conversion is toggled on - boolean
 	 */
 	public boolean getStateOfHintConvert(){
 		return tglbtnPlaceHints.isSelected();
 	}
 	
 	/**
-	 * Sets the windows listener of the BuilderView and adds it 
-	 * @param we - WindowListener being added
+	 * Sets the windows listener of the BuilderView and adds it.
+	 * @param we - WindowListener
 	 */
 	public void setExitWindowListener(WindowListener we) {
 		this.exitWindowHandler = we;
@@ -251,7 +253,7 @@ public class BuilderView extends JFrame {
 	}
 	
 	/**
-	 * Returns the builder object associated with this view
+	 * Returns the builder object associated with this view.
 	 * @return Builder
 	 */
 	public Builder getBuilder() {
@@ -261,7 +263,7 @@ public class BuilderView extends JFrame {
 	//** FOR TESTING **//
 	
 	/**
-	 * Returns the window listener of the exit window
+	 * Returns the window listener of the exit window.
 	 * @return Window Listener
 	 */
 	public WindowListener getExitWindowListener() {
@@ -269,52 +271,47 @@ public class BuilderView extends JFrame {
 	}
 	
 	/**
-<<<<<<< HEAD
-	 * Returns the controller associated with the board
+	 * Returns the controller associated with the board.
 	 * @return BuilderBoardController
-=======
-	 * Returns the builder application of this BuilderView
-	 * @return Builder
->>>>>>> origin/Builder
 	 */
 	public BuilderBoardController getBuilderBoardControl() {
 		return this.builderBoardControl;
 	}
 	
 	/**
-	 * getter for the controller associated with the toggle button for placing pieces on the board
-	 * @return PlacePieceToggleListener
+	 * Returns the controller associated with the toggle button for placing pieces on the board
+	 * @return placePieceButtonHandler - PlacePieceToggleListener
 	 */
 	public PlacePieceToggleListener getPlacePieceHandler() {
 		return this.placePieceButtonHandler;
 	}
 	
 	/**
-	 * Returns the PlacePieces Toggle Buttton
-	 * @return JToggleButton
+	 * Returns the place pieces toggle button.
+	 * @return tglbtnPlaceBoard - JToggleButton
 	 */
 	public JToggleButton getConvertPieceToBoardBtn() {
 		return this.tglbtnPlaceBoard;
 	}
 	
 	/**
-	 * Returns the Convert Piece to Board Toggle Buttton
-	 * @return JToggleButton
+	 * Returns the convert piece to board toggle button.
+	 * @return tglbtnPlacePieces - JToggleButton
 	 */
 	public JToggleButton getPlacePiecesBtn() {
 		return this.tglbtnPlacePieces;
 	}
 	
 	/**
-	 * Returns the convert to hint Toggle Buttton
-	 * @return JToggleButton
+	 * Returns the convert to hint toggle button.
+	 * @return tglbtnPlaceHints - JToggleButton
 	 */
 	public JToggleButton getPlaceHintBtn() {
 		return this.tglbtnPlaceHints;
 	}
 
-	/*
-	 * Method for setting up the layout for the BuilderView
+	/**
+	 * Sets up the layout for the BuilderView.
 	 */
 	void setupLayout(){
 		tglbtnPlacePieces.setToolTipText("When toggled, you can place pieces on the board");

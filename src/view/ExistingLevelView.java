@@ -13,19 +13,35 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
- * 
+ * Shows an existing level for the builder ExistingLevelViewer.
  * @author hejohnson
  *
  */
 public class ExistingLevelView extends JPanel {	
 	private static final long serialVersionUID = 1L;
+	/**Stores Icon associated with the level.**/
 	ImageIcon icon;
+	
+	/**Button to allow editing the level.**/
 	JButton editLevel;
+	
+	/**Button to allow deletion of the level.**/
 	JButton deleteLevel;
+	
+	/**Stores the number of the level.**/
 	int levelNumber;
+	
+	/**Handles editLevel button presses.**/
 	ActionListener editLevelHandler;
+	
+	/**Handles deleteLevel button presses.**/
 	ActionListener deleteLevelHandler;
 	
+	/**
+	 * Creates a new ExistingLevelView with a given type and level number.
+	 * @param levelType - String
+	 * @param levelNumber - Integer
+	 */
 	ExistingLevelView(String levelType, Integer levelNumber) {
 		super();
 		this.levelNumber = levelNumber;
@@ -55,6 +71,9 @@ public class ExistingLevelView extends JPanel {
 		setupLayout();
 	}
 	
+	/**
+	 * Sets up the layout of the ExistingLevelView.
+	 */
 	void setupLayout() {
 		GroupLayout gl_ltsv = new GroupLayout(this);
 		gl_ltsv.setHorizontalGroup(
@@ -70,27 +89,43 @@ public class ExistingLevelView extends JPanel {
 		this.setLayout(gl_ltsv);
 	}
 	/**
-	 * A method used by outside objects/classes to retrieve the level number
-	 * @return int representing the level number
+	 * Returns the level number.
+	 * @return levelNumber - int
 	 */
 	public int getLevelNumber() {
 		return this.levelNumber;
 	}
 	
+	/**
+	 * Sets ActionListener to the edit level button.
+	 * @param al - ActionListener
+	 */
 	public void addActionListenerToEditButton(ActionListener al) {
 		this.editLevelHandler = al;
 		editLevel.addActionListener(al);
 	}
 	
+	/**
+	 * Sets ActionListener to the delete level button.
+	 * @param al - ActionListener
+	 */
 	public void addActionListenerToDeleteButton(ActionListener al) {
 		this.editLevelHandler = al;
 		deleteLevel.addActionListener(al);
 	}
 	
+	/**
+	 * Returns ActionListener linked to the edit level button.
+	 * @return editLevelHandler - ActionListener
+	 */
 	public ActionListener getEditHandler() {
 		return this.editLevelHandler;
 	}
 	
+	/**
+	 * Returns ActionListener linked to the delete level button.
+	 * @return deleteLevelHandler - ActionListener
+	 */
 	public ActionListener getDeleteHandler() {
 		return this.deleteLevelHandler;
 	}

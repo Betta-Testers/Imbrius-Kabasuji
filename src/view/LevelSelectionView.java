@@ -20,20 +20,29 @@ import java.util.ArrayList;
 /**
  * Class for displaying the Levels available for play.
  * 
- * @author Brendan
+ * @author bwoconnor
  * @author dfontana
  * @author awharrison
  * @author hejohnson
  */
 public class LevelSelectionView extends JFrame {
 	private static final long serialVersionUID = 1L;
+	/**JPanel to show everything not in the scrollpane.**/
 	JPanel contentPane;
+	/**Stores the title of the screen.**/
 	JLabel lblTitle;
+	/**Scrollpane to show available levels.**/
 	JScrollPane availableLevels;
+	/**List of AvailableLevelViews for the scrollpane.**/
 	ArrayList<AvailableLevelView> levels;
+	/**Handles when the window is closed.**/
 	WindowListener shutdownHandler;
+	/**Panel to house the scrollpane.**/
 	JPanel scrollablePanel;
 	
+	/**
+	 * Creates a LevelSelectionView.
+	 */
 	public LevelSelectionView() {
 		super();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +75,12 @@ public class LevelSelectionView extends JFrame {
 		
 	}
 	
+	/**
+	 * Adds an available level to the LevelSelectionView. Looks at if the level has the required number of stars to unlock.
+	 * @param i (ID) - int
+	 * @param numStars - int
+	 * @param g (the game entity) - Game
+	 */
 	public void addAvailableLevel(int i, int numStars, Game g) {
 		AvailableLevelView av = new AvailableLevelView(i);
 		
@@ -79,9 +94,9 @@ public class LevelSelectionView extends JFrame {
 	}
 
 	/**
-	 * Adds a PlayLevelButtonController to the button for the given ID
-	 * @param levelID - ID of level adding listener to
-	 * @param g - game object, passed for the controller to access
+	 * Adds a PlayLevelButtonController to the button for the given ID.
+	 * @param levelID - int
+	 * @param g (Game object) - Game
 	 */
 	public void addListenerToButton(int levelID, Game g){
 		for (AvailableLevelView av : levels) {
@@ -92,9 +107,9 @@ public class LevelSelectionView extends JFrame {
 	}
 	
 	/**
-	 * Updates the number of stars displayed for the given levelID
-	 * @param levelID - level being updated
-	 * @param starsEarned - number of stars to display
+	 * Updates the number of stars displayed for the given levelID.
+	 * @param levelID - int
+	 * @param starsEarned - int
 	 */
 	public void updateStarsForLevel(int levelID, int starsEarned){
 		for (AvailableLevelView av : levels) {
@@ -105,10 +120,9 @@ public class LevelSelectionView extends JFrame {
 	}
 	
 	/**
-	 * Unlocks the level specified and sets the stars earned to the
-	 * stars earned of given
-	 * @param levelID - Level being unlocked
-	 * @param starsEarned - number of stars to display
+	 * Unlocks the level specified and sets the stars earned to the stars earned of given.
+	 * @param levelID - int
+	 * @param starsEarned - int
 	 */
 	public void unlockLevel(int levelID, int starsEarned){
 		for (AvailableLevelView av : levels) {
@@ -119,9 +133,9 @@ public class LevelSelectionView extends JFrame {
 	}
 	
 	/**
-	 * Returns the button for the given levelID
-	 * @param levelID - the levelID being accessed (values of 1+ only)
-	 * @return JButton
+	 * Returns the button for the given levelID.
+	 * @param levelID - int
+	 * @return button from AvailableLevelView corresponding to levelID - JButton
 	 */
 	public JButton getButton(int levelID) {
 		for (AvailableLevelView av : levels) {
@@ -133,8 +147,8 @@ public class LevelSelectionView extends JFrame {
 	}
 	
 	/**
-	 * set the controller handling window closes
-	 * @return MouseListener
+	 * Sets the controller handling window closes.
+	 * @param we - WindowListener
 	 */
 	public void setShutdownController(WindowListener we) {
 		this.shutdownHandler = we;
@@ -142,15 +156,15 @@ public class LevelSelectionView extends JFrame {
 	}
 	
 	/**
-	 * get the controller handling window closes
-	 * @return MouseListener
+	 * Get the controller handling window closes.
+	 * @return shutdownHandler - WindowListener
 	 */
 	public WindowListener getShutdownController() {
 		return this.shutdownHandler;
 	}
 	
 	/**
-	 * Method for setting up the layout for the LevelSelectionView
+	 * Sets up the layout for the LevelSelectionView.
 	 */
 	void setupLayout() {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
