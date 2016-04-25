@@ -119,11 +119,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				}
 			}else if(bView.getStateOfHintConvert()){
 				if (mouseOn) {
-					move = new PieceToHintMove(bp, board, source);
-					if(move.doMove()){
-						//If the move can be done, add it the list of known hints on the board
-						hintPieces.add(((PieceToHintMove) move).modelPiece());
-					}
+					move = new PieceToHintMove(hintPieces, bp, board, source);
+					move.doMove();
 				}
 			}else{
 				if (mouseOn) {
