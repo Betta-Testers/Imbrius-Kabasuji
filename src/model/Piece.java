@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * @author Hans
  * @author Dylan
  */
-
 public class Piece implements Serializable{
 	private static final long serialVersionUID = -5341675534216265771L;
 	
@@ -34,8 +33,8 @@ public class Piece implements Serializable{
 		this.tiles = new PieceTile[6];
 		generatePiece(ID);
 	}
-	
-	
+
+
 	/**
 	 * Returns the string representation of this piece.
 	 * @return string representation of the piece - String
@@ -53,7 +52,7 @@ public class Piece implements Serializable{
 	public int getID(){
 		return ID;
 	}
-	
+
 	/**
 	 * Changes orientation of the piece as if it was rotated counter-clockwise.
 	 */
@@ -65,7 +64,7 @@ public class Piece implements Serializable{
 			tiles[i].updateColInPiece(row);
 		}
 	}
-	
+
 	/**
 	 * Changes orientation of the piece as if it was rotated clockwise.
 	 */
@@ -77,7 +76,7 @@ public class Piece implements Serializable{
 			tiles[i].updateColInPiece(-row);
 		}
 	}
-	
+
 	/**
 	 * Changes orientation of the piece as if it was flipped horizontally.
 	 */
@@ -86,7 +85,7 @@ public class Piece implements Serializable{
 			tiles[i].updateColInPiece(-1*tiles[i].getColInPiece());
 		}
 	}
-	
+
 	/**
 	 * Changes orientation of the piece as if it was flipped horizontally.
 	 */
@@ -95,7 +94,7 @@ public class Piece implements Serializable{
 			tiles[i].updateRowInPiece(-1*tiles[i].getRowInPiece());
 		}
 	}
-	
+
 	/**
 	 * Returns color of this piece.
 	 * @return color - Color
@@ -111,19 +110,19 @@ public class Piece implements Serializable{
 	public Piece makeCopy(){
 		return new Piece(ID);
 	}
-	
+
 	/** 
 	 * Place piece on the board at specified location. Sets origin location and updates all component tiles.
 	 * @param row - int
 	 * @param col - int
 	 */
- 	public void setLocation(int row, int col) {
+	public void setLocation(int row, int col) {
 		this.tiles[0].setLocation(row, col);
 		for (PieceTile pt : tiles) {
 			pt.updateBoardPosition();
 		}
 	}
-	
+
 	/**
 	 * Returns the column location of the origin.
 	 * @return column location of tiles[0] (origin) - int
@@ -131,7 +130,7 @@ public class Piece implements Serializable{
 	public int getOriginCol(){
 		return tiles[0].getCol();
 	}
-	
+
 	/**
 	 * Returns the row location of the origin.
 	 * @return row location of tiles[0] (origin) - int
@@ -139,7 +138,7 @@ public class Piece implements Serializable{
 	public int getOriginRow(){
 		return tiles[0].getRow();
 	}
-	
+
 	/**
 	 * Returns the origin tile.
 	 * @return tiles[0] (origin) - PieceTile
@@ -147,7 +146,7 @@ public class Piece implements Serializable{
 	public PieceTile getOriginTile() {
 		return tiles[0];
 	}
-	
+
 	/**
 	 * Returns the previous tiles.
 	 * @returns prevTiles - ArrayList<AbstractTile>
@@ -169,9 +168,25 @@ public class Piece implements Serializable{
 	}
 	
 	/**
-	 * Checks if the Piece has the same ID as the inputed Object (casted to Piece).
-	 * @return if the IDs are the same - boolean
+	 * Checks if two pieces are equals based on the coordinates of their tiles,
+	 * not the actual tiles themselves.
+	 * @param o - comparison piece
+	 * @return true if the two have matching coordinates
 	 */
+	public boolean occupiesSameCoorindates(Piece o){
+		for(PieceTile pt: this.getTiles()){
+			for(int i = 0; i < o.getTiles().length; i++){
+				if(pt.getRow() == o.getTiles()[i].getRow() && pt.getCol() == o.getTiles()[i].getCol()){
+					break;
+				}else if(i ==  o.getTiles().length-1){ //Entire second piece couldnt find tile with those coordinates
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+
 	@Override
 	public boolean equals(Object o){
 		if(o == null){ return false;}
@@ -183,7 +198,6 @@ public class Piece implements Serializable{
 		return false;
 	}
 
-	
 	/**
 	 * When serializing a Piece, the pieceTile information is not needed. Instead of serializing those,
 	 * the piece serializes it's ID. Then, when read it, it generates the tiles needed using the built
@@ -197,7 +211,7 @@ public class Piece implements Serializable{
 		this.tiles = new PieceTile[6];
 		generatePiece(this.ID);
 	}
-	
+
 	/**
 	 * Generates the correct tile placement of the piece given its ID. Also sets the color of the piece.
 	 * @param ID - int
@@ -523,7 +537,7 @@ public class Piece implements Serializable{
 		default:
 			throw new RuntimeException("Incorrect ID");
 		}
-		
+
 	}
-	
+
 }

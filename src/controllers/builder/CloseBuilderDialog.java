@@ -4,6 +4,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import app.Builder;
+import app.UndoManager;
 import view.BuilderView;
 
 /**
@@ -32,6 +33,7 @@ public class CloseBuilderDialog extends WindowAdapter{
 		String title = "Are you sure?";
 		int response = JOptionPane.showConfirmDialog(bv,message, title,JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 		if (response == JOptionPane.OK_OPTION){
+			UndoManager.getInstance().flush();
 			b.getBuilderView().setVisible(false);
 			b.getLevelTypeSelectView().setVisible(true);
 		}else{
