@@ -12,7 +12,9 @@ import java.io.Serializable;
 public class BoardTile extends AbstractTile implements Serializable{
 	private static final long serialVersionUID = 3175118024513838593L;
 
+	/**Stores if the tile is a hint.**/
 	boolean isHint = false;
+	
 	/**
 	 * Create a BoardTile at the specified location on the board
 	 * @param row
@@ -25,6 +27,10 @@ public class BoardTile extends AbstractTile implements Serializable{
 		this.tileType = "board";
 	}
 	
+	/**
+	 * Sets the tile's isHint attribute.
+	 * @param isHint - boolean
+	 */
 	public void setHint(boolean isHint) {
 		this.isHint = isHint;
 		if (isHint) {
@@ -34,6 +40,10 @@ public class BoardTile extends AbstractTile implements Serializable{
 		}
 	}
 	
+	/**
+	 * Returns if the tile is a hint or not.
+	 * @return isHint - boolean
+	 */
 	public boolean isHint() {
 		return this.isHint;
 	}

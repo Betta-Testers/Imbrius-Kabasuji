@@ -93,7 +93,7 @@ public class Board implements Serializable{
 
 	/**
 	 * Resets the board, removing every piece from the board and replacing them with the previous tiles.
-	 * @return Returns an array list containing all of the old pieces that used to be on the board
+	 * @return piecesTemp (all pieces removed) - ArrayList<Piece>
 	 */
 	public ArrayList<Piece> resetBoard(){
 		ArrayList<Piece> piecesTemp = new ArrayList<Piece>();
@@ -106,9 +106,9 @@ public class Board implements Serializable{
 	}
 	
 	/**
-	 * Remove a given piece from the board, the piece must already exist on the board
-	 * @param p the piece being removed from the board
-	 * @return boolean of whether or not the piece was able to be removed, if used properly should ALWAYS return true
+	 * Removes a piece from the board. Note the piece must already exist on the board.
+	 * @param p (piece being removed) - Piece
+	 * @return if the piece existed and was removed - boolean
 	 */
 	public boolean removePiece(Piece p) {
 		if (pieces.contains(p)) {
@@ -123,11 +123,11 @@ public class Board implements Serializable{
 	}
 
 	/**
-	 * Says if a piece will fit on the board with the anchor square in the row column position given
-	 * @param p the piece being put onto the board
-	 * @param row The row that the anchor tile should be placed on
-	 * @param col The column that the anchor tile should be placed on
-	 * @return boolean of whether or not the piece can be placed at that location or not
+	 * Says if a piece will fit on the board. This function looks at interference from EmptyTiles and PieceTiles.
+	 * @param p (piece being placed) - Piece
+	 * @param row - int
+	 * @param col - int
+	 * @return if the piece can be placed at the location - boolean
 	 */
 	public boolean willFit(Piece p, int row, int col) {
 		int r, c;
@@ -145,11 +145,11 @@ public class Board implements Serializable{
 	}
 	
 	/**
-	 * Says if a piece will be contained on the board given its position
-	 * @param p the piece being put onto the board
-	 * @param row The row that the anchor tile should be placed on
-	 * @param col The column that the anchor tile should be placed on
-	 * @return boolean of whether or not the piece will be ont the board at its location
+	 * Says if a piece will fit on the board.
+	 * @param p (piece being placed) - Piece
+	 * @param row - int
+	 * @param col - int
+	 * @return if the piece can be placed at the location - boolean
 	 */
 	public boolean onBoard(Piece p, int row, int col){
 		int r, c;
@@ -162,11 +162,11 @@ public class Board implements Serializable{
 	}
 	
 	/**
-	 * Checks if tiles where a piece is to be placed (as a boardtile conversion) are all empty tiles
-	 * @param p the piece being put onto the board
-	 * @param row The row that the anchor tile should be placed on
-	 * @param col The column that the anchor tile should be placed on
-	 * @return boolean of whether or not the piece will be ont the board at its location
+	 * Says if a piece will be placed only on EmptyTiles.
+	 * @param p (piece being placed) - Piece
+	 * @param row - int
+	 * @param col - int
+	 * @return if the piece can be placed at the location - boolean
 	 */
 	public boolean isValidConvert(Piece p, int row, int col){
 		int r, c;
@@ -183,9 +183,9 @@ public class Board implements Serializable{
 	
 
 	/**
-	 * Swaps a tile on the board with a new tile
-	 * @param bt the tile being put onto the board
-	 * @return the tile that was replaced.
+	 * Swaps a tile on the board with a new tile.
+	 * @param at (tile being swapped in) - AbstractTile
+	 * @return temp (tile that was swapped out) - AbstractTile
 	 */
 	public AbstractTile swapTile(AbstractTile at){
 		int row = at.getRow();
@@ -196,9 +196,10 @@ public class Board implements Serializable{
 	}
 
 	/**
-	 * returns the AbstractTile that is located at an x,y co ordinate 
-	 * @param bt the tile being put onto the board
-	 * @return the tile that was replaced.
+	 * Returns the AbstractTile that is located at an x,y coordinate. Note that the x coordinate relates to column, and the y coordinate relates to row.
+	 * @param x - int
+	 * @param y - int
+	 * @return the tile at the x,y location - AbstractTile
 	 */
 	public AbstractTile getTileAt(int x, int y){
 		int row = y/tileSize;
@@ -218,9 +219,10 @@ public class Board implements Serializable{
 	}
 
 	/**
-	 * changes color of tiles that may be placed, green if
-	 * @param bt the tile being put onto the board
-	 * @return the tile that was replaced.
+	 * Changes color of tiles of where a piece maybe placed. Green means the piece can be placed, red means the piece cannot be placed.
+	 * @param p (piece being placed) - Piece
+	 * @param row - int
+	 * @param col - int
 	 */
 	public void showPiecePreview(Piece p, int row, int col){
 		if(willFit(p,row,col)){
@@ -241,9 +243,10 @@ public class Board implements Serializable{
 	}
 	
 	/**
-	 * changes color of tiles that may be placed, green if
-	 * @param bt the tile being put onto the board
-	 * @return the tile that was replaced.
+	 * Changes color of tiles where a piece-to-board conversion may occur. Green means the piece can be converted, red means the piece cannot be converted. Note that this is only used for the builder.
+	 * @param p (piece being placed) - Piece
+	 * @param row - int
+	 * @param col - int
 	 */
 	public void showConversionPreview(Piece p, int row, int col){
 		if(isValidConvert(p, row, col)){
@@ -264,8 +267,8 @@ public class Board implements Serializable{
 	}
 
 	/**
-	 * Returns the total number of board tiles still remaining on the board
-	 * @return the total number of board tiles still remaining on the board
+	 * Returns the total number of BoardTiles still remaining on the board.
+	 * @return the number of boardTiles - int
 	 */
 	public int getNumBoardTiles(){
 		int count = 0;
@@ -280,8 +283,7 @@ public class Board implements Serializable{
 	}
 
 	/**
-	 * Will clear all piece previewing from the board, setting all tiles back to their original colors.
-	 * @return void
+	 * Resets all colors of tiles to their default state. Used to clear piece preview.
 	 */
 	public void clearPiecePreview(){
 		for(int i = 0; i <12; i++){
@@ -299,13 +301,17 @@ public class Board implements Serializable{
 		return this.pieces.size();
 	}
 	
+	/**
+	 * Returns the size of the tiles.
+	 * @return tileSize - int
+	 */
 	public int getTileSize() {
 		return this.tileSize;
 	}
 
 	/**
-	 * Returns all toString() of the tiles making this board
-	 * @return String representation of this board
+	 * Returns all toString() of the tiles making this board.
+	 * @return string representation of this board - String
 	 */
 	public String toString(){
 		StringBuilder s = new StringBuilder();
@@ -321,7 +327,7 @@ public class Board implements Serializable{
 	/**
 	 * Custom serialization clears the boards of piece tiles and replaces those tiles with what they were covering
 	 * Allows system to not care if the board has pieces on it when saving
-	 * @param stream
+	 * @param stream - java.io.ObjectOutputStream
 	 * @throws IOException
 	 */
 	private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
