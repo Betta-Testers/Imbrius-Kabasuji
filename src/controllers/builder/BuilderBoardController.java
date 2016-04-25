@@ -58,6 +58,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	int rOffset;
 	/** Column offset between the origin tile and the tile that was clicked on within the piece **/
 	int cOffset;
+	
+	int tileCount;
 
 	/** 
 	 * 
@@ -74,6 +76,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		this.rncv = bView.getReleaseNumberView();
 		this.spv = bView.getSelectedPieceView();
 		this.hintPieces = new ArrayList<Piece>();
+		this.tileCount = 0;
 	}
 
 	/**

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * 
+ * A Board stores the state of the board, including all tiles on it as well as what pieces are on it.
  * @author bwoconnor
  *
  */
@@ -14,14 +14,21 @@ public class Board implements Serializable{
 	/**ID for serialization**/
 	private static final long serialVersionUID = -5485493680104033292L;
 
+	/**The board[][] is a 12 by 12 array of AbstractTiles. Note that tiles are stored in the board in row-column coordinates. Row is positive down and column is positive to the right, with the top left tile located at (0,0).**/
 	AbstractTile board[][] = new AbstractTile[12][12];
-	/**Constant Tile Size**/
+	
+	/**Constant Tile Size.**/
 	final int tileSize = 32;
 
-	//Standard row/column of matrix [row][column][0][0] is top left one below it is [1][0]
+	/**The pieces arrayList stores all pieces placed on the board. **/
 	transient ArrayList<Piece> pieces = new ArrayList<Piece>();
+	
+	/**The piece being dragged.**/
 	transient Piece draggedPiece;
 
+	/**
+	 * Create a board with all emptyTiles.
+	 */
 	public Board(){
 		for(int i = 0;i<12;i++){
 			for(int j = 0;j<12;j++){
@@ -31,6 +38,10 @@ public class Board implements Serializable{
 
 	}
 
+	/**
+	 * Create a board with a specific setup of tiles.
+	 * @param tiles - ArrayList<AbstractTile>
+	 */
 	public Board(ArrayList<AbstractTile> tiles){
 		for(int i = 0;i<12;i++){
 			for(int j = 0;j<12;j++){
@@ -44,20 +55,28 @@ public class Board implements Serializable{
 		}
 	}
 	
+	/**
+	 * Returns the piece being dragged.
+	 * @return draggedPiece - Piece
+	 */
 	public Piece getDraggedPiece() {
 		return draggedPiece;
 	}
 	
+	/**
+	 * Sets the piece being dragged.
+	 * @param dp - Piece
+	 */
 	public void setDraggedPiece(Piece dp) {
 		draggedPiece = dp;
 	}
 
 	/**
-	 * Places a piece onto the board: Adding it to the list of pieces, and swapping in its tiles
-	 * @param p the piece being put onto the board
-	 * @param row The row that the anchor tile should be placed on
-	 * @param col The column that the anchor tile should be placed on
-	 * @return the tile that was replaced.
+	 * Places a piece onto the board. This adds the piece to the arrayList<Piece> pieces, and swaps out the correct tiles on the board for PieceTiles.
+	 * @param p (the piece being placed) - Piece
+	 * @param row (row location of the piece) - int
+	 * @param col (col location of the piece) - int
+	 * @return if the piece was placed - boolean
 	 */
 	public boolean putPieceOnBoard(Piece p, int row, int col) {
 		p.setLocation(row, col);
@@ -73,8 +92,7 @@ public class Board implements Serializable{
 	}
 
 	/**
-	 * Resets the board, removing every piece from the board and replacing them 
-	 * with the tiles that used to be in their locations
+	 * Resets the board, removing every piece from the board and replacing them with the previous tiles.
 	 * @return Returns an array list containing all of the old pieces that used to be on the board
 	 */
 	public ArrayList<Piece> resetBoard(){
@@ -85,6 +103,23 @@ public class Board implements Serializable{
 			removePiece(p);
 		}
 		return piecesTemp;
+	}
+	
+	/**
+	 * Remove a given piece from the board, the piece must already exist on the board
+	 * @param p the piece being removed from the board
+	 * @return boolean of whether or not the piece was able to be removed, if used properly should ALWAYS return true
+	 */
+	public boolean removePiece(Piece p) {
+		if (pieces.contains(p)) {
+			for (int i = 0; i < 6; i++) {
+				swapTile(p.tiles[i].getPreviousTile());
+			}
+			pieces.remove(p);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -146,22 +181,6 @@ public class Board implements Serializable{
 		return true;
 	}
 	
-	/**
-	 * Remove a given piece from the board, the piece must already exist on the board
-	 * @param p the piece being removed from the board
-	 * @return boolean of whether or not the piece was able to be removed, if used properly should ALWAYS return true
-	 */
-	public boolean removePiece(Piece p) {
-		if (pieces.contains(p)) {
-			for (int i = 0; i < 6; i++) {
-				swapTile(p.tiles[i].getPreviousTile());
-			}
-			pieces.remove(p);
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	/**
 	 * Swaps a tile on the board with a new tile

@@ -211,7 +211,7 @@ public class Piece implements Serializable{
 	protected void generatePiece(int ID) throws RuntimeException{
 		switch(ID){
 		case 1:
-			color = new Color(240, 0, 0);
+			color = new Color(150, 100, 50);
 			tiles[0] = new PieceTile(0,0, this);
 			tiles[1] = new PieceTile(1,0, this);
 			tiles[2] = new PieceTile(2,0, this);
@@ -265,7 +265,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(-2, 0, this);
 			break;
 		case 7:
-			color = new Color(240, 240, 0);
+			color = new Color(150, 160, 50);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(1, 0, this);
 			tiles[2] = new PieceTile(0, 1, this);
@@ -292,7 +292,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(-2, 0, this);
 			break;
 		case 10:
-			color = new Color(120, 240, 0);
+			color = new Color(255, 200, 255);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-2, 0, this);
 			tiles[2] = new PieceTile(-2, 1, this);
@@ -301,7 +301,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(1, 0, this);
 			break;
 		case 11:
-			color = new Color(120, 240, 0);
+			color = new Color(250, 200, 150);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-2, 0, this);
 			tiles[2] = new PieceTile(-1, 1, this);
@@ -319,7 +319,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(1, 0, this);
 			break;
 		case 13:
-			color = new Color(40, 240, 0);
+			color = new Color(110, 40, 140);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-2, 0, this);
 			tiles[2] = new PieceTile(-2, 1, this);
@@ -328,7 +328,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(1, 0, this);
 			break;
 		case 14:
-			color = new Color(0, 240, 0);
+			color = new Color(255, 190, 255);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-2, 0, this);
 			tiles[2] = new PieceTile(-2, 1, this);
@@ -337,7 +337,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(1, 0, this);
 			break;
 		case 15:
-			color = new Color(0, 240, 40);
+			color = new Color(255, 192, 192);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(1, 0, this);
 			tiles[2] = new PieceTile(1, -1, this);
@@ -346,7 +346,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(-2, 1, this);
 			break;
 		case 16:
-			color = new Color(0, 240, 80);
+			color = new Color(190, 200, 255);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(1, 0, this);
 			tiles[2] = new PieceTile(0, -1, this);
@@ -427,7 +427,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(0, 1, this);
 			break;
 		case 25:
-			color = new Color(0, 40, 240);
+			color = new Color(140, 200, 190);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-1, 1, this);
 			tiles[2] = new PieceTile(1, 0, this);
@@ -436,7 +436,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(-2, 1, this);
 			break;
 		case 26:
-			color = new Color(0, 0, 240);
+			color = new Color(170, 170, 240);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(1, 0, this);
 			tiles[2] = new PieceTile(-1, 0, this);
