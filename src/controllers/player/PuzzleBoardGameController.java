@@ -9,7 +9,6 @@ import controllers.common.Move;
 import controllers.common.MovePieceOffBoardMove;
 import controllers.common.MovePieceOnBoardMove;
 import controllers.common.PlacePieceOnBoardFromBullpenMove;
-import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Piece;
 import model.PieceTile;

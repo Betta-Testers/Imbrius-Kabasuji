@@ -25,6 +25,9 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	transient int reds[];
 	transient int greens[];
 	transient int blues[];
+	
+	/** The rbgc is the controller that handles mouse actions associated with THIS level's board**/
+	ReleaseBoardGameController rbgc;
 
 	/**
 	 * Generates a ReleaseLevel from a given levelID.
@@ -127,7 +130,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	public LevelView initializeGame(Game g) {
 		LevelView view = new LevelView("Release", new NumbersReleasedView(), this);
 		view.addWindowListener(new ExitLevelButtonController(view, g));
-		ReleaseBoardGameController rbgc = new ReleaseBoardGameController(g, view);
+		rbgc = new ReleaseBoardGameController(g, view);
 		view.getBoardView().addMouseListener(rbgc);
 		view.getBoardView().addMouseMotionListener(rbgc);
 		return view;
@@ -149,5 +152,9 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
 		initializeVars();
+	}
+	
+	public ReleaseBoardGameController getBoardController() {
+		return this.rbgc;
 	}
 }

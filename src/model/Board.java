@@ -144,6 +144,21 @@ public class Board implements Serializable{
 		return true;
 	}
 	
+	public boolean willFitHint(Piece p, int row, int col) {
+		int r, c;
+		if(!onBoard(p, row, col)){
+			return false;
+		}
+		for (int i = 0; i < 6; i++) {
+			r = row + p.tiles[i].rowInPiece;
+			c = col + p.tiles[i].colInPiece;
+			if(board[r][c].tileType.equals("empty") || board[r][c].tileType.equals("piece") || ((BoardTile) board[r][c]).isHint()){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	/**
 	 * Says if a piece will fit on the board.
 	 * @param p (piece being placed) - Piece
@@ -265,10 +280,33 @@ public class Board implements Serializable{
 			}
 		}
 	}
+	
+	public void showHintPreview(Piece p, int row, int col){
+		if(willFitHint(p,row,col)){
+			for(int i = 0; i<6; i++){
+				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+			}
+		}else{
+			for(int i = 0; i<6; i++){
+				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
+						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
+					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
+				}else{
+					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+
+				}
+			}
+		}
+	}
 
 	/**
+<<<<<<< HEAD
 	 * Returns the total number of BoardTiles still remaining on the board.
 	 * @return the number of boardTiles - int
+=======
+	 * Returns the total number of board tiles still remaining on the board
+	 * @return  int - the number of board tiles on the board
+>>>>>>> refs/remotes/origin/Builder
 	 */
 	public int getNumBoardTiles(){
 		int count = 0;
@@ -283,7 +321,30 @@ public class Board implements Serializable{
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Resets all colors of tiles to their default state. Used to clear piece preview.
+=======
+	 * Returns the total number of tiles that can be interacted with on a board.
+	 * Used in the builder to track the count of tiles that contribute to the 6n 
+	 * total.
+	 * @return int - Number of release and board tiles on the board
+	 */
+	public int interactableTileCount(){
+		int count = 0;
+		for(int i = 0; i <12;i++){
+			for(int j = 0; j<12;j++){
+				if(board[i][j].tileType.equals("board") || board[i][j].tileType.equals("release")){
+					count++;
+				}
+			}
+		}
+		return count;
+	}
+	
+	/**
+	 * Will clear all piece previewing from the board, setting all tiles back to their original colors.
+	 * @return void
+>>>>>>> refs/remotes/origin/Builder
 	 */
 	public void clearPiecePreview(){
 		for(int i = 0; i <12; i++){

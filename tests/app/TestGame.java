@@ -65,7 +65,7 @@ public class TestGame extends TestCase {
 	public void testDisplayLevel(){
 		(new LevelFactory()).quick15("./imbriusLevelTESTING/");
 		g = new Game("./imbriusLevelTESTING/");
-		String expected = "[1,Puzzle,0],[2,Lightning,0],[3,Release,0],[4,Puzzle,0],[5,Lightning,0],[6,Release,0],[7,Puzzle,0],[8,Lightning,0],[9,Release,0],[10,Puzzle,0],[11,Lightning,0],[12,Release,0],[13,Puzzle,0],[14,Lightning,0],[15,Release,0]";
+		String expected = "[1,Puzzle,-1],[2,Lightning,-1],[3,Release,-1],[4,Puzzle,-1],[5,Lightning,-1],[6,Release,-1],[7,Puzzle,-1],[8,Lightning,-1],[9,Release,-1],[10,Puzzle,-1],[11,Lightning,-1],[12,Release,-1],[13,Puzzle,-1],[14,Lightning,-1],[15,Release,-1]";
 		assertEquals(expected, g.levelData.toString());
 		
 		/**Try to display a level that DNE**/

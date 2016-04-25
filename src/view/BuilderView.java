@@ -57,6 +57,10 @@ public class BuilderView extends JFrame {
 	/**The listener connected to the exiting of the BuilderView JFrame**/
 	WindowListener exitWindowHandler;
 	
+	PlacePieceToggleListener placePieceButtonHandler;
+	BuilderBoardController builderBoardControl;
+	
+
 	/**
 	 * Constructs a BuilderView
 	 * @param b - Builder application storing relevant information of the overall game
@@ -101,7 +105,8 @@ public class BuilderView extends JFrame {
 		placementGroup.add(tglbtnPlaceHints);
 		tglbtnPlaceBoard.setEnabled(false);
 		tglbtnPlaceHints.setEnabled(false);
-		tglbtnPlacePieces.addActionListener(new PlacePieceToggleListener(tglbtnPlaceBoard, tglbtnPlaceHints, placementGroup));
+		placePieceButtonHandler = new PlacePieceToggleListener(tglbtnPlaceBoard, tglbtnPlaceHints, placementGroup);
+		tglbtnPlacePieces.addActionListener(placePieceButtonHandler);
 	}
 
 	/**
@@ -158,7 +163,7 @@ public class BuilderView extends JFrame {
 	 */
 	void initializeControllers(){
 		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
-		BuilderBoardController builderBoardControl = new BuilderBoardController(this, m);
+		builderBoardControl = new BuilderBoardController(this, m);
 		boardView.setMouseActionController(builderBoardControl);
 		boardView.setMouseMotionController(new BuilderBoardController(this, m));
 		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
@@ -246,6 +251,16 @@ public class BuilderView extends JFrame {
 	}
 	
 	/**
+	 * Returns the builder object associated with this view
+	 * @return Builder
+	 */
+	public Builder getBuilder() {
+		return this.builder;
+	}
+	
+	//** FOR TESTING **//
+	
+	/**
 	 * Returns the window listener of the exit window
 	 * @return Window Listener
 	 */
@@ -254,11 +269,48 @@ public class BuilderView extends JFrame {
 	}
 	
 	/**
+<<<<<<< HEAD
+	 * Returns the controller associated with the board
+	 * @return BuilderBoardController
+=======
 	 * Returns the builder application of this BuilderView
 	 * @return Builder
+>>>>>>> origin/Builder
 	 */
-	public Builder getBuilder() {
-		return this.builder;
+	public BuilderBoardController getBuilderBoardControl() {
+		return this.builderBoardControl;
+	}
+	
+	/**
+	 * getter for the controller associated with the toggle button for placing pieces on the board
+	 * @return PlacePieceToggleListener
+	 */
+	public PlacePieceToggleListener getPlacePieceHandler() {
+		return this.placePieceButtonHandler;
+	}
+	
+	/**
+	 * Returns the PlacePieces Toggle Buttton
+	 * @return JToggleButton
+	 */
+	public JToggleButton getConvertPieceToBoardBtn() {
+		return this.tglbtnPlaceBoard;
+	}
+	
+	/**
+	 * Returns the Convert Piece to Board Toggle Buttton
+	 * @return JToggleButton
+	 */
+	public JToggleButton getPlacePiecesBtn() {
+		return this.tglbtnPlacePieces;
+	}
+	
+	/**
+	 * Returns the convert to hint Toggle Buttton
+	 * @return JToggleButton
+	 */
+	public JToggleButton getPlaceHintBtn() {
+		return this.tglbtnPlaceHints;
 	}
 
 	/*

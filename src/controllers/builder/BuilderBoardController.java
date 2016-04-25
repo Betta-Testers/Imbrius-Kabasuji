@@ -48,10 +48,10 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	SelectedPieceView spv;
 	/** Panel on the side that holds the toggle buttons for setting the tile number **/
 	ReleaseNumberCreationView rncv;
-	
+
 	/**Tracks all the pieces that governed a hint placement**/
 	ArrayList<Piece> hintPieces;
-	
+
 	/** Tracks if the mouse is on the board **/
 	boolean mouseOn;
 	/** Row offset between the origin tile and the tile that was clicked on within the piece **/
@@ -101,7 +101,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	}
 
 	/**
-	 * Convert tile on board into another form: Release <-> Release <-> Board <-> Empty.
+	 * Convert tile on board into another form: Release <-> Release <-> Board <-> Empty 
+	 * OR
+	 * Place a piece on the board for: Previewing, Generating the Board, Making/removing hints.
 	 * Using a released action allows the user to click as quick as they want, preventing accidental behavior not related to a click
 	 * (like a press, move, release instead of just a click).
 	 * @param me MouseEvent
@@ -110,17 +112,17 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	public void mouseReleased(MouseEvent me) {
 		Move move = null;
 		AbstractTile source = board.getTileAt(me.getX(), me.getY());
+		
+		
 		if(bView.getStateOfPlacement()){
 			if(bView.getStateOfBoardConvert()){
 				if (mouseOn) {
-					move = new PieceToNewBoardTilesMove(bp, board, source, bpv);
-					if(move.doMove()){
-						tileCount+=6;
-					}	
+					move = new PieceToNewBoardTilesMove(bp, board, source, bView.getLevelPropertiesView());
+					move.doMove();	
 				}
 			}else if(bView.getStateOfHintConvert()){
 				if (mouseOn) {
-					move = new PieceToHintMove(bp, board, source, bpv);
+					move = new PieceToHintMove(hintPieces, bp, board, source);
 					move.doMove();
 				}
 			}else{
@@ -135,17 +137,16 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			spv.getPiecePanel().redraw();
 			spv.getPiecePanel().repaint();
 		}else if(rncv.getNumberSelected() < 0){
-			move = new SwapTileBoardToEmptyMove(source, board);
+			move = new RemoveHintMove(hintPieces, source, board);
 			if(!move.doMove()){
-				move = new SwapTileEmptyToBoardMove(source, board);
+				move = new SwapTileBoardToEmptyMove(source, board, bView.getLevelPropertiesView());
 				if(!move.doMove()){
-					move = new SwapTileReleaseToBoardMove(source, board);	
-					move.doMove();
-				}else{
-					tileCount++;
+					move = new SwapTileEmptyToBoardMove(source, board, bView.getLevelPropertiesView());
+					if(!move.doMove()){
+						move = new SwapTileReleaseToBoardMove(source, board);	
+						move.doMove();
+					}
 				}
-			}else{
-				tileCount--;
 			}
 		}else{
 			move = new SwapTileBoardToReleaseMove(rncv, source, board);
@@ -154,6 +155,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				move.doMove();
 			}
 		}
+		
+		
 		boardView.redraw();
 		boardView.repaint();
 	}
@@ -184,7 +187,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
-
 	/**
 	 * Shows a preview of the piece being dragged (if there is one)
 	 * 
@@ -207,7 +209,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
-
 	/**
 	 * Show a preview of the piece that is selected to be placed (if it exists)
 	 * 
@@ -224,6 +225,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				board.clearPiecePreview();
 				if(bView.getStateOfBoardConvert()){
 					board.showConversionPreview(p, source.getRow(), source.getCol());
+				}else if(bView.getStateOfHintConvert()){
+					board.showHintPreview(p, source.getRow(), source.getCol());
 				}else{
 					board.showPiecePreview(p, source.getRow(), source.getCol());
 				}

@@ -4,38 +4,47 @@ import controllers.common.Move;
 import model.AbstractTile;
 import model.Board;
 import model.EmptyTile;
+import view.LevelPropertiesView;
 
 /**
- * Move class for swapping a Board Tile to an Empty Tile.
- * 
+ * Move class for swapping a Board Tile to an Empty Tile in the builder.
  * @author awharrison
  * @author dfontana
  */
 public class SwapTileBoardToEmptyMove extends Move {
 	/** Board in which the move is taking place **/
 	Board board;
-	
 	/** The tile passed into the constructor. Should be a board tile (this is checked) **/
 	AbstractTile oldTile;
-	
 	/** The tile that is created to replace the oldTile **/
 	EmptyTile newTile;
+	/** LevelPropertiesView whose tile count is affected by the move**/
+	LevelPropertiesView lpv;
 	
-	public SwapTileBoardToEmptyMove (AbstractTile old, Board b) {
+	/**
+	 * Constructor to make a board to empty tile move.
+	 * @param old - tile that is being replaced by the move
+	 * @param b - board being modified
+	 * @param lpv - levelPropertiesView whose tile count is being updated
+	 */
+	public SwapTileBoardToEmptyMove (AbstractTile old, Board b, LevelPropertiesView lpv) {
 		this.board = b;
 		this.oldTile = old;
+		this.lpv = lpv;
 	}
 	
 	/**
 	 * The move creates a new empty tile with same location as the old tile.
 	 * It then swaps the old and new Tiles. 
+	 * Decrements the tile count in the levelPropertiesView
 	 * @return boolean - true if the move was successful
 	 */
 	@Override
 	public boolean doMove() {
 		if(isValid()) {
 			this.newTile = new EmptyTile(oldTile.getRow(), oldTile.getCol());
-			board.swapTile(newTile); // may want to throw runtime exception if this does not return a copy of the old tile
+			board.swapTile(newTile);
+			lpv.adjustTileCount(-1);
 			return true;
 		}
 		return false;
@@ -51,15 +60,27 @@ public class SwapTileBoardToEmptyMove extends Move {
 		return false;
 	}
 
+	/**
+	 * Undoes the move by swapping the replacing tile with the old, original tile.
+	 * Also adjusts the tile count to be +1.
+	 * @return true if the undo was completed
+	 */
 	@Override
 	public boolean undo() {
 		board.swapTile(oldTile);
+		lpv.adjustTileCount(1);
 		return true;
 	}
 	
+	/**
+	 * Redoes the move, by swapping the tile from the board with the new tile generated in the original move.
+	 * Decrements the tile count.
+	 * @return true if the redo succeeds
+	 */
 	@Override 
 	public boolean redo() {
 		board.swapTile(newTile);
+		lpv.adjustTileCount(-1);
 		return true;
 	}
 }
