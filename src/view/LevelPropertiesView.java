@@ -20,33 +20,33 @@ import model.LightningLevel;
  * JPanel for displaying the properties of a given level.
  * Configurable to display information relevant only to the current
  * level type being edited.
- * @author Dylan
+ * @author dfontana
  */
 public class LevelPropertiesView extends JPanel{
 	private static final long serialVersionUID = 1L;
-	/**Layout manager for this LevelPropertiesView**/
+	/**Layout manager for this LevelPropertiesView.**/
 	GroupLayout groupLayout;
-	/**Title of the panel**/
+	/**Title of the panel.**/
 	JLabel lblTitle;
-	/**Label for the Tile Count**/
+	/**Label for the Tile Count.**/
 	JLabel lblTileCount;
-	/**Label displaying the current tile count**/
+	/**Label displaying the current tile count.**/
 	JLabel lblTileCountVar;
 	/**Integer tracking the tile count label's value.**/
 	int tileCount;
-	/**Label for setting Moves in Puzzle**/
+	/**Label for setting Moves in Puzzle.**/
 	JLabel lblSetMoves;
-	/**Label for setting Time in Lightning**/
+	/**Label for setting Time in Lightning.**/
 	JLabel lblSetTime;
-	/**Spinner for setting the value of Move Limit in Puzzle**/
+	/**Spinner for setting the value of Move Limit in Puzzle.**/
 	JSpinner spinMoves;
-	/**Spinner for setting the value of Time in Lightning**/
+	/**Spinner for setting the value of Time in Lightning.**/
 	JSpinner spinTime;
-	/**The level whose properties are being displayed**/
+	/**The level whose properties are being displayed.**/
 	AbstractLevelModel levelModel;
 	
 	/**
-	 * Constructs a LevelPropertiesView
+	 * Constructs a LevelPropertiesView.
 	 */
 	public LevelPropertiesView(){
 		setPreferredSize(new Dimension(120, 120));
@@ -116,10 +116,9 @@ public class LevelPropertiesView extends JPanel{
 	}
 	
 	/**
-	 * Adjusts the label showing the current count of board tile, making
-	 * it easier to build levels that of size 6n.
-	 * @param delta - The amount to adjust the tile count by. Can be positive or
-	 * negative
+	 * Adjusts the label showing the current count of board tile, making it easier to build levels that of size 6n.
+	 * The input parameter represents the change of tile count (can be + or -).
+	 * @param delta - int
 	 */
 	public void adjustTileCount(int delta){
 		tileCount += delta;
@@ -129,7 +128,7 @@ public class LevelPropertiesView extends JPanel{
 	/**
 	 * A method used to set the level model of a LevelPropertiesView.
 	 * This initializes information regarding the number of board tiles as well.
-	 * Sets the label's text to reflect this amount
+	 * Sets the label's text to reflect this amount.
 	 * @param levelModel the LevelModel being set by the method
 	 */
 	public void setLevelModel(AbstractLevelModel levelModel) {
@@ -139,7 +138,7 @@ public class LevelPropertiesView extends JPanel{
 	}
 	
 	/**
-	 * 	Returns the levelModel used in the LevelPropertiesView.
+	 * Returns the levelModel used in the LevelPropertiesView.
 	 * @return AbstractLevelModel
 	 */
 	public AbstractLevelModel getLevelModel() {
@@ -147,7 +146,7 @@ public class LevelPropertiesView extends JPanel{
 	}
 
 	/**
-	 * Method for setting up the layout for the LevelPropertiesView
+	 * Sets up the layout for the LevelPropertiesView.
 	 */
 	private void setupLayout(){
 		groupLayout = new GroupLayout(this);

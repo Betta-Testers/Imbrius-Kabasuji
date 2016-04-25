@@ -76,24 +76,24 @@ public class GameExitScreen extends JFrame{
 	
 	
 	/**
-	 * A method used by outside objects/classes to retrieve the button to return to a level.
-	 * @return JButton the button used to return to a level
+	 * Returns the button to return to a level.
+	 * @return btnReturnToLevel - JButton
 	 */
 	JButton getBtnReturnToLevel(){
 		return btnReturnToLevel;
 	}
 	
 	/**
-	 * A method used by outside objects/classes to retrieve the StarView of a GameExitScreen.
-	 * @return StarView the StarView associated with the level being exited
+	 * Returns the StarView of a GameExitScreen.
+	 * @return stars - StarView
 	 */
 	StarView getStars(){
 		return stars;
 	}
 	
 	/**
-	 * A method used by outside objects/classes to set the number of stars associated with this GameExitScreen.
-	 * @param stars the number of stars to set the GameExitScreens star parameter
+	 * Set the number of stars associated with this GameExitScreen.
+	 * @param stars - int
 	 */
 	public void setStars(int starNum){
 		stars.setNumStars(starNum);
