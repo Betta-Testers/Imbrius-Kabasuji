@@ -20,6 +20,11 @@ public class MovePieceOffBoardMove extends Move {
 	/**The Bullpen view to update**/
 	BullpenView bpv;
 	
+	/**
+	 * Creates the PieceOffBoardMove
+	 * @param lm - level whose board is having peice is being removed and bullpen being updated
+	 * @param bpv - view of the bullpen being updated
+	 */
 	public MovePieceOffBoardMove (AbstractLevelModel lm, BullpenView bpv) {
 		this.bpv = bpv;
 		this.levelModel = lm;

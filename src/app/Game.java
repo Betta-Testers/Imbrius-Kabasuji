@@ -4,7 +4,6 @@ import view.GameExitScreen;
 import view.LevelView;
 import view.LevelSelectionView;
 import view.StarView;
-import controllers.common.ShutdownController;
 import controllers.player.PlayLevelButtonController;
 import controllers.player.QuitGameButtonController;
 import model.AbstractLevelModel;
@@ -84,7 +83,6 @@ public class Game extends LevelIO{
 
 	void initializeControllers(){
 		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
-		selectLevel.setShutdownController(new ShutdownController(this));
 	}
 
 	/**
