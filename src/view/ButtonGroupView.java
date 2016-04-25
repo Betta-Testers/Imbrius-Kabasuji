@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import app.Builder;
+import app.UndoManager;
 
 import javax.swing.GroupLayout.Alignment;
 
@@ -48,6 +49,9 @@ public class ButtonGroupView extends JPanel{
 		btnUndo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Undo.png")));
 		btnRedo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Redo.png")));
 		
+		//CRITICAL LINE: Gives undo/redo enable/disable control to the undo manager!
+		UndoManager.getInstance().giveButtonGroup(this);
+		
 		setupLayout();
 	}
 	
@@ -57,6 +61,23 @@ public class ButtonGroupView extends JPanel{
 		btnUndo.addActionListener(new UndoButtonController(b));
 		btnRedo.addActionListener(new RedoButtonController(b));
 	}
+	
+	/**
+	 * Sets the redo button enabled by the given boolean
+	 * @param enabled state of the button
+	 */
+	public void setRedoEnabled(boolean enabled){
+		btnRedo.setEnabled(enabled);
+	}
+	
+	/**
+	 * Sets the undo button enabled by the given boolean
+	 * @param enabled state of the button
+	 */
+	public void setUndoEnabled(boolean enabled){
+		btnUndo.setEnabled(enabled);
+	}
+	
 	/**
 	 * Method for setting up the layout for the available level view
 	 */
