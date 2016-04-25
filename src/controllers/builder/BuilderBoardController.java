@@ -111,7 +111,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		Move move = null;
 		AbstractTile source = board.getTileAt(me.getX(), me.getY());
 		
-		
 		if(bView.getStateOfPlacement()){
 			if(bView.getStateOfBoardConvert()){
 				if (mouseOn) {

@@ -43,6 +43,8 @@ public class ButtonGroupView extends JPanel{
 		btnSave.setToolTipText("Save the level to disk and close the builder.");
 		btnUndo.setToolTipText("Undo");
 		btnRedo.setToolTipText("Redo");
+		btnUndo.setEnabled(false);
+		btnRedo.setEnabled(false);
 		btnUndo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Undo.png")));
 		btnRedo.setIcon(new ImageIcon(this.getClass().getResource("/icons/Redo.png")));
 		

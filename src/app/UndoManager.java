@@ -23,6 +23,8 @@ public class UndoManager{
 	}
 
 	public void pushMove(Move m){
+		//TODO set undo button enabled
+		//TODO set redo button disabled
 		UndoManager.undoStack.push(m);
 		UndoManager.redoStack.clear();
 	}
@@ -36,7 +38,10 @@ public class UndoManager{
 	 * @return true if the undo could be done
 	 */
 	public boolean undo(){
-		if(UndoManager.undoStack.empty()){ return false;}
+		if(UndoManager.undoStack.empty()){ 
+			//TODO Set undo button disabled
+			return false;
+		}
 		Move m = UndoManager.undoStack.pop();
 		m.undo();
 		UndoManager.redoStack.push(m);
@@ -52,7 +57,10 @@ public class UndoManager{
 	 * @return true if the redo could be done
 	 */
 	public boolean redo(){
-		if(UndoManager.redoStack.empty()){ return false;}
+		if(UndoManager.redoStack.empty()){ 
+			//TODO set redo button disabled
+			return false;
+		}
 		Move m = UndoManager.redoStack.pop();
 		m.redo();
 		UndoManager.undoStack.push(m);
