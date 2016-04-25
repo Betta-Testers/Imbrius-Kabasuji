@@ -69,7 +69,7 @@ public class UndoManager{
 		Move m = UndoManager.redoStack.pop();
 		m.redo();
 		UndoManager.undoStack.push(m);
-		if(UndoManager.undoStack.empty()){bgv.setRedoEnabled(false);}//TODO if emptied, disable
+		if(UndoManager.redoStack.empty()){bgv.setRedoEnabled(false);}//TODO if emptied, disable
 		return true;
 	}
 	
