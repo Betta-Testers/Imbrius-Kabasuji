@@ -109,6 +109,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	public void mouseReleased(MouseEvent me) {
 		Move move = null;
 		AbstractTile source = board.getTileAt(me.getX(), me.getY());
+		
+		
 		if(bView.getStateOfPlacement()){
 			if(bView.getStateOfBoardConvert()){
 				if (mouseOn) {
@@ -153,6 +155,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				move.doMove();
 			}
 		}
+		
+		
 		boardView.redraw();
 		boardView.repaint();
 	}
