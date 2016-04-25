@@ -32,8 +32,7 @@ public class UndoManager{
 	}
 
 	public void pushMove(Move m){
-		//TODO set undo button enabled
-		bgv.setUndoEnabled(true);
+		bgv.setUndoEnabled(true); //TODO set undo button enabled
 		UndoManager.undoStack.push(m);
 		UndoManager.redoStack.clear();
 	}
@@ -47,16 +46,12 @@ public class UndoManager{
 	 * @return true if the undo could be done
 	 */
 	public boolean undo(){
-		if(UndoManager.undoStack.empty()){ 
-			bgv.setUndoEnabled(false);
-			//TODO Set undo button disabled
-			return false;
-		}
-		//TODO enable the redo button
-		bgv.setRedoEnabled(true);
+		if(UndoManager.undoStack.empty()){return false;}
+		bgv.setRedoEnabled(true);//TODO enable the redo button
 		Move m = UndoManager.undoStack.pop();
 		m.undo();
 		UndoManager.redoStack.push(m);
+		if(UndoManager.undoStack.empty()){bgv.setUndoEnabled(false);}//TODO IF emptied, disable
 		return true;
 	}
 	
@@ -69,14 +64,12 @@ public class UndoManager{
 	 * @return true if the redo could be done
 	 */
 	public boolean redo(){
-		if(UndoManager.redoStack.empty()){ 
-			bgv.setRedoEnabled(false);
-			//TODO set redo button disabled
-			return false;
-		}
+		if(UndoManager.redoStack.empty()){ return false;}
+		bgv.setUndoEnabled(true);//TODO enable the undo button
 		Move m = UndoManager.redoStack.pop();
 		m.redo();
 		UndoManager.undoStack.push(m);
+		if(UndoManager.undoStack.empty()){bgv.setRedoEnabled(false);}//TODO if emptied, disable
 		return true;
 	}
 	
