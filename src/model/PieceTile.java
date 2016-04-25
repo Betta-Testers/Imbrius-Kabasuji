@@ -10,20 +10,24 @@ package model;
 public class PieceTile extends AbstractTile{
 	private static final long serialVersionUID = 2549208174449293357L; 
 	
+	/**Stores what piece the tile is a part of.**/
 	Piece piece;
-	int colInPiece;
-	int rowInPiece;
-	AbstractTile previousTile;
-
 	
-	//TODO Finish JavaDocs
+	/**Stores the relative column position of the tile within the piece, measured from the origin tile of the piece.**/
+	int colInPiece;
+	
+	/**Stores the relative row position of the tile within the piece, measured from the origin tile of the piece.**/
+	int rowInPiece;
+	
+	/**Stores the previous tile that the PieceTile was placed on.**/
+	AbstractTile previousTile;
 	
 	/**
-	 * Create a piece tile, which is a part of a specified piece (once that is implemented)
-	 * @param row Tile's row on the board
-	 * @param col Tile's column on the board
-	 * @param rinPiece Tile's row within the piece (can be negative)
-	 * @param cInPiece Tile's column within the piece (can be negative)
+	 * Create a piece tile, which is a part of a specified piece. Sets tile location and color based off of Piece.
+	 * @param row Tile's row on the board - int
+	 * @param col Tile's column on the board - int
+	 * @param rinPiece Tile's row within the piece (can be negative) - int
+	 * @param cInPiece Tile's column within the piece (can be negative) - int
 	 */
 	public PieceTile(int row, int col, Piece p) {
 		super(row, col);
@@ -47,14 +51,26 @@ public class PieceTile extends AbstractTile{
 	}
 	
 
+	/**
+	 * Returns the row of the tile relative to the origin in the Piece.
+	 * @return rowInPiece - int
+	 */
 	public int getRowInPiece() {
 		return this.rowInPiece;
 	}
 	
+	/**
+	 * Returns the column of the tile relative to the origin in the Piece.
+	 * @return colInPiece - int
+	 */
 	public int getColInPiece() {
 		return this.colInPiece;
 	}
 	
+	/**
+	 * Updates the row position of the tile relative to the origin in the Piece.
+	 * @int newRow - int
+	 */
 	public void updateRowInPiece(int newRow) {
 		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
@@ -63,6 +79,10 @@ public class PieceTile extends AbstractTile{
 		updateBoardPosition();
 	}
 	
+	/**
+	 * Updates the column position of the tile relative to the origin in the Piece.
+	 * @int newCol - int
+	 */
 	public void updateColInPiece(int newCol) {
 		if (piece.getOriginTile() == this) {
 			throw new RuntimeException("Can't update relative position of the origin tile");
@@ -71,14 +91,18 @@ public class PieceTile extends AbstractTile{
 		updateBoardPosition();
 	}
 	
+	/**
+	 * Updates the board position of the tile.
+	 */
 	public void updateBoardPosition() {
 		this.colOnBoard = piece.getOriginCol() + this.colInPiece;
 		this.rowOnBoard = piece.getOriginRow() + this.rowInPiece;
 	}
 	
 	/**
-	 * Can only directly change the location of the origin tile
-	 * @param row
+	 * Sets the location of the tile. Will only work if the tile is the origin tile.
+	 * @param row - int
+	 * @param col - int
 	 */
 	public void setLocation(int row, int col) {
 		if(piece.getOriginTile() == this) {
@@ -87,14 +111,26 @@ public class PieceTile extends AbstractTile{
 		}
 	}
 	
+	/**
+	 * Returns the tile that this tile covered.
+	 * @return previousTile - AbstractTile
+	 */
 	public AbstractTile getPreviousTile() {
 		return this.previousTile;
 	}
 	
+	/**
+	 * Sets the tile that this tile covered.
+	 * @param at - AbstractTile
+	 */
 	public void setPreviousTile(AbstractTile at) {
 		this.previousTile = at;
 	}
 	
+	/**
+	 * Returns the piece that the tile is a part of.
+	 * @return piece - Piece
+	 */
 	public Piece getPiece() {
 		return this.piece;
 	}
