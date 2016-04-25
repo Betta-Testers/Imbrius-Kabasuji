@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 
 /**
- * @author Evan
+ * Represents a hexomino, which is set upon piece creation.
+ * @author ejbosia
  * @author Hans
  * @author Dylan
  */
@@ -15,9 +16,19 @@ import java.util.ArrayList;
 public class Piece implements Serializable{
 	private static final long serialVersionUID = -5341675534216265771L;
 	
+	/**Stores each tile that makes up the piece.*/
 	transient PieceTile[] tiles;
+	
+	/**Stores the ID of the piece.*/
 	int ID;
+	
+	/**Stores the color of the piece.*/
 	Color color;
+	
+	/**
+	 * Creates a piece given an ID. Sets up color and distribution of tiles based off of the ID.
+	 * @param ID - int
+	 */
 	public Piece(int ID){
 		this.ID = ID;
 		this.tiles = new PieceTile[6];
@@ -26,10 +37,8 @@ public class Piece implements Serializable{
 	
 	
 	/**
-	 * Method used to break down Piece into a for saving.
-	 * @return String
-	 * 
-	 * @author Evan
+	 * Returns the string representation of this piece.
+	 * @return string representation of the piece - String
 	 */
 	public String toString(){
 		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
@@ -38,22 +47,16 @@ public class Piece implements Serializable{
 	}
 
 	/**
-	 * Method used to return ID of piece.
-	 * @return int
-	 * 
-	 * @author Evan
+	 * Returns ID of this piece.
+	 * @return ID - int
 	 */
-	
 	public int getID(){
 		return ID;
 	}
 	
 	/**
-	 * Method used to change orientation of the piece as if it was rotated counter-clockwise.
-	 * 
-	 * @author Evan
+	 * Changes orientation of the piece as if it was rotated counter-clockwise.
 	 */
-
 	public void rotateLeft(){
 		for (int i=1; i<6; i++) {
 			int row = tiles[i].getRowInPiece();
@@ -64,9 +67,7 @@ public class Piece implements Serializable{
 	}
 	
 	/**
-	 * Method used to change orientation of the piece as if it was rotated clockwise.
-	 * 
-	 * @author Evan
+	 * Changes orientation of the piece as if it was rotated clockwise.
 	 */
 	public void rotateRight(){
 		for (int i=1; i<6; i++) {
@@ -78,9 +79,7 @@ public class Piece implements Serializable{
 	}
 	
 	/**
-	 * Method used to change orientation of the piece as if it was flipped horizontally.
-	 * 
-	 * @author Hans
+	 * Changes orientation of the piece as if it was flipped horizontally.
 	 */
 	public void flipH(){
 		for (int i=1; i<6; i++) {
@@ -89,9 +88,7 @@ public class Piece implements Serializable{
 	}
 	
 	/**
-	 * Method used to change orientation of the piece as if it was flipped horizontally.
-	 * 
-	 * @author Hans
+	 * Changes orientation of the piece as if it was flipped horizontally.
 	 */
 	public void flipV(){
 		for (int i=1; i<6; i++) {
@@ -100,25 +97,25 @@ public class Piece implements Serializable{
 	}
 	
 	/**
-	 * Method used to return color of piece.
-	 * @return Color
-	 * 
-	 * @author Evan
+	 * Returns color of this piece.
+	 * @return color - Color
 	 */
 	Color getColor(){
 		return color;
 	}
 
+	/**
+	 * Returns a copy of the piece.
+	 * @return new Piece with the same ID as this Piece - Piece
+	 */
 	public Piece makeCopy(){
 		return new Piece(ID);
 	}
 	
 	/** 
-	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
-	 * @param row
-	 * @param col
-	 * 
-	 * @author Hans
+	 * Place piece on the board at specified location. Sets origin location and updates all component tiles.
+	 * @param row - int
+	 * @param col - int
 	 */
  	public void setLocation(int row, int col) {
 		this.tiles[0].setLocation(row, col);
@@ -128,40 +125,32 @@ public class Piece implements Serializable{
 	}
 	
 	/**
-	 * Method used to get the column location of the origin.
-	 * @return int
-	 * 
-	 * @author Evan
+	 * Returns the column location of the origin.
+	 * @return column location of tiles[0] (origin) - int
 	 */
 	public int getOriginCol(){
 		return tiles[0].getCol();
 	}
 	
 	/**
-	 * Method used to get the row location of the origin.
-	 * @return int
-	 * 
-	 * @author Evan
+	 * Returns the row location of the origin.
+	 * @return row location of tiles[0] (origin) - int
 	 */
 	public int getOriginRow(){
 		return tiles[0].getRow();
 	}
 	
 	/**
-	 * Method used to get the origin tile.
-	 * @return PieceTile
-	 * 
-	 * @author Evan
+	 * Returns the origin tile.
+	 * @return tiles[0] (origin) - PieceTile
 	 */
 	public PieceTile getOriginTile() {
 		return tiles[0];
 	}
 	
 	/**
-	 * Method used for generating the correct tile placement of the piece given its ID.
-	 * @returns ArrayList<AbstractTile>
-	 * 
-	 * @author Hans
+	 * Returns the previous tiles.
+	 * @returns prevTiles - ArrayList<AbstractTile>
 	 */
 	public ArrayList<AbstractTile> getPreviousTiles() {
 		ArrayList<AbstractTile> prevTiles = new ArrayList<AbstractTile>();
@@ -171,10 +160,18 @@ public class Piece implements Serializable{
 		return prevTiles;
 	}
 	
+	/**
+	 * Returns the array of tiles that makes up the piece.
+	 * @return tiles - PieceTile[]
+	 */
 	public PieceTile[] getTiles() {
 		return tiles;
 	}
 	
+	/**
+	 * Checks if the Piece has the same ID as the inputed Object (casted to Piece).
+	 * @return if the IDs are the same - boolean
+	 */
 	@Override
 	public boolean equals(Object o){
 		if(o == null){ return false;}
@@ -202,11 +199,9 @@ public class Piece implements Serializable{
 	}
 	
 	/**
-	 * Method used for generating the correct tile placement of the piece given its ID
-	 * @param int
+	 * Generates the correct tile placement of the piece given its ID. Also sets the color of the piece.
+	 * @param ID - int
 	 * @throws RuntimeException
-	 * 
-	 * @author Evan
 	 */
 	protected void generatePiece(int ID) throws RuntimeException{
 		switch(ID){

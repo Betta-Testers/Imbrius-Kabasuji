@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.io.Serializable;
 
 /**
- * 
+ * Extends AbstractTile, represents a tile that can be covered by a piece during gameplay.
  * @author hejohnson
  *
  */

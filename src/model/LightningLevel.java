@@ -24,7 +24,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 
 	/**
 	 * Makes a lightninglevel
-	 * @param levelID id of this level being made
+	 * @param levelID id of this level being made - int
 	 */
 	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
@@ -52,16 +52,16 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Sets the totalTime for the lightning level
-	 * @param totalTime
+	 * Sets the totalTime for the lightning level.
+	 * @param totalTime - int
 	 */
 	public void setTotalTime(int totalTime){
 		this.totalTime = totalTime;
 	}
 	
 	/**
-	 * Returns the totalTime this lightning level allows
-	 * @return int - totalTime in seconds
+	 * Returns the totalTime this lightning level allows.
+	 * @return totalTime in seconds - int
 	 */
 	public int getTotalTime(){
 		return this.totalTime;
@@ -85,8 +85,8 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Creates a toString of this level
-	 * @return string representation of this level
+	 * Creates a toString of this level.
+	 * @return string representation of this level - String
 	 */
 	@Override
 	public String toString(){

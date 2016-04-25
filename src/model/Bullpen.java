@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
+ * Represents the collection of PieceGroups the user can access.
  * @author awharrison
  * @author dfontana
  */
