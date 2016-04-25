@@ -53,7 +53,7 @@ public class ButtonGroupView extends JPanel{
 		btnSave.addActionListener(new SaveAndCloseLevelButtonController(b));
 		btnRemovePieces.addActionListener(new RemovePiecesButtonController(b.getCurrentLevel().getBoard(), b.getBuilderView().getBoardView(), b.getCurrentLevel().getBullpen(), b.getBuilderView().getBullpenView()));
 		btnUndo.addActionListener(new UndoButtonController(b));
-		btnRedo.addActionListener(new RedoButtonController());
+		btnRedo.addActionListener(new RedoButtonController(b));
 	}
 	/**
 	 * Method for setting up the layout for the available level view

@@ -42,7 +42,6 @@ public class UndoButtonController implements ActionListener{
 			builderView.getBoardView().repaint();
 		}else{
 			//No more moves to undo
-			System.out.println("Manager Undo is empty");
 			//TODO Gray out button. How do you get the button to be reenabled, then?
 		}
 	}
