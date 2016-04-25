@@ -15,7 +15,8 @@ import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
 /**
  * The Game window, showing the bullpen, board, selected piece view, and buttons.
- * @author ?
+ * @author awharrison
+ * @author dfontana
  *
  */
 public class LevelView extends JFrame {

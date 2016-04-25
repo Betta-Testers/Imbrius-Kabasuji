@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 /**
  * Class for displaying the numbers released in a Release GAME.
  * 
- * @author aharrison
+ * @author awharrison
  * @author dfontana
  */
 public class NumbersReleasedView extends JPanel {

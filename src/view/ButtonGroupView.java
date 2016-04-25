@@ -23,7 +23,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 /**
+ * Represents the buttons on the builder. 
  * @author dfontana
+ *
  */
 public class ButtonGroupView extends JPanel{
 	private static final long serialVersionUID = 1L;

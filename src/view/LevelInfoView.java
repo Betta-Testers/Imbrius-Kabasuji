@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 
 /**
  * Shows the stars and level number associated to each level in the level selection screen.
- * @author ?
+ * @author awharrison
  *
  */
 public class LevelInfoView extends JPanel {

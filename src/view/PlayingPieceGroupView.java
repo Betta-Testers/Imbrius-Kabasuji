@@ -6,7 +6,12 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import model.PieceGroup;
-
+/**
+ * 
+ * @author dfontana
+ * @author hejohnson
+ *
+ */
 public class PlayingPieceGroupView extends AbstractPieceGroupView{
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
