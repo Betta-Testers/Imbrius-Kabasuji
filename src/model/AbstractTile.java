@@ -4,14 +4,17 @@ import java.awt.Color;
 import java.io.Serializable;
 
 /**
+<<<<<<< HEAD
+ * AbstractTile is the parent class for all variations of tiles.
+=======
  * Abstract class governing tile creation. A tile is a single unit of a board and piece.
+>>>>>>> refs/remotes/origin/Builder
  * @author hejohnson
  *
  */
 
 public abstract class AbstractTile implements Serializable{
 	private static final long serialVersionUID = 6566817267314437128L;
-	
 	/**The row that the tile is located at on the board (0 based indexing)**/
 	int rowOnBoard;
 	/**The row that the tile is located at on the board (0 based indexing)**/
@@ -73,8 +76,8 @@ public abstract class AbstractTile implements Serializable{
 	}
 	
 	/**
-	 * Changes the color of the tile if the tile's view is included in a piece flyby
-	 * @param isValidLocation Set the color to reflect to the user if it is a valid placement
+	 * Changes the color of the tile if the tile's view is included in a piece flyby. The parameter isValidLocation determines what color the tile will be.
+	 * @param isValidLocation - boolean
 	 */
 	public void setMouseOverColor(boolean isValidLocation) {
 		if (isValidLocation) {
@@ -85,14 +88,15 @@ public abstract class AbstractTile implements Serializable{
 	}
 	
 	/**
-	 * Resets the tile's color if it was mousedOver
+	 * Resets the pieces color if it was mousedOver.
 	 */
 	public void resetColor() {
 		this.color = this.defaultColor;
 	}
 	
 	/**
-	 * @return the type of the tile
+	 * Returns the type of the tile. Note that this is determined by the subclasses of abstractTile.
+	 * @return tileType - String
 	 */
 	public String getTileType() {
 		return this.tileType;

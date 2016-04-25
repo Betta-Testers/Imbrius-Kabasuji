@@ -30,8 +30,8 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	ReleaseBoardGameController rbgc;
 
 	/**
-	 * Generates a ReleaseLevel
-	 * @param levelID - Id of this level being made
+	 * Generates a ReleaseLevel from a given levelID.
+	 * @param levelID - int
 	 */
 	public ReleaseLevel(int levelID) {
 		super(levelID, "Release", false);
@@ -66,7 +66,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * 
 	 * After the StarsEarned is modified, checkStatus then returns the boolean as to whether or not the level is 
 	 * completed. It returns true if all sets are released OR the bullpen no longer has any pieces to be played.
-	 * @return	boolean - true if level is complete
+	 * @return	if level is complete - boolean
 	 */
 	@Override
 	public boolean checkStatus() {
@@ -84,8 +84,8 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Helper method to update progress. Allows to check the array passed in sums to 6, indicating all
 	 * numbers in a set is released.
-	 * @param array being summed
-	 * @return true if the array sums to 6
+	 * @param array (to be summed) - int[]
+	 * @return if sum = 6 - boolean
 	 */
 	boolean sumIsSix(int array[]){
 		int total = 0;
@@ -97,7 +97,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the reds array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
-	 * @param releasedNum Is the number that was released
+	 * @param releasedNum (number that was released) - int
 	 */
 	public void addToRedReleased(int releasedNum){
 		if(reds[releasedNum-1] != 1) { reds[releasedNum-1] = 1; }
@@ -106,7 +106,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the blues array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
-	 * @param releasedNum Is the number that was released
+	 * @param releasedNum (number that was released) - int
 	 */
 	public void addToBlueReleased(int releasedNum){
 		if(blues[releasedNum-1] != 1) { blues[releasedNum-1] = 1; }
@@ -115,7 +115,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the greens array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
-	 * @param releasedNum Is the number that was released
+	 * @param releasedNum (number that was released) - int
 	 */
 	public void addToGreenReleased(int releasedNum){
 		if(greens[releasedNum-1] != 1) { greens[releasedNum-1] = 1; }
@@ -123,8 +123,8 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 
 	/**
 	 * Initializes the view to display correctly for a lightninglevel. 
-	 * @param g - Game where levelView is located
-	 * @return LevelView - view of the initialized LevelView
+	 * @param g (where levelView is located) - Game
+	 * @return view (initialized levelView) - LevelView
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
@@ -137,8 +137,8 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Returns a string representation of this level
-	 * @return string of this level
+	 * Returns a string representation of this level.
+	 * @return string representation of this level - String
 	 */
 	@Override
 	public String toString(){
