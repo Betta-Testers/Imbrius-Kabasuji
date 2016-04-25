@@ -1,11 +1,9 @@
 package view;
 
 import java.awt.event.WindowListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import app.Builder;
 import controllers.builder.BuilderBoardController;
 import controllers.builder.PieceGroupSpinnerController;
@@ -13,7 +11,6 @@ import controllers.builder.PlacePieceToggleListener;
 import controllers.builder.CloseBuilderDialog;
 import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
-
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
@@ -24,36 +21,50 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 
 /**
- * 
  * @author Dylan
  * @author awharrison
- *
  */
 
 public class BuilderView extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 	
+	/**The Jpanel holding all other Jpanels in this frame.**/
+	JPanel contentPane;
+	/**Builder object that holds all level information**/
 	Builder builder;
+	/**The level being displayed in the current builderView**/
 	AbstractLevelModel m;
+	/**The view that displays the selected piece in the bullpen**/
 	SelectedPieceView selectedPieceView;
+	/**The view of the level's board**/
 	BoardView boardView;
+	/**The view of the level's bullpen**/
 	BullpenView bullpenView;
-	
+	/**A button group that regulates the toggling of Placing hints and boardTiles from pieces**/
 	ButtonGroup placementGroup;
+	/**Toggle button for placing pieces**/
 	JToggleButton tglbtnPlacePieces;
+	/**Toggle button for placing board tiles from pieces**/
 	JToggleButton tglbtnPlaceBoard;
+	/**Toggle button for placing hints from pieces**/
 	JToggleButton tglbtnPlaceHints;
-	
+	/**The view that displays relevant buttons: save, undo, redo, remove pieces, etc**/
 	ButtonGroupView buttonGroupView;
+	/**The view for creating release numbers in the builder on release levels**/
 	ReleaseNumberCreationView releaseNumberView;
+	/**The view that displays all relevant properties of the editing level**/
 	LevelPropertiesView levelPropertyView;
-	
+	/**The listener connected to the exiting of the BuilderView JFrame**/
 	WindowListener exitWindowHandler;
 	
 	PlacePieceToggleListener placePieceButtonHandler;
 	BuilderBoardController builderBoardControl;
 	
+
+	/**
+	 * Constructs a BuilderView
+	 * @param b - Builder application storing relevant information of the overall game
+	 */
 	public BuilderView(Builder b) {
 		this.builder = b;
 		this.m = b.getCurrentLevel();
@@ -102,6 +113,8 @@ public class BuilderView extends JFrame {
 	 * Prepares the view of a puzzle level by disabling release
 	 * tile creation and showing only relevant information in
 	 * property view for a puzzle level.
+	 * 
+	 * Then calls the controller initialization
 	 */
 	public void prepPuzzle(){
 		releaseNumberView.setVisible(false);
@@ -116,6 +129,8 @@ public class BuilderView extends JFrame {
 	 * Prepares the view of a lightning level by disabling release
 	 * tile creation and showing only relevant information in
 	 * property view for a lightning level.
+	 * 
+	 * Then calls the controller initialization
 	 */
 	public void prepLightning(){
 		releaseNumberView.setVisible(false);
@@ -130,6 +145,8 @@ public class BuilderView extends JFrame {
 	 * Prepares the view of a release level by showing only 
 	 * relevant information in the property view for a release
 	 * level (I.E. nothing)
+	 * 
+	 * Then calls the controller initialization
 	 */
 	public void prepRelease(){
 		releaseNumberView.setVisible(true);
@@ -140,6 +157,10 @@ public class BuilderView extends JFrame {
 		initializeControllers();
 	}
 	
+	/**
+	 * Prepares the controllers for this builderView, boardView, and BullpenView.
+	 * Additionally, it triggers the initialization of the buttonGroupView controllers.
+	 */
 	void initializeControllers(){
 		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
 		builderBoardControl = new BuilderBoardController(this, m);
@@ -154,28 +175,39 @@ public class BuilderView extends JFrame {
 	}
 	
 	/**
-	 * returns the ReleaseNumberView so the number selected
-	 * can be retrieved 
-	 * @return
+	 * Returns the ReleaseNumberView of this BuilderView
+	 * @return ReleaseNumberCreationView
 	 */
 	public ReleaseNumberCreationView getReleaseNumberView(){
 		return this.releaseNumberView;
 	}
 	
+	/**
+	 * Returns the SelectedPieceView of this BuilderView
+	 * @return SelectedPieceView
+	 */
 	public SelectedPieceView getSelectedPieceView() {
 		return selectedPieceView;
 	}
 	
 	/**
-	 * returns the BullpenView
-	 * @return
+	 * Returns the levelPropertiesView of this BuilderView.
+	 * @return LevelPropertiesView
+	 */
+	public LevelPropertiesView getLevelPropertiesView(){
+		return levelPropertyView;
+	}
+	
+	/**
+	 * Returns the BullpenView of this BuilderView
+	 * @return BullpenView
 	 */
 	public BullpenView getBullpenView() {
 		return this.bullpenView;
 	}
 	
 	/**
-	 * returns the boardView associated with this builder view
+	 * Returns the boardView of this BuilderView
 	 * @return BoardView
 	 */
 	public BoardView getBoardView() {
@@ -237,8 +269,13 @@ public class BuilderView extends JFrame {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Returns the controller associated with the board
 	 * @return BuilderBoardController
+=======
+	 * Returns the builder application of this BuilderView
+	 * @return Builder
+>>>>>>> origin/Builder
 	 */
 	public BuilderBoardController getBuilderBoardControl() {
 		return this.builderBoardControl;
