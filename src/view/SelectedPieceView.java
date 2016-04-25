@@ -34,9 +34,9 @@ public class SelectedPieceView extends JPanel{
 		btnRotateRight = new JButton("");
 		btnRotateRight.setToolTipText("Rotate Right");
 		btnFlipV = new JButton("");
-		btnFlipV.setToolTipText("Flip X");
+		btnFlipV.setToolTipText("Flip Vertical");
 		btnFlipH = new JButton("");
-		btnFlipH.setToolTipText("Flip Y");
+		btnFlipH.setToolTipText("Flip Horizontal");
 		
 		piecePanel = new PiecePanel(bp);
 		setupLayout();
@@ -58,8 +58,8 @@ public class SelectedPieceView extends JPanel{
 		
 		btnRotateLeft.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/RotateLeft.png")));
 		btnRotateRight.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/RotateRight.png")));
-		btnFlipV.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipX.png")));
-		btnFlipH.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipY.png")));
+		btnFlipV.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipV.png")));
+		btnFlipH.setIcon(new ImageIcon(SelectedPieceView.class.getResource("/icons/FlipH.png")));
 		
 		groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
