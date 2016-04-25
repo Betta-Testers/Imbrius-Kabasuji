@@ -184,7 +184,7 @@ public class Piece implements Serializable{
 		}
 		return true;
 	}
-	
+
 	@Override
 	public boolean equals(Object o){
 		if(o == null){ return false;}
