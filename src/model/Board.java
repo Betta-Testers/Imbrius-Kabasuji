@@ -109,6 +109,21 @@ public class Board implements Serializable{
 		return true;
 	}
 	
+	public boolean willFitHint(Piece p, int row, int col) {
+		int r, c;
+		if(!onBoard(p, row, col)){
+			return false;
+		}
+		for (int i = 0; i < 6; i++) {
+			r = row + p.tiles[i].rowInPiece;
+			c = col + p.tiles[i].colInPiece;
+			if(board[r][c].tileType.equals("empty") || board[r][c].tileType.equals("piece") || ((BoardTile) board[r][c]).isHint()){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	/**
 	 * Says if a piece will be contained on the board given its position
 	 * @param p the piece being put onto the board
@@ -228,6 +243,24 @@ public class Board implements Serializable{
 	 */
 	public void showConversionPreview(Piece p, int row, int col){
 		if(isValidConvert(p, row, col)){
+			for(int i = 0; i<6; i++){
+				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+			}
+		}else{
+			for(int i = 0; i<6; i++){
+				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
+						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
+					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
+				}else{
+					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+
+				}
+			}
+		}
+	}
+	
+	public void showHintPreview(Piece p, int row, int col){
+		if(willFitHint(p,row,col)){
 			for(int i = 0; i<6; i++){
 				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
 			}

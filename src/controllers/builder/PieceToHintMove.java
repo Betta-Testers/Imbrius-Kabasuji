@@ -64,18 +64,19 @@ public class PieceToHintMove extends Move{
 	}
 	
 	/**
-	 * The move is valid if the selected piece is not null and the piece can git on the board
+	 * The move is valid if the selected piece is not null, the piece can fit on the board,
+	 * and there are no hints already within its bounds.
 	 * @return true if the move can be done
 	 */
 	public boolean isValid() {
 		if(bp.getSelectedPiece() != null){
-			if(b.willFit(p, source.getRow(), source.getCol())){
+			if(b.willFitHint(p, source.getRow(), source.getCol())){
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * The move is undone by marking all the tiles that the piece occupied as not hints.
 	 * The piece is then removed from the hints that are on the board.

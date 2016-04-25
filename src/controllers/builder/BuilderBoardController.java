@@ -222,6 +222,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				board.clearPiecePreview();
 				if(bView.getStateOfBoardConvert()){
 					board.showConversionPreview(p, source.getRow(), source.getCol());
+				}else if(bView.getStateOfHintConvert()){
+					board.showHintPreview(p, source.getRow(), source.getCol());
 				}else{
 					board.showPiecePreview(p, source.getRow(), source.getCol());
 				}

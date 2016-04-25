@@ -47,10 +47,16 @@ public class RemoveHintMove extends Move {
 	public boolean doMove() {
 		if(isValid()) {
 			findHintModel();
+			if(p == null){ 
+				System.out.println("Remove Hint Failed!");
+				System.out.println("Array: "+hintPieces.toString());
+				return false;
+			}
 			for(PieceTile t: p.getTiles()){
 				((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(false);
 			}
 			hintPieces.remove(p);
+			System.out.println("	Removed: "+p.toString());
 			b.clearPiecePreview();
 			return true;
 		}
@@ -79,6 +85,11 @@ public class RemoveHintMove extends Move {
 	 * is found the loop breaks.
 	 */
 	void findHintModel(){
+		System.out.println("New Move!");
+		System.out.println("Available Pieces: ");
+		for(Piece pt: hintPieces){
+			System.out.println("	"+pt.toString());
+		}
 		for(Piece p: hintPieces){
 			if(searchPiece(p)){ break;}
 		}
@@ -92,6 +103,8 @@ public class RemoveHintMove extends Move {
 	 * @return true if the piece is found
 	 */
 	boolean searchPiece(Piece p){
+		System.out.println("Looking for: "+source.toString());
+		System.out.println("Checking Against: "+p.toString());
 		for(PieceTile t: p.getTiles()){
 			if(t.getRow() == source.getRow() && t.getCol() == source.getCol()){
 				this.p = p;
