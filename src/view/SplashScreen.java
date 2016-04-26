@@ -10,16 +10,20 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 /**
- *
+ * Shows a screen with the name of the application and the authors. Everything set to comic sans for fun :).
  * @author bwoconnor
  * 
  */
 public class SplashScreen extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
+	/**Panel for the SplashScreen.**/
 	private JPanel contentPane;
+	/**Shows the name of the game, set to "Kabasuji".**/
 	JLabel lblGameName;
+	/**Shows the name of the group, set to "Team Imbrius".**/
 	JLabel lblGroupName;
+	/**Shows the name of each group member (one for each JLabel).**/
 	JLabel lblName1;
 	JLabel lblName2;
 	JLabel lblName3;
@@ -27,7 +31,7 @@ public class SplashScreen extends JFrame {
 	JLabel lblName5;
 
 	/**
-	 * Create the frame.
+	 * Create the SplashScreen.
 	 */
 	public SplashScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +64,9 @@ public class SplashScreen extends JFrame {
 		setupLayout();
 	}
 	
-	
+	/**
+	 * Sets up the layout of the SplashScreen.
+	 */
 	void setupLayout() {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

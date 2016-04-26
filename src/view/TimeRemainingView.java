@@ -13,15 +13,21 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 /**
- * Class for displaying the time remaining in a lightning level
+ * Class for displaying the time remaining in a lightning level.
  * @author awharrison
  * @author dfontana
  */
 public class TimeRemainingView extends JPanel {
 	private static final long serialVersionUID = 1L;
+	/**Shows the remaining time.**/
 	JTextPane textPaneTime;
+	/**Title for time remaining, set to "Seconds Remaining".**/
 	JLabel lblTitle;
 	
+	/**
+	 * Creates a TimeRemaingView with a given lightning level.
+	 * @param level - LightningLevel
+	 */
 	public TimeRemainingView(LightningLevel level) {
 		this.setPreferredSize(new Dimension(180, 90));
 		textPaneTime = new JTextPane();
@@ -42,6 +48,9 @@ public class TimeRemainingView extends JPanel {
 		textPaneTime.setText(secondsRemaining);
 	}
 	
+	/**
+	 * Sets up the layout of the TimeRemainingView.
+	 */
 	private void setupLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
