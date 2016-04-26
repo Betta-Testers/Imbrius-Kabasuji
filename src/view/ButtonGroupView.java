@@ -91,6 +91,32 @@ public class ButtonGroupView extends JPanel{
 		btnUndo.setEnabled(enabled);
 	}
 	
+	//** FOR TESTING **//
+	
+	/**
+	 * Returns the undo move button.
+	 * @return btnUndo - JButton
+	 */
+	public JButton getUndoBtn() {
+		return this.btnUndo;
+	}
+	
+	/**
+	 * Returns the redo move button.
+	 * @return btnRedo - JButton
+	 */
+	public JButton getRedoBtn() {
+		return this.btnRedo;
+	}
+	
+	/**
+	 * Returns the remove all pieces button.
+	 * @return btnRemovePieces - JButton
+	 */
+	public JButton getRemoveBtn() {
+		return this.btnRemovePieces;
+	}
+	
 	/**
 	 * Sets up the layout for the ButtonGroupView.
 	 */

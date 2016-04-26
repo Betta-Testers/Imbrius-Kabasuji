@@ -309,6 +309,14 @@ public class BuilderView extends JFrame {
 	public JToggleButton getPlaceHintBtn() {
 		return this.tglbtnPlaceHints;
 	}
+	
+	/**
+	 * Returns the group of buttons that control builder placement and undo/redo.
+	 * @return buttonGroupView - ButtonGroupView
+	 */
+	public ButtonGroupView getButtonGroup() {
+		return this.buttonGroupView;
+	}
 
 	/**
 	 * Sets up the layout for the BuilderView.

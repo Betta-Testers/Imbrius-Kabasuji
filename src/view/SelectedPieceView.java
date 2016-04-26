@@ -14,6 +14,11 @@ import controllers.common.RotatePieceLeftController;
 import controllers.common.RotatePieceRightController;
 import model.Bullpen;
 
+/**
+ * @author dfontana
+ * @author awharrison
+ *
+ */
 public class SelectedPieceView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	GroupLayout groupLayout;
@@ -52,6 +57,38 @@ public class SelectedPieceView extends JPanel{
 		btnFlipH.addActionListener(new FlipPieceHorizontalController(bp, this));
 		btnRotateRight.addActionListener(new RotatePieceRightController(bp, this));
 		btnRotateLeft.addActionListener(new RotatePieceLeftController(bp, this));
+	}
+	
+	/**
+	 * returns the button that causes the piece in the pieceViewer panel to rotate right.
+	 * @return btnRotateRight - JButton
+	 */
+	public JButton getRotateRightBtn() {
+		return this.btnRotateRight;
+	}
+	
+	/**
+	 * returns the button that causes the piece in the pieceViewer panel to rotate left.
+	 * @return btnRotateLeft - JButton
+	 */
+	public JButton getRotateLeftBtn() {
+		return this.btnRotateLeft;
+	}
+	
+	/**
+	 * returns the button that causes the piece in the pieceViewer panel to flip horizontally.
+	 * @return btnFlipH - JButton
+	 */
+	public JButton getFlipHBtn() {
+		return this.btnFlipH;
+	}
+	
+	/**
+	 * returns the button that causes the piece in the pieceViewer panel to flip vertically.
+	 * @return btnFlipH - JButton
+	 */
+	public JButton getFlipVBtn() {
+		return this.btnFlipV;
 	}
 	
 	private void setupLayout(){
