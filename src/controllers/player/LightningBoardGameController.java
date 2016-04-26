@@ -38,11 +38,12 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	/**
 	 *
 	 * @param game The game object
+	 * @param lv The level view
 	 */
-	public LightningBoardGameController (Game game) {
+	public LightningBoardGameController (Game game, LevelView lv) {
 		this.game = game;
 		this.levelModel = game.getCurrentLevel();
-		this.levelView = game.getLevelView();
+		this.levelView = lv;
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();
@@ -56,7 +57,7 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView(), spv, boardView);
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  levelView.getBullpenView(), spv, boardView);
 		
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
@@ -66,9 +67,9 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
 			}
 			if (levelModel.checkStatus()) {
-				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
+				levelView.dispatchEvent(new WindowEvent(levelView, WindowEvent.WINDOW_CLOSING));
 			}
-			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
+			levelView.getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
 	}
 

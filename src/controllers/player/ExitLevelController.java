@@ -15,12 +15,15 @@ import view.LevelView;
 public class ExitLevelController extends WindowAdapter{
 	/** The game object that holds all the window views and the level data **/
 	Game game;
+	/** The view of the level window **/
+	LevelView view;
 	
 	/**
 	 * @param g The current game
 	 */
-	public ExitLevelController(Game g) {
+	public ExitLevelController(Game g, LevelView view) {
 		this.game = g;
+		this.view = view;
 	}
 	
 	/**
@@ -38,6 +41,6 @@ public class ExitLevelController extends WindowAdapter{
 		}
 		game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
 		game.getExitView().setVisible(true);
-		game.getLevelView().dispose();
+		view.dispose();
 	}
 }

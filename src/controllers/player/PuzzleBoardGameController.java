@@ -53,11 +53,12 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 	/**
 	 * 
 	 * @param game The overarching game object
+	 * @param lv The level view
 	 */
-	public PuzzleBoardGameController (Game game) {
+	public PuzzleBoardGameController (Game game, LevelView lv) {
 		this.game = game;
 		this.levelModel = (PuzzleLevel)game.getCurrentLevel();
-		this.levelView = game.getLevelView();
+		this.levelView = lv;
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();
@@ -83,16 +84,16 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		if (levelModel.getBoard().getDraggedPiece() == null) {
 			levelModel.getBoard().clearPiecePreview();
 		} else { // currently dragging a piece
-			IMove m = new MovePieceOffBoardMove(levelModel, game.getLevelView().getBullpenView(), boardView);
+			IMove m = new MovePieceOffBoardMove(levelModel, levelView.getBullpenView(), boardView);
 			m.doMove();
 			levelModel.getBoard().setDraggedPiece(null);
 			
 			((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
 			
 			if (levelModel.checkStatus()) {
-				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
+				levelView.dispatchEvent(new WindowEvent(levelView, WindowEvent.WINDOW_CLOSING));
 			}
-			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
+			levelView.getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
 
 	}
@@ -129,7 +130,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 
 		if (mouseOn) {
 			if (levelModel.getBoard().getDraggedPiece() == null) {
-				m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, game.getLevelView().getBullpenView(), spv, boardView);
+				m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, levelView.getBullpenView(), spv, boardView);
 			} else {
 				m = new MovePieceOnBoardMove(levelModel.getBoard(), source, levelModel.getBoard().getDraggedPiece(), rOffset, cOffset, boardView);
 			}
@@ -140,9 +141,9 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 				((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
 				
 				if (levelModel.checkStatus()) {
-					game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
+					levelView.dispatchEvent(new WindowEvent(levelView, WindowEvent.WINDOW_CLOSING));
 				}
-				game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
+				levelView.getLevelInfoView().setStars(levelModel.getStarsEarned());
 	
 			} else {
 				if (levelModel.getBoard().getDraggedPiece() != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
