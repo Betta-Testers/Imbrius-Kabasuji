@@ -27,22 +27,37 @@ import view.NumberMovesLeftView;
  */
 
 public class PuzzleBoardGameController implements MouseListener, MouseMotionListener{
+	/** The level being played **/
 	PuzzleLevel levelModel;
+	/** Holds the tile that each mouse event is triggered over **/
 	AbstractTile source;
+	/** Holds the move to be executed **/
 	IMove m;
+	/** The overarching game object **/
 	Game game;
+	/** The view of the board **/
 	BoardView boardView;
+	/** The view of the bullpen and all its pieces **/
 	BullpenView bpv;
+	/** The view of the piece selected from the bullpen to be placed on the board **/
 	SelectedPieceView spv;
+	/** Window that holds the bullpen and board **/
 	LevelView levelView;
+	/** Tracks whether the mouse is over the board **/
 	boolean mouseOn;
+	/** Row offset of the clicked tile from the origin of the clicked piece for dragging **/
 	int rOffset;
+	/** Column offset of the clicked tile from the origin of the clikced piece for dragging **/
 	int cOffset;
 
-	public PuzzleBoardGameController (Game game, LevelView levelView) {
+	/**
+	 * 
+	 * @param game The overarching game object
+	 */
+	public PuzzleBoardGameController (Game game) {
 		this.game = game;
 		this.levelModel = (PuzzleLevel)game.getCurrentLevel();
-		this.levelView = levelView;
+		this.levelView = game.getLevelView();
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();
@@ -58,6 +73,10 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		mouseOn = true;
 	}
 
+	/** 
+	 * Handles dragging pieces off the board. 
+	 * Clear the piece preview, and if a piece was being dragged, add it back to the bullpen and update the number of moves
+	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		mouseOn = false;
@@ -78,6 +97,10 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 
 	}
 
+	/**
+	 * Handles clicking a piece to drag it. If the mouse event occurs over a piece tile, the associated piece is removed from the board and set as the dragged piece in the board
+	 * The row and column offsets are also set.
+	 */
 	@Override
 	public void mousePressed(MouseEvent me) {
 		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
@@ -96,6 +119,10 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		}
 	}
 
+	/**
+	 * Handles placing a piece on the board, whether it was in the bullpen or being dragged
+	 * If a piece was being dragged, it is put back in its original location without updating the number of moves
+	 */
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
@@ -128,6 +155,9 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 
 	}
 
+	/** 
+	 * Handles showing the piece preview of a dragged piece if there is one
+	 */
 	@Override
 	public void mouseDragged(MouseEvent me) {
 		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
@@ -143,6 +173,9 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		boardView.repaint();
 	}
 
+	/**
+	 * Handles showing the piece preview when being placed from the bullpen
+	 */
 	@Override
 	public void mouseMoved(MouseEvent me) {
 		Piece p;

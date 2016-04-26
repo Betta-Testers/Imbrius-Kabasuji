@@ -7,18 +7,28 @@ import app.Game;
 import view.GameExitScreen;
 
 public class QuitGameButtonController implements ActionListener{
+	/** The exit screen that **/
 	GameExitScreen view;
-	Game model;
+	/** The game that spawned the exit screen **/
+	Game game;
 	
+	/**
+	 * @param view The exit screen view
+	 * @param g The game object
+	 */
 	public QuitGameButtonController(GameExitScreen view, Game g){
 		this.view = view;
-		this.model = g;
+		this.game = g;
 
 	}
 	
+	/** 
+	 * Closes the exit screen and shows the level selector
+	 * @param e The mouse event that triggered this controller
+	 */
 	public void actionPerformed(ActionEvent e){
 	
-		model.getSelectView().setVisible(true);
+		game.getSelectView().setVisible(true);
 		view.dispose();
 	}
 }

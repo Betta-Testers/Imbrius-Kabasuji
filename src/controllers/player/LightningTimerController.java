@@ -13,14 +13,23 @@ import view.LevelView;
 import view.TimeRemainingView;
 
 public class LightningTimerController extends WindowAdapter implements ActionListener{
+	/** The view of the level being played **/
 	LevelView view;
+	/** The overarching game object **/
 	Game game;
+	/** A swing timer **/
 	Timer timer;
+	/** Count of seconds elapsed **/
 	int secondsElapsed;
+	/** End time of the timer, set by the level model **/
 	int totalTime;	
 	
-	public LightningTimerController(LevelView view, Game g){
-		this.view = view;
+	/** 
+	 * Sets up the timer to fire events every second and repeat
+	 * @param g The game object
+	 */
+	public LightningTimerController(Game g){
+		this.view = g.getLevelView();
 		this.game = g;
 		this.secondsElapsed = 0;
 		this.timer = new Timer(1000, this);
@@ -29,6 +38,10 @@ public class LightningTimerController extends WindowAdapter implements ActionLis
 		timer.start();
 	}
 	
+	/** 
+	 * Counts the number of seconds (an event is fired every second
+	 * If the count reaches the total time, the timer is stopped and the game window is closed
+	 */
 	public void actionPerformed(ActionEvent e){
 		secondsElapsed++;
 		String time = new DecimalFormat("   ").format(totalTime-secondsElapsed);
@@ -39,6 +52,9 @@ public class LightningTimerController extends WindowAdapter implements ActionLis
 		}
 	}
 	
+	/** 
+	 * If the window is closed by an outside actor, the timer is stopped
+	 */
 	public void windowClosing(WindowEvent we) {
 		timer.stop();
 	}

@@ -25,17 +25,26 @@ import view.SelectedPieceView;
  */
 
 public class ReleaseBoardGameController implements MouseListener, MouseMotionListener{
+	/** The current level being played **/
 	ReleaseLevel levelModel;
+	/** The overarching game object that holds all the views and the entities **/
 	Game game;
+	/** The view for the board **/
 	BoardView boardView;
+	/** The view of the bullpen and all it's pieces **/
 	BullpenView bpv;
+	/** The view that holds the piece selected from the bullpen to be placed on the board **/
 	SelectedPieceView spv;
+	/** The window that holds the board and bullpen **/
 	LevelView levelView;
 	
-	public ReleaseBoardGameController (Game game, LevelView levelView) {
+	/**
+	 * @param game The game object
+	 */
+	public ReleaseBoardGameController (Game game) {
 		this.game = game;
 		this.levelModel = (ReleaseLevel)game.getCurrentLevel();
-		this.levelView = levelView;
+		this.levelView = game.getLevelView();
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();
@@ -46,6 +55,10 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		
 	}
 
+	/** 
+	 * Shows the selected piece with the origin tile located at the tile that the mouse is over
+	 * @param me The mouse event
+	 */
 	@Override
 	public void mouseMoved(MouseEvent me) {
 		Piece p;
@@ -60,6 +73,10 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		}
 	}
 	
+	/** 
+	 * Checks if any of the tiles that the piece covered were release tiles, and if so, update the level
+	 * @param p The piece that was placed
+	 */
 	void updateReleasedNumbers(Piece p) {
 		ArrayList<AbstractTile> coveredTiles = p.getPreviousTiles();
 		for (AbstractTile at : coveredTiles) {
@@ -85,9 +102,18 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	@Override
 	public void mouseEntered(MouseEvent me) {}
 
+	/** 
+	 * Clear the piece preview from the board
+	 */
 	@Override
-	public void mouseExited(MouseEvent arg0) {}
+	public void mouseExited(MouseEvent arg0) {
+		levelModel.getBoard().clearPiecePreview();
+	}
 
+	/**
+	 * Place the piece when the mouse is pressed on a tile. If that move makes the level a 3 star level, exit the level
+	 * @param me The mouse event that triggered this, from which the tile can be deduced
+	 */
 	@Override
 	public void mousePressed(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
