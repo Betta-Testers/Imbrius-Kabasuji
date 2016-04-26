@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 
 import model.Board;
+import model.BoardTile;
 import model.Bullpen;
 import model.Piece;
 import view.BoardView;
@@ -61,13 +62,31 @@ public class TestBuilderButtonGroup extends TestCase {
 		assertEquals("board", board.getTileAt(board.getTileSize(), board.getTileSize()).getTileType());
 		assertEquals(1, board.getNumBoardTiles());
 		
+		/*
+		 * verify button status
+		 */
+		assertTrue(buttonGroup.getUndoBtn().isEnabled());
+		assertFalse(buttonGroup.getRedoBtn().isEnabled());
+		
 		buttonGroup.getUndoBtn().doClick();
 		assertEquals("empty", board.getTileAt(board.getTileSize(), board.getTileSize()).getTileType());
 		assertEquals(0, board.getNumBoardTiles());
 		
+		/*
+		 * verify button status
+		 */
+		assertFalse(buttonGroup.getUndoBtn().isEnabled());
+		assertTrue(buttonGroup.getRedoBtn().isEnabled());
+		
 		buttonGroup.getRedoBtn().doClick();
 		assertEquals("board", board.getTileAt(board.getTileSize(), board.getTileSize()).getTileType());
 		assertEquals(1, board.getNumBoardTiles());
+		
+		/*
+		 * verify button status
+		 */
+		assertTrue(buttonGroup.getUndoBtn().isEnabled());
+		assertFalse(buttonGroup.getRedoBtn().isEnabled());
 		
 	}
 	
@@ -307,6 +326,34 @@ public class TestBuilderButtonGroup extends TestCase {
 		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
 		comparisonPiece.flipV();
 		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+	}
+	
+	public void testRemoveAllPieces() {
+		/*
+		 * verify starting board, make 144 board tiles
+		 */
+		for(int i = 0; i < 12; i++) {
+			for(int j = 0; j< 12; j++) {
+				board.swapTile(new BoardTile(i,j));
+			}
+		}
+		
+		assertEquals(144, board.getNumBoardTiles());
+		
+		/*
+		 * place 4 pieces, verify by board tiles
+		 */
+		assertTrue(board.putPieceOnBoard(new Piece(2), 2, 2));
+		assertTrue(board.putPieceOnBoard(new Piece(5), 4, 3));
+		assertTrue(board.putPieceOnBoard(new Piece(6), 8, 6));
+		assertTrue(board.putPieceOnBoard(new Piece(11), 6, 9));
+		assertEquals(120, board.getNumBoardTiles());
+		
+		/*
+		 * remove all pieces, verify
+		 */
+		buttonGroup.getRemoveBtn().doClick();
+		assertEquals(144, board.getNumBoardTiles());
 	}
 
 }
