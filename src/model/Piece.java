@@ -44,8 +44,8 @@ public class Piece implements Serializable{
 //	}
 	
 	public String toString(){
-		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
-				tiles[3].toString() + "," + tiles[4].toString() + "," + tiles[5].toString() + ",";
+		return "[ID:"+ID+" "+ tiles[0].toString() + " " + tiles[1].toString() + " " + tiles[2].toString() + " " +
+				tiles[3].toString() + " " + tiles[4].toString() + " " + tiles[5].toString()+"]";
 	}
 
 	/**

@@ -45,7 +45,7 @@ public abstract class AbstractTile implements Serializable{
 //	}
 	
 	public String toString() {
-		return "rc:" + this.rowOnBoard + "," + this.colOnBoard;
+		return this.tileType+":" + this.rowOnBoard + "," + this.colOnBoard;
 	}
 	
 	/**
