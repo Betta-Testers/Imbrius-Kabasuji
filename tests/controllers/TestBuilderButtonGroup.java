@@ -4,9 +4,13 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 
 import model.Board;
+import model.Bullpen;
+import model.Piece;
 import view.BoardView;
 import view.BuilderView;
 import view.ButtonGroupView;
+import view.PiecePanel;
+import view.SelectedPieceView;
 import app.Builder;
 import junit.framework.TestCase;
 
@@ -129,7 +133,11 @@ public class TestBuilderButtonGroup extends TestCase {
 		
 	}
 	
-	public void testUndoRedoFlipRotate() {
+	public void testUndoRedoRotateRight() {
+		SelectedPieceView testView = buildView.getSelectedPieceView();
+		Bullpen testBullpen = build.getCurrentLevel().getBullpen();
+		Piece comparisonPiece = new Piece(35);
+		
 		/*
 		 * post-initialization, both the undo and redo buttons should be inactive, no board tiles as well
 		 */
@@ -138,20 +146,167 @@ public class TestBuilderButtonGroup extends TestCase {
 		assertEquals(0, board.getNumBoardTiles());
 		
 		/*
-		 * rotate right, verify undo/redo (undo = flip left, redo = flip right)
+		 * initialize bullpen, verify same coordinates as comparison piece
 		 */
+		testBullpen.incrementPiece(35);
+		testBullpen.setSelectedPiece(35);
+		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
 		
 		/*
-		 * rotate left, verify undo/redo (undo = flip right, redo = flip left)
+		 * rotate right
 		 */
+		comparisonPiece.rotateRight();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		testView.getRotateRightBtn().doClick();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
 		
 		/*
-		 * horizontal flip, verify undo/redo (undo = horizontal flip, redo = horizontal flip)
+		 * undo, verify that undo = rotate left
 		 */
+		buttonGroup.getUndoBtn().doClick();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		comparisonPiece.rotateLeft();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
 		
 		/*
-		 * vertical flip, verify undo/redo (undo = vertical flip, redo = vertical flip)
+		 * redo, verify that redo = rotate right
 		 */
+		buttonGroup.getRedoBtn().doClick();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		comparisonPiece.rotateRight();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+	}
+	
+	public void testUndoRedoRotateLeft() {
+		SelectedPieceView testView = buildView.getSelectedPieceView();
+		Bullpen testBullpen = build.getCurrentLevel().getBullpen();
+		Piece comparisonPiece = new Piece(35);
+		
+		/*
+		 * post-initialization, both the undo and redo buttons should be inactive, no board tiles as well
+		 */
+		assertFalse(buttonGroup.getUndoBtn().isEnabled());
+		assertFalse(buttonGroup.getRedoBtn().isEnabled());
+		assertEquals(0, board.getNumBoardTiles());
+		
+		/*
+		 * initialize bullpen, verify same coordinates as comparison piece
+		 */
+		testBullpen.incrementPiece(35);
+		testBullpen.setSelectedPiece(35);
+		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
+		
+		/*
+		 * rotate left
+		 */
+		comparisonPiece.rotateLeft();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		testView.getRotateLeftBtn().doClick();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+		
+		/*
+		 * undo, verify that undo = rotate right
+		 */
+		buttonGroup.getUndoBtn().doClick();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		comparisonPiece.rotateRight();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+		
+		/*
+		 * redo, verify that redo = rotate left
+		 */
+		buttonGroup.getRedoBtn().doClick();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		comparisonPiece.rotateLeft();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+	}
+	
+	public void testUndoRedoFlipHorz() {
+		SelectedPieceView testView = buildView.getSelectedPieceView();
+		Bullpen testBullpen = build.getCurrentLevel().getBullpen();
+		Piece comparisonPiece = new Piece(35);
+		
+		/*
+		 * post-initialization, both the undo and redo buttons should be inactive, no board tiles as well
+		 */
+		assertFalse(buttonGroup.getUndoBtn().isEnabled());
+		assertFalse(buttonGroup.getRedoBtn().isEnabled());
+		assertEquals(0, board.getNumBoardTiles());
+		
+		/*
+		 * initialize bullpen, verify same coordinates as comparison piece
+		 */
+		testBullpen.incrementPiece(35);
+		testBullpen.setSelectedPiece(35);
+		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
+		
+		/*
+		 * horizontal flip
+		 */
+		comparisonPiece.flipH();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		testView.getFlipHBtn().doClick();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+		
+		/*
+		 * undo, verify that undo = flip horizontally
+		 */
+		buttonGroup.getUndoBtn().doClick();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		comparisonPiece.flipH();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+		
+		/*
+		 * redo, verify that redo = flip horizontally
+		 */
+		buttonGroup.getRedoBtn().doClick();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		comparisonPiece.flipH();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+	}
+		
+	public void testUndoRedoFlipVert() {
+		SelectedPieceView testView = buildView.getSelectedPieceView();
+		Bullpen testBullpen = build.getCurrentLevel().getBullpen();
+		Piece comparisonPiece = new Piece(35);
+		
+		/*
+		 * post-initialization, both the undo and redo buttons should be inactive, no board tiles as well
+		 */
+		assertFalse(buttonGroup.getUndoBtn().isEnabled());
+		assertFalse(buttonGroup.getRedoBtn().isEnabled());
+		assertEquals(0, board.getNumBoardTiles());
+		
+		/*
+		 * initialize bullpen, verify same coordinates as comparison piece
+		 */
+		testBullpen.incrementPiece(35);
+		testBullpen.setSelectedPiece(35);
+		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
+		
+		/*
+		 * vertical flip
+		 */
+		comparisonPiece.flipV();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		testView.getFlipVBtn().doClick();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+		
+		/*
+		 * undo, verify that undo = flip vertically
+		 */
+		buttonGroup.getUndoBtn().doClick();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		comparisonPiece.flipV();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
+		
+		/*
+		 * redo, verify that redo = flip vertically
+		 */
+		buttonGroup.getRedoBtn().doClick();
+		assertFalse(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece)); // verify different coordinates inbetween
+		comparisonPiece.flipV();
+		assertTrue(testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece));
 	}
 
 }
