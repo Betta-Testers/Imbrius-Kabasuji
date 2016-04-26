@@ -99,7 +99,7 @@ public class PlacePieceOnBoardFromBullpenMove implements IMove{
 		board.removePiece(p);
 		bullpen.incrementPiece(p.getID());
 		p.setLocation(0, 0);
-		bullpen.setSelectedPiece(p); //TODO Swap back
+		bullpen.setSelectedPiece(p);
 		
 		//Redraw
 		spv.getPiecePanel().redraw();

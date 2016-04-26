@@ -126,11 +126,11 @@ public class TestBullpen extends TestCase {
 		assertEquals(testPiece, null);
 		
 		// test that the setSelectedPiece method can only assign a piece that exists in the Bullpen
-		//assertEquals(testBP1.setSelectedPiece(4), true); TODO remove if working
-		assertEquals(testBP1.setSelectedPiece(new Piece(4)), true);
+		Piece added = new Piece(4);
+		testBP1.setSelectedPiece(added);
+		assertTrue(added == testBP1.getSelectedPiece());
 		testPiece = testBP1.getSelectedPiece();
 		assertEquals(testPiece.getID(), 4);
-		//assertEquals(testBP1.setSelectedPiece(7), false); TODO Always returns true now, test case changed...
 
 		
 		assertEquals(6, testBP1.numAvailablePieces());

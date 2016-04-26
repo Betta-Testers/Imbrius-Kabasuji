@@ -20,7 +20,6 @@ public class TestTiles extends TestCase {
 		assertEquals(Color.RED, bt.color);
 		bt.resetColor();
 		assertEquals(Color.WHITE, bt.color);
-		//assertEquals("board r:1 c:1", bt.toString()); TODO remove if working
 		assertEquals("board:1,1", bt.toString());
 	}
 	
@@ -28,7 +27,6 @@ public class TestTiles extends TestCase {
 		ReleaseTile rt = new ReleaseTile(1, 1, 4, Color.BLUE);
 		assertEquals(Color.BLUE, rt.getColorSet());
 		assertEquals(4, rt.getNumber());
-		//assertEquals("release r:1 c:1", rt.toString()); TODO remove if working
 		assertEquals("release:1,1", rt.toString());
 		assertEquals(Color.BLUE, rt.getColorSet());
 		assertEquals(4, rt.getNumber());
@@ -37,7 +35,6 @@ public class TestTiles extends TestCase {
 	public void testSimpleTiles() {
 		EmptyTile et = new EmptyTile(1,1);
 		assertEquals(Color.LIGHT_GRAY, et.color);
-		//assertEquals("empty r:1 c:1", et.toString()); TODO remove if working
 		assertEquals("empty:1,1", et.toString());
 		et.setMouseOverColor(true);
 		assertEquals(Color.GREEN, et.color);
@@ -46,7 +43,6 @@ public class TestTiles extends TestCase {
 		
 		LightningTile lt = new LightningTile(1,1);
 		assertEquals(Color.BLUE, lt.color);
-		//assertEquals("lightning r:1 c:1", lt.toString()); TODO remove if working
 		assertEquals("lightning:1,1", lt.toString());
 		
 	}
@@ -77,7 +73,6 @@ public class TestTiles extends TestCase {
 			assertEquals(origin.getRowInPiece(), 0);
 		}
 		
-		//assertEquals("piece r:-1 c:-1", tile.toString()); TODO remove if working
 		assertEquals("piece:-1,-1", tile.toString());
 		assertEquals(new Color(150, 100, 50), tile.color);
 		

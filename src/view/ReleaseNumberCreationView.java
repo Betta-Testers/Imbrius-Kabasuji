@@ -19,19 +19,30 @@ import javax.swing.border.LineBorder;
 import controllers.builder.SetReleaseTileColorController;
 
 /**
+ * Used in the builder to allow users to select a ReleaseTile they want to create.
  * @author dfontana
  * @author awharrison
  */
 public class ReleaseNumberCreationView extends JPanel{
 	private static final long serialVersionUID = 1L;
+	/**Stores the layout.**/
 	GroupLayout groupLayout;
+	/**Title of the ReleaseNumberCreationView, set to "Release Numbers".**/
 	JLabel lblTitle;
+	/**Title for picking colors, set to "Color:".**/
 	JLabel lblColor;
+	/**Toggle buttons, one for each number from 1 to 6.**/
 	JToggleButton numButtons[];
+	/**Group for all of the toggle buttons.**/
 	ButtonGroup creationGroup;
+	/**Allows the user to pick a color.**/
 	JComboBox<String> colorSelector;
+	/**Handles and events with the colorSelector.**/
 	ActionListener setColorHandler;
 
+	/**
+	 * Creates a ReleaseNumberCreationView.
+	 */
 	public ReleaseNumberCreationView(){
 		setPreferredSize(new Dimension(105, 135));
 		groupLayout = new GroupLayout(this);
@@ -67,8 +78,8 @@ public class ReleaseNumberCreationView extends JPanel{
 	/**
 	 * Makes all components inside this JPanel invisible or visible based
 	 * on the value given. Overrides JPanel, as this is the intended 
-	 * behavior when making the "panel" invisible
-	 * @param visible True makes everything visible
+	 * behavior when making the "panel" invisible.
+	 * @param visible (True makes everything visible) - boolean
 	 */
 	@Override
 	public void setVisible(boolean visible){
@@ -81,12 +92,18 @@ public class ReleaseNumberCreationView extends JPanel{
 		lblColor.setVisible(visible);
 	}
 
+	/**
+	 * Updates the colors of the toggle buttons to what the user selected using the colorSelector.
+	 */
 	public void updateNumberColors() {
 		for (JToggleButton numBtn : numButtons) {
 			numBtn.setBorder(new LineBorder(getColorSelected()));
 		}
 	}
-
+	/**
+	 * Returns the color selected by the colorSelector. Converts String input to Color output.
+	 * @return the correct color - Color
+	 */
 	public Color getColorSelected() {
 		if (this.colorSelector.getSelectedItem() == "Red") {
 			return Color.RED;
@@ -99,7 +116,7 @@ public class ReleaseNumberCreationView extends JPanel{
 
 	/**
 	 * Returns the number of the jToggleButton selected.
-	 * If no toggleButton is selected, then -1 is returned
+	 * If no toggleButton is selected, then -1 is returned.
 	 * @return int 1-6, or -1 if no button is selected
 	 */
 	public int getNumberSelected() {
@@ -112,6 +129,9 @@ public class ReleaseNumberCreationView extends JPanel{
 	}
 	//.addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 
+	/**
+	 * Sets up the layout of ReleaseNumberCreationView.
+	 */
 	void setupLayout(){
 		groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
@@ -170,11 +190,17 @@ public class ReleaseNumberCreationView extends JPanel{
 		this.setLayout(groupLayout);
 	}
 
-	//** For testing **//
+	/**
+	 * Returns the colorSelector. Used for testing.
+	 * @return colorSelector - JComboBox<String>
+	 */
 	public JComboBox<String> getColorSelector() {
 		return this.colorSelector;
 	}
-
+	/**
+	 * Toggles the button given by the index. Used for testing.
+	 * @param index - ind
+	 */
 	public void toggleButton (int index) {
 		for (int i = 0; i<6; i++) {
 			if(i == index)
@@ -182,11 +208,18 @@ public class ReleaseNumberCreationView extends JPanel{
 		}
 	}
 	
+	/**
+	 * Sets the setColorHandler (set by the inputted ActionListener) to the colorSelector.
+	 * @param al - ActionListener
+	 */
 	public void addSetColorController(ActionListener al) {
 		this.setColorHandler = al;
 		this.colorSelector.addActionListener(al);
 	}
-	
+	/**
+	 * Returns the setColorHandler.
+	 * @return setColorHandler - ActionListener
+	 */
 	public ActionListener getSetColorController() {
 		return this.setColorHandler;
 	}

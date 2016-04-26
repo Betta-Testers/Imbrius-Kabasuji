@@ -30,10 +30,5 @@ public class TestLevelLightning extends TestCase {
 	public void testToString(){
 		assertEquals(l.toString(), "Lightning01"+l.board.toString()+l.bullpen.toString());	
 	}
-	/**
-	 * TODO: Check status
-	 */
-	public void testCheckStatus(){
-		//l.checkStatus();
-	}
+
 }

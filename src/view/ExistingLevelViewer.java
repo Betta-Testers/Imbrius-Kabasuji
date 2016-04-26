@@ -9,7 +9,7 @@ import javax.swing.ScrollPaneConstants;
 
 /**
  * Shows all of the ExistingLevelViews in a scrollpane for the builder.
- * @author ?
+ * @author hejohnson
  *
  */
 public class ExistingLevelViewer extends JScrollPane {

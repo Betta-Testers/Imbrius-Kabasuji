@@ -99,7 +99,6 @@ public class PieceToNewBoardTilesMove implements IMove{
 		for(int i = 0; i < 6; i++){
 			board.swapTile(new EmptyTile(p.getTiles()[i].getRow(), p.getTiles()[i].getCol()));
 		}
-		//TODO swap back
 		bullpen.setSelectedPiece(p);
 		lpv.adjustTileCount(-6);
 		

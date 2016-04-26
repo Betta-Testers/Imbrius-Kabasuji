@@ -12,6 +12,7 @@ import view.BuilderView;
 import view.ButtonGroupView;
 import view.SelectedPieceView;
 import app.Builder;
+import app.UndoManager;
 import junit.framework.TestCase;
 
 public class TestBuilderButtonGroup extends TestCase {
@@ -37,6 +38,7 @@ public class TestBuilderButtonGroup extends TestCase {
 		File dir = new File("./imbriusLevelTESTING/");
 		for(File file: dir.listFiles()) file.delete();
 		dir.delete();
+		UndoManager.getInstance().flush();
 	}
 	
 	public void testUndoRedoBoardTile() {
@@ -104,7 +106,6 @@ public class TestBuilderButtonGroup extends TestCase {
 		buildView.getPlacePiecesBtn().doClick();
 		buildView.getConvertPieceToBoardBtn().doClick();
 		build.getCurrentLevel().getBullpen().incrementPiece(1);
-		//build.getCurrentLevel().getBullpen().setSelectedPiece(1); TODO remove if working
 		build.getCurrentLevel().getBullpen().setSelectedPiece(new Piece(1));
 		/*
 		 * convert a piece to board
@@ -167,7 +168,6 @@ public class TestBuilderButtonGroup extends TestCase {
 		 * initialize bullpen, verify same coordinates as comparison piece
 		 */
 		testBullpen.incrementPiece(35);
-		//testBullpen.setSelectedPiece(35); TODO remove if working
 		testBullpen.setSelectedPiece(new Piece(35)); 
 		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
 		
@@ -212,7 +212,6 @@ public class TestBuilderButtonGroup extends TestCase {
 		 * initialize bullpen, verify same coordinates as comparison piece
 		 */
 		testBullpen.incrementPiece(35);
-		//testBullpen.setSelectedPiece(35); TODO remove if working
 		testBullpen.setSelectedPiece(new Piece(35)); 
 		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
 		
@@ -256,7 +255,6 @@ public class TestBuilderButtonGroup extends TestCase {
 		/*
 		 * initialize bullpen, verify same coordinates as comparison piece
 		 */
-		//testBullpen.setSelectedPiece(35); TODO remove if working
 		testBullpen.setSelectedPiece(new Piece(35)); 
 		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
 		
@@ -301,7 +299,6 @@ public class TestBuilderButtonGroup extends TestCase {
 		 * initialize bullpen, verify same coordinates as comparison piece
 		 */
 		testBullpen.incrementPiece(35);
-		//testBullpen.setSelectedPiece(35); TODO remove if working
 		testBullpen.setSelectedPiece(new Piece(35)); 
 		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
 		
@@ -373,27 +370,5 @@ public class TestBuilderButtonGroup extends TestCase {
 		 */
 		buttonGroup.getRemoveBtn().doClick();
 		assertEquals(144, board.getNumBoardTiles());
-		
-		
-		//TODO you can't do a test like this, because the board removes pieces.
-		//you essentially filed the board with piecetiles, not pieces.
-		//Board can't handle that
-//		/*
-//		 * fill entire board with piece tiles
-//		 */
-//		for(int i = 0; i < 12; i++) {
-//			for(int j = 0; j< 12; j++) {
-//				board.swapTile(new PieceTile(i,j, new Piece(1)));
-//			}
-//		}
-//		
-//		assertEquals(0, board.getNumBoardTiles());
-//		
-//		/*
-//		 * remove all pieces, verify
-//		 */
-//		buttonGroup.getRemoveBtn().doClick();
-//		assertEquals(144, board.getNumBoardTiles());
 	}
-
 }

@@ -38,10 +38,4 @@ public class TestLevelPuzzle extends TestCase {
 	public void testToString(){
 		assertEquals(p.toString(), "Puzzle00"+p.board.toString()+p.bullpen.toString());	
 	}
-	/**
-	 * TODO: Check status
-	 */
-	public void testCheckStatus(){
-		//l.checkStatus();
-	}
 }

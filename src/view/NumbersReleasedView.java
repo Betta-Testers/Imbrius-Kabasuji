@@ -20,14 +20,21 @@ import javax.swing.JLabel;
  */
 public class NumbersReleasedView extends JPanel {
 	private static final long serialVersionUID = 1L;
+	/**Label to designate red tiles, set to "Red:".**/
 	JLabel lblColorRed;
+	/**Label to designate blue tiles, set to "Blue:".**/
 	JLabel lblColorBlue;
+	/**Label to designate green tiles, set to "Green:".**/
 	JLabel lblColorGreen;
 	
+	/**Each JTextField holds a released number.**/
 	JTextField redNums[] = new JTextField[7];
 	JTextField blueNums[] = new JTextField[7];
 	JTextField greenNums[] = new JTextField[7];
 	
+	/**
+	 * Creates a NumbersReleasedView.
+	 */
 	public NumbersReleasedView() {
 		this.setPreferredSize(new Dimension(180, 90));
 		lblColorRed = new JLabel("Red:");
@@ -58,7 +65,7 @@ public class NumbersReleasedView extends JPanel {
 	 * Changes the background of the red textpane corresponding to number
 	 * to be red. This denotes to the player that the number is released from
 	 * that set.
-	 * @param number
+	 * @param number - int
 	 */
 	public void setReleasedRed(int number){
 		redNums[number].setBackground(Color.red);
@@ -68,7 +75,7 @@ public class NumbersReleasedView extends JPanel {
 	 * Changes the background of the blue textpane corresponding to number
 	 * to be blue. This denotes to the player that the number is released from
 	 * that set.
-	 * @param number
+	 * @param number - int
 	 */
 	public void setReleasedBlue(int number){
 		blueNums[number].setBackground(Color.blue);
@@ -78,12 +85,15 @@ public class NumbersReleasedView extends JPanel {
 	 * Changes the background of the yellow textpane corresponding to number
 	 * to be yellow. This denotes to the player that the number is released from
 	 * that set.
-	 * @param number
+	 * @param number - int
 	 */
 	public void setReleasedGreen(int number){
 		greenNums[number].setBackground(Color.green);
 	}
 	
+	/**
+	 * Sets up the layout of NumbersReleasedView.
+	 */
 	private void setupLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

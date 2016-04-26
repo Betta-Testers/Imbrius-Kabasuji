@@ -11,6 +11,7 @@ import model.AbstractTile;
 import model.ReleaseTile;
 
 /**
+ * Handles drawing tiles.
  * @author hejohnson
  *
  */
@@ -18,7 +19,11 @@ public class TileViewFactory {
 	public TileViewFactory () {
 		
 	}
-	
+	/**
+	 * Draws a tile.
+	 * @param g - Graphics
+	 * @param at - AbstractTile
+	 */
 	public void drawToBoard(Graphics g, AbstractTile at) {
 		int xCoord = at.getCol()*32;
 		int yCoord = at.getRow()*32;

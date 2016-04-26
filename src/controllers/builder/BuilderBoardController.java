@@ -149,8 +149,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 					}
 				}
 			}
-//			spv.getPiecePanel().redraw(); TODO remove if working
-//			spv.getPiecePanel().repaint();
 		}else if(rncv.getNumberSelected() < 0){
 			move = new RemoveHintMove(hintPieces, source, board, boardView);
 			if(!move.doMove()){
@@ -210,9 +208,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 			if(move.doMove()){
 				UndoManager.getInstance().pushMove(move);
 			}
-//			board.clearPiecePreview();
-//			boardView.redraw(); TODO remove if working
-//			boardView.repaint();
 		}
 	}
 

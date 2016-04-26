@@ -101,7 +101,6 @@ public class PieceToHintMove implements IMove{
 			((BoardTile) board.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(false);
 		}
 		removeFromList(p);
-		//TODO swap back
 		bp.setSelectedPiece(p);
 		
 		//Redraw
