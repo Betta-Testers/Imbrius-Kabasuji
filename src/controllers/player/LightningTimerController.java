@@ -35,14 +35,7 @@ public class LightningTimerController extends WindowAdapter implements ActionLis
 		((TimeRemainingView)view.getEndConditionPanel()).updateTimeLeft(time);
 		if (secondsElapsed >= totalTime) {
 			timer.stop();
-			if (game.highestUnlockedID() == game.getCurrentLevel().getID()) {
-				game.unlockNextLevel();
-			}
-			game.updateStars(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
-			game.getSelectView().updateStarsForLevel(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
-			game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
-			game.getExitView().setVisible(true);
-			view.dispose();
+			game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
 		}
 	}
 	

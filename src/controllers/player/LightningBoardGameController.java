@@ -56,9 +56,6 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 			boardView.redraw();
 			boardView.repaint();
 			if (levelModel.checkStatus()) {
-				if (game.highestUnlockedID() == game.getCurrentLevel().getID()) {
-					game.unlockNextLevel();
-				}
 				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
 			}
 			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
