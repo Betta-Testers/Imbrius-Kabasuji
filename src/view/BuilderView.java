@@ -263,14 +263,6 @@ public class BuilderView extends JFrame {
 	//** FOR TESTING **//
 	
 	/**
-	 * Returns the window listener of the exit window.
-	 * @return Window Listener
-	 */
-	public WindowListener getExitWindowListener() {
-		return this.exitWindowHandler;
-	}
-	
-	/**
 	 * Returns the controller associated with the board.
 	 * @return BuilderBoardController
 	 */
