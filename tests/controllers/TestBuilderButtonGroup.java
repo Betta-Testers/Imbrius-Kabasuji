@@ -12,6 +12,7 @@ import view.BuilderView;
 import view.ButtonGroupView;
 import view.SelectedPieceView;
 import app.Builder;
+import app.UndoManager;
 import junit.framework.TestCase;
 
 public class TestBuilderButtonGroup extends TestCase {
@@ -37,6 +38,7 @@ public class TestBuilderButtonGroup extends TestCase {
 		File dir = new File("./imbriusLevelTESTING/");
 		for(File file: dir.listFiles()) file.delete();
 		dir.delete();
+		UndoManager.getInstance().flush();
 	}
 	
 	public void testUndoRedoBoardTile() {
