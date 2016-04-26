@@ -17,11 +17,11 @@ public class ExitLevelButtonController extends WindowAdapter{
 	
 	@Override
 	public void windowClosing(WindowEvent e) {
+		game.updateStars(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
+		game.getSelectView().updateStarsForLevel(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
 		if (game.highestUnlockedID() == game.getCurrentLevel().getID()) {
 			game.unlockNextLevel();
 		}
-		game.updateStars(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
-		game.getSelectView().updateStarsForLevel(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
 		game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
 		game.getExitView().setVisible(true);
 		view.dispose();

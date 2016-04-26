@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import app.Game;
@@ -103,11 +104,7 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 				if (game.highestUnlockedID() == game.getCurrentLevel().getID()) {
 					game.unlockNextLevel();
 				}
-				game.updateStars(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
-				game.getSelectView().updateStarsForLevel(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
-				game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
-				game.getExitView().setVisible(true);
-				game.getLevelView().dispose();
+				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
 			}
 			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
