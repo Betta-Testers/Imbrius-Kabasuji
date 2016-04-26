@@ -5,6 +5,7 @@ package controllers.common;
 
 import controllers.common.IMove;
 import model.Bullpen;
+import model.Piece;
 import view.SelectPieceButton;
 
 /**
@@ -17,6 +18,8 @@ public class SelectPieceFromBullpenMove implements IMove {
 	int ID;
 	/** The bullpen that contains the piece and will hold the selected piece **/
 	Bullpen bp;
+	/** The piece created in this move **/
+	Piece p;
 	
 	/**
 	 * Creates the move
@@ -26,6 +29,7 @@ public class SelectPieceFromBullpenMove implements IMove {
 	SelectPieceFromBullpenMove (SelectPieceButton spb, Bullpen bp) {
 		this.ID = spb.getPieceID();
 		this.bp = bp;
+		this.p = new Piece(ID);
 	}
 	
 	/**
@@ -35,7 +39,7 @@ public class SelectPieceFromBullpenMove implements IMove {
 	@Override
 	public boolean doMove() {
 		if (isValid()) {
-			return bp.setSelectedPiece(ID);
+			return bp.setSelectedPiece(p); //TODO swap back
 		}
 		return false;
 	}

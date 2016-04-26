@@ -46,6 +46,8 @@ public class MovePieceOnBoardMove implements IMove{
 		this.p = p;
 		this.rOffset = rOffset;
 		this.cOffset = cOffset;
+		this.spv = spv;
+		this.bv = bv;
 	}
 	
 	/**
@@ -59,7 +61,7 @@ public class MovePieceOnBoardMove implements IMove{
 			board.clearPiecePreview();
 			this.originalRow = p.getOriginRow();
 			this.originalCol = p.getOriginCol();
-			board.removePiece(p);
+			//board.removePiece(p);
 			board.putPieceOnBoard(p, sourceTile.getRow()+rOffset, sourceTile.getCol()+cOffset);
 			board.setDraggedPiece(null);
 			

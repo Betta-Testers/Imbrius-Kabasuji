@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,9 +16,9 @@ public class ExistingLevelViewer extends JScrollPane {
 	private static final long serialVersionUID = 1L;
 	
 	/**Panel of the view.**/
-	JPanel levelsList;
+	JPanel existingLevels;
 	/**Array of the ExistingLevelViews that make up the ExistingLevelViewer.**/
-	ArrayList<ExistingLevelView> existingLevels;
+	ArrayList<ExistingLevelView> levelsList;
 	
 	/**
 	 * Creates a new ExistingLevelViewer.
@@ -27,9 +28,9 @@ public class ExistingLevelViewer extends JScrollPane {
 		this.setEnabled(false);
 		this.getHorizontalScrollBar().setUnitIncrement(126);
 		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		levelsList = new JPanel();
-		existingLevels = new ArrayList<ExistingLevelView>();
-		this.setViewportView(levelsList);
+		levelsList = new ArrayList<ExistingLevelView>();
+		existingLevels = new JPanel();
+		this.setViewportView(existingLevels);
 	}
 	/**
 	 * Add a level view to the list of existing levels.
@@ -39,9 +40,6 @@ public class ExistingLevelViewer extends JScrollPane {
 	public ExistingLevelView addLevelView(String levelType, Integer levelIndex) {
 		ExistingLevelView elv = new ExistingLevelView(levelType, levelIndex);
 		levelsList.add(elv);
-		existingLevels.add(elv);
-		this.revalidate();
-		this.repaint();
 		return elv;
 	}
 	
@@ -50,7 +48,7 @@ public class ExistingLevelViewer extends JScrollPane {
 	 * @param levelNumber - int
 	 */
 	public void removeLevelView(int levelNumber) {
-		for(ExistingLevelView elv : existingLevels){
+		for(ExistingLevelView elv : levelsList){
 			if (elv.getLevelNumber() == levelNumber){
 				existingLevels.remove(elv);
 				levelsList.remove(elv);
@@ -61,12 +59,20 @@ public class ExistingLevelViewer extends JScrollPane {
 		}
 	}
 	
+	public void refreshLevels() {
+		existingLevels.removeAll();
+		Collections.sort(levelsList);
+		for (ExistingLevelView elv : levelsList) {
+			existingLevels.add(elv);
+		}
+	}
+	
 	/**
 	 * Returns all of the currently available level buttons.
 	 * @return ArrayList<ExistingLevelView> returns an array list containing all of the current existing level buttons
 	 */
 	public ArrayList<ExistingLevelView> getExistingLevelButtons() {
-		return existingLevels;
+		return levelsList;
 	}
 
 }

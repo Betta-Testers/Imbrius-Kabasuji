@@ -183,17 +183,32 @@ public class Piece implements Serializable{
 		}
 		return true;
 	}
-
 	@Override
 	public boolean equals(Object o){
 		if(o == null){ return false;}
 		if(o instanceof Piece){
-			if(this.ID == ((Piece) o).getID()){
-				return true;
+			for(PieceTile pt: this.getTiles()){
+				for(int i = 0; i < ((Piece)o).getTiles().length; i++){
+					if(pt.getRow() == ((Piece)o).getTiles()[i].getRow() && pt.getCol() == ((Piece)o).getTiles()[i].getCol()){
+						break;
+					}else if(i ==  ((Piece)o).getTiles().length-1){ //Entire second piece couldnt find tile with those coordinates
+						return false;
+					}
+				}
 			}
 		}
 		return false;
 	}
+//	@Override
+//	public boolean equals(Object o){
+//		if(o == null){ return false;}
+//		if(o instanceof Piece){
+//			if(this.ID == ((Piece) o).getID()){
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
 	/**
 	 * When serializing a Piece, the pieceTile information is not needed. Instead of serializing those,

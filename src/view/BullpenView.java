@@ -76,7 +76,7 @@ public class BullpenView extends JScrollPane {
 	 */
 	public void updatePieceGroup(Piece p){
 		for(AbstractPieceGroupView pgv :pieceGroupViews){
-			if(pgv.getPieceGroup().getPiece().equals(p)){
+			if(pgv.getPieceGroup().getPiece().getID() == p.getID()){
 				pgv.updateCount();
 			}
 		}

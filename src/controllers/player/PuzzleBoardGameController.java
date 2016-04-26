@@ -3,6 +3,7 @@ package controllers.player;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowEvent;
 
 import app.Game;
 import controllers.common.IMove;
@@ -71,14 +72,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
 			
 			if (levelModel.checkStatus()) {
-				if (game.highestUnlockedID() == game.getCurrentLevel().getID()) {
-					game.unlockNextLevel();
-				}
-				game.updateStars(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
-				game.getSelectView().updateStarsForLevel(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
-				game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
-				game.getExitView().setVisible(true);
-				game.getLevelView().dispose();
+				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
 			}
 			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
@@ -126,14 +120,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 				((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
 				
 				if (levelModel.checkStatus()) {
-					if (game.highestUnlockedID() == game.getCurrentLevel().getID()) {
-						game.unlockNextLevel();
-					}
-					game.updateStars(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
-					game.getSelectView().updateStarsForLevel(game.getCurrentLevel().getID(), game.getCurrentLevel().getStarsEarned());
-					game.getExitView().setStars(game.getCurrentLevel().getStarsEarned());
-					game.getExitView().setVisible(true);
-					game.getLevelView().dispose();
+					game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
 				}
 				game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 	

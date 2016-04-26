@@ -71,7 +71,7 @@ public class BuilderView extends JFrame {
 		this.builder = b;
 		this.m = b.getCurrentLevel();
 		
-		setResizable(false);
+		//setResizable(false);
 		setVisible(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 525, 715);
@@ -170,7 +170,7 @@ public class BuilderView extends JFrame {
 		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
 		builderBoardControl = new BuilderBoardController(this, m);
 		boardView.setMouseActionController(builderBoardControl);
-		boardView.setMouseMotionController(new BuilderBoardController(this, m));
+		boardView.setMouseMotionController(builderBoardControl);
 		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
 			((BuilderPieceGroupView) pgv).addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
 			((BuilderPieceGroupView) pgv).addSpinnerChangeListener(new PieceGroupSpinnerController(((BuilderPieceGroupView) pgv).getSpinner(), pgv.getPieceGroup(), m.getBullpen(), selectedPieceView.getPiecePanel()));

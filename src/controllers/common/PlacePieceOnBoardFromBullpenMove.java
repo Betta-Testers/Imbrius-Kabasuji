@@ -30,6 +30,9 @@ public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	/**Updates view of the board**/
 	BoardView bv;
 	
+	int originalRow;
+	int originalCol;
+	
 	/**
 	 * Creates the move
 	 * @param lm - The level being modified
@@ -95,7 +98,8 @@ public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	public boolean undo() {
 		board.removePiece(p);
 		bullpen.incrementPiece(p.getID());
-		bullpen.setSelectedPiece(p.getID());
+		p.setLocation(0, 0);
+		bullpen.setSelectedPiece(p); //TODO Swap back
 		
 		//Redraw
 		spv.getPiecePanel().redraw();
@@ -112,6 +116,7 @@ public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	 */
 	@Override
 	public boolean redo() {
+		p.setLocation(originalRow, originalCol);
 		return doMove();
 	}
 	

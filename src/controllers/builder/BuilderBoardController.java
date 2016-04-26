@@ -137,8 +137,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 							board.putPieceOnBoard(board.getDraggedPiece(), board.getDraggedPiece().getOriginRow(), board.getDraggedPiece().getOriginCol());
 							board.setDraggedPiece(null);
 							board.clearPiecePreview();
-//							boardView.redraw(); //TODO Do i Need to redraw since move doesn't occur to redraw?
-//							boardView.repaint();
+							boardView.redraw();
+							boardView.repaint();
 						}
 						move = new PlacePieceOnBoardFromBullpenMove(lm, source, bpv, spv, boardView);
 						if(move.doMove()){
@@ -225,11 +225,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	public void mouseDragged(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
 			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
-			Piece p;
-			if (board.getDraggedPiece() == null) {
+			Piece p = board.getDraggedPiece();
+			if (p == null) {
 				return;
-			} else {
-				p = board.getDraggedPiece();
 			}
 			board.clearPiecePreview();
 			board.showPiecePreview(p, source.getRow()+rOffset, source.getCol()+cOffset);
