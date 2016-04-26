@@ -165,7 +165,7 @@ public class TestBuilderRelease extends TestCase {
 		/*
 		 * first convert an empty tile to a board tile
 		 */
-		m = new SwapTileEmptyToBoardMove((EmptyTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), buildView.getLevelPropertiesView());
+		m = new SwapTileEmptyToBoardMove((EmptyTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), buildView.getLevelPropertiesView(), boardView);
 		assertTrue(m.doMove());
 		assertEquals(1, releaseBoard.getNumBoardTiles());
 		
@@ -174,7 +174,7 @@ public class TestBuilderRelease extends TestCase {
 		 */
 		rncv.toggleButton(2);
 		assertEquals("Blue", rncv.getColorSelector().getSelectedItem());
-		m = new SwapTileBoardToReleaseMove(rncv, (BoardTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
+		m = new SwapTileBoardToReleaseMove(rncv, (BoardTile)releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), boardView);
 		assertTrue(m.doMove());
 		assertEquals(0, releaseBoard.getNumBoardTiles());
 		assertEquals(3, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getNumber());
@@ -194,7 +194,7 @@ public class TestBuilderRelease extends TestCase {
 		 * swap tile with a new release tile selection, undo, redo
 		 */
 		rncv.toggleButton(4);
-		m = new SwapTileReleaseToReleaseMove(rncv, releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
+		m = new SwapTileReleaseToReleaseMove(rncv, releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), boardView);
 		assertTrue(m.doMove());
 		assertEquals(5, ((ReleaseTile)releaseBoard.getTileAt(boardView.getX(), boardView.getY())).getNumber());
 		m.undo();
@@ -211,7 +211,7 @@ public class TestBuilderRelease extends TestCase {
 		/*
 		 * convert back to board tile, undo, redo
 		 */
-		m = new SwapTileReleaseToBoardMove(releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard());
+		m = new SwapTileReleaseToBoardMove(releaseBoard.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), boardView);
 		assertTrue(m.doMove());
 		assertEquals("board", releaseBoard.getTileAt(boardView.getX(), boardView.getY()).getTileType());
 		m.undo();

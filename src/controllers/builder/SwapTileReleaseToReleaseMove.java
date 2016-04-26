@@ -1,5 +1,6 @@
 package controllers.builder;
 
+import view.BoardView;
 import view.ReleaseNumberCreationView;
 import controllers.common.IMove;
 import model.AbstractTile;
@@ -15,26 +16,26 @@ import model.ReleaseTile;
 public class SwapTileReleaseToReleaseMove implements IMove {
 	/** Board in which the move is taking place **/
 	Board board;
-	
 	/** Used to determine what color/number to use when making new release tile**/
 	ReleaseNumberCreationView rncv;
-	
 	/** The tile passed into the constructor. Should be a board tile (this is checked) **/
 	AbstractTile oldTile;
-	
 	/** The tile that is created to replace the oldTile **/
 	ReleaseTile newTile;
-
+	/**Updates the view of the board**/
+	BoardView bv;
+	
 	/**
 	 * Creates the tile swap move
 	 * @param rncv - View of the release tile creation
 	 * @param old - tile that was clicked
 	 * @param b - board whose tiles are being swapped
 	 */
-	public  SwapTileReleaseToReleaseMove (ReleaseNumberCreationView rncv, AbstractTile old, Board b) {
+	public  SwapTileReleaseToReleaseMove (ReleaseNumberCreationView rncv, AbstractTile old, Board b, BoardView bv) {
 		this.board = b;
 		this.rncv = rncv;
 		this.oldTile = old;
+		this.bv = bv;
 	}
 	
 	/**
@@ -47,6 +48,10 @@ public class SwapTileReleaseToReleaseMove implements IMove {
 		if(isValid()) {
 			this.newTile = new ReleaseTile(oldTile.getRow(), oldTile.getCol(), rncv.getNumberSelected(), rncv.getColorSelected());
 			board.swapTile(newTile); 
+			
+			//Redraw
+			bv.redraw();
+			bv.repaint();
 			return true;
 		}
 		return false;
@@ -69,6 +74,10 @@ public class SwapTileReleaseToReleaseMove implements IMove {
 	@Override
 	public boolean undo() {
 		board.swapTile(oldTile);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 	
@@ -79,6 +88,10 @@ public class SwapTileReleaseToReleaseMove implements IMove {
 	@Override 
 	public boolean redo() {
 		board.swapTile(newTile);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 

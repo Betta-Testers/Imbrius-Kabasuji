@@ -4,6 +4,7 @@ import controllers.common.IMove;
 import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
+import view.BoardView;
 
 
 /**
@@ -15,21 +16,22 @@ import model.BoardTile;
 public class SwapTileReleaseToBoardMove implements IMove {
 	/** Board in which the move is taking place **/
 	Board board;
-	
 	/** The tile passed into the constructor. Should be a Release tile (this is checked) **/
 	AbstractTile oldTile;
-	
 	/** The tile that is created to replace the oldTile **/
 	BoardTile newTile;
+	/**Updates the view of the board**/
+	BoardView bv;
 	
 	/**
 	 * Creates the move
 	 * @param old - tile that was clicked
 	 * @param b - board whose tiles are being swapped
 	 */
-	public  SwapTileReleaseToBoardMove(AbstractTile old, Board b) {
+	public  SwapTileReleaseToBoardMove(AbstractTile old, Board b, BoardView bv) {
 		this.board = b;
 		this.oldTile = old;
+		this.bv = bv;
 	}
 	
 	/**
@@ -42,6 +44,10 @@ public class SwapTileReleaseToBoardMove implements IMove {
 		if(isValid()) {
 			this.newTile = new BoardTile(oldTile.getRow(), oldTile.getCol());
 			board.swapTile(newTile);
+			
+			//Redraw
+			bv.redraw();
+			bv.repaint();
 			return true;
 		}
 		return false;
@@ -64,6 +70,10 @@ public class SwapTileReleaseToBoardMove implements IMove {
 	@Override
 	public boolean undo() {
 		board.swapTile(oldTile);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 
@@ -74,6 +84,10 @@ public class SwapTileReleaseToBoardMove implements IMove {
 	@Override 
 	public boolean redo() {
 		board.swapTile(newTile);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 }

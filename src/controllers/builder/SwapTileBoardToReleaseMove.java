@@ -1,5 +1,6 @@
 package controllers.builder;
 
+import view.BoardView;
 import view.ReleaseNumberCreationView;
 import controllers.common.IMove;
 import model.AbstractTile;
@@ -15,15 +16,14 @@ import model.ReleaseTile;
 public class SwapTileBoardToReleaseMove implements IMove {
 	/** Board in which the move is taking place **/
 	Board board;
-
 	/** Used to find the color and number selected when making a new release tile**/
 	ReleaseNumberCreationView rncv;
-
 	/** The tile passed into the constructor. Should be a board tile (this is checked) **/
 	AbstractTile oldTile;
-
 	/** The tile that is created to replace the oldTile **/
 	ReleaseTile newTile;
+	/**Updates the view of the board**/
+	BoardView bv;
 
 	/**
 	 * Creates the move
@@ -31,10 +31,11 @@ public class SwapTileBoardToReleaseMove implements IMove {
 	 * @param old - tile that was clicked
 	 * @param b - board whose tiles are being swapped
 	 */
-	public SwapTileBoardToReleaseMove (ReleaseNumberCreationView rncv, AbstractTile old, Board b) {
+	public SwapTileBoardToReleaseMove (ReleaseNumberCreationView rncv, AbstractTile old, Board b, BoardView bv) {
 		this.board = b;
 		this.rncv = rncv;
 		this.oldTile = old;
+		this.bv = bv;
 	}
 
 	/**
@@ -47,6 +48,10 @@ public class SwapTileBoardToReleaseMove implements IMove {
 		if(isValid()) {
 			this.newTile = new ReleaseTile(oldTile.getRow(), oldTile.getCol(), rncv.getNumberSelected(), rncv.getColorSelected());
 			board.swapTile(newTile); // may want to throw runtime exception if this does not return a copy of the old tile
+			
+			//Redraw
+			bv.redraw();
+			bv.repaint();
 			return true;
 		}
 		return false;
@@ -69,6 +74,10 @@ public class SwapTileBoardToReleaseMove implements IMove {
 	@Override
 	public boolean undo() {
 		board.swapTile(oldTile);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 
@@ -79,6 +88,10 @@ public class SwapTileBoardToReleaseMove implements IMove {
 	@Override 
 	public boolean redo() {
 		board.swapTile(newTile);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 

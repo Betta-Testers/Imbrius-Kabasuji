@@ -63,10 +63,10 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		if (levelModel.getBoard().getDraggedPiece() == null) {
 			levelModel.getBoard().clearPiecePreview();
 		} else { // currently dragging a piece
-			IMove m = new MovePieceOffBoardMove(levelModel, game.getLevelView().getBullpenView());
+			IMove m = new MovePieceOffBoardMove(levelModel, game.getLevelView().getBullpenView(), boardView);
 			m.doMove();
 			levelModel.getBoard().setDraggedPiece(null);
-			levelModel.getBoard().clearPiecePreview();
+			//levelModel.getBoard().clearPiecePreview(); TODO remove if working
 			
 			((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
 			
@@ -82,8 +82,8 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			}
 			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
-		boardView.redraw();
-		boardView.repaint();
+//		boardView.redraw(); TODO remove if working
+//		boardView.repaint();
 	}
 
 	@Override
@@ -110,18 +110,18 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 
 		if (mouseOn) {
 			if (levelModel.getBoard().getDraggedPiece() == null) {
-				if (levelModel.getBullpen().getSelectedPiece() != null) {
-					m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, game.getLevelView().getBullpenView());
+				if (levelModel.getBullpen().getSelectedPiece() != null) { //TODO remove if statement after drawing working
+					m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, game.getLevelView().getBullpenView(), spv, boardView);
 				}
 			} else {
-				m = new MovePieceOnBoardMove(levelModel, source, levelModel.getBoard().getDraggedPiece(), rOffset, cOffset);
+				m = new MovePieceOnBoardMove(levelModel.getBoard(), source, levelModel.getBoard().getDraggedPiece(), rOffset, cOffset, spv, boardView);
 			}
 			
 			if (m.doMove()) {
 				//levelModel.pushMove(m); // If it's a builder, the level will push onto the stack. If player, the level can just discard it
 				levelModel.getBoard().setDraggedPiece(null);
-				spv.getPiecePanel().redraw();
-				spv.getPiecePanel().repaint();
+//				spv.getPiecePanel().redraw();
+//				spv.getPiecePanel().repaint(); TODO remove if working
 				
 				((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
 				
@@ -145,8 +145,8 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 				}
 			} 
 		}
-		boardView.redraw();
-		boardView.repaint();
+//		boardView.redraw(); TODO remove if working
+//		boardView.repaint();
 
 	}
 

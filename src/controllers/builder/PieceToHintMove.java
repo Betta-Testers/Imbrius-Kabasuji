@@ -8,6 +8,8 @@ import model.Board;
 import model.BoardTile;
 import model.Bullpen;
 import model.Piece;
+import view.BoardView;
+import view.SelectedPieceView;
 
 /**
  * Move class for converting a piece into a hint on the board
@@ -25,6 +27,10 @@ public class PieceToHintMove implements IMove{
 	AbstractTile source;
 	/**Known hints to be on the board**/
 	ArrayList<Piece> hintPieces;
+	/**Updates the selected piece view after the move is done**/
+	SelectedPieceView spv;
+	/**Updates the board after the move is done**/
+	BoardView bv;
 	
 	/**
 	 * Constructs a Piece to Hint Move
@@ -33,12 +39,14 @@ public class PieceToHintMove implements IMove{
 	 * @param b - Board having a hint placed on it
 	 * @param source - Tile that was clicked
 	 */
-	public PieceToHintMove(ArrayList<Piece> hintPieces, Bullpen bp, Board b, AbstractTile source) {
+	public PieceToHintMove(ArrayList<Piece> hintPieces, Bullpen bp, Board b, AbstractTile source, SelectedPieceView spv, BoardView bv) {
 		this.bp = bp;
 		this.board = b;
 		this.source = source;
 		this.p = bp.getSelectedPiece();	
 		this.hintPieces = hintPieces;
+		this.spv = spv;
+		this.bv = bv;
 	}
 	
 	/**
@@ -57,6 +65,12 @@ public class PieceToHintMove implements IMove{
 			hintPieces.add(p);
 			board.clearPiecePreview();
 			bp.clearSelectedPiece();
+			
+			//Redraw
+			spv.getPiecePanel().redraw();
+			spv.getPiecePanel().repaint();
+			bv.redraw();
+			bv.repaint();
 			return true;
 		}
 		return false;
@@ -88,16 +102,21 @@ public class PieceToHintMove implements IMove{
 		}
 		removeFromList(p);
 		bp.setSelectedPiece(p.getID());
+		
+		//Redraw
+		spv.getPiecePanel().redraw();
+		spv.getPiecePanel().repaint();
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 	
 	/** 
 	 * The move is redone by executing the move again.
-	 * @return true
+	 * @return true if the move was redone
 	 */
 	public boolean redo() {
-		doMove();
-		return true;
+		return doMove();
 	}
 	
 	/**
