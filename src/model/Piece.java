@@ -33,15 +33,19 @@ public class Piece implements Serializable{
 		generatePiece(ID);
 	}
 
-
 	/**
 	 * Returns the string representation of this piece.
 	 * @return string representation of the piece - String
 	 */
+//	public String toString(){
+//		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
+//				tiles[3].toString() + "," + tiles[4].toString() + "," + tiles[5].toString() + "," +
+//				ID + "," + tiles[0].toString() + "," + color.toString();
+//	}
+	
 	public String toString(){
 		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
-				tiles[3].toString() + "," + tiles[4].toString() + "," + tiles[5].toString() + "," +
-				ID + "," + tiles[0].toString() + "," + color.toString();
+				tiles[3].toString() + "," + tiles[4].toString() + "," + tiles[5].toString() + ",";
 	}
 
 	/**
@@ -183,6 +187,7 @@ public class Piece implements Serializable{
 		}
 		return true;
 	}
+	
 	@Override
 	public boolean equals(Object o){
 		if(o == null){ return false;}
@@ -190,6 +195,7 @@ public class Piece implements Serializable{
 			for(PieceTile pt: this.getTiles()){
 				for(int i = 0; i < ((Piece)o).getTiles().length; i++){
 					if(pt.getRow() == ((Piece)o).getTiles()[i].getRow() && pt.getCol() == ((Piece)o).getTiles()[i].getCol()){
+						System.out.println(pt.toString()+" TO "+((Piece)o).getTiles()[i].toString());
 						break;
 					}else if(i ==  ((Piece)o).getTiles().length-1){ //Entire second piece couldnt find tile with those coordinates
 						return false;
@@ -197,7 +203,7 @@ public class Piece implements Serializable{
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 //	@Override
 //	public boolean equals(Object o){

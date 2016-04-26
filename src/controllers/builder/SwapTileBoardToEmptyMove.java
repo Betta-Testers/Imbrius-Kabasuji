@@ -6,7 +6,6 @@ import model.Board;
 import model.EmptyTile;
 import view.BoardView;
 import view.LevelPropertiesView;
-import view.SelectedPieceView;
 
 /**
  * Move class for swapping a Board Tile to an Empty Tile in the builder.

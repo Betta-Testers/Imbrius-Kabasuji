@@ -40,8 +40,12 @@ public abstract class AbstractTile implements Serializable{
 	/**
 	 * @return The type of tile (lowercase) followed by its row location followed by column location
 	 */
+//	public String toString() {
+//		return this.tileType + " r:" + this.rowOnBoard + " c:" + this.colOnBoard;
+//	}
+	
 	public String toString() {
-		return this.tileType + " r:" + this.rowOnBoard + " c:" + this.colOnBoard;
+		return "rc:" + this.rowOnBoard + "," + this.colOnBoard;
 	}
 	
 	/**
