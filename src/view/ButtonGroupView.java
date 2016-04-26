@@ -110,6 +110,14 @@ public class ButtonGroupView extends JPanel{
 	}
 	
 	/**
+	 * Returns the remove all pieces button.
+	 * @return btnRemovePieces - JButton
+	 */
+	public JButton getRemoveBtn() {
+		return this.btnRemovePieces;
+	}
+	
+	/**
 	 * Sets up the layout for the ButtonGroupView.
 	 */
 	private void setupLayout(){
