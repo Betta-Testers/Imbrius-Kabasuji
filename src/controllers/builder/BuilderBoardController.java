@@ -3,155 +3,262 @@ package controllers.builder;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
-import controllers.common.Move;
+import app.UndoManager;
+import controllers.common.IMove;
 import controllers.common.MovePieceOffBoardMove;
+import controllers.common.MovePieceOnBoardMove;
 import controllers.common.PlacePieceOnBoardFromBullpenMove;
+import view.BoardView;
 import view.BuilderView;
 import view.BullpenView;
+import view.ReleaseNumberCreationView;
+import view.SelectedPieceView;
 import model.AbstractLevelModel;
 import model.AbstractTile;
 import model.Board;
-import model.BoardTile;
 import model.Bullpen;
-import model.EmptyTile;
 import model.Piece;
 import model.PieceTile;
 
 /**
- * Controls all actions having to do with manipulating tiles on a Puzzle or Lightning board in builder mode 
+ * Controls all actions having to do with the board in the Builder application
+ * Handles showing piece placement previews, placing pieces, dragging pieces around, and removing them from the board
+ * Also handles swapping types of tiles, empty <-> board <-> release tiles (including changing number/color)
  * 
  * @author awharrison
- *
+ * @author dfontana
+ * @author hejohnson
  */
 
 public class BuilderBoardController implements MouseListener, MouseMotionListener {
+	/** Top level view for the level editor/creator **/
 	BuilderView bView;
+	/** Entity that is currently being edited **/
 	AbstractLevelModel lm;
+	/** Board model that this controller acts on **/
 	Board board;
+	/** Bullpen model in the current level **/
 	Bullpen bp;
+	/** View of the current bullpen **/
 	BullpenView bpv;
-	Piece draggedPiece;
+	/** View for the current board **/
+	BoardView boardView;
+	/** View of the piece that is selected to be placed from the bullpen **/
+	SelectedPieceView spv;
+	/** Panel on the side that holds the toggle buttons for setting the tile number **/
+	ReleaseNumberCreationView rncv;
+
+	/**Tracks all the pieces that governed a hint placement**/
+	ArrayList<Piece> hintPieces;
+
+	/** Tracks if the mouse is on the board **/
+	boolean mouseOn;
+	/** Row offset between the origin tile and the tile that was clicked on within the piece **/
+	int rOffset;
+	/** Column offset between the origin tile and the tile that was clicked on within the piece **/
+	int cOffset;
 	
+	int tileCount;
+
+	/** 
+	 * Creates the builder board's controller
+	 * @param builderView The BuilderView that this controller updates the state of
+	 * @param levelModel The level entity that is being built
+	 */
 	public BuilderBoardController(BuilderView bView, AbstractLevelModel lm) {
 		this.bView = bView;
 		this.lm = lm;
 		this.board = lm.getBoard();
 		this.bp = lm.getBullpen();
 		this.bpv = bView.getBullpenView();
+		this.boardView = bView.getBoardView();
+		this.rncv = bView.getReleaseNumberView();
+		this.spv = bView.getSelectedPieceView();
+		this.hintPieces = new ArrayList<Piece>();
+		this.tileCount = 0;
 	}
-	
-	@Override
+
 	/**
-	 * Swap individual tile types on the board
-	 * 
+	 * Select a piece that is currently on the board, if the tile that was clicked is part of a piece. 
+	 * Removes piece from the board, and sets it as the dragged piece in the board entity
 	 * @param me MouseEvent
 	 */
-	
-	// TODO place piece if a piece is in the bullpen
-	public void mouseClicked(MouseEvent e) {
-		// TODO make grab the selectedTile from a tileView
-		// tile swapping
-		AbstractTile selectedTile = (AbstractTile)e.getSource();
-		// throw exception if the mouse has selected a null tile
-		if(selectedTile == null) {
-			throw new RuntimeException("BoardController::somehow selected a null tile");
-		} 
-			// single click on a board tile results in a swap to an empty tile
-		if(selectedTile.getTileType().equals("board")){
-			Move m = new SwapTileBoardToEmptyMove(bView, (BoardTile) selectedTile, lm);
-			m.doMove();
-		} 
-		// single click on an empty tile results in a swap to a board tile
-		else if (selectedTile.getTileType().equals("empty")) {				
-			Move m = new SwapTileEmptyToBoardMove(bView, (EmptyTile) selectedTile, lm);
-			m.doMove();
-		}	
+	@Override
+	public void mousePressed(MouseEvent me) {
+		if(bView.getStateOfPlacement()){
+			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
+			if (source instanceof PieceTile) {
+				board.setDraggedPiece(((PieceTile)source).getPiece());
+				rOffset = -((PieceTile)source).getRowInPiece();
+				cOffset = -((PieceTile)source).getColInPiece();
+				board.removePiece(board.getDraggedPiece());	
+				boardView.redraw();
+				boardView.repaint();
+			}	
+		}
+
 	}
 
-	@Override
 	/**
-	 * Select a piece that is currently on the board
-	 * 
+	 * Convert tile on board into another form: Release <-> Release <-> Board <-> Empty 
+	 * OR
+	 * Place a piece on the board for: Previewing, Generating the Board, Making/removing hints.
+	 * Using a released action allows the user to click as quick as they want, preventing accidental behavior not related to a click
+	 * (like a press, move, release instead of just a click).
 	 * @param me MouseEvent
 	 */
-	public void mousePressed(MouseEvent e) {
-		AbstractTile selectedTile = (AbstractTile)e.getSource();
+	@Override
+	public void mouseReleased(MouseEvent me) {
+		IMove move = null;
+		AbstractTile source = board.getTileAt(me.getX(), me.getY());
 		
-		if(selectedTile == null) {
-			throw new RuntimeException("BoardController::somehow selected a null tile");
+		if(bView.getStateOfPlacement()){
+			if(bView.getStateOfBoardConvert()){
+				if (mouseOn) {
+					move = new PieceToNewBoardTilesMove(bp, board, source, bView.getLevelPropertiesView(), spv, boardView);
+					if(move.doMove()){
+						UndoManager.getInstance().pushMove(move);
+					}
+				}
+			}else if(bView.getStateOfHintConvert()){
+				if (mouseOn) {
+					move = new PieceToHintMove(hintPieces, bp, board, source, spv, boardView);
+					if(move.doMove()){
+						UndoManager.getInstance().pushMove(move);
+					}
+				}
+			}else{
+				if (mouseOn) {
+					move = new MovePieceOnBoardMove(board, source, board.getDraggedPiece(), rOffset, cOffset, boardView);
+					if(!move.doMove()){
+						if(board.getDraggedPiece() != null){ // Move failed, put the piece back
+							board.putPieceOnBoard(board.getDraggedPiece(), board.getDraggedPiece().getOriginRow(), board.getDraggedPiece().getOriginCol());
+							board.setDraggedPiece(null);
+							board.clearPiecePreview();
+							boardView.redraw();
+							boardView.repaint();
+						}
+						move = new PlacePieceOnBoardFromBullpenMove(lm, source, bpv, spv, boardView);
+						if(move.doMove()){
+							UndoManager.getInstance().pushMove(move);
+						}
+					}else{
+						UndoManager.getInstance().pushMove(move);
+					}
+				}
+			}
+		}else if(rncv.getNumberSelected() < 0){
+			move = new RemoveHintMove(hintPieces, source, board, boardView);
+			if(!move.doMove()){
+				move = new SwapTileBoardToEmptyMove(source, board, bView.getLevelPropertiesView(), boardView);
+				if(!move.doMove()){
+					move = new SwapTileEmptyToBoardMove(source, board, bView.getLevelPropertiesView(), boardView);
+					if(!move.doMove()){
+						move = new SwapTileReleaseToBoardMove(source, board, boardView);	
+						if(move.doMove()){
+							UndoManager.getInstance().pushMove(move);
+						}
+					}else{
+						UndoManager.getInstance().pushMove(move);
+					}
+				}else{
+					UndoManager.getInstance().pushMove(move);
+				}
+			}else{
+				UndoManager.getInstance().pushMove(move);
+			}
+		}else{
+			move = new SwapTileBoardToReleaseMove(rncv, source, board, boardView);
+			if(!move.doMove()){
+				move = new SwapTileReleaseToReleaseMove(rncv, source, board, boardView);
+				if(move.doMove()){
+					UndoManager.getInstance().pushMove(move);
+				}
+			}else{
+				UndoManager.getInstance().pushMove(move);
+			}
 		}
 		
-		// lift a piece off the board
-		if(selectedTile.getTileType().equals("piece")) {
-			board.removePiece(((PieceTile) selectedTile).getPiece());
-			draggedPiece = ((PieceTile) selectedTile).getPiece();
-		} 
-		// place a piece
-		else if(selectedTile.getTileType().equals("board")) {
-				Move m = new PlacePieceOnBoardFromBullpenMove(lm, selectedTile, bpv);
-				m.doMove();
-		}
+		
+//		boardView.redraw();
+//		boardView.repaint();
 	}
 
-	@Override
 	/**
-	 * place a piece on the board from that was previously on the board
-	 * 
+	 * Tracks if mouse is over the board
 	 * @param me MouseEvent
 	 */
-	public void mouseReleased(MouseEvent e) {
-		AbstractTile selectedTile = (AbstractTile)e.getSource();
-		if(selectedTile == null) {
-			throw new RuntimeException("BoardController::somehow selected a null tile");
-		}
-		
-		// place a piece
-		else if(selectedTile.getTileType().equals("board")) {
-			Move m = new PlacePieceOnBoardFromBullpenMove(lm, selectedTile, bpv);
-			m.doMove();
-		}
+	@Override
+	public void mouseEntered(MouseEvent me) {
+		mouseOn = true;
 	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// preview piece on the board
-	}
-
-	@Override
 	/**
 	 * If currently dragging a piece, remove the piece from the board and return it to the bullpen
 	 * 
 	 * @param me MouseEvent
 	 */
-	public void mouseExited(MouseEvent e) {
-		if(draggedPiece != null) {
-			Move m = new MovePieceOffBoardMove(lm, draggedPiece);
-			m.doMove();
-			draggedPiece = null;
+	@Override
+	public void mouseExited(MouseEvent me) {
+		if(bView.getStateOfPlacement()){
+			mouseOn = false;
+			IMove move = new MovePieceOffBoardMove(lm, bpv, boardView);
+			if(move.doMove()){
+				UndoManager.getInstance().pushMove(move);
+			}
 		}
 	}
 
-	@Override
 	/**
-	 * Show a preview of a piece on the board if a piece is in the bullpen
+	 * Shows a preview of the piece being dragged (if there is one)
 	 * 
 	 * @param me MouseEvent
 	 */
-	public void mouseDragged(MouseEvent e) {
-		board.showPiecePreview(draggedPiece, e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
-		
+	@Override
+	public void mouseDragged(MouseEvent me) {
+		if(bView.getStateOfPlacement()){
+			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
+			Piece p = board.getDraggedPiece();
+			if (p == null) {
+				return;
+			}
+			board.clearPiecePreview();
+			board.showPiecePreview(p, source.getRow()+rOffset, source.getCol()+cOffset);
+			boardView.redraw();
+			boardView.repaint();
+		}
 	}
 
-	@Override
 	/**
-	 * Redraw the piece being dragged where the mouse goes
+	 * Show a preview of the piece that is selected to be placed (if it exists)
 	 * 
 	 * @param me MouseEvent
 	 */
-	public void mouseMoved(MouseEvent e) {
-		board.showPiecePreview(bp.getSelectedPiece(), e.getX()/board.getTileSize(), e.getY()/board.getTileSize());
-		
+	@Override
+	public void mouseMoved(MouseEvent me) {
+		if(bView.getStateOfPlacement()){
+			Piece p;
+			AbstractTile source  = board.getTileAt(me.getX(), me.getY());
+			p = bp.getSelectedPiece();
+
+			if(p != null){
+				board.clearPiecePreview();
+				if(bView.getStateOfBoardConvert()){
+					board.showConversionPreview(p, source.getRow(), source.getCol());
+				}else if(bView.getStateOfHintConvert()){
+					board.showHintPreview(p, source.getRow(), source.getCol());
+				}else{
+					board.showPiecePreview(p, source.getRow(), source.getCol());
+				}
+				boardView.redraw();
+				boardView.repaint();
+			}
+		}
 	}
 
+	//====================== UNUSED BUT REQUIRED ======================//
+	@Override
+	public void mouseClicked(MouseEvent me) {}
 }

@@ -112,7 +112,8 @@ public abstract class AbstractLevelModel implements Serializable{
 	 */
 	public int getStarsEarned(){
 		return this.starsEarned;
-	}	
+	}
+
 }
 
 

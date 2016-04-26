@@ -3,7 +3,6 @@ package model;
 import junit.framework.TestCase;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 
 /**
@@ -33,7 +32,7 @@ public class TestBoard extends TestCase{
 	
 	//test if the swap method works (run in setUp)
 	public void testSwapTile(){
-		assertEquals("board r:0 c:0", b.board[0][0].toString());
+		assertEquals("board:0,0", b.board[0][0].toString());
 	}
 	
 	//test the number of board tiles
@@ -75,7 +74,7 @@ public class TestBoard extends TestCase{
 		Piece p2 = new Piece(1);
 		b.showPiecePreview(p2, 2, 1);
 		
-		assertEquals(Color.GREEN, b.board[1][1].color);
+		assertEquals(Color.RED, b.board[1][1].color);
 		
 		Piece p3 = new Piece(1);
 		
@@ -90,11 +89,6 @@ public class TestBoard extends TestCase{
 		
 		assertEquals(Color.WHITE,b.board[1][1].color);
 		assertEquals(Color.LIGHT_GRAY,b.board[0][3].color);
-		
-		ArrayList<Piece> pieces = b.pieces;
-		ArrayList<Piece> pieces2 = b.resetBoard();
-		
-		assertEquals(pieces, pieces2);
 		
 	}
 

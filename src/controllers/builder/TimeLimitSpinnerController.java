@@ -4,30 +4,39 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import app.UndoManager;
+import controllers.common.IMove;
 import model.LightningLevel;
-import view.BuilderView;
 
 /**
- * Handles setting the time limit for a lightning level in builder mode
+ * Handles setting the time limit for a lightning level in builder mode.
  * 
  * @author awharrison
- *
+ * @author hejohnson
  */
 public class TimeLimitSpinnerController implements ChangeListener {
-	BuilderView app;
-	LightningLevel model;
+	/**Lightning level whose time limit is being set**/
+	LightningLevel ll;
 	
-	public TimeLimitSpinnerController(BuilderView app, LightningLevel model) {
-		this.app = app;
-		this.model = model;
+	/**
+	 * Creates the controller 
+	 * @param ll - lightning level whose time limit is being set
+	 */
+	public TimeLimitSpinnerController(LightningLevel ll) {
+		this.ll = ll;
 	}
 	
+	/**
+	 * When the state is changed a move is triggered, which is successful
+	 * the undo manager is notified of it.
+	 * @param ChangeEvent the value of the spinner is changed
+	 */
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		// TODO make this compatible with the timing objects used to calculate time
-		int timeVal = (int)((JSpinner)e.getSource()).getValue();
-		model.setTotalTime(timeVal);
+		JSpinner timeSpin = (JSpinner)e.getSource();
+		IMove m = new SetLightningTimeMove(ll, timeSpin);
+		if (m.doMove()) {
+			UndoManager.getInstance().pushMove(m);
+		}
 	}
-	
-	
 }

@@ -14,21 +14,27 @@ import java.awt.Font;
  * Class for displaying the number of moves left in a puzzle GAME.
  * 
  * @author dfontana
- * @author aharrison
+ * @author awharrison
  */
 public class NumberMovesLeftView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
+	/**Shows the number of moves remaining.**/
 	JTextPane numberMoves;
+	/**Shows the title of the NumbberMovesLeftView, which is "Moves Remaining"**/
 	JLabel lblTitle;
 
-	public NumberMovesLeftView() {
+	/**
+	 * Creates a NumberMovesLeftView with a given initial amount of moves.
+	 * @param initialMoves - int
+	 */
+	public NumberMovesLeftView(int initialMoves) {
 		this.setPreferredSize(new Dimension(180, 90));
 		numberMoves = new JTextPane();
 		numberMoves.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		numberMoves.setText("00");
 		lblTitle = new JLabel("Moves Remaining");
-		
+		numberMoves.setText(Integer.toString(initialMoves));
 		setupLayout();
 	}
 	
@@ -36,17 +42,19 @@ public class NumberMovesLeftView extends JPanel {
 	 * Method to set the text of the moves left textPane. 
 	 * Method converts integer argument into a string.
 	 * The passed argument should be two places. Ex: 10 or 09
-	 * @param movesLeft - Number of remaining moves to be displayed
+	 * @param movesLeft - int
 	 */
-	void updateMovesLeft(int movesLeft){
+	public void updateMovesLeft(int movesLeft){
 		numberMoves.setText(Integer.toString(movesLeft));
 	}
 	
+	/**
+	 * Sets up the layout of NumberMovesLeftView.
+	 */
 	private void setupLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(49)
@@ -54,7 +62,6 @@ public class NumberMovesLeftView extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(74)
 							.addComponent(numberMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(48, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

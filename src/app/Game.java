@@ -4,7 +4,6 @@ import view.GameExitScreen;
 import view.LevelView;
 import view.LevelSelectionView;
 import view.StarView;
-import controllers.common.ShutdownController;
 import controllers.player.PlayLevelButtonController;
 import controllers.player.QuitGameButtonController;
 import model.AbstractLevelModel;
@@ -41,12 +40,16 @@ public class Game extends LevelIO{
 		this.initialize();
 	}
 
+	/**
+	 * Prepares the starMap for the game, the view, the controllers, and
+	 * the buttons for the levels in levelSelection.
+	 */
 	void initialize(){
 		this.levelData = loadStarMap();
 
 		this.initializeView();
-		this.initializeControllers();
 		this.initializeButtons();
+		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
 	}
 
 	/**
@@ -70,14 +73,19 @@ public class Game extends LevelIO{
 		return false;
 	}
 
+	/**
+	 * Prepares the view of levelSelection and the Game Exit Screen
+	 */
 	void initializeView(){
 		this.selectLevel = new LevelSelectionView();
+		for(int id: levelData.keySet()){
+			try {
+				selectLevel.addAvailableLevel(id, levelData.getMaxStars(id), this);
+			} catch (Exception e) {
+				throw new RuntimeException("ID not found in levelData, LSV couldn't be initialized" + e.getMessage());
+			}
+		}
 		this.exitLevel = new GameExitScreen(new StarView());
-	}
-
-	void initializeControllers(){
-		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
-		selectLevel.setShutdownController(new ShutdownController(this));
 	}
 
 	/**
@@ -98,6 +106,14 @@ public class Game extends LevelIO{
 			selectLevel.addListenerToButton(id, this);
 		}
 	}
+	
+	/**
+	 * Returns the highest ID that is unlocked in the levelData of this game.
+	 * @return int ID of level
+	 */
+	public int highestUnlockedID() {
+		return levelData.lowestNoStarLevel()-1;
+	}
 
 	/**
 	 * Unlocks the next level with no stars for play. Sets the button to enabled
@@ -108,6 +124,7 @@ public class Game extends LevelIO{
 		int id = levelData.lowestNoStarLevel();
 		selectLevel.unlockLevel(id, 0);
 		selectLevel.getButton(id).addActionListener(new PlayLevelButtonController(selectLevel, this, id));
+		updateStars(id, 0);
 		return id;
 	}
 

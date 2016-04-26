@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import app.Game;
-import controllers.player.ExitLevelButtonController;
+import controllers.player.ExitLevelController;
 import controllers.player.PuzzleBoardGameController;
 import view.LevelView;
 import view.NumberMovesLeftView;
@@ -25,9 +25,12 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	/**The movesMade is the number of moves a player has made on THIS level**/
 	transient int movesMade;
 	
+	/** The pbgc is the controller that handles mouse actions associated with THIS level's board**/
+	PuzzleBoardGameController pbgc;
+	
 	/**
-	 * Generates a puzzle level
-	 * @param levelID - ID of this level being made
+	 * Generates a puzzle level using a given levelID.
+	 * @param levelID - int
 	 */
 	public PuzzleLevel(int levelID) {
 		super(levelID, "Puzzle", true);
@@ -54,7 +57,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 * to prevent duplicate triggers of the same threshold (Since you can moves a piece off a board and back onto it).
 	 * 
 	 * CheckStatus then checks if the level is done. If so, it returns true. Otherwise, false.
-	 * @return boolean - true if the level's end conditions are met
+	 * @return if the level's end conditions are met - boolean
 	 */
 	@Override
 	public boolean checkStatus() {
@@ -78,17 +81,27 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * incrementMovesMade is called whenever a move is performed in a puzzle level. This includes bullpen to board,
 	 * board to board, or off the board. It always increments by 1.
+	 * @return movesMade - int
 	 */
-	public void incrementMovesMade(){
+	public int incrementMovesMade(){
 		movesMade++;
+		return movesMade;
 	}
 	
 	/**
-	 * Allows the setting of the move
-	 * @param moves
+	 * Sets the number of moves a player can make in the puzzle level.
+	 * @param moves - int
 	 */
 	public void setMoveLimit(int moves){
 		moveLimit = moves;
+	}
+	
+	/**
+	 * Returns the number of moves a player can make in the puzzle level.
+	 * @return moves - int
+	 */
+	public int getMoveLimit() {
+		return moveLimit;
 	}
 	
 	/**
@@ -98,16 +111,17 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView(), this);
-		view.addWindowListener(new ExitLevelButtonController(view, g));
-		view.getBoardView().addMouseListener(new PuzzleBoardGameController(g, view));
-		view.getBoardView().addMouseMotionListener(new PuzzleBoardGameController(g, view));
+		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView(this.moveLimit), this);
+		view.addWindowListener(new ExitLevelController(g, view));
+		pbgc = new PuzzleBoardGameController(g, view);
+		view.getBoardView().addMouseListener(pbgc);
+		view.getBoardView().addMouseMotionListener(pbgc);
 		return view;
 	}
 	
 	/**
-	 * Creates a string representation of this level
-	 * @return String representation of this level
+	 * Creates a string representation of this level.
+	 * @return String representation of this level - String
 	 */
 	@Override
 	public String toString(){
@@ -121,5 +135,13 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
 		initializeVars();
+	}
+	
+	/**
+	 * Getter for this level's board controller
+	 * @return board controller associated with this board
+	 */
+	public PuzzleBoardGameController getBoardController() {
+		return this.pbgc;
 	}
 }

@@ -1,33 +1,41 @@
-/**
- * 
- */
 package controllers.builder;
 
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import app.UndoManager;
+import controllers.common.IMove;
 import model.PuzzleLevel;
-import view.LevelPropertiesView;
 
 /**
+ * Handles setting the number of moves in a Puzzle level.
+ * 
  * @author hejohnson
- *
+ * @author dfontana
  */
 public class SetNumberOfMovesSpinnerController implements ChangeListener {
-	LevelPropertiesView levelPropView;
-	public SetNumberOfMovesSpinnerController(LevelPropertiesView levelPropView) {
-		this.levelPropView = levelPropView;
+	/**Puzzle level whose number of moves is being set**/
+	PuzzleLevel pl;
+	
+	/**
+	 * Creates the controller
+	 * @param pl - level whose move limit is being set
+	 */
+	public SetNumberOfMovesSpinnerController(PuzzleLevel pl) {
+		this.pl = pl;
 	}
 	
+	/**
+	 * When the state is changed in the spinner attatched to this, a move is 
+	 * triggered. If successful, the undo manager is notified.
+	 * @param ChangeEvent updating of spinner's value
+	 */
 	public void stateChanged(ChangeEvent ce) {
-		//TODO Move class?
-		JSpinner numberMovesSpinner = (JSpinner) ce.getSource();
-		if ((int)numberMovesSpinner.getValue()<0) {
-			numberMovesSpinner.setValue(0);
+		JSpinner spinMoves = (JSpinner)ce.getSource();
+		IMove m = new SetNumberOfMovesMove(pl, spinMoves);
+		if (m.doMove()) {
+			UndoManager.getInstance().pushMove(m);
 		}
-		int moves = (int) numberMovesSpinner.getValue();
-		PuzzleLevel levelModel = (PuzzleLevel)levelPropView.getLevelModel();
-		levelModel.setMoveLimit(moves);
 	}
 }

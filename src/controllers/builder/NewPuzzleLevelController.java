@@ -10,51 +10,58 @@ import app.Builder;
  * Controller attached to the create new Puzzle level option in the 
  * builder.
  * @author dfontana
+ * @author hejohnson
  */
 public class NewPuzzleLevelController implements MouseListener{
+	/** The builder object that holds everything **/
 	Builder b;
+	/** The text area in the Level Type Select View that displays a description of each type of level **/
 	JTextArea textArea;
+	/** Level type specific text that gets displayed in the text area **/
 	String descriptionText;
 	
 	/**
 	 * Controller to change the text displayed in the level type description box
-	 * @param levelDescription - JTextArea being updated
-	 * @param createLevel - CreateLevelButton being set enabled/disabled
-	 * @author hejohnson
+	 * @param builder The builder application
+	 * @param textArea The text area in the Level Type Select View to set the contents of
+	 * @param descriptionText The text to set the text area contents to
 	 */
 	public NewPuzzleLevelController (Builder b, JTextArea textArea, String descriptionText) {
 		this.b = b;
 		this.textArea = textArea;
 		this.descriptionText = descriptionText;
 	}
-
 	/**
-	 * When the button is clicked, tell the builder to create a new release level and
-	 * prepare the view of it.
-	 */
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		b.createPuzzleLevel();
-		b.getLevelTypeSelectView().setVisible(false);
-		b.getBuilderView().setVisible(true);
-	}
-
-	/**
-	 * Sets the textArea's description back to level-specific message when entering button
+	 * Sets the textArea's description to level-specific message when entering button
+	 * @param mouseEvent when mouse enters
 	 */
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		textArea.setText(descriptionText);
 	}
+	
 	/**
 	 * Sets the textArea's description back to default message when leaving button
+	 * @param mouseEvent when exited
 	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		textArea.setText("Mouse over a level to see its description");
 	}
+	
+	/**
+	 * Creates a new builder, and sets up the windows to show the level and hide the level type select view
+	 * @param mouseEvent when pressing
+	 */
 	@Override
-	public void mousePressed(MouseEvent arg0){}
+	public void mousePressed(MouseEvent arg0){
+		b.createPuzzleLevel();
+		b.getLevelTypeSelectView().setVisible(false);
+		b.getBuilderView().setVisible(true);
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent arg0) {}
 	@Override
 	public void mouseReleased(MouseEvent arg0){}
 }

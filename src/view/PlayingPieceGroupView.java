@@ -6,25 +6,49 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import model.PieceGroup;
-
+/**
+ * 
+ * @author dfontana
+ * @author hejohnson
+ *
+ */
 public class PlayingPieceGroupView extends AbstractPieceGroupView{
 	private static final long serialVersionUID = 1L;
+	/**Stores the layout of the PlayingPieceGroupView.**/
 	GroupLayout groupLayout;
+	/**Shows the amount of pieces in a PieceGroup.**/
 	JLabel label;
 	
+	/**
+	 * Creates a PlayingPieceGroupView.
+	 * @param pieceGroup - PieceGroup
+	 */
 	public PlayingPieceGroupView(PieceGroup pieceGroup){
 		super(pieceGroup);
 		
-		label = new JLabel(Integer.toString(pieceGroup.getNumPieces()));
+		label = new JLabel();
+		updateCount();
 		
 		setupLayout();
 	}
 	
+	/**
+	 * Updates label to show the correct amount of pieces in a PieceGroup. 
+	 */
 	@Override
 	void updateCount() {
-		label.setText(Integer.toString(pieceGroup.getNumPieces()));
+		int count = pieceGroup.getNumPieces();
+		label.setText(Integer.toString(count));
+		if(count < 1){
+			this.setVisible(false);
+		}else{
+			this.setVisible(true);
+		}
 	}
 	
+	/**
+	 * Sets up the layout of PlayingPieceGroupView.
+	 */
 	void setupLayout(){
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		groupLayout = new GroupLayout(this);

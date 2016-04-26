@@ -52,7 +52,7 @@ public class TestStarMap extends TestCase {
 		
 		testStarMap.populateFromDirectory();
 		assertFalse(testStarMap.isEmpty());
-		assertEquals("[1,Puzzle,0],[2,Puzzle,0]", testStarMap.toString());
+		assertEquals("[1,Puzzle,-1],[2,Puzzle,-1]", testStarMap.toString());
 		
 		/**Try to populate from directory with mix of valid and invalid**/
 		Path path = Paths.get("./imbriusLevelTESTING/A_PuzzleLevel_AHardLifeStory.txt");
@@ -68,7 +68,7 @@ public class TestStarMap extends TestCase {
 		
 		testStarMap.populateFromDirectory();
 		assertFalse(testStarMap.isEmpty());
-		assertEquals("[1,Puzzle,0],[2,Puzzle,0]", testStarMap.toString());
+		assertEquals("[1,Puzzle,-1],[2,Puzzle,-1]", testStarMap.toString());
 	}
 	
 	public void testPut(){
@@ -143,7 +143,7 @@ public class TestStarMap extends TestCase {
 		assertTrue(testStarMap.deleteFromDisk(2));
 		files = dir.listFiles();
 		assertEquals(2,files.length);   //Directory changed
-		assertEquals("[1,Puzzle,0]",testStarMap.toString());
+		assertEquals("[1,Puzzle,-1]",testStarMap.toString());
 	}
 	
 	public void testSetMaxStars(){
@@ -313,7 +313,7 @@ public class TestStarMap extends TestCase {
 		starMap.put(3, "Puzzle");
 		starMap.setMaxStars(1, 2);
 		starMap.setMaxStars(2, 3);
-		assertEquals("[1,Puzzle,2],[2,Puzzle,3],[3,Puzzle,0]",starMap.toString());
+		assertEquals("[1,Puzzle,2],[2,Puzzle,3],[3,Puzzle,-1]",starMap.toString());
 	}
 
 }

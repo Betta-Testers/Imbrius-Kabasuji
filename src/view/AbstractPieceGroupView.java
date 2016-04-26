@@ -16,12 +16,20 @@ import model.PieceGroup;
  */
 public abstract class AbstractPieceGroupView extends JPanel{
 	private static final long serialVersionUID = 1L;
+	
+	/**Button to select the piece. Stores the int ID of the PieceGroup.**/
 	SelectPieceButton button;
+	
+	/**Stores a set of pieces.**/
 	PieceGroup pieceGroup;
+	
+	/**Handles mouse events for the AbstractPieceGroupView.**/
 	ActionListener selectPieceHandler;
 	
-	
-	//TODO: Change AbstractPieceGroupView contructor to take in a piece group. Get the Piece ID from the piece in the PieceGroup
+	/**
+	 * Creates a new AbstractPieceGroupView with an associated PieceGroup. Sets size and initializes the button.
+	 * @param pieceGroup - PieceGroup
+	 */
 	public AbstractPieceGroupView(PieceGroup pieceGroup){
 		setPreferredSize(new Dimension(72, 35));
 		this.pieceGroup = pieceGroup;
@@ -29,10 +37,13 @@ public abstract class AbstractPieceGroupView extends JPanel{
 		button.setIcon(new ImageIcon(AbstractPieceGroupView.class.getResource("/pieces/"+pieceGroup.getPiece().getID()+".png")));
 	}
 	
+	/**
+	 * Method stub for extension of JPanel.
+	 */
 	void setupLayout(){}
 	
 	/**
-	 * Set action listener for the button in the piece group view. Clicking this button the corresponding piece as the selected piece in the preview area
+	 * Set action listener for the button in the piece group view. Clicking this button the corresponding piece as the selected piece in the preview area.
 	 * @param al The action listener to add to this button
 	 */
 	public void addSelectButtonActionListener (ActionListener al) {
@@ -40,9 +51,30 @@ public abstract class AbstractPieceGroupView extends JPanel{
 		this.button.addActionListener(al);
 	}
 	
+	/**
+	 * Returns the selectPieceHandler ActionListener.
+	 * @return selectPieceHandler - ActionListener
+	 */
+	public ActionListener getPieceSelectHandler () {
+		return this.selectPieceHandler;
+	}
+	
+	/**
+	 * Returns the PieceGroup associated with the AbstractPieceGroupView.
+	 * @return pieceGroup - PieceGroup
+	 */
 	public PieceGroup getPieceGroup(){
 		return this.pieceGroup;
 	}
+	
+	/**
+	 * Returns the SelectPieceButton associated with the AbstractPieceGroupView.
+	 * @return button - SelectPieceButton
+	 */
+	public SelectPieceButton getSelectPieceButton() {
+		return this.button;
+	}
 
-	 abstract void updateCount();
+	
+	abstract void updateCount();
 }
