@@ -39,10 +39,10 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 	int rOffset;
 	int cOffset;
 
-	public PuzzleBoardGameController (Game game, LevelView levelView) {
+	public PuzzleBoardGameController (Game game) {
 		this.game = game;
 		this.levelModel = (PuzzleLevel)game.getCurrentLevel();
-		this.levelView = levelView;
+		this.levelView = game.getLevelView();
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();

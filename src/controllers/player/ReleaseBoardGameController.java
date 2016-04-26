@@ -32,10 +32,10 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	SelectedPieceView spv;
 	LevelView levelView;
 	
-	public ReleaseBoardGameController (Game game, LevelView levelView) {
+	public ReleaseBoardGameController (Game game) {
 		this.game = game;
 		this.levelModel = (ReleaseLevel)game.getCurrentLevel();
-		this.levelView = levelView;
+		this.levelView = game.getLevelView();
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();

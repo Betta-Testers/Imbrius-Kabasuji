@@ -81,7 +81,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 		view.addWindowListener(new ExitLevelController(g));
 		LightningTimerController ltc = new LightningTimerController(view, g);
 		view.addWindowListener(ltc);
-		lbgc = new LightningBoardGameController(g, view);
+		lbgc = new LightningBoardGameController(g);
 		view.getBoardView().addMouseListener(lbgc);
 		view.getBoardView().addMouseMotionListener(lbgc);
 		return view;
