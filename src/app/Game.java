@@ -40,12 +40,16 @@ public class Game extends LevelIO{
 		this.initialize();
 	}
 
+	/**
+	 * Prepares the starMap for the game, the view, the controllers, and
+	 * the buttons for the levels in levelSelection.
+	 */
 	void initialize(){
 		this.levelData = loadStarMap();
 
 		this.initializeView();
-		this.initializeControllers();
 		this.initializeButtons();
+		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
 	}
 
 	/**
@@ -69,6 +73,9 @@ public class Game extends LevelIO{
 		return false;
 	}
 
+	/**
+	 * Prepares the view of levelSelection and the Game Exit Screen
+	 */
 	void initializeView(){
 		this.selectLevel = new LevelSelectionView();
 		for(int id: levelData.keySet()){
@@ -79,10 +86,6 @@ public class Game extends LevelIO{
 			}
 		}
 		this.exitLevel = new GameExitScreen(new StarView());
-	}
-
-	void initializeControllers(){
-		exitLevel.getExitButton().addActionListener(new QuitGameButtonController(this.exitLevel, this));
 	}
 
 	/**
@@ -104,6 +107,10 @@ public class Game extends LevelIO{
 		}
 	}
 	
+	/**
+	 * Returns the highest ID that is unlocked in the levelData of this game.
+	 * @return int ID of level
+	 */
 	public int highestUnlockedID() {
 		return levelData.lowestNoStarLevel()-1;
 	}

@@ -14,7 +14,7 @@ import java.awt.Font;
 
 /**
  * Class for displaying the time remaining in a lightning level
- * @author aharrison
+ * @author awharrison
  * @author dfontana
  */
 public class TimeRemainingView extends JPanel {

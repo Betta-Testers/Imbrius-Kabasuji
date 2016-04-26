@@ -5,23 +5,26 @@ package controllers.common;
 
 import model.Bullpen;
 import model.Piece;
+import view.SelectedPieceView;
 
 /**
+ * Move for flipping the select piece vertically (accross the horizontal axis).
  * @author hejohnson
- *
  */
 public class FlipVerticalMove implements IMove {
 	/** The piece to be flipped **/
 	Piece p;
 	/** The bullpen that contains the piece **/
 	Bullpen bp;
+	/** The view is updated after the move is done/undone**/
+	SelectedPieceView spv;
 	
 	/**
 	 * Rotates a piece and provides undo/redo functionality for the builder
 	 * @param p The selected piece to be flipped
 	 * @param bp The bullpen that contains the selected piece
 	 */
-	FlipVerticalMove (Piece p, Bullpen bp) {
+	FlipVerticalMove (Piece p, Bullpen bp, SelectedPieceView spv) {
 		this.p = p;
 		this.bp = bp;
 	}
@@ -34,12 +37,16 @@ public class FlipVerticalMove implements IMove {
 	public boolean doMove() {
 		if (isValid()) {
 			p.flipV();
+			spv.getPiecePanel().redraw();
+			spv.getPiecePanel().repaint();
 			return true;
 		}
 		return false;
 	}
 
 	/**
+	 * The move is valid if the selected piece of the bullpen is equal to
+	 * the piece being manipulated.
 	 * @return True if the piece is the selected piece
 	 */
 	@Override
@@ -53,6 +60,8 @@ public class FlipVerticalMove implements IMove {
 	 */
 	@Override
 	public boolean undo() {
+		spv.getPiecePanel().redraw();
+		spv.getPiecePanel().repaint();
 		return doMove();
 	}
 
@@ -62,6 +71,8 @@ public class FlipVerticalMove implements IMove {
 	 */
 	@Override
 	public boolean redo() {
+		spv.getPiecePanel().redraw();
+		spv.getPiecePanel().repaint();
 		return doMove();
 	}
 

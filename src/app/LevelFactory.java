@@ -30,6 +30,9 @@ public class LevelFactory{
 	/** The optionally used starMap for this factory, mostly for testing**/
 	StarMap levels;
 
+	/**
+	 * Creates the levelFactory, initializes the object to blank.
+	 */
 	public LevelFactory(){
 		System.out.println("Factory Started...");
 	}
