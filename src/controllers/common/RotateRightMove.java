@@ -57,13 +57,13 @@ public class RotateRightMove implements IMove {
 	 */
 	@Override
 	public boolean undo() {
-		if (isValid()) {
+		//if (isValid()) {
 			p.rotateLeft();
 			spv.getPiecePanel().redraw();
 			spv.getPiecePanel().repaint();
 			return true;
-		}
-		return false;
+		//}
+		//return false;
 	}
 
 	/**

@@ -35,6 +35,7 @@ public class MovePieceOffBoardMove implements IMove {
 		this.board = lm.getBoard();
 		this.bullpen = lm.getBullpen();
 		this.piece = lm.getBoard().getDraggedPiece();
+		this.bv = bv;
 	}
 	
 	/**
@@ -45,7 +46,7 @@ public class MovePieceOffBoardMove implements IMove {
 	@Override
 	public boolean doMove() {
 		if(!isValid()){ return false;}
-		board.removePiece(piece);
+		//board.removePiece(piece);
 		bullpen.incrementPiece(piece.getID());
 		board.setDraggedPiece(null);
 		bpv.updatePieceGroup(piece);

@@ -60,9 +60,10 @@ public class UndoManager{
 		bgv.setRedoEnabled(true);
 		IMove m = UndoManager.undoStack.pop();
 		m.undo();
+		//System.out.println("Undoing: "+m.toString());
 		UndoManager.redoStack.push(m);
 		if(UndoManager.undoStack.empty()){bgv.setUndoEnabled(false);}
-		System.out.println(undoStack.toString());
+		//System.out.println(undoStack.toString());
 		return true;
 	}
 	
@@ -79,9 +80,10 @@ public class UndoManager{
 		bgv.setUndoEnabled(true);
 		IMove m = UndoManager.redoStack.pop();
 		m.redo();
+		//System.out.println("Redoing: "+m.toString());
 		UndoManager.undoStack.push(m);
 		if(UndoManager.redoStack.empty()){bgv.setRedoEnabled(false);}
-		System.out.println(redoStack.toString());
+		//System.out.println(redoStack.toString());
 		return true;
 	}
 	

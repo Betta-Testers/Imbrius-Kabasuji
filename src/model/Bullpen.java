@@ -159,14 +159,14 @@ public class Bullpen implements Serializable{
 	 * Sets the selected piece from the bullpen using a given ID. Returns true if the piece is available, false if not.
 	 * @return if piece was available - boolean
 	 */
-	public boolean setSelectedPiece(int ID) {
-		for(int i = 0; i < this.playablePieces.size(); i++) {
-			if(this.playablePieces.get(i).getPiece().ID == ID && this.playablePieces.get(i).getNumPieces() > 0) {
-				this.selectedPiece = this.playablePieces.get(i).getPiece();
+	public boolean setSelectedPiece(Piece p) {
+		//for(int i = 0; i < this.playablePieces.size(); i++) {
+		//	if(this.playablePieces.get(i).getPiece().ID == ID && this.playablePieces.get(i).getNumPieces() > 0) {
+				this.selectedPiece = p;
 				return true; // do not need to sort as removing a single piece from a sorted list still remains sorted
-			}
-		}
-		return false;
+			//}
+		//}
+		//return false;
 	}
 
 	/**
