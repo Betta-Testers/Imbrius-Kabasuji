@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import app.Game;
-import controllers.player.ExitLevelButtonController;
+import controllers.player.ExitLevelController;
 import controllers.player.PuzzleBoardGameController;
 import view.LevelView;
 import view.NumberMovesLeftView;
@@ -112,7 +112,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	@Override
 	public LevelView initializeGame(Game g) {
 		LevelView view = new LevelView("Puzzle", new NumberMovesLeftView(this.moveLimit), this);
-		view.addWindowListener(new ExitLevelButtonController(view, g));
+		view.addWindowListener(new ExitLevelController(view, g));
 		pbgc = new PuzzleBoardGameController(g, view);
 		view.getBoardView().addMouseListener(pbgc);
 		view.getBoardView().addMouseMotionListener(pbgc);

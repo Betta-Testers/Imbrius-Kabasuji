@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import app.Game;
-import controllers.player.ExitLevelButtonController;
+import controllers.player.ExitLevelController;
 import controllers.player.LightningBoardGameController;
 import controllers.player.LightningTimerController;
 import view.LevelView;
@@ -78,7 +78,7 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	@Override
 	public LevelView initializeGame(Game g) {
 		LevelView view = new LevelView("Lightning", new TimeRemainingView(this), this);
-		view.addWindowListener(new ExitLevelButtonController(view, g));
+		view.addWindowListener(new ExitLevelController(view, g));
 		LightningTimerController ltc = new LightningTimerController(view, g);
 		view.addWindowListener(ltc);
 		lbgc = new LightningBoardGameController(g, view);
