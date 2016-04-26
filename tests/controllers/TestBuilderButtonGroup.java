@@ -7,6 +7,7 @@ import model.Board;
 import model.BoardTile;
 import model.Bullpen;
 import model.Piece;
+import model.PieceTile;
 import view.BoardView;
 import view.BuilderView;
 import view.ButtonGroupView;
@@ -348,6 +349,41 @@ public class TestBuilderButtonGroup extends TestCase {
 		assertTrue(board.putPieceOnBoard(new Piece(6), 8, 6));
 		assertTrue(board.putPieceOnBoard(new Piece(11), 6, 9));
 		assertEquals(120, board.getNumBoardTiles());
+		
+		/*
+		 * remove all pieces, verify
+		 */
+		buttonGroup.getRemoveBtn().doClick();
+		assertEquals(144, board.getNumBoardTiles());
+		
+		/*
+		 * place 24 pieces, verify by board tiles
+		 */
+		
+		for(int i = 0; i < 12; i++) {
+			assertTrue(board.putPieceOnBoard(new Piece(1), 2, i));
+			assertTrue(board.putPieceOnBoard(new Piece(1), 8, i));
+		}
+		
+		assertEquals(0, board.getNumBoardTiles());
+		
+		/*
+		 * remove all pieces, verify
+		 */
+		buttonGroup.getRemoveBtn().doClick();
+		assertEquals(144, board.getNumBoardTiles());
+		
+		
+		/*
+		 * fill entire board with piece tiles
+		 */
+		for(int i = 0; i < 12; i++) {
+			for(int j = 0; j< 12; j++) {
+				board.swapTile(new PieceTile(i,j, new Piece(1)));
+			}
+		}
+		
+		assertEquals(0, board.getNumBoardTiles());
 		
 		/*
 		 * remove all pieces, verify
