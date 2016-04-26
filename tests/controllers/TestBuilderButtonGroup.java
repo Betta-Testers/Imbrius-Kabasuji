@@ -6,7 +6,7 @@ import view.BuilderView;
 import app.Builder;
 import junit.framework.TestCase;
 
-public class TestUndoRedo extends TestCase {
+public class TestBuilderButtonGroup extends TestCase {
 	Builder build;
 	BuilderView buildView;
 	
