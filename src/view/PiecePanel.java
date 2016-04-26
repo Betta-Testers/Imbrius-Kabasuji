@@ -14,6 +14,7 @@ import model.Bullpen;
 import model.PieceTile;
 
 /**
+ * Handles drawing graphics.
  * @author hejohnson
  *
  */
@@ -22,6 +23,7 @@ public class PiecePanel extends JPanel{
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
 	Graphics offscreenGraphics;
+	/**Stores the bullpen**/
 	Bullpen bp;
 	public PiecePanel(Bullpen bp){
 		this.setPreferredSize(new Dimension(192,192));
@@ -65,7 +67,8 @@ public class PiecePanel extends JPanel{
 	/**
 	 * Ensure image available prepares the offscreen image for painting if it is currently missing from
 	 * the object (null). It gets called only INSIDE this class and is called in the paintComponent()
-	 * method
+	 * method.
+	 * @param g - Graphics
 	 */
 	void ensureImageAvailable(Graphics g) {
 		if (offscreenImage == null) {  
@@ -87,7 +90,7 @@ public class PiecePanel extends JPanel{
 	 * To Draw within a JPanel, you need to have a protected void method of this name.
 	 * Note that the first operation of this method MUST BE to invoke super.paintComponent(g)
 	 * 
-	 * @param g
+	 * @param g - Graphics
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {

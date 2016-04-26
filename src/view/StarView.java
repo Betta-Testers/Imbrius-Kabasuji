@@ -8,19 +8,22 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
+/**
+ * This view displays the number of stars earned on a level.
+ * @author awharrison
+ * @author bwoconnor
+ * @author hejohnson
+ */
 public class StarView extends JPanel {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Create the panel.
-	 */
+	/**Shows an empty star or a filled star. One label for each of the three possible stars.**/
 	JLabel lblStar1;
 	JLabel lblStar2;
 	JLabel lblStar3;
 	
+	/**
+	 * Creates a StarView.
+	 */
 	public StarView() {
 		setPreferredSize(new Dimension(144, 48));
 		lblStar1 = new JLabel("");
@@ -35,6 +38,9 @@ public class StarView extends JPanel {
 
 	}
 	
+	/**
+	 * Sets up the layout of StarVIew.
+	 */
 	void setupLayout(){
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -55,6 +61,10 @@ public class StarView extends JPanel {
 		this.setLayout(groupLayout);
 	}
 	
+	/**
+	 * Sets which stars to display (by changing the JLabels) from the given input of stars. This input ranges from 0 to 3.
+	 * @param stars - int
+	 */
 	void setNumStars(int stars) {
 		if(stars==0) {
 			lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/outline_star.png")));

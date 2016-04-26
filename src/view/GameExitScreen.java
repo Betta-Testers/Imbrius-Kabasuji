@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 
 /**
- * 
+ * Shows the window after the user quits the game.
  * @author ejbosia
  *
  */
