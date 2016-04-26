@@ -45,12 +45,10 @@ public class RotatePieceLeftController implements ActionListener {
 		//TOD) Make into move
 		p = bullpen.getSelectedPiece();
 		if (p != null) {
-			IMove m = new RotateLeftMove(p, bullpen);
+			IMove m = new RotateLeftMove(p, bullpen, selectedPieceView);
 			if (m.doMove()) {
 				UndoManager.getInstance().pushMove(m);
 			}
-			selectedPieceView.getPiecePanel().redraw();
-			selectedPieceView.getPiecePanel().repaint();
 		}
 	}
 }

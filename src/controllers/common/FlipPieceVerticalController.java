@@ -39,12 +39,10 @@ public class FlipPieceVerticalController implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		p = bullpen.getSelectedPiece();
 		if (p != null) {
-			IMove m = new FlipVerticalMove(p, bullpen);
+			IMove m = new FlipVerticalMove(p, bullpen, selectedPieceView);
 			if (m.doMove()) {
 				UndoManager.getInstance().pushMove(m);
 			}
-			selectedPieceView.getPiecePanel().redraw();
-			selectedPieceView.getPiecePanel().repaint();
 		}
 	}
 }

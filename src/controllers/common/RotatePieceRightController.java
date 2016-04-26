@@ -40,12 +40,10 @@ public class RotatePieceRightController implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		p = bullpen.getSelectedPiece();
 		if (p != null) {
-			IMove m = new RotateRightMove(p, bullpen);
+			IMove m = new RotateRightMove(p, bullpen, selectedPieceView);
 			if (m.doMove()) {
 				UndoManager.getInstance().pushMove(m);
 			}
-			selectedPieceView.getPiecePanel().redraw();
-			selectedPieceView.getPiecePanel().repaint();
 		}
 	}
 }

@@ -196,7 +196,6 @@ public class Board implements Serializable{
 		return true;
 	}
 	
-
 	/**
 	 * Swaps a tile on the board with a new tile.
 	 * @param at (tile being swapped in) - AbstractTile
@@ -300,13 +299,8 @@ public class Board implements Serializable{
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Returns the total number of BoardTiles still remaining on the board.
-	 * @return the number of boardTiles - int
-=======
 	 * Returns the total number of board tiles still remaining on the board
 	 * @return  int - the number of board tiles on the board
->>>>>>> refs/remotes/origin/Builder
 	 */
 	public int getNumBoardTiles(){
 		int count = 0;
@@ -321,9 +315,6 @@ public class Board implements Serializable{
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Resets all colors of tiles to their default state. Used to clear piece preview.
-=======
 	 * Returns the total number of tiles that can be interacted with on a board.
 	 * Used in the builder to track the count of tiles that contribute to the 6n 
 	 * total.

@@ -2,6 +2,7 @@ package controllers.common;
 
 import model.Bullpen;
 import model.Piece;
+import view.SelectedPieceView;
 
 /**
  * Move class for rotating a piece to the right
@@ -12,13 +13,15 @@ public class RotateRightMove implements IMove {
 	Piece p;
 	/** The bullpen that contains the piece **/
 	Bullpen bp;
+	/**Updates the view after the move is done/undone**/
+	SelectedPieceView spv;
 	
 	/**
 	 * Rotates a piece and provides undo/redo functionality for the builder
 	 * @param p The selected piece to be rotated
 	 * @param bp The bullpen that contains the selected piece
 	 */
-	RotateRightMove (Piece p, Bullpen bp) {
+	RotateRightMove (Piece p, Bullpen bp, SelectedPieceView spv) {
 		this.p = p;
 		this.bp = bp;
 	}
@@ -31,6 +34,8 @@ public class RotateRightMove implements IMove {
 	public boolean doMove() {
 		if (isValid()) {
 			p.rotateRight();
+			spv.getPiecePanel().redraw();
+			spv.getPiecePanel().repaint();
 			return true;
 		}
 		return false;
@@ -54,6 +59,8 @@ public class RotateRightMove implements IMove {
 	public boolean undo() {
 		if (isValid()) {
 			p.rotateLeft();
+			spv.getPiecePanel().redraw();
+			spv.getPiecePanel().repaint();
 			return true;
 		}
 		return false;

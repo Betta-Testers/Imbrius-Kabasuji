@@ -62,6 +62,7 @@ public class UndoManager{
 		m.undo();
 		UndoManager.redoStack.push(m);
 		if(UndoManager.undoStack.empty()){bgv.setUndoEnabled(false);}
+		System.out.println(undoStack.toString());
 		return true;
 	}
 	
@@ -80,6 +81,7 @@ public class UndoManager{
 		m.redo();
 		UndoManager.undoStack.push(m);
 		if(UndoManager.redoStack.empty()){bgv.setRedoEnabled(false);}
+		System.out.println(redoStack.toString());
 		return true;
 	}
 	
