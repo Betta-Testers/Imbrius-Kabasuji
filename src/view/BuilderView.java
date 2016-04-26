@@ -71,7 +71,7 @@ public class BuilderView extends JFrame {
 		this.builder = b;
 		this.m = b.getCurrentLevel();
 		
-		//setResizable(false);
+		setResizable(false);
 		setVisible(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 525, 715);
@@ -332,11 +332,11 @@ public class BuilderView extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(tglbtnPlacePieces, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addComponent(tglbtnPlacePieces, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(tglbtnPlaceBoard, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(tglbtnPlaceHints, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(tglbtnPlaceHints, 0, 0, Short.MAX_VALUE))
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 							.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)
 							.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)))
