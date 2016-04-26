@@ -12,13 +12,13 @@ import controllers.builder.CloseBuilderDialog;
 import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import java.awt.Component;
+import java.awt.Dimension;
 
 /**
  * Handles the graphics of the main builder application window.
@@ -71,10 +71,13 @@ public class BuilderView extends JFrame {
 		this.builder = b;
 		this.m = b.getCurrentLevel();
 		
-		setResizable(false);
+		this.setResizable(false);
+		this.setMinimumSize(new Dimension(525, 715));
+		this.setPreferredSize(new Dimension(525, 715));
+		this.setBounds(100, 100, 525, 715);
+		
 		setVisible(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 525, 715);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -98,14 +101,15 @@ public class BuilderView extends JFrame {
 	 * Adds the toggle buttons to the builder window.
 	 */
 	void prepareToggleButtons() {
-		placementGroup = new ButtonGroup(){
-			private static final long serialVersionUID = 1L;
-			@Override
-			public void setSelected(ButtonModel model, boolean selected) {
-				if(selected){super.setSelected(model, selected);
-				}else{clearSelection();}
-			}
-		};
+		placementGroup = new ButtonGroup();
+//		{
+//			private static final long serialVersionUID = 1L;
+//			@Override
+//			public void setSelected(ButtonModel model, boolean selected) {
+//				if(selected){super.setSelected(model, selected);
+//				}else{clearSelection();}
+//			}
+//		};
 		placementGroup.add(tglbtnPlaceBoard);
 		placementGroup.add(tglbtnPlaceHints);
 		tglbtnPlaceBoard.setEnabled(false);
@@ -322,6 +326,7 @@ public class BuilderView extends JFrame {
 	 * Sets up the layout for the BuilderView.
 	 */
 	void setupLayout(){
+		
 		tglbtnPlacePieces.setToolTipText("When toggled, you can place pieces on the board");
 		tglbtnPlaceBoard.setToolTipText("When toggled, pieces you place on the board become the board");
 		tglbtnPlaceHints.setToolTipText("When toggled, pieces you place on the board become hints");
