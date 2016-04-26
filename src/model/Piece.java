@@ -195,7 +195,6 @@ public class Piece implements Serializable{
 			for(PieceTile pt: this.getTiles()){
 				for(int i = 0; i < ((Piece)o).getTiles().length; i++){
 					if(pt.getRow() == ((Piece)o).getTiles()[i].getRow() && pt.getCol() == ((Piece)o).getTiles()[i].getCol()){
-						System.out.println(pt.toString()+" TO "+((Piece)o).getTiles()[i].toString());
 						break;
 					}else if(i ==  ((Piece)o).getTiles().length-1){ //Entire second piece couldnt find tile with those coordinates
 						return false;

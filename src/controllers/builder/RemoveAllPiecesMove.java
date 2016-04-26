@@ -55,6 +55,7 @@ public class RemoveAllPiecesMove implements IMove {
 		}
 		
 		//redraw
+		board.clearPiecePreview();
 		bv.redraw();
 		bv.repaint();
 		return true;
@@ -86,6 +87,7 @@ public class RemoveAllPiecesMove implements IMove {
 		}
 		
 		//redraw
+		board.clearPiecePreview();
 		bv.redraw();
 		bv.repaint();
 		return true;

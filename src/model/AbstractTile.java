@@ -49,52 +49,32 @@ public abstract class AbstractTile implements Serializable{
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * Returns the row this tile is located at on the board
 	 * @return int >= 0 and < 12
-=======
-	 * Return the row location of the tile.
-	 * @return rowOnBoard - int
->>>>>>> origin/JavaDocV2.0
 	 */
 	public int getRow() {
 		return this.rowOnBoard;
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * Returns the col this tile is located at on the board
 	 * @return int >= 0 and < 12
-=======
-	 * Return the column location of the tile.
-	 * @return colOnBoard - int
->>>>>>> origin/JavaDocV2.0
 	 */
 	public int getCol() {
 		return this.colOnBoard;
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * Returns the current color of this tile
 	 * @return Color object, of current state
-=======
-	 * Return the column location of the tile. Note that this is determined by the subclasses of abstractTile.
-	 * @return color - Color
->>>>>>> origin/JavaDocV2.0
 	 */
 	public Color getColor() {
 		return this.color;
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * Returns the number displayed on this tile
 	 * @return int representation of a tile. -1 if not a ReleaseTile
-=======
-	 * Returns the number displayed on this tile. Because an abstractTile is not a releaseTile, -1 is returned.
-	 * @return -1 - int
->>>>>>> origin/JavaDocV2.0
 	 */
 	public int getNumber() {
 		return -1;
