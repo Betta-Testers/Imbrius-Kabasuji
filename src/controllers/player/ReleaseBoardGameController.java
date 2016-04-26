@@ -19,8 +19,8 @@ import view.NumbersReleasedView;
 import view.SelectedPieceView;
 
 /**
+ * 
  * @author hejohnson
- *
  */
 
 public class ReleaseBoardGameController implements MouseListener, MouseMotionListener{

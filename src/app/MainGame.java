@@ -1,6 +1,4 @@
 package app;
-
-
 import java.awt.EventQueue;
 
 import javax.swing.Timer;
@@ -9,6 +7,10 @@ import javax.swing.UIManager;
 import controllers.player.GameSplashTimerController;
 import view.SplashScreen;
 
+/**
+ * Class for launching the game and setting the look and feel.
+ * @author dfontana
+ */
 public class MainGame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

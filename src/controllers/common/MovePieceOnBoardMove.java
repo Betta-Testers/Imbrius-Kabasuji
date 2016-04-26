@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controllers.common;
 
 import model.AbstractLevelModel;
@@ -9,21 +6,37 @@ import model.Board;
 import model.Piece;
 
 /**
+ * Move handling the movement of a piece on the board into another location on the board
  * @author hejohnson
  * @author dfontana
  * @author awharrison
  */
 public class MovePieceOnBoardMove implements IMove{
+	/**Level whose board is being manipulated**/
 	AbstractLevelModel levelModel;
+	/**Board whose pieces are being moved about**/
 	Board board;
 	/** Piece being dragged in the board **/
 	Piece p;
+	/**Tile that was clicked (destination tile)**/
 	AbstractTile sourceTile;
+	/**Location the piece was originally in - row**/
 	int originalRow;
+	/**Location the piece was originally in - col**/
 	int originalCol;
+	/**Location the piece will be placed in - row**/
 	int rOffset;
+	/**Location the piece will be placed in - col**/
 	int cOffset;
 	
+	/**
+	 * Creates the move
+	 * @param lm - level model being manipulated
+	 * @param tile - tile that was pressed (destination)
+	 * @param p - piece that is being moved
+	 * @param rOffset - offset of row where the piece wants to be placed
+	 * @param cOffset - offset of col where the piece wants to be placed
+	 */
 	public MovePieceOnBoardMove (AbstractLevelModel lm, AbstractTile tile, Piece p, int rOffset, int cOffset) {
 		this.levelModel = lm;
 		this.board = levelModel.getBoard();
@@ -33,6 +46,12 @@ public class MovePieceOnBoardMove implements IMove{
 		this.cOffset = cOffset;
 	}
 	
+	/**
+	 * The move is done by clearing the preview, storing the location of the piece,
+	 * removing the piece from the board, placing the piece back on the board in the offset
+	 * location, and then setting the dragged piece of the board to null.
+	 * @return true if the move was made.
+	 */
 	public boolean doMove() {
 		if (isValid()) {
 			board.clearPiecePreview();
@@ -61,15 +80,23 @@ public class MovePieceOnBoardMove implements IMove{
 		return false;
 	}
 	
+	/**
+	 * Undoes the move by removing the piece and restoring it to the location it was
+	 * previously at on the board
+	 * @return true - the move can always be undone
+	 */
 	public boolean undo() {
 		board.removePiece(p);
 		board.putPieceOnBoard(p, originalRow, originalCol);
 		return true;
 	}
 	
+	/**
+	 * Redoes the move.
+	 * @return true if the move could be made again
+	 */
 	@Override
 	public boolean redo() {
-		doMove();
-		return true;
+		return doMove();
 	}
 }

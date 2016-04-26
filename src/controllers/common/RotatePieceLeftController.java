@@ -12,18 +12,34 @@ import model.Piece;
 import view.SelectedPieceView;
 
 /**
+ * Controller that links the rotate left move to the button.
  * @author hejohnson
- *
  */
 public class RotatePieceLeftController implements ActionListener {
+	/**The bullpen of the piece being rotated**/
 	Bullpen bullpen;
+	/**The piece being rotated**/
 	Piece p;
+	/**The view that needs to be updated after rotation**/
 	SelectedPieceView selectedPieceView;
+	
+	/**
+	 * Creates the controller.
+	 * @param bp - the bullpen who owns the piece
+	 * @param spv - the view that needs to be repainted after
+	 */
 	public RotatePieceLeftController(Bullpen bp, SelectedPieceView spv) {
 		this.bullpen = bp;
 		this.selectedPieceView = spv;
 	}
 	
+	/**
+	 * On action the piece is retrieved from the bullpen's selected field. 
+	 * If the piece is null the action ends, otherwise a move is made and
+	 * attempted. If successful the undomanager is notified. Otherwise,
+	 * the panel is repainted.
+	 * @param ActionEvent button pressed
+	 */
 	public void actionPerformed(ActionEvent ae) {
 
 		//TOD) Make into move

@@ -1,14 +1,11 @@
-/**
- * 
- */
 package controllers.common;
 
 import model.Bullpen;
 import model.Piece;
 
 /**
+ * Move for flipping a piece horizontally (over the vertical axis)
  * @author hejohnson
- *
  */
 public class FlipHorizontalMove implements IMove {
 	/** The piece to be flipped **/
@@ -40,6 +37,8 @@ public class FlipHorizontalMove implements IMove {
 	}
 
 	/**
+	 * The move can be done if the selected piece of the bullpen is equal to the 
+	 * piece being manipulated
 	 * @return True if the piece is the selected piece
 	 */
 	@Override

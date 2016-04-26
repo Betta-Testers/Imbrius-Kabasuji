@@ -7,6 +7,10 @@ import java.io.ObjectInputStream;
 
 import model.AbstractLevelModel;
 
+/**
+ * Super class for holding methods relevant to both builder and game reguarding the StarMap coordination.
+ * @author dfontana
+ */
 public abstract class LevelIO {
 	/**Directory specified in main for storing and loading files**/
 	String defaultDirectory;
@@ -55,6 +59,7 @@ public abstract class LevelIO {
 	 * Using this information it generates the path to the file, determines the correct type of level
 	 * to create, and returns that object.
 	 * @param levelID - ID of the level being opened
+	 * @return AbstractLevelModel that was loaded from disk
 	 */
 	public AbstractLevelModel loadLevel(int levelID) throws Exception{
 		ObjectInputStream ois = null;

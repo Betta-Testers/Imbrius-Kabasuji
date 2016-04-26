@@ -162,7 +162,7 @@ public class StarMap implements Serializable{
 	 * Get the maximumStarsEarned associated with the levelID
 	 * Returns null if the key does not have a value associated with it
 	 * Throws a null pointer exception if the key does not exist in the map
-	 * @param key
+	 * @param key being lookedup
 	 * @return value associated with key - the maxStarsEarned or null if the levelID does not have a value associated with it
 	 */
 	public Integer getMaxStars(Integer key) throws Exception{

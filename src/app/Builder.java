@@ -28,17 +28,28 @@ public class Builder extends LevelIO{
 	/**Current level being edited.**/
 	AbstractLevelModel currentLevel;
 
+	/**
+	 * Creates the builder
+	 * @param directory the builder is located in
+	 */
 	public Builder(String directory){
 		super(directory);
 		this.initialize();
 	}
 
+	/**
+	 * Initializes the starMap for the builder, the views, and the controllers.
+	 */
 	void initialize(){
 		this.levelData = loadStarMap();
 		this.initializeView();
-		this.initializeControllers();
+		ltsv.initializeControllers(this);
 	}
 
+	/**
+	 * Prepares the view of the level Type Select screen, adding all existing levels to the 
+	 * screen.
+	 */
 	void initializeView(){
 		ltsv = new LevelTypeSelectView();
 
@@ -51,10 +62,6 @@ public class Builder extends LevelIO{
 		}
 		
 		ltsv.refreshExistingLevels();
-	}
-
-	void initializeControllers(){
-		ltsv.initializeControllers(this);
 	}
 
 	/**
@@ -105,6 +112,12 @@ public class Builder extends LevelIO{
 		return false;
 	}
 	
+	/**
+	 * Prepares the builderView and builder for creating a release level.
+	 * It generates a blank release level, sets it to the current level,
+	 * creates the Builder view and then tells the view to prepare for 
+	 * that level.
+	 */
 	public void createReleaseLevel() {
 		LevelFactory factory = new LevelFactory();
 		ReleaseLevel rl = factory.GenerateBlankRelease(levelData.nextOpenID());
@@ -113,6 +126,12 @@ public class Builder extends LevelIO{
 		bv.prepRelease();
 	}
 
+	/**
+	 * Prepares the builderView and builder for creating a puzzle level.
+	 * It generates a blank puzzle level, sets it to the current level,
+	 * creates the Builder view and then tells the view to prepare for 
+	 * that level.
+	 */
 	public void createPuzzleLevel() {
 		LevelFactory factory = new LevelFactory();
 		PuzzleLevel pl = factory.GenerateBlankPuzzle(levelData.nextOpenID());
@@ -121,6 +140,12 @@ public class Builder extends LevelIO{
 		bv.prepPuzzle();
 	}
 
+	/**
+	 * Prepares the builderView and builder for creating a lightning level.
+	 * It generates a blank lightning level, sets it to the current level,
+	 * creates the Builder view and then tells the view to prepare for 
+	 * that level.
+	 */
 	public void createLightningLevel() {
 		LevelFactory factory = new LevelFactory();
 		LightningLevel ll = factory.GenerateBlankLightning(levelData.nextOpenID());
@@ -185,15 +210,31 @@ public class Builder extends LevelIO{
 	}
 
 	//========================== Getters ==========================//
+	/**
+	 * Gets the builder view
+	 * @return builder view
+	 */
 	public BuilderView getBuilderView(){
 		return bv;
 	}
+	/**
+	 * Gets the level Type select view
+	 * @return LevelTypeSelectView
+	 */
 	public LevelTypeSelectView getLevelTypeSelectView(){
 		return ltsv;
 	}
+	/**
+	 * Get the highest Level ID that is occupied in the starmap (levelData).
+	 * @return int of level ID
+	 */
 	public int getHighestLevelID(){
 		return levelData.lastID();
 	}
+	/**
+	 * Get the current level being modified in the builder.
+	 * @return AbstractLevelModel currentLevel.
+	 */
 	public AbstractLevelModel getCurrentLevel(){
 		return currentLevel;
 	}

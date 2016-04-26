@@ -14,7 +14,7 @@ import java.awt.Font;
  * Class for displaying the number of moves left in a puzzle GAME.
  * 
  * @author dfontana
- * @author aharrison
+ * @author awharrison
  */
 public class NumberMovesLeftView extends JPanel {
 	private static final long serialVersionUID = 1L;

@@ -7,8 +7,8 @@ import model.Bullpen;
 import model.Piece;
 
 /**
+ * Move for flipping the select piece vertically (accross the horizontal axis).
  * @author hejohnson
- *
  */
 public class FlipVerticalMove implements IMove {
 	/** The piece to be flipped **/
@@ -40,6 +40,8 @@ public class FlipVerticalMove implements IMove {
 	}
 
 	/**
+	 * The move is valid if the selected piece of the bullpen is equal to
+	 * the piece being manipulated.
 	 * @return True if the piece is the selected piece
 	 */
 	@Override
