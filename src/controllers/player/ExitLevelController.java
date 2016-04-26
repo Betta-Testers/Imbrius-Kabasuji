@@ -6,11 +6,11 @@ import java.awt.event.WindowEvent;
 import app.Game;
 import view.LevelView;
 
-public class ExitLevelButtonController extends WindowAdapter{
+public class ExitLevelController extends WindowAdapter{
 	Game game;
 	LevelView view;
 	
-	public ExitLevelButtonController(LevelView v, Game g) {
+	public ExitLevelController(LevelView v, Game g) {
 		this.view = v;
 		this.game = g;
 	}

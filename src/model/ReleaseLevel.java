@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import app.Game;
-import controllers.player.ExitLevelButtonController;
+import controllers.player.ExitLevelController;
 import controllers.player.ReleaseBoardGameController;
 import view.LevelView;
 import view.NumbersReleasedView;
@@ -129,7 +129,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	@Override
 	public LevelView initializeGame(Game g) {
 		LevelView view = new LevelView("Release", new NumbersReleasedView(), this);
-		view.addWindowListener(new ExitLevelButtonController(view, g));
+		view.addWindowListener(new ExitLevelController(view, g));
 		rbgc = new ReleaseBoardGameController(g, view);
 		view.getBoardView().addMouseListener(rbgc);
 		view.getBoardView().addMouseMotionListener(rbgc);
