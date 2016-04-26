@@ -27,6 +27,7 @@ public class FlipVerticalMove implements IMove {
 	FlipVerticalMove (Piece p, Bullpen bp, SelectedPieceView spv) {
 		this.p = p;
 		this.bp = bp;
+		this.spv = spv;
 	}
 
 	/**

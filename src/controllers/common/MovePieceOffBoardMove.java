@@ -90,14 +90,23 @@ public class MovePieceOffBoardMove implements IMove {
 	}
 	
 	/**
-	 * To redo this move, the move is executed again. As of now there is no 
-	 * test to ensure a move can be redone, rather the undo manager would make
-	 * sure that no other move has been executed since this move was undone.
+	 * To redo this move, the move can't be executed again because the
+	 * piece needs to be removed from the board: the pressed event does that in
+	 * the controller. Otherwise, redo is the same as dOmove
 	 * @return boolean - returns true if the move could be done.
 	 */
 	@Override
 	public boolean redo() {
-		return doMove();
+		bullpen.incrementPiece(piece.getID());
+		board.setDraggedPiece(null);
+		board.removePiece(piece);
+		bpv.updatePieceGroup(piece);
+		
+		//Redraw
+		board.clearPiecePreview();
+		bv.redraw();
+		bv.repaint();
+		return true;
 	}
 
 }

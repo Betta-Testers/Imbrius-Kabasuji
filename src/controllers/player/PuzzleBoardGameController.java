@@ -108,7 +108,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 					m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, game.getLevelView().getBullpenView(), spv, boardView);
 				}
 			} else {
-				m = new MovePieceOnBoardMove(levelModel.getBoard(), source, levelModel.getBoard().getDraggedPiece(), rOffset, cOffset, spv, boardView);
+				m = new MovePieceOnBoardMove(levelModel.getBoard(), source, levelModel.getBoard().getDraggedPiece(), rOffset, cOffset, boardView);
 			}
 			
 			if (m.doMove()) {

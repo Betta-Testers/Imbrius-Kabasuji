@@ -4,7 +4,6 @@ import model.AbstractTile;
 import model.Board;
 import model.Piece;
 import view.BoardView;
-import view.SelectedPieceView;
 
 /**
  * Move handling the movement of a piece on the board into another location on the board
@@ -27,8 +26,6 @@ public class MovePieceOnBoardMove implements IMove{
 	int rOffset;
 	/**Location the piece will be placed in - col**/
 	int cOffset;
-	/**Updates the selected piece view**/
-	SelectedPieceView spv;
 	/**Updates the view of the board**/
 	BoardView bv;
 	
@@ -40,13 +37,12 @@ public class MovePieceOnBoardMove implements IMove{
 	 * @param rOffset - offset of row where the piece wants to be placed
 	 * @param cOffset - offset of col where the piece wants to be placed
 	 */
-	public MovePieceOnBoardMove (Board board, AbstractTile tile, Piece p, int rOffset, int cOffset, SelectedPieceView spv, BoardView bv) {
+	public MovePieceOnBoardMove (Board board, AbstractTile tile, Piece p, int rOffset, int cOffset, BoardView bv) {
 		this.board = board;
 		this.sourceTile = tile;
 		this.p = p;
 		this.rOffset = rOffset;
 		this.cOffset = cOffset;
-		this.spv = spv;
 		this.bv = bv;
 	}
 	
@@ -58,16 +54,13 @@ public class MovePieceOnBoardMove implements IMove{
 	 */
 	public boolean doMove() {
 		if (isValid()) {
-			board.clearPiecePreview();
 			this.originalRow = p.getOriginRow();
 			this.originalCol = p.getOriginCol();
-			//board.removePiece(p);
 			board.putPieceOnBoard(p, sourceTile.getRow()+rOffset, sourceTile.getCol()+cOffset);
 			board.setDraggedPiece(null);
 			
 			//Redraw
-			spv.getPiecePanel().redraw();
-			spv.getPiecePanel().repaint();
+			board.clearPiecePreview();
 			bv.redraw();
 			bv.repaint();
 			return true;
@@ -100,19 +93,29 @@ public class MovePieceOnBoardMove implements IMove{
 		board.putPieceOnBoard(p, originalRow, originalCol);
 		
 		//Redraw
-		spv.getPiecePanel().redraw();
-		spv.getPiecePanel().repaint();
+		board.clearPiecePreview();
 		bv.redraw();
 		bv.repaint();
 		return true;
 	}
 	
 	/**
-	 * Redoes the move.
+	 * Redoes the move, but instead of just setting dragged to null, it removes the piece
+	 * since the mouse event can't do that for it.
 	 * @return true if the move could be made again
 	 */
 	@Override
 	public boolean redo() {
-		return doMove();
+		this.originalRow = p.getOriginRow();
+		this.originalCol = p.getOriginCol();
+		board.removePiece(p);
+		board.putPieceOnBoard(p, sourceTile.getRow()+rOffset, sourceTile.getCol()+cOffset);
+		board.setDraggedPiece(null);
+		
+		//Redraw
+		board.clearPiecePreview();
+		bv.redraw();
+		bv.repaint();
+		return true;
 	}
 }

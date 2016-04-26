@@ -131,7 +131,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				}
 			}else{
 				if (mouseOn) {
-					move = new MovePieceOnBoardMove(board, source, board.getDraggedPiece(), rOffset, cOffset, spv, boardView);
+					move = new MovePieceOnBoardMove(board, source, board.getDraggedPiece(), rOffset, cOffset, boardView);
 					if(!move.doMove()){
 						if(board.getDraggedPiece() != null){ // Move failed, put the piece back
 							board.putPieceOnBoard(board.getDraggedPiece(), board.getDraggedPiece().getOriginRow(), board.getDraggedPiece().getOriginCol());

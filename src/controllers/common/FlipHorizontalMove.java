@@ -24,6 +24,7 @@ public class FlipHorizontalMove implements IMove {
 	FlipHorizontalMove (Piece p, Bullpen bp, SelectedPieceView spv) {
 		this.p = p;
 		this.bp = bp;
+		this.spv = spv;
 	}
 
 	/**

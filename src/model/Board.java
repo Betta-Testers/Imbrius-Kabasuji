@@ -79,8 +79,6 @@ public class Board implements Serializable{
 	 * @return if the piece was placed - boolean
 	 */
 	public boolean putPieceOnBoard(Piece p, int row, int col) {
-
-		System.out.println(p.toString());
 		p.setLocation(row, col);
 		if (willFit(p, row, col)) {
 			for (int i = 0; i < 6; i++) {
@@ -88,7 +86,6 @@ public class Board implements Serializable{
 				p.tiles[i].setPreviousTile(temp);
 			}
 			pieces.add(p);
-			System.out.println(pieces.toString());
 			return true;
 		}
 		return false;
@@ -114,14 +111,11 @@ public class Board implements Serializable{
 	 * @return if the piece existed and was removed - boolean
 	 */
 	public boolean removePiece(Piece p) {
-
-		System.out.println(p.toString());
 		if (pieces.contains(p)) {
 			for (int i = 0; i < 6; i++) {
 				swapTile(p.tiles[i].getPreviousTile());
 			}
 			pieces.remove(p);
-			System.out.println(pieces.toString());
 			return true;
 		} else {
 			return false;

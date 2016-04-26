@@ -32,7 +32,8 @@ public class TestBoard extends TestCase{
 	
 	//test if the swap method works (run in setUp)
 	public void testSwapTile(){
-		assertEquals("board r:0 c:0", b.board[0][0].toString());
+		//assertEquals("board r:0 c:0", b.board[0][0].toString()); TODO remove if working
+		assertEquals("board:0,0", b.board[0][0].toString());
 	}
 	
 	//test the number of board tiles

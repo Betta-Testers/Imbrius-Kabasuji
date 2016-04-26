@@ -74,7 +74,8 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		 * toggle place piece, give piece to place
 		 */
 		lvl.getBullpen().incrementPiece(1);
-		lvl.getBullpen().setSelectedPiece(1);
+		//lvl.getBullpen().setSelectedPiece(1); TODO remove if working
+		lvl.getBullpen().setSelectedPiece(new Piece(1));
 		buildView.getPlacePiecesBtn().doClick();
 		ActionEvent ae = new ActionEvent(buildView.getPlacePiecesBtn(), ActionEvent.ACTION_PERFORMED, "toggle");
 		buildView.getPlacePieceHandler().actionPerformed(ae);
@@ -116,7 +117,8 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		 * reset board, untoggle ConverPieceToBoard button, toggle place hint button, place hint and verify
 		 * note: hints are yellow tiles
 		 */
-		lvl.getBullpen().setSelectedPiece(1);
+		//lvl.getBullpen().setSelectedPiece(1); TODO remove if working
+		lvl.getBullpen().setSelectedPiece(new Piece(1));
 		buildView.getConvertPieceToBoardBtn().doClick();
 		assertFalse(buildView.getConvertPieceToBoardBtn().isSelected());
 		buildView.getPlaceHintBtn().doClick();
@@ -146,7 +148,8 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		 * toggle place hint off, move piece over hint
 		 * place a piece over hint, verify
 		 */
-		lvl.getBullpen().setSelectedPiece(1);
+		//lvl.getBullpen().setSelectedPiece(1); TODO remove if working
+		lvl.getBullpen().setSelectedPiece(new Piece(1));
 		buildView.getPlaceHintBtn().doClick();
 		assertFalse(buildView.getPlaceHintBtn().isSelected());
 		
@@ -246,7 +249,8 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		ArrayList<PieceGroup> pieces = new ArrayList<PieceGroup>();
 		pieces.add(new PieceGroup(1,4));
 		lvl.setBullpen(new Bullpen(pieces));
-		lvl.getBullpen().setSelectedPiece(1);
+		//lvl.getBullpen().setSelectedPiece(1); TODO remove if working
+		lvl.getBullpen().setSelectedPiece(new Piece(1));
 		assertEquals(4, lvl.getBullpen().numAvailablePieces());
 		
 		/*
@@ -329,7 +333,9 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		/*
 		 * create move to place piece to column to the right
 		 */
-		m = new MovePieceOnBoardMove(lvl.getBoard(), placementTile, testPiece, 0, 1, buildView.getSelectedPieceView(), boardView);
+		//TODO the mouse pressed event removes the origin piece from board, didn't do that here. Fixed.
+		board.removePiece(testPiece);
+		m = new MovePieceOnBoardMove(lvl.getBoard(), placementTile, testPiece, 0, 1, boardView);
 		assertTrue(m.doMove());
 		assertEquals(6, board.getNumBoardTiles());
 		assertEquals("board", board.getTileAt(0*board.getTileSize(), 0).getTileType());
@@ -374,10 +380,15 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		/*
 		 * set piece being dragged and create move
 		 */
+		//TODO this move doesn't remove the piece from the board, so you never actully remove the piece from the board in the test
+				//The dragged piece is set in the board controller, and removes the piece from the board there (mousePressed event) 
+				//This move just sets dragged piece to null
+		board.removePiece(testPiece);
 		board.setDraggedPiece(testPiece);
-		m = new MovePieceOffBoardMove(lvl, bpView, boardView);
+		m = new MovePieceOffBoardMove(lvl, bpView, boardView); 
 		assertTrue(m.doMove());
-		assertEquals("board", board.getTileAt(0*board.getTileSize(), 0).getTileType());
+		assertEquals(null,board.getDraggedPiece());
+		assertEquals("board", board.getTileAt(0*board.getTileSize(), 0*board.getTileSize()).getTileType()); 
 		
 		/*
 		 * test undo and redo
