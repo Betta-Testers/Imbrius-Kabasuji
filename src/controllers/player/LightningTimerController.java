@@ -28,8 +28,8 @@ public class LightningTimerController extends WindowAdapter implements ActionLis
 	 * Sets up the timer to fire events every second and repeat
 	 * @param g The game object
 	 */
-	public LightningTimerController(Game g){
-		this.view = g.getLevelView();
+	public LightningTimerController(Game g, LevelView lv){
+		this.view = lv;
 		this.game = g;
 		this.secondsElapsed = 0;
 		this.timer = new Timer(1000, this);

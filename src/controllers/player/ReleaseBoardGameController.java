@@ -40,11 +40,12 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	
 	/**
 	 * @param game The game object
+	 * @param lv The level view
 	 */
-	public ReleaseBoardGameController (Game game) {
+	public ReleaseBoardGameController (Game game, LevelView lv) {
 		this.game = game;
 		this.levelModel = (ReleaseLevel)game.getCurrentLevel();
-		this.levelView = game.getLevelView();
+		this.levelView = lv;
 		this.boardView = levelView.getBoardView();
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();
@@ -117,15 +118,15 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	@Override
 	public void mousePressed(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, game.getLevelView().getBullpenView(), spv, boardView);
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, levelView.getBullpenView(), spv, boardView);
 		
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
 			updateReleasedNumbers(p);
 			if (levelModel.checkStatus()) {
-				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
+				levelView.dispatchEvent(new WindowEvent(levelView, WindowEvent.WINDOW_CLOSING));
 			}
-			game.getLevelView().getLevelInfoView().setStars(levelModel.getStarsEarned());
+			levelView.getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
 	}
 
