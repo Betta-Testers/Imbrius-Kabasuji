@@ -122,7 +122,6 @@ public class TestPlayerPuzzle extends TestCase {
 		 * initialize bullpen with a piece with ID 1
 		 */
 		bullpen.incrementPiece(1);
-		//bullpen.setSelectedPiece(1); TODO remove if working
 		bullpen.setSelectedPiece(new Piece(1));
 		assertEquals(1, bullpen.numAvailablePieces());
 		
@@ -179,7 +178,6 @@ public class TestPlayerPuzzle extends TestCase {
 		 * set a another piece to place
 		 */
 		bullpen.incrementPiece(1);
-		//bullpen.setSelectedPiece(1); TODO remove if working
 		bullpen.setSelectedPiece(new Piece(1));
 		assertEquals(1, bullpen.numAvailablePieces());
 		

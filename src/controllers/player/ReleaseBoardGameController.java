@@ -96,10 +96,6 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
 			updateReleasedNumbers(p);
-//			spv.getPiecePanel().redraw();
-//			spv.getPiecePanel().repaint(); TODO Remove this if working
-//			boardView.redraw();
-//			boardView.repaint();
 			if (levelModel.checkStatus()) {
 				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
 			}

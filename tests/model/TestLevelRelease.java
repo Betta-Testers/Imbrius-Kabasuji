@@ -77,10 +77,4 @@ public class TestLevelRelease extends TestCase {
 	public void testToString(){
 		assertEquals(r.toString(), "Release0falsefalsefalse"+r.board.toString()+r.bullpen.toString());	
 	}
-	/**
-	 * TODO: Check status
-	 */
-	public void testCheckStatus(){
-		//r.checkStatus();
-	}
 }

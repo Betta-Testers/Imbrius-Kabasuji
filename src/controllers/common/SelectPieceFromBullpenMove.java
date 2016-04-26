@@ -39,7 +39,8 @@ public class SelectPieceFromBullpenMove implements IMove {
 	@Override
 	public boolean doMove() {
 		if (isValid()) {
-			return bp.setSelectedPiece(p); //TODO swap back
+			bp.setSelectedPiece(p);
+			return true;
 		}
 		return false;
 	}

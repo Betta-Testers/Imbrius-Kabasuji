@@ -82,7 +82,6 @@ public class TestPlayerLightning extends TestCase {
 		 * initialize bullpen
 		 */
 		bullpen.incrementPiece(1);
-		//bullpen.setSelectedPiece(1); TODO remove if working
 		bullpen.setSelectedPiece(new Piece(1));
 		assertEquals(1, bullpen.numAvailablePieces());
 		
@@ -116,7 +115,6 @@ public class TestPlayerLightning extends TestCase {
 		 * lightning tiles on the board only increases by 1
 		 */
 		bullpen.incrementPiece(1);
-		//bullpen.setSelectedPiece(1); TODO remove if working
 		bullpen.setSelectedPiece(new Piece(1));
 		me = new MouseEvent(boardView, 
 				MouseEvent.MOUSE_RELEASED, 

@@ -102,7 +102,6 @@ public class TestPlayerRelease extends TestCase {
 		bullpen.incrementPiece(1);
 		bullpen.incrementPiece(1);
 		bullpen.incrementPiece(1);
-		//bullpen.setSelectedPiece(1); TODO remove if working
 		bullpen.setSelectedPiece(new Piece(1));;
 		
 		
@@ -138,7 +137,6 @@ public class TestPlayerRelease extends TestCase {
 				System.currentTimeMillis(), 0, 
 				4*board.getTileSize(), 
 				2*board.getTileSize(), 0, false);
-		//bullpen.setSelectedPiece(1); TODO remove if working
 		bullpen.setSelectedPiece(new Piece(1));
 		level.getBoardController().mousePressed(me);
 		assertFalse(level.checkStatus());
@@ -152,7 +150,6 @@ public class TestPlayerRelease extends TestCase {
 				System.currentTimeMillis(), 0, 
 				5*board.getTileSize(), 
 				2*board.getTileSize(), 0, false);
-		//bullpen.setSelectedPiece(1); TODO remove if working
 		bullpen.setSelectedPiece(new Piece(1));
 		level.getBoardController().mousePressed(me);
 		assertTrue(level.checkStatus());

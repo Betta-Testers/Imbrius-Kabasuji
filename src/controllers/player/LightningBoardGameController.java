@@ -45,17 +45,11 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 		
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
-//			spv.getPiecePanel().redraw(); TODO remove if working
-//			spv.getPiecePanel().repaint();
 			levelModel.getBoard().removePiece(p);
-			//Piece addedP = levelModel.getBullpen().addRandomPiece(); //TODO dont store if working
 			levelModel.getBullpen().addRandomPiece();
-//			game.getLevelView().getBullpenView().updatePieceGroup(addedP); TODO remove if working
 			for (PieceTile pt : p.getTiles()) {
 				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
 			}
-//			boardView.redraw(); TODO remove if working
-//			boardView.repaint();
 			if (levelModel.checkStatus()) {
 				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
 			}
