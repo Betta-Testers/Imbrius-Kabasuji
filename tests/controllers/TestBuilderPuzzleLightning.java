@@ -218,7 +218,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 	//====================== Empty to Board Tile to Empty Swapping ======================//
 	public void testTileEmptyToBoardSwapMove() {
 		IMove m;
-		m = new SwapTileEmptyToBoardMove(board.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), buildView.getLevelPropertiesView());
+		m = new SwapTileEmptyToBoardMove(board.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), buildView.getLevelPropertiesView(), boardView);
 		assertTrue(m.doMove());
 		assertEquals(1, board.getNumBoardTiles());
 		m.undo();
@@ -226,7 +226,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		m.redo();
 		assertEquals(1, board.getNumBoardTiles());
 		
-		m = new SwapTileBoardToEmptyMove(board.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), buildView.getLevelPropertiesView());
+		m = new SwapTileBoardToEmptyMove(board.getTileAt(boardView.getX(), boardView.getX()), lvl.getBoard(), buildView.getLevelPropertiesView(), boardView);
 		assertTrue(m.doMove());
 		assertEquals(0, board.getNumBoardTiles());
 		m.undo();
@@ -272,14 +272,14 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		/*
 		 * try to place piece that should fail
 		 */
-		m = new PlacePieceOnBoardFromBullpenMove(lvl, placementTileFail, bpView);
+		m = new PlacePieceOnBoardFromBullpenMove(lvl, placementTileFail, bpView, buildView.getSelectedPieceView(), boardView);
 		assertFalse(m.doMove());
 		
 		/*
 		 *  try to place piece that should complete
 		 */
 		assertEquals("board", board.getTileAt(board.getTileSize(), board.getTileSize()).getTileType());
-		m = new PlacePieceOnBoardFromBullpenMove(lvl, placementTile, bpView);
+		m = new PlacePieceOnBoardFromBullpenMove(lvl, placementTile, bpView, buildView.getSelectedPieceView(), boardView);
 		assertTrue(m.doMove());
 		
 		/*
@@ -329,7 +329,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		/*
 		 * create move to place piece to column to the right
 		 */
-		m = new MovePieceOnBoardMove(lvl, placementTile, testPiece, 0, 1);
+		m = new MovePieceOnBoardMove(lvl.getBoard(), placementTile, testPiece, 0, 1, buildView.getSelectedPieceView(), boardView);
 		assertTrue(m.doMove());
 		assertEquals(6, board.getNumBoardTiles());
 		assertEquals("board", board.getTileAt(0*board.getTileSize(), 0).getTileType());
@@ -375,7 +375,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		 * set piece being dragged and create move
 		 */
 		board.setDraggedPiece(testPiece);
-		m = new MovePieceOffBoardMove(lvl, bpView);
+		m = new MovePieceOffBoardMove(lvl, bpView, boardView);
 		assertTrue(m.doMove());
 		assertEquals("board", board.getTileAt(0*board.getTileSize(), 0).getTileType());
 		

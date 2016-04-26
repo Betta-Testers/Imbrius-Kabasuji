@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controllers.common;
 
 import model.AbstractLevelModel;
@@ -8,7 +5,9 @@ import model.AbstractTile;
 import model.Board;
 import model.Bullpen;
 import model.Piece;
+import view.BoardView;
 import view.BullpenView;
+import view.SelectedPieceView;
 
 /**
  * Move that places a piece on the board from the bullpen.
@@ -16,8 +15,6 @@ import view.BullpenView;
  * @author dfontana
  */
 public class PlacePieceOnBoardFromBullpenMove implements IMove{
-	/**Level entity whose board and bullpen are being operated on**/
-	AbstractLevelModel levelModel;
 	/**The bullpen that is having a piece removed from it**/
 	Bullpen bullpen;
 	/**The board that is having a piece added to it**/
@@ -28,6 +25,10 @@ public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	AbstractTile sourceTile;
 	/**The view of the bullpen, which needs to be updated after the piece is removed from it**/
 	BullpenView bpv;
+	/**Updates view of selected piece**/
+	SelectedPieceView spv;
+	/**Updates view of the board**/
+	BoardView bv;
 	
 	/**
 	 * Creates the move
@@ -35,11 +36,12 @@ public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	 * @param tile - The tile on the board that was clicked
 	 * @param bpv - The Bullpen view that needs to be repainted
 	 */
-	public PlacePieceOnBoardFromBullpenMove (AbstractLevelModel lm, AbstractTile tile, BullpenView bpv) {
+	public PlacePieceOnBoardFromBullpenMove (AbstractLevelModel lm, AbstractTile tile, BullpenView bpv, SelectedPieceView spv, BoardView bv) {
 		this.bpv = bpv;
-		this.levelModel = lm;
-		this.bullpen = levelModel.getBullpen();
-		this.board = levelModel.getBoard();
+		this.spv = spv;
+		this.bv = bv;
+		this.bullpen = lm.getBullpen();
+		this.board = lm.getBoard();
 		this.sourceTile = tile;
 		this.p = bullpen.getSelectedPiece();
 	}
@@ -53,11 +55,17 @@ public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	 */
 	public boolean doMove() {
 		if (isValid()) {
-			board.clearPiecePreview();
 			board.putPieceOnBoard(p, sourceTile.getRow(), sourceTile.getCol());
 			bullpen.decrementPiece(p.getID());
-			bpv.updatePieceGroup(p);
 			bullpen.clearSelectedPiece();
+			board.clearPiecePreview();
+			
+			//Redraw
+			spv.getPiecePanel().redraw();
+			spv.getPiecePanel().repaint();
+			bv.redraw();
+			bv.repaint();
+			bpv.updatePieceGroup(p);
 			return true;
 		}
 		return false;
@@ -87,8 +95,14 @@ public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	public boolean undo() {
 		board.removePiece(p);
 		bullpen.incrementPiece(p.getID());
-		bpv.updatePieceGroup(p);
 		bullpen.setSelectedPiece(p.getID());
+		
+		//Redraw
+		spv.getPiecePanel().redraw();
+		spv.getPiecePanel().repaint();
+		bv.redraw();
+		bv.repaint();
+		bpv.updatePieceGroup(p);
 		return true;
 	}
 	

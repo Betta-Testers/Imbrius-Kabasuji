@@ -117,28 +117,30 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		if(bView.getStateOfPlacement()){
 			if(bView.getStateOfBoardConvert()){
 				if (mouseOn) {
-					move = new PieceToNewBoardTilesMove(bp, board, source, bView.getLevelPropertiesView());
+					move = new PieceToNewBoardTilesMove(bp, board, source, bView.getLevelPropertiesView(), spv, boardView);
 					if(move.doMove()){
 						UndoManager.getInstance().pushMove(move);
 					}
 				}
 			}else if(bView.getStateOfHintConvert()){
 				if (mouseOn) {
-					move = new PieceToHintMove(hintPieces, bp, board, source);
+					move = new PieceToHintMove(hintPieces, bp, board, source, spv, boardView);
 					if(move.doMove()){
 						UndoManager.getInstance().pushMove(move);
 					}
 				}
 			}else{
 				if (mouseOn) {
-					move = new MovePieceOnBoardMove(lm, source, board.getDraggedPiece(), rOffset, cOffset);
+					move = new MovePieceOnBoardMove(board, source, board.getDraggedPiece(), rOffset, cOffset, spv, boardView);
 					if(!move.doMove()){
 						if(board.getDraggedPiece() != null){ // Move failed, put the piece back
 							board.putPieceOnBoard(board.getDraggedPiece(), board.getDraggedPiece().getOriginRow(), board.getDraggedPiece().getOriginCol());
 							board.setDraggedPiece(null);
 							board.clearPiecePreview();
+//							boardView.redraw(); //TODO Do i Need to redraw since move doesn't occur to redraw?
+//							boardView.repaint();
 						}
-						move = new PlacePieceOnBoardFromBullpenMove(lm, source, bpv);
+						move = new PlacePieceOnBoardFromBullpenMove(lm, source, bpv, spv, boardView);
 						if(move.doMove()){
 							UndoManager.getInstance().pushMove(move);
 						}
@@ -147,16 +149,16 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 					}
 				}
 			}
-			spv.getPiecePanel().redraw();
-			spv.getPiecePanel().repaint();
+//			spv.getPiecePanel().redraw(); TODO remove if working
+//			spv.getPiecePanel().repaint();
 		}else if(rncv.getNumberSelected() < 0){
-			move = new RemoveHintMove(hintPieces, source, board);
+			move = new RemoveHintMove(hintPieces, source, board, boardView);
 			if(!move.doMove()){
-				move = new SwapTileBoardToEmptyMove(source, board, bView.getLevelPropertiesView());
+				move = new SwapTileBoardToEmptyMove(source, board, bView.getLevelPropertiesView(), boardView);
 				if(!move.doMove()){
-					move = new SwapTileEmptyToBoardMove(source, board, bView.getLevelPropertiesView());
+					move = new SwapTileEmptyToBoardMove(source, board, bView.getLevelPropertiesView(), boardView);
 					if(!move.doMove()){
-						move = new SwapTileReleaseToBoardMove(source, board);	
+						move = new SwapTileReleaseToBoardMove(source, board, boardView);	
 						if(move.doMove()){
 							UndoManager.getInstance().pushMove(move);
 						}
@@ -170,9 +172,9 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				UndoManager.getInstance().pushMove(move);
 			}
 		}else{
-			move = new SwapTileBoardToReleaseMove(rncv, source, board);
+			move = new SwapTileBoardToReleaseMove(rncv, source, board, boardView);
 			if(!move.doMove()){
-				move = new SwapTileReleaseToReleaseMove(rncv, source, board);
+				move = new SwapTileReleaseToReleaseMove(rncv, source, board, boardView);
 				if(move.doMove()){
 					UndoManager.getInstance().pushMove(move);
 				}
@@ -182,8 +184,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 		
 		
-		boardView.redraw();
-		boardView.repaint();
+//		boardView.redraw();
+//		boardView.repaint();
 	}
 
 	/**
@@ -204,13 +206,13 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	public void mouseExited(MouseEvent me) {
 		if(bView.getStateOfPlacement()){
 			mouseOn = false;
-			IMove move = new MovePieceOffBoardMove(lm, bpv);
+			IMove move = new MovePieceOffBoardMove(lm, bpv, boardView);
 			if(move.doMove()){
 				UndoManager.getInstance().pushMove(move);
 			}
-			board.clearPiecePreview();
-			boardView.redraw();
-			boardView.repaint();
+//			board.clearPiecePreview();
+//			boardView.redraw(); TODO remove if working
+//			boardView.repaint();
 		}
 	}
 

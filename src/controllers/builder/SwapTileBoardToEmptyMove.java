@@ -4,7 +4,9 @@ import controllers.common.IMove;
 import model.AbstractTile;
 import model.Board;
 import model.EmptyTile;
+import view.BoardView;
 import view.LevelPropertiesView;
+import view.SelectedPieceView;
 
 /**
  * Move class for swapping a Board Tile to an Empty Tile in the builder.
@@ -20,6 +22,8 @@ public class SwapTileBoardToEmptyMove implements IMove {
 	EmptyTile newTile;
 	/** LevelPropertiesView whose tile count is affected by the move**/
 	LevelPropertiesView lpv;
+	/**Updates the view of the board**/
+	BoardView bv;
 	
 	/**
 	 * Constructor to make a board to empty tile move.
@@ -27,10 +31,11 @@ public class SwapTileBoardToEmptyMove implements IMove {
 	 * @param b - board being modified
 	 * @param lpv - levelPropertiesView whose tile count is being updated
 	 */
-	public SwapTileBoardToEmptyMove (AbstractTile old, Board b, LevelPropertiesView lpv) {
+	public SwapTileBoardToEmptyMove (AbstractTile old, Board b, LevelPropertiesView lpv, BoardView bv) {
 		this.board = b;
 		this.oldTile = old;
 		this.lpv = lpv;
+		this.bv = bv;
 	}
 	
 	/**
@@ -45,6 +50,10 @@ public class SwapTileBoardToEmptyMove implements IMove {
 			this.newTile = new EmptyTile(oldTile.getRow(), oldTile.getCol());
 			board.swapTile(newTile);
 			lpv.adjustTileCount(-1);
+			
+			//Redraw
+			bv.redraw();
+			bv.repaint();
 			return true;
 		}
 		return false;
@@ -69,6 +78,10 @@ public class SwapTileBoardToEmptyMove implements IMove {
 	public boolean undo() {
 		board.swapTile(oldTile);
 		lpv.adjustTileCount(1);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 	
@@ -81,6 +94,10 @@ public class SwapTileBoardToEmptyMove implements IMove {
 	public boolean redo() {
 		board.swapTile(newTile);
 		lpv.adjustTileCount(-1);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 }

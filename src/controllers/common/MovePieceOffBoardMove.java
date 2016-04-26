@@ -1,7 +1,10 @@
 package controllers.common;
 
 import model.AbstractLevelModel;
+import model.Board;
+import model.Bullpen;
 import model.Piece;
+import view.BoardView;
 import view.BullpenView;
 
 /**
@@ -10,25 +13,28 @@ import view.BullpenView;
  * @author hejohnson
  * @author dfontana
  */
-public class MovePieceOffBoardMove implements IMove {
-	/** The level associated with this move.**/
-	AbstractLevelModel levelModel;
-	
+public class MovePieceOffBoardMove implements IMove {	
 	/**The piece being dragged in this move**/
 	Piece piece;
-	
 	/**The Bullpen view to update**/
 	BullpenView bpv;
+	/**Board being acted upon**/
+	Board board;
+	/**Bullpen being updated**/
+	Bullpen bullpen;
+	/**BoardView being redrawn/repainted**/
+	BoardView bv;
 	
 	/**
 	 * Creates the PieceOffBoardMove
 	 * @param lm - level whose board is having peice is being removed and bullpen being updated
 	 * @param bpv - view of the bullpen being updated
 	 */
-	public MovePieceOffBoardMove (AbstractLevelModel lm, BullpenView bpv) {
+	public MovePieceOffBoardMove (AbstractLevelModel lm, BullpenView bpv, BoardView bv) {
 		this.bpv = bpv;
-		this.levelModel = lm;
-		this.piece = levelModel.getBoard().getDraggedPiece();
+		this.board = lm.getBoard();
+		this.bullpen = lm.getBullpen();
+		this.piece = lm.getBoard().getDraggedPiece();
 	}
 	
 	/**
@@ -39,10 +45,15 @@ public class MovePieceOffBoardMove implements IMove {
 	@Override
 	public boolean doMove() {
 		if(!isValid()){ return false;}
-		levelModel.getBoard().removePiece(piece);
-		levelModel.getBullpen().incrementPiece(piece.getID());
-		levelModel.getBoard().setDraggedPiece(null);
+		board.removePiece(piece);
+		bullpen.incrementPiece(piece.getID());
+		board.setDraggedPiece(null);
 		bpv.updatePieceGroup(piece);
+		
+		//Redraw
+		board.clearPiecePreview();
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 
@@ -66,9 +77,14 @@ public class MovePieceOffBoardMove implements IMove {
 	@Override
 	public boolean undo() {
 		if(!isValid()){return false;}
-		levelModel.getBullpen().decrementPiece(piece.getID());
-		levelModel.getBoard().putPieceOnBoard(piece, piece.getOriginRow(), piece.getOriginCol());
+		bullpen.decrementPiece(piece.getID());
+		board.putPieceOnBoard(piece, piece.getOriginRow(), piece.getOriginCol());
 		bpv.updatePieceGroup(piece);
+		
+		//Redraw
+		board.clearPiecePreview();
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 	

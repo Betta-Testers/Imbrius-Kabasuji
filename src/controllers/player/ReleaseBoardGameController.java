@@ -91,15 +91,15 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	@Override
 	public void mousePressed(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, game.getLevelView().getBullpenView());
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, game.getLevelView().getBullpenView(), spv, boardView);
 		
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
 			updateReleasedNumbers(p);
-			spv.getPiecePanel().redraw();
-			spv.getPiecePanel().repaint();
-			boardView.redraw();
-			boardView.repaint();
+//			spv.getPiecePanel().redraw();
+//			spv.getPiecePanel().repaint(); TODO Remove this if working
+//			boardView.redraw();
+//			boardView.repaint();
 			if (levelModel.checkStatus()) {
 				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
 			}

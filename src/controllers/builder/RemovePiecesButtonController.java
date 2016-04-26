@@ -46,11 +46,11 @@ public class RemovePiecesButtonController implements ActionListener{
 	 * @param ActionEvent button click
 	 */
 	public void actionPerformed(ActionEvent arg0) {
-		IMove m = new RemoveAllPiecesMove(board, bp, bpv);
+		IMove m = new RemoveAllPiecesMove(board, bp, bpv, bv);
 		if(m.doMove()){
 			UndoManager.getInstance().pushMove(m);
-			bv.redraw();
-			bv.repaint();
+//			bv.redraw();
+//			bv.repaint(); TODO remove if working
 		}
 	}
 }

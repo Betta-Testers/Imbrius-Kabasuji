@@ -41,20 +41,20 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView());
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView(), spv, boardView);
 		
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
-			spv.getPiecePanel().redraw();
-			spv.getPiecePanel().repaint();
+//			spv.getPiecePanel().redraw(); TODO remove if working
+//			spv.getPiecePanel().repaint();
 			levelModel.getBoard().removePiece(p);
-			Piece addedP = levelModel.getBullpen().addRandomPiece();
-			game.getLevelView().getBullpenView().updatePieceGroup(addedP);
+			Piece addedP = levelModel.getBullpen().addRandomPiece(); //TODO dont store if working
+//			game.getLevelView().getBullpenView().updatePieceGroup(addedP); TODO remove if working
 			for (PieceTile pt : p.getTiles()) {
 				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
 			}
-			boardView.redraw();
-			boardView.repaint();
+//			boardView.redraw(); TODO remove if working
+//			boardView.repaint();
 			if (levelModel.checkStatus()) {
 				game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));
 			}

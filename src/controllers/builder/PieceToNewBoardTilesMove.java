@@ -7,7 +7,9 @@ import model.BoardTile;
 import model.Bullpen;
 import model.EmptyTile;
 import model.Piece;
+import view.BoardView;
 import view.LevelPropertiesView;
+import view.SelectedPieceView;
 
 /**
  * Move class for using a piece to place board tiles onto a board.
@@ -25,6 +27,10 @@ public class PieceToNewBoardTilesMove implements IMove{
 	AbstractTile sourceTile;
 	/** LevelPropertiesView whose tile count is affected by the move**/
 	LevelPropertiesView lpv;
+	/**Updates the selected piece view after the move is done**/
+	SelectedPieceView spv;
+	/**Updates the board after the move is done**/
+	BoardView bv;
 	
 	/**
 	 * Constructor for a PieceToNewBoardTilesMove
@@ -33,12 +39,14 @@ public class PieceToNewBoardTilesMove implements IMove{
 	 * @param tile origin of click
 	 * @param lpv LevelPropertiesView whose tile count is being updated
 	 */
-	public PieceToNewBoardTilesMove (Bullpen bullpen, Board board, AbstractTile tile, LevelPropertiesView lpv) {
+	public PieceToNewBoardTilesMove (Bullpen bullpen, Board board, AbstractTile tile, LevelPropertiesView lpv, SelectedPieceView spv, BoardView bv) {
 		this.bullpen = bullpen;
 		this.board = board;
 		this.sourceTile = tile;
 		this.p = bullpen.getSelectedPiece();
 		this.lpv = lpv;
+		this.spv = spv;
+		this.bv = bv;
 	}
 	
 	/**
@@ -56,6 +64,12 @@ public class PieceToNewBoardTilesMove implements IMove{
 			}
 			bullpen.clearSelectedPiece();
 			lpv.adjustTileCount(6);
+			
+			//Redraw
+			spv.getPiecePanel().redraw();
+			spv.getPiecePanel().repaint();
+			bv.redraw();
+			bv.repaint();
 			return true;
 		}
 		return false;
@@ -87,15 +101,20 @@ public class PieceToNewBoardTilesMove implements IMove{
 		}
 		bullpen.setSelectedPiece(p.getID());
 		lpv.adjustTileCount(-6);
+		
+		//Redraw
+		spv.getPiecePanel().redraw();
+		spv.getPiecePanel().repaint();
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 	
 	/**
 	 * The move is redone by executing the doMove again, returning true on completion
-	 * @return true
+	 * @return true if move was done again
 	 */
 	public boolean redo() {
-		doMove();
-		return true;
+		return doMove();
 	}
 }

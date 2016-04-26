@@ -8,6 +8,7 @@ import model.Board;
 import model.BoardTile;
 import model.Piece;
 import model.PieceTile;
+import view.BoardView;
 
 /**
  * Move class for removing a hint on the board.
@@ -22,6 +23,8 @@ public class RemoveHintMove implements IMove {
 	ArrayList<Piece>hintPieces;
 	/**Piece that has been found to be the model piece for the hint**/
 	Piece p;
+	/**Updates the view of the board**/
+	BoardView bv;
 
 	/**
 	 * Constructor for making a RemoveHintMove
@@ -29,10 +32,11 @@ public class RemoveHintMove implements IMove {
 	 * @param source - supposed hint tile that was clicked
 	 * @param b - board that is being modified
 	 */
-	public RemoveHintMove(ArrayList<Piece>hintPieces, AbstractTile source, Board b){
+	public RemoveHintMove(ArrayList<Piece>hintPieces, AbstractTile source, Board b, BoardView bv){
 		this.hintPieces = hintPieces;
 		this.source = source;
 		this.b = b;
+		this.bv = bv;
 	}
 	
 	/**
@@ -52,6 +56,10 @@ public class RemoveHintMove implements IMove {
 			}
 			removeFromList(p);
 			b.clearPiecePreview();
+			
+			//Redraw
+			bv.redraw();
+			bv.repaint();
 			return true;
 		}
 		return false;
@@ -111,6 +119,10 @@ public class RemoveHintMove implements IMove {
 			((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(true);
 		}
 		hintPieces.add(p);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 	
@@ -124,6 +136,10 @@ public class RemoveHintMove implements IMove {
 			((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(false);
 		}
 		removeFromList(p);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 	

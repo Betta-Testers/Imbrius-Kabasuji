@@ -5,6 +5,7 @@ import controllers.common.IMove;
 import model.Board;
 import model.Bullpen;
 import model.Piece;
+import view.BoardView;
 import view.BullpenView;
 
 /**
@@ -21,6 +22,8 @@ public class RemoveAllPiecesMove implements IMove {
 	Board board;
 	/**List of all pieces that were removed from the board**/
 	ArrayList<Piece> piecesRemoved;
+	/**View being updated after move/undo**/
+	BoardView bv;
 	
 	/**
 	 * Constructs a Remove All Pieces Move
@@ -28,10 +31,11 @@ public class RemoveAllPiecesMove implements IMove {
 	 * @param bp Bullpen in the builder
 	 * @param bpv View of the bullpen
 	 */
-	public RemoveAllPiecesMove (Board board, Bullpen bp, BullpenView bpv) {
+	public RemoveAllPiecesMove (Board board, Bullpen bp, BullpenView bpv, BoardView bv) {
 		this.bpv = bpv;
 		this.bp = bp;
 		this.board = board;
+		this.bv = bv;
 		this.piecesRemoved = new ArrayList<Piece>();
 	}
 	
@@ -49,6 +53,10 @@ public class RemoveAllPiecesMove implements IMove {
 			bp.incrementPiece(p.getID());
 			bpv.updatePieceGroup(p);
 		}
+		
+		//redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 
@@ -76,6 +84,10 @@ public class RemoveAllPiecesMove implements IMove {
 			bp.decrementPiece(p.getID());
 			bpv.updatePieceGroup(p);
 		}
+		
+		//redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 	
