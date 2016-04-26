@@ -71,7 +71,7 @@ public class BuilderView extends JFrame {
 		this.builder = b;
 		this.m = b.getCurrentLevel();
 		
-		//setResizable(false);
+		setResizable(false);
 		setVisible(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 525, 715);
@@ -330,14 +330,14 @@ public class BuilderView extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(tglbtnPlacePieces)
-							.addGap(18)
-							.addComponent(tglbtnPlaceBoard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(tglbtnPlaceHints, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.LEADING, gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addComponent(tglbtnPlacePieces, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(tglbtnPlaceBoard, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(tglbtnPlaceHints, 0, 0, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 							.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)
 							.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)))
 					.addGap(6)
@@ -345,22 +345,22 @@ public class BuilderView extends JFrame {
 						.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(levelPropertyView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(buttonGroupView, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(releaseNumberView, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(releaseNumberView, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap(16, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(selectedPieceView, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
 							.addGap(10)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(tglbtnPlacePieces, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 									.addComponent(tglbtnPlaceHints, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-									.addComponent(tglbtnPlaceBoard, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(tglbtnPlaceBoard, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+								.addComponent(tglbtnPlacePieces, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
 							.addGap(10))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(bullpenView, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
@@ -375,7 +375,6 @@ public class BuilderView extends JFrame {
 						.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)))
 		);
 		gl_contentPane.linkSize(SwingConstants.VERTICAL, new Component[] {tglbtnPlacePieces, tglbtnPlaceBoard, tglbtnPlaceHints});
-		gl_contentPane.linkSize(SwingConstants.HORIZONTAL, new Component[] {tglbtnPlacePieces, tglbtnPlaceHints});
 		contentPane.setLayout(gl_contentPane);
 	}
 }

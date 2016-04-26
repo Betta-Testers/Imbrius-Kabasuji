@@ -86,7 +86,7 @@ public class TestPlayerPuzzle extends TestCase {
 		/*
 		 * verify that the correct piece was selected
 		 */
-		assertEquals(bullpen.getPlayablePieces().get(0).getPiece(), bullpen.getSelectedPiece());
+		assertEquals(bullpen.getPlayablePieces().get(0).getPiece().getID(), bullpen.getSelectedPiece().getID());
 	}
 	
 	//====================== Tile Placements (both pass and fail) ======================//
