@@ -13,32 +13,50 @@ import javax.swing.border.LineBorder;
 
 import java.awt.Color;
 
+/**
+ * Shows the amount of stars, the level name, and a button to allow the user to play a level. This is used on the level selection screen in game.
+ * @author dfontana
+ *
+ */
+
 public class AvailableLevelView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	GroupLayout layout;
 	StarView starView;
 	JButton btnSelectLevel;
+	int levelID;
 	String lvlname;
 	
 
-	public AvailableLevelView(String s) {
+	/**
+	 * Creates a new AvailableLevelView with a given levelID.
+	 * @param levelID - int
+	 */
+	public AvailableLevelView(int levelID) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setPreferredSize(new Dimension(148, 100));
 		btnSelectLevel = new JButton("");
 		btnSelectLevel.setEnabled(false);
 		btnSelectLevel.setIcon(new ImageIcon(AvailableLevelView.class.getResource("/icons/LockIcon.png")));
 		btnSelectLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		lvlname = s;
+		lvlname = "Level "+levelID;
 		starView = new StarView();
+		this.levelID = levelID;
 		
 		setupLayout();
 	}
 	
+	/**
+	 * Returns the levelID associated to the AvailableLevelView.
+	 * @return levelID - int
+	 */
+	public int getLevelID() {
+		return this.levelID;
+	}
 	
 	/**
 	 * Sets the number of stars displayed for this level to the specified number
-	 * @author dfontana
 	 * @param starsEarned - number of stars to display. Any number other than 1-3 will not change stars
 	 */
 	void updateStars(int starsEarned){
@@ -62,32 +80,25 @@ public class AvailableLevelView extends JPanel {
 	 * Passing it an integer 1,2 or 3 will also display the correct number of stars for the
 	 * level!
 	 * Entering a 0 will unlock the level and set the stars to 0 by default
-	 * @param i
+	 * @param i - int
 	 */
 	void unlockLevel(int i){
 		btnSelectLevel.setText(lvlname);
 		btnSelectLevel.setIcon(null);
 		btnSelectLevel.setEnabled(true);
-		if(i==1){
-			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-		}
-		if(i==2){
-			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-		}
-		if(i==3){
-			starView.lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			starView.lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-			starView.lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
-		}
+		starView.setNumStars(i);
 	}
 	
+	/**
+	 * Returns the select level button.
+	 * @return btnSelectLevel - JButton
+	 */
 	public JButton getPlayButton(){
 		return btnSelectLevel;
 	}
 	
 	/**
-	 * Method for setting up the layout for the AvailableLevelView
+	 * Method for setting up the layout for the AvailableLevelView.
 	 */
 	void setupLayout(){
 		layout = new GroupLayout(this);

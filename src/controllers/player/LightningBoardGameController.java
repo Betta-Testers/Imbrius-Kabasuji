@@ -3,6 +3,7 @@ package controllers.player;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowEvent;
 
 import app.Game;
 import controllers.common.PlacePieceOnBoardFromBullpenMove;
@@ -12,75 +13,91 @@ import model.LightningTile;
 import model.Piece;
 import model.PieceTile;
 import view.BoardView;
+import view.BullpenView;
+import view.LevelView;
+import view.SelectedPieceView;
 
 /**
  * @author hejohnson
  */
 
-//TODO add view update stuff
-
 public class LightningBoardGameController implements MouseListener, MouseMotionListener{
+	/** The level currently being played **/
 	AbstractLevelModel levelModel;
-	BoardView boardView;
+	/** THe overarching game object **/
 	Game game;
+	/** The view of the board **/
+	BoardView boardView;
+	/** The view of the bullpen and associated pieces **/
+	BullpenView bpv;
+	/** The view of the piece selected from the bullpen to be placed on the board **/
+	SelectedPieceView spv;
+	/** The window that holds the bullpen and board **/
+	LevelView levelView;
 	
-	LightningBoardGameController (Game game) {
+	/**
+	 *
+	 * @param game The game object
+	 * @param lv The level view
+	 */
+	public LightningBoardGameController (Game game, LevelView lv) {
 		this.game = game;
 		this.levelModel = game.getCurrentLevel();
-		this.boardView = game.getLevelView().getBoardView();
+		this.levelView = lv;
+		this.boardView = levelView.getBoardView();
+		this.bpv = levelView.getBullpenView();
+		this.spv = levelView.getSelectedPieceView();
 	}
 
+	/**
+	 * Handles "placing" pieces on the board
+	 * Tells the piece it has been placed, then swaps out all the tiles that it would cover with lightning tiles
+	 * If 3 stars have been achieved, close the window
+	 */
 	@Override
-	public void mouseClicked(MouseEvent me) {
+	public void mouseReleased(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  game.getLevelView().getBullpenView());
+		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source,  levelView.getBullpenView(), spv, boardView);
 		
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
 			levelModel.getBoard().removePiece(p);
+			levelModel.getBullpen().addRandomPiece();
 			for (PieceTile pt : p.getTiles()) {
 				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
 			}
-			boardView.redraw();
-			boardView.repaint();
 			if (levelModel.checkStatus()) {
-				game.updateStars(levelModel.getID(), levelModel.getStarsEarned());
+				levelView.dispatchEvent(new WindowEvent(levelView, WindowEvent.WINDOW_CLOSING));
 			}
+			levelView.getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
 	}
 
-	@Override
-	public void mouseEntered(MouseEvent me) {
-	
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent me) {
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		 
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	/**
+	 * Shows the preview of the piece where it would be placed, with the origin of the piece located at the tile that the mouse is over
+	 */
 	@Override
 	public void mouseMoved(MouseEvent me) {
+		Piece p;
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		Piece p = levelModel.getBullpen().getSelectedPiece();
-		levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
-		boardView.redraw();
-		boardView.repaint();
+		p = levelModel.getBullpen().getSelectedPiece();
+		
+		if(p != null){
+			levelModel.getBoard().clearPiecePreview();
+			levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
+			boardView.redraw();
+			boardView.repaint();
+		}
 	}
+	
+	@Override
+	public void mouseClicked(MouseEvent me) {}
+	@Override
+	public void mouseEntered(MouseEvent me) {}
+	@Override
+	public void mouseExited(MouseEvent arg0) {}
+	@Override
+	public void mousePressed(MouseEvent me) {}
+	@Override
+	public void mouseDragged(MouseEvent arg0) {}
 }

@@ -13,19 +13,42 @@ import javax.swing.border.EmptyBorder;
 
 import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
-
+/**
+ * The Game window, showing the bullpen, board, selected piece view, and buttons.
+ * @author awharrison
+ * @author dfontana
+ *
+ */
 public class LevelView extends JFrame {
 	private static final long serialVersionUID = 1L;
+	
+	/**Panel of the LevelView.**/
 	JPanel content;
 	
+	/**Stores the SelectedPieceView of LevelView.**/
 	SelectedPieceView selectedPiece;
+	
+	/**Stores the BullpenView of LevelView.**/
 	BullpenView bullpenView;
+	
+	/**Stores the BoardView of LevelView.**/
 	BoardView boardView;
+	
+	/**Stores the LevelInfoView of LevelView.**/
 	LevelInfoView levelInfo;
+	
+	/**Stores the entity class AbstractLevelModel, which will be set to a PuzzleLevel, LightningLevel, or ReleaseLevel.**/
 	AbstractLevelModel m;
 	
+	/**Shows the end condition of the level.**/
 	JPanel endConditionPanel;
 
+	/**
+	 * Creates a LevelVIew given a title, and endConditionPanel, and the AbstractLevelModel.
+	 * @param title - String
+	 * @param endConditionPanel - JPanel
+	 * @param m - AbstractLevelModel
+	 */
 	public LevelView(String title, JPanel endConditionPanel, AbstractLevelModel m) {
 		this.setPreferredSize(new Dimension(600, 660));
 		this.setBounds(100, 100, 600, 660);
@@ -42,13 +65,16 @@ public class LevelView extends JFrame {
 		this.bullpenView = new BullpenView();
 		bullpenView.prepPlayer(m.getBullpen());
 		this.boardView = new BoardView(m.getBoard()); 
-		this.levelInfo = new LevelInfoView(1);
+		this.levelInfo = new LevelInfoView(m.getID());
 		
 		
 		initializeControllers();
 		setupLayout();
 	}
 	
+	/**
+	 * Initialize the controllers for each PieceGroupView in the BullpenView.
+	 */
 	public void initializeControllers() {
 		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
 			pgv.addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPiece));
@@ -58,25 +84,48 @@ public class LevelView extends JFrame {
 	/**
 	 * Returns the endConditionPanel associated with THIS level view
 	 * Allows the ability to cast the return, and thus calling specific
-	 * methods on that panel.
-	 * @return JPanel - Either NumberMovesLeftView, NumberReleasedView, TimeRemiainingView in form of JPanel
+	 * methods on that panel. This can be either NumberMovesLeftView, NumberReleasedView, TimeRemiainingView in form of JPanel.
+	 * @return endConditionPanel - JPanel
 	 */
 	public JPanel getEndConditionPanel(){
 		return endConditionPanel;
 	}
 	
+	/**
+	 * Returns the BoardView associated with the LevelView.
+	 * @return boardView - BoardView
+	 */
 	public BoardView getBoardView() {
 		return this.boardView;
 	}
 
+	/**
+	 * Returns the BullpenView associated with the LevelView.
+	 * @return bullpenView - BullpenView
+	 */
 	public BullpenView getBullpenView() {
 		return this.bullpenView;
 	}
 	
+	/**
+	 * Returns the SelectedPieceView associated with the LevelView.
+	 * @return selectedPieceView - SelectedPieceView
+	 */
 	public SelectedPieceView getSelectedPieceView(){
 		return this.selectedPiece;
 	}
 	
+	/**
+	 * Returns the LevelInfoView associated with the LevelView.
+	 * @return levelInfoView - LevelInfoView
+	 */
+	public LevelInfoView getLevelInfoView() {
+		return this.levelInfo;
+	}
+	
+	/**
+	 * Sets up the layout of the LevelView.
+	 */
 	private void setupLayout() {
 		GroupLayout gl_LevelView = new GroupLayout(this.getContentPane());
 		gl_LevelView.setHorizontalGroup(

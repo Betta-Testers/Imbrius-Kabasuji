@@ -42,9 +42,39 @@ public class TestBuilder extends TestCase {
 		/**Test builder opening a non-empty directory**/
 		(new LevelFactory()).quick15("./imbriusLevelTESTING/");
 		b = new Builder("./imbriusLevelTESTING/");
-		expected = "[1,Puzzle,2],[2,Lightning,3],[3,Release,1],[4,Puzzle,2],[5,Lightning,3],[6,Release,1],[7,Puzzle,2],[8,Lightning,3],[9,Release,1],[10,Puzzle,2],[11,Lightning,3],[12,Release,1],[13,Puzzle,2],[14,Lightning,3],[15,Release,1]";
+		expected = "[1,Puzzle,-1],[2,Lightning,-1],[3,Release,-1],[4,Puzzle,-1],[5,Lightning,-1],[6,Release,-1],[7,Puzzle,-1],[8,Lightning,-1],[9,Release,-1],[10,Puzzle,-1],[11,Lightning,-1],[12,Release,-1],[13,Puzzle,-1],[14,Lightning,-1],[15,Release,-1]";
 		assertEquals(expected, b.levelData.toString());
 		assertEquals(15,b.getHighestLevelID());
+	}
+	
+	public void testDeleteLevel(){
+		/**Generate a few levels to disk/starmap**/
+		b.createPuzzleLevel();
+		b.saveLevel();
+		b.createReleaseLevel();
+		b.saveLevel();
+		b.createLightningLevel();
+		b.saveLevel();
+		
+		
+		/**Check they are all in the StarMap**/
+		String expected = "[1,Puzzle,-1],[2,Release,-1],[3,Lightning,-1]";
+		assertEquals(expected,b.levelData.toString());
+		
+		/**Delete non existant one**/
+		assertFalse(b.deleteLevel(4));
+		
+		/**Verify Level Data is still correct**/
+		expected = "[1,Puzzle,-1],[2,Release,-1],[3,Lightning,-1]";
+		assertEquals(expected,b.levelData.toString());
+		
+		/**Delete non-existant one**/
+		assertTrue(b.deleteLevel(2));
+		
+		/**Verify LevelData is correct**/
+		expected = "[1,Puzzle,-1],[3,Lightning,-1]";
+		assertEquals(expected,b.levelData.toString());
+		
 	}
 	
 	/**

@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import app.Game;
-import controllers.player.ExitLevelButtonController;
+import controllers.player.ExitLevelController;
+import controllers.player.ReleaseBoardGameController;
 import view.LevelView;
 import view.NumbersReleasedView;
 
@@ -12,6 +13,7 @@ import view.NumbersReleasedView;
  * A ReleaseLevel handles the back end for a Release game mode. Tracking the end conditions and progress of 
  * the game.
  * @author dfontana
+ * @author hejohnson
  */
 public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**Serialized ID used for writing to disk**/
@@ -21,12 +23,15 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * Only numbers 1-6 exist, and only 1 set of each color exists. So when a number is released
 	 * it is populated into the index = value-1**/
 	transient int reds[];
-	transient int yellows[];
+	transient int greens[];
 	transient int blues[];
+	
+	/** The rbgc is the controller that handles mouse actions associated with THIS level's board**/
+	ReleaseBoardGameController rbgc;
 
 	/**
-	 * Generates a ReleaseLevel
-	 * @param levelID - Id of this level being made
+	 * Generates a ReleaseLevel from a given levelID.
+	 * @param levelID - int
 	 */
 	public ReleaseLevel(int levelID) {
 		super(levelID, "Release", false);
@@ -44,12 +49,12 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 */
 	void initializeVars() {
 		reds = new int[6];
-		yellows = new int[6];
+		greens = new int[6];
 		blues = new int[6];
 		
 		for(int i=0; i<6; i++){
 			reds[i] = -1;
-			yellows[i] = -1;
+			greens[i] = -1;
 			blues[i] = -1;
 		}
 	}
@@ -61,26 +66,26 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	 * 
 	 * After the StarsEarned is modified, checkStatus then returns the boolean as to whether or not the level is 
 	 * completed. It returns true if all sets are released OR the bullpen no longer has any pieces to be played.
-	 * @return	boolean - true if level is complete
+	 * @return	if level is complete - boolean
 	 */
 	@Override
 	public boolean checkStatus() {
 		boolean redSum = sumIsSix(reds);
 		boolean blueSum = sumIsSix(blues);
-		boolean yellowSum = sumIsSix(yellows);
-		
+		boolean greenSum = sumIsSix(greens);
+		starsEarned = 0;
 		if(redSum){  	starsEarned++;}
 		if(blueSum){ 	starsEarned++;}
-		if(yellowSum){	starsEarned++;}
+		if(greenSum){	starsEarned++;}
 		
-		return (redSum&&blueSum&&yellowSum) || bullpen.isEmpty();
+		return (redSum&&blueSum&&greenSum) || bullpen.isEmpty();
 	}
 	
 	/**
 	 * Helper method to update progress. Allows to check the array passed in sums to 6, indicating all
 	 * numbers in a set is released.
-	 * @param array being summed
-	 * @return true if the array sums to 6
+	 * @param array (to be summed) - int[]
+	 * @return if sum = 6 - boolean
 	 */
 	boolean sumIsSix(int array[]){
 		int total = 0;
@@ -92,7 +97,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the reds array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
-	 * @param releasedNum Is the number that was released
+	 * @param releasedNum (number that was released) - int
 	 */
 	public void addToRedReleased(int releasedNum){
 		if(reds[releasedNum-1] != 1) { reds[releasedNum-1] = 1; }
@@ -101,40 +106,43 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	/**
 	 * Fills the index of the blues array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
-	 * @param releasedNum Is the number that was released
+	 * @param releasedNum (number that was released) - int
 	 */
 	public void addToBlueReleased(int releasedNum){
 		if(blues[releasedNum-1] != 1) { blues[releasedNum-1] = 1; }
 	}
 	
 	/**
-	 * Fills the index of the yellows array with a marker, indicating the corresponding number was released.
+	 * Fills the index of the greens array with a marker, indicating the corresponding number was released.
 	 * Only fills if the number has not already released (Aka: Handles duplicate numbers on board).
-	 * @param releasedNum Is the number that was released
+	 * @param releasedNum (number that was released) - int
 	 */
-	public void addToYellowReleased(int releasedNum){
-		if(yellows[releasedNum-1] != 1) { yellows[releasedNum-1] = 1; }
+	public void addToGreenReleased(int releasedNum){
+		if(greens[releasedNum-1] != 1) { greens[releasedNum-1] = 1; }
 	}
 
 	/**
 	 * Initializes the view to display correctly for a lightninglevel. 
-	 * @param g - Game where levelView is located
-	 * @return LevelView - view of the initialized LevelView
+	 * @param g (where levelView is located) - Game
+	 * @return view (initialized levelView) - LevelView
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
 		LevelView view = new LevelView("Release", new NumbersReleasedView(), this);
-		view.addWindowListener(new ExitLevelButtonController(view, g));
+		view.addWindowListener(new ExitLevelController(g, view));
+		rbgc = new ReleaseBoardGameController(g, view);
+		view.getBoardView().addMouseListener(rbgc);
+		view.getBoardView().addMouseMotionListener(rbgc);
 		return view;
 	}
 	
 	/**
-	 * Returns a string representation of this level
-	 * @return string of this level
+	 * Returns a string representation of this level.
+	 * @return string representation of this level - String
 	 */
 	@Override
 	public String toString(){
-		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(yellows)+board.toString()+bullpen.toString();
+		return levelType+levelID+sumIsSix(reds)+sumIsSix(blues)+sumIsSix(greens)+board.toString()+bullpen.toString();
 	}
 	
 	/**
@@ -144,5 +152,9 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
 		initializeVars();
+	}
+	
+	public ReleaseBoardGameController getBoardController() {
+		return this.rbgc;
 	}
 }

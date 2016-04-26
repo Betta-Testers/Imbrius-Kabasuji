@@ -6,12 +6,20 @@ import app.Game;
 import view.LevelSelectionView;
 
 public class PlayLevelButtonController implements java.awt.event.ActionListener {
+	/** The view that this button is a part of **/
 	LevelSelectionView selectLevel;
+	/** The game object that plays the levels **/
 	Game model;
 	
 	/**The ID of the level associated with this controller**/
 	int levelID;
 	
+	/** 
+	 * 
+	 * @param selectLevel The window that this button is a part of
+	 * @param g The game object used to play levels
+	 * @param levelID The level ID that this button is associated with
+	 */
 	public PlayLevelButtonController (LevelSelectionView selectLevel, Game g, int levelID) {
 		this.selectLevel = selectLevel;
 		this.model = g;
@@ -24,8 +32,8 @@ public class PlayLevelButtonController implements java.awt.event.ActionListener 
 	 * associated controllers.
 	 */
 	public void actionPerformed(ActionEvent ae) {
+		model.getExitView().setStars(0);
 		this.selectLevel.setVisible(false);
 		model.displayLevel(levelID);
-		//model.getLevelView().setVisible(true);
 	}
 }

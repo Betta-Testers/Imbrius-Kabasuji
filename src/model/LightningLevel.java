@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import app.Game;
-import controllers.player.ExitLevelButtonController;
+import controllers.player.ExitLevelController;
+import controllers.player.LightningBoardGameController;
+import controllers.player.LightningTimerController;
 import view.LevelView;
 import view.TimeRemainingView;
 
@@ -19,14 +21,17 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	
 	/**Total time the level has to be played, in seconds**/
 	int totalTime;
+	
+	/** The lbgc is the controller that handles mouse actions associated with THIS level's board**/
+	LightningBoardGameController lbgc;
 
 	/**
 	 * Makes a lightninglevel
-	 * @param levelID id of this level being made
+	 * @param levelID id of this level being made - int
 	 */
 	public LightningLevel(int levelID) {
 		super(levelID, "Lightning", false);
-		totalTime = 0;
+		totalTime = 1;
 	}
 	
 	/**
@@ -50,16 +55,16 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
-	 * Sets the totalTime for the lightning level
-	 * @param totalTime
+	 * Sets the totalTime for the lightning level.
+	 * @param totalTime - int
 	 */
 	public void setTotalTime(int totalTime){
 		this.totalTime = totalTime;
 	}
 	
 	/**
-	 * Returns the totalTime this lightning level allows
-	 * @return int - totalTime in seconds
+	 * Returns the totalTime this lightning level allows.
+	 * @return totalTime in seconds - int
 	 */
 	public int getTotalTime(){
 		return this.totalTime;
@@ -72,14 +77,19 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	@Override
 	public LevelView initializeGame(Game g) {
-		LevelView view = new LevelView("Lightning", new TimeRemainingView(), this);
-		view.addWindowListener(new ExitLevelButtonController(view, g));
+		LevelView view = new LevelView("Lightning", new TimeRemainingView(this), this);
+		view.addWindowListener(new ExitLevelController(g, view));
+		LightningTimerController ltc = new LightningTimerController(g, view);
+		view.addWindowListener(ltc);
+		lbgc = new LightningBoardGameController(g, view);
+		view.getBoardView().addMouseListener(lbgc);
+		view.getBoardView().addMouseMotionListener(lbgc);
 		return view;
 	}
 	
 	/**
-	 * Creates a toString of this level
-	 * @return string representation of this level
+	 * Creates a toString of this level.
+	 * @return string representation of this level - String
 	 */
 	@Override
 	public String toString(){
@@ -92,6 +102,10 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
+	}
+	
+	public LightningBoardGameController getBoardController() {
+		return this.lbgc;
 	}
 
 }

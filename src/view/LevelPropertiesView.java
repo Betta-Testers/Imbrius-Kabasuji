@@ -2,38 +2,52 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Font;
-
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-
 import model.AbstractLevelModel;
-
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 import controllers.builder.SetNumberOfMovesSpinnerController;
+import controllers.builder.TimeLimitSpinnerController;
+import model.PuzzleLevel;
+import model.LightningLevel;
 
+/**
+ * JPanel for displaying the properties of a given level.
+ * Configurable to display information relevant only to the current
+ * level type being edited.
+ * @author dfontana
+ */
 public class LevelPropertiesView extends JPanel{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	/**Layout manager for this LevelPropertiesView.**/
 	GroupLayout groupLayout;
+	/**Title of the panel.**/
 	JLabel lblTitle;
+	/**Label for the Tile Count.**/
 	JLabel lblTileCount;
+	/**Label displaying the current tile count.**/
 	JLabel lblTileCountVar;
+	/**Integer tracking the tile count label's value.**/
+	int tileCount;
+	/**Label for setting Moves in Puzzle.**/
 	JLabel lblSetMoves;
+	/**Label for setting Time in Lightning.**/
 	JLabel lblSetTime;
-	JLabel lblSetPieceCt;
+	/**Spinner for setting the value of Move Limit in Puzzle.**/
 	JSpinner spinMoves;
+	/**Spinner for setting the value of Time in Lightning.**/
 	JSpinner spinTime;
-	JSpinner spinPieceCt;
+	/**The level whose properties are being displayed.**/
 	AbstractLevelModel levelModel;
 	
+	/**
+	 * Constructs a LevelPropertiesView.
+	 */
 	public LevelPropertiesView(){
 		setPreferredSize(new Dimension(120, 120));
 		lblTitle = new JLabel("Level Properties");
@@ -41,18 +55,14 @@ public class LevelPropertiesView extends JPanel{
 		lblTileCountVar = new JLabel("0");
 		lblSetMoves = new JLabel("Set Moves:");
 		lblSetTime = new JLabel("Set Time:");
-		lblSetPieceCt = new JLabel("Set Piece Ct:");
 		
 		spinMoves = new JSpinner();
 		spinTime = new JSpinner();
-		spinPieceCt = new JSpinner();
 		
 		spinMoves.setEnabled(true);
-		spinPieceCt.setEnabled(true);
 		spinTime.setEnabled(true);
 		
 		lblSetMoves.setEnabled(true);
-		lblSetPieceCt.setEnabled(true);
 		lblSetTime.setEnabled(true);
 		
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -61,43 +71,44 @@ public class LevelPropertiesView extends JPanel{
 		lblSetTime.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		spinMoves.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController(this));
-		spinTime.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spinTime.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		
+		tileCount = 0;
 		setupLayout();
 	}
 	
-	
 	/**
 	 * Hides irrelevant information to a lightning level.
+	 * Prepares the controllers relevant to a lightning level.
 	 */
 	public void lightning(){
 		lblSetMoves.setVisible(false);
 		spinMoves.setVisible(false);
-		lblSetPieceCt.setVisible(true);
-		spinPieceCt.setVisible(true);
 		lblSetTime.setVisible(true);
 		spinTime.setVisible(true);
+		spinTime.setValue(((LightningLevel)levelModel).getTotalTime());
+		
+		spinTime.addChangeListener(new TimeLimitSpinnerController((LightningLevel) levelModel));
 	}
 	
 	/**
 	 * Hides irrelevant information to a puzzle level.
+	 * Prepares the controllers relevant to a puzzle level.
 	 */
 	public void puzzle(){
 		lblSetMoves.setVisible(true);
-		spinMoves.setVisible(true);
-		lblSetPieceCt.setVisible(false);
-		spinPieceCt.setVisible(false);
 		lblSetTime.setVisible(false);
 		spinTime.setVisible(false);
+		spinMoves.setVisible(true);
+		spinMoves.setValue(((PuzzleLevel)levelModel).getMoveLimit());
+		
+		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel)levelModel));
 	}
 	
 	/**
 	 * Hides irrelevant information to a release level.
 	 */
 	public void release(){
-		lblSetPieceCt.setVisible(false);
-		spinPieceCt.setVisible(false);
 		lblSetMoves.setVisible(false);
 		spinMoves.setVisible(false);
 		lblSetTime.setVisible(false);
@@ -105,15 +116,37 @@ public class LevelPropertiesView extends JPanel{
 	}
 	
 	/**
-	 * A method used to set the level model of a LevelPropertiesView
+	 * Adjusts the label showing the current count of board tile, making it easier to build levels that of size 6n.
+	 * The input parameter represents the change of tile count (can be + or -).
+	 * @param delta - int
+	 */
+	public void adjustTileCount(int delta){
+		tileCount += delta;
+		lblTileCountVar.setText(Integer.toString(tileCount));
+	}
+	
+	/**
+	 * A method used to set the level model of a LevelPropertiesView.
+	 * This initializes information regarding the number of board tiles as well.
+	 * Sets the label's text to reflect this amount.
 	 * @param levelModel the LevelModel being set by the method
 	 */
 	public void setLevelModel(AbstractLevelModel levelModel) {
 		this.levelModel = levelModel;
+		tileCount = levelModel.getBoard().interactableTileCount();
+		lblTileCountVar.setText(Integer.toString(tileCount));
 	}
 	
 	/**
-	 * Method for setting up the layout for the LevelPropertiesView
+	 * Returns the levelModel used in the LevelPropertiesView.
+	 * @return AbstractLevelModel
+	 */
+	public AbstractLevelModel getLevelModel() {
+		return levelModel;
+	}
+
+	/**
+	 * Sets up the layout for the LevelPropertiesView.
 	 */
 	private void setupLayout(){
 		groupLayout = new GroupLayout(this);
@@ -125,14 +158,12 @@ public class LevelPropertiesView extends JPanel{
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblTileCount)
 								.addComponent(lblSetTime)
-								.addComponent(lblSetMoves)
-								.addComponent(lblSetPieceCt))
+								.addComponent(lblSetMoves))
 							.addGap(11)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblTileCountVar, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
 								.addComponent(spinTime, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-								.addComponent(spinMoves, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-								.addComponent(spinPieceCt, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)))
+								.addComponent(spinMoves, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)))
 						.addComponent(lblTitle)))
 		);
 		groupLayout.setVerticalGroup(
@@ -151,16 +182,9 @@ public class LevelPropertiesView extends JPanel{
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblSetTime)
 						.addComponent(spinTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblSetPieceCt)
-						.addComponent(spinPieceCt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED))
 		);
 		this.setLayout(groupLayout);
-	}
-	
-	public AbstractLevelModel getLevelModel() {
-		return levelModel;
 	}
 
 }

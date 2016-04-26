@@ -6,13 +6,17 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
+ * Represents the collection of PieceGroups the user can access.
  * @author awharrison
  * @author dfontana
  */
 public class Bullpen implements Serializable{
 	private static final long serialVersionUID = 354746744366050487L;
 
+	/** playablePieces stores the piece groups that can be used in the game.**/
 	ArrayList<PieceGroup> playablePieces = new ArrayList<PieceGroup>();
+
+	/** selectedPiece stores what piece has been selected from the bullpen. **/
 	transient Piece selectedPiece;
 
 	/**
@@ -28,8 +32,8 @@ public class Bullpen implements Serializable{
 	}
 
 	/**
-	 * Create a Bullpen containing a specified group of pieces
-	 * @param pieces
+	 * Create a Bullpen containing a specified group of pieces.
+	 * @param pieces - ArrayList<PieceGroup>
 	 */
 	public Bullpen(ArrayList<PieceGroup> pieces) {
 		this.playablePieces.addAll(pieces);
@@ -37,8 +41,8 @@ public class Bullpen implements Serializable{
 	}
 
 	/**
-	 * Create a Bullpen containing a specified number of random pieces
-	 * @param sizeOfBullpen
+	 * Create a Bullpen containing a specified number of random pieces.
+	 * @param sizeOfBullpen - int
 	 */
 	public Bullpen(int sizeOfBullpen) {
 		if (sizeOfBullpen < 0) {
@@ -46,7 +50,7 @@ public class Bullpen implements Serializable{
 		}
 		for(int i = 0; i < sizeOfBullpen; i++) {
 			int randID = (new Random().nextInt(35))+1;
-			PieceGroup result = getPieceWithID(randID);
+			PieceGroup result = getPieceGroupWithID(randID);
 			if (result != null) {
 				result.incrementCount();
 			} else {
@@ -55,8 +59,13 @@ public class Bullpen implements Serializable{
 		}
 		sortBullpen(); // sort the bullpen by ID
 	}
-	
-	PieceGroup getPieceWithID(int id) {
+
+	/**
+	 * Returns the piece group with the given ID. Returns null if PieceGroup is not found.
+	 * @param ID - int
+	 * @return pg (piece group linked to ID) - PieceGroup
+	 */
+	PieceGroup getPieceGroupWithID(int id) {
 		for (PieceGroup pg : playablePieces) {
 			if (pg.getPiece().getID() == id) {
 				return pg;
@@ -65,48 +74,104 @@ public class Bullpen implements Serializable{
 		return null;
 	}
 
-
 	/**
-	 * Add a specified number of random pieces to this bullpen
-	 * @param numPieces
+	 * Adds a single random piece to the bullpen.
+	 * Increments the count if that piece group exists.
+	 * Adds the new piece group if it doesn't.
+	 * @return the piece that was added - Piece
 	 */
-	public void addRandomPieces(int numPieces) {
-		if (numPieces < 0) {
-			throw new RuntimeException("Cannot add a negative number of pieces to the Bullpen");
+	public Piece addRandomPiece(){
+		int randID = (new Random().nextInt(35))+1;
+		PieceGroup result = getPieceGroupWithID(randID);
+		if (result != null) {
+			result.incrementCount();
+			return result.getPiece();
+		} else {
+			PieceGroup added = new PieceGroup(randID, 1);
+			this.playablePieces.add(added);
+			return added.getPiece();
 		}
-		for(int i = 0; i < numPieces; i++) {
-			this.playablePieces.add(new PieceGroup((new Random().nextInt(35))+1, 1));
-		}
-		sortBullpen(); // sort the bullpen by ID
 	}
 
 	/**
-	 * remove a piece has the given ID from this bullpen's playable pieces
-	 * @param ID
+	 * Increments the count of the piece ID provided. If the piece exists,
+	 * true is returned. If the piece could not be found, false is returned.
+	 * @param id (the piece ID whose count is being incremented) - int
+	 * @return if the PieceGroup could be incremented - boolean
 	 */
-	public boolean removeSinglePiece(int ID) {
+	public boolean incrementPiece(int id) {
+		PieceGroup pg = getPieceGroupWithID(id);
+		if (pg != null) {
+			pg.incrementCount();
+			return true;
+		} else {
+			throw new RuntimeException("Attempted to increment non-existant pieceGroup");
+		}
+	}
+
+	/**
+	 * Decrements the count of the piece ID provided. If the piece exists,
+	 * true is returned. If the piece could not be found, false is returned.
+	 * This is used for undoing a RemoveAllPieces move.
+	 * @param id (the piece ID whose count is being decremented) - int
+	 * @return if the PieceGroup could be decremented - boolean
+	 */
+	public boolean decrementPiece(int id) {
+		PieceGroup pg = getPieceGroupWithID(id);
+		if(pg != null){
+			pg.decrementCount();
+			return true;
+		}else{
+			throw new RuntimeException("Attempted to decrement non-existant pieceGroup");
+		}
+	}
+
+	/**
+	 * Return this bullpen's playable pieces.
+	 * @return playablePieces - ArrayList<PieceGroup>
+	 */
+	public ArrayList<PieceGroup> getPlayablePieces() {
+		return this.playablePieces;
+	}
+
+	/**
+	 * Return this bullpen's selected piece.
+	 * @return selectedPiece - Piece.
+	 */
+	public Piece getSelectedPiece() {
+		return this.selectedPiece;
+	}
+
+	/** 
+	 * Tells the caller if a piece with the provided ID is available to be selected
+	 * @return True if piece is in the bullpen and has a count of at least one
+	 */
+	public boolean isSelectable(int ID) {
 		for(int i = 0; i < this.playablePieces.size(); i++) {
-			if(this.playablePieces.get(i).getPiece().ID == ID) {
-				this.playablePieces.remove(i);
-				return true; // do not need to sort as removing a single piece from a sorted list still remains sorted
+			if(this.playablePieces.get(i).getPiece().ID == ID && this.playablePieces.get(i).getNumPieces() > 0) {
+				return true;
 			}
 		}
 		return false;
 	}
 
 	/**
-	 * add the piece with the given piece ID to the collection of playable pieces 
-	 * @param ID
+	 * Sets the selected piece from the bullpen using a given ID.
 	 */
-	public void addSinglePiece(int ID) {
-		PieceGroup newPieceGroup = new PieceGroup(ID, 1);
-		this.playablePieces.add(newPieceGroup);
-		sortBullpen(); // sort the bullpen after adding a pieceGroup to keep ordering by ID
+	public void setSelectedPiece(Piece p) {
+		this.selectedPiece = p;
 	}
 
 	/**
-	 * returns the number of pieces available in the bullpen
-	 * @return
+	 * Clears the selectedPiece attribute.
+	 */
+	public void clearSelectedPiece() {
+		this.selectedPiece = null;
+	}
+
+	/**
+	 * Returns the number of pieces available in the bullpen.
+	 * @return count - int
 	 */
 	public int numAvailablePieces() {
 		int count = 0;
@@ -117,73 +182,23 @@ public class Bullpen implements Serializable{
 	}
 
 	/**
-	 * returns true if the bullpen is empty, false if it is not empty
-	 * @return
+	 * Returns true if the bullpen is empty, false if it is not empty.
+	 * @return if bullpen is empty - boolean
 	 */
 	public boolean isEmpty() {
 		return (this.playablePieces.size() == 0);
 	}
 
 	/**
-	 * sorts the Bullpen pieceGroups in ascending order by ID
+	 * Sorts the Bullpen pieceGroups in ascending order by ID.
 	 */
 	public void sortBullpen() {
 		Collections.sort(this.playablePieces);
 	}
 
 	/**
-	 * return this bullpen's playable pieces
-	 * @return
-	 */
-	public ArrayList<PieceGroup> getPlayablePieces() {
-		return this.playablePieces;
-	}
-
-	/**
-	 * return this bullpen's selected piece
-	 * @return
-	 */
-	public Piece getSelectedPiece() {
-		return this.selectedPiece;
-	}
-
-	/**
-	 * sets the selected piece from the bullpen using a given ID
-	 * returns true if the piece is available, false if not
-	 * @return
-	 */
-	public boolean setSelectedPiece(int ID) {
-		for(int i = 0; i < this.playablePieces.size(); i++) {
-			if(this.playablePieces.get(i).getPiece().ID == ID && this.playablePieces.get(i).getNumPieces() > 0) {
-				this.selectedPiece = this.playablePieces.get(i).getPiece();
-				return true; // do not need to sort as removing a single piece from a sorted list still remains sorted
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * nulls the selectedPiece attribute
-	 */
-	public void clearSelectedPiece() {
-		this.selectedPiece = null;
-	}
-
-	/**
-	 * decrements the number of pieces in the selected pieceGroup by 1
-	 */
-	public void decrementSelectedPiece() {
-		for(PieceGroup pg: playablePieces){
-			if(pg.getPiece().getID() == this.selectedPiece.getID()){
-				pg.decrementCount();
-			}
-		}
-		
-	}
-
-	/**
-	 * Returns all toString() of the piecegroups making this bullpen
-	 * @return String representation of this bullpen
+	 * Returns all toString() of the piecegroups that make up this bullpen.
+	 * @return String representation of this bullpen - String
 	 */
 	public String toString(){
 		StringBuilder s = new StringBuilder();

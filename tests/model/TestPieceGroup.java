@@ -57,8 +57,8 @@ public class TestPieceGroup extends TestCase {
 	public void testGetPiece() {
 		// test that the a pieceGroup can get a piece
 		Piece x = testPG1.getPiece();
-		assertEquals(testPG1.getPiece().equals(x), true);
-		assertEquals(testPG2.getPiece().equals(x), false);
+		assertEquals(testPG1.getPiece().getID(), x.getID());
+		assertTrue(testPG2.getPiece().getID() != x.getID());
 	}
 	
 	public void testToString() {

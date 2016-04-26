@@ -15,24 +15,31 @@ import javax.swing.JLabel;
 /**
  * Class for displaying the numbers released in a Release GAME.
  * 
- * @author aharrison
+ * @author awharrison
  * @author dfontana
  */
 public class NumbersReleasedView extends JPanel {
 	private static final long serialVersionUID = 1L;
+	/**Label to designate red tiles, set to "Red:".**/
 	JLabel lblColorRed;
+	/**Label to designate blue tiles, set to "Blue:".**/
 	JLabel lblColorBlue;
-	JLabel lblColorYellow;
+	/**Label to designate green tiles, set to "Green:".**/
+	JLabel lblColorGreen;
 	
+	/**Each JTextField holds a released number.**/
 	JTextField redNums[] = new JTextField[7];
 	JTextField blueNums[] = new JTextField[7];
-	JTextField yellowNums[] = new JTextField[7];
+	JTextField greenNums[] = new JTextField[7];
 	
+	/**
+	 * Creates a NumbersReleasedView.
+	 */
 	public NumbersReleasedView() {
 		this.setPreferredSize(new Dimension(180, 90));
 		lblColorRed = new JLabel("Red:");
 		lblColorBlue = new JLabel("Blue:");
-		lblColorYellow = new JLabel("Yellow:");
+		lblColorGreen = new JLabel("Green:");
 		
 		for(int i=1; i<=6; i++){
 			redNums[i] = new JTextField();
@@ -45,10 +52,10 @@ public class NumbersReleasedView extends JPanel {
 			blueNums[i].setText(Integer.toString(i));
 			blueNums[i].setColumns(10);
 			
-			yellowNums[i] = new JTextField();
-			yellowNums[i].setHorizontalAlignment(SwingConstants.CENTER);
-			yellowNums[i].setText(Integer.toString(i));
-			yellowNums[i].setColumns(10);
+			greenNums[i] = new JTextField();
+			greenNums[i].setHorizontalAlignment(SwingConstants.CENTER);
+			greenNums[i].setText(Integer.toString(i));
+			greenNums[i].setColumns(10);
 		}
 	
 		setupLayout();
@@ -58,9 +65,9 @@ public class NumbersReleasedView extends JPanel {
 	 * Changes the background of the red textpane corresponding to number
 	 * to be red. This denotes to the player that the number is released from
 	 * that set.
-	 * @param number
+	 * @param number - int
 	 */
-	void setReleasedRed(int number){
+	public void setReleasedRed(int number){
 		redNums[number].setBackground(Color.red);
 	}
 	
@@ -68,9 +75,9 @@ public class NumbersReleasedView extends JPanel {
 	 * Changes the background of the blue textpane corresponding to number
 	 * to be blue. This denotes to the player that the number is released from
 	 * that set.
-	 * @param number
+	 * @param number - int
 	 */
-	void setReleasedBlue(int number){
+	public void setReleasedBlue(int number){
 		blueNums[number].setBackground(Color.blue);
 	}
 	
@@ -78,12 +85,15 @@ public class NumbersReleasedView extends JPanel {
 	 * Changes the background of the yellow textpane corresponding to number
 	 * to be yellow. This denotes to the player that the number is released from
 	 * that set.
-	 * @param number
+	 * @param number - int
 	 */
-	void setReleasedYellow(int number){
-		yellowNums[number].setBackground(Color.yellow);
+	public void setReleasedGreen(int number){
+		greenNums[number].setBackground(Color.green);
 	}
 	
+	/**
+	 * Sets up the layout of NumbersReleasedView.
+	 */
 	private void setupLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -92,21 +102,21 @@ public class NumbersReleasedView extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblColorRed)
 						.addComponent(lblColorBlue, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblColorYellow))
+						.addComponent(lblColorGreen))
 					.addGap(7)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(yellowNums[1], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[1], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[2], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[2], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[3], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[3], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[4], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[4], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[5], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(greenNums[5], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
-							.addComponent(yellowNums[6], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+							.addComponent(greenNums[6], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(blueNums[1], GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 							.addGap(2)
@@ -155,13 +165,13 @@ public class NumbersReleasedView extends JPanel {
 						.addComponent(blueNums[6], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblColorYellow)
-						.addComponent(yellowNums[1], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[2], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[3], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[4], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[5], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(yellowNums[6], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblColorGreen)
+						.addComponent(greenNums[1], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[2], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[3], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[4], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[5], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(greenNums[6], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		setLayout(groupLayout);

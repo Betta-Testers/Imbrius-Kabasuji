@@ -7,53 +7,58 @@ import java.util.ArrayList;
 
 
 /**
- * @author Evan
- * @author Hans
- * @author Dylan
+ * @author ejbosia
+ * @author hejohnson
+ * @author dfontana
  */
-
 public class Piece implements Serializable{
 	private static final long serialVersionUID = -5341675534216265771L;
 	
+	/**Stores each tile that makes up the piece.*/
 	transient PieceTile[] tiles;
+	
+	/**Stores the ID of the piece.*/
 	int ID;
+	
+	/**Stores the color of the piece.*/
 	Color color;
+	
+	/**
+	 * Creates a piece given an ID. Sets up color and distribution of tiles based off of the ID.
+	 * @param ID - int
+	 */
 	public Piece(int ID){
 		this.ID = ID;
 		this.tiles = new PieceTile[6];
 		generatePiece(ID);
 	}
-	
-	
+
 	/**
-	 * Method used to break down Piece into a for saving.
-	 * @return String
-	 * 
-	 * @author Evan
+	 * Returns the string representation of this piece.
+	 * @return string representation of the piece - String
 	 */
+//	public String toString(){
+//		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
+//				tiles[3].toString() + "," + tiles[4].toString() + "," + tiles[5].toString() + "," +
+//				ID + "," + tiles[0].toString() + "," + color.toString();
+//	}
+	
 	public String toString(){
-		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
-				tiles[3].toString() + "," + tiles[4].toString() + "," + tiles[5].toString() + "," +
-				ID + "," + tiles[0].toString() + "," + color.toString();
+		return "[ID:"+ID+" "+ tiles[0].toString() + " " + tiles[1].toString() + " " + tiles[2].toString() + " " +
+				tiles[3].toString() + " " + tiles[4].toString() + " " + tiles[5].toString()+"]";
 	}
 
 	/**
-	 * Method used to return ID of piece.
-	 * @return int
-	 * 
-	 * @author Evan
+	 * Returns ID of this piece.
+	 * @return ID - int
 	 */
-	
 	public int getID(){
 		return ID;
 	}
-	
-	/**
-	 * Method used to change orientation of the piece as if it was rotated counter-clockwise.
-	 * 
-	 * @author Evan
-	 */
 
+	/**
+	 * Changes orientation of the piece as if it was rotated counter-clockwise.
+	 */
 	public void rotateLeft(){
 		for (int i=1; i<6; i++) {
 			int row = tiles[i].getRowInPiece();
@@ -62,11 +67,9 @@ public class Piece implements Serializable{
 			tiles[i].updateColInPiece(row);
 		}
 	}
-	
+
 	/**
-	 * Method used to change orientation of the piece as if it was rotated clockwise.
-	 * 
-	 * @author Evan
+	 * Changes orientation of the piece as if it was rotated clockwise.
 	 */
 	public void rotateRight(){
 		for (int i=1; i<6; i++) {
@@ -76,92 +79,80 @@ public class Piece implements Serializable{
 			tiles[i].updateColInPiece(-row);
 		}
 	}
-	
+
 	/**
-	 * Method used to change orientation of the piece as if it was flipped horizontally.
-	 * 
-	 * @author Hans
+	 * Changes orientation of the piece as if it was flipped horizontally.
 	 */
 	public void flipH(){
 		for (int i=1; i<6; i++) {
 			tiles[i].updateColInPiece(-1*tiles[i].getColInPiece());
 		}
 	}
-	
+
 	/**
-	 * Method used to change orientation of the piece as if it was flipped horizontally.
-	 * 
-	 * @author Hans
+	 * Changes orientation of the piece as if it was flipped horizontally.
 	 */
 	public void flipV(){
 		for (int i=1; i<6; i++) {
 			tiles[i].updateRowInPiece(-1*tiles[i].getRowInPiece());
 		}
 	}
-	
+
 	/**
-	 * Method used to return color of piece.
-	 * @return Color
-	 * 
-	 * @author Evan
+	 * Returns color of this piece.
+	 * @return color - Color
 	 */
 	Color getColor(){
 		return color;
 	}
 
+	/**
+	 * Returns a copy of the piece.
+	 * @return new Piece with the same ID as this Piece - Piece
+	 */
 	public Piece makeCopy(){
 		return new Piece(ID);
 	}
-	
+
 	/** 
-	 * Place piece on the board at specified location. Sets origin location and updates all component tiles
-	 * @param row
-	 * @param col
-	 * 
-	 * @author Hans
+	 * Place piece on the board at specified location. Sets origin location and updates all component tiles.
+	 * @param row - int
+	 * @param col - int
 	 */
- 	public void setLocation(int row, int col) {
+	public void setLocation(int row, int col) {
 		this.tiles[0].setLocation(row, col);
 		for (PieceTile pt : tiles) {
 			pt.updateBoardPosition();
 		}
 	}
-	
+
 	/**
-	 * Method used to get the column location of the origin.
-	 * @return int
-	 * 
-	 * @author Evan
+	 * Returns the column location of the origin.
+	 * @return column location of tiles[0] (origin) - int
 	 */
 	public int getOriginCol(){
 		return tiles[0].getCol();
 	}
-	
+
 	/**
-	 * Method used to get the row location of the origin.
-	 * @return int
-	 * 
-	 * @author Evan
+	 * Returns the row location of the origin.
+	 * @return row location of tiles[0] (origin) - int
 	 */
 	public int getOriginRow(){
 		return tiles[0].getRow();
 	}
-	
+
 	/**
-	 * Method used to get the origin tile.
-	 * @return PieceTile
-	 * 
-	 * @author Evan
+	 * Returns the origin tile.
+	 * @return tiles[0] (origin) - PieceTile
 	 */
 	public PieceTile getOriginTile() {
 		return tiles[0];
 	}
-	
+
 	/**
-	 * Method used for generating the correct tile placement of the piece given its ID.
-	 * @returns ArrayList<AbstractTile>
-	 * 
-	 * @author Hans
+	 * Returns the previous tiles.
+	 * @return prevTiles - ArrayList<AbstractTile>
 	 */
 	public ArrayList<AbstractTile> getPreviousTiles() {
 		ArrayList<AbstractTile> prevTiles = new ArrayList<AbstractTile>();
@@ -171,22 +162,32 @@ public class Piece implements Serializable{
 		return prevTiles;
 	}
 	
+	/**
+	 * Returns the array of tiles that makes up the piece.
+	 * @return tiles - PieceTile[]
+	 */
 	public PieceTile[] getTiles() {
 		return tiles;
 	}
-	
-	@Override
-	public boolean equals(Object o){
-		if(o == null){ return false;}
-		if(o instanceof Piece){
-			if(this.ID == ((Piece) o).getID()){
-				return true;
+	/**
+	 * Checks if two pieces are equals based on the coordinates of their tiles,
+	 * not the actual tiles themselves.
+	 * @param o - comparison piece
+	 * @return true if the two have matching coordinates
+	 */
+	public boolean occupiesSameCoorindates(Piece o){
+		for(PieceTile pt: this.getTiles()){
+			for(int i = 0; i < o.getTiles().length; i++){
+				if(pt.getRow() == o.getTiles()[i].getRow() && pt.getCol() == o.getTiles()[i].getCol()){
+					break;
+				}else if(i ==  o.getTiles().length-1){ //Entire second piece couldnt find tile with those coordinates
+					return false;
+				}
 			}
 		}
-		return false;
+		return true;
 	}
 
-	
 	/**
 	 * When serializing a Piece, the pieceTile information is not needed. Instead of serializing those,
 	 * the piece serializes it's ID. Then, when read it, it generates the tiles needed using the built
@@ -200,18 +201,16 @@ public class Piece implements Serializable{
 		this.tiles = new PieceTile[6];
 		generatePiece(this.ID);
 	}
-	
+
 	/**
-	 * Method used for generating the correct tile placement of the piece given its ID
-	 * @param int
+	 * Generates the correct tile placement of the piece given its ID. Also sets the color of the piece.
+	 * @param ID - int
 	 * @throws RuntimeException
-	 * 
-	 * @author Evan
 	 */
 	protected void generatePiece(int ID) throws RuntimeException{
 		switch(ID){
 		case 1:
-			color = new Color(240, 0, 0);
+			color = new Color(150, 100, 50);
 			tiles[0] = new PieceTile(0,0, this);
 			tiles[1] = new PieceTile(1,0, this);
 			tiles[2] = new PieceTile(2,0, this);
@@ -265,7 +264,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(-2, 0, this);
 			break;
 		case 7:
-			color = new Color(240, 240, 0);
+			color = new Color(150, 160, 50);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(1, 0, this);
 			tiles[2] = new PieceTile(0, 1, this);
@@ -292,7 +291,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(-2, 0, this);
 			break;
 		case 10:
-			color = new Color(120, 240, 0);
+			color = new Color(255, 200, 255);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-2, 0, this);
 			tiles[2] = new PieceTile(-2, 1, this);
@@ -301,7 +300,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(1, 0, this);
 			break;
 		case 11:
-			color = new Color(120, 240, 0);
+			color = new Color(250, 200, 150);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-2, 0, this);
 			tiles[2] = new PieceTile(-1, 1, this);
@@ -319,7 +318,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(1, 0, this);
 			break;
 		case 13:
-			color = new Color(40, 240, 0);
+			color = new Color(110, 40, 140);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-2, 0, this);
 			tiles[2] = new PieceTile(-2, 1, this);
@@ -328,7 +327,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(1, 0, this);
 			break;
 		case 14:
-			color = new Color(0, 240, 0);
+			color = new Color(255, 190, 255);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-2, 0, this);
 			tiles[2] = new PieceTile(-2, 1, this);
@@ -337,7 +336,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(1, 0, this);
 			break;
 		case 15:
-			color = new Color(0, 240, 40);
+			color = new Color(255, 192, 192);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(1, 0, this);
 			tiles[2] = new PieceTile(1, -1, this);
@@ -346,7 +345,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(-2, 1, this);
 			break;
 		case 16:
-			color = new Color(0, 240, 80);
+			color = new Color(190, 200, 255);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(1, 0, this);
 			tiles[2] = new PieceTile(0, -1, this);
@@ -427,7 +426,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(0, 1, this);
 			break;
 		case 25:
-			color = new Color(0, 40, 240);
+			color = new Color(140, 200, 190);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(-1, 1, this);
 			tiles[2] = new PieceTile(1, 0, this);
@@ -436,7 +435,7 @@ public class Piece implements Serializable{
 			tiles[5] = new PieceTile(-2, 1, this);
 			break;
 		case 26:
-			color = new Color(0, 0, 240);
+			color = new Color(170, 170, 240);
 			tiles[0] = new PieceTile(0, 0, this);
 			tiles[1] = new PieceTile(1, 0, this);
 			tiles[2] = new PieceTile(-1, 0, this);
@@ -528,7 +527,7 @@ public class Piece implements Serializable{
 		default:
 			throw new RuntimeException("Incorrect ID");
 		}
-		
+
 	}
-	
+
 }

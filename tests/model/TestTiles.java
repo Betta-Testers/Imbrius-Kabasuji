@@ -20,14 +20,14 @@ public class TestTiles extends TestCase {
 		assertEquals(Color.RED, bt.color);
 		bt.resetColor();
 		assertEquals(Color.WHITE, bt.color);
-		assertEquals("board r:1 c:1", bt.toString());
+		assertEquals("board:1,1", bt.toString());
 	}
 	
 	public void testReleaseTile() {
 		ReleaseTile rt = new ReleaseTile(1, 1, 4, Color.BLUE);
 		assertEquals(Color.BLUE, rt.getColorSet());
 		assertEquals(4, rt.getNumber());
-		assertEquals("release r:1 c:1", rt.toString());
+		assertEquals("release:1,1", rt.toString());
 		assertEquals(Color.BLUE, rt.getColorSet());
 		assertEquals(4, rt.getNumber());
 	}
@@ -35,19 +35,16 @@ public class TestTiles extends TestCase {
 	public void testSimpleTiles() {
 		EmptyTile et = new EmptyTile(1,1);
 		assertEquals(Color.LIGHT_GRAY, et.color);
-		assertEquals("empty r:1 c:1", et.toString());
+		assertEquals("empty:1,1", et.toString());
 		et.setMouseOverColor(true);
 		assertEquals(Color.GREEN, et.color);
 		et.resetColor();
 		assertEquals(Color.LIGHT_GRAY, et.color);
 		
 		LightningTile lt = new LightningTile(1,1);
-		assertEquals(Color.GREEN, lt.color);
-		assertEquals("lightning r:1 c:1", lt.toString());
+		assertEquals(Color.BLUE, lt.color);
+		assertEquals("lightning:1,1", lt.toString());
 		
-		HintTile ht = new HintTile(1,1);
-		assertEquals(Color.DARK_GRAY, ht.color);
-		assertEquals("hint r:1 c:1", ht.toString());
 	}
 	
 	public void testPieceTile() {
@@ -76,8 +73,8 @@ public class TestTiles extends TestCase {
 			assertEquals(origin.getRowInPiece(), 0);
 		}
 		
-		assertEquals("piece r:-1 c:-1", tile.toString());
-		assertEquals(new Color(240, 0, 0), tile.color);
+		assertEquals("piece:-1,-1", tile.toString());
+		assertEquals(new Color(150, 100, 50), tile.color);
 		
 		origin.setLocation(5, 7);
 		assertEquals(origin.colOnBoard, 7);

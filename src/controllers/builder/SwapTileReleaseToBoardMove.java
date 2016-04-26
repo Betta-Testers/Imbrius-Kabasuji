@@ -1,59 +1,93 @@
 package controllers.builder;
 
-import view.BuilderView;
-import view.ReleaseNumberCreationView;
-import controllers.common.Move;
-import model.AbstractLevelModel;
+import controllers.common.IMove;
+import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
-import model.ReleaseTile;
+import view.BoardView;
+
 
 /**
- * Represents the swap between a release tile and a board tile
+ * Move class for swapping a Release Tile to a Board Tile.
  * 
  * @author awharrison
- *
+ * @author dfontana
  */
-public class SwapTileReleaseToBoardMove extends Move {
+public class SwapTileReleaseToBoardMove implements IMove {
+	/** Board in which the move is taking place **/
 	Board board;
-	ReleaseTile oldTile;
+	/** The tile passed into the constructor. Should be a Release tile (this is checked) **/
+	AbstractTile oldTile;
+	/** The tile that is created to replace the oldTile **/
 	BoardTile newTile;
-	ReleaseNumberCreationView rncv;
+	/**Updates the view of the board**/
+	BoardView bv;
 	
-	public  SwapTileReleaseToBoardMove (BuilderView bView, ReleaseTile old, AbstractLevelModel lm) {
-		if((bView == null) || (old == null) || (lm == null)) { 
-			throw new RuntimeException("SwapTileBoardToReleaseMove::failed to initialize constructor inputs");
-		}
-		this.board = lm.getBoard();
-		this.rncv = bView.getReleaseNumberView();
+	/**
+	 * Creates the move
+	 * @param old - tile that was clicked
+	 * @param b - board whose tiles are being swapped
+	 */
+	public  SwapTileReleaseToBoardMove(AbstractTile old, Board b, BoardView bv) {
+		this.board = b;
 		this.oldTile = old;
+		this.bv = bv;
 	}
 	
+	/**
+	 * The move creates a new board tile with same location as the old tile.
+	 * It then swaps the old and new Tiles. 
+	 * @return boolean - true if the move was successful
+	 */
 	@Override
 	public boolean doMove() {
 		if(isValid()) {
 			this.newTile = new BoardTile(oldTile.getRow(), oldTile.getCol());
-			board.swapTile(newTile); // may want to throw runtime exception if this does not return a copy of the old tile
+			board.swapTile(newTile);
+			
+			//Redraw
+			bv.redraw();
+			bv.repaint();
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Checks if the tile passed in is a release tile.
+	 * @return boolean - true if the move can be made
+	 */
 	@Override
 	public boolean isValid() {
-		// TODO is there anything that would make this invalid?
-		return true;
+		if(oldTile.getTileType().equals("release")){ return true;}
+		return false;
 	}
 
+	/**
+	 * Undoes the move by swapping the tiles
+	 * @return true - the move can always be undone
+	 */
 	@Override
 	public boolean undo() {
 		board.swapTile(oldTile);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 
+	/**
+	 * Redoes the move by swapping the tiles again
+	 * @return true - the move can always be redone
+	 */
 	@Override 
 	public boolean redo() {
 		board.swapTile(newTile);
+		
+		//Redraw
+		bv.redraw();
+		bv.repaint();
 		return true;
 	}
 }

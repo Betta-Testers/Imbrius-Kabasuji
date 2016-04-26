@@ -10,12 +10,23 @@ import java.awt.Font;
 
 import javax.swing.SwingConstants;
 
+/**
+ * Shows the stars and level number associated to each level in the level selection screen.
+ * @author awharrison
+ *
+ */
 public class LevelInfoView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
+	/**Displays the stars for the LevelInfoView.**/
 	StarView starView;
+	/**Displays the level number for the LevelInfoView.**/
 	JLabel lblLevelNumber;
 	
+	/**
+	 * Creates a new LevelInfoView with a given levelID.
+	 * @param levelID - int
+	 */
 	public LevelInfoView(int levelID) {
 		this.setPreferredSize(new Dimension(145, 80));
 		starView = new StarView();
@@ -25,7 +36,7 @@ public class LevelInfoView extends JPanel {
 	}
 	
 	/**
-	 * Method for setting up the layout for the LevelInfoView
+	 * Sets up the layout for the LevelInfoView.
 	 */
 	private void setupLayout() {
 		
@@ -52,6 +63,14 @@ public class LevelInfoView extends JPanel {
 					.addContainerGap(39, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
+	}
+	
+	/**
+	 * Sets the stars for the LevelInfoView from an int input.
+	 * @param numStars - int
+	 */
+	public void setStars(int numStars) {
+		starView.setNumStars(numStars);
 	}
 
 }

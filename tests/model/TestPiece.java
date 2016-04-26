@@ -7,7 +7,7 @@ import java.awt.Color;
 
 /**
  * 
- * @author Evan
+ * @author ejbosia
  *
  */
 
@@ -32,7 +32,7 @@ public class TestPiece extends TestCase{
 	
 	//test if the piece is initialized with the correct color
 	public void testColor(){
-		assertEquals(piece.color, new Color(240, 0, 0));
+		assertEquals(piece.color, new Color(150, 100, 50));
 		assertEquals(piece.color, piece.getColor());
 	}
 	
@@ -103,8 +103,8 @@ public class TestPiece extends TestCase{
 		jagged_piece.rotateRight();
 
 		for(int i = 0; i < 6; i++){
-			assertEquals(jagged_piece.tiles[i].rowInPiece, -temp.tiles[i].colInPiece);
-			assertEquals(jagged_piece.tiles[i].colInPiece, temp.tiles[i].rowInPiece);
+			assertEquals(jagged_piece.tiles[i].rowInPiece, temp.tiles[i].colInPiece);
+			assertEquals(jagged_piece.tiles[i].colInPiece, -temp.tiles[i].rowInPiece);
 		}
 		
 		
@@ -118,8 +118,8 @@ public class TestPiece extends TestCase{
 		jagged_piece.rotateRight();
 		
 		for(int i = 0; i < 6; i++){
-			assertEquals(jagged_piece.tiles[i].rowInPiece, temp.tiles[i].colInPiece);
-			assertEquals(jagged_piece.tiles[i].colInPiece, -temp.tiles[i].rowInPiece);
+			assertEquals(jagged_piece.tiles[i].rowInPiece, -temp.tiles[i].colInPiece);
+			assertEquals(jagged_piece.tiles[i].colInPiece, temp.tiles[i].rowInPiece);
 		}
 		
 		jagged_piece.rotateRight();
@@ -134,8 +134,8 @@ public class TestPiece extends TestCase{
 		jagged_piece.rotateLeft();
 		
 		for(int i = 0; i < 6; i++){
-			assertEquals(jagged_piece.tiles[i].rowInPiece, temp.tiles[i].colInPiece);
-			assertEquals(jagged_piece.tiles[i].colInPiece, -temp.tiles[i].rowInPiece);
+			assertEquals(jagged_piece.tiles[i].rowInPiece, -temp.tiles[i].colInPiece);
+			assertEquals(jagged_piece.tiles[i].colInPiece, temp.tiles[i].rowInPiece);
 		}
 		
 		jagged_piece.rotateLeft();
@@ -148,8 +148,8 @@ public class TestPiece extends TestCase{
 		jagged_piece.rotateLeft();
 
 		for(int i = 0; i < 6; i++){
-			assertEquals(jagged_piece.tiles[i].rowInPiece, -temp.tiles[i].colInPiece);
-			assertEquals(jagged_piece.tiles[i].colInPiece, temp.tiles[i].rowInPiece);
+			assertEquals(jagged_piece.tiles[i].rowInPiece, temp.tiles[i].colInPiece);
+			assertEquals(jagged_piece.tiles[i].colInPiece, -temp.tiles[i].rowInPiece);
 		}
 		
 		jagged_piece.rotateLeft();
