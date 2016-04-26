@@ -56,6 +56,7 @@ public class LevelSelectionView extends JFrame {
 		
 		availableLevels = new JScrollPane();
 		availableLevels.setAutoscrolls(true);
+		availableLevels.getHorizontalScrollBar().setUnitIncrement(150);
 		availableLevels.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		availableLevels.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
