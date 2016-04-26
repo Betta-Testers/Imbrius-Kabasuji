@@ -14,9 +14,15 @@ import model.PieceGroup;
  */
 public class PlayingPieceGroupView extends AbstractPieceGroupView{
 	private static final long serialVersionUID = 1L;
+	/**Stores the layout of the PlayingPieceGroupView.**/
 	GroupLayout groupLayout;
+	/**Shows the amount of pieces in a PieceGroup.**/
 	JLabel label;
 	
+	/**
+	 * Creates a PlayingPieceGroupView.
+	 * @param pieceGroup - PieceGroup
+	 */
 	public PlayingPieceGroupView(PieceGroup pieceGroup){
 		super(pieceGroup);
 		
@@ -26,6 +32,9 @@ public class PlayingPieceGroupView extends AbstractPieceGroupView{
 		setupLayout();
 	}
 	
+	/**
+	 * Updates label to show the correct amount of pieces in a PieceGroup. 
+	 */
 	@Override
 	void updateCount() {
 		int count = pieceGroup.getNumPieces();
@@ -37,6 +46,9 @@ public class PlayingPieceGroupView extends AbstractPieceGroupView{
 		}
 	}
 	
+	/**
+	 * Sets up the layout of PlayingPieceGroupView.
+	 */
 	void setupLayout(){
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		groupLayout = new GroupLayout(this);
