@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JTextArea;
 import app.Builder;
+import app.LevelFactory;
 
 
 /**
@@ -55,7 +56,8 @@ public class NewLightningLevelController implements MouseListener{
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0){
-		b.createLightningLevel();
+		LevelFactory factory = new LevelFactory(); 
+		b.createLevel(factory.GenerateBlankLightning(b.getNextOpenID()));
 		b.getLevelTypeSelectView().setVisible(false);
 		b.getBuilderView().setVisible(true);
 	}

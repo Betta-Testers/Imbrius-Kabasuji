@@ -37,14 +37,12 @@ public class TestBuilder extends TestCase {
 		b = new Builder("./imbriusLevelTESTING/");
 		String expected = "";
 		assertEquals(expected, b.levelData.toString());
-		assertEquals(0,b.getHighestLevelID());
 		
 		/**Test builder opening a non-empty directory**/
 		(new LevelFactory()).quick15("./imbriusLevelTESTING/");
 		b = new Builder("./imbriusLevelTESTING/");
 		expected = "[1,Puzzle,-1],[2,Lightning,-1],[3,Release,-1],[4,Puzzle,-1],[5,Lightning,-1],[6,Release,-1],[7,Puzzle,-1],[8,Lightning,-1],[9,Release,-1],[10,Puzzle,-1],[11,Lightning,-1],[12,Release,-1],[13,Puzzle,-1],[14,Lightning,-1],[15,Release,-1]";
 		assertEquals(expected, b.levelData.toString());
-		assertEquals(15,b.getHighestLevelID());
 	}
 	
 	public void testDeleteLevel(){

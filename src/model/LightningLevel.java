@@ -3,10 +3,12 @@ package model;
 import java.io.IOException;
 import java.io.Serializable;
 
+import app.Builder;
 import app.Game;
 import controllers.player.ExitLevelController;
 import controllers.player.LightningBoardGameController;
 import controllers.player.LightningTimerController;
+import view.BuilderView;
 import view.LevelView;
 import view.TimeRemainingView;
 
@@ -88,6 +90,22 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
+	 * Initializes the view to display the level in a builder.
+	 * @param b - builder where the BuilderView is located
+	 * @return BuilderView - the view initialized
+	 */
+	@Override
+	public BuilderView prepBuilder(Builder b) {
+		BuilderView bv = new BuilderView(b);
+		
+		bv.setReleaseNumberViewVisible(false);
+		bv.getLevelPropertiesView().setLevelModel(this);
+		bv.getLevelPropertiesView().enableViews(false, true);
+		return bv;
+	}
+
+	
+	/**
 	 * Creates a toString of this level.
 	 * @return string representation of this level - String
 	 */
@@ -107,5 +125,4 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	public LightningBoardGameController getBoardController() {
 		return this.lbgc;
 	}
-
 }

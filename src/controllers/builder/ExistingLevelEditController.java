@@ -35,8 +35,11 @@ public class ExistingLevelEditController implements java.awt.event.ActionListene
 		JButton sourceButton = (JButton) ae.getSource();
 		ExistingLevelView elv = (ExistingLevelView) sourceButton.getParent();
 		int levelID = elv.getLevelNumber();
-		b.editLevel(levelID);
-		b.getBuilderView().setVisible(true);
-		b.getLevelTypeSelectView().setVisible(false);
+		if(b.editLevel(levelID)){
+			b.getBuilderView().setVisible(true);
+			b.getLevelTypeSelectView().setVisible(false);
+		}else{
+			System.err.println("The level could not be edited, soft failure ensuing.");
+		}
 	}
 }

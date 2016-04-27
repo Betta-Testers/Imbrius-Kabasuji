@@ -6,11 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import app.Builder;
 import controllers.builder.BuilderBoardController;
-import controllers.builder.PieceGroupSpinnerController;
 import controllers.builder.PlacePieceToggleListener;
-import controllers.builder.CloseBuilderDialog;
-import controllers.common.BullpenPieceSelectController;
-import model.AbstractLevelModel;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
@@ -33,8 +29,6 @@ public class BuilderView extends JFrame {
 	JPanel contentPane;
 	/**Builder object that holds all level information.**/
 	Builder builder;
-	/**The level being displayed in the current builderView.**/
-	AbstractLevelModel m;
 	/**The view that displays the selected piece in the bullpen.**/
 	SelectedPieceView selectedPieceView;
 	/**The view of the level's board.**/
@@ -69,7 +63,6 @@ public class BuilderView extends JFrame {
 	 */
 	public BuilderView(Builder b) {
 		this.builder = b;
-		this.m = b.getCurrentLevel();
 		
 		setResizable(false);
 		setVisible(false);
@@ -114,69 +107,21 @@ public class BuilderView extends JFrame {
 		tglbtnPlacePieces.addActionListener(placePieceButtonHandler);
 	}
 
-	/**
-	 * Prepares the view of a puzzle level by disabling release
-	 * tile creation and showing only relevant information in
-	 * property view for a puzzle level.
-	 * 
-	 * Then calls the controller initialization.
-	 */
-	public void prepPuzzle(){
-		releaseNumberView.setVisible(false);
-		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
-		levelPropertyView.setLevelModel(builder.getCurrentLevel());
-		levelPropertyView.puzzle();	
+	/**Sets the board controller for this builderView**/
+	public void setBoardController(BuilderBoardController builderBoardController) {
+		this.builderBoardControl = builderBoardController;
+		boardView.setMouseActionController(builderBoardController);
+		boardView.setMouseMotionController(builderBoardController);
 		
-		initializeControllers();
 	}
 	
 	/**
-	 * Prepares the view of a lightning level by disabling release
-	 * tile creation and showing only relevant information in
-	 * property view for a lightning level.
-	 * 
-	 * Then calls the controller initialization.
-	 */
-	public void prepLightning(){
-		releaseNumberView.setVisible(false);
-		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
-		levelPropertyView.setLevelModel(builder.getCurrentLevel());
-		levelPropertyView.lightning();
+	 * Sets the releaseNumberView to be visible with the given boolean
+	 * @param b - true to set visible
+     */
+	public void setReleaseNumberViewVisible(boolean b) {
+		releaseNumberView.setVisible(b);
 		
-		initializeControllers();
-	}
-	
-	/**
-	 * Prepares the view of a release level by showing only 
-	 * relevant information in the property view for a release
-	 * level (I.E. nothing).
-	 * 
-	 * Then calls the controller initialization.
-	 */
-	public void prepRelease(){
-		releaseNumberView.setVisible(true);
-		bullpenView.prepBuilder(builder.getCurrentLevel().getBullpen());
-		levelPropertyView.setLevelModel(builder.getCurrentLevel());
-		levelPropertyView.release();
-		
-		initializeControllers();
-	}
-	
-	/**
-	 * Prepares the controllers for this builderView, boardView, and BullpenView.
-	 * Additionally, it triggers the initialization of the buttonGroupView controllers.
-	 */
-	void initializeControllers(){
-		this.setExitWindowListener(new CloseBuilderDialog(builder, this));
-		builderBoardControl = new BuilderBoardController(this, m);
-		boardView.setMouseActionController(builderBoardControl);
-		boardView.setMouseMotionController(builderBoardControl);
-		for (AbstractPieceGroupView pgv : bullpenView.getPieceGroupViews()) {
-			((BuilderPieceGroupView) pgv).addSelectButtonActionListener(new BullpenPieceSelectController(m.getBullpen(), selectedPieceView));
-			((BuilderPieceGroupView) pgv).addSpinnerChangeListener(new PieceGroupSpinnerController(((BuilderPieceGroupView) pgv).getSpinner(), pgv.getPieceGroup(), m.getBullpen(), selectedPieceView.getPiecePanel()));
-		}
-		
-		buttonGroupView.initializeControllers(builder);
 	}
 	
 	/**
@@ -251,14 +196,7 @@ public class BuilderView extends JFrame {
 		this.exitWindowHandler = we;
 		this.addWindowListener(we);
 	}
-	
-	/**
-	 * Returns the builder object associated with this view.
-	 * @return Builder
-	 */
-	public Builder getBuilder() {
-		return this.builder;
-	}
+
 	
 	//** FOR TESTING **//
 	
@@ -377,4 +315,8 @@ public class BuilderView extends JFrame {
 		gl_contentPane.linkSize(SwingConstants.VERTICAL, new Component[] {tglbtnPlacePieces, tglbtnPlaceBoard, tglbtnPlaceHints});
 		contentPane.setLayout(gl_contentPane);
 	}
+
+
+
+
 }

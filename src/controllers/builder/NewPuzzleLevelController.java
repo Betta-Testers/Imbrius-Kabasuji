@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JTextArea;
 import app.Builder;
+import app.LevelFactory;
 
 
 /**
@@ -55,7 +56,8 @@ public class NewPuzzleLevelController implements MouseListener{
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0){
-		b.createPuzzleLevel();
+		LevelFactory factory = new LevelFactory(); 
+		b.createLevel(factory.GenerateBlankPuzzle(b.getNextOpenID()));
 		b.getLevelTypeSelectView().setVisible(false);
 		b.getBuilderView().setVisible(true);
 	}

@@ -77,42 +77,59 @@ public class LevelPropertiesView extends JPanel{
 		setupLayout();
 	}
 	
-	/**
-	 * Hides irrelevant information to a lightning level.
-	 * Prepares the controllers relevant to a lightning level.
-	 */
-	public void lightning(){
-		lblSetMoves.setVisible(false);
-		spinMoves.setVisible(false);
-		lblSetTime.setVisible(true);
-		spinTime.setVisible(true);
-		spinTime.setValue(((LightningLevel)levelModel).getTotalTime());
-		
-		spinTime.addChangeListener(new TimeLimitSpinnerController((LightningLevel) levelModel));
-	}
+//	/**
+//	 * Hides irrelevant information to a lightning level.
+//	 * Prepares the controllers relevant to a lightning level.
+//	 */
+//	public void lightning(){
+//		lblSetMoves.setVisible(false);
+//		spinMoves.setVisible(false);
+//		lblSetTime.setVisible(true);
+//		spinTime.setVisible(true);
+//		
+//		spinTime.setValue(((LightningLevel)levelModel).getTotalTime());
+//		spinTime.addChangeListener(new TimeLimitSpinnerController((LightningLevel) levelModel));
+//	}
+//	
+//	/**
+//	 * Hides irrelevant information to a puzzle level.
+//	 * Prepares the controllers relevant to a puzzle level.
+//	 */
+//	public void puzzle(){
+//		lblSetMoves.setVisible(true);
+//		lblSetTime.setVisible(false);
+//		spinTime.setVisible(false);
+//		spinMoves.setVisible(true);
+//		
+//		spinMoves.setValue(((PuzzleLevel)levelModel).getMoveLimit());
+//		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel)levelModel));
+//	}
+//	
+//	/**
+//	 * Hides irrelevant information to a release level.
+//	 */
+//	public void release(){
+//		lblSetMoves.setVisible(false);
+//		spinMoves.setVisible(false);
+//		lblSetTime.setVisible(false);
+//		spinTime.setVisible(false);
+//	}
 	
-	/**
-	 * Hides irrelevant information to a puzzle level.
-	 * Prepares the controllers relevant to a puzzle level.
-	 */
-	public void puzzle(){
-		lblSetMoves.setVisible(true);
-		lblSetTime.setVisible(false);
-		spinTime.setVisible(false);
-		spinMoves.setVisible(true);
-		spinMoves.setValue(((PuzzleLevel)levelModel).getMoveLimit());
+	public void enableViews(boolean enableMoves, boolean enableTime){
+		lblSetMoves.setVisible(enableMoves);
+		spinMoves.setVisible(enableMoves);
+		lblSetTime.setVisible(enableTime);
+		spinTime.setVisible(enableTime);
 		
-		spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel)levelModel));
-	}
-	
-	/**
-	 * Hides irrelevant information to a release level.
-	 */
-	public void release(){
-		lblSetMoves.setVisible(false);
-		spinMoves.setVisible(false);
-		lblSetTime.setVisible(false);
-		spinTime.setVisible(false);
+		try{
+			spinTime.setValue(((LightningLevel)levelModel).getTotalTime());
+			spinTime.addChangeListener(new TimeLimitSpinnerController((LightningLevel) levelModel));
+		}catch(ClassCastException e){}
+		
+		try{
+			spinMoves.setValue(((PuzzleLevel)levelModel).getMoveLimit());
+			spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel)levelModel));
+		}catch(ClassCastException e){}
 	}
 	
 	/**

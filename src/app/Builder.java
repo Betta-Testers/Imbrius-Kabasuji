@@ -4,12 +4,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import controllers.builder.BuilderBoardController;
+import controllers.builder.CloseBuilderDialog;
+import controllers.builder.PieceGroupSpinnerController;
+import controllers.builder.RedoButtonController;
+import controllers.builder.RemovePiecesButtonController;
+import controllers.builder.SaveAndCloseLevelButtonController;
+import controllers.builder.UndoButtonController;
+import controllers.common.BullpenPieceSelectController;
+import view.AbstractPieceGroupView;
+import view.BuilderPieceGroupView;
 import view.BuilderView;
 import view.LevelTypeSelectView;
 import model.AbstractLevelModel;
-import model.LightningLevel;
-import model.ReleaseLevel;
-import model.PuzzleLevel;
 
 /**
  * Application class tracking the Builder. Prepares the views and controllers for LevelTypeSelectView and
@@ -112,46 +119,18 @@ public class Builder extends LevelIO{
 		return false;
 	}
 	
-	/**
-	 * Prepares the builderView and builder for creating a release level.
-	 * It generates a blank release level, sets it to the current level,
-	 * creates the Builder view and then tells the view to prepare for 
-	 * that level.
-	 */
-	public void createReleaseLevel() {
-		LevelFactory factory = new LevelFactory();
-		ReleaseLevel rl = factory.GenerateBlankRelease(levelData.nextOpenID());
-		currentLevel = rl;
-		bv = new BuilderView(this);
-		bv.prepRelease();
-	}
 
 	/**
-	 * Prepares the builderView and builder for creating a puzzle level.
-	 * It generates a blank puzzle level, sets it to the current level,
-	 * creates the Builder view and then tells the view to prepare for 
-	 * that level.
+	 * Prepares the builderView and builder for creating a level.
+	 * It sets the passed level to the current level, creates the Builder view and 
+	 * then prepares that view and controllers of it.
+	 * @param level to create
 	 */
-	public void createPuzzleLevel() {
-		LevelFactory factory = new LevelFactory();
-		PuzzleLevel pl = factory.GenerateBlankPuzzle(levelData.nextOpenID());
-		currentLevel = pl;
-		bv = new BuilderView(this);
-		bv.prepPuzzle();
-	}
-
-	/**
-	 * Prepares the builderView and builder for creating a lightning level.
-	 * It generates a blank lightning level, sets it to the current level,
-	 * creates the Builder view and then tells the view to prepare for 
-	 * that level.
-	 */
-	public void createLightningLevel() {
-		LevelFactory factory = new LevelFactory();
-		LightningLevel ll = factory.GenerateBlankLightning(levelData.nextOpenID());
-		currentLevel = ll;
-		bv = new BuilderView(this);
-		bv.prepLightning();
+	public void createLevel(AbstractLevelModel level){
+		currentLevel = level;
+		bv = currentLevel.prepBuilder(this);
+		bv.getBullpenView().prepBuilder(currentLevel.getBullpen());
+		initializeLevelControllers();
 	}
 
 	/**
@@ -161,54 +140,34 @@ public class Builder extends LevelIO{
 	 * @return boolean - true if level could be edited
 	 */
 	public boolean editLevel(int levelID){
-		String levelType;
 		try{
-			levelType = levelData.get(levelID);
+			currentLevel = loadLevel(levelID);
+			bv = currentLevel.prepBuilder(this);
+			bv.getBullpenView().prepBuilder(currentLevel.getBullpen());
+			initializeLevelControllers();
+			return true;
 		}catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}
-		
-		switch(levelType){
-		case "Puzzle":
-			PuzzleLevel pl;
-			try {
-				pl = (PuzzleLevel) loadLevel(levelID);
-				currentLevel = pl;
-				bv = new BuilderView(this);
-				bv.prepPuzzle();
-			} catch (Exception e) {
-				System.err.println(e.getMessage());
-				return false;
-			}
-			break;
-		case "Lightning":
-			LightningLevel ll;
-			try {
-				ll = (LightningLevel) loadLevel(levelID);
-				currentLevel = ll;
-				bv = new BuilderView(this);
-				bv.prepLightning();
-			} catch (Exception e) {
-				System.err.println(e.getMessage());
-				return false;
-			}
-			break;
-		case "Release":
-			ReleaseLevel rl;
-			try {
-				rl = (ReleaseLevel) loadLevel(levelID);
-				currentLevel = rl;
-				bv = new BuilderView(this);
-				bv.prepRelease();
-			} catch (Exception e) {
-				System.err.println(e.getMessage());
-				return false;
-			}
-			break;
-		}
-		return true;
 	}
-
+	
+	/**
+	 * Prepares the controllers of the level being edited.
+	 */
+	void initializeLevelControllers(){
+		bv.getButtonGroup().getSaveBtn().addActionListener(new SaveAndCloseLevelButtonController(this));
+		bv.getButtonGroup().getRemoveBtn().addActionListener(new RemovePiecesButtonController(currentLevel.getBoard(), bv.getBoardView(), currentLevel.getBullpen(), bv.getBullpenView()));
+		bv.getButtonGroup().getUndoBtn().addActionListener(new UndoButtonController(this));
+		bv.getButtonGroup().getRedoBtn().addActionListener(new RedoButtonController(this));
+		bv.setExitWindowListener(new CloseBuilderDialog(this, bv));
+		bv.setBoardController(new BuilderBoardController(bv, currentLevel));
+		
+		for (AbstractPieceGroupView pgv : bv.getBullpenView().getPieceGroupViews()) {
+			((BuilderPieceGroupView) pgv).addSelectButtonActionListener(new BullpenPieceSelectController(currentLevel.getBullpen(), bv.getSelectedPieceView()));
+			((BuilderPieceGroupView) pgv).addSpinnerChangeListener(new PieceGroupSpinnerController(((BuilderPieceGroupView) pgv).getSpinner(), pgv.getPieceGroup(), currentLevel.getBullpen(),  bv.getSelectedPieceView().getPiecePanel()));
+		}
+	}
 	//========================== Getters ==========================//
 	/**
 	 * Gets the builder view
@@ -225,11 +184,11 @@ public class Builder extends LevelIO{
 		return ltsv;
 	}
 	/**
-	 * Get the highest Level ID that is occupied in the starmap (levelData).
+	 * Get the next open ID for creation from the starmap (levelData).
 	 * @return int of level ID
 	 */
-	public int getHighestLevelID(){
-		return levelData.lastID();
+	public int getNextOpenID(){
+		return levelData.nextOpenID();
 	}
 	/**
 	 * Get the current level being modified in the builder.

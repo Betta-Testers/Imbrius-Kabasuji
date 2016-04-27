@@ -2,7 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+import app.Builder;
 import app.Game;
+import view.BuilderView;
 import view.LevelView;
 
 /**
@@ -55,12 +57,19 @@ public abstract class AbstractLevelModel implements Serializable{
 	public abstract boolean checkStatus();
 
 	/**
-	 * initializes views and controllers
-	 * Any other intializations occur here
+	 * initializes views and controllers for a game.
+	 * Any other initializations occur here
 	 * @return LevelView
 	 */
 	public abstract LevelView initializeGame(Game g);
 
+	/**
+	 * Prepares the builderView for the level, should it be opened
+	 * in the builder.
+	 * @param b requesting the action
+	 * @return BuilderView - view of the level being edited
+	 */
+	public abstract BuilderView prepBuilder(Builder b);
 	//============================== SETTERS ==================================
 	/**
 	 * sets the board associated with this level to the one passed in

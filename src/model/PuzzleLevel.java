@@ -4,9 +4,11 @@ package model;
 import java.io.IOException;
 import java.io.Serializable;
 
+import app.Builder;
 import app.Game;
 import controllers.player.ExitLevelController;
 import controllers.player.PuzzleBoardGameController;
+import view.BuilderView;
 import view.LevelView;
 import view.NumberMovesLeftView;
 
@@ -117,6 +119,21 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 		view.getBoardView().addMouseListener(pbgc);
 		view.getBoardView().addMouseMotionListener(pbgc);
 		return view;
+	}
+	
+	/**
+	 * Initializes the view to display the level in a builder.
+	 * @param b - builder where the BuilderView is located
+	 * @return BuilderView - the view initialized
+	 */
+	@Override
+	public BuilderView prepBuilder(Builder b) {
+		BuilderView bv = new BuilderView(b);
+		
+		bv.setReleaseNumberViewVisible(false);
+		bv.getLevelPropertiesView().setLevelModel(this);
+		bv.getLevelPropertiesView().enableViews(true, false);
+		return bv;
 	}
 	
 	/**
