@@ -15,20 +15,26 @@ Builder milestones:
 		5:if the piece is red it cannot be placed at that location, if green it may be placed
 		6:once it is at a valid location simply click the mouse and the piece will be placed.
 	-Once satisfied with piece placement you can click the "save" button in the lower right corner of the window (and it will remove pieces on board, before writing the level to disk).
-	-Once you have closed the builder and re launched it, to get to the level you just created scroll all the way to the right on the upper scroll bar, it should be level 16
-	-to edit that level simply click the button with the picture and level label
-	-for the lightning level follow the same process as you did for the puzzle, except now instead of setting the moves set the time in the same way you did moves.
+	-Once you have closed the builder and re-launched it, to get to the level you just created scroll all the way to the right on the upper scroll bar, it should be level 16
+	-To edit that level simply click the button with the picture and level label
+	-For the lightning level follow the same process as you did for the puzzle, except now instead of setting the moves set the time in the same way you did moves.
+		-> At any time during editing of a level you can toggle the other buttons next to place piece (place piece must be toggled on for those to work)
+		    and be able to place a piece to create board tiles or place a piece in the form of a hint.
+		-> To remove a hint or release tile from the board, just click it. 
+		-> To make a release tile in the release mode, a special palette of toggle buttons appears on the right. Toggle the one you 
+		     would like to make "On" and then press the board (you'll need to toggle it off again after to stop placing release tiles).
 
 
 Player milestones:
-	-launch the MainGame.java in the app package, this will launch the game
-	-click the button labled "Level 1", that will launch level one for play.
+	-Launch the MainGame.java in the app package, this will launch the game
+	-Click the button labeled "Level 1", that will launch level one for play.
 	!-Quick discrepency, our level here is different from the one in the milestone, but it is perfectly fine and will show all the functionality-!
 	!-The yellow tiles are hint tiles, feel free to take advantage of them by placing the relevant piece on top of them-!
-	-to place a piece on the board click the piece you would like to place in the bullpen
-	-the piece will now apear in the selected piece area, you are free to use the flip and rotate buttons for the piece
-	-once you are satisfied with the rotation/flipping on the piece move your mouse to the board
-	-same exact functionality as the builder now, green = can be placed, red = cannot be placed
-	-continue this until you have earned three stars, once three stars are earned the game will automatically end and you will see the end game screen, click the return to leve lselect button and you will go back to the level select screen
-	-lightning level is exactly the same as the puzzle except you have to be quick, if a tile is claimed in lightning it will turn blue, as is specified in the rules of the game pieces may still be placed on top of these places, so feel free to place on top of them all you want.
-	-for new piece replacement keep an eye on the numbers as well, since a piece may be incrememnted to keep a constant number in the bullpen, so you will either see a brand new piece, or an additional piece you already had.
+	-To place a piece on the board click the piece you would like to place in the bullpen
+	-The piece will now appear in the selected piece area, you are free to use the flip and rotate buttons for the piece
+	-Once you are satisfied with the rotation/flipping on the piece move your mouse to the board
+	-Same exact functionality as the builder now, green = can be placed, red = cannot be placed
+	-Continue this until you have earned three stars, once three stars are earned the game will automatically end and you will see the end game screen, click the return to level select button and you will go back to the level select screen
+		-> (Or leave the level once you have earned a star and the next will be available).
+	-Lightning level is exactly the same as the puzzle except you have to be quick, if a tile is claimed in lightning it will turn blue, as is specified in the rules of the game. Pieces may still be placed on top of these blue pieces, so feel free to place on top of them all you want.
+		- Pieces are replenished in the bullpen as you place pieces (they aren't always unique, a piece already in there may increment its count!)
