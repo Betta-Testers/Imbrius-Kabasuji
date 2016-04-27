@@ -147,6 +147,15 @@ public class Board implements Serializable{
 		return true;
 	}
 	
+	/**
+	 * Determines if a hint can fit on the board, by checking the tiles the hint is being placed on
+	 * is not empty, piece, or already a hint. This method is used when placing a hint on the board
+	 * in the builder from a piece.
+	 * @param p - piece being checked for fitness
+	 * @param row - row location of the piece
+	 * @param col - column location of the peice
+	 * @return true if the piece will fit
+	 */
 	public boolean willFitHint(Piece p, int row, int col) {
 		int r, c;
 		if(!onBoard(p, row, col)){
@@ -260,10 +269,11 @@ public class Board implements Serializable{
 	}
 	
 	/**
-	 * Changes color of tiles where a piece-to-board conversion may occur. Green means the piece can be converted, red means the piece cannot be converted. Note that this is only used for the builder.
-	 * @param p (piece being placed) - Piece
-	 * @param row - int
-	 * @param col - int
+	 * Changes color of tiles where a piece-to-board conversion may occur. Green means the piece can be converted, 
+	 * red means the piece cannot be converted. Note that this is only used for the builder.
+	 * @param p - Piece to be tested for fitness
+	 * @param row - row location of piece
+	 * @param col - col location of the peice
 	 */
 	public void showConversionPreview(Piece p, int row, int col){
 		if(isValidConvert(p, row, col)){
@@ -283,6 +293,13 @@ public class Board implements Serializable{
 		}
 	}
 	
+	/**
+	 * Displays a preview of where a hint will be placed on the board. Utilizies will fit hint
+	 * as a method of determining color.
+	 * @param p - Piece to be tested for fitness
+	 * @param row - row location of piece
+	 * @param col - col location of the peice
+	 */
 	public void showHintPreview(Piece p, int row, int col){
 		if(willFitHint(p,row,col)){
 			for(int i = 0; i<6; i++){
@@ -337,8 +354,6 @@ public class Board implements Serializable{
 	
 	/**
 	 * Will clear all piece previewing from the board, setting all tiles back to their original colors.
-	 * @return void
->>>>>>> refs/remotes/origin/Builder
 	 */
 	public void clearPiecePreview(){
 		for(int i = 0; i <12; i++){

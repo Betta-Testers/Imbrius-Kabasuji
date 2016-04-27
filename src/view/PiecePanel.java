@@ -14,17 +14,22 @@ import model.Bullpen;
 import model.PieceTile;
 
 /**
- * Handles drawing graphics.
- * @author hejohnson
- *
+ * Draws the selected piece of the bullpen at the top of the screen, inside the selectedPieceView.
+ * @author dfontana
  */
 public class PiecePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	/** Double Buffering technique requires an offscreen image. */
 	Image offscreenImage;
+	/**The offscreen graphics object, also used in double buffering.**/
 	Graphics offscreenGraphics;
 	/**Stores the bullpen**/
 	Bullpen bp;
+	
+	/**
+	 * Creates the piece panel object
+	 * @param bp the bullpen whose selected piece is being displayed in this panel.
+	 */
 	public PiecePanel(Bullpen bp){
 		this.setPreferredSize(new Dimension(192,192));
 		this.bp = bp;

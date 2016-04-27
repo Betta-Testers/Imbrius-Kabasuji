@@ -10,12 +10,14 @@ import view.SplashScreen;
  * @author dfontana
  */
 public class BuilderSplashTimerController implements ActionListener{
+	/**Splashscreen displayed until timer is over**/
 	SplashScreen splash;
+	/**Builder whose view is being displayed after the timer is over.**/
 	Builder b;
 	
 	/**
 	 * Creates the controller.
-	 * @param view The splash screen
+	 * @param splash splashscreen being displayed
 	 * @param b The builder to show
 	 */
 	public BuilderSplashTimerController(SplashScreen splash, Builder b){

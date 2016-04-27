@@ -20,6 +20,7 @@ import view.BuilderView;
 import view.BullpenView;
 import view.ReleaseNumberCreationView;
 import app.Builder;
+import app.LevelFactory;
 import junit.framework.TestCase;
 
 /**
@@ -27,7 +28,7 @@ import junit.framework.TestCase;
  * @author awharrison
  *
  */
-
+@SuppressWarnings("javadoc")
 public class TestBuilderRelease extends TestCase {
 	Builder build;
 	BuilderView buildView;
@@ -41,7 +42,7 @@ public class TestBuilderRelease extends TestCase {
 	public void setUp(){
 		new File("./imbriusLevelTESTING/").mkdirs();
 		build = new Builder("./imbriusLevelTESTING/");
-		build.createReleaseLevel();
+		build.createLevel((new LevelFactory()).GenerateBlankRelease(build.getNextOpenID()));
 		buildView = build.getBuilderView();
 		lvl = (ReleaseLevel)build.getCurrentLevel();
 		releaseBoard = lvl.getBoard();

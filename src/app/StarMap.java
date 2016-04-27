@@ -106,9 +106,9 @@ public class StarMap implements Serializable{
 	 * (since it is returning a data type that support null), a null pointer
 	 * exception is throw instead. This allows consistency with the getMaxStars()
 	 * method. 
-	 * @param key
+	 * @param key - Value being looked up in the starMap
 	 * @return value associated with key - the level type
-	 * @throws exception if key is not in levelData
+	 * @throws Exception if key is not in levelData
 	 */
 	public String get(Integer key) throws Exception{
 		if(!levelData.containsKey(key)){
@@ -164,6 +164,7 @@ public class StarMap implements Serializable{
 	 * Throws a null pointer exception if the key does not exist in the map
 	 * @param key being lookedup
 	 * @return value associated with key - the maxStarsEarned or null if the levelID does not have a value associated with it
+	 * @throws Exception if the key is not within the treelist for levelData
 	 */
 	public Integer getMaxStars(Integer key) throws Exception{
 		if(!levelData.containsKey(key)){

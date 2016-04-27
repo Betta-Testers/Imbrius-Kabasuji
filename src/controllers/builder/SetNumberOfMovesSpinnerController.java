@@ -29,7 +29,7 @@ public class SetNumberOfMovesSpinnerController implements ChangeListener {
 	/**
 	 * When the state is changed in the spinner attatched to this, a move is 
 	 * triggered. If successful, the undo manager is notified.
-	 * @param ChangeEvent updating of spinner's value
+	 * @param ce updating of spinner's value
 	 */
 	public void stateChanged(ChangeEvent ce) {
 		JSpinner spinMoves = (JSpinner)ce.getSource();

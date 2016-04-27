@@ -35,7 +35,7 @@ public class PlacePieceToggleListener implements ActionListener {
 	/**
 	 * When toggled, the group's selection is cleared and the hint/board toggles are enabled for clicking
 	 * Regulates movements in the views
-	 * @param ActionEvent of button press
+	 * @param ae of button press
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {

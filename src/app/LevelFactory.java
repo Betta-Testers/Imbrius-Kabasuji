@@ -62,7 +62,7 @@ public class LevelFactory{
 	/**
 	 * Generates a ReleaseLevel with the given ID. The Board and bullpen of this release
 	 * level are populated with the pieces and tiles passed in.
-	 * @param id	- LevelID
+	 * @param id - LevelID
 	 * @param pieces - ArrayList of all pieces to be put into the bullpen
 	 * @param tiles - ArrayList of all tiles to be added to the board.
 	 * @return ReleaseLevel
@@ -79,7 +79,7 @@ public class LevelFactory{
 	/**
 	 * Generates a LightningLevel with the given ID. The Board and bullpen of this lightning
 	 * level are populated with the pieces and tiles passed in.
-	 * @param id	- LevelID
+	 * @param id - LevelID
 	 * @param pieces - ArrayList of all pieces to be put into the bullpen
 	 * @param tiles - ArrayList of all tiles to be added to the board.
 	 * @return ReleaseLevel
@@ -96,7 +96,7 @@ public class LevelFactory{
 	/**
 	 * Generates a PuzzleLevel with the given ID. The Board and bullpen of this puzzle
 	 * level are populated with the pieces and tiles passed in.
-	 * @param id	- LevelID
+	 * @param id - LevelID
 	 * @param pieces - ArrayList of all pieces to be put into the bullpen
 	 * @param tiles - ArrayList of all tiles to be added to the board.
 	 * @return ReleaseLevel
@@ -114,7 +114,7 @@ public class LevelFactory{
 	 * Generates a ReleaseLevel with the given ID and bullpen size
 	 * Note the bullpen is random in this case. If you want to specify
 	 * the exact pieces in the bullpen/board, use the alternate method
-	 * @param id	- LevelID
+	 * @param id - LevelID
 	 * @param bullpenSize - Size of randomly generated bullpen
 	 * @return ReleaseLevel
 	 */
@@ -131,7 +131,7 @@ public class LevelFactory{
 	 * Generates a LightningLevel with the given ID and bullpen size
 	 * Note the bullpen is random in this case. If you want to specify
 	 * the exact pieces in the bullpen/board, use the alternate method
-	 * @param id	- LevelID
+	 * @param id - LevelID
 	 * @param bullpenSize - Size of randomly generated bullpen
 	 * @return LightningLevel
 	 */
@@ -149,7 +149,7 @@ public class LevelFactory{
 	 * Generates a puzzle level with the given ID and bullpen size
 	 * Note the bullpen is random in this case. If you want to specify
 	 * the exact pieces in the bullpen/board, use the alternate method
-	 * @param id	- LevelID
+	 * @param id - LevelID
 	 * @param bullpenSize - Size of randomly generated bullpen
 	 * @return PuzzleLevel
 	 */
@@ -167,8 +167,7 @@ public class LevelFactory{
 	 * Generates a ReleaseLevel with the given ID and bullpen size
 	 * Note the bullpen is random in this case. If you want to specify
 	 * the exact pieces in the bullpen/board, use the alternate method
-	 * @param id	- LevelID
-	 * @param bullpenSize - Size of randomly generated bullpen
+	 * @param id - LevelID
 	 * @return ReleaseLevel
 	 */
 	public ReleaseLevel GenerateBlankRelease(int id){
@@ -184,8 +183,7 @@ public class LevelFactory{
 	 * Generates a LightningLevel with the given ID and bullpen size
 	 * Note the bullpen is random in this case. If you want to specify
 	 * the exact pieces in the bullpen/board, use the alternate method
-	 * @param id	- LevelID
-	 * @param bullpenSize - Size of randomly generated bullpen
+	 * @param id - LevelID
 	 * @return LightningLevel
 	 */
 	public LightningLevel GenerateBlankLightning(int id){
@@ -201,8 +199,7 @@ public class LevelFactory{
 	 * Generates a puzzle level with the given ID and bullpen size
 	 * Note the bullpen is random in this case. If you want to specify
 	 * the exact pieces in the bullpen/board, use the alternate method
-	 * @param id	- LevelID
-	 * @param bullpenSize - Size of randomly generated bullpen
+	 * @param id - LevelID
 	 * @return PuzzleLevel
 	 */
 	public PuzzleLevel GenerateBlankPuzzle(int id){

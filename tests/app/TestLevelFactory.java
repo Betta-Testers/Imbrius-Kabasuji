@@ -12,6 +12,10 @@ import model.PieceGroup;
 import model.PuzzleLevel;
 import model.ReleaseLevel;
 
+/**
+ * @author dfontana
+ */
+@SuppressWarnings("javadoc")
 public class TestLevelFactory extends TestCase {
 	LevelFactory factory;
 	

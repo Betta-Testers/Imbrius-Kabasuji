@@ -56,7 +56,7 @@ public class Game extends LevelIO{
 	 * DisplayLevel is called when the user has hit the button of the level they want to
 	 * play. With this information known, it is possible to load the level requested and 
 	 * make that level prepare its view and controllers (Timer for lightning for example)
-	 * @param ID of the level requested to play
+	 * @param levelID of the level requested to play
 	 * @return boolean - true if the level could be displayed
 	 */
 	public boolean displayLevel(int levelID) {

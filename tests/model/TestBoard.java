@@ -11,7 +11,7 @@ import java.awt.Color;
  * @author awharrison
  *
  */
-
+@SuppressWarnings("javadoc")
 public class TestBoard extends TestCase{
 	Board b;
 	BoardTile bt;

@@ -62,7 +62,10 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
 			levelModel.getBoard().removePiece(p);
-			levelModel.getBullpen().addRandomPiece();
+			
+			Piece addedPiece = levelModel.getBullpen().addRandomPiece();
+			bpv.updatePieceGroup(addedPiece);
+			
 			for (PieceTile pt : p.getTiles()) {
 				levelModel.getBoard().swapTile(new LightningTile(pt.getRow(), pt.getCol()));
 			}
@@ -71,6 +74,11 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 			}
 			levelView.getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}
+		
+		
+		levelModel.getBoard().clearPiecePreview();
+		boardView.redraw();
+		boardView.repaint();
 	}
 
 	/**

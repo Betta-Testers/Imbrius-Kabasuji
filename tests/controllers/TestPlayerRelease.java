@@ -17,6 +17,8 @@ import app.Game;
 import app.LevelFactory;
 import junit.framework.TestCase;
 
+
+@SuppressWarnings("javadoc")
 public class TestPlayerRelease extends TestCase {
 	
 	Game game;

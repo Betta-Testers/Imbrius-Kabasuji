@@ -144,6 +144,7 @@ public class Bullpen implements Serializable{
 
 	/** 
 	 * Tells the caller if a piece with the provided ID is available to be selected
+	 * @param ID piece ID being checked for selectability
 	 * @return True if piece is in the bullpen and has a count of at least one
 	 */
 	public boolean isSelectable(int ID) {
@@ -157,6 +158,7 @@ public class Bullpen implements Serializable{
 
 	/**
 	 * Sets the selected piece from the bullpen using a given ID.
+	 * @param p piece being set to selected
 	 */
 	public void setSelectedPiece(Piece p) {
 		this.selectedPiece = p;
