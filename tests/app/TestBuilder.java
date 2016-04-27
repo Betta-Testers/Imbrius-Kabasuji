@@ -11,11 +11,13 @@ import model.ReleaseLevel;
 public class TestBuilder extends TestCase {
 	AbstractLevelModel m;
 	Builder b;
+	LevelFactory factory;
 	
 	@Override
 	protected void setUp(){
 		new File("./imbriusLevelTESTING/").mkdirs();
 		b = new Builder("./imbriusLevelTESTING/");
+		factory = new LevelFactory();
 	}
 	
 	@Override
@@ -47,11 +49,11 @@ public class TestBuilder extends TestCase {
 	
 	public void testDeleteLevel(){
 		/**Generate a few levels to disk/starmap**/
-		b.createPuzzleLevel();
+		b.createLevel(factory.GenerateBlankPuzzle(b.getNextOpenID()));
 		b.saveLevel();
-		b.createReleaseLevel();
+		b.createLevel(factory.GenerateBlankRelease(b.getNextOpenID()));
 		b.saveLevel();
-		b.createLightningLevel();
+		b.createLevel(factory.GenerateBlankLightning(b.getNextOpenID()));
 		b.saveLevel();
 		
 		
@@ -80,7 +82,7 @@ public class TestBuilder extends TestCase {
 	 * Load each one in. They should load in the exact way they were saved
 	 */
 	public void testCreateLevelCase1(){
-		b.createPuzzleLevel();
+		b.createLevel(factory.GenerateBlankPuzzle(b.getNextOpenID()));
 		String expected = b.getCurrentLevel().toString();
 		b.saveLevel();
 		try {
@@ -92,7 +94,7 @@ public class TestBuilder extends TestCase {
 		assertTrue(m instanceof PuzzleLevel);
 		assertEquals(expected, m.toString());
 		
-		b.createReleaseLevel();
+		b.createLevel(factory.GenerateBlankRelease(b.getNextOpenID()));
 		expected = b.getCurrentLevel().toString();
 		b.saveLevel();
 		try {
@@ -104,7 +106,7 @@ public class TestBuilder extends TestCase {
 		assertTrue(m instanceof ReleaseLevel);
 		assertEquals(expected, m.toString());
 		
-		b.createLightningLevel();
+		b.createLevel(factory.GenerateBlankLightning(b.getNextOpenID()));
 		expected = b.getCurrentLevel().toString();
 		b.saveLevel();
 		try {
@@ -122,7 +124,7 @@ public class TestBuilder extends TestCase {
 	 * it.
 	 */
 	public void testCreateLevelCase2(){
-		b.createPuzzleLevel();
+		b.createLevel(factory.GenerateBlankPuzzle(b.getNextOpenID()));
 		try {
 			m = b.loadLevel(1);
 			fail();
@@ -136,7 +138,7 @@ public class TestBuilder extends TestCase {
 	 * into levelData more than once!
 	 */
 	public void testSaveLevel(){
-		b.createPuzzleLevel();
+		b.createLevel(factory.GenerateBlankPuzzle(b.getNextOpenID()));
 		assertFalse(b.levelData.containsKey(1));
 		b.saveLevel();
 		assertTrue(b.levelData.containsKey(1));
@@ -149,13 +151,13 @@ public class TestBuilder extends TestCase {
 		assertFalse(b.editLevel(1));
 		
 		/**Test editing existant ID**/
-		b.createPuzzleLevel();
+		b.createLevel(factory.GenerateBlankPuzzle(b.getNextOpenID()));
 		b.saveLevel();
 		assertTrue(b.levelData.containsKey(1));
-		b.createReleaseLevel();
+		b.createLevel(factory.GenerateBlankRelease(b.getNextOpenID()));
 		b.saveLevel();
 		assertTrue(b.levelData.containsKey(2));
-		b.createLightningLevel();
+		b.createLevel(factory.GenerateBlankLightning(b.getNextOpenID()));
 		b.saveLevel();
 		assertTrue(b.levelData.containsKey(3));
 		assertTrue(b.editLevel(1));

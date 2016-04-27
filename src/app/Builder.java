@@ -119,7 +119,6 @@ public class Builder extends LevelIO{
 		return false;
 	}
 	
-
 	/**
 	 * Prepares the builderView and builder for creating a level.
 	 * It sets the passed level to the current level, creates the Builder view and 

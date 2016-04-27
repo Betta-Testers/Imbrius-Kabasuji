@@ -12,6 +12,7 @@ import view.BuilderView;
 import view.ButtonGroupView;
 import view.SelectedPieceView;
 import app.Builder;
+import app.LevelFactory;
 import app.UndoManager;
 import junit.framework.TestCase;
 
@@ -26,7 +27,7 @@ public class TestBuilderButtonGroup extends TestCase {
 	public void setUp(){
 		new File("./imbriusLevelTESTING/").mkdirs();
 		build = new Builder("./imbriusLevelTESTING/");
-		build.createReleaseLevel();
+		build.createLevel((new LevelFactory()).GenerateBlankRelease(build.getNextOpenID()));
 		buildView = build.getBuilderView();
 		board = build.getCurrentLevel().getBoard();
 		boardView = buildView.getBoardView();
