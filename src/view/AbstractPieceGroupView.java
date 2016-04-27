@@ -34,6 +34,7 @@ public abstract class AbstractPieceGroupView extends JPanel{
 		setPreferredSize(new Dimension(72, 35));
 		this.pieceGroup = pieceGroup;
 		button = new SelectPieceButton(pieceGroup);
+		button.setToolTipText(pieceGroup.getPiece().getID()+"");
 		button.setIcon(pieceGroup.getPiece().generateIcon());
 		//button.setIcon(new ImageIcon(AbstractPieceGroupView.class.getResource("/pieces/"+pieceGroup.getPiece().getID()+".png")));
 	}
