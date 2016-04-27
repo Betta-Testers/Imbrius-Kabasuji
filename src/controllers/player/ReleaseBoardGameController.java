@@ -37,7 +37,7 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	SelectedPieceView spv;
 	/** The window that holds the board and bullpen **/
 	LevelView levelView;
-	
+
 	/**
 	 * @param game The game object
 	 * @param lv The level view
@@ -53,7 +53,7 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
-		
+
 	}
 
 	/** 
@@ -65,7 +65,7 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		Piece p;
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		p = levelModel.getBullpen().getSelectedPiece();
-		
+
 		if(p != null){
 			levelModel.getBoard().clearPiecePreview();
 			levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
@@ -73,7 +73,7 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 			boardView.repaint();
 		}
 	}
-	
+
 	/** 
 	 * Checks if any of the tiles that the piece covered were release tiles, and if so, update the level
 	 * @param p The piece that was placed
@@ -99,7 +99,7 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 			}
 		}
 	}
-	
+
 	@Override
 	public void mouseEntered(MouseEvent me) {}
 
@@ -121,7 +121,7 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	public void mousePressed(MouseEvent me) {
 		AbstractTile source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		PlacePieceOnBoardFromBullpenMove m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, levelView.getBullpenView(), spv, boardView);
-		
+
 		if (m.doMove()) {
 			Piece p = m.getPlacedPiece();
 			updateReleasedNumbers(p);
