@@ -83,20 +83,21 @@ public class LevelPropertiesView extends JPanel{
 	 * @param enableTime - whether to enable time views or not
 	 */
 	public void enableViews(boolean enableMoves, boolean enableTime){
+		
 		lblSetMoves.setVisible(enableMoves);
 		spinMoves.setVisible(enableMoves);
 		lblSetTime.setVisible(enableTime);
 		spinTime.setVisible(enableTime);
 		
-		try{
+		if(enableTime){
 			spinTime.setValue(((LightningLevel)levelModel).getTotalTime());
 			spinTime.addChangeListener(new TimeLimitSpinnerController((LightningLevel) levelModel));
-		}catch(ClassCastException e){}
+		}
 		
-		try{
+		if(enableMoves){
 			spinMoves.setValue(((PuzzleLevel)levelModel).getMoveLimit());
-			spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel)levelModel));
-		}catch(ClassCastException e){}
+			spinMoves.addChangeListener(new SetNumberOfMovesSpinnerController((PuzzleLevel)levelModel));	
+		}
 	}
 	
 	/**
