@@ -7,6 +7,7 @@ import model.Board;
 import model.BoardTile;
 import model.Bullpen;
 import model.Piece;
+import model.PieceFactory;
 import view.BoardView;
 import view.BuilderView;
 import view.ButtonGroupView;
@@ -108,7 +109,7 @@ public class TestBuilderButtonGroup extends TestCase {
 		buildView.getPlacePiecesBtn().doClick();
 		buildView.getConvertPieceToBoardBtn().doClick();
 		build.getCurrentLevel().getBullpen().incrementPiece(1);
-		build.getCurrentLevel().getBullpen().setSelectedPiece(new Piece(1));
+		build.getCurrentLevel().getBullpen().setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		/*
 		 * convert a piece to board
 		 */
@@ -157,7 +158,7 @@ public class TestBuilderButtonGroup extends TestCase {
 	public void testUndoRedoRotateRight() {
 		SelectedPieceView testView = buildView.getSelectedPieceView();
 		Bullpen testBullpen = build.getCurrentLevel().getBullpen();
-		Piece comparisonPiece = new Piece(35);
+		Piece comparisonPiece = PieceFactory.getInstance().getPiece(35);
 		
 		/*
 		 * post-initialization, both the undo and redo buttons should be inactive, no board tiles as well
@@ -170,7 +171,7 @@ public class TestBuilderButtonGroup extends TestCase {
 		 * initialize bullpen, verify same coordinates as comparison piece
 		 */
 		testBullpen.incrementPiece(35);
-		testBullpen.setSelectedPiece(new Piece(35)); 
+		testBullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(35)); 
 		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
 		
 		/*
@@ -201,7 +202,7 @@ public class TestBuilderButtonGroup extends TestCase {
 	public void testUndoRedoRotateLeft() {
 		SelectedPieceView testView = buildView.getSelectedPieceView();
 		Bullpen testBullpen = build.getCurrentLevel().getBullpen();
-		Piece comparisonPiece = new Piece(35);
+		Piece comparisonPiece = PieceFactory.getInstance().getPiece(35);
 		
 		/*
 		 * post-initialization, both the undo and redo buttons should be inactive, no board tiles as well
@@ -214,7 +215,7 @@ public class TestBuilderButtonGroup extends TestCase {
 		 * initialize bullpen, verify same coordinates as comparison piece
 		 */
 		testBullpen.incrementPiece(35);
-		testBullpen.setSelectedPiece(new Piece(35)); 
+		testBullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(35)); 
 		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
 		
 		/*
@@ -245,7 +246,7 @@ public class TestBuilderButtonGroup extends TestCase {
 	public void testUndoRedoFlipHorz() {
 		SelectedPieceView testView = buildView.getSelectedPieceView();
 		Bullpen testBullpen = build.getCurrentLevel().getBullpen();
-		Piece comparisonPiece = new Piece(35);
+		Piece comparisonPiece = PieceFactory.getInstance().getPiece(35);
 		
 		/*
 		 * post-initialization, both the undo and redo buttons should be inactive, no board tiles as well
@@ -257,7 +258,7 @@ public class TestBuilderButtonGroup extends TestCase {
 		/*
 		 * initialize bullpen, verify same coordinates as comparison piece
 		 */
-		testBullpen.setSelectedPiece(new Piece(35)); 
+		testBullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(35)); 
 		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
 		
 		/*
@@ -288,7 +289,7 @@ public class TestBuilderButtonGroup extends TestCase {
 	public void testUndoRedoFlipVert() {
 		SelectedPieceView testView = buildView.getSelectedPieceView();
 		Bullpen testBullpen = build.getCurrentLevel().getBullpen();
-		Piece comparisonPiece = new Piece(35);
+		Piece comparisonPiece = PieceFactory.getInstance().getPiece(35);
 		
 		/*
 		 * post-initialization, both the undo and redo buttons should be inactive, no board tiles as well
@@ -301,7 +302,7 @@ public class TestBuilderButtonGroup extends TestCase {
 		 * initialize bullpen, verify same coordinates as comparison piece
 		 */
 		testBullpen.incrementPiece(35);
-		testBullpen.setSelectedPiece(new Piece(35)); 
+		testBullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(35)); 
 		testBullpen.getSelectedPiece().occupiesSameCoorindates(comparisonPiece);
 		
 		/*
@@ -344,10 +345,10 @@ public class TestBuilderButtonGroup extends TestCase {
 		/*
 		 * place 4 pieces, verify by board tiles
 		 */
-		assertTrue(board.putPieceOnBoard(new Piece(2), 2, 2));
-		assertTrue(board.putPieceOnBoard(new Piece(5), 4, 3));
-		assertTrue(board.putPieceOnBoard(new Piece(6), 8, 6));
-		assertTrue(board.putPieceOnBoard(new Piece(11), 6, 9));
+		assertTrue(board.putPieceOnBoard(PieceFactory.getInstance().getPiece(2), 2, 2));
+		assertTrue(board.putPieceOnBoard(PieceFactory.getInstance().getPiece(5), 4, 3));
+		assertTrue(board.putPieceOnBoard(PieceFactory.getInstance().getPiece(6), 8, 6));
+		assertTrue(board.putPieceOnBoard(PieceFactory.getInstance().getPiece(11), 6, 9));
 		assertEquals(120, board.getNumBoardTiles());
 		
 		/*
@@ -361,8 +362,8 @@ public class TestBuilderButtonGroup extends TestCase {
 		 */
 		
 		for(int i = 0; i < 12; i++) {
-			assertTrue(board.putPieceOnBoard(new Piece(1), 2, i));
-			assertTrue(board.putPieceOnBoard(new Piece(1), 8, i));
+			assertTrue(board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 2, i));
+			assertTrue(board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 8, i));
 		}
 		
 		assertEquals(0, board.getNumBoardTiles());
