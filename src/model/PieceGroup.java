@@ -21,7 +21,7 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	 * @param count - int
 	 */
 	public PieceGroup(int ID, int count) {
-		this.piece = new Piece(ID);
+		this.piece = PieceFactory.getInstance().getPiece(ID);
 		this.numPieces = count;
 	}
 

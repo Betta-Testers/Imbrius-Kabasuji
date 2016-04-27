@@ -33,8 +33,6 @@ public class PieceTile extends AbstractTile{
 		super(row, col);
 		this.tileType = "piece";
 		this.piece = p;
-		this.color = p.getColor();
-		this.defaultColor = color;
 		
 		if (p.getOriginTile() == null) {
 			this.colInPiece = 0;
@@ -50,6 +48,13 @@ public class PieceTile extends AbstractTile{
 		
 	}
 	
+	/**
+	 * Sets the background colors of this piece (default and current)
+	 */
+	public void updateColor() {
+		this.color = piece.getColor();
+		this.defaultColor = color;
+	}
 
 	/**
 	 * Returns the row of the tile relative to the origin in the Piece.

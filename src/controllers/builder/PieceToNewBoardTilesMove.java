@@ -7,6 +7,7 @@ import model.BoardTile;
 import model.Bullpen;
 import model.EmptyTile;
 import model.Piece;
+import model.PieceTile;
 import view.BoardView;
 import view.LevelPropertiesView;
 import view.SelectedPieceView;
@@ -59,8 +60,8 @@ public class PieceToNewBoardTilesMove implements IMove{
 	public boolean doMove() {
 		if (isValid()) {
 			p.setLocation(sourceTile.getRow(), sourceTile.getCol());
-			for(int i = 0; i < 6; i++){
-				board.swapTile(new BoardTile(p.getTiles()[i].getRow(), p.getTiles()[i].getCol()));
+			for(PieceTile pt : p.getTiles()){
+				board.swapTile(new BoardTile(pt.getRow(), pt.getCol()));
 			}
 			bullpen.clearSelectedPiece();
 			lpv.adjustTileCount(6);
@@ -96,9 +97,10 @@ public class PieceToNewBoardTilesMove implements IMove{
 	 * @return true
 	 */
 	public boolean undo() {
-		for(int i = 0; i < 6; i++){
-			board.swapTile(new EmptyTile(p.getTiles()[i].getRow(), p.getTiles()[i].getCol()));
+		for(PieceTile pt : p.getTiles()){
+			board.swapTile(new EmptyTile(pt.getRow(), pt.getCol()));
 		}
+		p.setLocation(0, 0);
 		bullpen.setSelectedPiece(p);
 		lpv.adjustTileCount(-6);
 		

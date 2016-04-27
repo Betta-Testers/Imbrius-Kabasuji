@@ -82,8 +82,8 @@ public class Board implements Serializable{
 		p.setLocation(row, col);
 		if (willFit(p, row, col)) {
 			for (int i = 0; i < 6; i++) {
-				AbstractTile temp = swapTile(p.tiles[i]);
-				p.tiles[i].setPreviousTile(temp);
+				AbstractTile temp = swapTile(p.getTiles().get(i));
+				p.getTiles().get(i).setPreviousTile(temp);
 			}
 			pieces.add(p);
 			return true;
@@ -113,7 +113,7 @@ public class Board implements Serializable{
 	public boolean removePiece(Piece p) {
 		if (pieces.contains(p)) {
 			for (int i = 0; i < 6; i++) {
-				swapTile(p.tiles[i].getPreviousTile());
+				swapTile(p.getTiles().get(i).getPreviousTile());
 			}
 			pieces.remove(p);
 			return true;
@@ -135,8 +135,8 @@ public class Board implements Serializable{
 			return false;
 		}
 		for (int i = 0; i < 6; i++) {
-			r = row + p.tiles[i].rowInPiece;
-			c = col + p.tiles[i].colInPiece;
+			r = row + p.getTiles().get(i).rowInPiece;
+			c = col + p.getTiles().get(i).colInPiece;
 			if(board[r][c].tileType.equals("empty") || board[r][c].tileType.equals("piece")){
 				return false;
 			}
@@ -150,8 +150,8 @@ public class Board implements Serializable{
 			return false;
 		}
 		for (int i = 0; i < 6; i++) {
-			r = row + p.tiles[i].rowInPiece;
-			c = col + p.tiles[i].colInPiece;
+			r = row + p.getTiles().get(i).rowInPiece;
+			c = col + p.getTiles().get(i).colInPiece;
 			if(board[r][c].tileType.equals("empty") || board[r][c].tileType.equals("piece") || ((BoardTile) board[r][c]).isHint()){
 				return false;
 			}
@@ -169,8 +169,8 @@ public class Board implements Serializable{
 	public boolean onBoard(Piece p, int row, int col){
 		int r, c;
 		for (int i = 0; i < 6; i++) {
-			r = row + p.tiles[i].rowInPiece;
-			c = col + p.tiles[i].colInPiece;
+			r = row + p.getTiles().get(i).rowInPiece;
+			c = col + p.getTiles().get(i).colInPiece;
 			if(r < 0 || r > 11 || c < 0 || c > 11) {return false;}
 		}
 		return true;
@@ -187,8 +187,8 @@ public class Board implements Serializable{
 		int r, c;
 		if(!onBoard(p, row, col)){return false;}
 		for (int i = 0; i < 6; i++) {
-			r = row + p.tiles[i].rowInPiece;
-			c = col + p.tiles[i].colInPiece;
+			r = row + p.getTiles().get(i).rowInPiece;
+			c = col + p.getTiles().get(i).colInPiece;
 			if(!board[r][c].tileType.equals("empty")){
 				return false;
 			}
@@ -241,15 +241,15 @@ public class Board implements Serializable{
 	public void showPiecePreview(Piece p, int row, int col){
 		if(willFit(p,row,col)){
 			for(int i = 0; i<6; i++){
-				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+				board[row + p.getTiles().get(i).rowInPiece][col + p.getTiles().get(i).colInPiece].setMouseOverColor(true);
 			}
 		}else{
 			for(int i = 0; i<6; i++){
-				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
-						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
+				if(p.getTiles().get(i).rowInPiece+row < 0 || p.getTiles().get(i).rowInPiece+row > 11
+						|| p.getTiles().get(i).colInPiece+col < 0 || p.getTiles().get(i).colInPiece+col > 11){
 					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 				}else{
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+					board[row + p.getTiles().get(i).rowInPiece][col + p.getTiles().get(i).colInPiece].setMouseOverColor(false);
 
 				}
 			}
@@ -265,15 +265,15 @@ public class Board implements Serializable{
 	public void showConversionPreview(Piece p, int row, int col){
 		if(isValidConvert(p, row, col)){
 			for(int i = 0; i<6; i++){
-				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+				board[row + p.getTiles().get(i).rowInPiece][col + p.getTiles().get(i).colInPiece].setMouseOverColor(true);
 			}
 		}else{
 			for(int i = 0; i<6; i++){
-				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
-						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
+				if(p.getTiles().get(i).rowInPiece+row < 0 || p.getTiles().get(i).rowInPiece+row > 11
+						|| p.getTiles().get(i).colInPiece+col < 0 || p.getTiles().get(i).colInPiece+col > 11){
 					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 				}else{
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+					board[row + p.getTiles().get(i).rowInPiece][col + p.getTiles().get(i).colInPiece].setMouseOverColor(false);
 
 				}
 			}
@@ -283,15 +283,15 @@ public class Board implements Serializable{
 	public void showHintPreview(Piece p, int row, int col){
 		if(willFitHint(p,row,col)){
 			for(int i = 0; i<6; i++){
-				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+				board[row + p.getTiles().get(i).rowInPiece][col + p.getTiles().get(i).colInPiece].setMouseOverColor(true);
 			}
 		}else{
 			for(int i = 0; i<6; i++){
-				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
-						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
+				if(p.getTiles().get(i).rowInPiece+row < 0 || p.getTiles().get(i).rowInPiece+row > 11
+						|| p.getTiles().get(i).colInPiece+col < 0 || p.getTiles().get(i).colInPiece+col > 11){
 					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 				}else{
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+					board[row + p.getTiles().get(i).rowInPiece][col + p.getTiles().get(i).colInPiece].setMouseOverColor(false);
 
 				}
 			}
