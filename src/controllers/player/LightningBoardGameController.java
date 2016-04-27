@@ -103,7 +103,11 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 	@Override
 	public void mouseEntered(MouseEvent me) {}
 	@Override
-	public void mouseExited(MouseEvent arg0) {}
+	public void mouseExited(MouseEvent arg0) {
+		levelModel.getBoard().clearPiecePreview();
+		boardView.redraw();
+		boardView.repaint();
+	}
 	@Override
 	public void mousePressed(MouseEvent me) {}
 	@Override

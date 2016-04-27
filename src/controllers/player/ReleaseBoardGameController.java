@@ -109,6 +109,8 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		levelModel.getBoard().clearPiecePreview();
+		boardView.redraw();
+		boardView.repaint();
 	}
 
 	/**
