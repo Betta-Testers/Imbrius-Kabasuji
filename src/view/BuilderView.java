@@ -1,9 +1,11 @@
 package view;
 
 import java.awt.event.WindowListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import app.Builder;
 import controllers.builder.BuilderBoardController;
 import controllers.builder.PieceGroupSpinnerController;
@@ -11,12 +13,15 @@ import controllers.builder.PlacePieceToggleListener;
 import controllers.builder.CloseBuilderDialog;
 import controllers.common.BullpenPieceSelectController;
 import model.AbstractLevelModel;
+
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+
 import java.awt.Component;
 import java.awt.Dimension;
 
@@ -101,15 +106,14 @@ public class BuilderView extends JFrame {
 	 * Adds the toggle buttons to the builder window.
 	 */
 	void prepareToggleButtons() {
-		placementGroup = new ButtonGroup();
-//		{
-//			private static final long serialVersionUID = 1L;
-//			@Override
-//			public void setSelected(ButtonModel model, boolean selected) {
-//				if(selected){super.setSelected(model, selected);
-//				}else{clearSelection();}
-//			}
-//		};
+		placementGroup = new ButtonGroup() {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void setSelected(ButtonModel model, boolean selected) {
+				if(selected){super.setSelected(model, selected);
+				}else{clearSelection();}
+			}
+		};
 		placementGroup.add(tglbtnPlaceBoard);
 		placementGroup.add(tglbtnPlaceHints);
 		tglbtnPlaceBoard.setEnabled(false);

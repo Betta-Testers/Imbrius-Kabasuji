@@ -149,4 +149,11 @@ public class TestBullpen extends TestCase {
 			
 		}
 	}
+	
+	public void testCreateWithSizeOf() {
+		testBP3 = new Bullpen(50);
+		assertEquals(50, testBP3.numAvailablePieces());
+		assertTrue(testBP3.playablePieces.size() <= 35);
+	}
+	
 }
