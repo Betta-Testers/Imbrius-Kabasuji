@@ -79,7 +79,6 @@ public class PieceToNewBoardTilesMove implements IMove{
 	
 	/**
 	 * Determines if the move is valid, by asking the board if the piece can be placed at the location of the source tile
-	 * @see board#isValidConvert()
 	 * @return True if the move is valid, will return false if there is no piece selected in the bullpen
 	 */
 	public boolean isValid() {		

@@ -36,13 +36,7 @@ public class Piece implements Serializable{
 	/**
 	 * Returns the string representation of this piece.
 	 * @return string representation of the piece - String
-	 */
-//	public String toString(){
-//		return tiles[0].toString() + "," + tiles[1].toString() + "," + tiles[2].toString() + "," +
-//				tiles[3].toString() + "," + tiles[4].toString() + "," + tiles[5].toString() + "," +
-//				ID + "," + tiles[0].toString() + "," + color.toString();
-//	}
-	
+	 */	
 	public String toString(){
 		return "[ID:"+ID+" "+ tiles[0].toString() + " " + tiles[1].toString() + " " + tiles[2].toString() + " " +
 				tiles[3].toString() + " " + tiles[4].toString() + " " + tiles[5].toString()+"]";
