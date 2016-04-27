@@ -64,17 +64,19 @@ public class TestBoard extends TestCase{
 		assertEquals(b.getTileAt(0, 0), b.board[0][0]);
 		
 		
-		b.board[1][1] = new BoardTile(1,1);
+		b.board[0][1] = new BoardTile(0,1);
 		b.board[1][1] = new BoardTile(1,1);
 		b.board[2][1] = new BoardTile(2,1);
 		b.board[3][1] = new BoardTile(3,1);
 		b.board[4][1] = new BoardTile(4,1);
 		b.board[5][1] = new BoardTile(5,1);
 		
+		b.removePiece(p);
+		
 		Piece p2 = new Piece(1);
 		b.showPiecePreview(p2, 2, 1);
 		
-		assertEquals(Color.RED, b.board[1][1].color);
+		assertEquals(Color.GREEN, b.board[1][1].color);
 		
 		Piece p3 = new Piece(1);
 		
