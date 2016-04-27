@@ -137,7 +137,7 @@ public class BuilderView extends JFrame {
 	 */
 	public void setPropertiesView(AbstractLevelModel level, boolean enableMoves, boolean enableTime) {
 		levelPropertyView.setLevelModel(level);
-		levelPropertyView.enableViews(true, false);
+		levelPropertyView.enableViews(enableMoves, enableTime);
 	}
 	
 	/**
