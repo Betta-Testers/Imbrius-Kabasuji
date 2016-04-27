@@ -168,7 +168,6 @@ public class Builder extends LevelIO{
 		}
 	}
 	
-	
 	//========================== Getters ==========================//
 	/**
 	 * Gets the builder view
