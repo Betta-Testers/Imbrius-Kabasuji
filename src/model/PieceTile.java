@@ -76,11 +76,10 @@ public class PieceTile extends AbstractTile{
 	 * @param newRow new row location of tile
 	 */
 	public void updateRowInPiece(int newRow) {
-		if (piece.getOriginTile() == this) {
-			throw new RuntimeException("Can't update relative position of the origin tile");
+		if (piece.getOriginTile() != this) {
+			this.rowInPiece = newRow;
+			updateBoardPosition();
 		}
-		this.rowInPiece = newRow;
-		updateBoardPosition();
 	}
 	
 	/**
@@ -88,11 +87,10 @@ public class PieceTile extends AbstractTile{
 	 * @param newCol new column location of tile.
 	 */
 	public void updateColInPiece(int newCol) {
-		if (piece.getOriginTile() == this) {
-			throw new RuntimeException("Can't update relative position of the origin tile");
+		if (piece.getOriginTile() != this) {
+			this.colInPiece = newCol;
+			updateBoardPosition();
 		}
-		this.colInPiece = newCol;
-		updateBoardPosition();
 	}
 	
 	/**
