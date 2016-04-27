@@ -26,7 +26,7 @@ public class ExistingLevelDeleteController implements ActionListener {
 
 	/**
 	 * Reads the source button for the level ID to be deleted, and tells the builder to remove it
-	 * @param ActionEvent of button being clicked
+	 * @param ae of button being clicked
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		JButton sourceButton = (JButton) ae.getSource();

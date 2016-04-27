@@ -8,11 +8,17 @@ import java.nio.file.Paths;
 
 import junit.framework.TestCase;
 
+/**
+ * @author dfontana
+ */
+@SuppressWarnings("javadoc")
 public class TestLevelIO extends TestCase {
+	LevelFactory factory;
 	
 	@Override
 	protected void setUp(){
 		new File("./imbriusLevelTESTING/").mkdirs();
+		factory = new LevelFactory();
 	}
 	
 	@Override
@@ -32,9 +38,9 @@ public class TestLevelIO extends TestCase {
 		assertTrue(b.levelData.isEmpty());			//LevelData is empty
 		
 		/**Add levels to starMap, save the starMap**/
-		b.createPuzzleLevel();
+		b.createLevel(factory.GenerateBlankPuzzle(b.getNextOpenID()));
 		b.saveLevel();
-		b.createLightningLevel();
+		b.createLevel(factory.GenerateBlankLightning(b.getNextOpenID()));
 		b.saveLevel();
 		
 		/**Recreate the builder, should load in two levels**/
@@ -73,9 +79,9 @@ public class TestLevelIO extends TestCase {
 	
 	public void testUpdateStars(){
 		Builder b = new Builder("./imbriusLevelTESTING/");
-		b.createLightningLevel();
+		b.createLevel(factory.GenerateBlankLightning(b.getNextOpenID()));
 		b.saveLevel();
-		b.createPuzzleLevel();
+		b.createLevel(factory.GenerateBlankPuzzle(b.getNextOpenID()));
 		b.saveLevel();
 		
 		/**Try to update the star count for an existing level**/

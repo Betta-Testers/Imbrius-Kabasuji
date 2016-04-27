@@ -48,7 +48,7 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 
 	/**
 	 * Allows collections of PieceGroup to be easily sorted.
-	 * @returns comparison of IDs - int
+	 * @return comparison of IDs - int
 	 */
 	public int compareTo(PieceGroup other) {
 		return Integer.compare(this.getPiece().ID, other.getPiece().ID);
@@ -72,7 +72,7 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 
 	/**
 	 * Checks if the ID of the inputted object is equal to the ID of the PieceGroup.
-	 * @returns if the IDs are equal - boolean
+	 * @return if the IDs are equal - boolean
 	 */
 	@Override
 	public boolean equals(Object o){

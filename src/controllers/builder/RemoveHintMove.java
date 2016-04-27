@@ -31,6 +31,7 @@ public class RemoveHintMove implements IMove {
 	 * @param hintPieces - known pieces that are hints
 	 * @param source - supposed hint tile that was clicked
 	 * @param b - board that is being modified
+	 * @param bv - view of board being redrawn
 	 */
 	public RemoveHintMove(ArrayList<Piece>hintPieces, AbstractTile source, Board b, BoardView bv){
 		this.hintPieces = hintPieces;

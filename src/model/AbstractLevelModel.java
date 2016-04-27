@@ -2,7 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+import app.Builder;
 import app.Game;
+import view.BuilderView;
 import view.LevelView;
 
 /**
@@ -51,16 +53,25 @@ public abstract class AbstractLevelModel implements Serializable{
 	 * Check status occurs after every move is made. This updates the current state of play in the level, such as
 	 * the movesMade, how many tiles have been covered, etc. It returns a boolean indicating if the level is finished
 	 * (true) or false if the level has not hit the end of play
+	 * @return true if the state of the game is done
 	 */
 	public abstract boolean checkStatus();
 
 	/**
-	 * initializes views and controllers
-	 * Any other intializations occur here
-	 * @return LevelView
+	 * initializes views and controllers for a this level.
+	 * Any other initializations occur here.
+	 * @param g - game whose current level's view is in need of initialization
+	 * @return LevelView - view of this level
 	 */
 	public abstract LevelView initializeGame(Game g);
 
+	/**
+	 * Prepares the builderView for the level, should it be opened
+	 * in the builder.
+	 * @param b requesting the action
+	 * @return BuilderView - view of the level being edited
+	 */
+	public abstract BuilderView prepBuilder(Builder b);
 	//============================== SETTERS ==================================
 	/**
 	 * sets the board associated with this level to the one passed in

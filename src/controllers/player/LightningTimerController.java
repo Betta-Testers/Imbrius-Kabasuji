@@ -12,6 +12,10 @@ import model.LightningLevel;
 import view.LevelView;
 import view.TimeRemainingView;
 
+/**
+ * Controls the timer of the lightning mode gameplay.
+ * @author hejohnson
+ */
 public class LightningTimerController extends WindowAdapter implements ActionListener{
 	/** The view of the level being played **/
 	LevelView view;
@@ -27,6 +31,7 @@ public class LightningTimerController extends WindowAdapter implements ActionLis
 	/** 
 	 * Sets up the timer to fire events every second and repeat
 	 * @param g The game object
+	 * @param lv the view of the lightning level being played
 	 */
 	public LightningTimerController(Game g, LevelView lv){
 		this.view = lv;

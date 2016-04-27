@@ -19,7 +19,9 @@ public class ExitLevelController extends WindowAdapter{
 	LevelView view;
 	
 	/**
+	 * Creates the controller
 	 * @param g The current game
+	 * @param view the view of the level being handled on exit
 	 */
 	public ExitLevelController(Game g, LevelView view) {
 		this.game = g;

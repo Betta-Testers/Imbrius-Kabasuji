@@ -9,7 +9,7 @@ import junit.framework.TestCase;
  * @author hejohnson
  *
  */
-
+@SuppressWarnings("javadoc")
 public class TestTiles extends TestCase {	
 	public void testBoardTile() {
 		BoardTile bt = new BoardTile(1, 1);

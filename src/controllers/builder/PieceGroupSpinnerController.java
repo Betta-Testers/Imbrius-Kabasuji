@@ -44,7 +44,7 @@ public class PieceGroupSpinnerController implements ChangeListener {
 	 * When the spinner is changed, the controller detects it and logs the 
 	 * change as a move so it can be undone/redone. If the spinner's value of the piece currently selected 
 	 * drops to 0, the bp is cleared of the selected piece and then redraws the piecePanel.
-	 * @param ChangeEvent when the value of spinner is changed
+	 * @param e when the value of spinner is changed
 	 */
 	@Override
 	public void stateChanged(ChangeEvent e) {

@@ -8,6 +8,7 @@ import junit.framework.TestCase;
  * @author ejbosia
  *
  */
+@SuppressWarnings("javadoc")
 public class TestLevelPuzzle extends TestCase {
 	PuzzleLevel p;
 	@Override

@@ -41,7 +41,7 @@ public class UndoButtonController implements ActionListener{
 	 * Call undo on the undoManager when the listener is triggered.
 	 * If there is a move to be undone, it repaints the board and selected
 	 * piece preview. If there wasn't, it does nothing
-	 * @param ActionEvent button pressed event
+	 * @param e button pressed event
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

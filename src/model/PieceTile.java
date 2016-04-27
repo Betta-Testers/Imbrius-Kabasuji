@@ -26,8 +26,7 @@ public class PieceTile extends AbstractTile{
 	 * Create a piece tile, which is a part of a specified piece. Sets tile location and color based off of Piece.
 	 * @param row Tile's row on the board - int
 	 * @param col Tile's column on the board - int
-	 * @param rinPiece Tile's row within the piece (can be negative) - int
-	 * @param cInPiece Tile's column within the piece (can be negative) - int
+	 * @param p piece the tile belongs to
 	 */
 	public PieceTile(int row, int col, Piece p) {
 		super(row, col);
@@ -74,7 +73,7 @@ public class PieceTile extends AbstractTile{
 	
 	/**
 	 * Updates the row position of the tile relative to the origin in the Piece.
-	 * @int newRow - int
+	 * @param newRow new row location of tile
 	 */
 	public void updateRowInPiece(int newRow) {
 		if (piece.getOriginTile() == this) {
@@ -86,7 +85,7 @@ public class PieceTile extends AbstractTile{
 	
 	/**
 	 * Updates the column position of the tile relative to the origin in the Piece.
-	 * @int newCol - int
+	 * @param newCol new column location of tile.
 	 */
 	public void updateColInPiece(int newCol) {
 		if (piece.getOriginTile() == this) {

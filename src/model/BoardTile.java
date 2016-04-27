@@ -17,8 +17,8 @@ public class BoardTile extends AbstractTile implements Serializable{
 	
 	/**
 	 * Create a BoardTile at the specified location on the board
-	 * @param row
-	 * @param col
+	 * @param row of the tile on the board
+	 * @param col column of the tile on the board
 	 */
 	public BoardTile (int row, int col) {
 		super(row, col);
