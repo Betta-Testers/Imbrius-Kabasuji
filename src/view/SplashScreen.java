@@ -18,14 +18,6 @@ import javax.sound.sampled.*;
  * 
  */
 public class SplashScreen extends JFrame {
-	
-	
-	 private final int BUFFER_SIZE = 128000;
-	 private File soundFile;
-	 private AudioInputStream audioStream;
-	 private AudioFormat audioFormat;
-	 private SourceDataLine sourceLine;
-	
 	private static final long serialVersionUID = 1L;
 	/**Panel for the SplashScreen.**/
 	private JPanel contentPane;
@@ -40,10 +32,12 @@ public class SplashScreen extends JFrame {
 	JLabel lblName4;
 	JLabel lblName5;
 
+	
 	/**
 	 * Create the SplashScreen.
 	 */
 	public SplashScreen() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 640);
 		contentPane = new JPanel();
@@ -72,19 +66,12 @@ public class SplashScreen extends JFrame {
 		lblName5.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
 		setVisible(true);
 		setupLayout();
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		playSong();
 	}
 	
 	/**
 	 * Sets up the layout of the SplashScreen.
 	 */
-	void setupLayout() {
+	public void setupLayout() {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -133,56 +120,8 @@ public class SplashScreen extends JFrame {
 					.addContainerGap(60, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+		System.out.println("POOP");
 	}
 	
-	void playSong(){
-		String strFilename = "resources/sounds/song.wav";
 
-        try {
-            soundFile = new File(strFilename);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-
-        try {
-            audioStream = AudioSystem.getAudioInputStream(soundFile);
-        } catch (Exception e){
-            e.printStackTrace();
-            System.exit(1);
-        }
-
-        audioFormat = audioStream.getFormat();
-
-        DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
-        try {
-            sourceLine = (SourceDataLine) AudioSystem.getLine(info);
-            sourceLine.open(audioFormat);
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-            System.exit(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-
-        sourceLine.start();
-
-        int nBytesRead = 0;
-        byte[] abData = new byte[BUFFER_SIZE];
-        while (nBytesRead != -1) {
-            try {
-                nBytesRead = audioStream.read(abData, 0, abData.length);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (nBytesRead >= 0) {
-                @SuppressWarnings("unused")
-                int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
-            }
-        }
-
-        sourceLine.drain();
-        sourceLine.close();
-    }
 }

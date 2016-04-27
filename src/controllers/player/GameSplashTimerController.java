@@ -31,7 +31,6 @@ public class GameSplashTimerController implements ActionListener{
 	public GameSplashTimerController(SplashScreen view, Game g){
 		this.view = view;
 		this.g = g;
-		playSong();
 	}
 	
 	/**
@@ -40,30 +39,5 @@ public class GameSplashTimerController implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		view.dispose();
 		g.getSelectView().setVisible(true);
-	}
-	public void playSong(){
-		try {
-		    File yourFile = new File("sounds/splash_song.wav");
-		    AudioInputStream stream;
-		    AudioFormat format;
-		    DataLine.Info info;
-		    Clip clip;
-
-		    System.out.println("POOP");
-		    
-		    stream = AudioSystem.getAudioInputStream(yourFile);
-		    System.out.println("POOP");
-		    format = stream.getFormat();
-		    info = new DataLine.Info(Clip.class, format);
-		    clip = (Clip) AudioSystem.getLine(info);
-		    
-
-		    clip.open(stream);
-		    clip.start();
-		    
-		}
-		catch (Exception e) {
-		    //whatevers
-		}
 	}
 }
