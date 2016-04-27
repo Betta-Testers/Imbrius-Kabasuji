@@ -9,12 +9,22 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+import java.io.*;
+import javax.sound.sampled.*;
+
 /**
  * Shows a screen with the name of the application and the authors. Everything set to comic sans for fun :).
  * @author bwoconnor
  * 
  */
 public class SplashScreen extends JFrame {
+	
+	
+	 private final int BUFFER_SIZE = 128000;
+	 private File soundFile;
+	 private AudioInputStream audioStream;
+	 private AudioFormat audioFormat;
+	 private SourceDataLine sourceLine;
 	
 	private static final long serialVersionUID = 1L;
 	/**Panel for the SplashScreen.**/
@@ -62,6 +72,13 @@ public class SplashScreen extends JFrame {
 		lblName5.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
 		setVisible(true);
 		setupLayout();
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		playSong();
 	}
 	
 	/**
@@ -117,4 +134,55 @@ public class SplashScreen extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+	void playSong(){
+		String strFilename = "resources/sounds/song.wav";
+
+        try {
+            soundFile = new File(strFilename);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        try {
+            audioStream = AudioSystem.getAudioInputStream(soundFile);
+        } catch (Exception e){
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        audioFormat = audioStream.getFormat();
+
+        DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+        try {
+            sourceLine = (SourceDataLine) AudioSystem.getLine(info);
+            sourceLine.open(audioFormat);
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        sourceLine.start();
+
+        int nBytesRead = 0;
+        byte[] abData = new byte[BUFFER_SIZE];
+        while (nBytesRead != -1) {
+            try {
+                nBytesRead = audioStream.read(abData, 0, abData.length);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (nBytesRead >= 0) {
+                @SuppressWarnings("unused")
+                int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
+            }
+        }
+
+        sourceLine.drain();
+        sourceLine.close();
+    }
 }
