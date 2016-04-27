@@ -64,8 +64,9 @@ public class SplashScreen extends JFrame {
 		
 		lblName5 = new JLabel("Hans Johnson");
 		lblName5.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
-		setVisible(true);
 		setupLayout();
+		setVisible(true);
+
 	}
 	
 	/**
@@ -120,7 +121,6 @@ public class SplashScreen extends JFrame {
 					.addContainerGap(60, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
-		System.out.println("POOP");
 	}
 	
 
