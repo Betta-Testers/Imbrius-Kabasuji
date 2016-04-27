@@ -98,12 +98,21 @@ public class LightningBoardGameController implements MouseListener, MouseMotionL
 		}
 	}
 	
+	/**
+	 * Clears the piece preview when the mouse leaves the board.
+	 * @param arg0 mouse event of leaving the board
+	 */
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		levelModel.getBoard().clearPiecePreview();
+		boardView.redraw();
+		boardView.repaint();
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent me) {}
 	@Override
 	public void mouseEntered(MouseEvent me) {}
-	@Override
-	public void mouseExited(MouseEvent arg0) {}
 	@Override
 	public void mousePressed(MouseEvent me) {}
 	@Override

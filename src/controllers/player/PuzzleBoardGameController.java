@@ -94,8 +94,10 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 				levelView.dispatchEvent(new WindowEvent(levelView, WindowEvent.WINDOW_CLOSING));
 			}
 			levelView.getLevelInfoView().setStars(levelModel.getStarsEarned());
-		}
-
+		}	
+		levelModel.getBoard().clearPiecePreview();
+		boardView.redraw();
+		boardView.repaint();
 	}
 
 	/**

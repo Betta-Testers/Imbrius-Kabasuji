@@ -2,20 +2,20 @@ Kabasuji Readme -- Team Imbrius
 
 Builder milestones:
 	-Launch the MainBuilder.java in the app package, this will launch the builder
-	-at the top you will see a scollpane that contains all of the current levels on disk that may be edited
-	-to add a new level click one of the three large buttons half way down the window (puzzle in this case)
-	-to make the board simply click on a square on the board to turn it into a board tile (white = playable space, grey = not playable space)
-	-to set the number of moves either type into the "moves" area in the builder, or you can incrememnt it up to 10 using the small incrememnt button on the spinner
-	-the bullpen is the scollable area to the upper right, to add a piece to the bullpen for use simply incrememnt it up, or type the number you want into the space next to the piece
-	-to place the piece onto the board in the builder follow these steps:
+	-At the top you will see a scollpane that contains all of the current levels on disk that may be edited
+	-To add a new level click one of the three large buttons half way down the window (For this readme, we'll assume you clicked Puzzle, but they all work).
+	-To make the board, simply click on a square on the board to turn it into a board tile (white = playable space, grey = not playable space)
+	-To set the number of moves, look to the right of the window for the scroller next to "Move Count"
+	-The bullpen is the scollable area to the upper right. To add a piece to the bullpen for use simply increment the scroller next to it.
+	-To place the piece onto the board in the builder follow these steps:
 		1:click the "place piece" button directly above the board
-		2:click the piece you want to place on the board in the bullpen
+		2:click the piece you want to place on the board in the bullpen (needs a count of non zero)
 		3:the piece is now in the "selected piece area", so you may flip it or rotate it freely
 		4:when you want to place the piece simply move your mouse onto the board
 		5:if the piece is red it cannot be placed at that location, if green it may be placed
-		6:once it is at a valid location cimply click the mouse and the piece will be placed.
-	-once satisfied with piece placement you can click the "save" button in the lower right corner of the window
-	-once you have closed the builder and re launched it, to get to the level you just created scroll all the way to the right on the upper scroll bar, it should be level 16
+		6:once it is at a valid location simply click the mouse and the piece will be placed.
+	-Once satisfied with piece placement you can click the "save" button in the lower right corner of the window (and it will remove pieces on board, before writing the level to disk).
+	-Once you have closed the builder and re launched it, to get to the level you just created scroll all the way to the right on the upper scroll bar, it should be level 16
 	-to edit that level simply click the button with the picture and level label
 	-for the lightning level follow the same process as you did for the puzzle, except now instead of setting the moves set the time in the same way you did moves.
 
