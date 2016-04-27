@@ -35,7 +35,8 @@ public class Piece implements Serializable{
 	}
 	
 	/**
-	 * @param c
+	 * Sets the color of the piece. Updates the color and the default color of all the component piece tiles
+	 * @param c The color to set the piece to
 	 */
 	public void setColor(Color c) {
 		this.color = c;

@@ -11,7 +11,6 @@ import view.LevelView;
 import model.Board;
 import model.BoardTile;
 import model.Bullpen;
-import model.Piece;
 import model.PieceFactory;
 import model.PuzzleLevel;
 import app.Game;

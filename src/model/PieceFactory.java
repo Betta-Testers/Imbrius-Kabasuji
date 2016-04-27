@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 /**
@@ -21,19 +20,16 @@ public class PieceFactory {
 
 	private static PieceFactory instance = new PieceFactory();
 	TreeMap<Integer, Piece> pieces;
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		PieceFactory pf = new PieceFactory();
-
-	}
 	
 	private PieceFactory() {
 		loadFiles();
 		System.out.println(pieces.toString());
 	}
 	
+	/**
+	 * Returns the piece factory singleton object
+	 * @return The piece factory
+	 */
 	public static PieceFactory getInstance() {
 		return instance;
 	}
@@ -119,10 +115,19 @@ public class PieceFactory {
 		}
 	}
 	
+	/**
+	 * Determines if the given piece ID actually exists
+	 * @param id The ID to check
+	 * @return True if the ID/piece does exist
+	 */
 	public boolean pieceExists(int id) {
 		return pieces.containsKey(id);
 	}
 	
+	/**
+	 * Returns the piece with the highest number
+	 * @return The ID of the highest numbered piece
+	 */
 	public int getHighestNumberedPiece() {
 		return pieces.lastKey();
 	}

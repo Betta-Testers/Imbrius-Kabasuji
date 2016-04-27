@@ -11,7 +11,6 @@ import model.Board;
 import model.BoardTile;
 import model.Bullpen;
 import model.LightningLevel;
-import model.Piece;
 import model.PieceFactory;
 import app.Game;
 import app.LevelFactory;
