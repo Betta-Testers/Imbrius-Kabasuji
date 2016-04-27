@@ -167,6 +167,8 @@ public class Builder extends LevelIO{
 			((BuilderPieceGroupView) pgv).addSpinnerChangeListener(new PieceGroupSpinnerController(((BuilderPieceGroupView) pgv).getSpinner(), pgv.getPieceGroup(), currentLevel.getBullpen(),  bv.getSelectedPieceView().getPiecePanel()));
 		}
 	}
+	
+	
 	//========================== Getters ==========================//
 	/**
 	 * Gets the builder view
