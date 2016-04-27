@@ -6,6 +6,7 @@ package controllers.common;
 import controllers.common.IMove;
 import model.Bullpen;
 import model.Piece;
+import model.PieceFactory;
 import view.SelectPieceButton;
 
 /**
@@ -29,7 +30,7 @@ public class SelectPieceFromBullpenMove implements IMove {
 	SelectPieceFromBullpenMove (SelectPieceButton spb, Bullpen bp) {
 		this.ID = spb.getPieceID();
 		this.bp = bp;
-		this.p = new Piece(ID);
+		this.p = PieceFactory.getInstance().getPiece(ID);
 	}
 	
 	/**

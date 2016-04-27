@@ -1,6 +1,11 @@
 package model;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
+
+import javax.swing.ImageIcon;
 
 import app.Builder;
 import app.Game;
@@ -123,6 +128,24 @@ public abstract class AbstractLevelModel implements Serializable{
 	 */
 	public int getStarsEarned(){
 		return this.starsEarned;
+	}
+	
+	/**
+	 * @return Preview of the board
+	 */
+	public ImageIcon generateBoardPreview() {
+		BufferedImage iconImg = new BufferedImage(73, 73, BufferedImage.TYPE_INT_ARGB);
+	      Graphics2D g2 = iconImg.createGraphics();
+	      for (int i = 0; i<12; i++) {
+	    	  for (int j = 0; j<12; j++) {
+	    		  AbstractTile bt = board.getTileAt(32*i, 32*j);
+		    	  g2.setColor(bt.getColor());
+		    	  g2.fillRect(i*6, j*6, 6, 6);
+		    	  g2.setColor(Color.black);
+		    	  g2.drawRect(i*6, j*6, 6, 6);
+	    	  }
+	      }
+	      return new ImageIcon(iconImg);
 	}
 
 }

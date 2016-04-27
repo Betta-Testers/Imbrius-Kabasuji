@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -38,8 +39,8 @@ public class ExistingLevelViewer extends JScrollPane {
 	 * @param levelIndex - level ID
 	 * @return ExistingLevelView added to the list of exising levels
 	 */
-	public ExistingLevelView addLevelView(String levelType, Integer levelIndex) {
-		ExistingLevelView elv = new ExistingLevelView(levelType, levelIndex);
+	public ExistingLevelView addLevelView(String levelType, Integer levelIndex, ImageIcon icon) {
+		ExistingLevelView elv = new ExistingLevelView(levelType, levelIndex, icon);
 		levelsList.add(elv);
 		return elv;
 	}
