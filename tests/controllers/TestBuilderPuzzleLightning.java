@@ -17,6 +17,7 @@ import model.Board;
 import model.BoardTile;
 import model.Bullpen;
 import model.Piece;
+import model.PieceFactory;
 import model.PieceGroup;
 import model.PuzzleLevel;
 import view.BoardView;
@@ -75,7 +76,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		 * toggle place piece, give piece to place
 		 */
 		lvl.getBullpen().incrementPiece(1);
-		lvl.getBullpen().setSelectedPiece(new Piece(1));
+		lvl.getBullpen().setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		buildView.getPlacePiecesBtn().doClick();
 		ActionEvent ae = new ActionEvent(buildView.getPlacePiecesBtn(), ActionEvent.ACTION_PERFORMED, "toggle");
 		buildView.getPlacePieceHandler().actionPerformed(ae);
@@ -117,7 +118,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		 * reset board, untoggle ConverPieceToBoard button, toggle place hint button, place hint and verify
 		 * note: hints are yellow tiles
 		 */
-		lvl.getBullpen().setSelectedPiece(new Piece(1));
+		lvl.getBullpen().setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		buildView.getConvertPieceToBoardBtn().doClick();
 		assertFalse(buildView.getConvertPieceToBoardBtn().isSelected());
 		buildView.getPlaceHintBtn().doClick();
@@ -147,7 +148,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		 * toggle place hint off, move piece over hint
 		 * place a piece over hint, verify
 		 */
-		lvl.getBullpen().setSelectedPiece(new Piece(1));
+		lvl.getBullpen().setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		buildView.getPlaceHintBtn().doClick();
 		assertFalse(buildView.getPlaceHintBtn().isSelected());
 		
@@ -247,7 +248,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		ArrayList<PieceGroup> pieces = new ArrayList<PieceGroup>();
 		pieces.add(new PieceGroup(1,4));
 		lvl.setBullpen(new Bullpen(pieces));
-		lvl.getBullpen().setSelectedPiece(new Piece(1));
+		lvl.getBullpen().setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		assertEquals(4, lvl.getBullpen().numAvailablePieces());
 		
 		/*
@@ -321,7 +322,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		/*
 		 * create piece and place to be tested
 		 */
-		Piece testPiece = new Piece(1);
+		Piece testPiece = PieceFactory.getInstance().getPiece(1);
 		assertTrue(board.putPieceOnBoard(testPiece, 2, 0));
 		assertEquals(6, board.getNumBoardTiles());
 		assertEquals("piece", board.getTileAt(0*board.getTileSize(), 0).getTileType());
@@ -368,7 +369,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 		/*
 		 * create piece and place to be tested
 		 */
-		Piece testPiece = new Piece(1);
+		Piece testPiece = PieceFactory.getInstance().getPiece(1);;
 		assertTrue(board.putPieceOnBoard(testPiece, 2, 0));
 		assertEquals(0, board.getNumBoardTiles());
 		assertEquals("piece", board.getTileAt(0*board.getTileSize(), 0).getTileType());

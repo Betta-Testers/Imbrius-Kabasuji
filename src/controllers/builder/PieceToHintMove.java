@@ -8,6 +8,7 @@ import model.Board;
 import model.BoardTile;
 import model.Bullpen;
 import model.Piece;
+import model.PieceTile;
 import view.BoardView;
 import view.SelectedPieceView;
 
@@ -61,8 +62,8 @@ public class PieceToHintMove implements IMove{
 	public boolean doMove() {
 		if (isValid()) {
 			p.setLocation(source.getRow(), source.getCol());
-			for(int i = 0; i < 6; i++){
-				((BoardTile) board.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(true);
+			for(PieceTile pt : p.getTiles()){
+				((BoardTile) board.getTileAt(pt.getCol()*board.getTileSize(), pt.getRow()*board.getTileSize())).setHint(true);
 			}
 			hintPieces.add(p);
 			board.clearPiecePreview();
@@ -99,8 +100,8 @@ public class PieceToHintMove implements IMove{
 	 * @return true
 	 */
 	public boolean undo() {
-		for(int i = 0; i < 6; i++){
-			((BoardTile) board.getTileAt(p.getTiles()[i].getCol()*32, p.getTiles()[i].getRow()*32)).setHint(false);
+		for(PieceTile pt : p.getTiles()){
+			((BoardTile) board.getTileAt(pt.getCol()*board.getTileSize(), pt.getRow()*board.getTileSize())).setHint(false);
 		}
 		removeFromList(p);
 		bp.setSelectedPiece(p);

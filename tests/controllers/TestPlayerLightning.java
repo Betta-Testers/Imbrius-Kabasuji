@@ -11,7 +11,7 @@ import model.Board;
 import model.BoardTile;
 import model.Bullpen;
 import model.LightningLevel;
-import model.Piece;
+import model.PieceFactory;
 import app.Game;
 import app.LevelFactory;
 import junit.framework.TestCase;
@@ -83,7 +83,7 @@ public class TestPlayerLightning extends TestCase {
 		 * initialize bullpen
 		 */
 		bullpen.incrementPiece(1);
-		bullpen.setSelectedPiece(new Piece(1));
+		bullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		assertEquals(1, bullpen.numAvailablePieces());
 		
 		/*
@@ -116,7 +116,7 @@ public class TestPlayerLightning extends TestCase {
 		 * lightning tiles on the board only increases by 1
 		 */
 		bullpen.incrementPiece(1);
-		bullpen.setSelectedPiece(new Piece(1));
+		bullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		me = new MouseEvent(boardView, 
 				MouseEvent.MOUSE_RELEASED, 
 				System.currentTimeMillis(), 0, 
@@ -143,15 +143,15 @@ public class TestPlayerLightning extends TestCase {
 		/*
 		 * timer
 		 */
-		board.putPieceOnBoard(new Piece(1), 2, 0);
+		board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 2, 0);
 		assertFalse(level.checkStatus()); 
 		assertEquals(1, level.getStarsEarned());
 		
-		board.putPieceOnBoard(new Piece(1), 2, 1);
+		board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 2, 1);
 		assertFalse(level.checkStatus()); 
 		assertEquals(2, level.getStarsEarned());
 		
-		board.putPieceOnBoard(new Piece(1), 2, 2);
+		board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 2, 2);
 		assertTrue(level.checkStatus()); // level is over since all tiles have been marked
 		assertEquals(3, level.getStarsEarned());
 

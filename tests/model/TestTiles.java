@@ -48,30 +48,16 @@ public class TestTiles extends TestCase {
 	}
 	
 	public void testPieceTile() {
-		Piece piece = new Piece(1);
+		Piece piece = PieceFactory.getInstance().getPiece(1);
 		assertNotNull(piece.getColor());
-		PieceTile tile = piece.tiles[1];
-		PieceTile origin = piece.tiles[0];
+		PieceTile tile = piece.getTiles().get(1);
+		PieceTile origin = piece.getTiles().get(0);
 		
 		assertEquals(tile.getColInPiece(), 0);
 		assertEquals(tile.getRowInPiece(), 1);
 		
 		tile.updateColInPiece(-1);
 		tile.updateRowInPiece(-1);
-		
-		try{
-			origin.updateColInPiece(-1);
-			fail();
-		}catch (RuntimeException e){
-			assertEquals(origin.getColInPiece(), 0);
-		}
-		
-		try{
-			origin.updateRowInPiece(-1);
-			fail();
-		}catch (RuntimeException e){
-			assertEquals(origin.getRowInPiece(), 0);
-		}
 		
 		assertEquals("piece:-1,-1", tile.toString());
 		assertEquals(new Color(150, 100, 50), tile.color);

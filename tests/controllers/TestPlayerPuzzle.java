@@ -11,7 +11,7 @@ import view.LevelView;
 import model.Board;
 import model.BoardTile;
 import model.Bullpen;
-import model.Piece;
+import model.PieceFactory;
 import model.PuzzleLevel;
 import app.Game;
 import app.LevelFactory;
@@ -123,7 +123,7 @@ public class TestPlayerPuzzle extends TestCase {
 		 * initialize bullpen with a piece with ID 1
 		 */
 		bullpen.incrementPiece(1);
-		bullpen.setSelectedPiece(new Piece(1));
+		bullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		assertEquals(1, bullpen.numAvailablePieces());
 		
 		/*
@@ -179,7 +179,7 @@ public class TestPlayerPuzzle extends TestCase {
 		 * set a another piece to place
 		 */
 		bullpen.incrementPiece(1);
-		bullpen.setSelectedPiece(new Piece(1));
+		bullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		assertEquals(1, bullpen.numAvailablePieces());
 		
 		/*
@@ -224,7 +224,7 @@ public class TestPlayerPuzzle extends TestCase {
 		}
 		assertEquals(144, board.getNumBoardTiles());
 		
-		board.putPieceOnBoard(new Piece(1), 3, 3);
+		board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 3, 3);
 		assertEquals(138, board.getNumBoardTiles());
 		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 3*board.getTileSize()).getTileType());
 		
@@ -286,7 +286,7 @@ public class TestPlayerPuzzle extends TestCase {
 		}
 		assertEquals(144, board.getNumBoardTiles());
 		
-		board.putPieceOnBoard(new Piece(1), 3, 3);
+		board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 3, 3);
 		assertEquals(138, board.getNumBoardTiles());
 		assertEquals("piece", board.getTileAt(3*board.getTileSize(), 3*board.getTileSize()).getTileType());
 		
@@ -352,7 +352,7 @@ public class TestPlayerPuzzle extends TestCase {
 		/*
 		 * add piece and verify changes
 		 */
-		assertTrue(board.putPieceOnBoard(new Piece(1), 2, 0));
+		assertTrue(board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 2, 0));
 		assertEquals(12, board.getNumBoardTiles());
 		assertFalse(level.checkStatus());
 		assertEquals(1, level.getStarsEarned());
@@ -360,7 +360,7 @@ public class TestPlayerPuzzle extends TestCase {
 		/*
 		 * add piece and verify changes
 		 */
-		assertTrue(board.putPieceOnBoard(new Piece(1), 2, 1));
+		assertTrue(board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 2, 1));
 		assertEquals(6, board.getNumBoardTiles());
 		assertFalse(level.checkStatus());
 		assertEquals(2, level.getStarsEarned());
@@ -368,7 +368,7 @@ public class TestPlayerPuzzle extends TestCase {
 		/*
 		 * add piece and verify changes
 		 */
-		assertTrue(board.putPieceOnBoard(new Piece(1), 2, 2));
+		assertTrue(board.putPieceOnBoard(PieceFactory.getInstance().getPiece(1), 2, 2));
 		assertEquals(0, board.getNumBoardTiles());
 		assertTrue(level.checkStatus()); // level is complete
 		assertEquals(3, level.getStarsEarned());

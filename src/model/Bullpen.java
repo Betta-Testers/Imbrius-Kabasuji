@@ -25,8 +25,10 @@ public class Bullpen implements Serializable{
 	 * with 0 count to each. The order of pieces added is increasing, 1-35
 	 */
 	public Bullpen() {
-		for(int i=1; i<=35; i++){
-			this.playablePieces.add(new PieceGroup(i, 0));
+		for(int i=1; i<=PieceFactory.getInstance().getHighestNumberedPiece(); i++){
+			if (PieceFactory.getInstance().pieceExists(i)) {
+				this.playablePieces.add(new PieceGroup(i, 0));
+			}
 		}
 		sortBullpen();
 	}
@@ -49,7 +51,7 @@ public class Bullpen implements Serializable{
 			throw new RuntimeException("Cannot create a Bullpen with a negative number of pieces");
 		}
 		for(int i = 0; i < sizeOfBullpen; i++) {
-			int randID = (new Random().nextInt(35))+1;
+			int randID = (new Random().nextInt(PieceFactory.getInstance().getHighestNumberedPiece()))+1;
 			PieceGroup result = getPieceGroupWithID(randID);
 			if (result != null) {
 				result.incrementCount();
@@ -81,7 +83,10 @@ public class Bullpen implements Serializable{
 	 * @return the piece that was added - Piece
 	 */
 	public Piece addRandomPiece(){
-		int randID = (new Random().nextInt(35))+1;
+		int randID = (new Random().nextInt(PieceFactory.getInstance().getHighestNumberedPiece()))+1;
+		while (!PieceFactory.getInstance().pieceExists(randID)) {
+			randID = (new Random().nextInt(PieceFactory.getInstance().getHighestNumberedPiece()))+1;
+		}
 		PieceGroup result = getPieceGroupWithID(randID);
 		if (result != null) {
 			result.incrementCount();
