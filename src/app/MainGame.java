@@ -53,7 +53,7 @@ public class MainGame{
 			private AudioFormat audioFormat;
 			private SourceDataLine sourceLine;
 			public void run(){
-				String strFilename = "resources/sounds/song.wav";	
+				String strFilename = "resources/sounds/song2.wav";	
 			    try {
 			        soundFile = new File(strFilename);
 			    } catch (Exception e) {
