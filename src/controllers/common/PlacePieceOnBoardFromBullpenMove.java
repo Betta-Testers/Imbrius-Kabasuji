@@ -38,6 +38,8 @@ public class PlacePieceOnBoardFromBullpenMove implements IMove{
 	 * @param lm - The level being modified
 	 * @param tile - The tile on the board that was clicked
 	 * @param bpv - The Bullpen view that needs to be repainted
+	 * @param spv - selected piece view being cleared
+	 * @param bv - board view being redrawn after move
 	 */
 	public PlacePieceOnBoardFromBullpenMove (AbstractLevelModel lm, AbstractTile tile, BullpenView bpv, SelectedPieceView spv, BoardView bv) {
 		this.bpv = bpv;

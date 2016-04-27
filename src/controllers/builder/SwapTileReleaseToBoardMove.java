@@ -27,6 +27,7 @@ public class SwapTileReleaseToBoardMove implements IMove {
 	 * Creates the move
 	 * @param old - tile that was clicked
 	 * @param b - board whose tiles are being swapped
+	 * @param bv - view of board being redrawn
 	 */
 	public  SwapTileReleaseToBoardMove(AbstractTile old, Board b, BoardView bv) {
 		this.board = b;

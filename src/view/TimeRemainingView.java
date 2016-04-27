@@ -42,7 +42,7 @@ public class TimeRemainingView extends JPanel {
 	/**
 	 * Method for changing the text displayed to the remaining amount of time
 	 * Method takes formatted string
-	 * @param secondsRemaining
+	 * @param secondsRemaining - The time remaining in string form
 	 */
 	public void updateTimeLeft(String secondsRemaining){
 		textPaneTime.setText(secondsRemaining);

@@ -34,7 +34,7 @@ public class FlipPieceVerticalController implements ActionListener {
 	 * When button is pressed the piece is retrieved from the bullpen's selected piece
 	 * field. If the piece is null, the action ends. Otherwise, the piece is flipped
 	 * and the view is redrawn/painted.
-	 * @param ActionEvent button press
+	 * @param ae button press
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		p = bullpen.getSelectedPiece();

@@ -41,7 +41,7 @@ public class RedoButtonController implements ActionListener{
 	 * Call redo on the undoManager when the listener is triggered.
 	 * If there is a move to be redone, it repaints the board and selected
 	 * piece preview. If there wasn't, it does nothing
-	 * @param ActionEvent of button being pressed
+	 * @param e of button being pressed
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

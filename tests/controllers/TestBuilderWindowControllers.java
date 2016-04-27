@@ -12,24 +12,13 @@ import view.SplashScreen;
  * @author awharrison
  *
  */
+@SuppressWarnings("javadoc")
 public class TestBuilderWindowControllers extends MouseTesting {
-//	PuzzleLevel pl;
 	Builder build;
-//	BuilderView bv;
-//	Board b;
-//	Bullpen bp;
-//	BullpenView bpv;
 	
 	@Override
 	public void setUp(){
 		build = new Builder("./imbriusLevelTESTING/");
-//		build.createPuzzleLevel();
-//		pl = (PuzzleLevel)build.getCurrentLevel();
-//		bv = build.getBuilderView();
-//		pl.setBoard(new Board());
-//		b = pl.getBoard();
-//		bp = pl.getBullpen();
-//		bpv = bv.getBullpenView();
 	}
 	
 	@Override

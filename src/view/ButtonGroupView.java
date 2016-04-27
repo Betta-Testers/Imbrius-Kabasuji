@@ -8,19 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import app.Builder;
-import app.UndoManager;
-
 import javax.swing.GroupLayout.Alignment;
-
-import controllers.builder.RedoButtonController;
-import controllers.builder.RemovePiecesButtonController;
-import controllers.builder.SaveAndCloseLevelButtonController;
-import controllers.builder.UndoButtonController;
-
 import javax.swing.LayoutStyle.ComponentPlacement;
-
+import app.UndoManager;
 
 /**
  * Represents the buttons on the builder. 
@@ -65,18 +55,7 @@ public class ButtonGroupView extends JPanel{
 		
 		setupLayout();
 	}
-	
-	/**
-	 * Initialize the controllers associated with the ButtonGroupView.
-	 * @param b - Builder
-	 */
-	public void initializeControllers(Builder b){
-		btnSave.addActionListener(new SaveAndCloseLevelButtonController(b));
-		btnRemovePieces.addActionListener(new RemovePiecesButtonController(b.getCurrentLevel().getBoard(), b.getBuilderView().getBoardView(), b.getCurrentLevel().getBullpen(), b.getBuilderView().getBullpenView()));
-		btnUndo.addActionListener(new UndoButtonController(b));
-		btnRedo.addActionListener(new RedoButtonController(b));
-	}
-	
+		
 	/**
 	 * Sets the redo button enabled by the given boolean.
 	 * @param enabled - boolean
@@ -119,6 +98,13 @@ public class ButtonGroupView extends JPanel{
 		return this.btnRemovePieces;
 	}
 	
+	/**
+	 * Returns the save button.
+	 * @return btnSave - JButton
+	 */
+	public JButton getSaveBtn(){
+		return btnSave;
+	}
 	/**
 	 * Sets up the layout for the ButtonGroupView.
 	 */

@@ -3,9 +3,11 @@ package model;
 import java.io.IOException;
 import java.io.Serializable;
 
+import app.Builder;
 import app.Game;
 import controllers.player.ExitLevelController;
 import controllers.player.ReleaseBoardGameController;
+import view.BuilderView;
 import view.LevelView;
 import view.NumbersReleasedView;
 
@@ -137,6 +139,19 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	}
 	
 	/**
+	 * Initializes the view to display the level in a builder.
+	 * @param b - builder where the BuilderView is located
+	 * @return BuilderView - the view initialized
+	 */
+	@Override
+	public BuilderView prepBuilder(Builder b) {
+		BuilderView bv = new BuilderView(b);
+		bv.setReleaseNumberViewVisible(true);
+		bv.setPropertiesView(this, false, false);
+		return bv;
+	}
+	
+	/**
 	 * Returns a string representation of this level.
 	 * @return string representation of this level - String
 	 */
@@ -154,6 +169,10 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		initializeVars();
 	}
 	
+	/**
+	 * Gets the board controller of this level
+	 * @return ReleaseBoardGameController attached this this level's board.
+	 */
 	public ReleaseBoardGameController getBoardController() {
 		return this.rbgc;
 	}

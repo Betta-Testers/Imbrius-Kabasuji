@@ -64,8 +64,8 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 
 	/** 
 	 * Creates the builder board's controller
-	 * @param builderView The BuilderView that this controller updates the state of
-	 * @param levelModel The level entity that is being built
+	 * @param bView The BuilderView that this controller updates the state of
+	 * @param lm The level entity that is being built
 	 */
 	public BuilderBoardController(BuilderView bView, AbstractLevelModel lm) {
 		this.bView = bView;

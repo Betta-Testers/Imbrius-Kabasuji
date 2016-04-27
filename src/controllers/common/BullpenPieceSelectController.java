@@ -32,7 +32,7 @@ public class BullpenPieceSelectController implements ActionListener {
 	/**
 	 * When a piece's button is pressed, that piece is placed into the selected field of the
 	 * bullpen and the displayed/repainted in the piece panel.
-	 * @param ActionEvent button press
+	 * @param ae button press
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {

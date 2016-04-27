@@ -38,6 +38,8 @@ public class PieceToNewBoardTilesMove implements IMove{
 	 * @param board being modified
 	 * @param tile origin of click
 	 * @param lpv LevelPropertiesView whose tile count is being updated
+	 * @param spv - selected piece view being cleared
+	 * @param bv - board view being redrawn after move
 	 */
 	public PieceToNewBoardTilesMove (Bullpen bullpen, Board board, AbstractTile tile, LevelPropertiesView lpv, SelectedPieceView spv, BoardView bv) {
 		this.bullpen = bullpen;
@@ -77,7 +79,6 @@ public class PieceToNewBoardTilesMove implements IMove{
 	
 	/**
 	 * Determines if the move is valid, by asking the board if the piece can be placed at the location of the source tile
-	 * @see model.board#isValidConvert()
 	 * @return True if the move is valid, will return false if there is no piece selected in the bullpen
 	 */
 	public boolean isValid() {		

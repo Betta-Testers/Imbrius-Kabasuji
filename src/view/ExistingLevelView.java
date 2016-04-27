@@ -132,7 +132,7 @@ public class ExistingLevelView extends JPanel implements Comparable<ExistingLeve
 
 	/**
 	 * For sorting the list of existing levels
-	 * @param The level to compare it to
+	 * @param elv view to to compare it to
 	 * @return < 0 if the parameter is a higher numbered level
 	 */
 	@Override

@@ -16,9 +16,11 @@ import model.ReleaseTile;
  *
  */
 public class TileViewFactory {
-	public TileViewFactory () {
-		
-	}
+	/**
+	 * Blank constructor
+	 */
+	public TileViewFactory () {}
+	
 	/**
 	 * Draws a tile.
 	 * @param g - Graphics

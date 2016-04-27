@@ -6,6 +6,10 @@ import app.Game;
 
 import view.GameExitScreen;
 
+/**
+ * Controller connecting the GameExitScreen to the LevelSelection.
+ * @author awharrison
+ */
 public class QuitGameButtonController implements ActionListener{
 	/** The exit screen that **/
 	GameExitScreen view;

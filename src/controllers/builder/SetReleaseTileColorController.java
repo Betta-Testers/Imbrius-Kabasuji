@@ -24,7 +24,7 @@ public class SetReleaseTileColorController implements ActionListener {
 	/**
 	 * When the button is pressed, the view updates which set of colored tiles it
 	 * is displaying for creation.
-	 * @param ActionEvent button pressed in drop down
+	 * @param ce button pressed in drop down
 	 */
 	public void actionPerformed(ActionEvent ce) {
 		rncv.updateNumberColors();

@@ -8,6 +8,7 @@ import junit.framework.TestCase;
  * @author ejbosia
  *
  */
+@SuppressWarnings("javadoc")
 public class TestLevelRelease extends TestCase {
 	ReleaseLevel r;
 	@Override

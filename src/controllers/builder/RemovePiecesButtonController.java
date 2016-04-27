@@ -28,7 +28,7 @@ public class RemovePiecesButtonController implements ActionListener{
 	
 	/**
 	 * Creates the controller
-	 * @param b Current Board being manipulated
+	 * @param board Current Board being manipulated
 	 * @param bv View of the current board
 	 * @param bp Bullpen being updated
 	 * @param bpv View of bullpen being updated
@@ -42,8 +42,8 @@ public class RemovePiecesButtonController implements ActionListener{
 	
 	/**
 	 * When button is pressed, the move is performed. If successful, the undo manager
-	 * recieves the move and the view is redrawn/updated
-	 * @param ActionEvent button click
+	 * receives the move and the view is redrawn/updated
+	 * @param arg0 button click
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		IMove m = new RemoveAllPiecesMove(board, bp, bpv, bv);

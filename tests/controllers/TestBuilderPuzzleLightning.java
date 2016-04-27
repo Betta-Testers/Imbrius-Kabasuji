@@ -23,6 +23,7 @@ import view.BoardView;
 import view.BuilderView;
 import view.BullpenView;
 import app.Builder;
+import app.LevelFactory;
 import junit.framework.TestCase;
 
 /**
@@ -30,7 +31,7 @@ import junit.framework.TestCase;
  * @author awharrison
  *
  */
-
+@SuppressWarnings("javadoc")
 public class TestBuilderPuzzleLightning extends TestCase {
 	Builder build;
 	BuilderView buildView;
@@ -43,7 +44,7 @@ public class TestBuilderPuzzleLightning extends TestCase {
 	public void setUp(){
 		new File("./imbriusLevelTESTING/").mkdirs();
 		build = new Builder("./imbriusLevelTESTING/");
-		build.createPuzzleLevel();
+		build.createLevel((new LevelFactory()).GenerateBlankPuzzle(build.getNextOpenID()));
 		buildView = build.getBuilderView();
 		lvl = (PuzzleLevel)build.getCurrentLevel();
 		board = lvl.getBoard();
