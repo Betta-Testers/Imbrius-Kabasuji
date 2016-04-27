@@ -1,9 +1,14 @@
 package model;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 
 
 /**
@@ -221,6 +226,21 @@ public class Piece implements Serializable{
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * @return An icon of this piece
+	 */
+	public ImageIcon generateIcon() {
+		BufferedImage iconImg = new BufferedImage(35, 35, BufferedImage.TYPE_INT_ARGB);
+	      Graphics2D g2 = iconImg.createGraphics();
+	      for (PieceTile pt : tiles) {
+	    	  g2.setColor(color);
+	    	  g2.fillRect(16+pt.getColInPiece()*4, 16+pt.getRowInPiece()*4, 4, 4);
+	    	  g2.setColor(Color.black);
+	    	  g2.drawRect(16+pt.getColInPiece()*4, 16+pt.getRowInPiece()*4, 4, 4);
+	      }
+	      return new ImageIcon(iconImg);
 	}
 
 	/**
