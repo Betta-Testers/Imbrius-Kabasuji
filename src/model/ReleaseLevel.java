@@ -146,10 +146,8 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 	@Override
 	public BuilderView prepBuilder(Builder b) {
 		BuilderView bv = new BuilderView(b);
-		
 		bv.setReleaseNumberViewVisible(true);
-		bv.getLevelPropertiesView().setLevelModel(this);
-		bv.getLevelPropertiesView().enableViews(false, false);
+		bv.setPropertiesView(this, false, false);
 		return bv;
 	}
 	

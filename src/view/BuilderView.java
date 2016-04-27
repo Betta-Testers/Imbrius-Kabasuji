@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import app.Builder;
 import controllers.builder.BuilderBoardController;
 import controllers.builder.PlacePieceToggleListener;
+import model.AbstractLevelModel;
+
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
@@ -107,7 +109,10 @@ public class BuilderView extends JFrame {
 		tglbtnPlacePieces.addActionListener(placePieceButtonHandler);
 	}
 
-	/**Sets the board controller for this builderView**/
+	/**
+	 * Sets the board controller for this builderView
+	 * @param board controller to be used for boardView
+	 */
 	public void setBoardController(BuilderBoardController builderBoardController) {
 		this.builderBoardControl = builderBoardController;
 		boardView.setMouseActionController(builderBoardController);
@@ -122,6 +127,17 @@ public class BuilderView extends JFrame {
 	public void setReleaseNumberViewVisible(boolean b) {
 		releaseNumberView.setVisible(b);
 		
+	}
+	
+	/**
+	 * Prepares the propertiesView of a level
+	 * @param level - model level for the view 
+	 * @param enableMoves - whether to enable moves views or not
+	 * @param enableTime - whether to enable time views or not
+	 */
+	public void setPropertiesView(AbstractLevelModel level, boolean enableMoves, boolean enableTime) {
+		levelPropertyView.setLevelModel(level);
+		levelPropertyView.enableViews(true, false);
 	}
 	
 	/**
@@ -315,8 +331,6 @@ public class BuilderView extends JFrame {
 		gl_contentPane.linkSize(SwingConstants.VERTICAL, new Component[] {tglbtnPlacePieces, tglbtnPlaceBoard, tglbtnPlaceHints});
 		contentPane.setLayout(gl_contentPane);
 	}
-
-
 
 
 }

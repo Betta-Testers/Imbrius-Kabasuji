@@ -129,10 +129,8 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	@Override
 	public BuilderView prepBuilder(Builder b) {
 		BuilderView bv = new BuilderView(b);
-		
 		bv.setReleaseNumberViewVisible(false);
-		bv.getLevelPropertiesView().setLevelModel(this);
-		bv.getLevelPropertiesView().enableViews(true, false);
+		bv.setPropertiesView(this, true, false);
 		return bv;
 	}
 	
