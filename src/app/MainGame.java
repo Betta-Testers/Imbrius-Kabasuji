@@ -7,13 +7,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
-import javax.swing.SwingWorker;
-import javax.swing.Timer;
 import javax.swing.UIManager;
 
-import controllers.builder.BuilderSplashTimerController;
 import controllers.player.GameSplashTimerController;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
