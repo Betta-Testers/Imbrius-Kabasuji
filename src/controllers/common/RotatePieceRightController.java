@@ -35,7 +35,7 @@ public class RotatePieceRightController implements ActionListener {
 	 * If the piece is null the action ends. Other wise I move is attempted. If the move
 	 * could be done, the undo manager is notified. Otherwise, the panel is repainted at 
 	 * end to show the piece has been rotated.
-	 * @param ActionEvent button clicked
+	 * @param ae button clicked
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		p = bullpen.getSelectedPiece();

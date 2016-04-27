@@ -31,11 +31,12 @@ public class MovePieceOnBoardMove implements IMove{
 	
 	/**
 	 * Creates the move
-	 * @param lm - level model being manipulated
+	 * @param board - board whose pieces are being manipulated
 	 * @param tile - tile that was pressed (destination)
 	 * @param p - piece that is being moved
 	 * @param rOffset - offset of row where the piece wants to be placed
 	 * @param cOffset - offset of col where the piece wants to be placed
+	 * @param bv - view of the board being drawn
 	 */
 	public MovePieceOnBoardMove (Board board, AbstractTile tile, Piece p, int rOffset, int cOffset, BoardView bv) {
 		this.board = board;

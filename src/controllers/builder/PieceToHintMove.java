@@ -38,6 +38,8 @@ public class PieceToHintMove implements IMove{
 	 * @param bp - Bullpen being modified
 	 * @param b - Board having a hint placed on it
 	 * @param source - Tile that was clicked
+	 * @param spv - selected piece view being cleared after move
+	 * @param bv - boardView being redrawn after move
 	 */
 	public PieceToHintMove(ArrayList<Piece> hintPieces, Bullpen bp, Board b, AbstractTile source, SelectedPieceView spv, BoardView bv) {
 		this.bp = bp;

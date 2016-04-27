@@ -30,6 +30,7 @@ public class RemoveAllPiecesMove implements IMove {
 	 * @param board Board in the builder
 	 * @param bp Bullpen in the builder
 	 * @param bpv View of the bullpen
+	 * @param bv View of board being redrawn
 	 */
 	public RemoveAllPiecesMove (Board board, Bullpen bp, BullpenView bpv, BoardView bv) {
 		this.bpv = bpv;

@@ -9,7 +9,10 @@ import java.util.ArrayList;
 
 import junit.framework.TestCase;
 
-
+/**
+ * @author dfontana
+ */
+@SuppressWarnings("javadoc")
 public class TestStarMap extends TestCase {
 	StarMap starMap;
 

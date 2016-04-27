@@ -117,8 +117,8 @@ public class BoardView extends JPanel{
 	}
 	
 	/**
-	 * Sets the mouse motion listener.
-	 * @param ml - MouseMotionListener
+	 * Sets the mouse motion listener of the this view
+	 * @param mml - MouseMotionListener being added
 	 */
 	public void setMouseMotionController (MouseMotionListener mml){
 		this.mouseMotionHandler = mml;
