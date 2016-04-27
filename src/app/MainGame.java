@@ -12,6 +12,7 @@ import view.SplashScreen;
  * @author dfontana
  */
 public class MainGame {
+	@SuppressWarnings("javadoc")
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

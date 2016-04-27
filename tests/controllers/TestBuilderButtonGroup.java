@@ -16,6 +16,7 @@ import app.LevelFactory;
 import app.UndoManager;
 import junit.framework.TestCase;
 
+@SuppressWarnings("javadoc")
 public class TestBuilderButtonGroup extends TestCase {
 	Builder build;
 	BuilderView buildView;

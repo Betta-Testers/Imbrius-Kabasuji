@@ -29,7 +29,7 @@ public class ExistingLevelEditController implements java.awt.event.ActionListene
 	 * in the editor. Directs flow of information in the builder. When all is done
 	 * the level should be displayed in the editor and the type select hidden
 	 * from view.
-	 * @param ActionEvent when button clicked
+	 * @param ae when button clicked
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		JButton sourceButton = (JButton) ae.getSource();

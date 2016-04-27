@@ -18,6 +18,10 @@ public abstract class LevelIO {
 	/**A sorted Mapping of all EXISTING levels ON DISK by ID, Type**/
 	StarMap levelData;
 
+	/**
+	 * Creates a levelIO object location at the given directory
+	 * @param directory - path to where the application is occuring on disk
+	 */
 	public LevelIO(String directory) {
 		this.defaultDirectory = directory;
 	}
@@ -60,6 +64,7 @@ public abstract class LevelIO {
 	 * to create, and returns that object.
 	 * @param levelID - ID of the level being opened
 	 * @return AbstractLevelModel that was loaded from disk
+	 * @throws Exception if the level data could not find the levelID
 	 */
 	public AbstractLevelModel loadLevel(int levelID) throws Exception{
 		ObjectInputStream ois = null;
@@ -91,7 +96,7 @@ public abstract class LevelIO {
 	 * Updates the Maximum stars for a given LevelID and star count. 
 	 * If the count passed in is less than the value recorded in levelData,
 	 * the value is not recorded.
-	 * @param levelID
+	 * @param levelID - ID of level being updated
 	 * @param starsEarned - the current number of stars earned on a level
 	 * @return boolean - true if star count was updated for that level. False if not.
 	 */

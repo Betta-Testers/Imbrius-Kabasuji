@@ -28,7 +28,7 @@ import junit.framework.TestCase;
  * @author awharrison
  *
  */
-
+@SuppressWarnings("javadoc")
 public class TestBuilderRelease extends TestCase {
 	Builder build;
 	BuilderView buildView;

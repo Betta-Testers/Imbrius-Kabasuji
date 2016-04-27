@@ -16,6 +16,7 @@ import junit.framework.TestCase;
  * @author George Heineman
  * @author hejohnson
  */
+@SuppressWarnings("javadoc")
 public abstract class MouseTesting extends TestCase {
 	/** (dx,dy) are offsets into the widget space. Feel Free to Use as Is. */
 	public MouseEvent createPressed (JComponent view, int dx, int dy) {

@@ -31,7 +31,7 @@ import junit.framework.TestCase;
  * @author awharrison
  *
  */
-
+@SuppressWarnings("javadoc")
 public class TestBuilderPuzzleLightning extends TestCase {
 	Builder build;
 	BuilderView buildView;

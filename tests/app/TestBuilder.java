@@ -8,6 +8,10 @@ import model.LightningLevel;
 import model.PuzzleLevel;
 import model.ReleaseLevel;
 
+/**
+ * @author dfontana
+ */
+@SuppressWarnings("javadoc")
 public class TestBuilder extends TestCase {
 	AbstractLevelModel m;
 	Builder b;

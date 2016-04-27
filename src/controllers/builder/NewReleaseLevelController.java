@@ -21,7 +21,7 @@ public class NewReleaseLevelController implements MouseListener{
 	
 	/**
 	 * Controller to change the text displayed in the level type description box
-	 * @param builder The builder application
+	 * @param b The builder application
 	 * @param textArea The text area in the Level Type Select View to set the contents of
 	 * @param descriptionText The text to set the text area contents to
 	 */
@@ -33,7 +33,7 @@ public class NewReleaseLevelController implements MouseListener{
 
 	/**
 	 * Sets the textArea's description back to level-specific message when entering button
-	 * @param MouseEvent of entering
+	 * @param arg0 of entering
 	 */
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
@@ -42,7 +42,7 @@ public class NewReleaseLevelController implements MouseListener{
 	
 	/**
 	 * Sets the textArea's description back to default message when leaving button
-	 * @param MouseEvent of exiting
+	 * @param arg0 of exiting
 	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
@@ -51,7 +51,7 @@ public class NewReleaseLevelController implements MouseListener{
 	
 	/**
 	 * Creates a new builder, and sets up the windows to show the level and hide the level type select view
-	 * @param MouseEvent of pressing
+	 * @param arg0 of pressing
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0){

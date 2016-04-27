@@ -93,7 +93,7 @@ public class GameExitScreen extends JFrame{
 	
 	/**
 	 * Set the number of stars associated with this GameExitScreen.
-	 * @param stars - int
+	 * @param starNum number of stars being set
 	 */
 	public void setStars(int starNum){
 		stars.setNumStars(starNum);

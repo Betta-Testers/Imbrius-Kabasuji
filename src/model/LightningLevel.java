@@ -120,6 +120,10 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 		in.defaultReadObject();
 	}
 	
+	/**
+	 * Returns this level's board controller
+	 * @return LightningBoardGameController attatched to this level's board
+	 */
 	public LightningBoardGameController getBoardController() {
 		return this.lbgc;
 	}

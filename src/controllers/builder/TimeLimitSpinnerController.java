@@ -29,7 +29,7 @@ public class TimeLimitSpinnerController implements ChangeListener {
 	/**
 	 * When the state is changed a move is triggered, which is successful
 	 * the undo manager is notified of it.
-	 * @param ChangeEvent the value of the spinner is changed
+	 * @param e the value of the spinner is changed
 	 */
 	@Override
 	public void stateChanged(ChangeEvent e) {

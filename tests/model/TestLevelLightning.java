@@ -8,6 +8,7 @@ import junit.framework.TestCase;
  * @author ejbosia
  *
  */
+@SuppressWarnings("javadoc")
 public class TestLevelLightning extends TestCase {
 	LightningLevel l;
 	@Override

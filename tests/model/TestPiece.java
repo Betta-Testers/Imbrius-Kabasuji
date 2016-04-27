@@ -10,7 +10,7 @@ import java.awt.Color;
  * @author ejbosia
  *
  */
-
+@SuppressWarnings("javadoc")
 public class TestPiece extends TestCase{
 	Piece piece, jagged_piece;
 	

@@ -36,7 +36,7 @@ public class FlipPieceHorizontalController implements ActionListener {
 	/**
 	 * On button press the piece is retrieved from the bullpen. If it's null,
 	 * the action ends, otherwise the piece is flipped.
-	 * @param ActionEvent button press
+	 * @param ae button press
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		p = bullpen.getSelectedPiece();

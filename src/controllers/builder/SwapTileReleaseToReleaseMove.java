@@ -30,6 +30,7 @@ public class SwapTileReleaseToReleaseMove implements IMove {
 	 * @param rncv - View of the release tile creation
 	 * @param old - tile that was clicked
 	 * @param b - board whose tiles are being swapped
+	 * @param bv - view of board being redrawn
 	 */
 	public  SwapTileReleaseToReleaseMove (ReleaseNumberCreationView rncv, AbstractTile old, Board b, BoardView bv) {
 		this.board = b;

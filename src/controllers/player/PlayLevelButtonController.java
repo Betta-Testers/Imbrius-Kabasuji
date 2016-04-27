@@ -5,6 +5,11 @@ import java.awt.event.ActionEvent;
 import app.Game;
 import view.LevelSelectionView;
 
+/**
+ * Listener for when the play level button is pressed, launching the levelView of the
+ * level associated with this controller.
+ * @author awharrison
+ */
 public class PlayLevelButtonController implements java.awt.event.ActionListener {
 	/** The view that this button is a part of **/
 	LevelSelectionView selectLevel;

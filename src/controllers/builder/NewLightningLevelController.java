@@ -23,7 +23,7 @@ public class NewLightningLevelController implements MouseListener{
 	
 	/**
 	 * Controller to change the text displayed in the level type description box
-	 * @param builder The builder application
+	 * @param b The builder application
 	 * @param textArea The text area in the Level Type Select View to set the contents of
 	 * @param descriptionText The text to set the text area contents to
 	 */
@@ -35,7 +35,7 @@ public class NewLightningLevelController implements MouseListener{
 
 	/**
 	 * Sets the textArea's description to level-specific message when entering button
-	 * @param mouseEvent when entered
+	 * @param arg0 when entered
 	 */
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
@@ -43,7 +43,7 @@ public class NewLightningLevelController implements MouseListener{
 	}
 	/**
 	 * Sets the textArea's description back to default message when leaving button
-	 * @param mouseEvent when exited
+	 * @param arg0 when exited
 	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
@@ -52,7 +52,7 @@ public class NewLightningLevelController implements MouseListener{
 	
 	/**
 	 * Creates a new builder, and sets up the windows to show the level and hide the level type select view
-	 * @param mouseEvent when pressed
+	 * @param arg0 when pressed
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0){

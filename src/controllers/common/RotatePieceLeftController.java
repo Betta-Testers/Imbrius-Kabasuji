@@ -38,7 +38,7 @@ public class RotatePieceLeftController implements ActionListener {
 	 * If the piece is null the action ends, otherwise a move is made and
 	 * attempted. If successful the undomanager is notified. Otherwise,
 	 * the panel is repainted.
-	 * @param ActionEvent button pressed
+	 * @param ae button pressed
 	 */
 	public void actionPerformed(ActionEvent ae) {
 

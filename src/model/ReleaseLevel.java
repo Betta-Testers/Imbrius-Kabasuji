@@ -169,6 +169,10 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		initializeVars();
 	}
 	
+	/**
+	 * Gets the board controller of this level
+	 * @return ReleaseBoardGameController attached this this level's board.
+	 */
 	public ReleaseBoardGameController getBoardController() {
 		return this.rbgc;
 	}

@@ -29,6 +29,7 @@ public class MovePieceOffBoardMove implements IMove {
 	 * Creates the PieceOffBoardMove
 	 * @param lm - level whose board is having peice is being removed and bullpen being updated
 	 * @param bpv - view of the bullpen being updated
+	 * @param bv - view of the board being drawn
 	 */
 	public MovePieceOffBoardMove (AbstractLevelModel lm, BullpenView bpv, BoardView bv) {
 		this.bpv = bpv;

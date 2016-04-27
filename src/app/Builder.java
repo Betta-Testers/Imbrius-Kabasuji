@@ -135,7 +135,7 @@ public class Builder extends LevelIO{
 	/**
 	 * For EDITING a level. This method is used by the ExistingLevelEditController
 	 * to set the bv up for the level being edited.
-	 * @param int levelID - level requested for editing. 
+	 * @param levelID - level requested for editing. 
 	 * @return boolean - true if level could be edited
 	 */
 	public boolean editLevel(int levelID){

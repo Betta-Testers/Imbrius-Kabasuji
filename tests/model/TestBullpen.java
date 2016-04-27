@@ -13,7 +13,7 @@ import model.PieceGroup;
  *
  */
 
-
+@SuppressWarnings("javadoc")
 public class TestBullpen extends TestCase {
 
 	ArrayList<PieceGroup> testPlayablePieces= new ArrayList<PieceGroup>();

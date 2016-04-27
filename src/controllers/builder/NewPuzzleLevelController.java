@@ -23,7 +23,7 @@ public class NewPuzzleLevelController implements MouseListener{
 	
 	/**
 	 * Controller to change the text displayed in the level type description box
-	 * @param builder The builder application
+	 * @param b The builder application
 	 * @param textArea The text area in the Level Type Select View to set the contents of
 	 * @param descriptionText The text to set the text area contents to
 	 */
@@ -34,7 +34,7 @@ public class NewPuzzleLevelController implements MouseListener{
 	}
 	/**
 	 * Sets the textArea's description to level-specific message when entering button
-	 * @param mouseEvent when mouse enters
+	 * @param arg0 when mouse enters
 	 */
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
@@ -43,7 +43,7 @@ public class NewPuzzleLevelController implements MouseListener{
 	
 	/**
 	 * Sets the textArea's description back to default message when leaving button
-	 * @param mouseEvent when exited
+	 * @param arg0 when exited
 	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
@@ -52,7 +52,7 @@ public class NewPuzzleLevelController implements MouseListener{
 	
 	/**
 	 * Creates a new builder, and sets up the windows to show the level and hide the level type select view
-	 * @param mouseEvent when pressing
+	 * @param arg0 when pressing
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0){

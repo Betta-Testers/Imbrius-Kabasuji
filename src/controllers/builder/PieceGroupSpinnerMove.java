@@ -23,6 +23,11 @@ public class PieceGroupSpinnerMove implements IMove {
 	/**Value the spinner is giving to the pieceGroup **/
 	int newValue;
 	
+	/**
+	 * Creates the move
+	 * @param pieceGroup - the pieceGroup being manipulated in the move
+	 * @param spinner - the spinner manipulating the pieceGroup.
+	 */
 	public PieceGroupSpinnerMove(PieceGroup pieceGroup, JSpinner spinner) {
 		this.pieceGroup = pieceGroup;
 		this.spinner = spinner;

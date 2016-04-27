@@ -36,7 +36,7 @@ public class SaveAndCloseLevelButtonController implements ActionListener {
 	 * When the level save button is triggered, the board is cleared of all pieces
 	 * first and puts them back in the bullpen. Then, the level is saved to disk, 
 	 * the builder view is hidden, and the levelTypeSelectView is redisplayed.
-	 * @param ActionEvent of button click
+	 * @param arg0 of button click
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		if(board.getPieceCount() > 0){

@@ -111,7 +111,7 @@ public class BuilderView extends JFrame {
 
 	/**
 	 * Sets the board controller for this builderView
-	 * @param board controller to be used for boardView
+	 * @param builderBoardController controller to be used for boardView
 	 */
 	public void setBoardController(BuilderBoardController builderBoardController) {
 		this.builderBoardControl = builderBoardController;

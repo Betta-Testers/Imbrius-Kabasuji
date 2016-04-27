@@ -34,8 +34,9 @@ public class ExistingLevelViewer extends JScrollPane {
 	}
 	/**
 	 * Add a level view to the list of existing levels.
-	 * @param levelType - String
-	 * @param levelIndex - int
+	 * @param levelType - level Type
+	 * @param levelIndex - level ID
+	 * @return ExistingLevelView added to the list of exising levels
 	 */
 	public ExistingLevelView addLevelView(String levelType, Integer levelIndex) {
 		ExistingLevelView elv = new ExistingLevelView(levelType, levelIndex);
@@ -59,6 +60,10 @@ public class ExistingLevelViewer extends JScrollPane {
 		}
 	}
 	
+	/**
+	 * Refreshes the view of all existing levels to display them in
+	 * order after the user has made changes to them.
+	 */
 	public void refreshLevels() {
 		existingLevels.removeAll();
 		Collections.sort(levelsList);

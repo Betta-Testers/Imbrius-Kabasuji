@@ -9,6 +9,7 @@ import junit.framework.TestCase;
  * @author awharrison
  *
  */
+@SuppressWarnings("javadoc")
 public class TestPieceGroup extends TestCase {
 	PieceGroup testPG1, testPG2;
 	

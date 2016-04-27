@@ -8,6 +8,10 @@ import java.nio.file.Paths;
 
 import junit.framework.TestCase;
 
+/**
+ * @author dfontana
+ */
+@SuppressWarnings("javadoc")
 public class TestLevelIO extends TestCase {
 	LevelFactory factory;
 	
