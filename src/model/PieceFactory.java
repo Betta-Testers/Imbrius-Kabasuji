@@ -22,6 +22,7 @@ public class PieceFactory {
 	TreeMap<Integer, Piece> pieces;
 	
 	private PieceFactory() {
+		if(instance != null){throw new IllegalStateException("Already Instantiated");}
 		loadFiles();
 		System.out.println(pieces.toString());
 	}
