@@ -15,11 +15,10 @@ import javax.swing.ImageIcon;
  * @author hejohnson
  * @author dfontana
  */
-public class Piece implements Serializable{
-	private static final long serialVersionUID = -5341675534216265771L;
+public class Piece{
 	
 	/**Stores each tile that makes up the piece.*/
-	transient ArrayList<PieceTile> tiles;
+	ArrayList<PieceTile> tiles;
 	
 	/**Stores the ID of the piece.*/
 	int ID;
@@ -236,22 +235,5 @@ public class Piece implements Serializable{
 	    	  g2.drawRect(16+pt.getColInPiece()*4, 14+pt.getRowInPiece()*4, 4, 4);
 	      }
 	      return new ImageIcon(iconImg);
-	}
-
-	/**
-	 * When serializing a Piece, the pieceTile information is not needed. Instead of serializing those,
-	 * the piece serializes it's ID. Then, when read it, it generates the tiles needed using the built
-	 * in generatePiece() method.
-	 * @param in
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 */
-	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
-		in.defaultReadObject();
-		if(PieceFactory.getInstance().pieceExists(ID)){
-			this.tiles = PieceFactory.getInstance().getPiece(ID).getTiles();
-		}else{
-			System.err.println("Piece missing from Config. Deserialization failed. Clean up ensuing...");
-		}
 	}
 }

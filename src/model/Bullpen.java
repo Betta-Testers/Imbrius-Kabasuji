@@ -230,7 +230,7 @@ public class Bullpen implements Serializable{
 		//REMOVE any pieces from the bullpen not in the factory
 		ArrayList<PieceGroup> cleanedList = new ArrayList<PieceGroup>();
 		for(PieceGroup pg: this.playablePieces){ 
-			int ID = pg.getPiece().getID();
+			int ID = pg.ID;
 			if(PieceFactory.getInstance().pieceExists(ID)){
 				cleanedList.add(pg);
 				throwError = true;

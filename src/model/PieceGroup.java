@@ -5,12 +5,13 @@ import java.io.Serializable;
 /**
  * Represents a group of one kind of piece. Used to keep track of how many of each piece can be used.
  * @author awharrison
+ * @author hejohnson
  */
 public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	private static final long serialVersionUID = 4819970575743912382L;
 
-	/**Stores the type of piece in the PieceGroup (each PieceGroup has one type of piece).**/
-	Piece piece;
+	/** ID of the associated piece **/
+	int ID;
 	
 	/**Stores the number of pieces in the PieceGroup**/
 	int numPieces;
@@ -21,7 +22,7 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	 * @param count - int
 	 */
 	public PieceGroup(int ID, int count) {
-		this.piece = PieceFactory.getInstance().getPiece(ID);
+		this.ID = ID;
 		this.numPieces = count;
 	}
 
@@ -59,11 +60,7 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	 * @return copy of piece - Piece, or if it fails a shell copy with just the ID
 	 */
 	public Piece getPiece() {
-		try {
-			return this.piece.makeCopy();
-		} catch (NullPointerException e) {
-			return new Piece(this.piece.ID);
-		}
+		return PieceFactory.getInstance().getPiece(ID);
 	}
 
 	/**
@@ -82,7 +79,7 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	public boolean equals(Object o){
 		if(o == null){ return false;}
 		if(o instanceof PieceGroup){
-			if(this.piece.getID() == ((PieceGroup) o).getPiece().getID()){
+			if(this.ID == ((PieceGroup) o).getPiece().getID()){
 				return true;
 			}
 		}
@@ -94,7 +91,7 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 	 * @return string representation of this piecegroup - String
 	 */
 	public String toString(){
-		return "ID:"+this.piece.getID()+"Count:"+this.numPieces;
+		return "ID:"+this.ID+"Count:"+this.numPieces;
 	}
 
 	/**
