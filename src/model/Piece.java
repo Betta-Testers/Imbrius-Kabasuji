@@ -131,8 +131,9 @@ public class Piece implements Serializable{
 	/**
 	 * Returns a copy of the piece.
 	 * @return new Piece with the same ID as this Piece - Piece
+	 * @throws NullPointerException if this piece did not deserialize properly, or it's tiles aren't initialized
 	 */
-	public Piece makeCopy(){
+	public Piece makeCopy() throws NullPointerException{
 		Piece p = new Piece(ID);
 		for (PieceTile pt : this.tiles) {
 			if (!(pt.rowInPiece == 0 && pt.colInPiece == 0)) {
@@ -247,7 +248,10 @@ public class Piece implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
-		this.tiles = PieceFactory.getInstance().getPiece(ID).getTiles();
-		
+		if(PieceFactory.getInstance().pieceExists(ID)){
+			this.tiles = PieceFactory.getInstance().getPiece(ID).getTiles();
+		}else{
+			System.err.println("Piece missing from Config. Deserialization failed. Clean up ensuing...");
+		}
 	}
 }

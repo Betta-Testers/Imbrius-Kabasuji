@@ -18,12 +18,12 @@ public class PieceFactory {
 
 	/**Instance of the PieceFactory.**/
 	private static PieceFactory instance = new PieceFactory();
+	/**Stores all known pieces on disk at Runtime, ID -> Piece**/
 	TreeMap<Integer, Piece> pieces;
 	
 	private PieceFactory() {
 		if(instance != null){throw new IllegalStateException("Already Instantiated");}
 		loadFiles();
-		System.out.println(pieces.toString());
 	}
 	
 	/**

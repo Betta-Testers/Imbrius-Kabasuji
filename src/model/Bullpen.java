@@ -1,5 +1,6 @@
 package model;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -213,5 +214,44 @@ public class Bullpen implements Serializable{
 			s.append(pg.toString());		
 		}
 		return s.toString();
+	}
+
+	/**
+	 * With the inclusion of pieces being read from file, the bullpen may contain pieces that
+	 * were removed before deserialization. To solve this, the object gets read in and then
+	 * verified against the PieceFactory's known pieces. If any are removed (rather than just 
+	 * added) an exception is thrown to the console warning the user may not be able to 
+	 * complete the level due to the missing pieces and that the level is now corrupted.
+	 */
+	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
+		in.defaultReadObject();
+		boolean throwError = false;
+		
+		//REMOVE any pieces from the bullpen not in the factory
+		ArrayList<PieceGroup> cleanedList = new ArrayList<PieceGroup>();
+		for(PieceGroup pg: this.playablePieces){ 
+			int ID = pg.getPiece().getID();
+			if(PieceFactory.getInstance().pieceExists(ID)){
+				cleanedList.add(pg);
+				throwError = true;
+			}
+		}
+		
+		this.playablePieces = cleanedList;
+		
+		//ADD any pieces from the factory not in the bullpen
+		for(int i=1; i<=PieceFactory.getInstance().getHighestNumberedPiece(); i++){	
+			if(PieceFactory.getInstance().pieceExists(i)){
+				PieceGroup pg = new PieceGroup(i, 0);
+				if(!this.playablePieces.contains(pg)){
+					this.playablePieces.add(pg);
+				}
+			}
+		}
+		
+		sortBullpen();
+		if(throwError){
+			System.err.println("Game: Removed pieces that are missing on disk. Level may not be completeable.\nBuilder: Saving will permenently change bullpen.");
+		}
 	}
 }

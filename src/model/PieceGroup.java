@@ -56,10 +56,14 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 
 	/**
 	 * Returns the piece type of this group.
-	 * @return copy of piece - Piece
+	 * @return copy of piece - Piece, or if it fails a shell copy with just the ID
 	 */
 	public Piece getPiece() {
-		return this.piece.makeCopy();
+		try {
+			return this.piece.makeCopy();
+		} catch (NullPointerException e) {
+			return new Piece(this.piece.ID);
+		}
 	}
 
 	/**
