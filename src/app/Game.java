@@ -108,8 +108,10 @@ public class Game extends LevelIO{
 		
 		try {
 			int id = levelData.lowestNoStarLevel();
-			selectLevel.unlockLevel(id, levelData.getMaxStars(id));
-			selectLevel.addListenerToButton(id, this);
+			if(!levelData.unlockedLevels().contains(id)){
+				selectLevel.unlockLevel(id, levelData.getMaxStars(id));
+				selectLevel.addListenerToButton(id, this);
+			}
 		} catch (Exception e) {}
 	}
 	
