@@ -132,7 +132,7 @@ public class Piece{
 	 * @return new Piece with the same ID as this Piece - Piece
 	 * @throws NullPointerException if this piece did not deserialize properly, or it's tiles aren't initialized
 	 */
-	public Piece makeCopy() throws NullPointerException{
+	public Piece makeCopy(){
 		Piece p = new Piece(ID);
 		for (PieceTile pt : this.tiles) {
 			if (!(pt.rowInPiece == 0 && pt.colInPiece == 0)) {
