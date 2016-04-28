@@ -68,6 +68,11 @@ public class PiecePanel extends JPanel{
    			of the top left most tile (you'll need to find this, it'll be the most negative.
 		 */
 		if (bp != null && bp.getSelectedPiece()!=null) {
+			//Recompute the piece tile's locations to be more manageable (won't go out of raster!)
+			int restoreCol = bp.getSelectedPiece().getOriginCol();
+			int restoreRow = bp.getSelectedPiece().getOriginRow();
+			bp.getSelectedPiece().setLocation(6,6); 
+			
 			//Boundaries
 			ArrayList<PieceTile> tiles = bp.getSelectedPiece().getTiles();
 			int topRow = tiles.get(0).getRow();
@@ -75,15 +80,15 @@ public class PiecePanel extends JPanel{
 			int rightCol = tiles.get(0).getCol();
 			int botRow = tiles.get(0).getRow();
 			
+			
 			for(int i = 1; i < tiles.size(); i++){
 				PieceTile t = tiles.get(i);
-				
+			
 				//Find boundaries
 				if(t.getRow() > botRow){ 	botRow = t.getRow();}
 				if(t.getRow() < topRow){ 	topRow = t.getRow();}
 				if(t.getCol() > rightCol){ 	rightCol = t.getCol();}
 				if(t.getCol() < leftCol){	leftCol = t.getCol();}
-				
 			}	
 			
 			//Compute a size that will fit within the bounds of the jpanel
@@ -122,6 +127,8 @@ public class PiecePanel extends JPanel{
 			BufferedImage dest = temp.getSubimage((leftCol*sidelength)+xCenter, (topRow*sidelength)+yCenter, pieceWidth*sidelength+1, pieceHeight*sidelength+1);
 			
 			offscreenGraphics.drawImage(dest, 96-(dest.getWidth()/2), 96-(dest.getHeight()/2), dest.getWidth(), dest.getHeight(), this);
+			
+			bp.getSelectedPiece().setLocation(restoreRow,restoreCol);
 		}
 	}
 
