@@ -6,10 +6,15 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import model.AbstractTile;
 import model.Bullpen;
 import model.PieceTile;
 
@@ -33,6 +38,7 @@ public class PiecePanel extends JPanel{
 	public PiecePanel(Bullpen bp){
 		this.setPreferredSize(new Dimension(192,192));
 		this.bp = bp;
+		this.setBorder(BorderFactory.createLineBorder(Color.black)); //TODO REMOVE
 	}
 	
 	/**
@@ -53,6 +59,16 @@ public class PiecePanel extends JPanel{
 		 * X and Y center of the jPanel, offset by half a tile width to make the tile
 		 * appear in the center, not the top left corner
 		 */
+		
+		/***
+		 *  private BufferedImage cropImage(BufferedImage src, int x, int y) {
+      			BufferedImage dest = src.getSubimage(0, 0, this.getWidth(), this.getHeight());
+      			return dest; 
+   			}
+   			
+   			Try cropping the image. So generate it the way you were, but then grab the top left corner
+   			of the top left most tile (you'll need to find this, it'll be the most negative.
+		 */
 		int xCenter = 96-16;
 		int yCenter = 96-16;
 		if (bp != null && bp.getSelectedPiece()!=null) {
@@ -65,7 +81,6 @@ public class PiecePanel extends JPanel{
 				offscreenGraphics.setColor(Color.BLACK);
 				offscreenGraphics.drawRect(xCoord, yCoord, 32, 32);
 			}	
-			
 		}
 	}
 	
