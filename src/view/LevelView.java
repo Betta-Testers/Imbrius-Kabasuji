@@ -2,6 +2,7 @@ package view;
 
 import view.BoardView;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.GroupLayout;
@@ -70,6 +71,7 @@ public class LevelView extends JFrame {
 		
 		initializeControllers();
 		setupLayout();
+		this.getContentPane().setBackground( Color.WHITE );
 	}
 	
 	/**

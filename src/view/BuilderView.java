@@ -19,6 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
@@ -94,6 +95,7 @@ public class BuilderView extends JFrame {
 		
 		prepareToggleButtons();
 		setupLayout();		
+		this.getContentPane().setBackground( Color.WHITE );
 	}
 
 	/**
