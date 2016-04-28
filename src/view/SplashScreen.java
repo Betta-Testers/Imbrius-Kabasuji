@@ -9,9 +9,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-import java.io.*;
-import javax.sound.sampled.*;
-
 /**
  * Shows a screen with the name of the application and the authors. Everything set to comic sans for fun :).
  * @author bwoconnor

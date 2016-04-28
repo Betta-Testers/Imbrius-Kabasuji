@@ -9,10 +9,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import model.AbstractTile;
 import model.Bullpen;
 import model.PieceTile;
 

@@ -74,10 +74,10 @@ public class TestBoard extends TestCase{
 		
 		b.removePiece(p);
 		
-		Piece p2 = new Piece(1);
+		Piece p2 = PieceFactory.getInstance().getPiece(1);
 		b.showPiecePreview(p2, 2, 1);
 		
-		assertEquals(Color.GREEN, b.board[1][1].color);
+		assertEquals(Color.GREEN, b.board[2][1].color);
 		
 		Piece p3 = PieceFactory.getInstance().getPiece(1);
 		
@@ -109,11 +109,12 @@ public class TestBoard extends TestCase{
 		/*
 		 * place piece on board
 		 */
-		Piece p = new Piece(1);
-		Piece p2 = new Piece(1);
+		Piece p = PieceFactory.getInstance().getPiece(1);
+		Piece p2 = PieceFactory.getInstance().getPiece(1);
 		
 		assertTrue(b.willFit(p, 4, 5));
 		b.putPieceOnBoard(p, 4, 5);
+		
 		for(int i = 2; i < 8; i++) {
 			assertEquals("piece", b.board[i][5].tileType);
 		}

@@ -15,7 +15,7 @@ public class RotateRightMove implements IMove {
 	Bullpen bp;
 	/**Updates the view after the move is done/undone**/
 	SelectedPieceView spv;
-	
+
 	/**
 	 * Rotates a piece and provides undo/redo functionality for the builder
 	 * @param p The selected piece to be rotated
@@ -58,13 +58,10 @@ public class RotateRightMove implements IMove {
 	 */
 	@Override
 	public boolean undo() {
-		//if (isValid()) {
-			p.rotateLeft();
-			spv.getPiecePanel().redraw();
-			spv.getPiecePanel().repaint();
-			return true;
-		//}
-		//return false;
+		p.rotateLeft();
+		spv.getPiecePanel().redraw();
+		spv.getPiecePanel().repaint();
+		return true;
 	}
 
 	/**
