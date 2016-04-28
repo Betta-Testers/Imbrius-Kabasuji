@@ -34,7 +34,6 @@ public class Piece{
 		this.ID = ID;
 		this.tiles = new ArrayList<PieceTile>();
 		this.tiles.add(new PieceTile(0, 0, this));
-		//generatePiece(ID);
 	}
 	
 	/**
