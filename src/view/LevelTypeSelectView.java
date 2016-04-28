@@ -179,6 +179,14 @@ public class LevelTypeSelectView extends JFrame {
 	}
 	
 	/**
+	 * @param levelNumber The level to update
+	 * @param icon The new icon to set
+	 */
+	public void updateBoardPreviewView(int levelNumber, ImageIcon icon) {
+		existingLevels.updateBoardPreviewView(levelNumber, icon);
+	}
+	
+	/**
 	 * Removes an existing level to the ExistingLevelViewer.
 	 * @param levelNumber - int
 	 */

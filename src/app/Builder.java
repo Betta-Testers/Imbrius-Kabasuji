@@ -101,6 +101,8 @@ public class Builder extends LevelIO{
 			levelData.put(id, type);
 			ltsv.addExistingLevel(type, id, this);
 			ltsv.refreshExistingLevels();
+		} else {
+			ltsv.updateBoardPreviewView(id, currentLevel.generateBoardPreview());
 		}
 	}
 

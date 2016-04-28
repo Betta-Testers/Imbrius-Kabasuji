@@ -129,4 +129,13 @@ public class ExistingLevelView extends JPanel implements Comparable<ExistingLeve
 	public int compareTo(ExistingLevelView elv) {
 		return this.getLevelNumber()-elv.getLevelNumber();
 	}
+	
+	/**
+	 * Sets the icon of the button to a new board preview
+	 * @param icon The new preview of the board
+	 */
+	public void updateIcon(ImageIcon icon) {
+		this.editLevel.setIcon(icon);
+		
+	}
 }

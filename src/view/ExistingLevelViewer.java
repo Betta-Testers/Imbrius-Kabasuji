@@ -62,6 +62,22 @@ public class ExistingLevelViewer extends JScrollPane {
 	}
 	
 	/**
+	 * Update the preview of the specified button
+	 * @param levelNumber - int
+	 * @param icon The new icon to use
+	 */
+	public void updateBoardPreviewView(int levelNumber, ImageIcon icon) {
+		for(ExistingLevelView elv : levelsList){
+			if (elv.getLevelNumber() == levelNumber){
+				elv.updateIcon(icon);
+				this.revalidate();
+				this.repaint();
+				break;
+			}
+		}
+	}
+	
+	/**
 	 * Refreshes the view of all existing levels to display them in
 	 * order after the user has made changes to them.
 	 */
