@@ -105,6 +105,12 @@ public class Game extends LevelIO{
 			}
 			selectLevel.addListenerToButton(id, this);
 		}
+		
+		try {
+			int id = levelData.lowestNoStarLevel();
+			selectLevel.unlockLevel(id, levelData.getMaxStars(id));
+			selectLevel.addListenerToButton(id, this);
+		} catch (Exception e) {}
 	}
 	
 	/**

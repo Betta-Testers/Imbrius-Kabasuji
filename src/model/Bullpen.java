@@ -233,6 +233,7 @@ public class Bullpen implements Serializable{
 			int ID = pg.ID;
 			if(PieceFactory.getInstance().pieceExists(ID)){
 				cleanedList.add(pg);
+			}else{
 				throwError = true;
 			}
 		}

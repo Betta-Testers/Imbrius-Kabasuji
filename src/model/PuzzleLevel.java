@@ -36,7 +36,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	 */
 	public PuzzleLevel(int levelID) {
 		super(levelID, "Puzzle", true);
-		moveLimit = 0;
+		moveLimit = 1;
 		initializeVars();
 	}
 	
