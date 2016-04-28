@@ -54,7 +54,7 @@ public class TestBoard extends TestCase{
 	//test functions working with pieces
 	public void testPieceFunctions(){	
 		//add a piece
-		Piece p = new Piece(1);
+		Piece p = PieceFactory.getInstance().getPiece(1);
 		assertTrue(b.willFit(p, 2, 0));
 		b.putPieceOnBoard(p, 2, 0);
 		
@@ -71,17 +71,17 @@ public class TestBoard extends TestCase{
 		b.board[4][1] = new BoardTile(4,1);
 		b.board[5][1] = new BoardTile(5,1);
 		
-		Piece p2 = new Piece(1);
+		Piece p2 = PieceFactory.getInstance().getPiece(1);
 		b.showPiecePreview(p2, 2, 1);
 		
 		assertEquals(Color.RED, b.board[1][1].color);
 		
-		Piece p3 = new Piece(1);
+		Piece p3 = PieceFactory.getInstance().getPiece(1);
 		
 		b.showPiecePreview(p3, 2, 2);
 		assertEquals(Color.RED, b.board[2][2].color);
 		
-		Piece p4 = new Piece(1);
+		Piece p4 = PieceFactory.getInstance().getPiece(1);
 		
 		b.showPiecePreview(p4, 0, 3);
 		assertEquals(Color.RED, b.board[0][3].color);

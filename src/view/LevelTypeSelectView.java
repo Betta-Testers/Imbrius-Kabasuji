@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +18,7 @@ import controllers.builder.ExistingLevelEditController;
 import controllers.builder.NewLightningLevelController;
 import controllers.builder.NewPuzzleLevelController;
 import controllers.builder.NewReleaseLevelController;
+import model.AbstractLevelModel;
 
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
@@ -147,9 +151,31 @@ public class LevelTypeSelectView extends JFrame {
 	 * @param b - Builder
 	 */
 	public void addExistingLevel (String levelType, int levelNumber, Builder b){
-		ExistingLevelView elv = existingLevels.addLevelView(levelType, levelNumber);
+		ExistingLevelView elv = existingLevels.addLevelView(levelType, levelNumber, generateBoardPreview(levelType, levelNumber));
 		elv.addActionListenerToEditButton(new ExistingLevelEditController(b));
 		elv.addActionListenerToDeleteButton(new ExistingLevelDeleteController(b));
+	}
+	
+	private ImageIcon generateBoardPreview(String type, int num) {
+		ObjectInputStream ois = null;
+		AbstractLevelModel m = null;
+		ImageIcon img;
+
+		String location = "./imbriusLevelFiles/"+num+"_"+type+".storage";
+
+		try {
+			ois = new ObjectInputStream (new FileInputStream(location));
+			m = (AbstractLevelModel) ois.readObject();
+			ois.close();
+			img = m.generateBoardPreview();
+		} catch (Exception e) { 
+			img = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/ReleaseSm.png"));
+		}
+
+		if (ois != null) { 
+			try { ois.close(); } catch (IOException ioe) { }
+		}
+		return img;
 	}
 	
 	/**

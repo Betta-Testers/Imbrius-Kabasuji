@@ -63,6 +63,6 @@ public class TestPieceGroup extends TestCase {
 	}
 	
 	public void testToString() {
-		assertEquals("ID:"+testPG2.piece.getID()+"Count:"+testPG2.numPieces, testPG2.toString());
+		assertEquals("ID:"+testPG2.ID+"Count:"+testPG2.numPieces, testPG2.toString());
 	}
 }

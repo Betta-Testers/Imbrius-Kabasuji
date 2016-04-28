@@ -83,6 +83,8 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		mouseOn = false;
 		if (levelModel.getBoard().getDraggedPiece() == null) {
 			levelModel.getBoard().clearPiecePreview();
+			boardView.redraw();
+			boardView.repaint();
 		} else { // currently dragging a piece
 			IMove m = new MovePieceOffBoardMove(levelModel, levelView.getBullpenView(), boardView);
 			m.doMove();

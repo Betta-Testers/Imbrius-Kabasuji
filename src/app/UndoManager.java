@@ -27,7 +27,7 @@ public class UndoManager{
 
 	/**Private constructor prevents further instantiations**/
 	private UndoManager(){
-		if(instance != null){throw new IllegalStateException("Alredy Instantiated");}
+		if(instance != null){throw new IllegalStateException("Already Instantiated");}
 		undoStack = new Stack<IMove>();
 		redoStack = new Stack<IMove>();
 	}

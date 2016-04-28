@@ -19,8 +19,6 @@ import javax.swing.SwingConstants;
  */
 public class ExistingLevelView extends JPanel implements Comparable<ExistingLevelView>{	
 	private static final long serialVersionUID = 1L;
-	/**Stores Icon associated with the level.**/
-	ImageIcon icon;
 	
 	/**Button to allow editing the level.**/
 	JButton editLevel;
@@ -42,20 +40,12 @@ public class ExistingLevelView extends JPanel implements Comparable<ExistingLeve
 	 * @param levelType - String
 	 * @param levelNumber - Integer
 	 */
-	ExistingLevelView(String levelType, Integer levelNumber) {
+	ExistingLevelView(String levelType, Integer levelNumber, ImageIcon icon) {
 		super();
 		this.levelNumber = levelNumber;
 		editLevel = new JButton(levelType+" "+levelNumber.toString());
 		Dimension levelPreviewSize = new Dimension(126, 126);
-		if (levelType.equals("Release")) {
-			icon = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/ReleaseSm.png"));
-		} else if (levelType.equals("Lightning")) {
-			icon = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/LightningSm.png"));
-		} else if (levelType.equals("Puzzle")) {
-			icon = new ImageIcon(LevelTypeSelectView.class.getResource("/icons/PuzzleSm.png"));
-		} else {
-			throw new RuntimeException("ExistingLevelView was given an invalid levelType: "+levelType);
-		}
+
 		editLevel.setIcon(icon);
 		editLevel.setHorizontalAlignment(SwingConstants.CENTER);
 		editLevel.setHorizontalTextPosition(SwingConstants.CENTER);

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * A Board stores the state of the board, including all tiles on it as well as what pieces are on it.
  * @author bwoconnor
- *
+ * @author hejohnson
  */
 
 public class Board implements Serializable{
@@ -81,9 +81,9 @@ public class Board implements Serializable{
 	public boolean putPieceOnBoard(Piece p, int row, int col) {
 		p.setLocation(row, col);
 		if (willFit(p, row, col)) {
-			for (int i = 0; i < 6; i++) {
-				AbstractTile temp = swapTile(p.tiles[i]);
-				p.tiles[i].setPreviousTile(temp);
+			for (PieceTile pt: p.getTiles()) {
+				AbstractTile temp = swapTile(pt);
+				pt.setPreviousTile(temp);
 			}
 			pieces.add(p);
 			return true;
@@ -112,8 +112,8 @@ public class Board implements Serializable{
 	 */
 	public boolean removePiece(Piece p) {
 		if (pieces.contains(p)) {
-			for (int i = 0; i < 6; i++) {
-				swapTile(p.tiles[i].getPreviousTile());
+			for (PieceTile pt: p.getTiles()) {
+				swapTile(pt.getPreviousTile());
 			}
 			pieces.remove(p);
 			return true;
@@ -134,9 +134,9 @@ public class Board implements Serializable{
 		if(!onBoard(p, row, col)){
 			return false;
 		}
-		for (int i = 0; i < 6; i++) {
-			r = row + p.tiles[i].rowInPiece;
-			c = col + p.tiles[i].colInPiece;
+		for (PieceTile pt: p.getTiles()) {
+			r = row + pt.rowInPiece;
+			c = col + pt.colInPiece;
 			if(board[r][c].tileType.equals("empty") || board[r][c].tileType.equals("piece")){
 				return false;
 			}
@@ -158,9 +158,9 @@ public class Board implements Serializable{
 		if(!onBoard(p, row, col)){
 			return false;
 		}
-		for (int i = 0; i < 6; i++) {
-			r = row + p.tiles[i].rowInPiece;
-			c = col + p.tiles[i].colInPiece;
+		for (PieceTile pt: p.getTiles()) {
+			r = row + pt.rowInPiece;
+			c = col + pt.colInPiece;
 			if(board[r][c].tileType.equals("empty") || board[r][c].tileType.equals("piece") || ((BoardTile) board[r][c]).isHint()){
 				return false;
 			}
@@ -171,15 +171,15 @@ public class Board implements Serializable{
 	/**
 	 * Says if a piece will fit on the board.
 	 * @param p (piece being placed) - Piece
-	 * @param row - int
-	 * @param col - int
+	 * @param row - row destination of the piece
+	 * @param col - column destination of the piece
 	 * @return if the piece can be placed at the location - boolean
 	 */
 	public boolean onBoard(Piece p, int row, int col){
 		int r, c;
-		for (int i = 0; i < 6; i++) {
-			r = row + p.tiles[i].rowInPiece;
-			c = col + p.tiles[i].colInPiece;
+		for (PieceTile pt : p.getTiles()) {
+			r = row + pt.getRowInPiece();
+			c = col + pt.getColInPiece();
 			if(r < 0 || r > 11 || c < 0 || c > 11) {return false;}
 		}
 		return true;
@@ -195,9 +195,9 @@ public class Board implements Serializable{
 	public boolean isValidConvert(Piece p, int row, int col){
 		int r, c;
 		if(!onBoard(p, row, col)){return false;}
-		for (int i = 0; i < 6; i++) {
-			r = row + p.tiles[i].rowInPiece;
-			c = col + p.tiles[i].colInPiece;
+		for (PieceTile pt : p.getTiles()) {
+			r = row + pt.getRowInPiece();
+			c = col + pt.getColInPiece();
 			if(!board[r][c].tileType.equals("empty")){
 				return false;
 			}
@@ -249,16 +249,16 @@ public class Board implements Serializable{
 	 */
 	public void showPiecePreview(Piece p, int row, int col){
 		if(willFit(p,row,col)){
-			for(int i = 0; i<6; i++){
-				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+			for(PieceTile pt : p.getTiles()){
+				board[row + pt.getRowInPiece()][col + pt.getColInPiece()].setMouseOverColor(true);
 			}
 		}else{
-			for(int i = 0; i<6; i++){
-				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
-						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
+			for(PieceTile pt : p.getTiles()){
+				if(pt.getRowInPiece()+row < 0 || pt.getRowInPiece()+row > 11
+						|| pt.getColInPiece()+col < 0 || pt.getColInPiece()+col > 11){
 					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 				}else{
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+					board[row + pt.getRowInPiece()][col + pt.getColInPiece()].setMouseOverColor(false);
 
 				}
 			}
@@ -274,16 +274,16 @@ public class Board implements Serializable{
 	 */
 	public void showConversionPreview(Piece p, int row, int col){
 		if(isValidConvert(p, row, col)){
-			for(int i = 0; i<6; i++){
-				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+			for(PieceTile pt : p.getTiles()){
+				board[row + pt.getRowInPiece()][col + pt.getColInPiece()].setMouseOverColor(true);
 			}
 		}else{
-			for(int i = 0; i<6; i++){
-				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
-						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
+			for(PieceTile pt : p.getTiles()){
+				if(pt.getRowInPiece()+row < 0 || pt.getRowInPiece()+row > 11
+						|| pt.getColInPiece()+col < 0 || pt.getColInPiece()+col > 11){
 					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 				}else{
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+					board[row + pt.getRowInPiece()][col + pt.getColInPiece()].setMouseOverColor(false);
 
 				}
 			}
@@ -299,16 +299,16 @@ public class Board implements Serializable{
 	 */
 	public void showHintPreview(Piece p, int row, int col){
 		if(willFitHint(p,row,col)){
-			for(int i = 0; i<6; i++){
-				board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(true);
+			for(PieceTile pt : p.getTiles()){
+				board[row + pt.getRowInPiece()][col + pt.getColInPiece()].setMouseOverColor(true);
 			}
 		}else{
-			for(int i = 0; i<6; i++){
-				if(p.tiles[i].rowInPiece+row < 0 || p.tiles[i].rowInPiece+row > 11
-						|| p.tiles[i].colInPiece+col < 0 || p.tiles[i].colInPiece+col > 11){
+			for(PieceTile pt : p.getTiles()){
+				if(pt.getRowInPiece()+row < 0 || pt.getRowInPiece()+row > 11
+						|| pt.getColInPiece()+col < 0 || pt.getColInPiece()+col > 11){
 					//DO NOTHING! IT WILL BE OUT OF THE BOARD! DO NOT WANT AN OUT OF BOUNDS ERROR//
 				}else{
-					board[row + p.tiles[i].rowInPiece][col + p.tiles[i].colInPiece].setMouseOverColor(false);
+					board[row + pt.getRowInPiece()][col + pt.getColInPiece()].setMouseOverColor(false);
 
 				}
 			}

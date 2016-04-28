@@ -10,7 +10,7 @@ import view.LevelView;
 import model.Board;
 import model.BoardTile;
 import model.Bullpen;
-import model.Piece;
+import model.PieceFactory;
 import model.ReleaseLevel;
 import model.ReleaseTile;
 import app.Game;
@@ -104,7 +104,7 @@ public class TestPlayerRelease extends TestCase {
 		bullpen.incrementPiece(1);
 		bullpen.incrementPiece(1);
 		bullpen.incrementPiece(1);
-		bullpen.setSelectedPiece(new Piece(1));;
+		bullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(1));;
 		
 		
 		/*
@@ -139,7 +139,7 @@ public class TestPlayerRelease extends TestCase {
 				System.currentTimeMillis(), 0, 
 				4*board.getTileSize(), 
 				2*board.getTileSize(), 0, false);
-		bullpen.setSelectedPiece(new Piece(1));
+		bullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		level.getBoardController().mousePressed(me);
 		assertFalse(level.checkStatus());
 		assertEquals(2, level.getStarsEarned());
@@ -152,7 +152,7 @@ public class TestPlayerRelease extends TestCase {
 				System.currentTimeMillis(), 0, 
 				5*board.getTileSize(), 
 				2*board.getTileSize(), 0, false);
-		bullpen.setSelectedPiece(new Piece(1));
+		bullpen.setSelectedPiece(PieceFactory.getInstance().getPiece(1));
 		level.getBoardController().mousePressed(me);
 		assertTrue(level.checkStatus());
 		assertEquals(3, level.getStarsEarned());
