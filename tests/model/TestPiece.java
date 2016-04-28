@@ -57,7 +57,7 @@ public class TestPiece extends TestCase{
 
 		}
 		try{
-			PieceFactory.getInstance().getPiece(36);
+			PieceFactory.getInstance().getPiece(100);
 			fail("Incorrect ID");
 		}catch (RuntimeException e){
 
