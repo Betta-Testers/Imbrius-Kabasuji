@@ -69,11 +69,6 @@ public class Piece implements Serializable{
 		}
 		return out + ID + "," + color.toString();
 	}
-	
-//	public String toString(){
-//		return "[ID:"+ID+" "+ tiles[0].toString() + " " + tiles[1].toString() + " " + tiles[2].toString() + " " +
-//				tiles[3].toString() + " " + tiles[4].toString() + " " + tiles[5].toString()+"]";
-//	}
 
 	/**
 	 * Returns ID of this piece.
@@ -235,9 +230,9 @@ public class Piece implements Serializable{
 	      Graphics2D g2 = iconImg.createGraphics();
 	      for (PieceTile pt : tiles) {
 	    	  g2.setColor(color);
-	    	  g2.fillRect(16+pt.getColInPiece()*4, 16+pt.getRowInPiece()*4, 4, 4);
+	    	  g2.fillRect(16+pt.getColInPiece()*4, 14+pt.getRowInPiece()*4, 4, 4);
 	    	  g2.setColor(Color.black);
-	    	  g2.drawRect(16+pt.getColInPiece()*4, 16+pt.getRowInPiece()*4, 4, 4);
+	    	  g2.drawRect(16+pt.getColInPiece()*4, 14+pt.getRowInPiece()*4, 4, 4);
 	      }
 	      return new ImageIcon(iconImg);
 	}
@@ -252,7 +247,7 @@ public class Piece implements Serializable{
 	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
-		this.tiles = new ArrayList<PieceTile>();
-		//generatePiece(this.ID);
+		this.tiles = PieceFactory.getInstance().getPiece(ID).getTiles();
+		
 	}
 }

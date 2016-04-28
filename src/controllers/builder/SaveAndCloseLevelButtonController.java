@@ -44,6 +44,7 @@ public class SaveAndCloseLevelButtonController implements ActionListener {
 				bullpen.incrementPiece(p.getID());
 			}
 		}
+		board.clearPiecePreview();
 		builder.saveLevel();
 		builder.getBuilderView().setVisible(false);
 		builder.getLevelTypeSelectView().setVisible(true);
