@@ -81,9 +81,9 @@ public class Board implements Serializable{
 	public boolean putPieceOnBoard(Piece p, int row, int col) {
 		p.setLocation(row, col);
 		if (willFit(p, row, col)) {
-			for (int i = 0; i < 6; i++) {
-				AbstractTile temp = swapTile(p.getTiles().get(i));
-				p.getTiles().get(i).setPreviousTile(temp);
+			for (PieceTile pt: p.getTiles()) {
+				AbstractTile temp = swapTile(pt);
+				pt.setPreviousTile(temp);
 			}
 			pieces.add(p);
 			return true;
@@ -112,8 +112,8 @@ public class Board implements Serializable{
 	 */
 	public boolean removePiece(Piece p) {
 		if (pieces.contains(p)) {
-			for (int i = 0; i < 6; i++) {
-				swapTile(p.getTiles().get(i).getPreviousTile());
+			for (PieceTile pt: p.getTiles()) {
+				swapTile(pt.getPreviousTile());
 			}
 			pieces.remove(p);
 			return true;
@@ -134,9 +134,9 @@ public class Board implements Serializable{
 		if(!onBoard(p, row, col)){
 			return false;
 		}
-		for (int i = 0; i < 6; i++) {
-			r = row + p.getTiles().get(i).rowInPiece;
-			c = col + p.getTiles().get(i).colInPiece;
+		for (PieceTile pt: p.getTiles()) {
+			r = row + pt.rowInPiece;
+			c = col + pt.colInPiece;
 			if(board[r][c].tileType.equals("empty") || board[r][c].tileType.equals("piece")){
 				return false;
 			}
@@ -158,9 +158,9 @@ public class Board implements Serializable{
 		if(!onBoard(p, row, col)){
 			return false;
 		}
-		for (int i = 0; i < 6; i++) {
-			r = row + p.getTiles().get(i).rowInPiece;
-			c = col + p.getTiles().get(i).colInPiece;
+		for (PieceTile pt: p.getTiles()) {
+			r = row + pt.rowInPiece;
+			c = col + pt.colInPiece;
 			if(board[r][c].tileType.equals("empty") || board[r][c].tileType.equals("piece") || ((BoardTile) board[r][c]).isHint()){
 				return false;
 			}
@@ -171,8 +171,8 @@ public class Board implements Serializable{
 	/**
 	 * Says if a piece will fit on the board.
 	 * @param p (piece being placed) - Piece
-	 * @param row - int
-	 * @param col - int
+	 * @param row - row destination of the piece
+	 * @param col - column destination of the piece
 	 * @return if the piece can be placed at the location - boolean
 	 */
 	public boolean onBoard(Piece p, int row, int col){

@@ -3,7 +3,6 @@ package view;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import model.PieceGroup;
@@ -35,7 +34,6 @@ public abstract class AbstractPieceGroupView extends JPanel{
 		this.pieceGroup = pieceGroup;
 		button = new SelectPieceButton(pieceGroup);
 		button.setIcon(pieceGroup.getPiece().generateIcon());
-		//button.setIcon(new ImageIcon(AbstractPieceGroupView.class.getResource("/pieces/"+pieceGroup.getPiece().getID()+".png")));
 	}
 	
 	/**

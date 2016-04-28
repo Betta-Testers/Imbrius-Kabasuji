@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.awt.Color;
@@ -13,11 +10,13 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 /**
+ * Piece factory looks into the specified directory to generate known pieces for the session 
+ * of the applcation. This is a singlton.
  * @author hejohnson
- *
  */
 public class PieceFactory {
 
+	/**Instance of the PieceFactory.**/
 	private static PieceFactory instance = new PieceFactory();
 	TreeMap<Integer, Piece> pieces;
 	
@@ -37,7 +36,7 @@ public class PieceFactory {
 	
 	void loadFiles() {
 		pieces = new TreeMap<Integer, Piece>();
-		File piecesDir = new File("./pieces/");
+		File piecesDir = new File("./resources/pieces/");
 		File[] pieceFiles = piecesDir.listFiles();
 		for (File pieceFile : pieceFiles) {
 			try {
@@ -61,7 +60,7 @@ public class PieceFactory {
 	            bufferedReader.close();         
 	        }
 	        catch(FileNotFoundException ex) {
-	            System.out.println("Unable to open file");              
+	            System.err.println("Unable to open file");              
 	        }
 	        catch(IOException ex) {
 	            ex.printStackTrace();
@@ -105,6 +104,7 @@ public class PieceFactory {
 	}
 	
 	/**
+	 * Returns a copy of the requested piece
 	 * @param pID The desired piece's ID
 	 * @return The piece with that ID
 	 */
