@@ -73,6 +73,7 @@ public class ReleaseNumberCreationView extends JPanel{
 		addSetColorController(new SetReleaseTileColorController(this));
 
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 
 	/**

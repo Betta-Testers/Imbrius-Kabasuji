@@ -7,6 +7,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -36,6 +37,7 @@ public class NumberMovesLeftView extends JPanel {
 		lblTitle = new JLabel("Moves Remaining");
 		numberMoves.setText(Integer.toString(initialMoves));
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 	
 	/**
