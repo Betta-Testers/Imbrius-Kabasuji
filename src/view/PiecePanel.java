@@ -107,8 +107,8 @@ public class PiecePanel extends JPanel{
 			}while(!fits);
 
 			//Draw the image to a buffered image.
-			int xCenter = 96-(sidelength/2);
-			int yCenter = 96-(sidelength/2);
+			int xCenter = (this.getWidth()/2)-(sidelength/2);
+			int yCenter = (this.getHeight()/2)-(sidelength/2);
 			
 			 // Create a buffered image with transparency
 		    BufferedImage temp = new BufferedImage(this.getWidth()*2, this.getHeight()*2, BufferedImage.TYPE_INT_ARGB);
