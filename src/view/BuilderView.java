@@ -1,9 +1,11 @@
 package view;
 
 import java.awt.event.WindowListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import app.Builder;
 import controllers.builder.BuilderBoardController;
 import controllers.builder.PlacePieceToggleListener;
@@ -16,7 +18,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 
 /**
  * Handles the graphics of the main builder application window.
@@ -66,10 +71,13 @@ public class BuilderView extends JFrame {
 	public BuilderView(Builder b) {
 		this.builder = b;
 		
-		setResizable(false);
+		this.setResizable(false);
+		this.setMinimumSize(new Dimension(525, 715));
+		this.setPreferredSize(new Dimension(525, 715));
+		this.setBounds(100, 100, 525, 715);
+		
 		setVisible(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 525, 715);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -87,13 +95,14 @@ public class BuilderView extends JFrame {
 		
 		prepareToggleButtons();
 		setupLayout();		
+		this.getContentPane().setBackground( Color.WHITE );
 	}
 
 	/**
 	 * Adds the toggle buttons to the builder window.
 	 */
 	void prepareToggleButtons() {
-		placementGroup = new ButtonGroup(){
+		placementGroup = new ButtonGroup() {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void setSelected(ButtonModel model, boolean selected) {
@@ -276,6 +285,7 @@ public class BuilderView extends JFrame {
 	 * Sets up the layout for the BuilderView.
 	 */
 	void setupLayout(){
+		
 		tglbtnPlacePieces.setToolTipText("When toggled, you can place pieces on the board");
 		tglbtnPlaceBoard.setToolTipText("When toggled, pieces you place on the board become the board");
 		tglbtnPlaceHints.setToolTipText("When toggled, pieces you place on the board become hints");

@@ -59,6 +59,7 @@ public class NumbersReleasedView extends JPanel {
 		}
 	
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 	
 	/**

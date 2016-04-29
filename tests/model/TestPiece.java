@@ -44,7 +44,7 @@ public class TestPiece extends TestCase{
 	//test initializing all pieces
 	public void testPieces(){
 		for(int i = 1; i < 36; i++){
-			new Piece(i);
+			PieceFactory.getInstance().getPiece(i);
 		}
 	}
 	

@@ -126,7 +126,7 @@ public class TestBullpen extends TestCase {
 		assertEquals(testPiece, null);
 		
 		// test that the setSelectedPiece method can only assign a piece that exists in the Bullpen
-		Piece added = new Piece(4);
+		Piece added = PieceFactory.getInstance().getPiece(4);
 		testBP1.setSelectedPiece(added);
 		assertTrue(added == testBP1.getSelectedPiece());
 		testPiece = testBP1.getSelectedPiece();
@@ -149,4 +149,11 @@ public class TestBullpen extends TestCase {
 			
 		}
 	}
+	
+	public void testCreateWithSizeOf() {
+		testBP3 = new Bullpen(50);
+		assertEquals(50, testBP3.numAvailablePieces());
+		assertTrue(testBP3.playablePieces.size() <= 35);
+	}
+	
 }

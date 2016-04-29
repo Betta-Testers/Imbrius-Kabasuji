@@ -80,7 +80,6 @@ public class RemoveAllPiecesMove implements IMove {
 	 */
 	@Override
 	public boolean undo() {
-		//if(isValid()){ return false;}
 		for(Piece p: piecesRemoved){
 			board.putPieceOnBoard(p, p.getOriginRow(), p.getOriginCol());
 			bp.decrementPiece(p.getID());

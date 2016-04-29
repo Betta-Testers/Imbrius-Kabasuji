@@ -23,11 +23,11 @@ public class TestLevelPuzzle extends TestCase {
 	
 	public void testInitialization(){
 		assertEquals(p.movesMade, 0);
-		assertEquals(p.moveLimit, 0);
+		assertEquals(p.moveLimit, 1);
 	}
 	
 	public void testMoveLimit(){
-		assertEquals(p.moveLimit, 0);
+		assertEquals(p.moveLimit, 1);
 		p.setMoveLimit(9);
 		assertEquals(p.moveLimit, 9);
 	}
@@ -37,6 +37,6 @@ public class TestLevelPuzzle extends TestCase {
 		assertEquals(p.movesMade, 1);	
 	}
 	public void testToString(){
-		assertEquals(p.toString(), "Puzzle00"+p.board.toString()+p.bullpen.toString());	
+		assertEquals(p.toString(), "Puzzle01"+p.board.toString()+p.bullpen.toString());	
 	}
 }

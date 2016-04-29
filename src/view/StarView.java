@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
@@ -35,6 +36,7 @@ public class StarView extends JPanel {
 		lblStar3 = new JLabel("");
 		lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/outline_star.png")));
 		setupLayout();
+		this.setBackground(Color.WHITE);
 
 	}
 	

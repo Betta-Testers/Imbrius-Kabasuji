@@ -15,7 +15,6 @@ import java.awt.Font;
  * 
  */
 public class SplashScreen extends JFrame {
-	
 	private static final long serialVersionUID = 1L;
 	/**Panel for the SplashScreen.**/
 	private JPanel contentPane;
@@ -30,10 +29,12 @@ public class SplashScreen extends JFrame {
 	JLabel lblName4;
 	JLabel lblName5;
 
+	
 	/**
 	 * Create the SplashScreen.
 	 */
 	public SplashScreen() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 640);
 		contentPane = new JPanel();
@@ -60,14 +61,15 @@ public class SplashScreen extends JFrame {
 		
 		lblName5 = new JLabel("Hans Johnson");
 		lblName5.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
-		setVisible(true);
 		setupLayout();
+		setVisible(true);
+
 	}
 	
 	/**
 	 * Sets up the layout of the SplashScreen.
 	 */
-	void setupLayout() {
+	public void setupLayout() {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -117,4 +119,6 @@ public class SplashScreen extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+
 }

@@ -41,8 +41,6 @@ public class RotatePieceLeftController implements ActionListener {
 	 * @param ae button pressed
 	 */
 	public void actionPerformed(ActionEvent ae) {
-
-		//TOD) Make into move
 		p = bullpen.getSelectedPiece();
 		if (p != null) {
 			IMove m = new RotateLeftMove(p, bullpen, selectedPieceView);

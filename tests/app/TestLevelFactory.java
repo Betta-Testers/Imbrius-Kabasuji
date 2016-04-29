@@ -84,7 +84,7 @@ public class TestLevelFactory extends TestCase {
 		PuzzleLevel pl = factory.GenerateSpecificPuzzle(1, pieces, tiles);
 		String expectedBullpen = "ID:1Count:1ID:2Count:2ID:3Count:3ID:4Count:4ID:5Count:5ID:6Count:6ID:7Count:7ID:8Count:8ID:9Count:9ID:10Count:10ID:11Count:11ID:12Count:12";
 		String expectedBoard = (new Board()).toString();
-		String expectedlevel = "Puzzle10"+expectedBoard+expectedBullpen;
+		String expectedlevel = "Puzzle11"+expectedBoard+expectedBullpen;
 		assertEquals(expectedBullpen, pl.getBullpen().toString());
 		assertEquals(expectedBoard, pl.getBoard().toString());
 		assertEquals(expectedlevel, pl.toString());

@@ -79,6 +79,9 @@ public class Board implements Serializable{
 	 * @return if the piece was placed - boolean
 	 */
 	public boolean putPieceOnBoard(Piece p, int row, int col) {
+		if(p == null) {
+			throw new RuntimeException("putPieceOnBoard::piece being placed is null");
+		}
 		p.setLocation(row, col);
 		if (willFit(p, row, col)) {
 			for (PieceTile pt: p.getTiles()) {

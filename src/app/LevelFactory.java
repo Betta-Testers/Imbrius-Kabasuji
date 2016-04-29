@@ -33,9 +33,7 @@ public class LevelFactory{
 	/**
 	 * Creates the levelFactory, initializes the object to blank.
 	 */
-	public LevelFactory(){
-		System.out.println("Factory Started...");
-	}
+	public LevelFactory(){}
 
 	/**
 	 * Generates 15 levels, 5 of each type going Puzzle, Release, Lightning, Puzzle..

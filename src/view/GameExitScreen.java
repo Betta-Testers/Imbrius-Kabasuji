@@ -33,9 +33,6 @@ public class GameExitScreen extends JFrame{
 		btnReturnToLevel = new JButton("Return to Level Select");
 		btnReturnToLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		setupLayout();
-		
-		//add Game to constructor
-		//btnReturnToLevel.addActionListener(new QuitGameButtonController(this));
 	}
 	
 	/**

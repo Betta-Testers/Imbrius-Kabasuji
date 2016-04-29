@@ -180,10 +180,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				UndoManager.getInstance().pushMove(move);
 			}
 		}
-		
-		
-//		boardView.redraw();
-//		boardView.repaint();
 	}
 
 	/**

@@ -2,7 +2,6 @@ package controllers.player;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import app.Game;
 import view.SplashScreen;
 

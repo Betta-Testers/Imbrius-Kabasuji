@@ -48,19 +48,7 @@ public class TestLevelRelease extends TestCase {
 		assertEquals(temp_blue, r.blues);
 		assertEquals(temp_green, r.greens);
 	}
-/*	
-	public void testInvalidReleased(){
-		int[] temp = r.reds;
-		
-		r.addToRedReleased(0);
-		r.addToBlueReleased(0);
-		r.addToGreenReleased(0);
-		
-		assertEquals(temp, r.reds);
-		assertEquals(temp, r.blues);
-		assertEquals(temp, r.greens);
-	}
-*/
+
 	public void testEndConditions(){
 		assertTrue(!r.sumIsSix(r.reds));
 		assertTrue(!r.sumIsSix(r.blues));

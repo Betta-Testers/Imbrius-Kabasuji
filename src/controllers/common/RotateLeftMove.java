@@ -56,17 +56,14 @@ public class RotateLeftMove implements IMove {
 
 	/**
 	 * Ensures that the piece is the selected piece using isValid(), then rotates right
-	 * @return True if the undo was valid and executed properly
+	 * @return True 
 	 */
 	@Override
 	public boolean undo() {
-		//if (isValid()) {
-			p.rotateRight();
-			spv.getPiecePanel().redraw();
-			spv.getPiecePanel().repaint();
-			return true;
-		//}
-		//return false;
+		p.rotateRight();
+		spv.getPiecePanel().redraw();
+		spv.getPiecePanel().repaint();
+		return true;
 	}
 
 	/**
