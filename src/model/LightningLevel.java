@@ -49,9 +49,9 @@ public class LightningLevel extends AbstractLevelModel implements Serializable{
 	public boolean checkStatus() {
 		int unmarkedTiles = board.getNumBoardTiles();
 		
-		if(unmarkedTiles <= 12 && unmarkedTiles > 6){	starsEarned = 1;}
-		if(unmarkedTiles <= 6 && unmarkedTiles > 0){ 	starsEarned = 2;}
-		if(unmarkedTiles == 0){ 						starsEarned = 3;}
+		if(unmarkedTiles <= 12 && unmarkedTiles > 6){	starsEarned = 1; playSound("resources/sounds/crikey.wav");}
+		if(unmarkedTiles <= 6 && unmarkedTiles > 0){ 	starsEarned = 2; playSound("resources/sounds/have_a_look.wav");}
+		if(unmarkedTiles == 0){ 						starsEarned = 3; playSound("resources/sounds/see_ya_later.wav");}
 		
 		return (unmarkedTiles == 0);
 	}

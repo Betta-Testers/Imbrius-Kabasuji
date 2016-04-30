@@ -67,12 +67,15 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 		switch(unmarkedTiles){
 			case(12):
 				starsEarned = 1;
+				playSound("resources/sounds/crikey.wav");
 				break;
 			case(6):
 				starsEarned = 2;
+				playSound("resources/sounds/have_a_look.wav");
 				break;
 			case(0):
 				starsEarned = 3;
+				playSound("resources/sounds/see_ya_later.wav");
 				break;
 			default:
 				starsEarned = 0;

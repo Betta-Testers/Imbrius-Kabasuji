@@ -80,6 +80,19 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		if(blueSum){ 	starsEarned++;}
 		if(greenSum){	starsEarned++;}
 		
+		switch(starsEarned){
+		case(1):
+			playSound("resources/sounds/crikey.wav");
+			break;
+		case(2):
+			playSound("resources/sounds/have_a_look.wav");
+			break;
+		case(3):
+			playSound("resources/sounds/see_ya_later.wav");
+			break;
+		default:
+	}
+		
 		return (redSum&&blueSum&&greenSum) || bullpen.isEmpty();
 	}
 	
