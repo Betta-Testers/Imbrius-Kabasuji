@@ -17,6 +17,11 @@ import app.Game;
 import app.LevelFactory;
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author awharrison
+ *
+ */
 @SuppressWarnings("javadoc")
 public class TestPlayerPuzzle extends TestCase {
 	
