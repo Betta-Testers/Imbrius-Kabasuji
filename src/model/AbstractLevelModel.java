@@ -23,6 +23,7 @@ import view.LevelView;
 /**
  * An AbstractLevelModel dictates what a level needs to have.
  * @author dfontana
+ * @author awharrison
  */
 public abstract class AbstractLevelModel implements Serializable{
 
