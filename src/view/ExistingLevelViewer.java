@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -32,6 +33,7 @@ public class ExistingLevelViewer extends JScrollPane {
 		levelsList = new ArrayList<ExistingLevelView>();
 		existingLevels = new JPanel();
 		this.setViewportView(existingLevels);
+		this.setBackground(Color.WHITE);
 	}
 	/**
 	 * Add a level view to the list of existing levels.
