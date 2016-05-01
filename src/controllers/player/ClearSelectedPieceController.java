@@ -17,7 +17,9 @@ import view.SelectedPieceView;
  *
  */
 public class ClearSelectedPieceController implements ActionListener {
+	/** The view that contains the preview of the piece prior to placement for rotation/flipping **/
 	SelectedPieceView spv;
+	/** The bullpen model that contains the selected piece **/
 	Bullpen bp;
 	
 	/**
