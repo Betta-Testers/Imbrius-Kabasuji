@@ -64,18 +64,14 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	@Override
 	public boolean checkStatus() {
 		int unmarkedTiles = board.getNumBoardTiles();
-		switch(unmarkedTiles){
-			case(12):
-				starsEarned = 1;
-				break;
-			case(6):
-				starsEarned = 2;
-				break;
-			case(0):
-				starsEarned = 3;
-				break;
-			default:
-				starsEarned = 0;
+		if (unmarkedTiles == 0) {
+			starsEarned = 3;
+		} else if (unmarkedTiles <= 6) {
+			starsEarned = 2;
+		} else if (unmarkedTiles <= 12) {
+			starsEarned = 1;
+		} else {
+			starsEarned = 0;
 		}
 		return unmarkedTiles == 0 || (moveLimit-movesMade) == 0;
 	}
