@@ -75,6 +75,7 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		boolean redSum = sumIsSix(reds);
 		boolean blueSum = sumIsSix(blues);
 		boolean greenSum = sumIsSix(greens);
+		int prevStars = starsEarned;
 		starsEarned = 0;
 		if(redSum){  	starsEarned++;}
 		if(blueSum){ 	starsEarned++;}
@@ -82,13 +83,19 @@ public class ReleaseLevel extends AbstractLevelModel implements Serializable{
 		
 		switch(starsEarned){
 		case(1):
-			playSound("resources/sounds/crikey.wav");
+			if (starsEarned != prevStars) {
+				playSound("resources/sounds/crikey.wav");
+			}
 			break;
 		case(2):
-			playSound("resources/sounds/have_a_look.wav");
+			if (starsEarned != prevStars) {
+				playSound("resources/sounds/have_a_look.wav");
+			}
 			break;
 		case(3):
-			playSound("resources/sounds/see_ya_later.wav");
+			if (starsEarned != prevStars) {
+				playSound("resources/sounds/see_ya_later.wav");
+			}
 			break;
 		default:
 	}

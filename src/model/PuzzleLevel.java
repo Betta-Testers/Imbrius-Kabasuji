@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import app.Builder;
 import app.Game;
+import controllers.player.ClearSelectedPieceController;
 import controllers.player.ExitLevelController;
 import controllers.player.PuzzleBoardGameController;
 import view.BuilderView;
@@ -117,6 +118,7 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 		pbgc = new PuzzleBoardGameController(g, view);
 		view.getBoardView().addMouseListener(pbgc);
 		view.getBoardView().addMouseMotionListener(pbgc);
+		((NumberMovesLeftView)view.getEndConditionPanel()).addClearSelectedActionListener(new ClearSelectedPieceController(g, view));
 		return view;
 	}
 	
