@@ -131,7 +131,6 @@ public class Piece{
 	/**
 	 * Returns a copy of the piece.
 	 * @return new Piece with the same ID as this Piece - Piece
-	 * @throws NullPointerException if this piece did not deserialize properly, or it's tiles aren't initialized
 	 */
 	public Piece makeCopy(){
 		Piece p = new Piece(ID);
@@ -160,7 +159,7 @@ public class Piece{
 
 	/**
 	 * Returns the column location of the origin.
-	 * @return column location of tiles[0] (origin) - int
+	 * @return column location of the first tile (origin) - int
 	 */
 	public int getOriginCol(){
 		return tiles.get(0).getCol();
@@ -168,7 +167,7 @@ public class Piece{
 
 	/**
 	 * Returns the row location of the origin.
-	 * @return row location of tiles[0] (origin) - int
+	 * @return row location of the first tile (origin) - int
 	 */
 	public int getOriginRow(){
 		return tiles.get(0).getRow();
@@ -176,7 +175,7 @@ public class Piece{
 
 	/**
 	 * Returns the origin tile.
-	 * @return tiles[0] (origin) - PieceTile
+	 * @return the first tile (origin) - PieceTile
 	 */
 	public PieceTile getOriginTile() {
 		if (tiles.size() == 0) {
@@ -186,7 +185,7 @@ public class Piece{
 	}
 
 	/**
-	 * Returns the previous tiles.
+	 * Returns the previous tiles. Populated when placed on the board with the tiles that the piece covered
 	 * @return prevTiles - ArrayList<AbstractTile>
 	 */
 	public ArrayList<AbstractTile> getPreviousTiles() {
@@ -199,7 +198,7 @@ public class Piece{
 	
 	/**
 	 * Returns the array of tiles that makes up the piece.
-	 * @return tiles - PieceTile[]
+	 * @return tiles - Arraylist of PieceTiles
 	 */
 	public ArrayList<PieceTile> getTiles() {
 		return tiles;
@@ -224,6 +223,7 @@ public class Piece{
 	}
 	
 	/**
+	 * Generates a small preview of this piece for display in the bullpen
 	 * @return An icon of this piece
 	 */
 	public ImageIcon generateIcon() {
