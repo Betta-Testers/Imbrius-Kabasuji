@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseListener;
@@ -83,6 +84,7 @@ public class LevelTypeSelectView extends JFrame {
 		initialize();
 		setupLayout();
 		setVisible(false);
+		this.getContentPane().setBackground( Color.WHITE );
 	}
 
 	/**

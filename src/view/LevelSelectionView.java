@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class LevelSelectionView extends JFrame {
 		levels = new ArrayList<AvailableLevelView>();
 		
 		setupLayout();
-		
+		this.getContentPane().setBackground( Color.WHITE );
 	}
 	
 	/**

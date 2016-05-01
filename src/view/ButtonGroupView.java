@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
@@ -10,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import app.UndoManager;
 
 /**
@@ -54,6 +56,7 @@ public class ButtonGroupView extends JPanel{
 		UndoManager.getInstance().giveButtonGroup(this);
 		
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 		
 	/**

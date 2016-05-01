@@ -9,6 +9,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import model.LightningLevel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -37,6 +38,7 @@ public class TimeRemainingView extends JPanel {
 		lblTitle = new JLabel("Seconds Remaining");
 		
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 	
 	/**

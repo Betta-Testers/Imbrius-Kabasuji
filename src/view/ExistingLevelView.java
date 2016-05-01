@@ -59,6 +59,7 @@ public class ExistingLevelView extends JPanel implements Comparable<ExistingLeve
 		this.add(deleteLevel);
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 	
 	/**

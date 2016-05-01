@@ -5,6 +5,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -33,6 +34,7 @@ public class LevelInfoView extends JPanel {
 		lblLevelNumber = new JLabel("Level "+levelID);
 		
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 	
 	/**

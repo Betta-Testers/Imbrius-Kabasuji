@@ -1,16 +1,21 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+
 import model.AbstractLevelModel;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import controllers.builder.SetNumberOfMovesSpinnerController;
 import controllers.builder.TimeLimitSpinnerController;
 import model.PuzzleLevel;
@@ -75,6 +80,7 @@ public class LevelPropertiesView extends JPanel{
 		
 		tileCount = 0;
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 	
 	/**
