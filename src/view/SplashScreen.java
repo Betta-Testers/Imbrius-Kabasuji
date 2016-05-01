@@ -3,10 +3,11 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 
 /**
@@ -48,7 +49,7 @@ public class SplashScreen extends JFrame {
 		lblGroupName.setFont(new Font("Comic Sans MS", Font.PLAIN, 45));
 		
 		lblName1 = new JLabel("Abby Harrison");
-		lblName1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblName1.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
 		
 		lblName2 = new JLabel("Brendan O'Connor");
 		lblName2.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
@@ -63,6 +64,7 @@ public class SplashScreen extends JFrame {
 		lblName5.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
 		setupLayout();
 		setVisible(true);
+		this.getContentPane().setBackground( Color.WHITE );
 
 	}
 	

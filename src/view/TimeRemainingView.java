@@ -9,8 +9,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import model.LightningLevel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.text.DecimalFormat;
 
 /**
  * Class for displaying the time remaining in a lightning level.
@@ -32,11 +34,12 @@ public class TimeRemainingView extends JPanel {
 		this.setPreferredSize(new Dimension(180, 90));
 		textPaneTime = new JTextPane();
 		textPaneTime.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		textPaneTime.setText(""+level.getTotalTime());
+		updateTimeLeft(level.getTotalTime());
 		
 		lblTitle = new JLabel("Seconds Remaining");
 		
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 	
 	/**
@@ -44,8 +47,9 @@ public class TimeRemainingView extends JPanel {
 	 * Method takes formatted string
 	 * @param secondsRemaining - The time remaining in string form
 	 */
-	public void updateTimeLeft(String secondsRemaining){
-		textPaneTime.setText(secondsRemaining);
+	public void updateTimeLeft(int secondsRemaining){
+		String time = new DecimalFormat("   ").format(secondsRemaining);
+		textPaneTime.setText(time);
 	}
 	
 	/**

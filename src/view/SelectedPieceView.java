@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
+
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -53,6 +55,7 @@ public class SelectedPieceView extends JPanel{
 		
 		piecePanel = new PiecePanel(bp);
 		setupLayout();
+		this.setBackground(Color.WHITE);
 		initializeControllers();
 	}
 	

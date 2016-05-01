@@ -49,8 +49,8 @@ public class LightningTimerController extends WindowAdapter implements ActionLis
 	 */
 	public void actionPerformed(ActionEvent e){
 		secondsElapsed++;
-		String time = new DecimalFormat("   ").format(totalTime-secondsElapsed);
-		((TimeRemainingView)view.getEndConditionPanel()).updateTimeLeft(time);
+		
+		((TimeRemainingView)view.getEndConditionPanel()).updateTimeLeft(totalTime-secondsElapsed);
 		if (secondsElapsed >= totalTime) {
 			timer.stop();
 			game.getLevelView().dispatchEvent(new WindowEvent(game.getLevelView(), WindowEvent.WINDOW_CLOSING));

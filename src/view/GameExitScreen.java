@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+
+import java.awt.Color;
 import java.awt.Font;
 
 /**
@@ -33,6 +35,7 @@ public class GameExitScreen extends JFrame{
 		btnReturnToLevel = new JButton("Return to Level Select");
 		btnReturnToLevel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		setupLayout();
+		this.getContentPane().setBackground( Color.WHITE );
 	}
 	
 	/**
@@ -55,7 +58,7 @@ public class GameExitScreen extends JFrame{
 							.addGap(43)
 							.addComponent(btnReturnToLevel))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(22)
+							.addGap(60)
 							.addComponent(stars, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(21, Short.MAX_VALUE))
 		);
