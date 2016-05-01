@@ -47,7 +47,7 @@ public class RemoveHintMove implements IMove {
 		if(isValid()) {
 			findHintModel();
 			for(BoardTile t: hintModel){
-				((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(false);
+				t.setHint(false);
 			}
 			b.removeHint(hintModel);
 			b.clearPiecePreview();
@@ -111,7 +111,7 @@ public class RemoveHintMove implements IMove {
 	@Override
 	public boolean undo() {
 		for(BoardTile t: hintModel){
-			((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(true);
+			t.setHint(true);
 		}
 		b.addHint(hintModel);
 		
@@ -128,7 +128,7 @@ public class RemoveHintMove implements IMove {
 	@Override 
 	public boolean redo() {
 		for(BoardTile t: hintModel){
-			((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(false);
+			t.setHint(false);
 		}
 		b.removeHint(hintModel);
 		

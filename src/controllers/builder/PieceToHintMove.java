@@ -102,9 +102,10 @@ public class PieceToHintMove implements IMove{
 	 * @return true
 	 */
 	public boolean undo() {
-		for(PieceTile pt : p.getTiles()){
-			((BoardTile) board.getTileAt(pt.getCol()*board.getTileSize(), pt.getRow()*board.getTileSize())).setHint(false);
+		for(BoardTile t : hintModel){ 
+			t.setHint(false);
 		}
+		
 		board.removeHint(hintModel);
 		bp.setSelectedPiece(p);
 		
