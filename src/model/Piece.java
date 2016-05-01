@@ -9,6 +9,10 @@ import javax.swing.ImageIcon;
 
 
 /**
+ * Represents the core component of Kabasuji. 
+ * Composed of tiles, it is created by the PieceFactory around an "origin tile". 
+ * Flips and rotations are done around that origin tile, which is used as the mouse anchor for initial placement.
+ * Setting the location of the piece sets the location of the origin tile, which then updates all the other tiles
  * @author ejbosia
  * @author hejohnson
  * @author dfontana
