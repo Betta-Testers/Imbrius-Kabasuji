@@ -33,7 +33,7 @@ public class AvailableLevelView extends JPanel {
 	 * Creates a new AvailableLevelView with a given levelID.
 	 * @param levelID - int
 	 */
-	public AvailableLevelView(int levelID) {
+	AvailableLevelView(int levelID) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setPreferredSize(new Dimension(148, 100));
 		btnSelectLevel = new JButton("");

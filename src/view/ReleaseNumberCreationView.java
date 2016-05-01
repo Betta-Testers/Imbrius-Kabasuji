@@ -43,7 +43,7 @@ public class ReleaseNumberCreationView extends JPanel{
 	/**
 	 * Creates a ReleaseNumberCreationView.
 	 */
-	public ReleaseNumberCreationView(){
+	ReleaseNumberCreationView(){
 		setPreferredSize(new Dimension(105, 135));
 		groupLayout = new GroupLayout(this);
 

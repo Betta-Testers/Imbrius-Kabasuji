@@ -28,7 +28,7 @@ public class LevelInfoView extends JPanel {
 	 * Creates a new LevelInfoView with a given levelID.
 	 * @param levelID - int
 	 */
-	public LevelInfoView(int levelID) {
+	LevelInfoView(int levelID) {
 		this.setPreferredSize(new Dimension(145, 80));
 		starView = new StarView();
 		lblLevelNumber = new JLabel("Level "+levelID);

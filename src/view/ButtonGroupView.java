@@ -36,7 +36,7 @@ public class ButtonGroupView extends JPanel{
 	/**
 	 * Creates a new ButtonGroupView.
 	 */
-	public ButtonGroupView(){
+	ButtonGroupView(){
 		setPreferredSize(new Dimension(120, 85));
 		btnUndo = new JButton("");
 		btnRedo = new JButton("");

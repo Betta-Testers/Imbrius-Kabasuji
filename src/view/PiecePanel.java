@@ -31,7 +31,7 @@ public class PiecePanel extends JPanel{
 	 * Creates the piece panel object
 	 * @param bp the bullpen whose selected piece is being displayed in this panel.
 	 */
-	public PiecePanel(Bullpen bp){
+	PiecePanel(Bullpen bp){
 		this.setPreferredSize(new Dimension(192,192));
 		this.bp = bp;
 		this.setBorder(BorderFactory.createLineBorder(Color.black));

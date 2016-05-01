@@ -24,7 +24,7 @@ public class PlayingPieceGroupView extends AbstractPieceGroupView{
 	 * Creates a PlayingPieceGroupView.
 	 * @param pieceGroup - PieceGroup
 	 */
-	public PlayingPieceGroupView(PieceGroup pieceGroup){
+	PlayingPieceGroupView(PieceGroup pieceGroup){
 		super(pieceGroup);
 		
 		label = new JLabel();

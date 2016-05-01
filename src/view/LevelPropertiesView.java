@@ -53,7 +53,7 @@ public class LevelPropertiesView extends JPanel{
 	/**
 	 * Constructs a LevelPropertiesView.
 	 */
-	public LevelPropertiesView(){
+	LevelPropertiesView(){
 		setPreferredSize(new Dimension(120, 120));
 		lblTitle = new JLabel("Level Properties");
 		lblTileCount = new JLabel("Tile Count:");

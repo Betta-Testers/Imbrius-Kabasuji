@@ -41,7 +41,7 @@ public class SelectedPieceView extends JPanel{
 	 * Creates a SelectedPieceView with a given Bullpen.
 	 * @param bp - Bullpen
 	 */
-	public SelectedPieceView(Bullpen bp){
+	SelectedPieceView(Bullpen bp){
 		setPreferredSize(new Dimension(384, 224));
 		this.bp = bp;
 		btnRotateLeft = new JButton("");

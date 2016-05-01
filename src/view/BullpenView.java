@@ -36,7 +36,7 @@ public class BullpenView extends JScrollPane {
 	/**
 	 * Creates a new BullpenView.
 	 */
-	public BullpenView(){
+	BullpenView(){
 		this.getVerticalScrollBar().setUnitIncrement(35);
 		this.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

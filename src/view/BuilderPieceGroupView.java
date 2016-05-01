@@ -31,7 +31,7 @@ public class BuilderPieceGroupView extends AbstractPieceGroupView{
 	 * Creates a new BuilderPieceGroupView with a given PieceGroup.
 	 * @param pg - PieceGroup
 	 */
-	public BuilderPieceGroupView(PieceGroup pg){
+	BuilderPieceGroupView(PieceGroup pg){
 		super(pg);
 		SpinnerNumberModel model = new SpinnerNumberModel(0, 0, 99, 1);  
 		spinner = new JSpinner(model);

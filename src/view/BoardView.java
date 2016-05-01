@@ -37,7 +37,7 @@ public class BoardView extends JPanel{
 	 * Creates a new board view with an inputed board.
 	 * @param b - Board
 	 */
-	public BoardView(Board b){
+	BoardView(Board b){
 		setPreferredSize(new Dimension(385, 385));
 		this.b = b;
 		repaint(); //Initial painting of board from file

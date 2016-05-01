@@ -29,7 +29,7 @@ public abstract class AbstractPieceGroupView extends JPanel{
 	 * Creates a new AbstractPieceGroupView with an associated PieceGroup. Sets size and initializes the button.
 	 * @param pieceGroup - PieceGroup
 	 */
-	public AbstractPieceGroupView(PieceGroup pieceGroup){
+	AbstractPieceGroupView(PieceGroup pieceGroup){
 		setPreferredSize(new Dimension(72, 35));
 		this.pieceGroup = pieceGroup;
 		button = new SelectPieceButton(pieceGroup);
