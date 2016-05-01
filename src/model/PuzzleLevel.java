@@ -65,15 +65,22 @@ public class PuzzleLevel extends AbstractLevelModel implements Serializable{
 	@Override
 	public boolean checkStatus() {
 		int unmarkedTiles = board.getNumBoardTiles();
+		int prevStars = starsEarned;
 		if (unmarkedTiles == 0) {
 			starsEarned = 3;
-            playSound("resources/sounds/see_ya_later.wav");
+			if (starsEarned != prevStars) {
+				playSound("resources/sounds/see_ya_later.wav");
+			}
 		} else if (unmarkedTiles <= 6) {
 			starsEarned = 2;
-            playSound("resources/sounds/have_a_look.wav");
+			if (starsEarned != prevStars) {
+				playSound("resources/sounds/have_a_look.wav");
+			}
 		} else if (unmarkedTiles <= 12) {
 			starsEarned = 1;
-            playSound("resources/sounds/crikey.wav");
+			if (starsEarned != prevStars) {
+				playSound("resources/sounds/crikey.wav");
+			}
 		} else {
 			starsEarned = 0;
 		}
