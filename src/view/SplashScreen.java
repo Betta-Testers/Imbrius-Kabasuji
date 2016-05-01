@@ -49,7 +49,7 @@ public class SplashScreen extends JFrame {
 		lblGroupName.setFont(new Font("Comic Sans MS", Font.PLAIN, 45));
 		
 		lblName1 = new JLabel("Abby Harrison");
-		lblName1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblName1.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
 		
 		lblName2 = new JLabel("Brendan O'Connor");
 		lblName2.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));

@@ -45,6 +45,7 @@ public class AvailableLevelView extends JPanel {
 		this.levelID = levelID;
 		
 		setupLayout();
+		this.setBackground(Color.WHITE);
 	}
 	
 	/**

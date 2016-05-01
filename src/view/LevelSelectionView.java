@@ -68,6 +68,10 @@ public class LevelSelectionView extends JFrame {
 		
 		setupLayout();
 		this.getContentPane().setBackground( Color.WHITE );
+		contentPane.setBackground(Color.WHITE);
+		availableLevels.setBackground(Color.WHITE);
+		lblTitle.setBackground(Color.WHITE);
+		scrollablePanel.setBackground(Color.WHITE);
 	}
 	
 	/**
