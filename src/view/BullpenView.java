@@ -14,7 +14,7 @@ import model.Piece;
 import model.PieceGroup;
 
 /**
- * 
+ * View of the bullpen. Composed of either PlayingPieceGroups or BuilderPieceGroups, and allows user to scroll through full list of available pieces.
  * @author dfontana
  *
  */

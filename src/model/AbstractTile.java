@@ -38,6 +38,7 @@ public abstract class AbstractTile implements Serializable{
 	}
 	
 	/**
+	 * Returns the string representation of this tile, including the type and board location of the tile
 	 * @return The type of tile (lowercase) followed by its row location followed by column location
 	 */	
 	public String toString() {

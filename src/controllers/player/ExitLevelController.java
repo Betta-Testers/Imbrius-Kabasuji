@@ -29,7 +29,7 @@ public class ExitLevelController extends WindowAdapter{
 	}
 	
 	/**
-	 * Updates the stars for the level that was being played, updates the stars on the level select and the exit screen
+	 * Updates the stars for the level that was being played, updates the stars on the level select and the exit screen.
 	 * If this level was the highest unlocked level, it unlocks the next level
 	 * Then closes the gameplay window and launches the end of game window
 	 * @param we The window event that triggered the controller

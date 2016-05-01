@@ -18,6 +18,8 @@ import view.LevelView;
 import view.SelectedPieceView;
 
 /**
+ * Controls placement of pieces on a Lightning board. Handles piece preview display and swapping to lightning tiles.
+ * Tells the level to update the star count and closes the level if 3 stars earned.
  * @author hejohnson
  */
 

@@ -140,6 +140,7 @@ public abstract class AbstractLevelModel implements Serializable{
 	}
 	
 	/**
+	 * Generates image of the board to display in the LTSV. Draws empty, board, and hint tiles.
 	 * @return Preview of the board
 	 */
 	public ImageIcon generateBoardPreview() {

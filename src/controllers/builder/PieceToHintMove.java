@@ -41,7 +41,7 @@ public class PieceToHintMove implements IMove{
 	 * @param spv - selected piece view being cleared after move
 	 * @param bv - boardView being redrawn after move
 	 */
-	public PieceToHintMove(Bullpen bp, Board b, AbstractTile source, SelectedPieceView spv, BoardView bv) {
+	PieceToHintMove(Bullpen bp, Board b, AbstractTile source, SelectedPieceView spv, BoardView bv) {
 		this.bp = bp;
 		this.board = b;
 		this.source = source;

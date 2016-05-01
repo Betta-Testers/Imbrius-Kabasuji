@@ -42,7 +42,7 @@ public class PieceToNewBoardTilesMove implements IMove{
 	 * @param spv - selected piece view being cleared
 	 * @param bv - board view being redrawn after move
 	 */
-	public PieceToNewBoardTilesMove (Bullpen bullpen, Board board, AbstractTile tile, LevelPropertiesView lpv, SelectedPieceView spv, BoardView bv) {
+	PieceToNewBoardTilesMove (Bullpen bullpen, Board board, AbstractTile tile, LevelPropertiesView lpv, SelectedPieceView spv, BoardView bv) {
 		this.bullpen = bullpen;
 		this.board = board;
 		this.sourceTile = tile;

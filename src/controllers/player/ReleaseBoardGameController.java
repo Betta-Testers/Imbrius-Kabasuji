@@ -20,7 +20,8 @@ import view.NumbersReleasedView;
 import view.SelectedPieceView;
 
 /**
- * 
+ * Controls the placement of pieces on a Release board. Shows previews as appropriate. 
+ * Updates the marked tiles in the level if appropriate, and tells the level to update it's star count. Closes the level if 3 stars earned.
  * @author hejohnson
  */
 

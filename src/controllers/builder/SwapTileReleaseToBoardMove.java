@@ -29,7 +29,7 @@ public class SwapTileReleaseToBoardMove implements IMove {
 	 * @param b - board whose tiles are being swapped
 	 * @param bv - view of board being redrawn
 	 */
-	public  SwapTileReleaseToBoardMove(AbstractTile old, Board b, BoardView bv) {
+	SwapTileReleaseToBoardMove(AbstractTile old, Board b, BoardView bv) {
 		this.board = b;
 		this.oldTile = old;
 		this.bv = bv;

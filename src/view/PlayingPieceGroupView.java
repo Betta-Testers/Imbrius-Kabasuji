@@ -7,7 +7,8 @@ import javax.swing.SwingConstants;
 
 import model.PieceGroup;
 /**
- * 
+ * View of the piece group in the player. Shows the current count of the number of that piece available to place on the board. 
+ * Has a button to click to select piece for reorientation and placement.
  * @author dfontana
  * @author hejohnson
  *

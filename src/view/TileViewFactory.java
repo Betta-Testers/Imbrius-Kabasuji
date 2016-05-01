@@ -22,7 +22,7 @@ public class TileViewFactory {
 	public TileViewFactory () {}
 	
 	/**
-	 * Draws a tile.
+	 * Draws a tile, using a rectangle (outline) and a filled rectangle. Gets the color from the tile. Draws text if it is a release tile to display the number, using the color from the release tile.
 	 * @param g - Graphics
 	 * @param at - AbstractTile
 	 */

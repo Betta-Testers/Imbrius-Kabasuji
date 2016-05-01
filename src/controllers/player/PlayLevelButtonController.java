@@ -20,7 +20,7 @@ public class PlayLevelButtonController implements java.awt.event.ActionListener 
 	int levelID;
 	
 	/** 
-	 * 
+	 * Creates a controller to play a level based on the button that was clicked
 	 * @param selectLevel The window that this button is a part of
 	 * @param g The game object used to play levels
 	 * @param levelID The level ID that this button is associated with

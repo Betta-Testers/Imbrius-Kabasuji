@@ -17,6 +17,7 @@ public class GameSplashTimerController implements ActionListener{
 	Game g;
 	
 	/**
+	 * Creates a controller to close the splash screen and display the level select view
 	 * @param view The splash screen
 	 * @param g The game object
 	 */

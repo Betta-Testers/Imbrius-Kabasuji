@@ -50,6 +50,7 @@ public class Piece{
 	}
 	
 	/**
+	 * Adds a tile to this piece. Used by the PieceFactory to generate pieces.
 	 * @param pt The piece tile to add
 	 */
 	public void addTile(PieceTile pt) {

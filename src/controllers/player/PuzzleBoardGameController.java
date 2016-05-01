@@ -21,6 +21,8 @@ import view.SelectedPieceView;
 import view.NumberMovesLeftView;
 
 /**
+ * Controls placement, movement (dragging), and removal of pieces on a puzzle board, including showing piece previews. 
+ * Updates move count and tells the level to update the star count. Closes the level if 3 stars earned.
  * @author hejohnson
  * @author awharrison
  *

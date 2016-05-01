@@ -11,8 +11,8 @@ import model.PieceGroup;
 import view.PiecePanel;
 
 /**
- * Controls the actions performed on a PieceGroup spinner in builder mode that 
- * increments and decrements its number of pieces 
+ * Controls the actions performed on a PieceGroup spinner. Used in builder mode to 
+ * increment and decrement its number of pieces.
  * @author awharrison
  * @author dfontana
  */

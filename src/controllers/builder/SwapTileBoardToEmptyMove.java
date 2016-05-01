@@ -31,7 +31,7 @@ public class SwapTileBoardToEmptyMove implements IMove {
 	 * @param lpv - levelPropertiesView whose tile count is being updated
 	 * @param bv - view of board being redrawn
 	 */
-	public SwapTileBoardToEmptyMove (AbstractTile old, Board b, LevelPropertiesView lpv, BoardView bv) {
+	SwapTileBoardToEmptyMove (AbstractTile old, Board b, LevelPropertiesView lpv, BoardView bv) {
 		this.board = b;
 		this.oldTile = old;
 		this.lpv = lpv;

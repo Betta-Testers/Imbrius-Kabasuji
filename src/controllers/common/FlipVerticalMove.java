@@ -20,7 +20,7 @@ public class FlipVerticalMove implements IMove {
 	SelectedPieceView spv;
 	
 	/**
-	 * Rotates a piece and provides undo/redo functionality for the builder
+	 * Rotates a piece and provides undo/redo functionality for the builder.
 	 * @param p The selected piece to be flipped
 	 * @param bp The bullpen that contains the selected piece
 	 */

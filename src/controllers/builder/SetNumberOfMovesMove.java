@@ -24,7 +24,7 @@ public class SetNumberOfMovesMove implements IMove {
 	 * @param pl - Puzzle Level whose move limit is being set
 	 * @param spinMoves - Spinner manipulating the move limit
 	 */
-	public SetNumberOfMovesMove (PuzzleLevel pl, JSpinner spinMoves) {
+	SetNumberOfMovesMove (PuzzleLevel pl, JSpinner spinMoves) {
 		this.spinMoves = spinMoves;
 		this.pl = pl;
 		this.newMoves = (int)spinMoves.getValue();

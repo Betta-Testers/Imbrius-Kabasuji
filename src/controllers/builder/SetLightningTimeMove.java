@@ -25,7 +25,7 @@ public class SetLightningTimeMove implements IMove {
 	 * @param ll - lightninglevel whose time is being manipulated
 	 * @param timeSpin - spinner that is manipulating the timer
 	 */
-	public SetLightningTimeMove (LightningLevel ll, JSpinner timeSpin) {
+	SetLightningTimeMove (LightningLevel ll, JSpinner timeSpin) {
 		this.timeSpin = timeSpin;
 		this.ll = ll;
 		this.time = (int)timeSpin.getValue();

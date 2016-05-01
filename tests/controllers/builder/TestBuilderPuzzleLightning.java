@@ -1,4 +1,4 @@
-package controllers;
+package controllers.builder;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;

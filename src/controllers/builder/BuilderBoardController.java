@@ -22,7 +22,7 @@ import model.Piece;
 import model.PieceTile;
 
 /**
- * Controls all actions having to do with the board in the Builder application
+ * Controls all actions having to do with the board in the Builder application.
  * Handles showing piece placement previews, placing pieces, dragging pieces around, and removing them from the board
  * Also handles swapping types of tiles, empty <-> board <-> release tiles (including changing number/color)
  * 

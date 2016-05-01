@@ -28,7 +28,7 @@ public class RemoveHintMove implements IMove {
 	 * @param b - board that is being modified
 	 * @param bv - view of board being redrawn
 	 */
-	public RemoveHintMove(AbstractTile source, Board b, BoardView bv){
+	RemoveHintMove(AbstractTile source, Board b, BoardView bv){
 		this.source = source;
 		this.b = b;
 		this.bv = bv;
