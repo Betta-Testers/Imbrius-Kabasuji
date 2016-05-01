@@ -68,7 +68,7 @@ public class Board implements Serializable{
 	/**
 	 * Removes a Piece from the hintPieces arrayList based on if two piece's tile's coordinates 
 	 * are the same. Uses a helper method to determine if two pieces are the same.
-	 * @param p - Piece to be removed
+	 * @param hint - hintModel array to be removed
 	 */
 	public void removeHint(ArrayList<BoardTile> hint) {
 		for(int i = 0; i < hintPieces.size(); i++){

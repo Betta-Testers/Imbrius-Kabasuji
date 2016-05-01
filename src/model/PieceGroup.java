@@ -49,6 +49,7 @@ public class PieceGroup implements Comparable<PieceGroup>, Serializable{
 
 	/**
 	 * Allows collections of PieceGroup to be easily sorted.
+	 * @param other  - pieceGroup being compared to
 	 * @return comparison of IDs - int
 	 */
 	public int compareTo(PieceGroup other) {

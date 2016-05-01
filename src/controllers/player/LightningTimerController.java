@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.text.DecimalFormat;
 import javax.swing.Timer;
 
 import app.Game;
@@ -46,6 +45,7 @@ public class LightningTimerController extends WindowAdapter implements ActionLis
 	/** 
 	 * Counts the number of seconds (an event is fired every second
 	 * If the count reaches the total time, the timer is stopped and the game window is closed
+	 * @param e Button clicked event
 	 */
 	public void actionPerformed(ActionEvent e){
 		secondsElapsed++;
@@ -59,6 +59,7 @@ public class LightningTimerController extends WindowAdapter implements ActionLis
 	
 	/** 
 	 * If the window is closed by an outside actor, the timer is stopped
+	 * @param we - window event
 	 */
 	public void windowClosing(WindowEvent we) {
 		timer.stop();

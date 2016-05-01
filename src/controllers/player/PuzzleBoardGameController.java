@@ -66,11 +66,17 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		this.spv = levelView.getSelectedPieceView();
 	}
 	
+	/**
+	 * Does nothing on mouseClicked
+	 * @param me - mouse clicked event
+	 */
 	@Override
-	public void mouseClicked(MouseEvent me) {
+	public void mouseClicked(MouseEvent me) {}
 
-	}
-
+	/**
+	 * Sets the boolean for knowing if the mouse is on the board or not to true.
+	 * @param me - mouse entered event
+	 */
 	@Override
 	public void mouseEntered(MouseEvent me) {
 		mouseOn = true;

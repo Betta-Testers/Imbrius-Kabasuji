@@ -27,6 +27,7 @@ public class GameSplashTimerController implements ActionListener{
 	
 	/**
 	 * Closes the splash screen and shows the level select screen
+	 * @param e - button click event
 	 */
 	public void actionPerformed(ActionEvent e){
 		view.dispose();

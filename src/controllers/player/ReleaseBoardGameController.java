@@ -51,10 +51,12 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		this.spv = levelView.getSelectedPieceView();
 	}
 
+	/**
+	 * Does nothing on mouseClicked
+	 * @param me - mouse clicked event
+	 */
 	@Override
-	public void mouseClicked(MouseEvent me) {
-
-	}
+	public void mouseClicked(MouseEvent me) {}
 
 	/** 
 	 * Shows the selected piece with the origin tile located at the tile that the mouse is over
@@ -100,6 +102,10 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		}
 	}
 
+	/**
+	 * Does nothing on mouseEntered
+	 * @param me - mouse entered event
+	 */
 	@Override
 	public void mouseEntered(MouseEvent me) {}
 
@@ -132,9 +138,17 @@ public class ReleaseBoardGameController implements MouseListener, MouseMotionLis
 		}
 	}
 
+	/**
+	 * Does nothing on mouseReleased
+	 * @param arg0 - mouse released event
+	 */
 	@Override
 	public void mouseReleased(MouseEvent arg0) {}
 
+	/**
+	 * Does nothing on mouseDragged
+	 * @param arg0 - mouse dragged event
+	 */
 	@Override
 	public void mouseDragged(MouseEvent arg0) {}
 }

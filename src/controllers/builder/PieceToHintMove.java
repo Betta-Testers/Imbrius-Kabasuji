@@ -35,7 +35,6 @@ public class PieceToHintMove implements IMove{
 	
 	/**
 	 * Constructs a Piece to Hint Move
-	 * @param hintPieces - pieces known to be hints on the board
 	 * @param bp - Bullpen being modified
 	 * @param b - Board having a hint placed on it
 	 * @param source - Tile that was clicked
