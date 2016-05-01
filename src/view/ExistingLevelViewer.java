@@ -40,6 +40,7 @@ public class ExistingLevelViewer extends JScrollPane {
 	 * Add a level view to the list of existing levels.
 	 * @param levelType - level Type
 	 * @param levelIndex - level ID
+	 * @param icon  - image of board to display
 	 * @return ExistingLevelView added to the list of exising levels
 	 */
 	public ExistingLevelView addLevelView(String levelType, Integer levelIndex, ImageIcon icon) {

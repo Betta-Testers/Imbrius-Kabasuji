@@ -35,6 +35,7 @@ public class PlayLevelButtonController implements java.awt.event.ActionListener 
 	 * When the player clicks the button of the level they want to play,
 	 * the game needs to initialize the view for that level, and the
 	 * associated controllers.
+	 * @param ae - Button pressed event
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		model.getExitView().setStars(0);

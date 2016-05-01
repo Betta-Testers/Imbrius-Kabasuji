@@ -252,7 +252,12 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		}
 	}
 
+	
 	//====================== UNUSED BUT REQUIRED ======================//
+	/**
+	 * Does nothing on mouseClick.
+	 * @param me - Mouse click event.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent me) {}
 }

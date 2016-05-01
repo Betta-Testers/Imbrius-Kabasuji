@@ -62,8 +62,17 @@ public class NewLightningLevelController implements MouseListener{
 		b.getBuilderView().setVisible(true);
 	}
 	
+	
+	/**
+	 * Does nothing on mouseClicked
+	 * @param arg0 - mouse clicked event
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {}
+	/**
+	 * Does nothing on mouseReleased
+	 * @param arg0 - mouse released event
+	 */
 	@Override
 	public void mouseReleased(MouseEvent arg0){}
 }

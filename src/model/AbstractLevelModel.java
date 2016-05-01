@@ -159,7 +159,7 @@ public abstract class AbstractLevelModel implements Serializable{
 	
 	/**
 	 * Plays a sound when called.
-	 * @param String - path to wav file
+	 * @param strFilename - path to wav file
 	 */
 	public static synchronized void playSound(final String strFilename) {
 		  new Thread(new Runnable() {
