@@ -223,7 +223,7 @@ public class Piece{
 	}
 	
 	/**
-	 * Generates a small preview of this piece for display in the bullpen
+	 * Generates a small preview (35x35) of this piece for display in the bullpen
 	 * @return An icon of this piece
 	 */
 	public ImageIcon generateIcon() {
