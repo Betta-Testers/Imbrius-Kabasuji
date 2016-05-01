@@ -3,7 +3,6 @@ package controllers.builder;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 
 import app.UndoManager;
 import controllers.common.IMove;
@@ -50,9 +49,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 	/** Panel on the side that holds the toggle buttons for setting the tile number **/
 	ReleaseNumberCreationView rncv;
 
-	/**Tracks all the pieces that governed a hint placement**/
-	ArrayList<Piece> hintPieces;
-
 	/** Tracks if the mouse is on the board **/
 	boolean mouseOn;
 	/** Row offset between the origin tile and the tile that was clicked on within the piece **/
@@ -76,7 +72,6 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 		this.boardView = bView.getBoardView();
 		this.rncv = bView.getReleaseNumberView();
 		this.spv = bView.getSelectedPieceView();
-		this.hintPieces = new ArrayList<Piece>();
 		this.tileCount = 0;
 	}
 
@@ -124,7 +119,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				}
 			}else if(bView.getStateOfHintConvert()){
 				if (mouseOn) {
-					move = new PieceToHintMove(hintPieces, bp, board, source, spv, boardView);
+					move = new PieceToHintMove(bp, board, source, spv, boardView);
 					if(move.doMove()){
 						UndoManager.getInstance().pushMove(move);
 					}
@@ -150,7 +145,7 @@ public class BuilderBoardController implements MouseListener, MouseMotionListene
 				}
 			}
 		}else if(rncv.getNumberSelected() < 0){
-			move = new RemoveHintMove(hintPieces, source, board, boardView);
+			move = new RemoveHintMove(source, board, boardView);
 			if(!move.doMove()){
 				move = new SwapTileBoardToEmptyMove(source, board, bView.getLevelPropertiesView(), boardView);
 				if(!move.doMove()){
