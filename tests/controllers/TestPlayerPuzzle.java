@@ -259,6 +259,13 @@ public class TestPlayerPuzzle extends TestCase {
 		me = new MouseEvent(boardView, 
 				MouseEvent.MOUSE_DRAGGED, 
 				System.currentTimeMillis(), 0, 
+				3*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		level.getBoardController().mouseDragged(me);
+		
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_DRAGGED, 
+				System.currentTimeMillis(), 0, 
 				5*board.getTileSize(), 
 				3*board.getTileSize(), 0, false);
 		level.getBoardController().mouseDragged(me);
@@ -314,6 +321,14 @@ public class TestPlayerPuzzle extends TestCase {
 				3*board.getTileSize(), 
 				3*board.getTileSize(), 0, false);
 		level.getBoardController().mousePressed(me);
+		
+		/* Drag the piece to remove it from the board */
+		me = new MouseEvent(boardView, 
+				MouseEvent.MOUSE_DRAGGED, 
+				System.currentTimeMillis(), 0, 
+				3*board.getTileSize(), 
+				3*board.getTileSize(), 0, false);
+		level.getBoardController().mouseDragged(me);
 		
 		/*
 		 * exit board, verify that the board is made up of board tiles entirely

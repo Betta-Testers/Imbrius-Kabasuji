@@ -6,8 +6,6 @@ import controllers.common.IMove;
 import model.AbstractTile;
 import model.Board;
 import model.BoardTile;
-import model.Piece;
-import model.PieceTile;
 import view.BoardView;
 
 /**
@@ -19,22 +17,18 @@ public class RemoveHintMove implements IMove {
 	Board b;
 	/**The tile that was clicked. Expected to be a hint tile. **/
 	AbstractTile source;
-	/**Known hints on the board**/
-	ArrayList<Piece>hintPieces;
-	/**Piece that has been found to be the model piece for the hint**/
-	Piece p;
+	/**ArrayList of board tiles that has been found to be the model array for the hint**/
+	ArrayList<BoardTile> hintModel;
 	/**Updates the view of the board**/
 	BoardView bv;
 
 	/**
 	 * Constructor for making a RemoveHintMove
-	 * @param hintPieces - known pieces that are hints
 	 * @param source - supposed hint tile that was clicked
 	 * @param b - board that is being modified
 	 * @param bv - view of board being redrawn
 	 */
-	public RemoveHintMove(ArrayList<Piece>hintPieces, AbstractTile source, Board b, BoardView bv){
-		this.hintPieces = hintPieces;
+	public RemoveHintMove(AbstractTile source, Board b, BoardView bv){
 		this.source = source;
 		this.b = b;
 		this.bv = bv;
@@ -52,10 +46,10 @@ public class RemoveHintMove implements IMove {
 	public boolean doMove() {
 		if(isValid()) {
 			findHintModel();
-			for(PieceTile t: p.getTiles()){
-				((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(false);
+			for(BoardTile t: hintModel){
+				t.setHint(false);
 			}
-			removeFromList(p);
+			b.removeHint(hintModel);
 			b.clearPiecePreview();
 			
 			//Redraw
@@ -82,28 +76,28 @@ public class RemoveHintMove implements IMove {
 	}
 	
 	/**
-	 * Method to help the move know what piece model to use. 
-	 * Searches the pieces of the array for the row/col coordinates 
+	 * Method to help the move know what hint array model to use. 
+	 * Searches the arrays of the hints array for the row/col coordinates 
 	 * of the source tile. It is guarenteed to be in the array, so when it
 	 * is found the loop breaks.
 	 */
 	void findHintModel(){
-		for(Piece p: hintPieces){
-			if(searchPiece(p)){ break;}
+		for(ArrayList<BoardTile> abt: b.getHintPieces()){
+			if(searchPiece(abt)){ break;}
 		}
 	}
 	
 	/**
-	 * Method to help the findHintModel method. Searches a given piece's
-	 * tiles for the source tile. When found, it sets the class's piece 
+	 * Method to help the findHintModel method. Searches a given array's
+	 * tiles for the source tile. When found, it sets the class's modelHint 
 	 * field and returns true to notify findHintModel() the search is over.
-	 * @param p - the piece currently being checked
-	 * @return true if the piece is found
+	 * @param abt - the array currently being checked
+	 * @return true if the array is found
 	 */
-	boolean searchPiece(Piece p){
-		for(PieceTile t: p.getTiles()){
+	boolean searchPiece(ArrayList<BoardTile> abt){
+		for(BoardTile t: abt){
 			if(t.getRow() == source.getRow() && t.getCol() == source.getCol()){
-				this.p = p;
+				this.hintModel = abt;
 				return true;
 			}
 		}
@@ -116,10 +110,10 @@ public class RemoveHintMove implements IMove {
 	 */
 	@Override
 	public boolean undo() {
-		for(PieceTile t: p.getTiles()){
-			((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(true);
+		for(BoardTile t: hintModel){
+			t.setHint(true);
 		}
-		hintPieces.add(p);
+		b.addHint(hintModel);
 		
 		//Redraw
 		bv.redraw();
@@ -133,28 +127,14 @@ public class RemoveHintMove implements IMove {
 	 */
 	@Override 
 	public boolean redo() {
-		for(PieceTile t: p.getTiles()){
-			((BoardTile)b.getTileAt(t.getCol()*32, t.getRow()*32)).setHint(false);
+		for(BoardTile t: hintModel){
+			t.setHint(false);
 		}
-		removeFromList(p);
+		b.removeHint(hintModel);
 		
 		//Redraw
 		bv.redraw();
 		bv.repaint();
 		return true;
-	}
-	
-	/**
-	 * Removes a Piece from the hintPieces arrayList based on if two piece's tile's coordinates 
-	 * are the same. Uses a helper method to determine if two pieces are the same.
-	 * @param p - Piece to be removed
-	 */
-	void removeFromList(Piece p) {
-		for(int i = 0; i < hintPieces.size(); i++){
-			if(hintPieces.get(i).occupiesSameCoorindates(p)){
-				hintPieces.remove(i);
-				break;
-			}
-		}
 	}
 }

@@ -23,6 +23,9 @@ public class Board implements Serializable{
 	/**The pieces arrayList stores all pieces placed on the board. **/
 	transient ArrayList<Piece> pieces = new ArrayList<Piece>();
 	
+	/**Known tiles that are hints on the board. This is used for tracking entire hints that need to be removed, rather than singular tiles**/
+	ArrayList<ArrayList<BoardTile>> hintPieces = new ArrayList<ArrayList<BoardTile>>();
+	
 	/**The piece being dragged.**/
 	transient Piece draggedPiece;
 
@@ -35,7 +38,6 @@ public class Board implements Serializable{
 				board[i][j] = new EmptyTile(i,j);
 			}
 		}
-
 	}
 
 	/**
@@ -53,6 +55,57 @@ public class Board implements Serializable{
 			this.swapTile(temp.get(0));
 			temp.remove(0);
 		}
+	}
+	
+	/**
+	 * Adds the given piece to the known hints on the board
+	 * @param hintTiles ArrayList of tiles that are part of a hint
+	 */
+	public void addHint(ArrayList<BoardTile> hintTiles) {
+		this.hintPieces.add(hintTiles);
+	}
+	
+	/**
+	 * Removes a Piece from the hintPieces arrayList based on if two piece's tile's coordinates 
+	 * are the same. Uses a helper method to determine if two pieces are the same.
+	 * @param p - Piece to be removed
+	 */
+	public void removeHint(ArrayList<BoardTile> hint) {
+		for(int i = 0; i < hintPieces.size(); i++){
+			if(hasSameContents(hintPieces.get(i),hint)){
+				hintPieces.remove(i);
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * Helper method to the hints ArrayList. Instead of using the build in .equals method for removing
+	 * an ArrayList from an ArrayList (which uses instance checking), this method will return if the
+	 * ArrayList given has the same tiles as the hint given - essentially treating the two as equals.
+	 * @param hintList - ArrayList from the known hints of this class
+	 * @param hint - ArrayList being compared against HintList
+	 * @return true if the two arrays are considered equals
+	 */
+	boolean hasSameContents(ArrayList<BoardTile> hintList, ArrayList<BoardTile> hint) {
+		for(BoardTile bt: hintList){
+			for(int i = 0; i < hint.size(); i++){
+				if(bt.getRow() == hint.get(i).getRow() && bt.getCol() == hint.get(i).getCol()){
+					break;
+				}else if(i ==  hint.size()-1){ //Entire second array couldnt find tile with those coordinates
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Returns the list of hints on the board
+	 * @return ArrayList of arraylists that are hints.
+	 */
+	public ArrayList<ArrayList<BoardTile>> getHintPieces(){
+		return hintPieces;
 	}
 	
 	/**

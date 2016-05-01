@@ -24,10 +24,10 @@ public class PieceToHintMove implements IMove{
 	Board board;
 	/**Piece being used to make the hint**/
 	Piece p;
+	/**ArrayList of board tiles that get turned into a hint**/
+	ArrayList<BoardTile> hintModel;
 	/**Tile that was clicked**/
 	AbstractTile source;
-	/**Known hints to be on the board**/
-	ArrayList<Piece> hintPieces;
 	/**Updates the selected piece view after the move is done**/
 	SelectedPieceView spv;
 	/**Updates the board after the move is done**/
@@ -42,14 +42,14 @@ public class PieceToHintMove implements IMove{
 	 * @param spv - selected piece view being cleared after move
 	 * @param bv - boardView being redrawn after move
 	 */
-	public PieceToHintMove(ArrayList<Piece> hintPieces, Bullpen bp, Board b, AbstractTile source, SelectedPieceView spv, BoardView bv) {
+	public PieceToHintMove(Bullpen bp, Board b, AbstractTile source, SelectedPieceView spv, BoardView bv) {
 		this.bp = bp;
 		this.board = b;
 		this.source = source;
 		this.p = bp.getSelectedPiece();	
-		this.hintPieces = hintPieces;
 		this.spv = spv;
 		this.bv = bv;
+		this.hintModel = new ArrayList<BoardTile>();
 	}
 	
 	/**
@@ -63,9 +63,11 @@ public class PieceToHintMove implements IMove{
 		if (isValid()) {
 			p.setLocation(source.getRow(), source.getCol());
 			for(PieceTile pt : p.getTiles()){
-				((BoardTile) board.getTileAt(pt.getCol()*board.getTileSize(), pt.getRow()*board.getTileSize())).setHint(true);
+				BoardTile bt = ((BoardTile) board.getTileAt(pt.getCol()*board.getTileSize(), pt.getRow()*board.getTileSize()));
+				bt.setHint(true);
+				hintModel.add(bt);
 			}
-			hintPieces.add(p);
+			board.addHint(hintModel);
 			board.clearPiecePreview();
 			bp.clearSelectedPiece();
 			
@@ -100,10 +102,11 @@ public class PieceToHintMove implements IMove{
 	 * @return true
 	 */
 	public boolean undo() {
-		for(PieceTile pt : p.getTiles()){
-			((BoardTile) board.getTileAt(pt.getCol()*board.getTileSize(), pt.getRow()*board.getTileSize())).setHint(false);
+		for(BoardTile t : hintModel){ 
+			t.setHint(false);
 		}
-		removeFromList(p);
+		
+		board.removeHint(hintModel);
 		bp.setSelectedPiece(p);
 		
 		//Redraw
@@ -120,19 +123,5 @@ public class PieceToHintMove implements IMove{
 	 */
 	public boolean redo() {
 		return doMove();
-	}
-	
-	/**
-	 * Removes a Piece from the hintPieces arrayList based on if two piece's tile's coordinates 
-	 * are the same. Uses a helper method to determine if two pieces are the same.
-	 * @param p - Piece to be removed
-	 */
-	void removeFromList(Piece p) {
-		for(int i = 0; i < hintPieces.size(); i++){
-			if(hintPieces.get(i).occupiesSameCoorindates(p)){
-				hintPieces.remove(i);
-				break;
-			}
-		}
 	}
 }

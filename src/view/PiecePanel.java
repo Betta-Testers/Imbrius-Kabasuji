@@ -34,7 +34,7 @@ public class PiecePanel extends JPanel{
 	public PiecePanel(Bullpen bp){
 		this.setPreferredSize(new Dimension(192,192));
 		this.bp = bp;
-		this.setBorder(BorderFactory.createLineBorder(Color.black)); //TODO REMOVE
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
 	}
 
 	/**
