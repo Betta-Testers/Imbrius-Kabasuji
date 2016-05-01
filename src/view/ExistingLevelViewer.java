@@ -34,6 +34,7 @@ public class ExistingLevelViewer extends JScrollPane {
 		existingLevels = new JPanel();
 		this.setViewportView(existingLevels);
 		this.setBackground(Color.WHITE);
+		existingLevels.setBackground(Color.WHITE);
 	}
 	/**
 	 * Add a level view to the list of existing levels.
