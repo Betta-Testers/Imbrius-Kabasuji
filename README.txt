@@ -84,7 +84,7 @@ If you would like to easily play any levels you create on the game side of the a
 you will find a file named: "StarMap.storage" this is the file type we use for saving level progress. We suggest that in order to play your new levels 
 you move the StarMap.storage in the "LevelSolutions" folder to the folder "imbriusLevelFiles" and replace the "StarMap.storage" before launching the builder.
 (This unlocks the default 15 levels, so the 16th level created will be available immediately. You can of course test your board in the 
-builder, just not in the game side. If you deleted a default level, the level you make will replace that number).
+builder, just not in the game side. If you deleted a default level, the level you make will replace that number and it will have 0 stars).
 
 To launch the builder run "MainBuilder.jave in the app folder in src.
 
@@ -118,7 +118,7 @@ The hint now shows up yellow on the board.
 
 REMOVING A HINT:
 1: Make sure "Place Pieces" is disabled.
-2: Click any tile that the hint is on and the entire hint will disapear.
+2: Click any tile that the hint is on and the entire hint will disappear.
 
 
 
@@ -131,7 +131,7 @@ it off the board to remove it and add it back into the bullpen.
 If you have placed pieces and do not want to have to remove them all by hand simply click the "Remove Pieces" button in the bottom right and it will remove all
 pieces currently placed on the board.
 
-In the botoom right of the builder are also the undo and redo buttons.
+In the bottom right of the builder are also the undo and redo buttons.
 
 
 SAVING THE LEVEL:
