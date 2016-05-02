@@ -4,12 +4,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 /**
  * Class for displaying the number of moves left in a puzzle GAME.
@@ -24,6 +26,8 @@ public class NumberMovesLeftView extends JPanel {
 	JTextPane numberMoves;
 	/**Shows the title of the NumbberMovesLeftView, which is "Moves Remaining"**/
 	JLabel lblTitle;
+	/** Button to clear the selected piece view **/
+	JButton clearSelectedPiece;
 
 	/**
 	 * Creates a NumberMovesLeftView with a given initial amount of moves.
@@ -36,6 +40,7 @@ public class NumberMovesLeftView extends JPanel {
 		numberMoves.setText("00");
 		lblTitle = new JLabel("Moves Remaining");
 		numberMoves.setText(Integer.toString(initialMoves));
+		clearSelectedPiece = new JButton("Clear Selected Piece");
 		setupLayout();
 		this.setBackground(Color.WHITE);
 	}
@@ -59,6 +64,9 @@ public class NumberMovesLeftView extends JPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
+								.addGap(25)
+								.addComponent(clearSelectedPiece))
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(49)
 							.addComponent(lblTitle))
 						.addGroup(groupLayout.createSequentialGroup()
@@ -68,6 +76,7 @@ public class NumberMovesLeftView extends JPanel {
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(clearSelectedPiece)
 					.addGap(18)
 					.addComponent(lblTitle)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -75,5 +84,13 @@ public class NumberMovesLeftView extends JPanel {
 					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
+	}
+
+	/**
+	 * Sets the action listener for the clear selected piece button 
+	 * @param al The action listener to add
+	 */
+	public void addClearSelectedActionListener(ActionListener al){
+		clearSelectedPiece.addActionListener(al);
 	}
 }
