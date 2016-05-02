@@ -18,7 +18,7 @@ By default only level one will be unlocked, underneath the button saying level o
 inside the level and the same will happen for each level individually, once one or more stars are earned on a level the next level in order will be unlocked for play.
 
 Once a level is launched by clicking the button for that level you will see the level screen come up, while there are three different types of levels, all three use 
-the same mechanics with only a fee minor changes.
+the same mechanics with only a few minor changes.
 
 In order to place a piece inside of a level you must first click the piece you would like to place inside the bullpen, each piece available for your use will have a
 picture of the piece and a count of how many are available to be used for that level. Once you click on the image of the piece in the bullpen it will appear in the
@@ -29,7 +29,7 @@ the board. To place a piece simply click on the board where you want the piece t
 piece, if the piece is red then it is an invalid location to place the piece, and clicking will do nothing.
 
 If you are not satisfied with the orientation of the piece before you place it you are free to go back to the rotate buttons before placing the piece. Each of the 3 
-game modes have seperate small rules that differentiate them from eachother:
+game modes have separate small rules that differentiate them from each other:
 
 
 
@@ -60,7 +60,7 @@ Stars:
 2: Have between 6 and 1 tiles remaining to be filled
 3: Have 0 tiles remaining to be filled
 
-The only seperating factor about this game mode is that pieces may be placed on top of eachother in order to achieve victory, when a piece is placed the location
+The only separating factor about this game mode is that pieces may be placed on top of each other in order to achieve victory, when a piece is placed the location
 it was placed at becomes blue, pieces may be placed over these blue regions, but nothing will happen to tiles already marked blue.
 
 
@@ -80,9 +80,11 @@ Pieces may not be moved once they are placed like in puzzle, and cannot be stack
 THE BUILDER:
 
 PLEASE READ CAREFULLY:
-If you would like to easily play test any levels you create in the builder you should follow the following steps: In a folder named "LevelSolutions" 
+If you would like to easily play any levels you create on the game side of the application, you should follow the following steps: In a folder named "LevelSolutions" 
 you will find a file named: "StarMap.storage" this is the file type we use for saving level progress. We suggest that in order to play your new levels 
 you move the StarMap.storage in the "LevelSolutions" folder to the folder "imbriusLevelFiles" and replace the "StarMap.storage" before launching the builder.
+(This unlocks the default 15 levels, so the 16th level created will be available immediately. You can of course test your board in the 
+builder, just not in the game side. If you deleted a default level, the level you make will replace that number).
 
 To launch the builder run "MainBuilder.jave in the app folder in src.
 
@@ -136,8 +138,10 @@ SAVING THE LEVEL:
 In order to save a level you are making you must click the "save" button on the bottom right of the screen.
 THE FOLLOWING ELEMENTS ARE SAVED:
 1: The board, so empty tiles, board tiles, release tiles. 
-(ALL PIECES ARE REMOVED FROM THE BOARD WHEN THE SAVE BUTTON IS PRESSED AND THOSE PIECES ARE ADDED TO THE BULLPEN)
+(ALL PIECES ARE REMOVED FROM THE BOARD WHEN THE SAVE BUTTON IS PRESSED AND THOSE PIECES ARE ADDED TO THE BULLPEN) 
 2: Pieces in the bullpen. The pieces inside the bullpen when the level is saved and pieces removed will be the pieces available to the player at the start of the level.
+   (So it is NOT required to solve a level before saving, if you are confident the level can be solved with the pieces you incremented in the
+   bullpen, then those are the only ones saved).
 3: Specific level conditions. (Move count, time limit)
 
 
@@ -153,8 +157,10 @@ Any pieces in the bullpen will be the pieces initially available to the player, 
 
 BUILDING A RELEASE LEVEL:
 How to set up release tiles:
-1: Make sure the "Place Piece" button is toggled off and you can individually edit tiles.
+1: Make sure the "Place Piece" button is toggled off so you can individually edit tiles.
 2: From the drop down menu on the right hand side choose a color you would like to place.
 3: Click the number you would like to place, this toggles that number on.
 4: While the number button is toggled any click on a white board tile will make that board tile into a release tile with that number and color on it.
-5: To stop placing that number either toggle off the number being placed, or toggle another number to be able to place that one instead.
+5: To stop placing that number either toggle off the number being placed or toggle another number to be able to place that one instead.
+
+To remove a release tile, simply click it (with no toggle buttons selected).
