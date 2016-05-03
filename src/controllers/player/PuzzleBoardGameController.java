@@ -67,7 +67,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		this.bpv = levelView.getBullpenView();
 		this.spv = levelView.getSelectedPieceView();
 	}
-	
+
 	/**
 	 * Does nothing on mouseClicked
 	 * @param me - mouse clicked event
@@ -99,12 +99,13 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 			IMove m = new MovePieceOffBoardMove(levelModel, levelView.getBullpenView(), boardView);
 			m.doMove();
 			levelModel.getBoard().setDraggedPiece(null);
-			
+
 			((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
-			
+
 			if (levelModel.checkStatus()) {
 				levelView.dispatchEvent(new WindowEvent(levelView, WindowEvent.WINDOW_CLOSING));
 			}
+
 			levelView.getLevelInfoView().setStars(levelModel.getStarsEarned());
 		}	
 		levelModel.getBoard().clearPiecePreview();
@@ -119,14 +120,9 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 	@Override
 	public void mousePressed(MouseEvent me) {
 		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-//		if (levelModel.getBoard().getDraggedPiece() == null) {
-//			levelModel.getBoard().clearPiecePreview();
-//			boardView.redraw();
-//			boardView.repaint();
-			if (source instanceof PieceTile) {
-				pieceToDrag = ((PieceTile)source).getPiece();
-			}
-		//}
+		if (source instanceof PieceTile) {
+			pieceToDrag = ((PieceTile)source).getPiece();
+		}
 	}
 
 	/**
@@ -136,23 +132,23 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
-		
+
 		if (mouseOn) {
 			if (levelModel.getBoard().getDraggedPiece() == null || (source instanceof PieceTile)) {
 				m = new PlacePieceOnBoardFromBullpenMove(levelModel, source, levelView.getBullpenView(), spv, boardView);
 			} else {
 				m = new MovePieceOnBoardMove(levelModel.getBoard(), source, levelModel.getBoard().getDraggedPiece(), rOffset, cOffset, boardView);
 			}
-			
+
 			if (m.doMove()) {
 				levelModel.getBoard().setDraggedPiece(null);
 				((NumberMovesLeftView)levelView.getEndConditionPanel()).updateMovesLeft(levelModel.getMoveLimit()-levelModel.incrementMovesMade());
-				
+
 				if (levelModel.checkStatus()) {
 					levelView.dispatchEvent(new WindowEvent(levelView, WindowEvent.WINDOW_CLOSING));
 				}
 				levelView.getLevelInfoView().setStars(levelModel.getStarsEarned());
-	
+
 			} else {
 				if (levelModel.getBoard().getDraggedPiece() != null) { // Can't place the piece, and a piece was being dragged. Just return the piece to the original location.
 					levelModel.getBoard().putPieceOnBoard(levelModel.getBoard().getDraggedPiece(), levelModel.getBoard().getDraggedPiece().getOriginRow(), levelModel.getBoard().getDraggedPiece().getOriginCol());
@@ -187,7 +183,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		} else {
 			p = levelModel.getBoard().getDraggedPiece();
 		}
-		
+
 		if (p != null) {
 			levelModel.getBoard().clearPiecePreview();
 			levelModel.getBoard().showPiecePreview(p, source.getRow()+rOffset, source.getCol()+cOffset);
@@ -204,7 +200,7 @@ public class PuzzleBoardGameController implements MouseListener, MouseMotionList
 		Piece p;
 		source  = levelModel.getBoard().getTileAt(me.getX(), me.getY());
 		p = levelModel.getBullpen().getSelectedPiece();
-		
+
 		if(p != null){
 			levelModel.getBoard().clearPiecePreview();
 			levelModel.getBoard().showPiecePreview(p, source.getRow(), source.getCol());
