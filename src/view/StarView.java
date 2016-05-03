@@ -75,10 +75,13 @@ public class StarView extends JPanel {
 		}
 		if(stars==1){
 			lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/outline_star.png")));
+			lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/outline_star.png")));
 		}
 		if(stars==2){
 			lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
 			lblStar2.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
+			lblStar3.setIcon(new ImageIcon(StarView.class.getResource("/icons/outline_star.png")));
 		}
 		if(stars==3){
 			lblStar1.setIcon(new ImageIcon(StarView.class.getResource("/icons/star.png")));
