@@ -24,7 +24,7 @@ In order to place a piece inside of a level you must first click the piece you w
 picture of the piece and a count of how many are available to be used for that level. Once you click on the image of the piece in the bullpen it will appear in the
 selected piece preview area. 
 
-Using the buttons to the right you may rotate the piece of flip the piece. Once you have the piece in your desired orientation you may move the mouse down onto
+Using the buttons to the right you may rotate the piece or flip the piece. Once you have the piece in your desired orientation you may move the mouse down onto
 the board. To place a piece simply click on the board where you want the piece to go. If before clicking the piece is green that is a valid location to place the
 piece, if the piece is red then it is an invalid location to place the piece, and clicking will do nothing.
 
