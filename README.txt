@@ -41,10 +41,12 @@ Stars:
 3: Have 0 tiles remaining to be filled
 
 Additional information about Puzzle mode:
-Puzzle mode allows the user to move pieces already placed on the board to another position on the board, or remove it from the board. Moving a piece from one position
-on the board to another is done by clicking and holding on a placed piece and then releasing the mouse button when it is at the desired position. In order to remove
-a piece from the board simply click and hold on a piece and move the mouse off of the board, the piece will be removed
-from play and added back into the bullpen.
+Puzzle mode allows the user to move pieces already placed on the board to another position on the board, or remove it from the board.
+ 
+We suggest you first click the "remove piece from preview" button on top of the move counter before attempting any of the following:
+Moving a piece from one position on the board to another is done by clicking and holding on a placed piece and then releasing the mouse button when it is
+at the desired position. In order to remove a piece from the board simply click and hold on a piece and move the mouse off of the board, the piece will
+be removed from play and added back into the bullpen.
 
 As stated earlier a puzzle level must be completed within a certain number of moves set when the level is created. The following actions will cost a move:
 1: Moving a piece from the bullpen to the board
